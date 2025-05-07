@@ -24,6 +24,9 @@ public class PlayerController : MonoBehaviour
     {
         Vector2 movement = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
         rb.linearVelocity = movement.normalized * speed;
+        bool isSprinting = Input.GetKey(KeyCode.LeftShift);
+
+        //xoay nhan vat
         if (movement.x > 0)
         {
             sr.flipX = false;
@@ -32,13 +35,28 @@ public class PlayerController : MonoBehaviour
         {
             sr.flipX = true;
         }
+
+        //player Walking
         if (movement != Vector2.zero)
         {
-            animator.SetBool("IsRun", true);
+            animator.SetBool("isWalk", true);
         }
         else
         {
-            animator.SetBool("IsRun", false);
+            animator.SetBool("isWalk", false);
         }
+
+        //player Sprinting
+        if (isSprinting $$)
+        {
+            animator.SetBool("isSprint", true);
+            rb.velocity = movement.normalized * speed * 2;
+        }
+        else
+        {
+            animator.SetBool("isSprint", false);
+            rb.velocity = movement.normalized * speed;
+        }
+
     }
 }
