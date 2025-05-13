@@ -8,6 +8,9 @@ public class PlayerController : MonoBehaviour
     private Rigidbody2D rb;
     private SpriteRenderer sr;
     private Animator animator;
+
+    public float CurrentSpeed { get; private set; }
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -54,5 +57,6 @@ public class PlayerController : MonoBehaviour
         }
 
         rb.linearVelocity = movement * speed;
+        CurrentSpeed = speed;
     }
 }
