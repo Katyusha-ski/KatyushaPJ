@@ -3,7 +3,8 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    [SerializeField] private float speed = 5.0f;
+    [SerializeField] private float runSpeed = 5.0f;
+    [SerializeField] private float walkSpeed = 2.5f;
     private Rigidbody2D rb;
     private SpriteRenderer sr;
     private Animator animator;
@@ -22,11 +23,9 @@ public class PlayerController : MonoBehaviour
 
     private void MovingPlayer()
     {
-        Vector2 movement = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
-        rb.linearVelocity = movement.normalized * speed;
-        bool isSprinting = Input.GetKey(KeyCode.LeftShift);
+        float speed;
+        Vector2 movement = new Vector2(Input.GetAxis("Horizontal"), 0);
 
-        //xoay nhan vat
         if (movement.x > 0)
         {
             sr.flipX = false;
@@ -35,28 +34,25 @@ public class PlayerController : MonoBehaviour
         {
             sr.flipX = true;
         }
-
-        //player Walking
-        if (movement != Vector2.zero)
-        {
-            animator.SetBool("isWalk", true);
+        if (Input.GetKey(KeyCode.LeftShift) && movement.x != 0)
+        {   
+            speed = runSpeed;
+            animator.SetBool("isRun", true);
         }
         else
         {
-            animator.SetBool("isWalk", false);
+            speed = walkSpeed;
+            animator.SetBool("isRun", false);
+            if (movement.x != 0)
+            {
+                animator.SetBool("isWalk", true);
+            }
+            else
+            {
+                animator.SetBool("isWalk", false);
+            }
         }
 
-        //player Sprinting
-        if (isSprinting $$)
-        {
-            animator.SetBool("isSprint", true);
-            rb.velocity = movement.normalized * speed * 2;
-        }
-        else
-        {
-            animator.SetBool("isSprint", false);
-            rb.velocity = movement.normalized * speed;
-        }
-
+        rb.linearVelocity = movement * speed;
     }
 }
