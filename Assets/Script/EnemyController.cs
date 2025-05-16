@@ -46,7 +46,9 @@ public class EnemyController : MonoBehaviour
         health -= damage;
         if (health <= 0)
         {
+            animator.SetTrigger("Die");
             Die();
+
         }
     }
 
