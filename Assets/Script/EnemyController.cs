@@ -7,9 +7,12 @@ public class EnemyController : MonoBehaviour
     private Animator animator;
 
     [SerializeField] private float speed = 2f;
-    [SerializeField] private float attackRange = 1f;
+    [SerializeField] private float attackRange = 1.5f;
     [SerializeField] private float attackDamage = 1f;
-    [SerializeField] private int health = 3;
+    [SerializeField] private int healthPoint = 3;
+    [SerializeField] private float visionRange = 5f;
+    [SerializeField] private float attackCooldown = 2f;
+    [SerializeField] private float lastTimneAttack = Mathf.Infinity;
     [SerializeField] private Transform player;
 
     private int direction = 1; // 1 for right, -1 for left
@@ -25,6 +28,29 @@ public class EnemyController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (player == null) return;
+
+        float distanceToPlayer = Vector2.Distance(transform.position, player.position);
+
+        if (distanceToPlayer < attackRange)
+        {
+            if (Time.time - lastTimneAttack >= attackCooldown) { 
+                Attack();
+                lastTimneAttack = Time.time;
+            }
+            rb.linearVelocity = Vector2.zero;   
+        }
+        else if (distanceToPlayer < visionRange) 
+        {
+            float moveDirection = player.position.x > transform.position.x ? 1 : -1;
+            direction = (int)moveDirection;
+            rb.linearVelocity = new Vector2(speed * 1.5f * direction, rb.linearVelocity.y);
+            sr.flipX = direction < 0;
+        }
+        else
+        {
+            Patrol();
+        }
 
     }
     private void Patrol()
@@ -38,13 +64,13 @@ public class EnemyController : MonoBehaviour
 
     private void Attack()
     {
-
+        animator.SetTrigger("Attack");
     }
 
     public void TakeDamage(int damage) // Fixed 'pubblic' to 'public'
     {
-        health -= damage;
-        if (health <= 0)
+        healthPoint -= damage;
+        if (healthPoint <= 0)
         {
             animator.SetTrigger("Die");
             Die();

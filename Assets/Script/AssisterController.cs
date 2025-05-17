@@ -8,7 +8,7 @@ public class AssisterController : MonoBehaviour
     public PlayerController playerController;
     public Vector3 offset = new Vector3(-0.25f, 1f, 0f); // Offset from the player
     private SpriteRenderer sr;
-
+    public int mana = 10;
     private Queue<Vector3> positionQueue = new Queue<Vector3>();
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()

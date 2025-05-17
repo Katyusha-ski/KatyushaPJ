@@ -3,8 +3,10 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     // Start is called once before the first execution of Update after the MonoBehaviour is created
+    [SerializeField] private int healthPoint = 20;
     [SerializeField] private float runSpeed = 5.0f;
     [SerializeField] private float walkSpeed = 2.5f;
+
     private Rigidbody2D rb;
     private SpriteRenderer sr;
     private Animator animator;

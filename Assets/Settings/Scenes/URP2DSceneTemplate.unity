@@ -140,6 +140,7 @@ MonoBehaviour:
   followDelay: 0.25
   playerController: {fileID: 746156127}
   offset: {x: -0.25, y: 1, z: 0}
+  mana: 10
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -394,6 +395,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e91c47c024bcd54689a610b07a72715, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  healthPoint: 20
   runSpeed: 5
   walkSpeed: 2.5
 --- !u!50 &746156128
@@ -657,13 +659,25 @@ PrefabInstance:
       propertyPath: m_Name
       value: Skull_Enemy
       objectReference: {fileID: 0}
+    - target: {fileID: 3561993589839814420, guid: ba1769f335fe5df438fb8ca6b7d68e85, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 746156131}
+    - target: {fileID: 3561993589839814420, guid: ba1769f335fe5df438fb8ca6b7d68e85, type: 3}
+      propertyPath: attackRange
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3561993589839814420, guid: ba1769f335fe5df438fb8ca6b7d68e85, type: 3}
+      propertyPath: attackCooldown
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 5217175854762555719, guid: ba1769f335fe5df438fb8ca6b7d68e85, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 2.47
+      value: 4.71
       objectReference: {fileID: 0}
     - target: {fileID: 5217175854762555719, guid: ba1769f335fe5df438fb8ca6b7d68e85, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.05
+      value: -0.01
       objectReference: {fileID: 0}
     - target: {fileID: 5217175854762555719, guid: ba1769f335fe5df438fb8ca6b7d68e85, type: 3}
       propertyPath: m_LocalPosition.z
