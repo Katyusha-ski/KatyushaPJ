@@ -61,4 +61,21 @@ public class PlayerController : MonoBehaviour
         rb.linearVelocity = movement * speed;
         CurrentSpeed = speed;
     }
+
+    public void TakeDamage(int damage)
+    {
+        healthPoint -= damage;
+        if (healthPoint <= 0)
+        {
+            animator.SetTrigger("Die");
+            Die();
+        }
+    }
+
+    private void Die()
+    {
+        // Handle player death (e.g., reload scene, show game over screen)
+        Debug.Log("Player has died.");
+        // You can add more logic here, like reloading the scene or showing a game over screen.
+    }
 }

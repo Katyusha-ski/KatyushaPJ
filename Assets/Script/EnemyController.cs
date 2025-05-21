@@ -8,11 +8,11 @@ public class EnemyController : MonoBehaviour
 
     [SerializeField] private float speed = 2f;
     [SerializeField] private float attackRange = 1.5f;
-    [SerializeField] private float attackDamage = 1f;
+    [SerializeField] private int attackDamage = 1;
     [SerializeField] private int healthPoint = 3;
     [SerializeField] private float visionRange = 5f;
     [SerializeField] private float attackCooldown = 2f;
-    [SerializeField] private float lastTimneAttack = Mathf.Infinity;
+    [SerializeField] private float lastTimneAttack = -Mathf.Infinity;
     [SerializeField] private Transform player;
 
     private int direction = 1; // 1 for right, -1 for left
@@ -30,7 +30,7 @@ public class EnemyController : MonoBehaviour
     {
         if (player == null) return;
 
-        float distanceToPlayer = Vector2.Distance(transform.position, player.position);
+       float distanceToPlayer = Vector2.Distance(transform.position, player.position);
 
         if (distanceToPlayer < attackRange)
         {
@@ -65,9 +65,18 @@ public class EnemyController : MonoBehaviour
     private void Attack()
     {
         animator.SetTrigger("Attack");
+        
+        if (player != null && Vector2.Distance(transform.position, player.position) < attackRange)
+        {
+            var playerController = player.GetComponent<PlayerController>();
+            if (playerController != null)
+            {
+                playerController.TakeDamage(attackDamage);
+            }
+        }
     }
 
-    public void TakeDamage(int damage) // Fixed 'pubblic' to 'public'
+    public void TakeDamage(int damage) 
     {
         healthPoint -= damage;
         if (healthPoint <= 0)

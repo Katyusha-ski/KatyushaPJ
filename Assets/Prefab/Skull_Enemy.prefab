@@ -121,9 +121,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 2
-  attackRange: 1
+  attackRange: 1.5
   attackDamage: 1
-  health: 10
+  healthPoint: 3
+  visionRange: 5
+  attackCooldown: 2
+  lastTimneAttack: -Infinity
   player: {fileID: 0}
 --- !u!61 &117273969377170388
 BoxCollider2D:
