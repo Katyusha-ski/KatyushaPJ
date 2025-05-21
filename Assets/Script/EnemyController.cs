@@ -12,7 +12,7 @@ public class EnemyController : MonoBehaviour
     [SerializeField] private int healthPoint = 3;
     [SerializeField] private float visionRange = 5f;
     [SerializeField] private float attackCooldown = 2f;
-    [SerializeField] private float lastTimneAttack = -Mathf.Infinity;
+    [SerializeField] private float lastTimnAttack = -Mathf.Infinity;
     [SerializeField] private Transform player;
 
     private int direction = 1; // 1 for right, -1 for left
@@ -34,9 +34,9 @@ public class EnemyController : MonoBehaviour
 
         if (distanceToPlayer < attackRange)
         {
-            if (Time.time - lastTimneAttack >= attackCooldown) { 
+            if (Time.time - lastTimnAttack >= attackCooldown) { 
                 Attack();
-                lastTimneAttack = Time.time;
+                lastTimnAttack = Time.time;
             }
             rb.linearVelocity = Vector2.zero;   
         }
