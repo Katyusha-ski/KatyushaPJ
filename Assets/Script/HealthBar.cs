@@ -3,21 +3,21 @@ using UnityEngine.UI;
 
 public class HealthBar : MonoBehaviour
 {
-    [SerializeField] private Slider healthSlider;
-    [SerializeField] private Text healthText; 
+    public Slider slider;
+    public Text healthText;
 
-    public void SetHealth(int health)
+    public void SetHealth(int health, int maxHealth)
     {
-        healthSlider.value = health;
+        slider.value = health;
         if (healthText != null)
-            healthText.text = health.ToString();
+            healthText.text = $"{health}/{maxHealth}";
     }
 
-    public void SetMaxHealth(float maxHealth)
+    public void SetMaxHealth(int maxHealth)
     {
-        healthSlider.maxValue = maxHealth;
-        healthSlider.value = maxHealth;
+        slider.maxValue = maxHealth;
+        slider.value = maxHealth;
         if (healthText != null)
-            healthText.text = ((int)maxHealth).ToString();
+            healthText.text = $"{maxHealth}/{maxHealth}";
     }
 }

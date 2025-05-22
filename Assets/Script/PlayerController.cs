@@ -3,13 +3,14 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    [SerializeField] private int healthPoint = 20;
+    
     [SerializeField] private float runSpeed = 5.0f;
     [SerializeField] private float walkSpeed = 2.5f;
 
     private Rigidbody2D rb;
     private SpriteRenderer sr;
     private Animator animator;
+    private Health health;
 
     public float CurrentSpeed { get; private set; }
 
@@ -18,6 +19,7 @@ public class PlayerController : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         sr = GetComponent<SpriteRenderer>();
         animator = GetComponent<Animator>();
+        health = GetComponent<Health>();
     }
 
     // Update is called once per frame
@@ -62,20 +64,4 @@ public class PlayerController : MonoBehaviour
         CurrentSpeed = speed;
     }
 
-    public void TakeDamage(int damage)
-    {
-        healthPoint -= damage;
-        if (healthPoint <= 0)
-        {
-            animator.SetTrigger("Die");
-            Die();
-        }
-    }
-
-    private void Die()
-    {
-        // Handle player death (e.g., reload scene, show game over screen)
-        Debug.Log("Player has died.");
-        // You can add more logic here, like reloading the scene or showing a game over screen.
-    }
 }

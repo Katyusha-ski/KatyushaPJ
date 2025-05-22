@@ -9,10 +9,9 @@ public class EnemyController : MonoBehaviour
     [SerializeField] private float speed = 2f;
     [SerializeField] private float attackRange = 1.5f;
     [SerializeField] private int attackDamage = 1;
-    [SerializeField] private int healthPoint = 3;
     [SerializeField] private float visionRange = 5f;
     [SerializeField] private float attackCooldown = 2f;
-    [SerializeField] private float lastTimnAttack = -Mathf.Infinity;
+    [SerializeField] private float lastTimeAttack = -Mathf.Infinity;
     [SerializeField] private Transform player;
 
     private int direction = 1; // 1 for right, -1 for left
@@ -34,9 +33,9 @@ public class EnemyController : MonoBehaviour
 
         if (distanceToPlayer < attackRange)
         {
-            if (Time.time - lastTimnAttack >= attackCooldown) { 
+            if (Time.time - lastTimeAttack >= attackCooldown) { 
                 Attack();
-                lastTimnAttack = Time.time;
+                lastTimeAttack = Time.time;
             }
             rb.linearVelocity = Vector2.zero;   
         }
@@ -65,31 +64,12 @@ public class EnemyController : MonoBehaviour
     private void Attack()
     {
         animator.SetTrigger("Attack");
-        
+
+        var playerHealth = player.GetComponent<Health>();
         if (player != null && Vector2.Distance(transform.position, player.position) < attackRange)
         {
-            var playerController = player.GetComponent<PlayerController>();
-            if (playerController != null)
-            {
-                playerController.TakeDamage(attackDamage);
-            }
+            playerHealth.TakeDamage(attackDamage);
         }
-    }
-
-    public void TakeDamage(int damage) 
-    {
-        healthPoint -= damage;
-        if (healthPoint <= 0)
-        {
-            animator.SetTrigger("Die");
-            Die();
-
-        }
-    }
-
-    private void Die()
-    {
-        Destroy(gameObject);
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
