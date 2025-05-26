@@ -2,10 +2,17 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    
+
+    //moving variables
     [SerializeField] private float runSpeed = 5.0f;
     [SerializeField] private float walkSpeed = 2.5f;
+
+    [SerializeField] private float jumpForce = 5.0f;
+    [SerializeField] private Transform groundCheck;
+    [SerializeField] private float groundCheckRadius = 0.2f;
+    [SerializeField] private LayerMask groundLayer;
+    private bool isGrounded;
+
 
     private Rigidbody2D rb;
     private SpriteRenderer sr;
@@ -26,6 +33,12 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         MovingPlayer();
+        CheckGrounded();
+        if (isGrounded && Input.GetButtonDown("Jump"))
+        {
+            Jump();
+        }
+
     }
 
     private void MovingPlayer()
@@ -42,7 +55,7 @@ public class PlayerController : MonoBehaviour
             sr.flipX = true;
         }
         if (Input.GetKey(KeyCode.LeftShift) && movement.x != 0)
-        {   
+        {
             speed = runSpeed;
             animator.SetBool("isRun", true);
         }
@@ -64,4 +77,13 @@ public class PlayerController : MonoBehaviour
         CurrentSpeed = speed;
     }
 
+    private void CheckGrounded()
+    {
+        isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer);
+    }
+
+    private void Jump()
+    {
+        rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
+    }
 }
