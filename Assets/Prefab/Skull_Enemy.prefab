@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 5217175854762555719}
   - component: {fileID: 6741929243073357941}
-  - component: {fileID: 5993311159686879325}
   - component: {fileID: 3561993589839814420}
   - component: {fileID: 117273969377170388}
   - component: {fileID: 177902642500866214}
@@ -92,22 +91,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!111 &5993311159686879325
-Animation:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2717129107958463718}
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Animation: {fileID: 0}
-  m_Animations: []
-  m_WrapMode: 0
-  m_PlayAutomatically: 1
-  m_AnimatePhysics: 0
-  m_UpdateMode: 0
-  m_CullingType: 0
 --- !u!114 &3561993589839814420
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -123,10 +106,9 @@ MonoBehaviour:
   speed: 2
   attackRange: 1.5
   attackDamage: 1
-  healthPoint: 3
   visionRange: 5
   attackCooldown: 2
-  lastTimneAttack: -Infinity
+  lastTimeAttack: -Infinity
   player: {fileID: 0}
 --- !u!61 &117273969377170388
 BoxCollider2D:
