@@ -13,6 +13,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private LayerMask groundLayer;
     private bool isGrounded;
 
+    [Header("Magic Sphere")]
+    public GameObject magicSpherePrefab;
+    
 
     private Rigidbody2D rb;
     private SpriteRenderer sr;
@@ -38,7 +41,10 @@ public class PlayerController : MonoBehaviour
         {
             Jump();
         }
-
+        if (Input.GetKeyDown(KeyCode.F))
+        {
+            SkillF();
+        }
     }
 
     private void MovingPlayer()
@@ -85,5 +91,20 @@ public class PlayerController : MonoBehaviour
     private void Jump()
     {
         rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
+    }
+
+    private void SkillF()
+    {
+        if (magicSpherePrefab != null)
+        {
+            int direction = sr.flipX ? -1 : 1;
+            Vector3 spawnPos = transform.position + new Vector3(direction, 0, 0);
+            GameObject sphere = Instantiate(magicSpherePrefab, spawnPos , Quaternion.identity);
+            MagicSphere magicSphere = sphere.GetComponent<MagicSphere>();
+            if (magicSphere != null)
+            {
+                magicSphere.SetDirection(direction);
+            }
+        }
     }
 }

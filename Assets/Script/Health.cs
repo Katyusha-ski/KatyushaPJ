@@ -12,13 +12,15 @@ public class Health : MonoBehaviour
     void Awake()
     {
         currentHealth = maxHealth;
-        healthBar.SetMaxHealth(maxHealth);
+        if (healthBar != null)
+            healthBar.SetMaxHealth(maxHealth);
     }
 
     public void TakeDamage(int damage)
     {
         currentHealth -= damage;
-        healthBar.SetHealth(currentHealth, maxHealth);
+        if (healthBar != null)
+            healthBar.SetHealth(currentHealth, maxHealth);
 
         if (currentHealth <= 0)
         {
@@ -28,6 +30,10 @@ public class Health : MonoBehaviour
 
     private void Die()
     {
+        if (gameObject.tag == "Enemy")
+        {
+            Destroy(gameObject);
+        }
         Debug.Log($"{gameObject.name} has died.");
     }
 }
