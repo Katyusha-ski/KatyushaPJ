@@ -6,7 +6,7 @@ public class MagicSphere : MonoBehaviour
     public float speed = 8.0f;
     public float lifeTime = 2.0f;
     public int damage = 10;
-
+    
     private Animator animator;
     private bool isCasting = true;
     private float castingTimer = 0.0f;

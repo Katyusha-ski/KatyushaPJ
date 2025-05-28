@@ -2,7 +2,6 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-
     //moving variables
     [SerializeField] private float runSpeed = 5.0f;
     [SerializeField] private float walkSpeed = 2.5f;
@@ -15,7 +14,8 @@ public class PlayerController : MonoBehaviour
 
     [Header("Magic Sphere")]
     public GameObject magicSpherePrefab;
-    
+    public SkillManager skillManager;
+
 
     private Rigidbody2D rb;
     private SpriteRenderer sr;
@@ -41,9 +41,11 @@ public class PlayerController : MonoBehaviour
         {
             Jump();
         }
+
+        int direction = sr.flipX ? -1 : 1;
         if (Input.GetKeyDown(KeyCode.F))
         {
-            SkillF();
+            skillManager.ActivateSkill(0, direction);
         }
     }
 
@@ -93,18 +95,5 @@ public class PlayerController : MonoBehaviour
         rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
     }
 
-    private void SkillF()
-    {
-        if (magicSpherePrefab != null)
-        {
-            int direction = sr.flipX ? -1 : 1;
-            Vector3 spawnPos = transform.position + new Vector3(direction, 0, 0);
-            GameObject sphere = Instantiate(magicSpherePrefab, spawnPos , Quaternion.identity);
-            MagicSphere magicSphere = sphere.GetComponent<MagicSphere>();
-            if (magicSphere != null)
-            {
-                magicSphere.SetDirection(direction);
-            }
-        }
-    }
+    
 }
