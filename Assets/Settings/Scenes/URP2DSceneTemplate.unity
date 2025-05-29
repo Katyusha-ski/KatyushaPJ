@@ -623,7 +623,6 @@ GameObject:
   - component: {fileID: 746156132}
   - component: {fileID: 746156133}
   - component: {fileID: 746156127}
-  - component: {fileID: 746156135}
   - component: {fileID: 746156134}
   m_Layer: 0
   m_Name: Player
@@ -652,7 +651,6 @@ MonoBehaviour:
   groundLayer:
     serializedVersion: 2
     m_Bits: 0
-  magicSpherePrefab: {fileID: 1443903596702937622, guid: 64984fae67bd4904b8b102f8897731d5, type: 3}
   skillManager: {fileID: 746156134}
 --- !u!50 &746156128
 Rigidbody2D:
@@ -847,22 +845,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   skills:
-  - {fileID: 746156135}
---- !u!114 &746156135
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 746156126}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 423f633d1b003c449b4516b13428e440, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cooldown: 1
-  magicSpherePrefab: {fileID: 1443903596702937622, guid: 64984fae67bd4904b8b102f8897731d5, type: 3}
-  playerTransform: {fileID: 746156131}
+  - {fileID: 11400000, guid: 4b328383aa6f6bf478eaa8ee7f930a6b, type: 2}
 --- !u!224 &772430386 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 788942669992416328, guid: 9f176e676efb02b48a3dc14de2bbe441, type: 3}

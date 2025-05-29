@@ -1,17 +1,16 @@
 using UnityEngine;
 
+[CreateAssetMenu(menuName = "Skill/MagicSphereSkill")]
 public class MagicSphereSkill : SkillBase
 {
     public GameObject magicSpherePrefab;
-    public Transform playerTransform;
 
-    public override void Activate(int direction)
+    public override void Activate(GameObject user, int direction)
     {
         if (!CanActivate)
             return;
-
-        Vector3 spawmPos = playerTransform.position + new Vector3(direction, 0, 0);
-        GameObject sphere = Instantiate(magicSpherePrefab, spawmPos, Quaternion.identity);
+        Vector3 spawnPos = user.transform.position + new Vector3(direction, 0, 0);
+        GameObject sphere = Instantiate(magicSpherePrefab, spawnPos, Quaternion.identity);
         MagicSphere magicSphere = sphere.GetComponent<MagicSphere>();
         if (magicSphere != null)
         {

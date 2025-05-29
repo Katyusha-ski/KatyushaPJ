@@ -12,8 +12,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private LayerMask groundLayer;
     private bool isGrounded;
 
-    [Header("Magic Sphere")]
-    public GameObject magicSpherePrefab;
+    [Header("Skill List")]
+    
     public SkillManager skillManager;
 
 
