@@ -2,19 +2,19 @@ using UnityEngine;
 
 public class EnemyController : MonoBehaviour
 {
-    private Rigidbody2D rb;
-    private SpriteRenderer sr;
-    private Animator animator;
+    protected Rigidbody2D rb;
+    protected SpriteRenderer sr;
+    protected Animator animator;
 
-    [SerializeField] private float speed = 2f;
-    [SerializeField] private float attackRange = 1.5f;
-    [SerializeField] private int attackDamage = 1;
-    [SerializeField] private float visionRange = 5f;
-    [SerializeField] private float attackCooldown = 2f;
-    [SerializeField] private float lastTimeAttack = -Mathf.Infinity;
-    [SerializeField] private Transform player;
+    [SerializeField] protected float speed = 2f;
+    [SerializeField] protected float attackRange = 1.5f;
+    [SerializeField] protected int attackDamage = 1;
+    [SerializeField] protected float visionRange = 5f;
+    [SerializeField] protected float attackCooldown = 2f;
+    [SerializeField] protected float lastTimeAttack = -Mathf.Infinity;
+    [SerializeField] protected Transform player;
 
-    private int direction = 1; // 1 for right, -1 for left
+    protected int direction = 1; // 1 for right, -1 for left
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -23,36 +23,8 @@ public class EnemyController : MonoBehaviour
         sr = GetComponent<SpriteRenderer>();
         animator = GetComponent<Animator>();
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        if (player == null) return;
-
-       float distanceToPlayer = Vector2.Distance(transform.position, player.position);
-
-        if (distanceToPlayer < attackRange)
-        {
-            if (Time.time - lastTimeAttack >= attackCooldown) { 
-                Attack();
-                lastTimeAttack = Time.time;
-            }
-            rb.linearVelocity = Vector2.zero;   
-        }
-        else if (distanceToPlayer < visionRange) 
-        {
-            float moveDirection = player.position.x > transform.position.x ? 1 : -1;
-            direction = (int)moveDirection;
-            rb.linearVelocity = new Vector2(speed * 1.5f * direction, rb.linearVelocity.y);
-            sr.flipX = direction < 0;
-        }
-        else
-        {
-            Patrol();
-        }
-
-    }
-    private void Patrol()
+    
+    protected void Patrol()
     {
         // Move enemy horizontally
         rb.linearVelocity = new Vector2(speed * direction, rb.linearVelocity.y);
@@ -61,7 +33,7 @@ public class EnemyController : MonoBehaviour
         sr.flipX = direction < 0;
     }
 
-    private void Attack()
+    protected void NormalAttack()
     {
         animator.SetTrigger("Attack");
 
@@ -72,7 +44,7 @@ public class EnemyController : MonoBehaviour
         }
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    protected void OnCollisionEnter2D(Collision2D collision)
     {
         // Flip direction on collision with ground or obstacle
         if (collision.gameObject.CompareTag("Ground") || collision.gameObject.CompareTag("Obstacle"))
