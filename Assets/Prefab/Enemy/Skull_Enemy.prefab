@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 177902642500866214}
   - component: {fileID: -4326754769946002814}
   - component: {fileID: 6053867310535121}
+  - component: {fileID: 6254935896656335592}
   m_Layer: 0
   m_Name: Skull_Enemy
   m_TagString: Enemy
@@ -202,6 +203,25 @@ MonoBehaviour:
   maxHealth: 10
   currentHealth: 0
   healthBar: {fileID: 5416383594440565038}
+--- !u!114 &6254935896656335592
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2717129107958463718}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8565c2a2430b943438c346c954239a67, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 2
+  attackRange: 1.5
+  attackDamage: 1
+  visionRange: 5
+  attackCooldown: 2
+  lastTimeAttack: -Infinity
+  player: {fileID: 0}
 --- !u!1001 &3985833867836237523
 PrefabInstance:
   m_ObjectHideFlags: 0
