@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class MagicSphere : MonoBehaviour
+public class MagicSphere : MonoBehaviour, IMagicProjectile
 {
     public float castingTime = 1.0f;
     public float speed = 8.0f;
@@ -73,9 +73,6 @@ public class MagicSphere : MonoBehaviour
             }
 
             Destroy(gameObject);
-
-            
-           
         }
     }
 

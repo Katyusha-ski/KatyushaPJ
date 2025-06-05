@@ -11,7 +11,7 @@ public class MagicSphereSkill : SkillBase
             return;
         Vector3 spawnPos = user.transform.position + new Vector3(direction, 0, 0);
         GameObject sphere = Instantiate(magicSpherePrefab, spawnPos, Quaternion.identity);
-        MagicSphere magicSphere = sphere.GetComponent<MagicSphere>();
+        IMagicProjectile magicSphere = sphere.GetComponent<IMagicProjectile>();
         if (magicSphere != null)
         {
             magicSphere.SetDirection(direction);

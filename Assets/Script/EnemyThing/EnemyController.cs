@@ -36,12 +36,6 @@ public class EnemyController : MonoBehaviour
     protected void NormalAttack()
     {
         animator.SetTrigger("Attack");
-
-        var playerHealth = player.GetComponent<Health>();
-        if (player != null && Vector2.Distance(transform.position, player.position) < attackRange)
-        {
-            playerHealth.TakeDamage(attackDamage);
-        }
     }
 
     protected void OnCollisionEnter2D(Collision2D collision)
@@ -50,6 +44,17 @@ public class EnemyController : MonoBehaviour
         if (collision.gameObject.CompareTag("Ground") || collision.gameObject.CompareTag("Obstacle"))
         {
             direction *= -1;
+        }
+    }
+    public virtual void DealNormalAttackDamage()
+    {
+        if (player != null && Vector2.Distance(transform.position, player.position) < attackRange)
+        {
+            var playerHealth = player.GetComponent<Health>();
+            if (playerHealth != null)
+            {
+                playerHealth.TakeDamage(attackDamage);
+            }
         }
     }
 }

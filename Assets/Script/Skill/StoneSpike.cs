@@ -19,7 +19,6 @@ public class StoneSpike : MonoBehaviour
             {
                 playerHealth.TakeDamage(damage);
             }
-            Destroy(gameObject);
         }
     }
 }
