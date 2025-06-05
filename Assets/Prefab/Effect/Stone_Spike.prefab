@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 6310060794708162115}
   - component: {fileID: 3986441071854226637}
   - component: {fileID: -9152385126259392541}
+  - component: {fileID: -878017238239257235}
   m_Layer: 0
   m_Name: Stone_Spike
   m_TagString: Untagged
@@ -157,3 +158,17 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &-878017238239257235
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3212989424531414512}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 19ebe7f29d2462a42b36f3ca99966d93, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 7
+  lifeTime: 1.5

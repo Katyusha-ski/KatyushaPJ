@@ -21,7 +21,13 @@ public class GolemE : EnemyController
         {
             if (Time.time - lastTimeAttack >= attackCooldown)
             {
-                
+                if (skillManager.skills[1].CanActivate)
+                {
+                    skillManager.ActivateSkill(1, 0);
+                    animator.SetTrigger("Attack 3");
+                    
+                    return;
+                }
                 if (checkAttack1 == false)
                 {
                     NormalAttack();
@@ -40,6 +46,14 @@ public class GolemE : EnemyController
         }
         else if (distanceToPlayer < visionRange)
         {
+            if (skillManager.skills[0].CanActivate)
+            {
+                skillManager.ActivateSkill(0, direction);
+                animator.SetTrigger("Attack 2");
+                
+                return;
+            }
+
             float moveDirection = player.position.x > transform.position.x ? 1 : -1;
             direction = (int)moveDirection;
             rb.linearVelocity = new Vector2(speed * 1.5f * direction, rb.linearVelocity.y);
@@ -72,5 +86,4 @@ public class GolemE : EnemyController
             playerHealth.TakeDamage(attackDamage);
         }
     }
-
 }
