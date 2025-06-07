@@ -22,6 +22,8 @@ public class PlayerController : MonoBehaviour
     private Animator animator;
     private Health health;
 
+    public Rigidbody2D Rb => rb;
+
     public float CurrentSpeed { get; private set; }
 
     void Start()
@@ -43,9 +45,13 @@ public class PlayerController : MonoBehaviour
         }
 
         int direction = sr.flipX ? -1 : 1;
-        if (Input.GetKeyDown(KeyCode.F))
+        if (Input.GetKeyDown(KeyCode.E))
         {
             skillManager.ActivateSkill(0, direction);
+        }
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+            skillManager.ActivateSkill(1, direction);
         }
     }
 
