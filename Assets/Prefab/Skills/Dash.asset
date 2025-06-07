@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Dash
   m_EditorClassIdentifier: 
   icon: {fileID: 0}
-  cooldown: 4
+  cooldown: 3
   dashSpeed: 25
   dashDuration: 0.3
   dashDamage: 3

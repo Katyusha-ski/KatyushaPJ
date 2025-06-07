@@ -2,16 +2,16 @@ using UnityEngine;
 
 public class MenuUI : MonoBehaviour
 {
-    public GameObject menuUI; 
+    public GameObject UI; 
 
     public void ShowMenu()
     {
-        menuUI.SetActive(true);
+        UI.SetActive(true);
     }
 
     public void HideMenu()
     {
-        menuUI.SetActive(false);
+        UI.SetActive(false);
     }
 }
 
