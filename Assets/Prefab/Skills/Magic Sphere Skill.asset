@@ -12,7 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 423f633d1b003c449b4516b13428e440, type: 3}
   m_Name: Magic Sphere Skill
   m_EditorClassIdentifier: 
-  skillName: Magic Sphere
-  icon: {fileID: 0}
+  icon: {fileID: 21300000, guid: 4d79ef79b5a264cfd9b4195c5a9760d9, type: 3}
   cooldown: 2
   magicSpherePrefab: {fileID: 1443903596702937622, guid: 64984fae67bd4904b8b102f8897731d5, type: 3}

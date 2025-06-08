@@ -3,7 +3,12 @@ using System.Collections.Generic;
 
 public class SkillManager : MonoBehaviour
 {
-    public List<SkillBase> skills;
+    public List<SkillBase> skills = new List<SkillBase>();
+
+    public List<SkillBase> GetSkills()
+    {
+        return skills;
+    }
 
     void Update()
     {

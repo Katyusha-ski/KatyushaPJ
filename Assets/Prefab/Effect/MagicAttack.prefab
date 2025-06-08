@@ -161,7 +161,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   castingTime: 1
-  speed: 7
+  speed: 10
   lifeTime: 5
   damage: 2
   explodeEffect: {fileID: 7502473351520944722, guid: c8e6f6dba8ebce6439c4d02e20a3aad1, type: 3}

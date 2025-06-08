@@ -5,7 +5,7 @@ public abstract class SkillBase : ScriptableObject
     public Sprite icon;
     public float cooldown;
     protected float cooldownTimer = 0f;
-
+    public float CooldownTimer => cooldownTimer;
     public bool CanActivate => cooldownTimer <= 0f;
 
     public void UpdateCooldown()
