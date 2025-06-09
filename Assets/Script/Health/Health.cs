@@ -6,6 +6,8 @@ public class Health : MonoBehaviour
     [SerializeField] private int currentHealth;
 
     public HealthBar healthBar;
+    public AudioClip damageSFX;
+    public AudioClip dieSFX;
 
     public int CurrentHealth => currentHealth;
 
@@ -18,6 +20,8 @@ public class Health : MonoBehaviour
 
     public void TakeDamage(int damage)
     {
+        if(damageSFX != null)
+            AudioManager.Instance.PlaySFX(damageSFX);
         currentHealth -= damage;
         if (healthBar != null)
             healthBar.SetHealth(currentHealth, maxHealth);
@@ -33,6 +37,10 @@ public class Health : MonoBehaviour
         if (gameObject.tag == "Enemy")
         {
             Destroy(gameObject);
+        }
+        if (dieSFX != null)
+        {
+            AudioManager.Instance.PlaySFX(dieSFX);
         }
         Debug.Log($"{gameObject.name} has died.");
     }

@@ -12,10 +12,13 @@ public class DashTransformSkill : SkillBase
     public string defaultLayerName = "Player";
     public string dashTriggerName = "Dash";
 
+    public AudioClip dashSFX;
+
     public override void Activate(GameObject user, int direction)
     {
         if (!CanActivate)
             return;
+        AudioManager.Instance.PlaySFX(dashSFX);
         PlayerController player = user.GetComponent<PlayerController>();
         if (player != null)
         {

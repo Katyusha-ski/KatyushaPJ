@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: -4326754769946002814}
   - component: {fileID: 6053867310535121}
   - component: {fileID: 6254935896656335592}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Skull_Enemy
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -203,6 +203,8 @@ MonoBehaviour:
   maxHealth: 10
   currentHealth: 0
   healthBar: {fileID: 5416383594440565038}
+  damageSFX: {fileID: 8300000, guid: f7a08f45200bf464ab2a0408e5f29cb1, type: 3}
+  dieSFX: {fileID: 8300000, guid: d8f7c8b1797784542965bee7b596d68c, type: 3}
 --- !u!114 &6254935896656335592
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -310,6 +312,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4913150913781755038, guid: 9f176e676efb02b48a3dc14de2bbe441, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 7453120115407544575, guid: 9f176e676efb02b48a3dc14de2bbe441, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -318,9 +324,21 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7796950959067707844, guid: 9f176e676efb02b48a3dc14de2bbe441, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 8100149129055850704, guid: 9f176e676efb02b48a3dc14de2bbe441, type: 3}
       propertyPath: m_Name
       value: Enemy HPBar
+      objectReference: {fileID: 0}
+    - target: {fileID: 8100149129055850704, guid: 9f176e676efb02b48a3dc14de2bbe441, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 8286824914012511862, guid: 9f176e676efb02b48a3dc14de2bbe441, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

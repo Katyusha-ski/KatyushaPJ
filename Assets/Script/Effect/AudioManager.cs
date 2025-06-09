@@ -49,4 +49,13 @@ public class AudioManager : MonoBehaviour
     {
         audioMixer.SetFloat("SFXVolume", Mathf.Log10(Mathf.Clamp(value, 0.0001f, 1f)) * 20);
     }
+
+    public AudioSource audioSFX;
+
+    public void PlaySFX(AudioClip clip)
+    {
+        if (clip == null || audioSFX == null) return;
+        audioSFX.clip = clip;
+        audioSFX.Play();
+    }
 }
