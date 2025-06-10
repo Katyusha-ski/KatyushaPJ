@@ -56,6 +56,7 @@ public class GolemE : EnemyController
 
             rb.linearVelocity = new Vector2(speed * 1.5f * direction, rb.linearVelocity.y);
             sr.flipX = direction < 0;
+            animator.SetBool("Run", true);
         }
         else
         {
@@ -77,7 +78,7 @@ public class GolemE : EnemyController
     public void Attack1()
     {
         animator.SetTrigger("Attack 1");
-    }  
+    } 
 
     public void CastGolemMagic()
     {

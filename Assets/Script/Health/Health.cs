@@ -36,7 +36,12 @@ public class Health : MonoBehaviour
     {
         if (gameObject.tag == "Enemy")
         {
-            Destroy(gameObject);
+            Animator animator = GetComponent<Animator>();
+            if (animator != null)
+            {
+                animator.SetTrigger("Death");
+            }
+                Destroy(gameObject, 1f);
         }
         if (dieSFX != null)
         {

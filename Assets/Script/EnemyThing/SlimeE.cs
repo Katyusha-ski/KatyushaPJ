@@ -1,20 +1,32 @@
 using UnityEngine;
 
-public class SkullE : EnemyController
+public class SlimeE : EnemyController
 {
+    private bool checkAttack = false;
+
     void Update()
     {
-
         if (player == null) return;
 
         float distanceToPlayer = Vector2.Distance(transform.position, player.position);
 
         if (distanceToPlayer < attackRange)
         {
-            if (Time.time - lastTimeAttack >= attackCooldown)
+            animator.SetBool("Run", false);
+            if (Time.time - lastTimeAttack >= attackCooldown) 
             {
-                NormalAttack();
-                lastTimeAttack = Time.time;
+                if (checkAttack)
+                {
+                    NormalAttack();
+                    lastTimeAttack = Time.time;
+                    checkAttack = false;
+                }
+                else
+                {
+                    Hit();
+                    lastTimeAttack = Time.time;
+                    checkAttack = true;
+                }
             }
             rb.linearVelocity = Vector2.zero;
         }
@@ -28,8 +40,13 @@ public class SkullE : EnemyController
         }
         else
         {
+            animator.SetBool("Run", false);
             Patrol();
         }
+    }
 
+    public void Hit()
+    {
+        animator.SetTrigger("Hit");
     }
 }
