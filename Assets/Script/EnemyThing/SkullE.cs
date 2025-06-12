@@ -29,6 +29,7 @@ public class SkullE : EnemyController
         else
         {
             Patrol();
+            animator.SetBool("Run", false);
         }
 
     }

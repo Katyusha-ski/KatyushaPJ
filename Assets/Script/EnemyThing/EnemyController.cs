@@ -15,6 +15,7 @@ public class EnemyController : MonoBehaviour
     [SerializeField] protected Transform player;
 
     protected int direction = 1; // 1 for right, -1 for left
+    protected int lastPatrolDirection = 1; // 1 for right, -1 for left
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -22,10 +23,12 @@ public class EnemyController : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         sr = GetComponent<SpriteRenderer>();
         animator = GetComponent<Animator>();
+        lastPatrolDirection = direction;
     }
     
     protected void Patrol()
     {
+        direction = lastPatrolDirection;
         // Move enemy horizontally
         rb.linearVelocity = new Vector2(speed * direction, rb.linearVelocity.y);
 
@@ -41,9 +44,10 @@ public class EnemyController : MonoBehaviour
     protected void OnCollisionEnter2D(Collision2D collision)
     {
         // Flip direction on collision with ground or obstacle
-        if (collision.gameObject.CompareTag("Ground") || collision.gameObject.CompareTag("Obstacle"))
+        if (collision.gameObject.CompareTag("Obstacle"))
         {
             direction *= -1;
+            lastPatrolDirection = direction;
         }
     }
     public virtual void DealNormalAttackDamage()

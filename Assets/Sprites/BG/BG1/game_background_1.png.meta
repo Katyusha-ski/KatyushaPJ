@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: ea3643ea7b0b0a047844ae614df08be3
+guid: 7457f26382b5f3b49bef770265e33dd2
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 5422366915391932961
-    second: grass grounf_0
+      213: -5604729042958658342
+    second: game_background_1_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -113,23 +113,23 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: grass grounf_0
+      name: game_background_1_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 194
-        height: 109
+        width: 1920
+        height: 1080
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 12a44c90bfd104b40800000000000000
-      internalID: 5422366915391932961
+      spriteID: ad4522c61a00832b0800000000000000
+      internalID: -5604729042958658342
       vertices: []
       indices: 
       edges: []
@@ -138,7 +138,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: eb7852250082bfa4c8f7c9d2e511321f
+    spriteID: 
     internalID: 0
     vertices: []
     indices: 
@@ -147,8 +147,7 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable:
-      grass grounf_0: 5422366915391932961
+    nameFileIdTable: {}
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

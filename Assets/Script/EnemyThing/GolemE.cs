@@ -16,9 +16,7 @@ public class GolemE : EnemyController
         if (player == null) return;
 
         float distanceToPlayer = Vector2.Distance(transform.position, player.position);
-
-        direction = player.position.x > transform.position.x ? 1 : -1;
-
+    
         if (distanceToPlayer < attackRange)
         {
             animator.SetBool("Run", false);
@@ -50,6 +48,7 @@ public class GolemE : EnemyController
         {
             if (skillManager.skills[0].CanActivate)
             {
+                
                 animator.SetBool("Run", false);
                 animator.SetTrigger("Attack 2");
                 

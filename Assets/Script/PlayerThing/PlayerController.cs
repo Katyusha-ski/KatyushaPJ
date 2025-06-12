@@ -39,7 +39,7 @@ public class PlayerController : MonoBehaviour
     {
         MovingPlayer();
         CheckGrounded();
-        if (isGrounded && Input.GetButtonDown("Jump"))
+        if (isGrounded && Input.GetKeyDown(KeyCode.Space))
         {
             Jump();
         }
@@ -87,7 +87,7 @@ public class PlayerController : MonoBehaviour
             }
         }
 
-        rb.linearVelocity = movement * speed;
+        rb.linearVelocity = new Vector2(movement.x * speed, rb.linearVelocity.y);
         CurrentSpeed = speed;
     }
 
