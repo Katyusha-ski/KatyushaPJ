@@ -21,6 +21,7 @@ public class GolemE : EnemyController
 
         if (distanceToPlayer < attackRange)
         {
+            animator.SetBool("Run", false);
             if (Time.time - lastTimeAttack >= attackCooldown)
             {
                 if (skillManager.skills[1].CanActivate)
@@ -49,17 +50,22 @@ public class GolemE : EnemyController
         {
             if (skillManager.skills[0].CanActivate)
             {
+                animator.SetBool("Run", false);
                 animator.SetTrigger("Attack 2");
                 
                 return;
             }
-
-            rb.linearVelocity = new Vector2(speed * 1.5f * direction, rb.linearVelocity.y);
-            sr.flipX = direction < 0;
-            animator.SetBool("Run", true);
+            else 
+            {
+                rb.linearVelocity = new Vector2(speed * 1.5f * direction, rb.linearVelocity.y);
+                sr.flipX = direction < 0;
+                animator.SetBool("Run", true);
+            }
+                
         }
         else
         {
+            animator.SetBool("Run", false);
             Patrol();
         }
     }

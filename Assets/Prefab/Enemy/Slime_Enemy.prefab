@@ -203,8 +203,8 @@ MonoBehaviour:
   maxHealth: 20
   currentHealth: 0
   healthBar: {fileID: 4997388236761846782}
-  damageSFX: {fileID: 0}
-  dieSFX: {fileID: 0}
+  damageSFX: {fileID: 8300000, guid: 409c4d7167e2f5b4eba87d8820af0a93, type: 3}
+  dieSFX: {fileID: 8300000, guid: 35b64328b4772624f93f8b1653d7c305, type: 3}
 --- !u!114 &878637343542379766
 MonoBehaviour:
   m_ObjectHideFlags: 0
