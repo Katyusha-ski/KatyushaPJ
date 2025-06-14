@@ -50,6 +50,16 @@ public class EnemyController : MonoBehaviour
             lastPatrolDirection = direction;
         }
     }
+
+    protected void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Obstacle"))
+        {
+            direction *= -1;
+            lastPatrolDirection = direction;
+        }
+    }
+
     public virtual void DealNormalAttackDamage()
     {
         if (player != null && Vector2.Distance(transform.position, player.position) < attackRange)
