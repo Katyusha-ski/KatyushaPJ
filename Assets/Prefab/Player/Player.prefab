@@ -726,7 +726,7 @@ GameObject:
   - component: {fileID: 8467282526941375086}
   - component: {fileID: 5972481914154388706}
   - component: {fileID: 3729038204006387057}
-  - component: {fileID: 4483364410725696255}
+  - component: {fileID: 2500836081548112189}
   m_Layer: 3
   m_Name: PlayerUI
   m_TagString: Untagged
@@ -790,7 +790,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 800, y: 600}
@@ -818,7 +818,7 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
---- !u!114 &4483364410725696255
+--- !u!114 &2500836081548112189
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -827,7 +827,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 8986659158951564683}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c471ea45bfe2ad34e9bdca9ed16e8a12, type: 3}
+  m_Script: {fileID: 11500000, guid: c2d274b16030bf14da5881610804b853, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   skillPanel: {fileID: 7760495464382281871}

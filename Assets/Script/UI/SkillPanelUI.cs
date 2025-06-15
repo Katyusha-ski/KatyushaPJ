@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
 
-public class MainUI : MonoBehaviour
+public class SKillPanelUI : MonoBehaviour
 {
     public Transform skillPanel; // Kéo thả SkillPanel vào đây
     public GameObject skillUIPrefab; // Kéo prefab SkillItem vào đây
