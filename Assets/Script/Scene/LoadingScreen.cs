@@ -6,6 +6,8 @@ using UnityEngine.SceneManagement;
 public class LoadingScreen : MonoBehaviour
 {
     public static LoadingScreen Instance { get; private set; }
+    
+    [Header("UI Elements")]
     public GameObject loadingPanel;
     public Slider progressBar;
     public Text progressText;
@@ -15,6 +17,18 @@ public class LoadingScreen : MonoBehaviour
         if (Instance == null)
         {
             Instance = this;
+            
+            // Tự động tìm các UI elements nếu chưa được gán
+            if (loadingPanel == null)
+                loadingPanel = transform.Find("LoadingPanel")?.gameObject;
+            if (progressBar == null)
+                progressBar = transform.Find("LoadingPanel/ProgressBar")?.GetComponent<Slider>();
+            if (progressText == null)
+                progressText = transform.Find("LoadingPanel/ProgressText")?.GetComponent<Text>();
+                
+            // Ẩn loading panel khi bắt đầu
+            if (loadingPanel != null)
+                loadingPanel.SetActive(false);
         }
         else
         {
@@ -24,7 +38,8 @@ public class LoadingScreen : MonoBehaviour
 
     public void LoadScene(string sceneName)
     {
-        loadingPanel.SetActive(true);
+        if (loadingPanel != null)
+            loadingPanel.SetActive(true);
         StartCoroutine(LoadSceneAsync(sceneName));
     }
 
@@ -36,8 +51,11 @@ public class LoadingScreen : MonoBehaviour
         while (!operation.isDone)
         {
             float progress = Mathf.Clamp01(operation.progress / 0.9f);
-            progressBar.value = progress;
-            progressText.text = (progress * 100f).ToString("F0") + "%";
+            
+            if (progressBar != null)
+                progressBar.value = progress;
+            if (progressText != null)
+                progressText.text = (progress * 100f).ToString("F0") + "%";
 
             if (operation.progress >= 0.9f)
             {
@@ -47,6 +65,7 @@ public class LoadingScreen : MonoBehaviour
             yield return null;
         }
 
-        loadingPanel.SetActive(false);
+        if (loadingPanel != null)
+            loadingPanel.SetActive(false);
     }
 }

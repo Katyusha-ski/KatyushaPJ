@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Health : MonoBehaviour
 {
@@ -41,12 +42,19 @@ public class Health : MonoBehaviour
             {
                 animator.SetTrigger("Death");
             }
-                Destroy(gameObject, 1f);
+
+            Invoke("LoadSnowScene", 1f);
+            Destroy(gameObject, 1f);
         }
         if (dieSFX != null)
         {
             AudioManager.Instance.PlaySFX(dieSFX);
         }
         Debug.Log($"{gameObject.name} has died.");
+    }
+
+    private void LoadSnowScene()
+    {
+        SceneManager.LoadScene("SnowScene");
     }
 }

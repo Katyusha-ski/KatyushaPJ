@@ -21,7 +21,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &6161858659872126640
 Transform:
   m_ObjectHideFlags: 0
@@ -108,7 +108,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDamping: 0
   m_AngularDamping: 0.05
-  m_GravityScale: 0
+  m_GravityScale: 1
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -219,7 +219,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 2
   attackRange: 1.5
-  attackDamage: 1
+  attackDamage: 4
   visionRange: 5
   attackCooldown: 2
   lastTimeAttack: -Infinity
@@ -312,13 +312,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6094577394176007240, guid: 9f176e676efb02b48a3dc14de2bbe441, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -2.55
+      objectReference: {fileID: 0}
+    - target: {fileID: 6094577394176007240, guid: 9f176e676efb02b48a3dc14de2bbe441, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 7453120115407544575, guid: 9f176e676efb02b48a3dc14de2bbe441, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7453120115407544575, guid: 9f176e676efb02b48a3dc14de2bbe441, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8100149129055850704, guid: 9f176e676efb02b48a3dc14de2bbe441, type: 3}
       propertyPath: m_Name
