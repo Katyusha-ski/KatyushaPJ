@@ -4,7 +4,7 @@ public class MainMenuUI : MonoBehaviour
 {
     public void OnStartButtonClick()
     {
-        GameSceneController.Instance.LoadGameScene("GameScene");
+        GameSceneController.Instance.LoadNextScene();
     }
 
     public void OnQuitButtonClick()

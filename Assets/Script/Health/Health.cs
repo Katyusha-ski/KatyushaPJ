@@ -10,6 +10,10 @@ public class Health : MonoBehaviour
     public AudioClip damageSFX;
     public AudioClip dieSFX;
 
+    // UI references
+    public GameObject gameOverUI;
+    public GameObject victoryUI;
+
     public int CurrentHealth => currentHealth;
 
     void Awake()
@@ -43,18 +47,29 @@ public class Health : MonoBehaviour
                 animator.SetTrigger("Death");
             }
 
-            Invoke("LoadSnowScene", 1f);
+            // Hiện UI Victory khi enemy chết
+            if (victoryUI != null)
+            {
+                victoryUI.SetActive(true);
+                GameManager.Instance.PauseGame();
+            }
+            
             Destroy(gameObject, 1f);
         }
+        else if (gameObject.tag == "Player")
+        {
+            // Hiện UI GameOver khi player chết
+            if (gameOverUI != null)
+            {
+                gameOverUI.SetActive(true);
+                GameManager.Instance.PauseGame();
+            }
+        }
+        
         if (dieSFX != null)
         {
             AudioManager.Instance.PlaySFX(dieSFX);
         }
         Debug.Log($"{gameObject.name} has died.");
-    }
-
-    private void LoadSnowScene()
-    {
-        SceneManager.LoadScene("SnowScene");
     }
 }

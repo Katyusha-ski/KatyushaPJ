@@ -607,10 +607,22 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 2172247017392324787, guid: 52e2548da8dd85c4c8018cd6b77b61f7, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2172247017392324787, guid: 52e2548da8dd85c4c8018cd6b77b61f7, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2524405934424500085, guid: 52e2548da8dd85c4c8018cd6b77b61f7, type: 3}
       propertyPath: healthBar
       value: 
       objectReference: {fileID: 1569342386}
+    - target: {fileID: 3036255196133084962, guid: 52e2548da8dd85c4c8018cd6b77b61f7, type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 6200000, guid: ef183331a20170b4682319b195ffbc36, type: 2}
     - target: {fileID: 5001543976435372399, guid: 52e2548da8dd85c4c8018cd6b77b61f7, type: 3}
       propertyPath: groundLayer.m_Bits
       value: 256
@@ -1058,6 +1070,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Slime_Enemy
       objectReference: {fileID: 0}
+    - target: {fileID: 5771645318287409762, guid: 171860af147bbce4ea20497239900319, type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 6200000, guid: ef183331a20170b4682319b195ffbc36, type: 2}
     - target: {fileID: 6161858659872126640, guid: 171860af147bbce4ea20497239900319, type: 3}
       propertyPath: m_LocalPosition.x
       value: 11.04

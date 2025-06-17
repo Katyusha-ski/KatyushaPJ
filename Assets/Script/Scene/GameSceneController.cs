@@ -5,6 +5,9 @@ public class GameSceneController : MonoBehaviour
 {
     public static GameSceneController Instance { get; private set; }
 
+    [Header("Scene Configuration")]
+    public int mainMenuSceneIndex = 0; // Index của main menu
+
     private void Awake()
     {
         if (Instance == null)
@@ -16,23 +19,40 @@ public class GameSceneController : MonoBehaviour
             Destroy(gameObject);
         }
     }
+
     public void LoadMainMenu()
     {
-        LoadingScreen.Instance.LoadScene("MainMenuScene");
+        SceneManager.LoadScene(mainMenuSceneIndex);
     }
 
     public void LoadGameScene(string sceneName)
     {
-        LoadingScreen.Instance.LoadScene(sceneName);
+        SceneManager.LoadScene(sceneName);
     }
 
     public void LoadNextScene()
     {
+        // Lấy index của scene hiện tại
         int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
-        if (currentSceneIndex < SceneManager.sceneCountInBuildSettings - 1)
+        
+        // Tính toán index của scene tiếp theo
+        int nextIndex = currentSceneIndex + 1;
+        
+        // Kiểm tra xem có phải scene cuối cùng không
+        if (nextIndex >= SceneManager.sceneCountInBuildSettings)
         {
-            LoadingScreen.Instance.LoadScene(SceneManager.GetSceneByBuildIndex(currentSceneIndex + 1).name);
+            // Nếu là scene cuối, quay về main menu
+            nextIndex = mainMenuSceneIndex;
         }
+        
+        // Load scene tiếp theo
+        SceneManager.LoadScene(nextIndex);
+    }
+
+    public void RestartCurrentScene()
+    {
+        int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
+        SceneManager.LoadScene(currentSceneIndex);
     }
 
     public void QuitGame()
