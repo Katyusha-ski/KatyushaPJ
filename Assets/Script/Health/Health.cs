@@ -10,10 +10,6 @@ public class Health : MonoBehaviour
     public AudioClip damageSFX;
     public AudioClip dieSFX;
 
-    // UI references
-    public GameObject gameOverUI;
-    public GameObject victoryUI;
-
     public int CurrentHealth => currentHealth;
 
     void Awake()
@@ -46,23 +42,25 @@ public class Health : MonoBehaviour
             {
                 animator.SetTrigger("Death");
             }
-
-            // Hiện UI Victory khi enemy chết
-            if (victoryUI != null)
+            if (VictoryUI.Instance != null)
             {
-                victoryUI.SetActive(true);
-                GameManager.Instance.PauseGame();
+                VictoryUI.Instance.ShowVictoryUI();
             }
-            
+            else
+            {
+                Debug.LogWarning("VictoryUI.Instance is null!");
+            }
             Destroy(gameObject, 1f);
         }
         else if (gameObject.tag == "Player")
         {
-            // Hiện UI GameOver khi player chết
-            if (gameOverUI != null)
+            if (GameOverUI.Instance != null)
             {
-                gameOverUI.SetActive(true);
-                GameManager.Instance.PauseGame();
+                GameOverUI.Instance.ShowGameOverUI();
+            }
+            else
+            {
+                Debug.LogWarning("GameOverUI.Instance is null!");
             }
         }
         

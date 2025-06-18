@@ -198,14 +198,14 @@ GameObject:
   - component: {fileID: 56606801}
   - component: {fileID: 56606800}
   - component: {fileID: 56606799}
-  - component: {fileID: 56606798}
+  - component: {fileID: 56606802}
   m_Layer: 5
-  m_Name: Yayyyyyy!UI
+  m_Name: VictoryUI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &56606797
 RectTransform:
   m_ObjectHideFlags: 0
@@ -230,19 +230,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
---- !u!114 &56606798
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 56606796}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9f7148f44b6e0e944889753e0a334b8b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  UI: {fileID: 56606796}
 --- !u!114 &56606799
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -301,11 +288,23 @@ Canvas:
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_VertexColorAlwaysGammaSpace: 1
-  m_AdditionalShaderChannelsFlag: 1
+  m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
+--- !u!114 &56606802
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 56606796}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0d399e22a252a00499ee7aac683cde20, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &61493472
 GameObject:
   m_ObjectHideFlags: 0
@@ -512,9 +511,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1818799384}
-        m_TargetAssemblyTypeName: MenuUI, Assembly-CSharp
-        m_MethodName: HideMenu
+      - m_Target: {fileID: 1818799388}
+        m_TargetAssemblyTypeName: GameOverUI, Assembly-CSharp
+        m_MethodName: HideGameOverUI
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1601,9 +1600,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 56606798}
-        m_TargetAssemblyTypeName: MenuUI, Assembly-CSharp
-        m_MethodName: HideMenu
+      - m_Target: {fileID: 56606802}
+        m_TargetAssemblyTypeName: VictoryUI, Assembly-CSharp
+        m_MethodName: HideVictoryUI
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2034,11 +2033,11 @@ Transform:
   m_GameObject: {fileID: 571452741}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 444.70206, y: 231.88277, z: 0.036450204}
+  m_LocalPosition: {x: 445.58966, y: 234.28046, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 5879202794396017539}
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &577179872
 GameObject:
@@ -2455,11 +2454,11 @@ Transform:
   m_GameObject: {fileID: 769274216}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 8.967006, y: -4.689647, z: -0.058072913}
+  m_LocalPosition: {x: 9.8546, y: -2.2919545, z: -0.09452312}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 5879202794396017539}
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &769274218
 MonoBehaviour:
@@ -3965,9 +3964,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 56606798}
-        m_TargetAssemblyTypeName: MenuUI, Assembly-CSharp
-        m_MethodName: HideMenu
+      - m_Target: {fileID: 56606802}
+        m_TargetAssemblyTypeName: VictoryUI, Assembly-CSharp
+        m_MethodName: HideVictoryUI
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -4105,8 +4104,8 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1485932190}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0.10223692}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -4115,7 +4114,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: -353.7792, y: -224.31952}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
 --- !u!114 &1485932195
@@ -4304,6 +4303,10 @@ PrefabInstance:
       propertyPath: victoryUI
       value: 
       objectReference: {fileID: 56606796}
+    - target: {fileID: 6053867310535121, guid: ba1769f335fe5df438fb8ca6b7d68e85, type: 3}
+      propertyPath: gameOverUI
+      value: 
+      objectReference: {fileID: 1818799382}
     - target: {fileID: 117273969377170388, guid: ba1769f335fe5df438fb8ca6b7d68e85, type: 3}
       propertyPath: m_Material
       value: 
@@ -4676,9 +4679,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1818799384}
-        m_TargetAssemblyTypeName: MenuUI, Assembly-CSharp
-        m_MethodName: HideMenu
+      - m_Target: {fileID: 1818799388}
+        m_TargetAssemblyTypeName: GameOverUI, Assembly-CSharp
+        m_MethodName: HideGameOverUI
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -5052,14 +5055,14 @@ GameObject:
   - component: {fileID: 1818799387}
   - component: {fileID: 1818799386}
   - component: {fileID: 1818799385}
-  - component: {fileID: 1818799384}
+  - component: {fileID: 1818799388}
   m_Layer: 5
   m_Name: GameOverUI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1818799383
 RectTransform:
   m_ObjectHideFlags: 0
@@ -5084,19 +5087,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
---- !u!114 &1818799384
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1818799382}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9f7148f44b6e0e944889753e0a334b8b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  UI: {fileID: 1818799382}
 --- !u!114 &1818799385
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5155,11 +5145,23 @@ Canvas:
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_VertexColorAlwaysGammaSpace: 1
-  m_AdditionalShaderChannelsFlag: 1
+  m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
+--- !u!114 &1818799388
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1818799382}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 074ad31e0203af447a981f8e871cbde6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1819414074
 GameObject:
   m_ObjectHideFlags: 0
@@ -5930,11 +5932,11 @@ Transform:
   m_GameObject: {fileID: 1988051699}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 444.70206, y: 231.88277, z: 0.036450204}
+  m_LocalPosition: {x: 445.58966, y: 234.28046, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 5879202794396017539}
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2041976149
 GameObject:
@@ -6577,15 +6579,6 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 5616500423456838191, guid: 1068847a8188d87448b17a6fe449a5eb, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1305233045}
-    - targetCorrespondingSourceObject: {fileID: 5616500423456838191, guid: 1068847a8188d87448b17a6fe449a5eb, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1988051701}
-    - targetCorrespondingSourceObject: {fileID: 5616500423456838191, guid: 1068847a8188d87448b17a6fe449a5eb, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 571452743}
-    - targetCorrespondingSourceObject: {fileID: 5616500423456838191, guid: 1068847a8188d87448b17a6fe449a5eb, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 769274217}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1068847a8188d87448b17a6fe449a5eb, type: 3}
 --- !u!4 &5879202794396017539 stripped
@@ -6671,3 +6664,6 @@ SceneRoots:
   - {fileID: 5531980961009719533}
   - {fileID: 1404579317}
   - {fileID: 1628958091}
+  - {fileID: 1988051701}
+  - {fileID: 571452743}
+  - {fileID: 769274217}
