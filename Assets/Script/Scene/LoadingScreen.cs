@@ -17,7 +17,8 @@ public class LoadingScreen : MonoBehaviour
         if (Instance == null)
         {
             Instance = this;
-            
+            DontDestroyOnLoad(gameObject);
+
             // Tự động tìm các UI elements nếu chưa được gán
             if (loadingPanel == null)
                 loadingPanel = transform.Find("LoadingPanel")?.gameObject;
