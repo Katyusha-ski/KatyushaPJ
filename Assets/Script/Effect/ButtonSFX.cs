@@ -8,7 +8,6 @@ public class ButtonSFX : MonoBehaviour
         if (Instance == null)
         {
             Instance = this;
-            DontDestroyOnLoad(gameObject);
         }
         else
         {

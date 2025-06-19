@@ -1974,6 +1974,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4231172909309916021, guid: c222723f9c465444e9fbe942531f2177, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -4485828109360236363, guid: 1d774f182adb53e43a3d976e47414c7a, type: 3}
+    - target: {fileID: 4231172909309916021, guid: c222723f9c465444e9fbe942531f2177, type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5532936994707201512, guid: c222723f9c465444e9fbe942531f2177, type: 3}
       propertyPath: m_Name
       value: rock (1)
@@ -2736,6 +2744,14 @@ PrefabInstance:
     - target: {fileID: 2149560916205405281, guid: c222723f9c465444e9fbe942531f2177, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4231172909309916021, guid: c222723f9c465444e9fbe942531f2177, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -4485828109360236363, guid: 1d774f182adb53e43a3d976e47414c7a, type: 3}
+    - target: {fileID: 4231172909309916021, guid: c222723f9c465444e9fbe942531f2177, type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5532936994707201512, guid: c222723f9c465444e9fbe942531f2177, type: 3}
       propertyPath: m_Name
