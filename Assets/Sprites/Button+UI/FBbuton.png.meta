@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 5b17ead48ba0471439de63976c5223cd
+guid: ff841bc8ad12e3445a5acddb5e761786
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -9012175134413629535
-    second: rocks_2_0
+      213: 4044982942786372155
+    second: FBbuton_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -113,23 +113,23 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: rocks_2_0
+      name: FBbuton_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 1920
-        height: 780
+        x: 10
+        y: 8
+        width: 260
+        height: 71
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 1a7daabb6725ee280800000000000000
-      internalID: -9012175134413629535
+      spriteID: b32cb432e8aa22830800000000000000
+      internalID: 4044982942786372155
       vertices: []
       indices: 
       edges: []
@@ -138,7 +138,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 1f643380f94973e48b8c8d1b883cec70
     internalID: 0
     vertices: []
     indices: 
@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      FBbuton_0: 4044982942786372155
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

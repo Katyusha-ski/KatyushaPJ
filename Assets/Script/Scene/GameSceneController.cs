@@ -64,4 +64,16 @@ public class GameSceneController : MonoBehaviour
             Application.Quit();
         #endif
     }
+
+    public void OpenFacebookPage()
+    {
+        // Thay đổi URL này thành trang cá nhân của bạn
+        string personalPageUrl = "https://www.facebook.com/golen.diamond.7";
+        
+#if UNITY_EDITOR
+        Debug.Log($"Mở trang cá nhân: {personalPageUrl}");
+#else
+        Application.OpenURL(personalPageUrl);
+#endif
+    }
 }

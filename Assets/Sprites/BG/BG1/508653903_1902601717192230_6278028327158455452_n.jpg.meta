@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 2192b221a3d162f49a3333a659c63116
+guid: b7203a6857778d44580467fd0e3553b5
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 2321732914761860119
-    second: clouds_3_0
+      213: 7944981456554926083
+    second: 508653903_1902601717192230_6278028327158455452_n_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -113,13 +113,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: clouds_3_0
+      name: 508653903_1902601717192230_6278028327158455452_n_0
       rect:
         serializedVersion: 2
-        x: 898
-        y: 500
-        width: 279
-        height: 77
+        x: 0
+        y: 0
+        width: 261
+        height: 214
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -128,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 71486bfe8c3783020800000000000000
-      internalID: 2321732914761860119
+      spriteID: 300a5095a8e324e60800000000000000
+      internalID: 7944981456554926083
       vertices: []
       indices: 
       edges: []
