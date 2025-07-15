@@ -18,18 +18,6 @@ public class LoadingScreen : MonoBehaviour
         {
             Instance = this;
             DontDestroyOnLoad(gameObject);
-
-            // Tự động tìm các UI elements nếu chưa được gán
-            if (loadingPanel == null)
-                loadingPanel = transform.Find("LoadingPanel")?.gameObject;
-            if (progressBar == null)
-                progressBar = transform.Find("LoadingPanel/ProgressBar")?.GetComponent<Slider>();
-            if (progressText == null)
-                progressText = transform.Find("LoadingPanel/ProgressText")?.GetComponent<Text>();
-                
-            // Ẩn loading panel khi bắt đầu
-            if (loadingPanel != null)
-                loadingPanel.SetActive(false);
         }
         else
         {

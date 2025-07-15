@@ -21,10 +21,12 @@ public class GameOverUI: MonoBehaviour
     public void ShowGameOverUI()
     {
         gameObject.SetActive(true);
+        GameManager.Instance.PauseGame();
     }
 
     public void HideGameOverUI()
     {
         gameObject.SetActive(false);
-    }   
+        GameManager.Instance.ResumeGame();
+    }
 }

@@ -19,6 +19,9 @@ public class GolemE : EnemyController
     
         if (distanceToPlayer < attackRange)
         {
+            direction = player.position.x > transform.position.x ? 1 : -1;
+            sr.flipX = direction < 0;
+
             animator.SetBool("Run", false);
             if (Time.time - lastTimeAttack >= attackCooldown)
             {
