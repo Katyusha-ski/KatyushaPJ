@@ -10,4 +10,5 @@ public class ItemData : ScriptableObject
     public ItemType itemType;
     public EquipmentType equipmentType;
     public string description;
+    public bool isStackable = true;
 }
