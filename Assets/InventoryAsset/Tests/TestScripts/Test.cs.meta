@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: e2fdd1cfa739b35418aedaf7bb75efdb
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 265015
+  packageName: Simple and Powerful InventorySystem
+  packageVersion: 1.0
+  assetPath: Assets/InventoryAsset/Tests/TestScripts/Test.cs
+  uploadId: 634933

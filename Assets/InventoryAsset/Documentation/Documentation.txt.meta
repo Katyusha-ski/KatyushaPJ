@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: dd36c2040f1e42c4da3e544ca2355b57
+TextScriptImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 265015
+  packageName: Simple and Powerful InventorySystem
+  packageVersion: 1.0
+  assetPath: Assets/InventoryAsset/Documentation/Documentation.txt
+  uploadId: 634933

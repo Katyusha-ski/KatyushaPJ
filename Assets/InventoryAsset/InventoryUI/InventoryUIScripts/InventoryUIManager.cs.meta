@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: b43a4d882ebc2e044ac584ebc046914b
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 265015
+  packageName: Simple and Powerful InventorySystem
+  packageVersion: 1.0
+  assetPath: Assets/InventoryAsset/InventoryUI/InventoryUIScripts/InventoryUIManager.cs
+  uploadId: 634933

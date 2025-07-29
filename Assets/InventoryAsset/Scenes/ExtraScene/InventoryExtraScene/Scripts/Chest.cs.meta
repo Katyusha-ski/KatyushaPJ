@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: a4509901f4516d847ba8fa19f538839f
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 265015
+  packageName: Simple and Powerful InventorySystem
+  packageVersion: 1.0
+  assetPath: Assets/InventoryAsset/Scenes/ExtraScene/InventoryExtraScene/Scripts/Chest.cs
+  uploadId: 634933

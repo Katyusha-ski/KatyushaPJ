@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: f7c3035f823c0ea4a8eb72c3b2741c51
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 265015
+  packageName: Simple and Powerful InventorySystem
+  packageVersion: 1.0
+  assetPath: Assets/InventoryAsset/Scenes/ExtraScene/InventoryExtraScene/Player/Player.prefab
+  uploadId: 634933

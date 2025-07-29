@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: af13da878eeccb041983d84b7857abd4
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 265015
+  packageName: Simple and Powerful InventorySystem
+  packageVersion: 1.0
+  assetPath: Assets/InventoryAsset/Tests/Tests.prefab
+  uploadId: 634933

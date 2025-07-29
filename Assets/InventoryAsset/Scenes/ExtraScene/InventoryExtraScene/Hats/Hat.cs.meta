@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: ed4daf60c3a7fad48a093334f1f92177
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 265015
+  packageName: Simple and Powerful InventorySystem
+  packageVersion: 1.0
+  assetPath: Assets/InventoryAsset/Scenes/ExtraScene/InventoryExtraScene/Hats/Hat.cs
+  uploadId: 634933

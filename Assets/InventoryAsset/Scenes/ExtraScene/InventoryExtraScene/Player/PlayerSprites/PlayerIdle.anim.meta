@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: c3723c9b5e1a2444d98742f981730dc0
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 7400000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 265015
+  packageName: Simple and Powerful InventorySystem
+  packageVersion: 1.0
+  assetPath: Assets/InventoryAsset/Scenes/ExtraScene/InventoryExtraScene/Player/PlayerSprites/PlayerIdle.anim
+  uploadId: 634933

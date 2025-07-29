@@ -41,9 +41,15 @@ public class InventoryUI : MonoBehaviour
         for (int i = 0; i < slots.Count; i++)
         {
             var stack = slots[i];
-            if (stack != null)
+            var slotGO = Instantiate(slotPrefab, slotParent);
+            var slotScript = slotGO.GetComponent<Slot>();
+            if (stack != null && stack.item != null)
             {
-                var slotGO = Instantiate(slotPrefab, slotParent);
+                slotScript.SetItem(stack.item, stack.amount);
+            }
+            else
+            {
+                slotScript.ClearSlot();
             }
         }
     }

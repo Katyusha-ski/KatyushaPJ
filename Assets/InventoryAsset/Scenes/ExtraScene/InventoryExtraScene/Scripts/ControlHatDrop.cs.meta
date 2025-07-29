@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: 82635b64fca088b47b20277f602e3fe7
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 265015
+  packageName: Simple and Powerful InventorySystem
+  packageVersion: 1.0
+  assetPath: Assets/InventoryAsset/Scenes/ExtraScene/InventoryExtraScene/Scripts/ControlHatDrop.cs
+  uploadId: 634933

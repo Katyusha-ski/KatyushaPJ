@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: f2f67065d67bc4f48b25409ad07e1c07
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 265015
+  packageName: Simple and Powerful InventorySystem
+  packageVersion: 1.0
+  assetPath: Assets/InventoryAsset/Inventory/SaveSystem/ItemData.cs
+  uploadId: 634933
