@@ -53,4 +53,12 @@ public class InventoryUI : MonoBehaviour
             }
         }
     }
+
+    void CreateSlots()
+    {
+        for(int i = 0; i < Inventory.Instance.maxSlots; i++)
+        {
+            Instantiate(slotPrefab, slotParent);
+        }
+    }
 }
