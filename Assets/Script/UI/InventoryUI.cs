@@ -1,12 +1,14 @@
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 using System.Collections.Generic;
 
 public class InventoryUI : MonoBehaviour
 {
     public GameObject UI;
+    public Transform equipmentSlot; // Parent object for equipment slots
     public Transform slotParent; // Parent object for inventory slots
     public GameObject slotPrefab; // Prefab for individual inventory slots
+    
 
     public void ShowInventory()
     {
@@ -42,6 +44,27 @@ public class InventoryUI : MonoBehaviour
         {
             var stack = slots[i];
             var slotGO = Instantiate(slotPrefab, slotParent);
+            var slotScript = slotGO.GetComponent<Slot>();
+            if (stack != null && stack.item != null)
+            {
+                slotScript.SetItem(stack.item, stack.amount);
+            }
+            else
+            {
+                slotScript.ClearSlot();
+            }
+        }
+
+        // Update equipment slots
+        foreach (Transform child in equipmentSlot)
+        {
+            Destroy(child.gameObject);
+        }
+        var equips = Inventory.Instance.equipment;
+        for (int i = 0; i < equips.Length; i++)
+        {
+            var stack = equips[i];
+            var slotGO = Instantiate(slotPrefab, equipmentSlot); // Nếu có prefab riêng thì dùng equipmentSlotPrefab
             var slotScript = slotGO.GetComponent<Slot>();
             if (stack != null && stack.item != null)
             {

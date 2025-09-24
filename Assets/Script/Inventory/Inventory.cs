@@ -9,8 +9,8 @@ public class Inventory : MonoBehaviour
     public int maxSlots = 30;
     public List<ItemStack> itemSlots = new List<ItemStack>(30);
 
-    public int equipmentSlots = 5;
-    public ItemStack[] equipment = new ItemStack[5];
+    public int equipmentSlots = 4;
+    public ItemStack[] equipment = new ItemStack[4];
     public int maxStack = 99;
     void Awake()
     {
@@ -65,20 +65,19 @@ public class Inventory : MonoBehaviour
         OnInventoryChanged?.Invoke();
         return amount == 0;
     }
-    public bool EquipItem(int slotIndex)
+    public bool EquipItem(int inventorySlotIndex, int equipSlotIndex)
     {
-        var stack = itemSlots[slotIndex];
+        var stack = itemSlots[inventorySlotIndex];
         if (stack == null || stack.item.itemType != ItemType.Equipment) return false;
 
-        int equipIndex = (int)stack.item.equipmentType;
-        if (equipIndex < 1 || equipIndex > 4) return false;
+        if ((int)stack.item.equipmentType != equipSlotIndex + 1) return false;
 
-        if (equipment[equipIndex] != null)
+        if (equipment[equipSlotIndex] != null)
         {
-            AddItem(equipment[equipIndex].item, equipment[equipIndex].amount);
+            AddItem(equipment[equipSlotIndex].item, equipment[equipSlotIndex].amount);
         }
-        equipment[equipIndex] = stack;
-        itemSlots[slotIndex] = null;
+        equipment[equipSlotIndex] = stack;
+        itemSlots[inventorySlotIndex] = null;
         OnInventoryChanged?.Invoke();
         return true;
     }

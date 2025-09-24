@@ -43,4 +43,9 @@ public class Slot : MonoBehaviour
             quantityText.gameObject.SetActive(false);
         }
     }
+
+    public bool HasItem()
+    {
+        return itemIcon.sprite != null && itemIcon.sprite != null;
+    }
 }
