@@ -18,6 +18,7 @@ public class Slot : MonoBehaviour
 
         itemIcon.sprite = item.itemIcon;
         itemIcon.enabled = true;
+        quantityText.enabled = true;
 
         if (quantityText != null)
         {

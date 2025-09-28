@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class SlotDragHandler : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler, IDropHandler
 {
@@ -7,6 +8,9 @@ public class SlotDragHandler : MonoBehaviour, IBeginDragHandler, IDragHandler, I
     private CanvasGroup canvasGroup;
     private Vector3 originalPosition;
     private Slot slot;
+    private Image draggedImage;
+    private GameObject draggedOJ;
+
 
     void Awake()
     {
@@ -18,41 +22,50 @@ public class SlotDragHandler : MonoBehaviour, IBeginDragHandler, IDragHandler, I
     public void OnBeginDrag(PointerEventData eventData)
     {
         if (!slot.HasItem()) return;
-        originalPosition = rectTransform.position;
-        canvasGroup.alpha = 0.6f; // Make the slot semi-transparent while dragging
-        canvasGroup.blocksRaycasts = false; // Allow events to pass through while dragging
-        transform.SetAsLastSibling(); // Bring the dragged item to the front
+        draggedOJ = new GameObject("DraggedItem");
+        Canvas canvas = Object.FindFirstObjectByType<Canvas>();
+        draggedOJ.transform.SetParent(canvas.transform, false);
+        draggedImage = draggedOJ.AddComponent<Image>();
+
+        draggedImage.sprite = slot.itemIcon.sprite;
+        draggedImage.raycastTarget = false;
+
+        var dragRect = draggedOJ.GetComponent<RectTransform>();
+        dragRect.sizeDelta = rectTransform.sizeDelta;
+        dragRect.position = Input.mousePosition;
+
+        slot.itemIcon.color = new Color(1, 1, 1, 0.5f);
     }
 
     public void OnDrag(PointerEventData eventData)
     {
-        rectTransform.position = Input.mousePosition;
+        if(draggedOJ != null)
+        {
+           draggedOJ.transform.position = Input.mousePosition;
+        } 
+        
     }
 
     public void OnEndDrag(PointerEventData eventData)
     {
-        rectTransform.position = originalPosition;
-        canvasGroup.alpha = 1f;
-        canvasGroup.blocksRaycasts = true;
-
-        // Kiểm tra xem có thả vào slot hợp lệ không
-        if (!eventData.pointerEnter)
+        if (draggedOJ != null)
         {
-            // Không thả vào slot nào, trả về vị trí cũ
-            rectTransform.position = originalPosition;
+            Destroy(draggedOJ);
         }
+        slot.itemIcon.color = Color.white;
+
+        if (!eventData.pointerEnter) 
+        {
+            rectTransform.position = originalPosition; 
+        }
+            
     }
 
     public void OnDrop(PointerEventData eventData)
     {
-        // Lấy SlotDragHandler từ item đang được kéo
         var draggedSlotHandler = eventData.pointerDrag?.GetComponent<SlotDragHandler>();
-        if (draggedSlotHandler == null) return;
+        if (draggedSlotHandler == null || draggedSlotHandler == this) return;
 
-        // Không cho phép thả vào chính nó
-        if (draggedSlotHandler == this) return;
-
-        // Thực hiện hoán đổi
         SwapItems(draggedSlotHandler.slot, this.slot);
     }
 
