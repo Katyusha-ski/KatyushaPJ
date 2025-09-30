@@ -109,4 +109,13 @@ public class Inventory : MonoBehaviour
         return false;
     }
 
+    public bool SwapItem(int indexA, int indexB)
+    {
+        if (indexA < 0 || indexA >= itemSlots.Count || indexB < 0 || indexB >= itemSlots.Count) return false;
+        var temp = itemSlots[indexA];
+        itemSlots[indexA] = itemSlots[indexB];
+        itemSlots[indexB] = temp;
+        OnInventoryChanged?.Invoke();
+        return true;
+    }
 }

@@ -10,6 +10,7 @@ public class SlotDragHandler : MonoBehaviour, IBeginDragHandler, IDragHandler, I
     private Slot slot;
     private Image draggedImage;
     private GameObject draggedOJ;
+    
 
 
     void Awake()
@@ -66,39 +67,19 @@ public class SlotDragHandler : MonoBehaviour, IBeginDragHandler, IDragHandler, I
         var draggedSlotHandler = eventData.pointerDrag?.GetComponent<SlotDragHandler>();
         if (draggedSlotHandler == null || draggedSlotHandler == this) return;
 
-        SwapItems(draggedSlotHandler.slot, this.slot);
+        // If both slots are equipment slots, do nothing
+        if (draggedSlotHandler.slot.isEquipmentSlot && this.slot.isEquipmentSlot) return;
+
+        // If the target slot is an equipment slot, check if the dragged item is of the correct type
+        if (this.slot.isEquipmentSlot)
+        {
+            var draggedStack = Inventory.Instance.itemSlots[draggedSlotHandler.slot.slotIndex];
+            if (draggedStack == null || draggedStack.item.itemType != ItemType.Equipment ||
+                (int)draggedStack.item.equipmentType != this.slot.slotIndex + 1)
+                return;
+        }
+
+        Inventory.Instance.SwapItem(draggedSlotHandler.slot.slotIndex, this.slot.slotIndex);
     }
 
-    private void SwapItems(Slot fromSlot, Slot toSlot)
-    {
-        // Lưu thông tin item và số lượng của slot đích
-        var toIcon = toSlot.itemIcon.sprite;
-        var toQuantity = GetQuantity(toSlot);
-
-        // Cập nhật slot đích với thông tin từ slot nguồn
-        toSlot.itemIcon.sprite = fromSlot.itemIcon.sprite;
-        if (toSlot.quantityText != null)
-            toSlot.quantityText.text = fromSlot.quantityText?.text ?? "";
-
-        // Cập nhật slot nguồn với thông tin đã lưu
-        fromSlot.itemIcon.sprite = toIcon;
-        if (fromSlot.quantityText != null)
-            fromSlot.quantityText.text = toQuantity > 0 ? toQuantity.ToString() : "";
-
-        // Cập nhật trạng thái hiển thị
-        fromSlot.itemIcon.enabled = fromSlot.itemIcon.sprite != null;
-        toSlot.itemIcon.enabled = toSlot.itemIcon.sprite != null;
-
-        if (fromSlot.quantityText != null)
-            fromSlot.quantityText.gameObject.SetActive(GetQuantity(fromSlot) > 1);
-        if (toSlot.quantityText != null)
-            toSlot.quantityText.gameObject.SetActive(GetQuantity(toSlot) > 1);
-    }
-
-    private int GetQuantity(Slot slot)
-    {
-        if (slot.quantityText == null || string.IsNullOrEmpty(slot.quantityText.text))
-            return 0;
-        return int.Parse(slot.quantityText.text);
-    }
 }

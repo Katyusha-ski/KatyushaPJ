@@ -4,8 +4,10 @@ using UnityEngine.UI;
 
 public class Slot : MonoBehaviour
 {
+    public int slotIndex;
     public Image itemIcon;
     public TMP_Text quantityText;
+    public bool isEquipmentSlot = false;
 
     // Sets the item in the slot with the specified amount.
     public void SetItem(ItemData item, int amount)

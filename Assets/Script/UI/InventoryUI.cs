@@ -8,7 +8,9 @@ public class InventoryUI : MonoBehaviour
     public Transform equipmentSlot; // Parent object for equipment slots
     public Transform slotParent; // Parent object for inventory slots
     public GameObject slotPrefab; // Prefab for individual inventory slots
-    
+
+    private List<Slot> slotScripts = new List<Slot>();
+    private List<Slot> equipmentSlotScripts = new List<Slot>();
 
     public void ShowInventory()
     {
@@ -18,6 +20,28 @@ public class InventoryUI : MonoBehaviour
     public void HideInventory()
     {
         UI.SetActive(false);
+    }
+
+    private void Awake()
+    {
+        //Create slot and equipment slot only 1 time
+        for (int i = 0; i < Inventory.Instance.maxSlots; i++)
+        {
+            var slotGO = Instantiate(slotPrefab, slotParent);
+            var slotScript = slotGO.GetComponent<Slot>();
+            slotScript.slotIndex = i;
+            slotScripts.Add(slotScript);
+        }
+
+        
+        for (int i = 0; i < Inventory.Instance.equipmentSlots; i++)
+        {
+            var slotGO = Instantiate(slotPrefab, equipmentSlot);
+            var slotScript = slotGO.GetComponent<Slot>();
+            slotScript.slotIndex = i;
+            slotScript.isEquipmentSlot = true;
+            equipmentSlotScripts.Add(slotScript);
+        }
     }
 
     private void OnEnable()
@@ -33,55 +57,34 @@ public class InventoryUI : MonoBehaviour
 
     private void UpdateUI()
     {
-        // Clear existing slots
-        foreach (Transform child in slotParent)
-        {
-            Destroy(child.gameObject);
-        }
-        // Create new slots based on the inventory items
+        // update the slot's content
         var slots = Inventory.Instance.itemSlots;
-        for (int i = 0; i < slots.Count; i++)
+        for (int i = 0; i < slotScripts.Count; i++)
         {
             var stack = slots[i];
-            var slotGO = Instantiate(slotPrefab, slotParent);
-            var slotScript = slotGO.GetComponent<Slot>();
             if (stack != null && stack.item != null)
             {
-                slotScript.SetItem(stack.item, stack.amount);
+                slotScripts[i].SetItem(stack.item, stack.amount);
             }
             else
             {
-                slotScript.ClearSlot();
+                slotScripts[i].ClearSlot();
             }
         }
 
-        // Update equipment slots
-        foreach (Transform child in equipmentSlot)
-        {
-            Destroy(child.gameObject);
-        }
+        // update the equipment slot's content
         var equips = Inventory.Instance.equipment;
-        for (int i = 0; i < equips.Length; i++)
+        for (int i = 0; i < equipmentSlotScripts.Count; i++)
         {
             var stack = equips[i];
-            var slotGO = Instantiate(slotPrefab, equipmentSlot); // Nếu có prefab riêng thì dùng equipmentSlotPrefab
-            var slotScript = slotGO.GetComponent<Slot>();
             if (stack != null && stack.item != null)
             {
-                slotScript.SetItem(stack.item, stack.amount);
+                equipmentSlotScripts[i].SetItem(stack.item, stack.amount);
             }
             else
             {
-                slotScript.ClearSlot();
+                equipmentSlotScripts[i].ClearSlot();
             }
-        }
-    }
-
-    void CreateSlots()
-    {
-        for(int i = 0; i < Inventory.Instance.maxSlots; i++)
-        {
-            Instantiate(slotPrefab, slotParent);
         }
     }
 }
