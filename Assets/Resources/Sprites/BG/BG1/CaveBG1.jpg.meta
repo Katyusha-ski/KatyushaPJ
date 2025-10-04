@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 1c4b0447b6244c5499fe30292b08eb76
+guid: 613ec8f604eb5d648b07f63b91f94d5c
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -5760596648553875967
-    second: snow ground_0
+      213: -6946253173156501508
+    second: CaveBG1_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -113,13 +113,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: snow ground_0
+      name: CaveBG1_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 194
-        height: 109
+        width: 736
+        height: 368
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -128,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 106f3ac7edf3e00b0800000000000000
-      internalID: -5760596648553875967
+      spriteID: cf7a316ba83f99f90800000000000000
+      internalID: -6946253173156501508
       vertices: []
       indices: 
       edges: []
@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      CaveBG1_0: -6946253173156501508
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -28,6 +28,8 @@ public class Inventory : MonoBehaviour
         for (int i = 0; i < equipmentSlots; i++) equipment[i] = null;
     }
 
+    public void TriggerInventoryChanged() => OnInventoryChanged?.Invoke();
+
     public bool AddItem(ItemData item, int amount = 1)
     {
         if (!item.isStackable)
@@ -117,5 +119,105 @@ public class Inventory : MonoBehaviour
         itemSlots[indexB] = temp;
         OnInventoryChanged?.Invoke();
         return true;
+    }
+
+    /// <summary>
+    /// Converts the current Inventory to a Serializable format
+    /// </summary>
+    public List<SerializableItemStack> GetSerializableInventory()
+    {
+        List<SerializableItemStack> serializableList = new List<SerializableItemStack>();
+
+        foreach (var itemStack in itemSlots)
+        {
+            if (itemStack != null && itemStack.item != null)
+            {
+                serializableList.Add(new SerializableItemStack(
+                    itemStack.item.itemName,
+                    itemStack.amount
+                ));
+            }
+            else
+            {
+                serializableList.Add(null); // Keep empty slot
+            }
+        }
+
+        return serializableList;
+    }
+
+    /// <summary>
+    /// Converts the current Equipment to a Serializable format
+    /// </summary>
+    public List<SerializableItemStack> GetSerializableEquipment()
+    {
+        List<SerializableItemStack> serializableList = new List<SerializableItemStack>();
+
+        foreach (var itemStack in equipment)
+        {
+            if (itemStack != null && itemStack.item != null)
+            {
+                serializableList.Add(new SerializableItemStack(
+                    itemStack.item.itemName,
+                    itemStack.amount
+                ));
+            }
+            else
+            {
+                serializableList.Add(null);
+            }
+        }
+
+        return serializableList;
+    }
+
+    /// <summary>
+    /// Loads Inventory from Serializable data
+    /// </summary>
+    public void LoadSerializableInventory(List<SerializableItemStack> serializableInventory)
+    {
+        if (serializableInventory == null) return;
+
+        // Clear current inventory
+        for (int i = 0; i < itemSlots.Count; i++)
+            itemSlots[i] = null;
+
+        // Load each item
+        for (int i = 0; i < serializableInventory.Count && i < itemSlots.Count; i++)
+        {
+            if (serializableInventory[i] != null)
+            {
+                ItemStack itemStack = serializableInventory[i].ToItemStack();
+                if (itemStack != null)
+                    itemSlots[i] = itemStack;
+            }
+        }
+
+        OnInventoryChanged?.Invoke();
+    }
+
+    /// <summary>
+    /// Loads Equipment from Serializable data
+    /// </summary>
+    public void LoadSerializableEquipment(List<SerializableItemStack> serializableEquipment)
+    {
+        if (serializableEquipment == null) return;
+
+        // Clear current equipment
+        for (int i = 0; i < equipment.Length; i++)
+            equipment[i] = null;
+
+        // Load each item
+        for (int i = 0; i < serializableEquipment.Count && i < equipment.Length; i++)
+        {
+            if (serializableEquipment[i] != null)
+            {
+                ItemStack itemStack = serializableEquipment[i].ToItemStack();
+                if (itemStack != null)
+                    equipment[i] = itemStack;
+            }
+        }
+
+        OnInventoryChanged?.Invoke();
     }
 }

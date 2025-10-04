@@ -4,5 +4,5 @@ using System.Collections.Generic;
 public class SavaData
 {
     public int currentLevel;
-    public List<ItemStack> inventoryItem;
+    public List<SerializableItemStack> inventoryItem;
 }
