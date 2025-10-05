@@ -46,7 +46,6 @@ public class GameSceneController : MonoBehaviour
             nextIndex = mainMenuSceneIndex;
         }
         
-        // Load scene tiếp theo
         SceneManager.LoadScene(nextIndex);
     }
 
@@ -70,10 +69,10 @@ public class GameSceneController : MonoBehaviour
         // Thay đổi URL này thành trang cá nhân của bạn
         string personalPageUrl = "https://www.facebook.com/golen.diamond.7";
         
-#if UNITY_EDITOR
-        Debug.Log($"Mở trang cá nhân: {personalPageUrl}");
-#else
-        Application.OpenURL(personalPageUrl);
-#endif
+        #if UNITY_EDITOR
+            Debug.Log($"Mở trang cá nhân: {personalPageUrl}");
+        #else
+            Application.OpenURL(personalPageUrl);
+        #endif
     }
 }

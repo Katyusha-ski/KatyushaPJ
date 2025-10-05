@@ -12,6 +12,7 @@ public class Inventory : MonoBehaviour
     public int equipmentSlots = 4;
     public ItemStack[] equipment = new ItemStack[4];
     public int maxStack = 99;
+    
     void Awake()
     {
         if (Instance == null)
@@ -67,6 +68,7 @@ public class Inventory : MonoBehaviour
         OnInventoryChanged?.Invoke();
         return amount == 0;
     }
+    
     public bool EquipItem(int inventorySlotIndex, int equipSlotIndex)
     {
         var stack = itemSlots[inventorySlotIndex];
@@ -83,6 +85,7 @@ public class Inventory : MonoBehaviour
         OnInventoryChanged?.Invoke();
         return true;
     }
+    
     public bool UnequipItem(int slotIndex)
     {
         var stack = equipment[slotIndex];
@@ -139,7 +142,7 @@ public class Inventory : MonoBehaviour
             }
             else
             {
-                serializableList.Add(null); // Keep empty slot
+                serializableList.Add(null);
             }
         }
 
