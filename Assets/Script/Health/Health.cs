@@ -11,6 +11,19 @@ public class Health : MonoBehaviour
     public AudioClip dieSFX;
 
     public int CurrentHealth => currentHealth;
+    public int MaxHealth => maxHealth;
+
+    public void SetHealth(int health)
+    {
+        currentHealth = Mathf.Clamp(health, 0, maxHealth);
+
+        // Update health bar
+        if (healthBar != null)
+        {
+            healthBar.SetHealth(currentHealth, maxHealth);
+        }
+
+    }
 
     void Awake()
     {

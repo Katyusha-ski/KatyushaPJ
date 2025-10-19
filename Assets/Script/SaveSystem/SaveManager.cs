@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 using System.IO;
 
 public static class SaveManager
@@ -8,7 +8,7 @@ public static class SaveManager
     /// <summary>
     /// Save game data to JSON file
     /// </summary>
-    public static void SaveGame(SavaData gameData)
+    public static void SaveGame(SaveData gameData)
     {
         try
         {
@@ -25,14 +25,22 @@ public static class SaveManager
     /// <summary>
     /// Load game data from JSON file
     /// </summary>
-    public static SavaData LoadGame()
+    public static SaveData LoadGame()
     {
         if (File.Exists(savePath))
         {
             try
             {
                 string json = File.ReadAllText(savePath);
-                SavaData data = JsonUtility.FromJson<SavaData>(json);
+                
+                // Validate JSON không rỗng
+                if (string.IsNullOrWhiteSpace(json))
+                {
+                    Debug.LogError("Save file is empty!");
+                    return null;
+                }
+
+                SaveData data = JsonUtility.FromJson<SaveData>(json);
                 Debug.Log("Game loaded successfully!");
                 return data;
             }
@@ -51,10 +59,21 @@ public static class SaveManager
     /// </summary>
     public static void DeleteSave()
     {
-        if (File.Exists(savePath))
+        try
         {
-            File.Delete(savePath);
-            Debug.Log("Save file deleted!");
+            if (File.Exists(savePath))
+            {
+                File.Delete(savePath);
+                Debug.Log("Save file deleted!");
+            }
+            else
+            {
+                Debug.LogWarning("No save file to delete.");
+            }
+        }
+        catch (System.Exception e)
+        {
+            Debug.LogError($"Failed to delete save: {e.Message}");
         }
     }
 
