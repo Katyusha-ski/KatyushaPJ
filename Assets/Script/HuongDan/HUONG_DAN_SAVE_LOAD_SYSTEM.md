@@ -639,80 +639,11 @@ Dùng để hiển thị thông tin save trong UI mà không load game.
 
 ### File: `Assets\Script\UI\MainMenuUI.cs`
 
-### 8.1. Thêm button references
+> **💡 Lưu ý quan trọng:** Vì bạn tạo buttons trực tiếp trong Unity Editor và assign onClick events qua Inspector nên **KHÔNG CẦN khai báo button references trong code**. Chỉ cần cập nhật một method duy nhất.
 
-Tìm:
-```csharp
-[Header("UI Panels")]
-public GameObject aboutMePanel;
-```
+### 8.1. Cập nhật OnPlayButtonClick
 
-Thêm vào sau:
-```csharp
-[Header("Buttons")]
-public Button continueButton;
-public Button loadButton;
-```
-
-Giải thích: Reference để enable/disable buttons
-
----
-
-### 8.2. Cập nhật Start method
-
-Tìm:
-```csharp
-private void Start()
-{
-    if (aboutMePanel != null)
-    {
-        aboutMePanel.SetActive(false);
-    }
-}
-```
-
-Thêm vào cuối Start:
-```csharp
-// Enable/Disable buttons based on save file
-UpdateButtonStates();
-```
-
----
-
-### 8.3. Thêm method UpdateButtonStates
-
-Thêm method mới sau Start:
-```csharp
-/// <summary>
-/// Update button interactable states based on save file existence
-/// </summary>
-private void UpdateButtonStates()
-{
-    bool hasSave = GameManager.Instance != null && GameManager.Instance.HasSaveFile();
-
-    if (continueButton != null)
-    {
-        continueButton.interactable = hasSave;
-    }
-
-    if (loadButton != null)
-    {
-        loadButton.interactable = hasSave;
-    }
-
-    Debug.Log($"Continue button enabled: {hasSave}");
-}
-```
-
-Giải thích:
-- `HasSaveFile()`: Kiểm tra file save có tồn tại không
-- `button.interactable = false`: Disable button (màu xám, không click được)
-
----
-
-### 8.4. Cập nhật OnPlayButtonClick
-
-Tìm:
+#### Tìm:
 ```csharp
 public void OnPlayButtonClick()
 {
@@ -720,7 +651,7 @@ public void OnPlayButtonClick()
 }
 ```
 
-Thay bằng:
+#### Thay bằng:
 ```csharp
 public void OnPlayButtonClick()
 {
@@ -732,30 +663,77 @@ public void OnPlayButtonClick()
 }
 ```
 
-Giải thích: Gọi `NewGame()` thay vì load scene trực tiếp (xóa save cũ, reset state)
+#### Giải thích: 
+Gọi `NewGame()` thay vì load scene trực tiếp để:
+- Xóa save cũ
+- Reset game state (currentLevel, playTime)
+- Clear inventory
+- Load scene đầu tiên
 
----
+### 8.2. Các methods khác đã OK - KHÔNG CẦN SỬA:
 
-### 8.5. Cập nhật OnSaveButtonClick
+✅ **OnLoadButtonClick()** - Đã gọi `GameManager.Instance.LoadGame()`
+✅ **OnContinueButtonClick()** - Đã gọi `GameManager.Instance.LoadGame()`  
+✅ **OnSaveButtonClick()** - Đã gọi `GameManager.Instance.SaveGame()`
+✅ **OnNewGameButtonClick()** - Đã gọi `GameManager.Instance.NewGame()`
 
-Tìm:
+### 8.3. Optional: Enable/Disable buttons tự động
+
+**Nếu muốn buttons tự động enable/disable dựa trên save file:**
+
+#### Option 1: Trong Unity Editor (Khuyến nghị)
+1. Select Continue/Load buttons trong Inspector
+2. Uncheck `Interactable` khi chưa có save file
+3. Check `Interactable` sau khi có save file
+
+#### Option 2: Tự động qua code (Advanced)
 ```csharp
-public void OnSaveButtonClick()
+using UnityEngine;
+using UnityEngine.UI;
+
+public class MainMenuUI : MonoBehaviour
 {
-    GameManager.Instance.SaveGame();
+    [Header("UI Panels")]
+    public GameObject aboutMePanel;
+    
+    [Header("Optional: Dynamic Button Control")]
+    public Button continueButton;  // Kéo từ Unity Editor nếu muốn auto control
+    public Button loadButton;      // Kéo từ Unity Editor nếu muốn auto control
+
+    private void Start()
+    {
+        if (aboutMePanel != null)
+        {
+            aboutMePanel.SetActive(false);
+        }
+        
+        // Optional: Auto enable/disable buttons
+        UpdateButtonStates();
+    }
+    
+    /// <summary>
+    /// Optional: Update button states based on save file existence
+    /// </summary>
+    private void UpdateButtonStates()
+    {
+        bool hasSave = GameManager.Instance != null && GameManager.Instance.HasSaveFile();
+
+        if (continueButton != null)
+        {
+            continueButton.interactable = hasSave;
+        }
+
+        if (loadButton != null)
+        {
+            loadButton.interactable = hasSave;
+        }
+    }
+
+    // ... existing methods không thay đổi
 }
 ```
 
-Thay bằng:
-```csharp
-public void OnSaveButtonClick()
-{
-    GameManager.Instance.SaveGame();
-    UpdateButtonStates(); // Update button states after save
-}
-```
-
-Giải thích: Cập nhật trạng thái nút để enable Continue sau khi save
+> **🎯 Khuyến nghị:** Sử dụng **Option 1** (Unity Editor) vì đơn giản và phù hợp với cách setup hiện tại của bạn.
 
 ---
 

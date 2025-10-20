@@ -160,6 +160,7 @@ public class GameManager : MonoBehaviour
 
         // Reset game state
         currentLevel = 1;
+        playeTime = 0f;
 
         // Clear inventory
         if (Inventory.Instance != null)
@@ -173,6 +174,11 @@ public class GameManager : MonoBehaviour
         }
 
         Debug.Log("New game started!");
+        
+        if (GameSceneController.Instance != null)
+        {
+            GameSceneController.Instance.LoadGameScene("GrassScene");
+        }
     }
 
     /// <summary>
@@ -238,13 +244,23 @@ public class GameManager : MonoBehaviour
             Health health = player.GetComponent<Health>();
             if (health != null)
             {
-                // Access private field via reflection
-                var currentHealthField = typeof(Health).GetField("currentHealth", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance);
-
-                // Access private field "maxHealth"
-                var maxHealthField = typeof(Health).GetField("maxHealth", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance);
+                health.SetHealth(tempSaveData.playerHealth);
             }
-
+            else
+            {
+                Debug.LogWarning("Health component not found on player!");
+            }
         }
+        else
+        {
+            Debug.LogWarning("Player not found in the scene to restore state!");
+        }
+
+        tempSaveData = null; 
+    }
+
+    public SaveData GetSaveInfo()
+    {
+        return SaveManager.LoadGame();
     }
 }

@@ -45,11 +45,6 @@ public class MainMenuUI : MonoBehaviour
         GameManager.Instance.SaveGame();
     }
 
-    public void OnLoadButtonClick()
-    {
-        GameManager.Instance.LoadGame();
-    }
-
     public void OnNewGameButtonClick()
     {
         GameManager.Instance.NewGame();
