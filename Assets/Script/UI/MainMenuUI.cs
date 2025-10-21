@@ -3,8 +3,12 @@ using UnityEngine.UI;
 
 public class MainMenuUI : MonoBehaviour
 {
+    public GameObject continueBtn;
+
     [Header("UI Panels")]
     public GameObject aboutMePanel; // Panel show "About Me" information
+
+
 
     private void Start()
     {
@@ -12,6 +16,14 @@ public class MainMenuUI : MonoBehaviour
         {
             aboutMePanel.SetActive(false);
         }
+        
+        UpdateContinueButton();
+    }
+
+    private void UpdateContinueButton()
+    {
+        bool hasSave = GameManager.Instance != null && GameManager.Instance.HasSaveFile();
+        continueBtn.SetActive(hasSave);
     }
 
     public void OnPlayButtonClick()
@@ -43,6 +55,7 @@ public class MainMenuUI : MonoBehaviour
     public void OnSaveButtonClick()
     {
         GameManager.Instance.SaveGame();
+        UpdateContinueButton();
     }
 
     public void OnNewGameButtonClick()

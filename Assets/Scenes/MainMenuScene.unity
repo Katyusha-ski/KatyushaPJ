@@ -259,13 +259,13 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: ButtonSFX, Assembly-CSharp
-        m_MethodName: 
+      - m_Target: {fileID: 548087708}
+        m_TargetAssemblyTypeName: MainMenuUI, Assembly-CSharp
+        m_MethodName: OnNewGameButtonClick
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -494,53 +494,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   audioMixer: {fileID: 24100000, guid: 29e6b5c5e17fd6d469fdbe887727b30a, type: 2}
   audioSFX: {fileID: 645830341}
---- !u!1 &417687987
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 417687989}
-  - component: {fileID: 417687988}
-  m_Layer: 0
-  m_Name: LoadingScreen
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &417687988
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 417687987}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 87a4b03f476a18e4bbc48a21e7cc0295, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  loadingPanel: {fileID: 0}
-  progressBar: {fileID: 0}
-  progressText: {fileID: 0}
---- !u!4 &417687989
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 417687987}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 445.58966, y: 234.28046, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &536182180
 GameObject:
   m_ObjectHideFlags: 0
@@ -736,6 +689,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa6c0878bc3a0004f84d51c1acd34973, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  continueBtn: {fileID: 1443296263}
   aboutMePanel: {fileID: 0}
 --- !u!1 &583647924
 GameObject:
@@ -1708,7 +1662,7 @@ GameObject:
   - component: {fileID: 1443296266}
   - component: {fileID: 1443296265}
   m_Layer: 5
-  m_Name: Playbtn
+  m_Name: ContinueBtn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1791,7 +1745,7 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 548087708}
         m_TargetAssemblyTypeName: MainMenuUI, Assembly-CSharp
-        m_MethodName: OnPlayButtonClick
+        m_MethodName: OnContinueButtonClick
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1999,7 +1953,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 217.1671, y: -17.9121}
+  m_AnchoredPosition: {x: 217.1671, y: -23}
   m_SizeDelta: {x: 234.3343, y: 73.5069}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1737348458
@@ -2441,7 +2395,6 @@ SceneRoots:
   - {fileID: 1776168299}
   - {fileID: 548087707}
   - {fileID: 1497513465}
-  - {fileID: 417687989}
   - {fileID: 827522562}
   - {fileID: 1463923452}
   - {fileID: 358992719}
