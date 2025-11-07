@@ -18,7 +18,8 @@ public class DashTransformSkill : SkillBase
     {
         if (!CanActivate)
             return;
-        AudioManager.Instance.PlaySFX(dashSFX);
+        if(AudioManager.Instance != null)
+            AudioManager.Instance.PlaySFX(dashSFX);
         PlayerController player = user.GetComponent<PlayerController>();
         if (player != null)
         {

@@ -23,28 +23,31 @@ public class LevelEndTrigger : MonoBehaviour
     private void Awake()
     {
         Collider2D col = GetComponent<Collider2D>();
-        col.isTrigger = true;
+        if (col != null)
+        {
+            col.isTrigger = true;
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Player") && !isTriggered)
-        {
-            isTriggered = true;
-            CompleteLevelAndTransition();
-        }
+        if (collision == null || !collision.CompareTag("Player") || isTriggered)
+            return;
+
+        isTriggered = true;
+        CompleteLevelAndTransition();
     }
 
     private void CompleteLevelAndTransition()
     {
-        Debug.Log($"Level completed! Transitioning...");
+        Debug.Log("Level completed! Transitioning...");
 
-        // Always save when completing level - no toggle needed
+        // Always save when completing level
         if (GameManager.Instance != null)
         {
             GameManager.Instance.currentLevel++;
             GameManager.Instance.SaveGame();
-            Debug.Log($"? Progress saved! Current Level: {GameManager.Instance.currentLevel}");
+            Debug.Log($"Progress saved! Current Level: {GameManager.Instance.currentLevel}");
         }
         else
         {
@@ -58,7 +61,14 @@ public class LevelEndTrigger : MonoBehaviour
         }
 
         // Load next level after delay
-        Invoke(nameof(LoadNextLevel), transitionDelay);
+        if (transitionDelay > 0)
+        {
+            Invoke(nameof(LoadNextLevel), transitionDelay);
+        }
+        else
+        {
+            LoadNextLevel();
+        }
     }
 
     private void LoadNextLevel()

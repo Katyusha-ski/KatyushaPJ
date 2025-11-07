@@ -10,6 +10,12 @@ public static class SaveManager
     /// </summary>
     public static void SaveGame(SaveData gameData)
     {
+        if (gameData == null)
+        {
+            Debug.LogError("SaveData is null! Cannot save game.");
+            return;
+        }
+
         try
         {
             string json = JsonUtility.ToJson(gameData, true);
@@ -33,7 +39,7 @@ public static class SaveManager
             {
                 string json = File.ReadAllText(savePath);
                 
-                // Validate JSON không rỗng
+                // Validate JSON not empty
                 if (string.IsNullOrWhiteSpace(json))
                 {
                     Debug.LogError("Save file is empty!");

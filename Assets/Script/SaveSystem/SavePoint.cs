@@ -1,6 +1,5 @@
 using UnityEngine;
 
-
 [RequireComponent(typeof(Collider2D))]
 public class SavePoint : MonoBehaviour
 {
@@ -16,25 +15,29 @@ public class SavePoint : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Player"))
+        if (collision == null || !collision.CompareTag("Player"))
+            return;
+
+        // Only save if not used OR not single use
+        if (!(singleUse && hasBeenUsed))
         {
-            if (!(singleUse && hasBeenUsed))
-            {
-                SaveGameAtPoint();
-            }
+            SaveGameAtPoint();
         }
     }
 
     public void SaveGameAtPoint()
     {
+        // Check GameManager before saving
         if (GameManager.Instance == null)
         {
-            Debug.LogError("Game Manager not found!");
+            Debug.LogError("GameManager not found! Cannot save progress.");
+            return;
         }
+        
         GameManager.Instance.SaveGame();
         hasBeenUsed = true;     
 
-        Debug.Log($"? Game have been saved");
+        Debug.Log($"Game saved at {gameObject.name}");
 
         if (saveEffectPrefab != null)
         {

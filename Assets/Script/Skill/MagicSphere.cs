@@ -18,10 +18,6 @@ public class MagicSphere : MonoBehaviour, IMagicProjectile
     void Start()
     {
         animator = GetComponent<Animator>();
-        if (animator != null)
-        {
-            animator.SetTrigger("Cast");
-        }
         castingTimer = castingTime;
     }
 
@@ -55,8 +51,6 @@ public class MagicSphere : MonoBehaviour, IMagicProjectile
             animator.SetTrigger("Launch");
         }
     }
-
-    
 
     private void OnTriggerEnter2D(Collider2D collision)
     {

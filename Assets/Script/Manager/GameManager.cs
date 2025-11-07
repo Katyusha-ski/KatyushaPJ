@@ -8,6 +8,7 @@ public enum GameState
     Gameplay,
     Pause,
 }
+
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
@@ -16,9 +17,8 @@ public class GameManager : MonoBehaviour
 
     [Header("Game state")]
     public int currentLevel = 1;
-    private float playeTime = 0f;
+    private float playTime = 0f;
     private SaveData tempSaveData;
-    // Add other game state variables as needed
 
     private void Awake()
     {
@@ -37,7 +37,7 @@ public class GameManager : MonoBehaviour
     {
         if (CurrentGameState == GameState.Gameplay)
         {
-            playeTime += Time.deltaTime;
+            playTime += Time.deltaTime;
         }
     }
 
@@ -54,7 +54,7 @@ public class GameManager : MonoBehaviour
     }
 
     /// <summary>
-    /// Sava all game(called from UI or auto save)
+    /// Save all game state (called from UI or auto save)
     /// </summary>
     public void SaveGame()
     {
@@ -66,14 +66,14 @@ public class GameManager : MonoBehaviour
 
         Scene currentScene = SceneManager.GetActiveScene();
 
-        //Get player state
+        // Get player state
         int playerHealth = 0;
         Vector3 playerPosition = Vector3.zero;
 
-        if(player != null)
+        if (player != null)
         {
             Health health = player.GetComponent<Health>();
-            if(health != null)
+            if (health != null)
             {
                 playerHealth = health.CurrentHealth;
             }
@@ -81,30 +81,27 @@ public class GameManager : MonoBehaviour
         }
         else
         {
-            Debug.LogError("Player refernce was not found!");
+            Debug.LogError("Player reference was not found!");
             return;
         }
 
         SaveData data = new SaveData
         {
             currentLevel = this.currentLevel,
-            //inventory
+            // Inventory data
             inventoryItem = Inventory.Instance.GetSerializableInventory(),
             equipmentItem = Inventory.Instance.GetSerializableEquipment(),
             // Scene info
             currentSceneIndex = currentScene.buildIndex,
             currentSceneName = currentScene.name,
-
-            // player state
+            // Player state
             playerHealth = playerHealth,
             playerPositionX = playerPosition.x,
             playerPositionY = playerPosition.y,
             playerPositionZ = playerPosition.z,
-
             // Metadata
             saveDataTime = System.DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"),
-            playTime = this.playeTime
-
+            playTime = this.playTime
         };
 
         SaveManager.SaveGame(data);
@@ -114,12 +111,12 @@ public class GameManager : MonoBehaviour
     /// <summary>
     /// Load game and switch to saved scene
     /// </summary>
-   public void LoadGame()
-   {
+    public void LoadGame()
+    {
         // Load save data
         SaveData saveData = SaveManager.LoadGame();
 
-        //check if save data is valid
+        // Check if save data is valid
         if (saveData == null)
         {
             Debug.LogError("No valid save data found!");
@@ -128,13 +125,13 @@ public class GameManager : MonoBehaviour
 
         // Load game state
         this.currentLevel = saveData.currentLevel;
-        this.playeTime = saveData.playTime;
+        this.playTime = saveData.playTime;
 
         // Store save data temporarily
         tempSaveData = saveData;
 
         // Load the saved scene
-        if (saveData.currentSceneIndex > 0) // Don load Main menu
+        if (saveData.currentSceneIndex > 0) // Don't load Main menu
         {
             Debug.Log($"Loading scene: {saveData.currentSceneName} (Index: {saveData.currentSceneIndex})");
 
@@ -144,13 +141,12 @@ public class GameManager : MonoBehaviour
             // Load scene
             SceneManager.LoadScene(saveData.currentSceneIndex);
         }
-
         else
         {
             Debug.LogError("Invalid scene index in save data!");
         }
-
     }
+
     /// <summary>
     /// Start a new game
     /// </summary>
@@ -160,7 +156,7 @@ public class GameManager : MonoBehaviour
 
         // Reset game state
         currentLevel = 1;
-        playeTime = 0f;
+        playTime = 0f;
 
         // Clear inventory
         if (Inventory.Instance != null)
@@ -175,9 +171,15 @@ public class GameManager : MonoBehaviour
 
         Debug.Log("New game started!");
         
+        // Load first gameplay scene
         if (GameSceneController.Instance != null)
         {
             GameSceneController.Instance.LoadGameScene("GrassScene");
+        }
+        else
+        {
+            // Fallback: load scene directly
+            SceneManager.LoadScene("GrassScene");
         }
     }
 
@@ -204,17 +206,17 @@ public class GameManager : MonoBehaviour
         {
             Inventory.Instance.LoadSerializableInventory(tempSaveData.inventoryItem);
             Inventory.Instance.LoadSerializableEquipment(tempSaveData.equipmentItem);
-            Debug.Log("✅ Inventory and equipment restored!");
+            Debug.Log("Inventory and equipment restored!");
         }
         else
         {
-            Debug.LogWarning("⚠️ Inventory instance not found after scene load!");
+            Debug.LogWarning("Inventory instance not found after scene load!");
         }
 
         // Restore player state with delay (ensure player is spawned)
         Invoke(nameof(RestorePlayerState), 0.2f);
 
-        Debug.Log($"✅ Game loaded! Level: {currentLevel}, Play time: {playeTime:F1}s");
+        Debug.Log($"Game loaded! Level: {currentLevel}, Play time: {playTime:F1}s");
     }
 
     /// <summary>
@@ -259,6 +261,9 @@ public class GameManager : MonoBehaviour
         tempSaveData = null; 
     }
 
+    /// <summary>
+    /// Get save info for UI display
+    /// </summary>
     public SaveData GetSaveInfo()
     {
         return SaveManager.LoadGame();
