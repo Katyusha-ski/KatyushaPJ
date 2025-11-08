@@ -33,6 +33,12 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    private void Start()
+    {
+        if(player == null)
+            player = Object.FindFirstObjectByType<PlayerController>();
+    }
+
     private void Update()
     {
         if (CurrentGameState == GameState.Gameplay)

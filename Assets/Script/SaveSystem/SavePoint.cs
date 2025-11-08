@@ -11,7 +11,23 @@ public class SavePoint : MonoBehaviour
     public GameObject saveEffectPrefab;
     public AudioClip saveSound;
 
+    [Header("Floating Effect")]
+    [SerializeField] private float floatHeight = 0.4f;
+    [SerializeField] private float floatSpeed = 2f;
+
+    private Vector3 originalPos;
     private bool hasBeenUsed = false;
+
+    private void Start()
+    {
+        originalPos = transform.localPosition;
+    }
+
+    private void Update()
+    {
+        float newY = originalPos.y + Mathf.Sin(Time.time * floatSpeed) * floatHeight;
+        transform.localPosition = new Vector3(originalPos.x, newY, originalPos.z);
+    }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
