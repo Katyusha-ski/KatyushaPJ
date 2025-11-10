@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: -4326754769946002814}
   - component: {fileID: 6053867310535121}
   - component: {fileID: 6254935896656335592}
+  - component: {fileID: 79319132487125086}
   m_Layer: 7
   m_Name: Skull_Enemy
   m_TagString: Enemy
@@ -58,6 +59,8 @@ SpriteRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -79,6 +82,7 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
@@ -103,7 +107,7 @@ BoxCollider2D:
   m_Enabled: 1
   serializedVersion: 3
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: ef183331a20170b4682319b195ffbc36, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -205,6 +209,7 @@ MonoBehaviour:
   healthBar: {fileID: 5416383594440565038}
   damageSFX: {fileID: 8300000, guid: f7a08f45200bf464ab2a0408e5f29cb1, type: 3}
   dieSFX: {fileID: 8300000, guid: d8f7c8b1797784542965bee7b596d68c, type: 3}
+  lootManager: {fileID: 79319132487125086}
 --- !u!114 &6254935896656335592
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -224,6 +229,22 @@ MonoBehaviour:
   attackCooldown: 2
   lastTimeAttack: -Infinity
   player: {fileID: 0}
+--- !u!114 &79319132487125086
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2717129107958463718}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c3d3b00923ba5e46917963bb4624953, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::LootManager
+  lootTable: {fileID: 11400000, guid: df8b912749d2ca3478caeabda06d2b14, type: 2}
+  itemFloatPref: {fileID: 0}
+  dropRad: 1
+  dropForce: 1
 --- !u!1001 &3985833867836237523
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -16,6 +16,7 @@ public class EnemyController : MonoBehaviour
 
     protected int direction = 1; // 1 for right, -1 for left
     protected int lastPatrolDirection = 1; // 1 for right, -1 for left
+    
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -71,4 +72,6 @@ public class EnemyController : MonoBehaviour
             }
         }
     }
+
+    
 }

@@ -12,6 +12,7 @@ public class Health : MonoBehaviour
 
     public int CurrentHealth => currentHealth;
     public int MaxHealth => maxHealth;
+    public LootManager lootManager;
 
     public void SetHealth(int health)
     {
@@ -55,6 +56,12 @@ public class Health : MonoBehaviour
             {
                 animator.SetTrigger("Death");
             }
+
+            if (lootManager != null)
+            {
+                lootManager.SpawnLoot();
+            }
+
             if (VictoryUI.Instance != null)
             {
                 VictoryUI.Instance.ShowVictoryUI();
