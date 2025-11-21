@@ -130,30 +130,30 @@ Sleep -> (if player visible) WakeUp -> Attack
 
 ```
 Assets/Script/EnemyThing/
-??? IEnemyState.cs
-??? IEnemyStateProvider.cs
-??? EnemyController.cs
-?
-??? State/
-?   ??? BaseChaseState.cs
-?   ??? BaseAttackState.cs
-?   ??? PatrolState.cs
-?   ?
-?   ??? ChaseState.cs
-?   ??? GolemChaseState.cs
-?   ??? WakeUpState.cs
-?   ?
-?   ??? AttackState.cs
-?   ??? SlimeAttackState.cs
-?   ??? GolemAttackState.cs
-?   ?
-?   ??? SleepState.cs
-?   ??? (more custom states as needed)
-?
-??? SkullE.cs
-??? SlimeE.cs
-??? GolemE.cs
-??? DreamEnemyE.cs
+├── IEnemyState.cs
+├── IEnemyStateProvider.cs
+├── EnemyController.cs
+│
+├── State/
+│   ├── BaseChaseState.cs
+│   ├── BaseAttackState.cs
+│   ├── PatrolState.cs
+│   │
+│   ├── ChaseState.cs
+│   ├── GolemChaseState.cs
+│   ├── WakeUpState.cs
+│   │
+│   ├── AttackState.cs
+│   ├── SlimeAttackState.cs
+│   ├── GolemAttackState.cs
+│   │
+│   ├── SleepState.cs
+│   └── (more custom states as needed)
+│
+├── SkullE.cs
+├── SlimeE.cs
+├── GolemE.cs
+└── DreamEnemyE.cs
 ```
 
 ---
