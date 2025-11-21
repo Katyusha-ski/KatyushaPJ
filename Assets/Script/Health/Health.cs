@@ -51,6 +51,12 @@ public class Health : MonoBehaviour
     {
         if (gameObject.tag == "Enemy")
         {
+            EnemyController enemyController = GetComponent<EnemyController>();
+            if (enemyController != null)
+            {
+                enemyController.enabled = false;
+            }
+
             Animator animator = GetComponent<Animator>();
             if (animator != null)
             {
