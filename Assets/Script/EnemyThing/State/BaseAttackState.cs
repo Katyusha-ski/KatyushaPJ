@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public abstract class BaseAttackState : IEnemyState
+public class BaseAttackState : IEnemyState
 {
     public virtual void OnEnter(EnemyController enemy)
     {
@@ -8,7 +8,7 @@ public abstract class BaseAttackState : IEnemyState
         enemy.LookAtPlayer();
     }
 
-    public void OnUpdate(EnemyController enemy)
+    public virtual void OnUpdate(EnemyController enemy)
     {
         float distanceToPlayer = enemy.GetDistanceToPlayer();
 
@@ -18,20 +18,19 @@ public abstract class BaseAttackState : IEnemyState
             return;
         }
 
-        if (distanceToPlayer > enemy.GetVisionRange())
-        {
-            enemy.ChangeState(enemy.GetIdleState());
-            return;
-        }
-
         ExecuteAttackPattern(enemy);
     }
 
-    public virtual void OnExit(EnemyController enemy)
-    {
-    }
+    public virtual void OnExit(EnemyController enemy){}
 
-    protected abstract void ExecuteAttackPattern(EnemyController enemy);
+    protected virtual void ExecuteAttackPattern(EnemyController enemy)
+    {
+        if (IsAttackReady(enemy))
+        {
+            enemy.ExecuteAttack();
+            RecordAttack(enemy);
+        }
+    }
 
     protected bool IsAttackReady(EnemyController enemy)
     {

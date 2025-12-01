@@ -14,12 +14,10 @@ public class EnemyController : MonoBehaviour, IEnemyStateProvider
     [SerializeField] protected float lastTimeAttack = -Mathf.Infinity;
     [SerializeField] protected Transform player;
 
-    protected int direction = 1; // 1 for right, -1 for left
-    protected int lastPatrolDirection = 1; // 1 for right, -1 for left
+    protected int direction = 1;
+    protected int lastPatrolDirection = 1;
     protected IEnemyState currentState;
 
-
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -36,53 +34,32 @@ public class EnemyController : MonoBehaviour, IEnemyStateProvider
         currentState?.OnUpdate(this);
     }
 
-    // Enemy behavior methods
+    #region Getters
+    public float GetDistanceToPlayer()
+    {
+        if (player == null) return Mathf.Infinity;
+        return Vector2.Distance(transform.position, player.position);
+    }
+
+    public float GetAttackRange() => attackRange;
+
+    public float GetVisionRange() => visionRange;
+
+    public float GetAttackCooldown() => attackCooldown;
+
+    public float GetLastTimeAttack() => lastTimeAttack;
+
+    public int GetDirection() => direction;
+    #endregion
+
+    #region Logic Control
     public void Patrol()
     {
         direction = lastPatrolDirection;
-        // Move enemy horizontally
         rb.linearVelocity = new Vector2(speed * direction, rb.linearVelocity.y);
-
-        // Flip sprite based on direction
         sr.flipX = direction < 0;
     }
 
-    public void NormalAttack()
-    {
-        animator.SetTrigger("Attack");
-    }
-
-    protected void OnCollisionEnter2D(Collision2D collision)
-    {
-        // Flip direction on collision with ground or obstacle
-        if (collision.gameObject.CompareTag("Obstacle"))
-        {
-            direction *= -1;
-            lastPatrolDirection = direction;
-        }
-    }
-
-    protected void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.gameObject.CompareTag("Obstacle"))
-        {
-            direction *= -1;
-            lastPatrolDirection = direction;
-        }
-    }
-
-    public virtual void DealNormalAttackDamage()
-    {
-        if (player != null && Vector2.Distance(transform.position, player.position) < attackRange)
-        {
-            var playerHealth = player.GetComponent<Health>();
-            if (playerHealth != null)
-            {
-                playerHealth.TakeDamage(attackDamage);
-            }
-        }
-    }
-    
     public void LookAtPlayer()
     {
         if (player == null) return;
@@ -100,32 +77,27 @@ public class EnemyController : MonoBehaviour, IEnemyStateProvider
         sr.flipX = direction < 0;
     }
 
+    public void NormalAttack()
+    {
+        animator.SetTrigger("Attack");
+    }
+
     public virtual void ExecuteAttack()
     {
-        if (Time.time - lastTimeAttack >= attackCooldown)
+        NormalAttack();
+    }
+
+    public virtual void DealNormalAttackDamage()
+    {
+        if (player != null && Vector2.Distance(transform.position, player.position) < attackRange)
         {
-            NormalAttack();
-            lastTimeAttack = Time.time;
+            var playerHealth = player.GetComponent<Health>();
+            if (playerHealth != null)
+            {
+                playerHealth.TakeDamage(attackDamage);
+            }
         }
     }
-
-    // State management methods
-    public void ChangeState(IEnemyState newState)
-    {
-        currentState?.OnExit(this);
-        currentState = newState;
-        currentState.OnEnter(this);
-    }
-
-    public float GetDistanceToPlayer()
-    {
-        if (player == null) return Mathf.Infinity;
-        return Vector2.Distance(transform.position, player.position);
-    }
-
-    public float GetAttackRange() => attackRange;
-
-    public float GetVisionRange() => visionRange;
 
     public void SetAnimatorBool(string parameter, bool value)
     {
@@ -137,37 +109,51 @@ public class EnemyController : MonoBehaviour, IEnemyStateProvider
         animator.SetTrigger(parameter);
     }
 
-    // ? Getter/Setter cho attack timing
-    public float GetLastTimeAttack() => lastTimeAttack;
-
     public void SetLastTimeAttack(float time)
     {
         lastTimeAttack = time;
     }
 
-    public float GetAttackCooldown() => attackCooldown;
+    protected void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Obstacle"))
+        {
+            direction *= -1;
+            lastPatrolDirection = direction;
+        }
+    }
 
-    /// <summary>
-    /// Factory method - override in subclass for custom idle state
-    /// </summary>
+    protected void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Obstacle"))
+        {
+            direction *= -1;
+            lastPatrolDirection = direction;
+        }
+    }
+    #endregion
+
+    #region State Management
+    public void ChangeState(IEnemyState newState)
+    {
+        currentState?.OnExit(this);
+        currentState = newState;
+        currentState.OnEnter(this);
+    }
+
     public virtual IEnemyState GetIdleState()
     {
         return new IdleState();
     }
 
-    /// <summary>
-    /// Factory method - override in subclass for custom pursuit state
-    /// </summary>
     public virtual IEnemyState GetPursuitState()
     {
-        return new PursuitState();
+        return new BasePursuitState();
     }
 
-    /// <summary>
-    /// Factory method - override in subclass for custom attack state
-    /// </summary>
     public virtual IEnemyState GetAttackState()
     {
-        return new AttackState();
+        return new BaseAttackState();
     }
+    #endregion
 }

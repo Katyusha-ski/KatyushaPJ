@@ -2,8 +2,19 @@ using UnityEngine;
 
 public class SlimeE : EnemyController
 {
-    public override IEnemyState GetAttackState()
+    private bool checkAttack = false;
+
+    public override void ExecuteAttack()
     {
-        return new SlimeAttackState();
+        if (checkAttack)
+        {
+            NormalAttack();
+            checkAttack = false;
+        }
+        else
+        {
+            animator.SetTrigger("Hit");
+            checkAttack = true;
+        }
     }
 }

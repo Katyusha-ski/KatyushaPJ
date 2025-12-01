@@ -9,7 +9,7 @@ public class IdleState : IEnemyState
 
     public void OnUpdate(EnemyController enemy)
     {
-        if (enemy.GetDistanceToPlayer() < enemy.GetVisionRange())
+        if (enemy.GetDistanceToPlayer() <= enemy.GetVisionRange())
         {
             enemy.ChangeState(enemy.GetPursuitState());
         }

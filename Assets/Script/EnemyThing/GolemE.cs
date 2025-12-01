@@ -2,91 +2,46 @@ using UnityEngine;
 
 public class GolemE : EnemyController
 {
-    //public RuntimeAnimatorController phase1Controller;
-    //public RuntimeAnimatorController phase2Controller;
-    public bool isPhase2 = false;
-    private bool checkAttack1 = false;
-
     [Header("Skill List")]
     public SkillManager skillManager;
 
+    private bool checkAttack1 = false;
 
-    void Update()
+    public override IEnemyState GetAttackState()
     {
-        if (player == null) return;
+        return new GolemAttackState();
+    }
 
-        float distanceToPlayer = Vector2.Distance(transform.position, player.position);
-    
-        if (distanceToPlayer < attackRange)
+    public override IEnemyState GetPursuitState()
+    {
+        return new GolemPursuitState();
+    }
+
+    public override void ExecuteAttack()
+    {
+        if (skillManager.skills[1].CanActivate)
         {
-            direction = player.position.x > transform.position.x ? 1 : -1;
-            sr.flipX = direction < 0;
-
-            animator.SetBool("Run", false);
-            if (Time.time - lastTimeAttack >= attackCooldown)
-            {
-                if (skillManager.skills[1].CanActivate)
-                {
-                    animator.SetTrigger("Attack 3");
-                    lastTimeAttack = Time.time;
-                    return;
-                }
-                if (!checkAttack1)
-                {
-                    NormalAttack();
-                    lastTimeAttack = Time.time;
-                    checkAttack1 = true;
-                }
-                else
-                {
-                    Attack1();
-                    lastTimeAttack = Time.time;
-                    checkAttack1 = false;
-                }
-
-            }
-            rb.linearVelocity = Vector2.zero;
+            animator.SetTrigger("Attack 3");
+            return;
         }
-        else if (distanceToPlayer < visionRange)
+
+        if (!checkAttack1)
         {
-            if (skillManager.skills[0].CanActivate)
-            {
-                
-                animator.SetBool("Run", false);
-                animator.SetTrigger("Attack 2");
-                
-                return;
-            }
-            else 
-            {
-                rb.linearVelocity = new Vector2(speed * 1.5f * direction, rb.linearVelocity.y);
-                sr.flipX = direction < 0;
-                animator.SetBool("Run", true);
-            }
-                
+            NormalAttack();
+            checkAttack1 = true;
         }
         else
         {
-            animator.SetBool("Run", false);
-            Patrol();
+            Attack1();
+            checkAttack1 = false;
         }
     }
 
-    /*public void ChangeToPhase2()
-    {
-        if (!isPhase2)
-        {
-            isPhase2 = true;
-            animator.runtimeAnimatorController = phase2Controller;
-            attackDamage += 2; 
-            
-        }
-    }*/
 
     public void Attack1()
     {
         animator.SetTrigger("Attack 1");
-    } 
+    }
 
     public void CastGolemMagic()
     {

@@ -1,25 +1,23 @@
-using UnityEngine;
-
-public abstract class BasePursuitState : IEnemyState
+public class BasePursuitState : IEnemyState
 {
     public virtual void OnEnter(EnemyController enemy)
     {
         enemy.SetAnimatorBool("Run", true);
     }
 
-    public void OnUpdate(EnemyController enemy)
+    public virtual void OnUpdate(EnemyController enemy)
     {
         float distanceToPlayer = enemy.GetDistanceToPlayer();
-
-        if (distanceToPlayer > enemy.GetAttackRange())
-        {
-            enemy.ChangeState(enemy.GetAttackState());
-            return;
-        }
 
         if (distanceToPlayer > enemy.GetVisionRange())
         {
             enemy.ChangeState(enemy.GetIdleState());
+            return;
+        }
+        
+        if (distanceToPlayer <= enemy.GetAttackRange())
+        {
+            enemy.ChangeState(enemy.GetAttackState());
             return;
         }
 
@@ -31,5 +29,9 @@ public abstract class BasePursuitState : IEnemyState
         enemy.SetAnimatorBool("Run", false);
     }
 
-    protected abstract void ExecutePursuit(EnemyController enemy);
+    protected virtual void ExecutePursuit(EnemyController enemy)
+    {
+        enemy.LookAtPlayer();
+        enemy.MoveTowardPlayer();
+    }
 }
