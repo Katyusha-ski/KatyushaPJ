@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using UnityEngine;
 using System.Collections.Generic;
 
@@ -31,8 +31,66 @@ public class Inventory : MonoBehaviour
 
     public void TriggerInventoryChanged() => OnInventoryChanged?.Invoke();
 
-    public bool AddItem(ItemData item, int amount = 1)
+    public bool CanAddItem(ItemData item, int amount = 1)
     {
+        if(amount <= 0) return false; // Invalid amount
+        int freeSpace = 0;
+        // Check for non-stackable items
+        if (!item.isStackable)
+        {
+            for (int i = 0; i < itemSlots.Count; i++)
+            {
+                if (itemSlots[i] == null)
+                {
+                    freeSpace++;
+                }
+            }
+            return freeSpace >= amount;
+        }
+
+        // Check for non-null slots with same item
+        for (int i = 0; i < itemSlots.Count; i++)
+        {
+            if (itemSlots[i] != null && itemSlots[i].item == item && itemSlots[i].amount < maxStack)
+            {
+                freeSpace += (maxStack - itemSlots[i].amount);
+            }
+        }
+        // Check for null slots
+        for (int i = 0; i < itemSlots.Count; i++)
+        {
+            if (itemSlots[i] == null)
+            {
+                freeSpace += maxStack;
+            }
+        }
+        return freeSpace >= amount;
+    }
+
+    public bool CanRemoveItem(ItemData item, int amount = 1)
+    {
+        if (amount <= 0) return false;
+
+        int remainingToCheck = amount;
+
+        for (int i = 0; i < itemSlots.Count && remainingToCheck > 0; i++)
+        {
+            if (itemSlots[i] != null && itemSlots[i].item == item)
+            {
+                int availableInSlot = itemSlots[i].amount;
+                remainingToCheck -= Mathf.Min(remainingToCheck, availableInSlot);
+            }
+        }
+
+        return remainingToCheck == 0;
+    }
+
+    public void AddItem(ItemData item, int amount = 1)
+    {
+        // Check if we can add the item
+        if (!CanAddItem(item, amount)) 
+            return;
+
         if (!item.isStackable)
         {
             for (int i = 0; i < itemSlots.Count && amount > 0; i++)
@@ -43,32 +101,61 @@ public class Inventory : MonoBehaviour
                     amount--;
                 }
             }
-            if (amount > 0) return false;
-            OnInventoryChanged?.Invoke();
-            return true;
         }
-        for (int i = 0; i < itemSlots.Count && amount > 0; i++)
+        else
         {
-            if (itemSlots[i] != null && itemSlots[i].item == item && itemSlots[i].amount < maxStack)
+            // Add to existing stacks first
+            for (int i = 0; i < itemSlots.Count && amount > 0; i++)
             {
-                int canAdd = Mathf.Min(amount, maxStack - itemSlots[i].amount);
-                itemSlots[i].amount += canAdd;
-                amount -= canAdd;
+                if (itemSlots[i] != null && itemSlots[i].item == item && itemSlots[i].amount < maxStack)
+                {
+                    int canAdd = Mathf.Min(amount, maxStack - itemSlots[i].amount);
+                    itemSlots[i].amount += canAdd;
+                    amount -= canAdd;
+                }
+            }
+
+            // Add to empty slots
+            for (int i = 0; i < itemSlots.Count && amount > 0; i++)
+            {
+                if (itemSlots[i] == null)
+                {
+                    int stackAmount = Mathf.Min(amount, maxStack);
+                    itemSlots[i] = new ItemStack(item, stackAmount);
+                    amount -= stackAmount;
+                }
             }
         }
-        for (int i = 0; i < itemSlots.Count && amount > 0; i++)
-        {
-            if (itemSlots[i] == null)
-            {
-                int stackAmount = Mathf.Min(amount, maxStack);
-                itemSlots[i] = new ItemStack(item, stackAmount);
-                amount -= stackAmount;
-            }
-        }
+        
         OnInventoryChanged?.Invoke();
-        return amount == 0;
     }
     
+    public void RemoveItem(ItemData item, int amount = 1)
+    {
+        // Check if we can remove the item
+        if (!CanRemoveItem(item, amount))
+            return;
+
+        int remaining = amount;
+
+        for (int i = 0; i < itemSlots.Count; i++)
+        {
+            if (itemSlots[i] != null && itemSlots[i].item == item)
+            {
+                itemSlots[i].amount -= remaining;
+                if (itemSlots[i].amount <= 0)
+                {
+                    remaining = -itemSlots[i].amount;
+                    itemSlots[i] = null;
+                }
+                if (remaining <= 0)
+                    break;
+            }
+        }
+
+        OnInventoryChanged?.Invoke();
+    }
+
     public bool EquipItem(int inventorySlotIndex, int equipSlotIndex)
     {
         var stack = itemSlots[inventorySlotIndex];
@@ -91,28 +178,16 @@ public class Inventory : MonoBehaviour
         var stack = equipment[slotIndex];
         if (stack == null) return false;
 
-        if (!AddItem(stack.item, stack.amount)) return false;
+        if (!CanAddItem(stack.item, stack.amount)) 
+            return false;
+
+        AddItem(stack.item, stack.amount);
 
         equipment[slotIndex] = null;
         OnInventoryChanged?.Invoke();
         return true;
     }
 
-    public bool RemoveItem(ItemData item, int amount = 1)
-    {
-        for (int i = 0; i < itemSlots.Count; i++)
-        {
-            if (itemSlots[i] != null && itemSlots[i].item == item)
-            {
-                itemSlots[i].amount -= amount;
-                if (itemSlots[i].amount <= 0)
-                    itemSlots[i] = null;
-                OnInventoryChanged?.Invoke();
-                return true;
-            }
-        }
-        return false;
-    }
 
     public bool SwapItem(int indexA, int indexB)
     {

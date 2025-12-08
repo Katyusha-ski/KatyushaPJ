@@ -4,6 +4,7 @@ public class LootManager : MonoBehaviour
 {
     [SerializeField] private LootTable lootTable;
     [SerializeField] private GameObject itemFloatPref;
+    [SerializeField] private string poolTag = "ItemLoot";
     [SerializeField] private float dropRad;
     [SerializeField] private float dropForce;
 
@@ -23,13 +24,17 @@ public class LootManager : MonoBehaviour
     private void SpawnLootItem(ItemData item, int amount)
     {
         Vector2 dropPos = GetRandomDropPosition();
-        GameObject LootGO = Instantiate(itemFloatPref, dropPos, Quaternion.identity);
-        ItemFloat itemFloat = LootGO.GetComponent<ItemFloat>();
-        if(itemFloat != null)
+        GameObject LootGO = ObjectPool.Instance.SpawnFromPool(poolTag, dropPos, Quaternion.identity);
+        if (LootGO != null)
         {
-            itemFloat.Initialize(item, amount);
-            ApplyRandomVelocity(LootGO.GetComponent<Rigidbody2D>());
+            ItemFloat itemFloat = LootGO.GetComponent<ItemFloat>();
+            if(itemFloat != null)
+            {
+                itemFloat.Initialize(item, amount);
+                ApplyRandomVelocity(LootGO.GetComponent<Rigidbody2D>());
+            }
         }
+        
     }
 
     private Vector3 GetRandomDropPosition()

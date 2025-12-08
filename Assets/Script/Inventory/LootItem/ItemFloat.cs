@@ -31,14 +31,28 @@ public class ItemFloat : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
+            if (itemData == null) return;
+            
             if (Inventory.Instance != null)
             {
-                bool added = Inventory.Instance.AddItem(itemData, amount);
-                if (added)
-                {
-                    Destroy(gameObject);
-                }
+                Inventory.Instance.AddItem(itemData, amount);
+                ResetItem();
             }
         }
+    }
+
+    public void ResetItem()
+    {
+        itemData = null;
+        amount = 0;
+        if (sr != null)
+        {
+            sr.sprite = null;
+        }
+        if (pickupCollider != null)
+        {
+            pickupCollider.enabled = true;
+        }
+        ObjectPool.Instance.ReturnToPool(gameObject);
     }
 }

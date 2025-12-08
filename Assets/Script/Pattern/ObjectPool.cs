@@ -19,16 +19,26 @@ public class ObjectPool : MonoBehaviour
 
     private void Awake()
     {
+        if (_instance != null && _instance != this)
+        {
+            Destroy(gameObject);
+            return;
+        }
         _instance = this;
+        DontDestroyOnLoad(gameObject);
+
         poolDictionary = new Dictionary<string, Queue<GameObject>>();
 
         foreach (Pool pool in pools)
         {
             Queue<GameObject> objectPool = new Queue<GameObject>();
-
+            GameObject poolContainer = new GameObject(pool.tag + "Pool");
+            poolContainer.transform.SetParent(transform); 
+            
             for (int i = 0; i < pool.size; i++)
             {
-                GameObject obj = Instantiate(pool.prefab);
+                GameObject obj = Instantiate(pool.prefab, poolContainer.transform);
+                obj.name = pool.prefab.name + "_" + i;
                 obj.SetActive(false);
                 objectPool.Enqueue(obj);
             }
@@ -41,7 +51,7 @@ public class ObjectPool : MonoBehaviour
     {
         if (!poolDictionary.ContainsKey(tag))
         {
-            Debug.LogWarning("Pool with tag " + tag + " doesn't exist.");
+            Debug.LogWarning($"Pool with tag '{tag}' doesn't exist.");
             return null;
         }
 
@@ -54,5 +64,11 @@ public class ObjectPool : MonoBehaviour
         poolDictionary[tag].Enqueue(objectToSpawn);
 
         return objectToSpawn;
+    }
+
+    public void ReturnToPool(GameObject obj)
+    {
+        obj.SetActive(false);
+        obj.transform.position = Vector3.zero;
     }
 }
