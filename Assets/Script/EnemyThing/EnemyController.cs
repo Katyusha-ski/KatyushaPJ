@@ -99,6 +99,16 @@ public class EnemyController : MonoBehaviour, IEnemyStateProvider
         }
     }
 
+    public void HandleEnemyDeath()
+    {
+        Health health = GetComponent<Health>();
+        if (health != null && health.lootManager != null)
+        {
+            health.lootManager.SpawnLoot();
+        }
+
+        Debug.Log($"{gameObject.name} has died.");
+    }
     public void SetAnimatorBool(string parameter, bool value)
     {
         animator.SetBool(parameter, value);
@@ -141,6 +151,11 @@ public class EnemyController : MonoBehaviour, IEnemyStateProvider
         currentState.OnEnter(this);
     }
 
+    public IEnemyState GetCurrentState()
+    {
+        return currentState;
+    }
+
     public virtual IEnemyState GetIdleState()
     {
         return new IdleState();
@@ -154,6 +169,16 @@ public class EnemyController : MonoBehaviour, IEnemyStateProvider
     public virtual IEnemyState GetAttackState()
     {
         return new BaseAttackState();
+    }
+
+    public virtual IEnemyState GetHurtState(IEnemyState preState)
+    {
+        return new HurtState(preState);
+    }
+
+    public virtual IEnemyState GetDieState()
+    {
+        return new DieState();
     }
     #endregion
 }

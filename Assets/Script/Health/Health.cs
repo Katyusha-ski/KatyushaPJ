@@ -9,10 +9,9 @@ public class Health : MonoBehaviour
     public HealthBar healthBar;
     public AudioClip damageSFX;
     public AudioClip dieSFX;
-
+    public LootManager lootManager;
     public int CurrentHealth => currentHealth;
     public int MaxHealth => maxHealth;
-    public LootManager lootManager;
 
     public void SetHealth(int health)
     {
@@ -45,6 +44,15 @@ public class Health : MonoBehaviour
         {
             Die();
         }
+        else if(gameObject.CompareTag("Enemy"))
+        {
+            EnemyController enemyController = GetComponent<EnemyController>();
+            if (enemyController != null)
+            {
+                IEnemyState hurtState = enemyController.GetHurtState(enemyController.GetCurrentState());
+                enemyController.ChangeState(hurtState);
+            }
+        }
     }
 
     private void Die()
@@ -54,29 +62,9 @@ public class Health : MonoBehaviour
             EnemyController enemyController = GetComponent<EnemyController>();
             if (enemyController != null)
             {
-                enemyController.enabled = false;
+                IEnemyState dieState = enemyController.GetDieState();
+                enemyController.ChangeState(dieState);
             }
-
-            Animator animator = GetComponent<Animator>();
-            if (animator != null)
-            {
-                animator.SetTrigger("Death");
-            }
-
-            if (lootManager != null)
-            {
-                lootManager.SpawnLoot();
-            }
-
-            if (VictoryUI.Instance != null)
-            {
-                VictoryUI.Instance.ShowVictoryUI();
-            }
-            else
-            {
-                Debug.LogWarning("VictoryUI.Instance is null!");
-            }
-            Destroy(gameObject, 1f);
         }
         else if (gameObject.tag == "Player")
         {
