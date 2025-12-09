@@ -13,7 +13,6 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
     public GameState CurrentGameState { get; private set; }
-    public PlayerController player;
 
     [Header("Game state")]
     public int currentLevel = 1;
@@ -31,12 +30,6 @@ public class GameManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
-    }
-
-    private void Start()
-    {
-        if(player == null)
-            player = Object.FindFirstObjectByType<PlayerController>();
     }
 
     private void Update()
@@ -76,18 +69,15 @@ public class GameManager : MonoBehaviour
         int playerHealth = 0;
         Vector3 playerPosition = Vector3.zero;
 
-        if (player != null)
+        if (PlayerManager.Instance != null)
         {
-            Health health = player.GetComponent<Health>();
-            if (health != null)
-            {
-                playerHealth = health.CurrentHealth;
-            }
-            playerPosition = player.transform.position;
+            Health health = PlayerManager.Instance.PlayerHealth;
+            playerHealth = health.CurrentHealth;
+            playerPosition = PlayerManager.Instance.PlayerTransform.position;
         }
         else
         {
-            Debug.LogError("Player reference was not found!");
+            Debug.LogError("PlayerManager was not found!");
             return;
         }
 
@@ -232,37 +222,32 @@ public class GameManager : MonoBehaviour
     {
         if (tempSaveData == null) return;
 
-        // Find player in the scene
-        if (player == null)
+        // Find player
+        if (PlayerManager.Instance == null)  // ← Kiểm tra PlayerManager
         {
-            player = Object.FindFirstObjectByType<PlayerController>();
+            Debug.LogError("PlayerManager not found!");
+            return;
         }
 
-        if (player != null)
-        {
+       
             // Restore position
             Vector3 savedPosition = new Vector3(
                 tempSaveData.playerPositionX,
                 tempSaveData.playerPositionY,
                 tempSaveData.playerPositionZ
             );
-            player.transform.position = savedPosition;
+            PlayerManager.Instance.PlayerTransform.position = savedPosition;
 
             // Restore health
-            Health health = player.GetComponent<Health>();
-            if (health != null)
+            if (PlayerManager.Instance.PlayerHealth != null)
             {
-                health.SetHealth(tempSaveData.playerHealth);
+                PlayerManager.Instance.PlayerHealth.SetHealth(tempSaveData.playerHealth);
             }
             else
             {
-                Debug.LogWarning("Health component not found on player!");
+                Debug.LogWarning("PlayerHealth component not found!");
             }
-        }
-        else
-        {
-            Debug.LogWarning("Player not found in the scene to restore state!");
-        }
+        
 
         tempSaveData = null; 
     }

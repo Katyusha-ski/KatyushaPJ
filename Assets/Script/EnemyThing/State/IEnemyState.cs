@@ -10,6 +10,7 @@ public interface IEnemyStateProvider
     IEnemyState GetIdleState();
     IEnemyState GetPursuitState();
     IEnemyState GetAttackState();
+    IEnemyState GetAlertState();
     IEnemyState GetHurtState(IEnemyState preState);
     IEnemyState GetDieState();
 }

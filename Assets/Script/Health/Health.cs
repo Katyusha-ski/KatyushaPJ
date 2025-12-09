@@ -17,7 +17,6 @@ public class Health : MonoBehaviour
     {
         currentHealth = Mathf.Clamp(health, 0, maxHealth);
 
-        // Update health bar
         if (healthBar != null)
         {
             healthBar.SetHealth(currentHealth, maxHealth);
@@ -57,7 +56,7 @@ public class Health : MonoBehaviour
 
     private void Die()
     {
-        if (gameObject.tag == "Enemy")
+        if (gameObject.CompareTag("Enemy"))
         {
             EnemyController enemyController = GetComponent<EnemyController>();
             if (enemyController != null)
@@ -66,7 +65,7 @@ public class Health : MonoBehaviour
                 enemyController.ChangeState(dieState);
             }
         }
-        else if (gameObject.tag == "Player")
+        else if (gameObject.CompareTag("Player"))
         {
             if (GameOverUI.Instance != null)
             {

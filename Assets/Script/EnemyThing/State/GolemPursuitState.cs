@@ -14,16 +14,17 @@
 
         if (distanceToPlayer > enemy.GetVisionRange())
         {
-            enemy.ChangeState(enemy.GetIdleState());
+            enemy.ChangeState(enemy.GetAlertState());
             return;
         }
+
         if (distanceToPlayer <= enemy.GetAttackRange())
         {
             enemy.ChangeState(enemy.GetAttackState());
             return;
         }
 
-        if (skillManager.skills[0].CanActivate)
+        if (skillManager != null && skillManager.skills[0].CanActivate)
         {
             enemy.SetAnimatorBool("Run", false);
             enemy.SetAnimatorTrigger("Attack 2");

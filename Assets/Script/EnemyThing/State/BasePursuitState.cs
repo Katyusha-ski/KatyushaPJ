@@ -1,3 +1,5 @@
+using UnityEngine;
+
 public class BasePursuitState : IEnemyState
 {
     public virtual void OnEnter(EnemyController enemy)
@@ -11,7 +13,7 @@ public class BasePursuitState : IEnemyState
 
         if (distanceToPlayer > enemy.GetVisionRange())
         {
-            enemy.ChangeState(enemy.GetIdleState());
+            enemy.ChangeState(enemy.GetAlertState());
             return;
         }
         
@@ -26,7 +28,6 @@ public class BasePursuitState : IEnemyState
 
     public virtual void OnExit(EnemyController enemy)
     {
-        enemy.SetAnimatorBool("Run", false);
     }
 
     protected virtual void ExecutePursuit(EnemyController enemy)

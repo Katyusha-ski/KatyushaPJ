@@ -25,13 +25,12 @@ public class EnemyController : MonoBehaviour, IEnemyStateProvider
         animator = GetComponent<Animator>();
         lastPatrolDirection = direction;
 
-        ChangeState(GetIdleState()); 
-    }
+        if(player == null && PlayerManager.Instance != null)
+        {
+            player = PlayerManager.Instance.PlayerTransform;
+        }
 
-    private void Update()
-    {
-        if (player == null) return;
-        currentState?.OnUpdate(this);
+        ChangeState(GetIdleState()); 
     }
 
     #region Getters
@@ -169,6 +168,11 @@ public class EnemyController : MonoBehaviour, IEnemyStateProvider
     public virtual IEnemyState GetAttackState()
     {
         return new BaseAttackState();
+    }
+
+    public virtual IEnemyState GetAlertState()
+    {
+        return new AlertState();
     }
 
     public virtual IEnemyState GetHurtState(IEnemyState preState)
