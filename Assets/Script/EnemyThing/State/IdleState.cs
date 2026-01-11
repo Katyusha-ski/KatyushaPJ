@@ -11,7 +11,7 @@ public class IdleState : IEnemyState
     {
         if (enemy.GetDistanceToPlayer() <= enemy.GetVisionRange())
         {
-            enemy.ChangeState(enemy.GetPursuitState());
+            enemy.ChangeStateByName("Pursuit");
         }
         else
         {

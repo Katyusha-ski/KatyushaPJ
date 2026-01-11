@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemyController : MonoBehaviour, IEnemyStateProvider
@@ -17,6 +18,7 @@ public class EnemyController : MonoBehaviour, IEnemyStateProvider
     protected int direction = 1;
     protected int lastPatrolDirection = 1;
     protected IEnemyState currentState;
+    protected Dictionary<string, IEnemyState> stateCache = new();
 
     void Start()
     {
@@ -29,8 +31,8 @@ public class EnemyController : MonoBehaviour, IEnemyStateProvider
         {
             player = PlayerManager.Instance.PlayerTransform;
         }
-
-        ChangeState(GetIdleState()); 
+        InitializeStates();
+        ChangeState(GetIdleState());
     }
 
     #region Getters
@@ -74,6 +76,16 @@ public class EnemyController : MonoBehaviour, IEnemyStateProvider
         direction = (int)moveDirection;
         rb.linearVelocity = new Vector2(speed * 1.5f * direction, rb.linearVelocity.y);
         sr.flipX = direction < 0;
+    }
+
+    /// <summary>
+    /// Pursue behavior: Look at player and move toward them
+    /// Can be overridden by subclasses for custom pursuit logic
+    /// </summary>
+    public virtual void Pursue()
+    {
+        LookAtPlayer();
+        MoveTowardPlayer();
     }
 
     public void NormalAttack()
@@ -143,11 +155,33 @@ public class EnemyController : MonoBehaviour, IEnemyStateProvider
     #endregion
 
     #region State Management
+
+    protected virtual void InitializeStates()
+    {
+        stateCache["Idle"] = GetIdleState();
+        stateCache["Pursuit"] = GetPursuitState();
+        stateCache["Attack"] = GetAttackState();
+        stateCache["Hurt"] = GetHurtState(null);
+        stateCache["Die"] = GetDieState();
+    }
+
     public void ChangeState(IEnemyState newState)
     {
         currentState?.OnExit(this);
         currentState = newState;
         currentState.OnEnter(this);
+    }
+
+    public void ChangeStateByName(string stateName)
+    {
+        if (stateCache.TryGetValue(stateName, out var state) && state != null)
+        {
+            ChangeState(state);
+        }
+        else
+        {
+            Debug.LogWarning($"State {stateName} not found in cache.");
+        }
     }
 
     public IEnemyState GetCurrentState()
@@ -170,11 +204,15 @@ public class EnemyController : MonoBehaviour, IEnemyStateProvider
         return new BaseAttackState();
     }
 
+    public virtual IEnemyState GetKittingState()
+    {
+        return new KittingState();
+    }
+
     public virtual IEnemyState GetAlertState()
     {
         return new AlertState();
     }
-
     public virtual IEnemyState GetHurtState(IEnemyState preState)
     {
         return new HurtState(preState);

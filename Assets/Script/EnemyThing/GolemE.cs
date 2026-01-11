@@ -7,14 +7,18 @@ public class GolemE : EnemyController
 
     private bool checkAttack1 = false;
 
-    public override IEnemyState GetAttackState()
+    public override void Pursue()
     {
-        return new GolemAttackState();
-    }
+        float distanceToPlayer = GetDistanceToPlayer();
 
-    public override IEnemyState GetPursuitState()
-    {
-        return new GolemPursuitState();
+        if (skillManager != null && skillManager.skills[0].CanActivate)
+        {
+            SetAnimatorBool("Run", false);
+            SetAnimatorTrigger("Attack 2");
+            return;
+        }
+
+        base.Pursue();
     }
 
     public override void ExecuteAttack()

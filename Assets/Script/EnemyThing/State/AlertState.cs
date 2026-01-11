@@ -18,14 +18,14 @@ public class AlertState : IEnemyState
 
         if (distanceToPlayer <= enemy.GetVisionRange())
         {
-            enemy.ChangeState(enemy.GetPursuitState());
+            enemy.ChangeStateByName("Pursuit");
             return;
         }
 
         elapsedTime += Time.deltaTime;
         if (elapsedTime >= alertDuration)
         {
-            enemy.ChangeState(enemy.GetIdleState());
+            enemy.ChangeStateByName("Idle");
         }
     }
 

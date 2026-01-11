@@ -14,7 +14,7 @@ public class BaseAttackState : IEnemyState
 
         if (distanceToPlayer > enemy.GetAttackRange())
         {
-            enemy.ChangeState(enemy.GetPursuitState());
+            enemy.ChangeStateByName("Pursuit");
             return;
         }
 

@@ -13,26 +13,21 @@ public class BasePursuitState : IEnemyState
 
         if (distanceToPlayer > enemy.GetVisionRange())
         {
-            enemy.ChangeState(enemy.GetAlertState());
+            enemy.ChangeStateByName("Idle"); 
             return;
         }
         
         if (distanceToPlayer <= enemy.GetAttackRange())
         {
-            enemy.ChangeState(enemy.GetAttackState());
+            enemy.ChangeStateByName("Attack"); 
             return;
         }
 
-        ExecutePursuit(enemy);
+        enemy.Pursue();
     }
 
     public virtual void OnExit(EnemyController enemy)
     {
-    }
-
-    protected virtual void ExecutePursuit(EnemyController enemy)
-    {
-        enemy.LookAtPlayer();
-        enemy.MoveTowardPlayer();
+        enemy.SetAnimatorBool("Run", false);
     }
 }

@@ -13,4 +13,5 @@ public interface IEnemyStateProvider
     IEnemyState GetAlertState();
     IEnemyState GetHurtState(IEnemyState preState);
     IEnemyState GetDieState();
+    IEnemyState GetKittingState();
 }
