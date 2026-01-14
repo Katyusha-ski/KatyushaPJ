@@ -1,11 +1,9 @@
 ﻿public class RangedAttackState : BaseAttackState
 {
-    public SkillManager skillManager;
 
     public override void OnEnter(EnemyController enemy)
     {
         base.OnEnter(enemy);
-        skillManager = enemy.GetComponent<SkillManager>();
     }
 
     public override void OnUpdate(EnemyController enemy)
