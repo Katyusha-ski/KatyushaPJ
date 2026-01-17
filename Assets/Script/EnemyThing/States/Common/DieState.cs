@@ -6,6 +6,7 @@ public class DieState : IEnemyState
     private float elapsedTime = 0f;
     public void OnEnter(EnemyController enemy)
     {
+        Debug.Log($"{enemy.gameObject.name} entered Die State");
         enemy.SetAnimatorTrigger("Die");
         enemy.HandleEnemyDeath();
     }

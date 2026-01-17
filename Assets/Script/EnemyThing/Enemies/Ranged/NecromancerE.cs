@@ -18,8 +18,6 @@ public class NecromancerE : EnemyController, IRangedEnemy
         base.InitializeStates();
         stateCache["Kitting"] = GetKittingState();
         stateCache["Attack"] = GetAttackState();
-        stateCache["Alert"] = GetAlertState();
-        stateCache["Idle"] = null;
     }
     public override void ExecuteAttack()
     {

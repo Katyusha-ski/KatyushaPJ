@@ -4,6 +4,7 @@ public class BaseAttackState : IEnemyState
 {
     public virtual void OnEnter(EnemyController enemy)
     {
+        Debug.Log($"{enemy.gameObject.name} entered Attack State");
         enemy.SetAnimatorBool("Run", false);
         enemy.LookAtPlayer();
     }

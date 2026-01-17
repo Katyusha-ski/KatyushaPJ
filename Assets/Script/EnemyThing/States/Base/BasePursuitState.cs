@@ -4,6 +4,7 @@ public class BasePursuitState : IEnemyState
 {
     public virtual void OnEnter(EnemyController enemy)
     {
+        Debug.Log($"{enemy.gameObject.name} entered Pursuit State");
         enemy.SetAnimatorBool("Run", true);
     }
 

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class MagicSphere : MonoBehaviour, IMagicProjectile
+public class MagicSpherePrefab : MonoBehaviour, IMagicProjectile
 {
     public float castingTime = 1.0f;
     public float speed = 8.0f;

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class GolemMagic : MonoBehaviour, IMagicProjectile
+public class ProjectilePref : MonoBehaviour, IMagicProjectile
 {
     public float speed = 8.0f;
     public float lifeTime = 2.0f;

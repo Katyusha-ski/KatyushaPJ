@@ -35,6 +35,14 @@ public class EnemyController : MonoBehaviour, IEnemyStateProvider
         ChangeState(GetIdleState());
     }
 
+    void Update()
+    {
+        if (currentState != null)
+        {
+            currentState.OnUpdate(this);
+        }
+    }
+
     #region Getters
     public float GetDistanceToPlayer()
     {

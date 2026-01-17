@@ -54,6 +54,16 @@ public class Health : MonoBehaviour
         }
     }
 
+    public void Heal(int amount)
+    {
+        if (amount <= 0) return;
+        
+        currentHealth = Mathf.Clamp(currentHealth + amount, 0, maxHealth);
+        
+        if (healthBar != null)
+            healthBar.SetHealth(currentHealth, maxHealth);
+    }
+
     private void Die()
     {
         if (gameObject.CompareTag("Enemy"))
