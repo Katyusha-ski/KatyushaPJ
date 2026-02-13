@@ -8,7 +8,6 @@ public class PlayerSkillInput : MonoBehaviour
     [SerializeField] private float inputBufferDuration = 0.1f;
 
     private PlayerMovementController movementController;
-     
     private class SkillInputBuffer
     {
         public int skillIndex;

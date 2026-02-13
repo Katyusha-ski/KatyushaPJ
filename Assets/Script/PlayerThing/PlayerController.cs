@@ -1,105 +1,86 @@
 using UnityEngine;
 
+
 public class PlayerController : MonoBehaviour
 {
-    //moving variables
-    [SerializeField] private float runSpeed = 5.0f;
-    [SerializeField] private float walkSpeed = 2.5f;
-
-    [SerializeField] private float jumpForce = 5.0f;
-    [SerializeField] private Transform groundCheck;
-    [SerializeField] private float groundCheckRadius = 0.2f;
-    [SerializeField] private LayerMask groundLayer;
-    private bool isGrounded;
-
-    [Header("Skill List")]
+    [SerializeField] private InputConfig inputConfig;
     
-    public SkillManager skillManager;
-
-
-    private Rigidbody2D rb;
-    private SpriteRenderer sr;
-    private Animator animator;
+    private PlayerMovementController movementController;
+    private PlayerSkillInput skillInputHandler;
     private Health health;
 
-    public Rigidbody2D Rb => rb;
+    // Public properties for external access
+    public Rigidbody2D Rb => movementController?.GetRigidbody();
+    public float CurrentSpeed => movementController?.CurrentSpeed ?? 0f;
+    public int Direction => movementController?.Direction ?? 1;
+    public bool IsGrounded => movementController?.IsGrounded ?? false;
 
-    public float CurrentSpeed { get; private set; }
-
-    void Start()
+    private void Awake()
     {
-        rb = GetComponent<Rigidbody2D>();
-        sr = GetComponent<SpriteRenderer>();
-        animator = GetComponent<Animator>();
+        movementController = GetComponent<PlayerMovementController>();
+        skillInputHandler = GetComponent<PlayerSkillInput>();
         health = GetComponent<Health>();
+        if (inputConfig == null)
+        {
+            inputConfig = InputConfig.GetDefault();
+        }
+
+        ValidateComponents();
     }
 
-    // Update is called once per frame
-    void Update()
+    private void ValidateComponents()
     {
-        MovingPlayer();
-        CheckGrounded();
-        if (isGrounded && Input.GetKeyDown(KeyCode.Space))
-        {
-            Jump();
-        }
-
-        int direction = sr.flipX ? -1 : 1;
-        if (Input.GetKeyDown(KeyCode.E))
-        {
-            skillManager.ActivateSkill(0, direction);
-        }
-        if (Input.GetKeyDown(KeyCode.Q))
-        {
-            skillManager.ActivateSkill(1, direction);
-        }
+        if (movementController == null)
+            Debug.LogError("PlayerController requires PlayerMovementController on " + gameObject.name);
+        if (skillInputHandler == null)
+            Debug.LogError("PlayerController requires PlayerSkillInput on " + gameObject.name);
     }
 
-    private void MovingPlayer()
+    private void Update()
     {
-        float speed;
-        Vector2 movement = new Vector2(Input.GetAxis("Horizontal"), 0);
-
-        if (movement.x > 0)
-        {
-            sr.flipX = false;
-        }
-        else if (movement.x < 0)
-        {
-            sr.flipX = true;
-        }
-        if (Input.GetKey(KeyCode.LeftShift) && movement.x != 0)
-        {
-            speed = runSpeed;
-            animator.SetBool("isRun", true);
-        }
-        else
-        {
-            speed = walkSpeed;
-            animator.SetBool("isRun", false);
-            if (movement.x != 0)
-            {
-                animator.SetBool("isWalk", true);
-            }
-            else
-            {
-                animator.SetBool("isWalk", false);
-            }
-        }
-
-        rb.linearVelocity = new Vector2(movement.x * speed, rb.linearVelocity.y);
-        CurrentSpeed = speed;
+        HandleMovementInput();
+        HandleJumpInput();
+        
     }
 
-    private void CheckGrounded()
+    private void HandleMovementInput()
     {
-        isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer);
+        if (movementController == null || inputConfig == null) return;
+
+        float horizontalInput = Input.GetAxis(inputConfig.horizontalAxis);
+        bool isRunning = Input.GetKey(inputConfig.runKey) && horizontalInput != 0;
+
+        movementController.Move(horizontalInput, isRunning);
     }
 
-    private void Jump()
+
+    private void HandleJumpInput()
     {
-        rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
+        if (movementController == null || inputConfig == null) return;
+
+        if (Input.GetKeyDown(inputConfig.jumpKey))
+        {
+            movementController.TryJump();
+        }
     }
 
-    
+    public void StopMovement()
+    {
+        movementController?.Stop();
+    }
+
+    public void SetVelocity(Vector2 velocity)
+    {
+        movementController?.SetVelocity(velocity);
+    }
+
+    public Vector2 GetVelocity()
+    {
+        return movementController?.GetVelocity() ?? Vector2.zero;
+    }
+
+    public void ClearSkillInputBuffer()
+    {
+        skillInputHandler?.ClearInputBuffer();
+    }
 }

@@ -12,10 +12,12 @@ public class PlayerMovementController : MonoBehaviour
     private Rigidbody2D rb;
     private SpriteRenderer sr;
     private PlayerAnimationController animationController;
+    private StatusEffectController seController;
 
     private bool isGrounded;
     private int direction = 1;// 1 for right, -1 for left
     private float currentSpeed;
+    private float speedMultiplier = 1.0f;
 
     // Properties for external access
     public float CurrentSpeed => currentSpeed;
@@ -27,6 +29,7 @@ public class PlayerMovementController : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         sr = GetComponent<SpriteRenderer>();
         animationController = GetComponent<PlayerAnimationController>();
+        seController = GetComponent<StatusEffectController>();
         ValidateComponents();
     }
 
@@ -50,6 +53,10 @@ public class PlayerMovementController : MonoBehaviour
     public void Move(float horizontalInput, bool isRunning)
     {
         if(rb == null) return;
+        if(seController != null && seController.IsStunned)
+        {
+            return;
+        }
 
         if (horizontalInput > 0)
         {
@@ -62,7 +69,7 @@ public class PlayerMovementController : MonoBehaviour
             sr.flipX = true;
         }
 
-        currentSpeed = isRunning ? runSpeed : walkSpeed;
+        currentSpeed = (isRunning ? runSpeed : walkSpeed) * speedMultiplier;
         bool isMoving = horizontalInput != 0;
         rb.linearVelocity = new Vector2(horizontalInput * currentSpeed, rb.linearVelocity.y);
         animationController.SetMovementState(isMoving, isRunning);
@@ -102,6 +109,16 @@ public class PlayerMovementController : MonoBehaviour
     private void CheckGrounded()
     {
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer);
+    }
+
+    
+    public void SpeedMultiplier(float multiplier)
+    {
+        speedMultiplier = Mathf.Clamp01(multiplier);
+    }
+    public void ResetSpeedMultiplier()
+    {
+        speedMultiplier = 1.0f;
     }
 }
 

@@ -12,6 +12,18 @@ public class Health : MonoBehaviour
     public LootManager lootManager;
     public int CurrentHealth => currentHealth;
     public int MaxHealth => maxHealth;
+    private bool isUnDying = false;
+    private float damageReduction = 0f;
+    
+    public void SetDamageReduction(float reduction)
+    {
+        damageReduction = Mathf.Clamp01(reduction);
+    }
+    
+    public void SetUnDying(bool value)
+    {
+        isUnDying = value;
+    }
 
     public void SetHealth(int health)
     {
@@ -35,7 +47,15 @@ public class Health : MonoBehaviour
     {
         if(damageSFX != null)
             AudioManager.Instance.PlaySFX(damageSFX);
-        currentHealth -= damage;
+        
+        if (isUnDying && damage >= currentHealth)
+        {
+            return;
+        }
+        
+        float finalDamage = damage * (1f - damageReduction);
+        currentHealth -= (int)finalDamage;
+        
         if (healthBar != null)
             healthBar.SetHealth(currentHealth, maxHealth);
 
