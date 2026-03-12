@@ -2,6 +2,7 @@
 
 public class SilentEffect : StatusEffect
 {
+    public override StatusEffectType Type => StatusEffectType.CrowdControl;
     public SilentEffect(float dur, GameObject targetOJ) : base("Silent", dur, targetOJ)
     {
 

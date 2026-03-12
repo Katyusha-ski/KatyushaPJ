@@ -4,6 +4,7 @@ using System.Collections.Generic;
 public class SpeedModifierEffect : StatusEffect
 {
     private float slowAmount;
+    public override StatusEffectType Type => StatusEffectType.Debuff;
     public SpeedModifierEffect(float dur, GameObject targetOJ, float slowAmount) : base("Slow", dur, targetOJ)
     {
         this.slowAmount = slowAmount;

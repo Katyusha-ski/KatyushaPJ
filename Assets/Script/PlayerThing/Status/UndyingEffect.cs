@@ -2,6 +2,7 @@
 
 public class UndyingEffect : StatusEffect
 {
+    public override StatusEffectType Type => StatusEffectType.Buff;
     public UndyingEffect(float dur, GameObject targetOJ) : base("Undying", dur, targetOJ)
     {
     }

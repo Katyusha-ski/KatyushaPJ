@@ -2,6 +2,7 @@
 public class DmgReductionEffect : StatusEffect
 {
     private float reductionAmount;
+    public override StatusEffectType Type => StatusEffectType.Buff;
     public DmgReductionEffect(float dur, GameObject targetOJ, float reductionAmount) : base("Damage Reduction", dur, targetOJ)
     {
         this.reductionAmount = reductionAmount;

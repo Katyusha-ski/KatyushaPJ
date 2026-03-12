@@ -2,6 +2,7 @@
 
 public class StunEffect : StatusEffect
 {
+    public override StatusEffectType Type => StatusEffectType.CrowdControl;
     public StunEffect(float dur, GameObject targetOJ) : base("Stun", dur, targetOJ)
     {
 

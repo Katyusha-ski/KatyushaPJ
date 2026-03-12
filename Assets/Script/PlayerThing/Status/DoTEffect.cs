@@ -5,6 +5,7 @@ public class DoTEffect : StatusEffect
     private int damagePerTick;
     private float tickInterval;
     private float timeSinceLastTick;
+    public override StatusEffectType Type => StatusEffectType.Debuff;
     public DoTEffect(float dur, GameObject targetOJ, int damagePerTick, float tickInterval) : base("Damage Over Time", dur, targetOJ)
     {
         this.damagePerTick = damagePerTick;

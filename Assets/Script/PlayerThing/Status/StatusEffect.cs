@@ -1,5 +1,13 @@
 ﻿using UnityEngine;
 
+public enum StatusEffectType
+{
+    Buff,
+    Debuff,
+    CrowdControl,
+    Utility
+}
+
 public abstract class StatusEffect
 {
     protected string effectName;
@@ -9,6 +17,7 @@ public abstract class StatusEffect
     public bool IsActive => timeRemaining > 0;
     public string EffectName => effectName;
     public float TimeRemaining => timeRemaining;
+    public StatusEffectType EffectType { get; protected set; }// mai sửa
 
     public StatusEffect(string name, float dur, GameObject targetOJ)
     {
@@ -42,11 +51,8 @@ public abstract class StatusEffect
         return IsActive;
     }
     /* 
-     * 
-     * 
      * Iron Body
-     * Undying
-     * DamageReduction
+     
      */
 }
 

@@ -2,6 +2,7 @@
 
 public class RootEffect : StatusEffect
 {
+    public override StatusEffectType Type => StatusEffectType.CrowdControl;
     public RootEffect(float dur, GameObject targetOJ) : base("Root", dur, targetOJ)
     {
 
