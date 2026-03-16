@@ -10,13 +10,19 @@ public class ProjectileSkill : SkillBase
     {
         if (!CanActivate)
             return;
-            
+
+        if (projectilePrefab == null)
+        {
+            Debug.LogError("ProjectileSkill: projectilePrefab is not assigned in the inspector for " + name);
+            return;
+        }
+
         // Null check for AudioManager
         if (AudioManager.Instance != null)
         {
             AudioManager.Instance.PlaySFX(projectileSFX);
         }
-        
+
         Vector3 spawnPos = user.transform.position + new Vector3(direction, 0, 0);
         GameObject sphere = Instantiate(projectilePrefab, spawnPos, Quaternion.identity);
         IMagicProjectile magicSphere = sphere.GetComponent<IMagicProjectile>();

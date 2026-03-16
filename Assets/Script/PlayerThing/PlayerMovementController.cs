@@ -2,10 +2,10 @@
 
 public class PlayerMovementController : MonoBehaviour
 {
-    [SerializeField] private float runSpeed = 5f;
-    [SerializeField] private float walkSpeed = 2.5f;
-    [SerializeField] private float jumpForce = 5f;
-    [SerializeField] private Transform groundCheck;
+    [SerializeField] private float baseSpeed = 5f;
+    [SerializeField] private float runMultiplier = 2f;
+    [SerializeField] private float jumpForce = 15f;
+    [SerializeField] private float groundCheckDistance = 0.5f;
     [SerializeField] private float groundCheckRadius = 0.2f;
     [SerializeField] private LayerMask groundLayer;
 
@@ -41,11 +41,9 @@ public class PlayerMovementController : MonoBehaviour
             Debug.LogError("MovementController requires SpriteRenderer on " + gameObject.name);
         if (animationController == null)
             Debug.LogError("MovementController requires PlayerAnimationController on " + gameObject.name);
-        if (groundCheck == null)
-            Debug.LogError("MovementController requires groundCheck transform assigned");
     }
 
-    private void FixedUpdate()
+    private void Update()
     {
         CheckGrounded();
     }
@@ -69,7 +67,7 @@ public class PlayerMovementController : MonoBehaviour
             sr.flipX = true;
         }
 
-        currentSpeed = (isRunning ? runSpeed : walkSpeed) * speedMultiplier;
+        currentSpeed = baseSpeed * (isRunning ? runMultiplier : 1f) * speedMultiplier;
         bool isMoving = horizontalInput != 0;
         rb.linearVelocity = new Vector2(horizontalInput * currentSpeed, rb.linearVelocity.y);
         animationController.SetMovementState(isMoving, isRunning);
@@ -108,7 +106,12 @@ public class PlayerMovementController : MonoBehaviour
 
     private void CheckGrounded()
     {
-        isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer);
+        // Calculate position below player feet
+        Vector2 groundCheckPosition = new Vector2(rb.position.x, rb.position.y - groundCheckDistance);
+
+        // Check with the configured layer mask
+        Collider2D[] hits = Physics2D.OverlapCircleAll(groundCheckPosition, groundCheckRadius, groundLayer);
+        isGrounded = hits.Length > 0;
     }
 
     

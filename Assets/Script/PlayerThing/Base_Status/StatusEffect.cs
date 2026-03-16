@@ -17,7 +17,7 @@ public abstract class StatusEffect
     public bool IsActive => timeRemaining > 0;
     public string EffectName => effectName;
     public float TimeRemaining => timeRemaining;
-    public StatusEffectType EffectType { get; protected set; }// mai sửa
+    public virtual StatusEffectType Type => StatusEffectType.Buff;
 
     public StatusEffect(string name, float dur, GameObject targetOJ)
     {

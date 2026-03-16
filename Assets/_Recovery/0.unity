@@ -7664,11 +7664,11 @@ PrefabInstance:
       objectReference: {fileID: 6200000, guid: ef183331a20170b4682319b195ffbc36, type: 2}
     - target: {fileID: 8204092655413958187, guid: 52e2548da8dd85c4c8018cd6b77b61f7, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -0.416
       objectReference: {fileID: 0}
     - target: {fileID: 8204092655413958187, guid: 52e2548da8dd85c4c8018cd6b77b61f7, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -2.83
+      value: -2.77
       objectReference: {fileID: 0}
     - target: {fileID: 8204092655413958187, guid: 52e2548da8dd85c4c8018cd6b77b61f7, type: 3}
       propertyPath: m_LocalPosition.z
@@ -7715,13 +7715,13 @@ PrefabInstance:
       addedObject: {fileID: 5531980961009719535}
     - targetCorrespondingSourceObject: {fileID: 2068556711473788101, guid: 52e2548da8dd85c4c8018cd6b77b61f7, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 5531980961009719544}
+      addedObject: {fileID: 5531980961009719539}
     - targetCorrespondingSourceObject: {fileID: 2068556711473788101, guid: 52e2548da8dd85c4c8018cd6b77b61f7, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 5531980961009719543}
+      addedObject: {fileID: 5531980961009719538}
     - targetCorrespondingSourceObject: {fileID: 2068556711473788101, guid: 52e2548da8dd85c4c8018cd6b77b61f7, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 5531980961009719542}
+      addedObject: {fileID: 5531980961009719537}
   m_SourcePrefab: {fileID: 100100000, guid: 52e2548da8dd85c4c8018cd6b77b61f7, type: 3}
 --- !u!1 &5531980961009719534 stripped
 GameObject:
@@ -7751,7 +7751,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf959a903cc2a1c4683c830f43b4e18c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &5531980961009719542
+--- !u!114 &5531980961009719537
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -7766,7 +7766,7 @@ MonoBehaviour:
   inputConfig: {fileID: 0}
   skillManager: {fileID: 5531980961009719536}
   inputBufferDuration: 0.1
---- !u!114 &5531980961009719543
+--- !u!114 &5531980961009719538
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -7780,13 +7780,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlayerMovementController
   baseSpeed: 5
   runMultiplier: 2
-  jumpForce: 15
+  jumpForce: 5
   groundCheckDistance: 0.5
   groundCheckRadius: 0.2
   groundLayer:
     serializedVersion: 2
     m_Bits: 256
---- !u!114 &5531980961009719544
+--- !u!114 &5531980961009719539
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

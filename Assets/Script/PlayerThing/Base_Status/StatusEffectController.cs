@@ -4,8 +4,15 @@ using System.Collections.Generic;
 public class StatusEffectController : MonoBehaviour
 {
     private List<StatusEffect> activeEffects = new List<StatusEffect>();
+
     public void ApplyEffect(StatusEffect effect)
     {
+        // Chặn CC nếu IronBody đang active
+        if (effect.Type == StatusEffectType.CrowdControl && HasIronBodyEffect())
+        {
+            return;
+        }
+
         activeEffects.Add(effect);
     }
 
@@ -38,5 +45,17 @@ public class StatusEffectController : MonoBehaviour
             }
             return false;
         }
+    }
+    public bool HasIronBodyEffect()
+    {
+        // Duyệt list để kiểm tra có IronBody nào đang active
+        foreach (var effect in activeEffects)
+        {
+            if (effect is IronBodyEffect && effect.IsActive)
+            {
+                return true;
+            }
+        }
+        return false;
     }
 }
