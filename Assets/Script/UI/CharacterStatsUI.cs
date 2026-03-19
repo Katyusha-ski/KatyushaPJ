@@ -1,5 +1,5 @@
-using UnityEngine;
 using TMPro;
+using UnityEngine;
 
 public class CharacterStatsUI : MonoBehaviour
 {
@@ -11,10 +11,10 @@ public class CharacterStatsUI : MonoBehaviour
 
     private void Start()
     {
-        characterStats = FindObjectOfType<CharacterStats>();
+        characterStats = FindFirstObjectByType<CharacterStats>();
         if (characterStats == null)
             Debug.LogError("CharacterStats not found!");
-        
+
         if (statsPanel != null)
             statsPanel.SetActive(false);
     }

@@ -16,5 +16,8 @@ public abstract class SkillBase : ScriptableObject
         }
     }
 
-    public abstract void Activate(GameObject user, int direction);
+    public virtual void Activate(GameObject user, int direction)
+    {
+        cooldownTimer = cooldown;
+    }
 }

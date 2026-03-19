@@ -8,6 +8,7 @@ public class HealthBar : MonoBehaviour
 
     public void SetHealth(int health, int maxHealth)
     {
+        slider.maxValue = maxHealth;
         slider.value = health;
         if (healthText != null)
             healthText.text = $"{health}/{maxHealth}";

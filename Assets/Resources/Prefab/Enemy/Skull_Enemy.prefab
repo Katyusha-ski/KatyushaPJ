@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 6053867310535121}
   - component: {fileID: 6254935896656335592}
   - component: {fileID: 79319132487125086}
+  - component: {fileID: -4120487143401208909}
   m_Layer: 7
   m_Name: Skull_Enemy
   m_TagString: Enemy
@@ -41,6 +42,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &6741929243073357941
 SpriteRenderer:
+  serializedVersion: 2
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -86,6 +88,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_MaskInteraction: 0
   m_Sprite: {fileID: -9010615838638220262, guid: 26f2fab31eacb6948aaee40453cfc60b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -95,7 +98,6 @@ SpriteRenderer:
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
-  m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!61 &117273969377170388
 BoxCollider2D:
@@ -222,9 +224,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8565c2a2430b943438c346c954239a67, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 2
   attackRange: 1.5
-  attackDamage: 1
   visionRange: 5
   attackCooldown: 2
   lastTimeAttack: -Infinity
@@ -243,8 +243,31 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::LootManager
   lootTable: {fileID: 11400000, guid: df8b912749d2ca3478caeabda06d2b14, type: 2}
   itemFloatPref: {fileID: 0}
+  poolTag: ItemLoot
   dropRad: 1
   dropForce: 1
+--- !u!114 &-4120487143401208909
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2717129107958463718}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 52a534d42c8be6f47aa774cef03470ce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CharacterStats
+  baseArmor: 0
+  baseLifeSteal: 0
+  baseCCRes: 0
+  baseAtk: 0
+  baseCritRate: 0
+  baseCritDamage: 0.75
+  baseArmorPierce: 0
+  baseCDR: 0
+  baseMaxHP: 20
+  baseMovementSpeed: 2.5
 --- !u!1001 &3985833867836237523
 PrefabInstance:
   m_ObjectHideFlags: 0

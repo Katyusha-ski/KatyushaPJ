@@ -2,7 +2,7 @@
 
 public class PlayerMovementController : MonoBehaviour
 {
-    [SerializeField] private float baseSpeed = 5f;
+    [SerializeField] private float baseSpeed;
     [SerializeField] private float runMultiplier = 2f;
     [SerializeField] private float jumpForce = 15f;
     [SerializeField] private float groundCheckDistance = 0.5f;
@@ -13,6 +13,7 @@ public class PlayerMovementController : MonoBehaviour
     private SpriteRenderer sr;
     private PlayerAnimationController animationController;
     private StatusEffectController seController;
+    private CharacterStats stats;
 
     private bool isGrounded;
     private int direction = 1;// 1 for right, -1 for left
@@ -30,6 +31,15 @@ public class PlayerMovementController : MonoBehaviour
         sr = GetComponent<SpriteRenderer>();
         animationController = GetComponent<PlayerAnimationController>();
         seController = GetComponent<StatusEffectController>();
+        stats = GetComponent<CharacterStats>();
+        baseSpeed = stats != null ? stats.MovementSpeed : baseSpeed;
+
+        // Subscribe to movement speed changes
+        if (stats != null)
+        {
+            stats.MovementSpeedChanged += OnMovementSpeedChanged;
+        }
+
         ValidateComponents();
     }
 
@@ -122,6 +132,19 @@ public class PlayerMovementController : MonoBehaviour
     public void ResetSpeedMultiplier()
     {
         speedMultiplier = 1.0f;
+    }
+
+    private void OnMovementSpeedChanged(float newSpeed)
+    {
+        baseSpeed = newSpeed;
+    }
+
+    private void OnDestroy()
+    {
+        if (stats != null)
+        {
+            stats.MovementSpeedChanged -= OnMovementSpeedChanged;
+        }
     }
 }
 

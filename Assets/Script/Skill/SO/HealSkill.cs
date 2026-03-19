@@ -8,11 +8,15 @@ public class HealSkill : SkillBase
 
     public override void Activate(GameObject user, int direction)
     {
+        if (!CanActivate)
+            return;
+
         var health = user.GetComponent<Health>();
         if (health != null)
         {
             health.Heal(HealAmount);
         }
+        cooldownTimer = cooldown;
     }
 
 }

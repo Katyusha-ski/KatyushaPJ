@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 7206070235188588880}
   - component: {fileID: 608616415364548013}
   - component: {fileID: 6232635350070287290}
+  - component: {fileID: 3695371048334333859}
   m_Layer: 7
   m_Name: Golem_Enemy
   m_TagString: Enemy
@@ -41,6 +42,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &2249189171823542733
 SpriteRenderer:
+  serializedVersion: 2
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -86,6 +88,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_MaskInteraction: 0
   m_Sprite: {fileID: 6767266734697148751, guid: b10aba54aecddfa4a955158f5746f0f4, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -95,7 +98,6 @@ SpriteRenderer:
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
-  m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!95 &8475028000959005319
 Animator:
@@ -149,14 +151,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7757c9934bf392e4b8a207b497ae7a94, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 2
   attackRange: 2
-  attackDamage: 1
   visionRange: 10
   attackCooldown: 3
   lastTimeAttack: -Infinity
   player: {fileID: 0}
-  isPhase2: 0
   skillManager: {fileID: 6232635350070287290}
 --- !u!50 &7206070235188588880
 Rigidbody2D:
@@ -246,6 +245,28 @@ MonoBehaviour:
   skills:
   - {fileID: 11400000, guid: 5844515675d222d438d9c095e89049b5, type: 2}
   - {fileID: 11400000, guid: d04244af77238e642973add1d2940e2e, type: 2}
+--- !u!114 &3695371048334333859
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4071665035805549370}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 52a534d42c8be6f47aa774cef03470ce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CharacterStats
+  baseArmor: 0
+  baseLifeSteal: 0
+  baseCCRes: 0
+  baseAtk: 0
+  baseCritRate: 0
+  baseCritDamage: 0.75
+  baseArmorPierce: 0
+  baseCDR: 0
+  baseMaxHP: 20
+  baseMovementSpeed: 2.5
 --- !u!1001 &104532870924171368
 PrefabInstance:
   m_ObjectHideFlags: 0

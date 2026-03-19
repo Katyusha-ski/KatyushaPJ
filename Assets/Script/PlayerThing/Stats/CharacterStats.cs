@@ -12,7 +12,7 @@ public class CharacterStats : MonoBehaviour
     [SerializeField] private float baseCritDamage = 0.75f;
     [SerializeField] private float baseArmorPierce = 0f;
     [SerializeField] private float baseCDR = 0f; // CDR = Cooldown Reduction(%)
-    [SerializeField] private float baseMaxHP = 20f;
+    [SerializeField] private int baseMaxHP = 20;
     [SerializeField] private float baseMovementSpeed = 2.5f;
     
     // Modifiers list
@@ -24,6 +24,8 @@ public class CharacterStats : MonoBehaviour
     private List<StatsModifier> critDamageMod = new List<StatsModifier>();
     private List<StatsModifier> armorPierceMod = new List<StatsModifier>();
     private List<StatsModifier> cdrMod = new List<StatsModifier>();
+    private List<StatsModifier> maxHPMod = new List<StatsModifier>();
+    private List<StatsModifier> movementSpeedMod = new List<StatsModifier>();
 
     // Calculated stats
     private float CalculateStat(float baseValue, List<StatsModifier> mods)
@@ -50,6 +52,8 @@ public class CharacterStats : MonoBehaviour
     public float CritDamage => CalculateStat(baseCritDamage, critDamageMod);
     public float ArmorPierce => CalculateStat(baseArmorPierce, armorPierceMod);
     public float CDR => CalculateStat(baseCDR, cdrMod);
+    public float MaxHP => CalculateStat(baseMaxHP, maxHPMod);
+    public float MovementSpeed => CalculateStat(baseMovementSpeed, movementSpeedMod);
 
     // ARMOR
     public void AddArmorModifier(StatsModifier mod) => armorMod.Add(mod);
@@ -82,4 +86,58 @@ public class CharacterStats : MonoBehaviour
     // CDR
     public void AddCDRModifier(StatsModifier mod) => cdrMod.Add(mod);
     public void RemoveCDRModifier(StatsModifier mod) => cdrMod.Remove(mod);
+
+    // MAX HP
+    public delegate void OnMaxHPChanged(float newMaxHP);
+    public event OnMaxHPChanged MaxHPChanged;
+
+    public void AddMaxHPModifier(StatsModifier mod)
+    {
+        maxHPMod.Add(mod);
+        MaxHPChanged?.Invoke(MaxHP);  // Trigger event
+    }
+
+    public void RemoveMaxHPModifier(StatsModifier mod)
+    {
+        maxHPMod.Remove(mod);
+        MaxHPChanged?.Invoke(MaxHP);  // Trigger event
+    }
+
+#if UNITY_EDITOR
+    [ContextMenu("Debug Add Max HP")]
+    public void DebugAddMaxHP()
+    {
+        AddMaxHPModifier(new StatsModifier(10, ModifierType.Additive));
+        Debug.Log($"MaxHP changed to: {MaxHP}");
+    }
+
+    [ContextMenu("Debug Remove Last Max HP")]
+    public void DebugRemoveLastMaxHP()
+    {
+        if (maxHPMod.Count > 0)
+        {
+            maxHPMod.RemoveAt(maxHPMod.Count - 1);
+            MaxHPChanged?.Invoke(MaxHP);
+            Debug.Log($"Removed modifier. MaxHP now: {MaxHP}");
+        }
+    }
+#endif
+
+    // MOVEMENT SPEED
+    public delegate void OnMovementSpeedChanged(float newMovementSpeed);
+    public event OnMovementSpeedChanged MovementSpeedChanged;
+
+    public void AddMovementSpeedModifier(StatsModifier mod)
+    {
+        movementSpeedMod.Add(mod);
+        MovementSpeedChanged?.Invoke(MovementSpeed);
+    }
+
+    public void RemoveMovementSpeedModifier(StatsModifier mod)
+    {
+        movementSpeedMod.Remove(mod);
+        MovementSpeedChanged?.Invoke(MovementSpeed);
+    }
+    
+
 }

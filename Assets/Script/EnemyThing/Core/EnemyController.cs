@@ -6,10 +6,9 @@ public class EnemyController : MonoBehaviour, IEnemyStateProvider
     protected Rigidbody2D rb;
     protected SpriteRenderer sr;
     protected Animator animator;
+    protected CharacterStats characterStats;
 
-    [SerializeField] protected float speed = 2f;
     [SerializeField] protected float attackRange = 1.5f;
-    [SerializeField] protected int attackDamage = 1;
     [SerializeField] protected float visionRange = 5f;
     [SerializeField] protected float attackCooldown = 2f;
     [SerializeField] protected float lastTimeAttack = -Mathf.Infinity;
@@ -19,6 +18,8 @@ public class EnemyController : MonoBehaviour, IEnemyStateProvider
     protected int lastPatrolDirection = 1;
     protected IEnemyState currentState;
     protected Dictionary<string, IEnemyState> stateCache = new();
+
+    
 
     void Start()
     {
@@ -31,6 +32,15 @@ public class EnemyController : MonoBehaviour, IEnemyStateProvider
         {
             player = PlayerManager.Instance.PlayerTransform;
         }
+
+        // Initialize CharacterStats (required)
+        characterStats = GetComponent<CharacterStats>();
+        if (characterStats == null)
+        {
+            Debug.LogWarning($"{gameObject.name} is missing CharacterStats component! Add it to the prefab.", gameObject);
+            return;
+        }
+
         InitializeStates();
         ChangeState(GetIdleState());
     }
@@ -65,7 +75,7 @@ public class EnemyController : MonoBehaviour, IEnemyStateProvider
     public void Patrol()
     {
         direction = lastPatrolDirection;
-        rb.linearVelocity = new Vector2(speed * direction, rb.linearVelocity.y);
+        rb.linearVelocity = new Vector2(characterStats.MovementSpeed * direction, rb.linearVelocity.y);
         sr.flipX = direction < 0;
     }
 
@@ -82,7 +92,7 @@ public class EnemyController : MonoBehaviour, IEnemyStateProvider
         if (player == null) return;
         float moveDirection = player.position.x > transform.position.x ? 1 : -1;
         direction = (int)moveDirection;
-        rb.linearVelocity = new Vector2(speed * 1.5f * direction, rb.linearVelocity.y);
+        rb.linearVelocity = new Vector2(characterStats.MovementSpeed * 1.5f * direction, rb.linearVelocity.y);
         sr.flipX = direction < 0;
     }
 
@@ -113,7 +123,8 @@ public class EnemyController : MonoBehaviour, IEnemyStateProvider
             var playerHealth = player.GetComponent<Health>();
             if (playerHealth != null)
             {
-                playerHealth.TakeDamage(attackDamage);
+                int damage = (int)characterStats.Atk;
+                playerHealth.TakeDamage(damage);
             }
         }
     }

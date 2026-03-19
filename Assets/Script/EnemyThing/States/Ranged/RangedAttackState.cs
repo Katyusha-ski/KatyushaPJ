@@ -10,8 +10,8 @@
     {
         if (enemy is IRangedEnemy ranged)
         {
-
             float distanceToPlayer = enemy.GetDistanceToPlayer();
+
             if (distanceToPlayer > enemy.GetAttackRange())
             {
                 enemy.ChangeStateByName("Pursuit");  

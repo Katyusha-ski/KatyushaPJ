@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: NercoFire
   m_EditorClassIdentifier: Assembly-CSharp::ProjectileSkill
   icon: {fileID: 0}
-  cooldown: 0
-  magicSpherePrefab: {fileID: 0}
-  magicSphereSFX: {fileID: 0}
+  cooldown: 7
+  projectilePrefab: {fileID: 0}
+  projectileSFX: {fileID: 0}

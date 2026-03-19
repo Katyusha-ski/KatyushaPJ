@@ -1,9 +1,10 @@
+using System.Runtime.CompilerServices;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class Health : MonoBehaviour
 {
-    [SerializeField] private int maxHealth = 20;
+    [SerializeField] private int maxHealth;
     [SerializeField] private int currentHealth;
 
     public HealthBar healthBar;
@@ -38,7 +39,10 @@ public class Health : MonoBehaviour
 
     void Awake()
     {
+        CharacterStats stats = GetComponent<CharacterStats>();
+        maxHealth = (int)stats.MaxHP;
         currentHealth = maxHealth;
+        stats.MaxHPChanged += OnMaxHPChanged;
         if (healthBar != null)
             healthBar.SetMaxHealth(maxHealth);
     }
@@ -112,5 +116,23 @@ public class Health : MonoBehaviour
             AudioManager.Instance.PlaySFX(dieSFX);
         }
         Debug.Log($"{gameObject.name} has died.");
+    }
+
+    private void OnMaxHPChanged(float newMaxHP)
+    {
+        maxHealth = (int)newMaxHP;
+        currentHealth = Mathf.Min(currentHealth, maxHealth);
+        if (healthBar != null)
+            healthBar.SetHealth(currentHealth, maxHealth);
+    }
+
+    private void OnDestroy()
+    {
+        CharacterStats stats = GetComponent<CharacterStats>();
+        if (stats != null)
+        {
+            stats.MaxHPChanged -= OnMaxHPChanged;
+        }
+            
     }
 }

@@ -9,10 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 423f633d1b003c449b4516b13428e440, type: 3}
+  m_Script: {fileID: 11500000, guid: 36a4c4f0694f23348ab90881785ee368, type: 3}
   m_Name: NercoHole
-  m_EditorClassIdentifier: Assembly-CSharp::ProjectileSkill
+  m_EditorClassIdentifier: Assembly-CSharp::SpawnPrefabSkill
   icon: {fileID: 0}
-  cooldown: 0
-  magicSpherePrefab: {fileID: 0}
-  magicSphereSFX: {fileID: 0}
+  cooldown: 12
+  spawnPrefab: {fileID: 0}
+  spawnSFX: {fileID: 0}
