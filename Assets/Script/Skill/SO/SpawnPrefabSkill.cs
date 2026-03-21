@@ -5,7 +5,7 @@ public class SpawnPrefabSkill : SkillBase
 {
     public GameObject spawnPrefab;
     public AudioClip spawnSFX;
-
+    public Vector3 offset;
     public override void Activate(GameObject user, int direction)
     {
         if (!CanActivate)
@@ -17,7 +17,7 @@ public class SpawnPrefabSkill : SkillBase
             AudioManager.Instance.PlaySFX(spawnSFX);
         }
 
-        Vector3 spawnPos = PlayerManager.Instance.transform.position;
+        Vector3 spawnPos = PlayerManager.Instance.transform.position + offset;
         GameObject spawn = Instantiate(spawnPrefab, spawnPos, Quaternion.identity);
         cooldownTimer = cooldown;
     }

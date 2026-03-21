@@ -30,7 +30,7 @@ public class HealState : IEnemyState
                 // Still need healing? Cast heal
                 if (health.CurrentHealth < health.MaxHealth * 0.5f)
                 {
-                    enemy.SetAnimatorTrigger("Skill3");
+                    enemy.SetAnimatorTrigger("Heal");
                     return;
                 }
 

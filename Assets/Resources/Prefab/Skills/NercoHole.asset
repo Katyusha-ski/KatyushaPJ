@@ -14,5 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SpawnPrefabSkill
   icon: {fileID: 0}
   cooldown: 12
-  spawnPrefab: {fileID: 0}
+  spawnPrefab: {fileID: 777867615169299127, guid: 9ea5d757eba66c24e8c0b98565127ee7, type: 3}
   spawnSFX: {fileID: 0}
+  offset: {x: 0, y: -0.4, z: 0}

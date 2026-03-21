@@ -30,11 +30,11 @@ public class ProjectilePref : MonoBehaviour, IMagicProjectile
         }
     }
 
-    public void SetDirection(int direction)
+    public void SetDirection(int direction, int isItNeedToFlip = 1)
     {
         moveDirection = direction;
 
-        if (direction == -1)
+        if ((direction == -1) != (isItNeedToFlip < 0))
         {
             Vector3 scale = transform.localScale;
             scale.x = -Mathf.Abs(scale.x);
