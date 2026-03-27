@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using UnityEngine;
 using System.Collections.Generic;
 
@@ -6,6 +6,7 @@ public class Inventory : MonoBehaviour
 {
     public static Inventory Instance { get; private set; }
     public event Action OnInventoryChanged;
+    public event Action OnEquipmentChanged;
     public int maxSlots = 30;
     public List<ItemStack> itemSlots = new List<ItemStack>(30);
 
@@ -29,7 +30,6 @@ public class Inventory : MonoBehaviour
         for (int i = 0; i < equipmentSlots; i++) equipment[i] = null;
     }
 
-    public void TriggerInventoryChanged() => OnInventoryChanged?.Invoke();
 
     public bool CanAddItem(ItemData item, int amount = 1)
     {
@@ -156,39 +156,6 @@ public class Inventory : MonoBehaviour
         OnInventoryChanged?.Invoke();
     }
 
-    public bool EquipItem(int inventorySlotIndex, int equipSlotIndex)
-    {
-        var stack = itemSlots[inventorySlotIndex];
-        if (stack == null || stack.item.itemType != ItemType.Equipment) return false;
-
-        if ((int)stack.item.equipmentType != equipSlotIndex + 1) return false;
-
-        if (equipment[equipSlotIndex] != null)
-        {
-            AddItem(equipment[equipSlotIndex].item, equipment[equipSlotIndex].amount);
-        }
-        equipment[equipSlotIndex] = stack;
-        itemSlots[inventorySlotIndex] = null;
-        OnInventoryChanged?.Invoke();
-        return true;
-    }
-    
-    public bool UnequipItem(int slotIndex)
-    {
-        var stack = equipment[slotIndex];
-        if (stack == null) return false;
-
-        if (!CanAddItem(stack.item, stack.amount)) 
-            return false;
-
-        AddItem(stack.item, stack.amount);
-
-        equipment[slotIndex] = null;
-        OnInventoryChanged?.Invoke();
-        return true;
-    }
-
-
     public bool SwapItem(int indexA, int indexB)
     {
         if (indexA < 0 || indexA >= itemSlots.Count || indexB < 0 || indexB >= itemSlots.Count) return false;
@@ -198,6 +165,53 @@ public class Inventory : MonoBehaviour
         OnInventoryChanged?.Invoke();
         return true;
     }
+
+    /// <summary>
+    /// Universal equipment swap - handles both equip and unequip
+    /// isUnequipping = false: inventory ? equipment (equip)
+    /// isUnequipping = true: equipment ? inventory (unequip)
+    /// </summary>
+    public bool EquipItem(int sourceSlotIndex, int targetSlotIndex, bool isUnequipping = false)
+    {
+        if (isUnequipping)
+        {
+            // Unequip mode: equipment ? inventory
+            var stack = equipment[sourceSlotIndex];
+            if (stack == null) return false;
+
+            // Direct swap
+            var temp = itemSlots[targetSlotIndex];
+            itemSlots[targetSlotIndex] = stack;
+            equipment[sourceSlotIndex] = temp;
+        }
+        else
+        {
+            // Equip mode: inventory ? equipment
+            var stack = itemSlots[sourceSlotIndex];
+            if (stack == null || stack.item.itemType != ItemType.Equipment) return false;
+
+            if ((int)stack.item.equipmentType != targetSlotIndex + 1) return false;
+
+            // Direct swap
+            var temp = equipment[targetSlotIndex];
+            equipment[targetSlotIndex] = stack;
+            itemSlots[sourceSlotIndex] = temp;
+        }
+
+        OnInventoryChanged?.Invoke();
+        return true;
+    }
+
+    public bool ClearInventory()
+    {
+        for (int i = 0; i < itemSlots.Count; i++)
+            itemSlots[i] = null;
+        for (int i = 0; i < equipment.Length; i++)
+            equipment[i] = null;
+        OnInventoryChanged?.Invoke();
+        return true;
+    }
+
 
     /// <summary>
     /// Converts the current Inventory to a Serializable format

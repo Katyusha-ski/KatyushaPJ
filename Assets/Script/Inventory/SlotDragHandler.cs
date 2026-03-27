@@ -73,13 +73,27 @@ public class SlotDragHandler : MonoBehaviour, IBeginDragHandler, IDragHandler, I
         // If the target slot is an equipment slot, check if the dragged item is of the correct type
         if (this.slot.isEquipmentSlot)
         {
-            var draggedStack = Inventory.Instance.itemSlots[draggedSlotHandler.slot.slotIndex];
+            ItemStack draggedStack = draggedSlotHandler.slot.isEquipmentSlot 
+                ? Inventory.Instance.equipment[draggedSlotHandler.slot.slotIndex]
+                : Inventory.Instance.itemSlots[draggedSlotHandler.slot.slotIndex];
+
             if (draggedStack == null || draggedStack.item.itemType != ItemType.Equipment ||
                 (int)draggedStack.item.equipmentType != this.slot.slotIndex + 1)
                 return;
-        }
 
-        Inventory.Instance.SwapItem(draggedSlotHandler.slot.slotIndex, this.slot.slotIndex);
+            // Equip item - swap between inventory and equipment
+            Inventory.Instance.EquipItem(draggedSlotHandler.slot.slotIndex, this.slot.slotIndex, draggedSlotHandler.slot.isEquipmentSlot);
+        }
+        else if (draggedSlotHandler.slot.isEquipmentSlot)
+        {
+            // Unequip - drag from equipment to inventory
+            Inventory.Instance.EquipItem(draggedSlotHandler.slot.slotIndex, this.slot.slotIndex, true);
+        }
+        else
+        {
+            // Normal inventory swap
+            Inventory.Instance.SwapItem(draggedSlotHandler.slot.slotIndex, this.slot.slotIndex);
+        }
     }
 
 }

@@ -157,12 +157,7 @@ public class GameManager : MonoBehaviour
         // Clear inventory
         if (Inventory.Instance != null)
         {
-            for (int i = 0; i < Inventory.Instance.itemSlots.Count; i++)
-                Inventory.Instance.itemSlots[i] = null;
-            for (int i = 0; i < Inventory.Instance.equipment.Length; i++)
-                Inventory.Instance.equipment[i] = null;
-
-            Inventory.Instance.TriggerInventoryChanged();
+            Inventory.Instance.ClearInventory();
         }
 
         Debug.Log("New game started!");
