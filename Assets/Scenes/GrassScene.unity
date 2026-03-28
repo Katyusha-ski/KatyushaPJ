@@ -3562,9 +3562,7 @@ MonoBehaviour:
   itemSlots: []
   equipmentSlots: 4
   equipment:
-  - item: {fileID: 0}
-    amount: 0
-  - item: {fileID: 0}
+  - item: {fileID: 11400000, guid: c1395c073df47f942b839d953a29820d, type: 2}
     amount: 0
   - item: {fileID: 0}
     amount: 0
@@ -5785,7 +5783,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 88.2451, y: 74.80788}
+  m_AnchoredPosition: {x: 160.9, y: 66.9}
   m_SizeDelta: {x: 308.9836, y: 79.2315}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1716583830

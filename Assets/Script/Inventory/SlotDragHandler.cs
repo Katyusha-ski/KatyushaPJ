@@ -82,12 +82,12 @@ public class SlotDragHandler : MonoBehaviour, IBeginDragHandler, IDragHandler, I
                 return;
 
             // Equip item - swap between inventory and equipment
-            Inventory.Instance.EquipItem(draggedSlotHandler.slot.slotIndex, this.slot.slotIndex, draggedSlotHandler.slot.isEquipmentSlot);
+            Inventory.Instance.SwapEquipItem(draggedSlotHandler.slot.slotIndex, this.slot.slotIndex, draggedSlotHandler.slot.isEquipmentSlot);
         }
         else if (draggedSlotHandler.slot.isEquipmentSlot)
         {
             // Unequip - drag from equipment to inventory
-            Inventory.Instance.EquipItem(draggedSlotHandler.slot.slotIndex, this.slot.slotIndex, true);
+            Inventory.Instance.SwapEquipItem(draggedSlotHandler.slot.slotIndex, this.slot.slotIndex, true);
         }
         else
         {

@@ -171,7 +171,7 @@ public class Inventory : MonoBehaviour
     /// isUnequipping = false: inventory ? equipment (equip)
     /// isUnequipping = true: equipment ? inventory (unequip)
     /// </summary>
-    public bool EquipItem(int sourceSlotIndex, int targetSlotIndex, bool isUnequipping = false)
+    public bool SwapEquipItem(int sourceSlotIndex, int targetSlotIndex, bool isUnequipping = false)
     {
         if (isUnequipping)
         {
@@ -199,6 +199,7 @@ public class Inventory : MonoBehaviour
         }
 
         OnInventoryChanged?.Invoke();
+        OnEquipmentChanged?.Invoke();
         return true;
     }
 
