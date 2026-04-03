@@ -6,13 +6,12 @@ using System.Collections.Generic;
 /// </summary>
 public class EquipmentManager : MonoBehaviour
 {
-    private CharacterStats characterStats;
+    public CharacterStats characterStats;
     private ItemStats[] cachedEquipmentStats = new ItemStats[4];
     private Dictionary<string, StatsModifier> activeModifiers = new Dictionary<string, StatsModifier>();
 
-    private void Awake()
+    private void Start()
     {
-        characterStats = GetComponent<CharacterStats>();
         Inventory.Instance.OnEquipmentChanged += HandleEquipmentChanged;
         ApplyAllCurrentEquipment();
     }
@@ -23,9 +22,11 @@ public class EquipmentManager : MonoBehaviour
 
     private void HandleEquipmentChanged()
     {
-        for (int i = 0; i < Inventory.Instance.equipment.Length; i++) {
+        for (int i = 0; i < Inventory.Instance.equipment.Length; i++)
+        {
             ItemStack currentStack = Inventory.Instance.equipment[i];
             ItemStats cachedStats = cachedEquipmentStats[i];
+
             if (cachedStats != null)
                 RemoveEquipmentStats(i);
             if (currentStack != null)
@@ -37,6 +38,7 @@ public class EquipmentManager : MonoBehaviour
     {
         ItemStack stack = Inventory.Instance.equipment[slotIndex];
         if (stack == null) return;
+        if (stack.item == null) return;
 
         ItemStats itemStats = stack.item.GetStats();
         if (!itemStats.HasStats()) return;

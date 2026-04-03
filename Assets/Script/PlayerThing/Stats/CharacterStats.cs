@@ -27,6 +27,12 @@ public class CharacterStats : MonoBehaviour
     private List<StatsModifier> maxHPMod = new List<StatsModifier>();
     private List<StatsModifier> movementSpeedMod = new List<StatsModifier>();
 
+    private void Start()
+    {
+        StatsChanged += OnStatsChanged;
+
+    }
+
     // Calculated stats
     private float CalculateStat(float baseValue, List<StatsModifier> mods)
     {
@@ -55,37 +61,105 @@ public class CharacterStats : MonoBehaviour
     public float MaxHP => CalculateStat(baseMaxHP, maxHPMod);
     public float MovementSpeed => CalculateStat(baseMovementSpeed, movementSpeedMod);
 
+    // STATS CHANGE EVENT
+    public delegate void OnStatsChange();
+    public event OnStatsChange StatsChanged;
+
     // ARMOR
-    public void AddArmorModifier(StatsModifier mod) => armorMod.Add(mod);
-    public void RemoveArmorModifier(StatsModifier mod) => armorMod.Remove(mod);
+    public void AddArmorModifier(StatsModifier mod)
+    {
+        armorMod.Add(mod);
+        StatsChanged?.Invoke();
+    }
+    public void RemoveArmorModifier(StatsModifier mod)
+    {
+        armorMod.Remove(mod);
+        StatsChanged?.Invoke();
+    }
 
     // LIFE STEAL
-    public void AddLifeStealModifier(StatsModifier mod) => lifeStealMod.Add(mod);
-    public void RemoveLifeStealModifier(StatsModifier mod) => lifeStealMod.Remove(mod);
+    public void AddLifeStealModifier(StatsModifier mod)
+    {
+        lifeStealMod.Add(mod);
+        StatsChanged?.Invoke();
+    }
+    public void RemoveLifeStealModifier(StatsModifier mod)
+    {
+        lifeStealMod.Remove(mod);
+        StatsChanged?.Invoke();
+    }
 
     // CC RESISTANCE
-    public void AddCCResModifier(StatsModifier mod) => ccResMod.Add(mod);
-    public void RemoveCCResModifier(StatsModifier mod) => ccResMod.Remove(mod);
+    public void AddCCResModifier(StatsModifier mod)
+    {
+        ccResMod.Add(mod);
+        StatsChanged?.Invoke();
+    }
+    public void RemoveCCResModifier(StatsModifier mod)
+    {
+        ccResMod.Remove(mod);
+        StatsChanged?.Invoke();
+    }
 
     // ATK
-    public void AddATKModifier(StatsModifier mod) => atkMod.Add(mod);
-    public void RemoveATKModifier(StatsModifier mod) => atkMod.Remove(mod);
+    public void AddATKModifier(StatsModifier mod)
+    {
+        atkMod.Add(mod);
+        StatsChanged?.Invoke();
+    }
+    public void RemoveATKModifier(StatsModifier mod)
+    {
+        atkMod.Remove(mod);
+        StatsChanged?.Invoke();
+    }
 
     // CRIT RATE
-    public void AddCritRateModifier(StatsModifier mod) => critRateMod.Add(mod);
-    public void RemoveCritRateModifier(StatsModifier mod) => critRateMod.Remove(mod);
+    public void AddCritRateModifier(StatsModifier mod)
+    {
+        critRateMod.Add(mod);
+        StatsChanged?.Invoke();
+    }
+    public void RemoveCritRateModifier(StatsModifier mod)
+    {
+        critRateMod.Remove(mod);
+        StatsChanged?.Invoke();
+    }
 
     // CRIT DAMAGE
-    public void AddCritDamageModifier(StatsModifier mod) => critDamageMod.Add(mod);
-    public void RemoveCritDamageModifier(StatsModifier mod) => critDamageMod.Remove(mod);
+    public void AddCritDamageModifier(StatsModifier mod)
+    {
+        critDamageMod.Add(mod);
+        StatsChanged?.Invoke();
+    }
+    public void RemoveCritDamageModifier(StatsModifier mod)
+    {
+        critDamageMod.Remove(mod);
+        StatsChanged?.Invoke();
+    }
 
     // ARMOR PIERCE
-    public void AddArmorPierceModifier(StatsModifier mod) => armorPierceMod.Add(mod);
-    public void RemoveArmorPierceModifier(StatsModifier mod) => armorPierceMod.Remove(mod);
+    public void AddArmorPierceModifier(StatsModifier mod)
+    {
+        armorPierceMod.Add(mod);
+        StatsChanged?.Invoke();
+    }
+    public void RemoveArmorPierceModifier(StatsModifier mod)
+    {
+        armorPierceMod.Remove(mod);
+        StatsChanged?.Invoke();
+    }
 
     // CDR
-    public void AddCDRModifier(StatsModifier mod) => cdrMod.Add(mod);
-    public void RemoveCDRModifier(StatsModifier mod) => cdrMod.Remove(mod);
+    public void AddCDRModifier(StatsModifier mod)
+    {
+        cdrMod.Add(mod);
+        StatsChanged?.Invoke();
+    }
+    public void RemoveCDRModifier(StatsModifier mod)
+    {
+        cdrMod.Remove(mod);
+        StatsChanged?.Invoke();
+    }
 
     // MAX HP
     public delegate void OnMaxHPChanged(float newMaxHP);
@@ -94,16 +168,44 @@ public class CharacterStats : MonoBehaviour
     public void AddMaxHPModifier(StatsModifier mod)
     {
         maxHPMod.Add(mod);
-        MaxHPChanged?.Invoke(MaxHP);  // Trigger event
+        MaxHPChanged?.Invoke(MaxHP);
+        StatsChanged?.Invoke();
     }
 
     public void RemoveMaxHPModifier(StatsModifier mod)
     {
         maxHPMod.Remove(mod);
-        MaxHPChanged?.Invoke(MaxHP);  // Trigger event
+        MaxHPChanged?.Invoke(MaxHP);
+        StatsChanged?.Invoke();
     }
 
 #if UNITY_EDITOR
+    [Header("═══ DEBUG: TOTAL STATS (After Modifiers) ═══")]
+    [SerializeField] private float totalAtk;
+    [SerializeField] private float totalArmor;
+    [SerializeField] private float totalMaxHP;
+    [SerializeField] private float totalMovementSpeed;
+    [SerializeField] private float totalCritRate;
+    [SerializeField] private float totalCritDamage;
+    [SerializeField] private float totalArmorPierce;
+    [SerializeField] private float totalLifesteal;
+    [SerializeField] private float totalCCRes;
+    [SerializeField] private float totalCDR;
+
+    private void OnStatsChanged()
+    {
+        totalAtk = Atk;
+        totalArmor = Armor;
+        totalMaxHP = MaxHP;
+        totalMovementSpeed = MovementSpeed;
+        totalCritRate = CritRate;
+        totalCritDamage = CritDamage;
+        totalArmorPierce = ArmorPierce;
+        totalLifesteal = LifeSteal;
+        totalCCRes = CCRes;
+        totalCDR = CDR;
+    }
+
     [ContextMenu("Debug Add Max HP")]
     public void DebugAddMaxHP()
     {
@@ -131,12 +233,14 @@ public class CharacterStats : MonoBehaviour
     {
         movementSpeedMod.Add(mod);
         MovementSpeedChanged?.Invoke(MovementSpeed);
+        StatsChanged?.Invoke();
     }
 
     public void RemoveMovementSpeedModifier(StatsModifier mod)
     {
         movementSpeedMod.Remove(mod);
         MovementSpeedChanged?.Invoke(MovementSpeed);
+        StatsChanged?.Invoke();
     }
     
 

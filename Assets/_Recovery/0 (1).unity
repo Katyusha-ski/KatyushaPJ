@@ -7454,9 +7454,6 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 2068556711473788101, guid: 52e2548da8dd85c4c8018cd6b77b61f7, type: 3}
       insertIndex: -1
       addedObject: {fileID: 5531980961009719550}
-    - targetCorrespondingSourceObject: {fileID: 2068556711473788101, guid: 52e2548da8dd85c4c8018cd6b77b61f7, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 5531980961009719556}
   m_SourcePrefab: {fileID: 100100000, guid: 52e2548da8dd85c4c8018cd6b77b61f7, type: 3}
 --- !u!1 &5531980961009719534 stripped
 GameObject:
@@ -7555,29 +7552,6 @@ MonoBehaviour:
   baseCDR: 0
   baseMaxHP: 20
   baseMovementSpeed: 2.5
-  totalAtk: 0
-  totalArmor: 0
-  totalMaxHP: 20
-  totalMovementSpeed: 2.5
-  totalCritRate: 0
-  totalCritDamage: 0.75
-  totalArmorPierce: 0
-  totalLifesteal: 0
-  totalCCRes: 0
-  totalCDR: 0
---- !u!114 &5531980961009719556
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5531980961009719534}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9afb903f15d15a54eb636528140d39da, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::EquipmentManager
-  characterStats: {fileID: 5531980961009719550}
 --- !u!1001 &8658051748708704678
 PrefabInstance:
   m_ObjectHideFlags: 0
