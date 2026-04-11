@@ -5,16 +5,19 @@ public class CharacterStats : MonoBehaviour
 {
     // Base stats
     [SerializeField] private float baseArmor = 0f;
-    [SerializeField] private float baseLifeSteal = 0f;
+    [SerializeField] private float baseLifeSteal = 0f; // only applies to normal attacks, not skills
     [SerializeField] private float baseCCRes = 0f;
-    [SerializeField] private float baseAtk = 0f; // Base normal attack damage
+    [SerializeField] private float baseAtk = 1f; // Base normal attack damage
     [SerializeField] private float baseCritRate = 0f;
     [SerializeField] private float baseCritDamage = 0.75f;
     [SerializeField] private float baseArmorPierce = 0f;
-    [SerializeField] private float baseCDR = 0f; // CDR = Cooldown Reduction(%)
+    [SerializeField] private float baseCDR = 0f; // CDR = Cooldown Reduction(%) and i will create a logic to limit it to max 40% in the future
     [SerializeField] private int baseMaxHP = 20;
     [SerializeField] private float baseMovementSpeed = 2.5f;
-    
+    [SerializeField] private float baseHPRegen = 0f; // HP regeneration per 5 seconds
+    [SerializeField] private float baseDmgR = 0f; // Damage reduction (0-100%)
+    [SerializeField] private float baseSkillAmp = 0f; // Skill amplification (%)
+
     // Modifiers list
     private List<StatsModifier> armorMod = new List<StatsModifier>();
     private List<StatsModifier> lifeStealMod = new List<StatsModifier>();
@@ -26,6 +29,9 @@ public class CharacterStats : MonoBehaviour
     private List<StatsModifier> cdrMod = new List<StatsModifier>();
     private List<StatsModifier> maxHPMod = new List<StatsModifier>();
     private List<StatsModifier> movementSpeedMod = new List<StatsModifier>();
+    private List<StatsModifier> hpRegenMod = new List<StatsModifier>();
+    private List<StatsModifier> dmgRMod = new List<StatsModifier>();
+    private List<StatsModifier> skillAmpMod = new List<StatsModifier>();
 
     private void Start()
     {
@@ -60,10 +66,9 @@ public class CharacterStats : MonoBehaviour
     public float CDR => CalculateStat(baseCDR, cdrMod);
     public float MaxHP => CalculateStat(baseMaxHP, maxHPMod);
     public float MovementSpeed => CalculateStat(baseMovementSpeed, movementSpeedMod);
-
-    // STATS CHANGE EVENT
-    public delegate void OnStatsChange();
-    public event OnStatsChange StatsChanged;
+    public float HPRegen => CalculateStat(baseHPRegen, hpRegenMod);
+    public float DmgR => CalculateStat(baseDmgR, dmgRMod);
+    public float SkillAmp => CalculateStat(baseSkillAmp, skillAmpMod);
 
     // ARMOR
     public void AddArmorModifier(StatsModifier mod)
@@ -71,6 +76,7 @@ public class CharacterStats : MonoBehaviour
         armorMod.Add(mod);
         StatsChanged?.Invoke();
     }
+
     public void RemoveArmorModifier(StatsModifier mod)
     {
         armorMod.Remove(mod);
@@ -83,6 +89,7 @@ public class CharacterStats : MonoBehaviour
         lifeStealMod.Add(mod);
         StatsChanged?.Invoke();
     }
+
     public void RemoveLifeStealModifier(StatsModifier mod)
     {
         lifeStealMod.Remove(mod);
@@ -95,6 +102,7 @@ public class CharacterStats : MonoBehaviour
         ccResMod.Add(mod);
         StatsChanged?.Invoke();
     }
+
     public void RemoveCCResModifier(StatsModifier mod)
     {
         ccResMod.Remove(mod);
@@ -107,6 +115,7 @@ public class CharacterStats : MonoBehaviour
         atkMod.Add(mod);
         StatsChanged?.Invoke();
     }
+
     public void RemoveATKModifier(StatsModifier mod)
     {
         atkMod.Remove(mod);
@@ -119,6 +128,7 @@ public class CharacterStats : MonoBehaviour
         critRateMod.Add(mod);
         StatsChanged?.Invoke();
     }
+
     public void RemoveCritRateModifier(StatsModifier mod)
     {
         critRateMod.Remove(mod);
@@ -131,6 +141,7 @@ public class CharacterStats : MonoBehaviour
         critDamageMod.Add(mod);
         StatsChanged?.Invoke();
     }
+
     public void RemoveCritDamageModifier(StatsModifier mod)
     {
         critDamageMod.Remove(mod);
@@ -143,6 +154,7 @@ public class CharacterStats : MonoBehaviour
         armorPierceMod.Add(mod);
         StatsChanged?.Invoke();
     }
+
     public void RemoveArmorPierceModifier(StatsModifier mod)
     {
         armorPierceMod.Remove(mod);
@@ -155,6 +167,7 @@ public class CharacterStats : MonoBehaviour
         cdrMod.Add(mod);
         StatsChanged?.Invoke();
     }
+
     public void RemoveCDRModifier(StatsModifier mod)
     {
         cdrMod.Remove(mod);
@@ -179,6 +192,67 @@ public class CharacterStats : MonoBehaviour
         StatsChanged?.Invoke();
     }
 
+    // MOVEMENT SPEED
+    public delegate void OnMovementSpeedChanged(float newMovementSpeed);
+    public event OnMovementSpeedChanged MovementSpeedChanged;
+
+    public void AddMovementSpeedModifier(StatsModifier mod)
+    {
+        movementSpeedMod.Add(mod);
+        MovementSpeedChanged?.Invoke(MovementSpeed);
+        StatsChanged?.Invoke();
+    }
+
+    public void RemoveMovementSpeedModifier(StatsModifier mod)
+    {
+        movementSpeedMod.Remove(mod);
+        MovementSpeedChanged?.Invoke(MovementSpeed);
+        StatsChanged?.Invoke();
+    }
+
+    // HP REGEN
+    public void AddHPRegenModifier(StatsModifier mod)
+    {
+        hpRegenMod.Add(mod);
+        StatsChanged?.Invoke();
+    }
+
+    public void RemoveHPRegenModifier(StatsModifier mod)
+    {
+        hpRegenMod.Remove(mod);
+        StatsChanged?.Invoke();
+    }
+
+    // DAMAGE REDUCTION
+    public void AddDmgRModifier(StatsModifier mod)
+    {
+        dmgRMod.Add(mod);
+        StatsChanged?.Invoke();
+    }
+
+    public void RemoveDmgRModifier(StatsModifier mod)
+    {
+        dmgRMod.Remove(mod);
+        StatsChanged?.Invoke();
+    }
+
+    // SKILL AMP
+    public void AddSkillAmpModifier(StatsModifier mod)
+    {
+        skillAmpMod.Add(mod);
+        StatsChanged?.Invoke();
+    }
+
+    public void RemoveSkillAmpModifier(StatsModifier mod)
+    {
+        skillAmpMod.Remove(mod);
+        StatsChanged?.Invoke();
+    }
+
+    // STATS CHANGE EVENT
+    public delegate void OnStatsChange();
+    public event OnStatsChange StatsChanged;
+
 #if UNITY_EDITOR
     [Header("═══ DEBUG: TOTAL STATS (After Modifiers) ═══")]
     [SerializeField] private float totalAtk;
@@ -191,6 +265,9 @@ public class CharacterStats : MonoBehaviour
     [SerializeField] private float totalLifesteal;
     [SerializeField] private float totalCCRes;
     [SerializeField] private float totalCDR;
+    [SerializeField] private float totalHPRegen;
+    [SerializeField] private float totalDmgR;
+    [SerializeField] private float totalSkillAmp;
 
     private void OnStatsChanged()
     {
@@ -204,6 +281,9 @@ public class CharacterStats : MonoBehaviour
         totalLifesteal = LifeSteal;
         totalCCRes = CCRes;
         totalCDR = CDR;
+        totalHPRegen = HPRegen;
+        totalDmgR = DmgR;
+        totalSkillAmp = SkillAmp;
     }
 
     [ContextMenu("Debug Add Max HP")]
@@ -224,24 +304,5 @@ public class CharacterStats : MonoBehaviour
         }
     }
 #endif
-
-    // MOVEMENT SPEED
-    public delegate void OnMovementSpeedChanged(float newMovementSpeed);
-    public event OnMovementSpeedChanged MovementSpeedChanged;
-
-    public void AddMovementSpeedModifier(StatsModifier mod)
-    {
-        movementSpeedMod.Add(mod);
-        MovementSpeedChanged?.Invoke(MovementSpeed);
-        StatsChanged?.Invoke();
-    }
-
-    public void RemoveMovementSpeedModifier(StatsModifier mod)
-    {
-        movementSpeedMod.Remove(mod);
-        MovementSpeedChanged?.Invoke(MovementSpeed);
-        StatsChanged?.Invoke();
-    }
-    
 
 }

@@ -4,6 +4,19 @@ using System.Collections.Generic;
 public class SkillManager : MonoBehaviour
 {
     public List<SkillBase> skills = new List<SkillBase>();
+    public CharacterStats characterStats;
+
+    private void Start()
+    {
+        if (characterStats == null)
+            characterStats = GetComponent<CharacterStats>();
+
+        foreach (var skill in skills)
+        {
+            if (skill != null)
+                skill.Initialize(characterStats);
+        }
+    }
 
     public List<SkillBase> GetSkills()
     {

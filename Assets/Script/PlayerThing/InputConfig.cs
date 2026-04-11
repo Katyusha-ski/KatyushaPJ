@@ -14,6 +14,9 @@ public class InputConfig : ScriptableObject
     public KeyCode skill3Key = KeyCode.R;
     public KeyCode skill4Key = KeyCode.F;
 
+    [Header("Normal Attacks")]
+    public KeyCode normalAttackKey = KeyCode.KeypadEnter;
+
     [Header("Other Actions")]
     public KeyCode pauseKey = KeyCode.Escape;
 
@@ -27,6 +30,7 @@ public class InputConfig : ScriptableObject
         config.skill2Key = KeyCode.Q;
         config.skill3Key = KeyCode.R;
         config.skill4Key = KeyCode.F;
+        config.normalAttackKey = KeyCode.KeypadEnter;
         config.pauseKey = KeyCode.Escape;
         return config;
     }

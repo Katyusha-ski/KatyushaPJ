@@ -25,6 +25,9 @@ public class ItemStats
     [Header("Special Stats")]
     public float lifesteal = 0f;           // Lifesteal (%) (baseLifeSteal)
     public float cooldownReduction = 0f;   // Ability cooldown reduction (%) (baseCDR)
+    public float hpRegen = 0f;             // HP regeneration per 5s (baseHPRegen)
+    public float dmgR = 0f;                // Damage reduction (0-1) (baseDmgR)
+    public float skillAmp = 0f;            // Skill amplification (%) (baseSkillAmp)
 
     public ItemStats()
     {
@@ -43,6 +46,8 @@ public class ItemStats
         controlResistance = 0f;
         lifesteal = 0f;
         cooldownReduction = 0f;
+        hpRegen = 0f;
+        dmgR = 0f;
     }
 
     /// <summary>
@@ -61,7 +66,10 @@ public class ItemStats
             movementSpeed = this.movementSpeed,
             controlResistance = this.controlResistance,
             lifesteal = this.lifesteal,
-            cooldownReduction = this.cooldownReduction
+            cooldownReduction = this.cooldownReduction,
+            hpRegen = this.hpRegen,
+            dmgR = this.dmgR,
+            skillAmp = this.skillAmp
         };
     }
 
@@ -83,6 +91,8 @@ public class ItemStats
         controlResistance += other.controlResistance;
         lifesteal += other.lifesteal;
         cooldownReduction += other.cooldownReduction;
+        hpRegen += other.hpRegen;
+        dmgR += other.dmgR;
     }
 
     /// <summary>
@@ -102,6 +112,8 @@ public class ItemStats
         controlResistance -= other.controlResistance;
         lifesteal -= other.lifesteal;
         cooldownReduction -= other.cooldownReduction;
+        hpRegen -= other.hpRegen;
+        dmgR -= other.dmgR;
     }
 
     /// <summary>
@@ -111,6 +123,7 @@ public class ItemStats
     {
         return damage != 0f || critChance != 0f || critDamage != 0f || armorPierce != 0f ||
                armor != 0f || health != 0f || movementSpeed != 0f ||
-               controlResistance != 0f || lifesteal != 0f || cooldownReduction != 0f;
+               controlResistance != 0f || lifesteal != 0f || cooldownReduction != 0f || hpRegen != 0f ||
+               dmgR != 0f;
     }
 }

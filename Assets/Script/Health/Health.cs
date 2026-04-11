@@ -14,13 +14,11 @@ public class Health : MonoBehaviour
     public int CurrentHealth => currentHealth;
     public int MaxHealth => maxHealth;
     private bool isUnDying = false;
-    private float damageReduction = 0f;
-    
-    public void SetDamageReduction(float reduction)
-    {
-        damageReduction = Mathf.Clamp01(reduction);
-    }
-    
+
+    private CharacterStats characterStats;
+    private float regenTimer = 0f;
+    private const float REGEN_INTERVAL = 5f; //heal every 5 seconds
+
     public void SetUnDying(bool value)
     {
         isUnDying = value;
@@ -37,27 +35,52 @@ public class Health : MonoBehaviour
 
     }
 
+    private void Update()
+    {
+        // HP Regeneration every 5 seconds
+        if (currentHealth < maxHealth)
+        {
+            regenTimer += Time.deltaTime;
+
+            if (regenTimer >= REGEN_INTERVAL && characterStats != null)
+            {
+                int regenAmount = (int)characterStats.HPRegen;
+                if (regenAmount > 0)
+                {
+                    Heal(regenAmount);
+                }
+                regenTimer = 0f;
+            }
+        }
+        else
+        {
+            regenTimer = 0f;
+        }
+    }
+
     void Awake()
     {
-        CharacterStats stats = GetComponent<CharacterStats>();
-        maxHealth = (int)stats.MaxHP;
+        characterStats = GetComponent<CharacterStats>();
+        maxHealth = (int)characterStats.MaxHP;
         currentHealth = maxHealth;
-        stats.MaxHPChanged += OnMaxHPChanged;
+        characterStats.MaxHPChanged += OnMaxHPChanged;
         if (healthBar != null)
             healthBar.SetMaxHealth(maxHealth);
     }
 
     public void TakeDamage(int damage)
     {
-        if(damageSFX != null)
+        if (damageSFX != null)
             AudioManager.Instance.PlaySFX(damageSFX);
-        
+
         if (isUnDying && damage >= currentHealth)
         {
             return;
         }
-        
-        float finalDamage = damage * (1f - damageReduction);
+        // calculate final damage after armor and damage reduction (will add armor piercing in future)
+        float dmgReduction = characterStats != null ? characterStats.DmgR / 100f : 0f;
+        float armor = characterStats != null ? characterStats.Armor : 0f;
+        float finalDamage = Mathf.Max(1f, (damage - armor) * (1f - dmgReduction));
         currentHealth -= (int)finalDamage;
         
         if (healthBar != null)
@@ -128,11 +151,9 @@ public class Health : MonoBehaviour
 
     private void OnDestroy()
     {
-        CharacterStats stats = GetComponent<CharacterStats>();
-        if (stats != null)
+        if (characterStats != null)
         {
-            stats.MaxHPChanged -= OnMaxHPChanged;
+            characterStats.MaxHPChanged -= OnMaxHPChanged;
         }
-            
     }
 }

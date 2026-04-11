@@ -2,6 +2,7 @@
 public class DmgReductionEffect : StatusEffect
 {
     private float reductionAmount;
+    private StatsModifier dmgRMod;
     public override StatusEffectType Type => StatusEffectType.Buff;
     public DmgReductionEffect(float dur, GameObject targetOJ, float reductionAmount) : base("Damage Reduction", dur, targetOJ)
     {
@@ -9,10 +10,11 @@ public class DmgReductionEffect : StatusEffect
     }
     public override void OnApply()
     {
-        var health = target.GetComponent<Health>();
-        if (health != null)
+        var characterStats = target.GetComponent<CharacterStats>();
+        if (characterStats != null)
         {
-            health.SetDamageReduction(reductionAmount);
+            dmgRMod = new StatsModifier(reductionAmount, ModifierType.Additive, "DmgReductionEffect");
+            characterStats.AddDmgRModifier(dmgRMod);
         }
     }
     public override void OnTick()
@@ -20,10 +22,11 @@ public class DmgReductionEffect : StatusEffect
     }
     public override void OnRemove()
     {   
-        var health = target.GetComponent<Health>();
-        if (health != null)
+        var characterStats = target.GetComponent<CharacterStats>();
+        if (characterStats != null && dmgRMod != null)
         {
-            health.SetDamageReduction(0f);
+            characterStats.RemoveDmgRModifier(dmgRMod);
+            dmgRMod = null;
         }
     }
 }

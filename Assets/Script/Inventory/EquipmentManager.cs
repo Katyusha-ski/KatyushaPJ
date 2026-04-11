@@ -124,6 +124,30 @@ public class EquipmentManager : MonoBehaviour
             characterStats.AddCDRModifier(mod);
             activeModifiers[$"slot_{slotIndex}_cooldownReduction"] = mod;
         }
+
+        // HP REGEN
+        if (itemStats.hpRegen != 0)
+        {
+            var mod = new StatsModifier(itemStats.hpRegen, ModifierType.Additive, stack.item.itemName);
+            characterStats.AddHPRegenModifier(mod);
+            activeModifiers[$"slot_{slotIndex}_hpRegen"] = mod;
+        }
+
+        // DAMAGE REDUCTION
+        if (itemStats.dmgR != 0)
+        {
+            var mod = new StatsModifier(itemStats.dmgR, ModifierType.Additive, stack.item.itemName);
+            characterStats.AddDmgRModifier(mod);
+            activeModifiers[$"slot_{slotIndex}_dmgR"] = mod;
+        }
+
+        // SKILL AMP
+        if (itemStats.skillAmp != 0)
+        {
+            var mod = new StatsModifier(itemStats.skillAmp, ModifierType.Additive, stack.item.itemName);
+            characterStats.AddSkillAmpModifier(mod);
+            activeModifiers[$"slot_{slotIndex}_skillAmp"] = mod;
+        }
     }
 
     private void RemoveEquipmentStats(int slotIndex)
@@ -243,7 +267,40 @@ public class EquipmentManager : MonoBehaviour
                 activeModifiers.Remove($"slot_{slotIndex}_cooldownReduction");
             }
         }
-        
+
+        // HP REGEN
+        if (oldStats.hpRegen != 0)
+        {
+            var mod = activeModifiers[$"slot_{slotIndex}_hpRegen"];
+            if (mod != null)
+            {
+                characterStats.RemoveHPRegenModifier(mod);
+                activeModifiers.Remove($"slot_{slotIndex}_hpRegen");
+            }
+        }
+
+        // DAMAGE REDUCTION
+        if (oldStats.dmgR != 0)
+        {
+            var mod = activeModifiers[$"slot_{slotIndex}_dmgR"];
+            if (mod != null)
+            {
+                characterStats.RemoveDmgRModifier(mod);
+                activeModifiers.Remove($"slot_{slotIndex}_dmgR");
+            }
+        }
+
+        // SKILL AMP
+        if (oldStats.skillAmp != 0)
+        {
+            var mod = activeModifiers[$"slot_{slotIndex}_skillAmp"];
+            if (mod != null)
+            {
+                characterStats.RemoveSkillAmpModifier(mod);
+                activeModifiers.Remove($"slot_{slotIndex}_skillAmp");
+            }
+        }
+
         // 3️⃣ Clear cache
         cachedEquipmentStats[slotIndex] = null;
     }

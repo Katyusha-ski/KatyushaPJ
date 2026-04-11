@@ -60,16 +60,19 @@ public class CharacterStatsUI : MonoBehaviour
             Destroy(child.gameObject);
 
         // Tạo stats mới từ CharacterStats data
-        CreateStatText("Armor", characterStats.Armor.ToString("F1"));
-        CreateStatText("Life Steal", (characterStats.LifeSteal * 100).ToString("F1") + "%");
-        CreateStatText("CC Res", characterStats.CCRes.ToString("F1"));
         CreateStatText("ATK", characterStats.Atk.ToString("F1"));
+        CreateStatText("Armor", characterStats.Armor.ToString("F1"));
+        CreateStatText("Max HP", characterStats.MaxHP.ToString("F0"));
+        CreateStatText("HP Regen", characterStats.HPRegen.ToString("F1"));
+        CreateStatText("Dmg R", characterStats.DmgR.ToString("F1") + "%");
+        CreateStatText("Movement Speed", characterStats.MovementSpeed.ToString("F2"));
         CreateStatText("Crit Rate", characterStats.CritRate.ToString("F1") + "%");
         CreateStatText("Crit DMG", (characterStats.CritDamage * 100).ToString("F1") + "%");
         CreateStatText("Armor Pierce", characterStats.ArmorPierce.ToString("F1"));
+        CreateStatText("Life Steal", (characterStats.LifeSteal * 100).ToString("F1") + "%");
+        CreateStatText("CC Res", characterStats.CCRes.ToString("F1"));
         CreateStatText("CDR", characterStats.CDR.ToString("F1") + "%");
-        CreateStatText("Max HP", characterStats.MaxHP.ToString("F0"));
-        CreateStatText("Movement Speed", characterStats.MovementSpeed.ToString("F2"));
+        CreateStatText("Skill Amp", characterStats.SkillAmp.ToString("F1") + "%");
     }
 
     private void CreateStatText(string statName, string statValue)
