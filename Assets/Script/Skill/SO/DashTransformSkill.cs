@@ -3,11 +3,10 @@ using System.Collections;
 using System.Collections.Generic;
 
 [CreateAssetMenu(menuName = "Skill/DashTransformSkill")]
-public class DashTransformSkill : SkillBase
+public class DashTransformSkill : DirectDmgSkillBase
 {
     public float dashSpeed = 15f;
     public float dashDuration = 0.3f;
-    public int dashDamage = 3;
     public string dashLayerName = "PlayerDash";
     public string defaultLayerName = "Player";
     public string dashTriggerName = "Dash";
@@ -36,6 +35,9 @@ public class DashTransformSkill : SkillBase
         int oldLayer = player.gameObject.layer;
         int dashLayer = LayerMask.NameToLayer(dashLayerName);
 
+        // Calculate final damage with SkillAmp
+        float finalDamage = CalculateFinalDamage();
+
         // Đổi layer để chỉ xuyên qua enemy
         player.gameObject.layer = dashLayer;
 
@@ -59,7 +61,7 @@ public class DashTransformSkill : SkillBase
                     var health = hit.GetComponent<Health>();
                     if (health != null)
                     {
-                        health.TakeDamage(dashDamage);
+                        health.TakeDamage((int)finalDamage);
                         damagedEnemies.Add(hit.gameObject);
                     }
                 }

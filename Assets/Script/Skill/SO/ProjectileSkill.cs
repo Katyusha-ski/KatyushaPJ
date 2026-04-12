@@ -1,9 +1,8 @@
 using UnityEngine;
 
 [CreateAssetMenu(menuName = "Skill/ProjectileSkill")]
-public class ProjectileSkill : SkillBase
+public class ProjectileSkill : SpawnDamageSkillBase
 {
-    public GameObject projectilePrefab;
     public AudioClip projectileSFX;
     public int isItNeedToFlip = 1; // Flip if the SpriteRenderer's is facing left (negative scale)
     public Vector3 spawnOffset = Vector3.zero; // Offset to adjust spawn position
@@ -13,7 +12,7 @@ public class ProjectileSkill : SkillBase
         if (!CanActivate)
             return;
 
-        if (projectilePrefab == null)
+        if (spawnPrefab == null)
         {
             Debug.LogError("ProjectileSkill: projectilePrefab is not assigned in the inspector for " + name);
             return;
@@ -26,12 +25,13 @@ public class ProjectileSkill : SkillBase
         }
 
         Vector3 spawnPos = user.transform.position + new Vector3(direction, 0, 0) + spawnOffset;
-        GameObject sphere = Instantiate(projectilePrefab, spawnPos, Quaternion.identity);
+        GameObject sphere = Instantiate(spawnPrefab, spawnPos, Quaternion.identity);
 
-        IMagicProjectile magicSphere = sphere.GetComponent<IMagicProjectile>();
+        IProjectilePref magicSphere = sphere.GetComponent<IProjectilePref>();
         if (magicSphere != null)
         {
             magicSphere.SetDirection(direction, isItNeedToFlip);
+            magicSphere.SetDamage(CalculateFinalDamage());
         }
         cooldownTimer = cooldown;
     }

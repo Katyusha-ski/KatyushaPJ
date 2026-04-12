@@ -23,10 +23,13 @@ MonoBehaviour:
     damage: 9
     critChance: 0.3
     critDamage: 0.2
-    armorPierce: 0
+    armorPierce: 50
     armor: 0
     health: 0
     movementSpeed: 0
     controlResistance: 0
     lifesteal: 0
     cooldownReduction: 0
+    hpRegen: 0
+    dmgR: 0
+    skillAmp: 50

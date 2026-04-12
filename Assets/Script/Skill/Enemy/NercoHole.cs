@@ -1,7 +1,7 @@
 using UnityEngine;
-public class NercoHole : MonoBehaviour
+public class NercoHole : MonoBehaviour, ISpawnPref
 {
-    public int damage = 1;
+    public float damage = 1f;
     public float lifeTime = 4f;
     public float tickInterval = 1f;
     public float dmgTickTimer = 0f;
@@ -10,6 +10,11 @@ public class NercoHole : MonoBehaviour
     void Start()
     {
         Destroy(gameObject, lifeTime);
+    }
+
+    public void SetDamage(float damageValue)
+    {
+        damage = damageValue;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -26,10 +31,10 @@ public class NercoHole : MonoBehaviour
         dmgTickTimer += Time.deltaTime;
         if (collision.CompareTag("Player") && playerHealth != null)
         {
-            
+
             if (dmgTickTimer >= tickInterval)
             {
-                playerHealth.TakeDamage(damage);
+                playerHealth.TakeDamage((int)damage);
                 dmgTickTimer = 0f;
             }
         }

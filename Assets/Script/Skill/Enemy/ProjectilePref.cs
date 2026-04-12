@@ -1,10 +1,10 @@
 using UnityEngine;
 
-public class ProjectilePref : MonoBehaviour, IMagicProjectile
+public class ProjectilePref : MonoBehaviour, IProjectilePref
 {
     public float speed = 8.0f;
     public float lifeTime = 2.0f;
-    public int damage = 10;
+    public float damage = 10f;
     private int moveDirection = 1;
 
     void Update()
@@ -24,7 +24,7 @@ public class ProjectilePref : MonoBehaviour, IMagicProjectile
             Health playerHealth = collision.GetComponent<Health>();
             if (playerHealth != null)
             {
-                playerHealth.TakeDamage(damage);
+                playerHealth.TakeDamage((int)damage);
             }
             Destroy(gameObject);
         }
@@ -40,5 +40,10 @@ public class ProjectilePref : MonoBehaviour, IMagicProjectile
             scale.x = -Mathf.Abs(scale.x);
             transform.localScale = scale;
         }
+    }
+
+    public void SetDamage(float damageValue)
+    {
+        damage = damageValue;
     }
 }

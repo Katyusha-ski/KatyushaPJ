@@ -1,12 +1,12 @@
 using UnityEngine;
 
-public class MagicSpherePrefab : MonoBehaviour, IMagicProjectile
+public class MagicSpherePrefab : MonoBehaviour, IProjectilePref
 {
     public float castingTime = 1.0f;
     public float speed = 8.0f;
     public float lifeTime = 2.0f;
-    public int damage = 10;
-    
+    public float damage = 10f;
+
     private Animator animator;
     private bool isCasting = true;
     private float castingTimer = 0.0f;
@@ -59,7 +59,7 @@ public class MagicSpherePrefab : MonoBehaviour, IMagicProjectile
             Health enemyHealth = collision.GetComponent<Health>();
             if (enemyHealth != null)
             {
-                enemyHealth.TakeDamage(damage);
+                enemyHealth.TakeDamage((int)damage);
             }
             if (explodeEffect != null)
             {
@@ -80,5 +80,10 @@ public class MagicSpherePrefab : MonoBehaviour, IMagicProjectile
             scale.x = -Mathf.Abs(scale.x);
             transform.localScale = scale;
         }
+    }
+
+    public void SetDamage(float damageValue)
+    {
+        damage = damageValue;
     }
 }

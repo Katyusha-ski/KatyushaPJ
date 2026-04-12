@@ -10,7 +10,7 @@ public class CharacterStats : MonoBehaviour
     [SerializeField] private float baseAtk = 1f; // Base normal attack damage
     [SerializeField] private float baseCritRate = 0f;
     [SerializeField] private float baseCritDamage = 0.75f;
-    [SerializeField] private float baseArmorPierce = 0f;
+    [SerializeField] private float baseArmorPierce = 0f; // Armor Pierce (0-100%)
     [SerializeField] private float baseCDR = 0f; // CDR = Cooldown Reduction(%) and i will create a logic to limit it to max 40% in the future
     [SerializeField] private int baseMaxHP = 20;
     [SerializeField] private float baseMovementSpeed = 2.5f;
@@ -57,18 +57,18 @@ public class CharacterStats : MonoBehaviour
     }
 
     public float Armor => CalculateStat(baseArmor, armorMod);
-    public float LifeSteal => CalculateStat(baseLifeSteal, lifeStealMod);
-    public float CCRes => CalculateStat(baseCCRes, ccResMod);
+    public float LifeSteal => Mathf.Clamp01(CalculateStat(baseLifeSteal, lifeStealMod) / 100f) * 100f;
+    public float CCRes => Mathf.Clamp01(CalculateStat(baseCCRes, ccResMod) / 100f) * 100f;
     public float Atk => CalculateStat(baseAtk, atkMod);
-    public float CritRate => CalculateStat(baseCritRate, critRateMod);
+    public float CritRate => Mathf.Clamp01(CalculateStat(baseCritRate, critRateMod) / 100f) * 100f;
     public float CritDamage => CalculateStat(baseCritDamage, critDamageMod);
-    public float ArmorPierce => CalculateStat(baseArmorPierce, armorPierceMod);
-    public float CDR => CalculateStat(baseCDR, cdrMod);
+    public float ArmorPierce => Mathf.Clamp01(CalculateStat(baseArmorPierce, armorPierceMod) / 100f) * 100f;
+    public float CDR => Mathf.Clamp01(CalculateStat(baseCDR, cdrMod) / 100f) * 100f;
     public float MaxHP => CalculateStat(baseMaxHP, maxHPMod);
     public float MovementSpeed => CalculateStat(baseMovementSpeed, movementSpeedMod);
     public float HPRegen => CalculateStat(baseHPRegen, hpRegenMod);
-    public float DmgR => CalculateStat(baseDmgR, dmgRMod);
-    public float SkillAmp => CalculateStat(baseSkillAmp, skillAmpMod);
+    public float DmgR => Mathf.Clamp01(CalculateStat(baseDmgR, dmgRMod) / 100f) * 100f;
+    public float SkillAmp => Mathf.Clamp01(CalculateStat(baseSkillAmp, skillAmpMod) / 100f) * 100f;
 
     // ARMOR
     public void AddArmorModifier(StatsModifier mod)
