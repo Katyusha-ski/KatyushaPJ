@@ -14,5 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   icon: {fileID: 0}
   cooldown: 7
-  projectilePrefab: {fileID: 3212989424531414512, guid: 1483ca28f23eea1499eeb90a8ba1c9e2, type: 3}
+  baseDamage: 7
+  spawnPrefab: {fileID: 0}
   projectileSFX: {fileID: 0}
+  isItNeedToFlip: 1
+  spawnOffset: {x: 0, y: 0, z: 0}

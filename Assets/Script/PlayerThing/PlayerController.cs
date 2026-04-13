@@ -14,6 +14,7 @@ public class PlayerController : MonoBehaviour
     public float CurrentSpeed => movementController?.CurrentSpeed ?? 0f;
     public int Direction => movementController?.Direction ?? 1;
     public bool IsGrounded => movementController?.IsGrounded ?? false;
+    public InputConfig GetInputConfig() => inputConfig;
 
     private void Awake()
     {
