@@ -18,7 +18,6 @@ public class PlayerMovementController : MonoBehaviour
     private bool isGrounded;
     private int direction = 1;// 1 for right, -1 for left
     private float currentSpeed;
-    private float speedMultiplier = 1.0f;
 
     // Properties for external access
     public float CurrentSpeed => currentSpeed;
@@ -77,7 +76,9 @@ public class PlayerMovementController : MonoBehaviour
             sr.flipX = true;
         }
 
-        currentSpeed = baseSpeed * (isRunning ? runMultiplier : 1f) * speedMultiplier;
+        // Use CharacterStats for movement speed (includes modifiers like slow effects)
+        float effectiveSpeed = stats != null ? stats.MovementSpeed : baseSpeed;
+        currentSpeed = effectiveSpeed * (isRunning ? runMultiplier : 1f);
         bool isMoving = horizontalInput != 0;
         rb.linearVelocity = new Vector2(horizontalInput * currentSpeed, rb.linearVelocity.y);
         animationController.SetMovementState(isMoving, isRunning);
@@ -122,16 +123,6 @@ public class PlayerMovementController : MonoBehaviour
         // Check with the configured layer mask
         Collider2D[] hits = Physics2D.OverlapCircleAll(groundCheckPosition, groundCheckRadius, groundLayer);
         isGrounded = hits.Length > 0;
-    }
-
-    
-    public void SpeedMultiplier(float multiplier)
-    {
-        speedMultiplier = Mathf.Clamp01(multiplier);
-    }
-    public void ResetSpeedMultiplier()
-    {
-        speedMultiplier = 1.0f;
     }
 
     private void OnMovementSpeedChanged(float newSpeed)

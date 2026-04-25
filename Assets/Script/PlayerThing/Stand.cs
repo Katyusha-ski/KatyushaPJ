@@ -55,6 +55,7 @@ public class Stand : MonoBehaviour
     {   
         if (animator != null)
         {
+            animator.SetTrigger(punchTrigger);
             damagedEnemies.Clear();
         }
     }
@@ -81,18 +82,21 @@ public class Stand : MonoBehaviour
         int direction = playerController?.Direction ?? 1;
         Vector2 punchPos = (Vector2)transform.position + new Vector2(direction * punchRange / 2f, 0);
 
-        // Raycast to find enemies
-        RaycastHit2D[] hits = Physics2D.CircleCastAll(punchPos, punchRadius, Vector2.zero, 0, enemyLayer);
+        // Punch zone size: punchRange (X-axis), punchRadius * 2 (Y-axis)
+        Vector2 punchSize = new Vector2(punchRange, punchRadius * 2f);
 
-        foreach (var hit in hits)
+        // Check box area for enemies in punch range
+        Collider2D[] colliders = Physics2D.OverlapBoxAll(punchPos, punchSize, 0, enemyLayer);
+
+        foreach (var collider in colliders)
         {
-            if (hit.collider != null && !damagedEnemies.Contains(hit.collider.gameObject))
+            if (collider != null && !damagedEnemies.Contains(collider.gameObject))
             {
-                Health enemyHealth = hit.collider.GetComponent<Health>();
+                Health enemyHealth = collider.GetComponent<Health>();
                 if (enemyHealth != null)
                 {
                     enemyHealth.TakeDamage((int)finalDamage);
-                    damagedEnemies.Add(hit.collider.gameObject);
+                    damagedEnemies.Add(collider.gameObject);
 
                     // LifeSteal
                     if (stats.LifeSteal > 0 && playerHealth != null)
