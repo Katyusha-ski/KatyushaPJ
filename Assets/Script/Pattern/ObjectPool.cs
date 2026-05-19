@@ -25,7 +25,10 @@ public class ObjectPool : MonoBehaviour
             return;
         }
         _instance = this;
-        DontDestroyOnLoad(gameObject);
+        if (gameObject.scene.name != "DontDestroyOnLoad")
+        {
+            DontDestroyOnLoad(gameObject);
+        }
 
         poolDictionary = new Dictionary<string, Queue<GameObject>>();
 

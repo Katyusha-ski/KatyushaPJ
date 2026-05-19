@@ -8,8 +8,8 @@ public class CharacterStats : MonoBehaviour
     [SerializeField] private float baseLifeSteal = 0f; // only applies to normal attacks, not skills
     [SerializeField] private float baseCCRes = 0f;
     [SerializeField] private float baseAtk = 1f; // Base normal attack damage
-    [SerializeField] private float baseCritRate = 0f;
-    [SerializeField] private float baseCritDamage = 0.75f;
+    [SerializeField] private float baseCritRate = 0f; // Critical hit chance (0-100%)
+    [SerializeField] private float baseCritDamage = 75f; // Critical damage multiplier (e.g. 150 means 150% total damage, 200 means 200% total damage)
     [SerializeField] private float baseArmorPierce = 0f; // Armor Pierce (0-100%)
     [SerializeField] private float baseCDR = 0f; // CDR = Cooldown Reduction(%) and i will create a logic to limit it to max 40% in the future
     [SerializeField] private int baseMaxHP = 20;

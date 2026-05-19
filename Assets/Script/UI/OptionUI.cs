@@ -8,7 +8,7 @@ public class OptionUI : MenuUI
 
     private void Start()
     {
-        // Gán giá trị ban đầu cho slider (nếu có AudioManager)
+        // Gán giá trị ban đầu cho image (nếu có AudioManager)
         musicSlider.value = AudioManager.Instance.MusicVolume;
         sfxSlider.value = AudioManager.Instance.SFXVolume;
 

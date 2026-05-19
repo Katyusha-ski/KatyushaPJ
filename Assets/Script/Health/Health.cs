@@ -6,8 +6,8 @@ public class Health : MonoBehaviour
 {
     [SerializeField] private int maxHealth;
     [SerializeField] private int currentHealth;
-
-    public HealthBar healthBar;
+    [SerializeField] private MonoBehaviour healthBar;
+    private IHealthBar _healthBar;
     public AudioClip damageSFX;
     public AudioClip dieSFX;
     public LootManager lootManager;
@@ -19,6 +19,7 @@ public class Health : MonoBehaviour
     private float regenTimer = 0f;
     private const float REGEN_INTERVAL = 5f; //heal every 5 seconds
 
+
     public void SetUnDying(bool value)
     {
         isUnDying = value;
@@ -28,9 +29,9 @@ public class Health : MonoBehaviour
     {
         currentHealth = Mathf.Clamp(health, 0, maxHealth);
 
-        if (healthBar != null)
+        if (_healthBar != null)
         {
-            healthBar.SetHealth(currentHealth, maxHealth);
+            _healthBar.SetHealth(currentHealth, maxHealth);
         }
 
     }
@@ -58,14 +59,14 @@ public class Health : MonoBehaviour
         }
     }
 
-    void Awake()
+    private void Awake()
     {
+        _healthBar = healthBar as IHealthBar;
         characterStats = GetComponent<CharacterStats>();
         maxHealth = (int)characterStats.MaxHP;
         currentHealth = maxHealth;
         characterStats.MaxHPChanged += OnMaxHPChanged;
-        if (healthBar != null)
-            healthBar.SetMaxHealth(maxHealth);
+        _healthBar?.SetMaxHealth(maxHealth);
     }
 
     public void TakeDamage(int damage)
@@ -83,8 +84,7 @@ public class Health : MonoBehaviour
         float finalDamage = Mathf.Max(1f, (damage - armor) * (1f - dmgReduction));
         currentHealth -= (int)finalDamage;
         
-        if (healthBar != null)
-            healthBar.SetHealth(currentHealth, maxHealth);
+        _healthBar?.SetHealth(currentHealth, maxHealth);
 
         if (currentHealth <= 0)
         {
@@ -107,8 +107,7 @@ public class Health : MonoBehaviour
         
         currentHealth = Mathf.Clamp(currentHealth + amount, 0, maxHealth);
         
-        if (healthBar != null)
-            healthBar.SetHealth(currentHealth, maxHealth);
+        _healthBar?.SetHealth(currentHealth, maxHealth);
     }
 
     private void Die()
@@ -145,8 +144,7 @@ public class Health : MonoBehaviour
     {
         maxHealth = (int)newMaxHP;
         currentHealth = Mathf.Min(currentHealth, maxHealth);
-        if (healthBar != null)
-            healthBar.SetHealth(currentHealth, maxHealth);
+        _healthBar?.SetHealth(currentHealth, maxHealth);
     }
 
     private void OnDestroy()

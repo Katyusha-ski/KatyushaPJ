@@ -75,25 +75,39 @@ public class EnemyController : MonoBehaviour, IEnemyStateProvider
     public void Patrol()
     {
         direction = lastPatrolDirection;
-        rb.linearVelocity = new Vector2(characterStats.MovementSpeed * direction, rb.linearVelocity.y);
+        rb.linearVelocityX = characterStats.MovementSpeed * direction;
         sr.flipX = direction < 0;
     }
 
     public void LookAtPlayer()
     {
         if (player == null) return;
-        direction = player.position.x > transform.position.x ? 1 : -1;
-        sr.flipX = direction < 0;
+
+        float diffX = player.position.x - transform.position.x;
+        bool isTooCloseX = Mathf.Abs(diffX) < 0.2f;
+        if (!isTooCloseX)
+        {
+            direction = diffX > 0 ? 1 : -1;
+            sr.flipX = direction < 0;
+        }
         rb.linearVelocity = Vector2.zero;
     }
 
     public void MoveTowardPlayer()
     {
         if (player == null) return;
-        float moveDirection = player.position.x > transform.position.x ? 1 : -1;
-        direction = (int)moveDirection;
-        rb.linearVelocity = new Vector2(characterStats.MovementSpeed * 1.5f * direction, rb.linearVelocity.y);
-        sr.flipX = direction < 0;
+        float diffX = player.position.x - transform.position.x;
+        bool isTooCloseX = Mathf.Abs(diffX) < 0.2f;
+        if (!isTooCloseX)
+        {
+            direction = diffX > 0 ? 1 : -1;
+            sr.flipX = direction < 0;
+            rb.linearVelocityX = characterStats.MovementSpeed * 1.5f * direction;
+        }
+        else
+        {
+            rb.linearVelocityX = 0f;
+        }
     }
 
     /// <summary>

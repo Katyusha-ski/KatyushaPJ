@@ -37,7 +37,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 4441224218290582171}
+  - {fileID: 7476087119935305637}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &6741929243073357941
@@ -208,7 +208,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 10
   currentHealth: 0
-  healthBar: {fileID: 5416383594440565038}
+  healthBar: {fileID: 3008290122146142640}
   damageSFX: {fileID: 8300000, guid: f7a08f45200bf464ab2a0408e5f29cb1, type: 3}
   dieSFX: {fileID: 8300000, guid: d8f7c8b1797784542965bee7b596d68c, type: 3}
   lootManager: {fileID: 79319132487125086}
@@ -242,7 +242,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LootManager
   lootTable: {fileID: 11400000, guid: df8b912749d2ca3478caeabda06d2b14, type: 2}
-  itemFloatPref: {fileID: 0}
+  itemFloatPref: {fileID: 1039174889174051788, guid: 675a2b960ebb7c144b8e59f0240a58ef, type: 3}
   poolTag: ItemLoot
   dropRad: 1
   dropForce: 1
@@ -268,7 +268,23 @@ MonoBehaviour:
   baseCDR: 0
   baseMaxHP: 20
   baseMovementSpeed: 2.5
---- !u!1001 &3985833867836237523
+  baseHPRegen: 0
+  baseDmgR: 0
+  baseSkillAmp: 0
+  totalAtk: 0
+  totalArmor: 0
+  totalMaxHP: 0
+  totalMovementSpeed: 0
+  totalCritRate: 0
+  totalCritDamage: 0
+  totalArmorPierce: 0
+  totalLifesteal: 0
+  totalCCRes: 0
+  totalCDR: 0
+  totalHPRegen: 0
+  totalDmgR: 0
+  totalSkillAmp: 0
+--- !u!1001 &7868499441476838381
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -338,11 +354,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 788942669992416328, guid: 9f176e676efb02b48a3dc14de2bbe441, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 2.47
+      value: -0.5316
       objectReference: {fileID: 0}
     - target: {fileID: 788942669992416328, guid: 9f176e676efb02b48a3dc14de2bbe441, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0.05
+      value: 0.32505
       objectReference: {fileID: 0}
     - target: {fileID: 788942669992416328, guid: 9f176e676efb02b48a3dc14de2bbe441, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -356,9 +372,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4913150913781755038, guid: 9f176e676efb02b48a3dc14de2bbe441, type: 3}
-      propertyPath: m_Layer
-      value: 7
+    - target: {fileID: 6094577394176007240, guid: 9f176e676efb02b48a3dc14de2bbe441, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0.49
+      objectReference: {fileID: 0}
+    - target: {fileID: 6094577394176007240, guid: 9f176e676efb02b48a3dc14de2bbe441, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 1.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7187951909236280713, guid: 9f176e676efb02b48a3dc14de2bbe441, type: 3}
+      propertyPath: m_PresetInfoIsWorld
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7453120115407544575, guid: 9f176e676efb02b48a3dc14de2bbe441, type: 3}
       propertyPath: m_AnchorMax.x
@@ -368,40 +392,28 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7796950959067707844, guid: 9f176e676efb02b48a3dc14de2bbe441, type: 3}
-      propertyPath: m_Layer
-      value: 7
-      objectReference: {fileID: 0}
     - target: {fileID: 8100149129055850704, guid: 9f176e676efb02b48a3dc14de2bbe441, type: 3}
       propertyPath: m_Name
       value: Enemy HPBar
-      objectReference: {fileID: 0}
-    - target: {fileID: 8100149129055850704, guid: 9f176e676efb02b48a3dc14de2bbe441, type: 3}
-      propertyPath: m_Layer
-      value: 7
-      objectReference: {fileID: 0}
-    - target: {fileID: 8286824914012511862, guid: 9f176e676efb02b48a3dc14de2bbe441, type: 3}
-      propertyPath: m_Layer
-      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9f176e676efb02b48a3dc14de2bbe441, type: 3}
---- !u!224 &4441224218290582171 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 788942669992416328, guid: 9f176e676efb02b48a3dc14de2bbe441, type: 3}
-  m_PrefabInstance: {fileID: 3985833867836237523}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &5416383594440565038 stripped
+--- !u!114 &3008290122146142640 stripped
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8969581553428170749, guid: 9f176e676efb02b48a3dc14de2bbe441, type: 3}
-  m_PrefabInstance: {fileID: 3985833867836237523}
+  m_CorrespondingSourceObject: {fileID: 4939623474122488413, guid: 9f176e676efb02b48a3dc14de2bbe441, type: 3}
+  m_PrefabInstance: {fileID: 7868499441476838381}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fff217c3f49922949b8ae1d0c2be02f4, type: 3}
+  m_Script: {fileID: 11500000, guid: 08492eb84e59cce438023a5b3d01e54e, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyHealthBar
+--- !u!224 &7476087119935305637 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 788942669992416328, guid: 9f176e676efb02b48a3dc14de2bbe441, type: 3}
+  m_PrefabInstance: {fileID: 7868499441476838381}
+  m_PrefabAsset: {fileID: 0}
