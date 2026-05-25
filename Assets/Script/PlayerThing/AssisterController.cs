@@ -1,3 +1,5 @@
+// Script này chủ yếu để cho thứ gì đó theo sau player, có thể là một con pet hoặc một cái bóng. Nó sẽ lưu lại vị trí của player mỗi frame và di chuyển đến vị trí cũ của player sau một khoảng thời gian delay nhất định. Nhưng giờ tôi không có dùng
+
 using UnityEngine;
 using System.Collections.Generic;
 

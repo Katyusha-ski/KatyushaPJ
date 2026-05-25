@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public enum ItemType { Consumable, Equipment, Material, Quest, Skill }
+public enum ItemType { Consumable, Equipment, Material, Quest, Skill, All } //All is for shop filtering, not actual item type
 
 public enum EquipmentType
 { 

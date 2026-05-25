@@ -30,7 +30,18 @@ public class Inventory : MonoBehaviour
         for (int i = 0; i < equipmentSlots; i++) equipment[i] = null;
     }
 
-
+    public int GetItemCount(ItemData item)
+    {
+        int count = 0;
+        for (int i = 0; i < itemSlots.Count; i++)
+        {
+            if (itemSlots[i] != null && itemSlots[i].item == item)
+            {
+                count += itemSlots[i].amount;
+            }
+        }
+        return count;
+    }
     public bool CanAddItem(ItemData item, int amount = 1)
     {
         if(amount <= 0) return false; // Invalid amount
