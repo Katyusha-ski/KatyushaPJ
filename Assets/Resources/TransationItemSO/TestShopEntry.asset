@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a0785678fd29ac4b833a1cf9f7f1dc7, type: 3}
   m_Name: TestShopEntry
   m_EditorClassIdentifier: Assembly-CSharp::ShopEntrySO
-  item: {fileID: 0}
-  outputAmount: 1
+  item: {fileID: 11400000, guid: c1395c073df47f942b839d953a29820d, type: 2}
+  amount: 1
   costs: []
   stock: -1

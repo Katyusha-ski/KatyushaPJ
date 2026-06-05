@@ -14,7 +14,7 @@ public class ShopUI : MonoBehaviour
 
     void OnEnable()
     {
-        itemDetailUI.Init(shopManager);
+        itemDetailUI.Init(shopManager, this);
         categoryUI.OnCategorySelected += HandleCategorySelected;
         itemListUI.OnItemSelected += HandleItemSelected;
         categoryUI.SelectDefault();
@@ -28,12 +28,15 @@ public class ShopUI : MonoBehaviour
 
     void HandleCategorySelected(ItemType category) 
     {
-        // [YOUR CODE] "All" → tên enum "tất cả" của bạn nếu khác
-        var filtered = category.ToString() == "None"
+        var filtered = category.ToString() == "None" // use "None" to apply no filter, since "All" is reserved for item types   
             ? shopManager.entries
+                .Where(e => e.item.itemType == category)
+                .ToList()
             : shopManager.entries
-                .Where(e => e.item.itemType == category) 
+                .Where(e => e.isUnlocked)
+                .Where(e => e.item.itemType == category)
                 .ToList();
+
 
         itemListUI.Populate(filtered);
         itemDetailUI.Clear();

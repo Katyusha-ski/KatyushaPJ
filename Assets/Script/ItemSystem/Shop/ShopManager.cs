@@ -4,16 +4,16 @@ using UnityEngine;
 public class ShopManager : MonoBehaviour
 {
     public List<ShopEntrySO> entries;
-    
+
     public bool CanAfford(ShopEntrySO entry)
-    {   
+    {
         foreach (var cost in entry.costs)
         {
             if (Inventory.Instance.GetItemCount(cost.item) < cost.amount)
             {
                 return false;
             }
-        }   
+        }
         return true;
     }
 
@@ -35,5 +35,15 @@ public class ShopManager : MonoBehaviour
         }
 
         return true;
+    }
+
+    public void UnlockByChapter(int currentChapter)
+    {
+        {
+            foreach (var entry in entries)
+            {
+                entry.isUnlocked = entry.unlockChapter <= currentChapter;
+            }
+        }
     }
 }

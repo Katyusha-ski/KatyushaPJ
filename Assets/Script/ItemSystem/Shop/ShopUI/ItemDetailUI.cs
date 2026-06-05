@@ -21,10 +21,12 @@ public class ItemDetailUI : MonoBehaviour
 
     private ShopEntrySO currentEntry;
     private ShopManager shopManager;
+    private ShopUI shopUI;
 
-    public void Init(ShopManager manager)
+    public void Init(ShopManager manager, ShopUI ui)
     {
         shopManager = manager;
+        shopUI = ui;
         Clear();
 
     }

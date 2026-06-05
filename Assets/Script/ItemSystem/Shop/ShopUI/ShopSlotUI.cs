@@ -13,30 +13,26 @@ public class ShopSlotUI : MonoBehaviour
     public Image background;
     public Color normalColor = Color.white;
     public Color selectedColor = Color.yellow;
+    public Color unaffordableColor = new Color(1f, 0.6f, 0.6f, 1f);
 
     public event Action<ShopSlotUI, ShopEntrySO> OnClicked;
     private ShopEntrySO entry;
+    private ShopManager shopManager;
 
-    public void Setup(ShopEntrySO shopEntry)
+    public void Setup(ShopEntrySO shopEntry, ShopManager manager)
     {
         entry = shopEntry;
+        shopManager = manager;
         itemIcon.sprite = entry.item.itemIcon;
         selectBtn.onClick.AddListener(() => OnClicked?.Invoke(this, entry));
         Refresh();
+
     }
 
     public void Refresh()
     {
-        bool canAfford = true;
-        foreach(var cost in entry.costs)
-        {
-            if (Inventory.Instance.GetItemCount(cost.item) < cost.amount)
-            {
-                canAfford = false;
-                break;
-            }
-        }
-        itemIcon.color = canAfford ? normalColor : selectedColor;
+        bool canAfford = shopManager.CanAfford(entry);
+        itemIcon.color = canAfford ? normalColor : unaffordableColor;
     }
 
     public void SetSelected(bool selected)

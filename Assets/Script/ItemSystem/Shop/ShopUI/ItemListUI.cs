@@ -6,6 +6,7 @@ public class ItemListUI : MonoBehaviour
 {
     public Transform contentParent;
     public GameObject shopSlotPref;
+    public ShopManager shopManager;
 
     public event Action<ShopEntrySO> OnItemSelected;
 
@@ -19,7 +20,8 @@ public class ItemListUI : MonoBehaviour
         foreach (var entry in entries) {
             var go = Instantiate(shopSlotPref, contentParent);
             var slot = go.GetComponent<ShopSlotUI>();
-            slot.Setup(entry);
+            slot.Setup(entry, shopManager);
+            slot.OnClicked += HandleSlotClicked;
             spawnedSlots.Add(slot);
         }
     }
