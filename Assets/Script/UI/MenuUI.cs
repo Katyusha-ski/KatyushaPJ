@@ -4,16 +4,26 @@ public class MenuUI : MonoBehaviour
 {
     public GameObject UI;
 
-    public void ShowMenu()
+    public void ShowMenuAndPause()
     {
         UI.SetActive(true);
         GameManager.Instance.PauseGame();
     }
 
-    public void HideMenu()
+    public void HideMenuAndResume()
     {
         UI.SetActive(false);
         GameManager.Instance.ResumeGame();
+    }
+
+    public void JustShowMenu()
+    {
+        UI.SetActive(true);
+    }
+
+    public void JustHideMenu()
+    {
+        if (UI != null) UI.SetActive(false);
     }
 }
 

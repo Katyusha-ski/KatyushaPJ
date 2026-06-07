@@ -21,12 +21,36 @@ public class ShopSlotUI : MonoBehaviour
 
     public void Setup(ShopEntrySO shopEntry, ShopManager manager)
     {
+        if (shopEntry == null)
+        {
+            Debug.LogError("[ShopSlotUI] Setup: shopEntry is null!");
+            return;
+        }
+
+        if (manager == null)
+        {
+            Debug.LogError("[ShopSlotUI] Setup: manager is null!");
+            return;
+        }
+
         entry = shopEntry;
         shopManager = manager;
+
+        if (entry.item == null)
+        {
+            Debug.LogError("[ShopSlotUI] Setup: entry.item is null!");
+            return;
+        }
+
+        if (itemIcon == null)
+        {
+            Debug.LogError("[ShopSlotUI] Setup: itemIcon is not assigned in Inspector!");
+            return;
+        }
+
         itemIcon.sprite = entry.item.itemIcon;
         selectBtn.onClick.AddListener(() => OnClicked?.Invoke(this, entry));
         Refresh();
-
     }
 
     public void Refresh()

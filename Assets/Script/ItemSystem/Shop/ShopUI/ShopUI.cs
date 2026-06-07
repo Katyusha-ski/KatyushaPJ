@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public class ShopUI : MonoBehaviour
+public class ShopUI : MenuUI
 {
     [Header("Panels")]
     public CategoryUI categoryUI;
@@ -12,8 +12,11 @@ public class ShopUI : MonoBehaviour
     [Header("Data")]
     public ShopManager shopManager;
 
-    void OnEnable()
+    void OnEnable() 
     {
+        if (shopManager == null || itemDetailUI == null || categoryUI == null || itemListUI == null)
+            return;
+
         itemDetailUI.Init(shopManager, this);
         categoryUI.OnCategorySelected += HandleCategorySelected;
         itemListUI.OnItemSelected += HandleItemSelected;
@@ -22,16 +25,18 @@ public class ShopUI : MonoBehaviour
 
     void OnDisable()
     {
-        categoryUI.OnCategorySelected -= HandleCategorySelected;
-        itemListUI.OnItemSelected -= HandleItemSelected;
+        if (categoryUI != null)
+            categoryUI.OnCategorySelected -= HandleCategorySelected;
+        if (itemListUI != null)
+            itemListUI.OnItemSelected -= HandleItemSelected;
     }
 
     void HandleCategorySelected(ItemType category) 
     {
-        var filtered = category.ToString() == "None" // use "None" to apply no filter, since "All" is reserved for item types   
-            ? shopManager.entries
-                .Where(e => e.item.itemType == category)
-                .ToList()
+        if (shopManager?.entries == null) return;
+
+        var filtered = category.ToString() == "None"
+            ? shopManager.entries.Where(e => e.isUnlocked).ToList()
             : shopManager.entries
                 .Where(e => e.isUnlocked)
                 .Where(e => e.item.itemType == category)

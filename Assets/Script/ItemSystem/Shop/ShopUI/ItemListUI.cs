@@ -1,6 +1,6 @@
-﻿using UnityEngine;
+﻿using System;
 using System.Collections.Generic;
-using System;
+using UnityEngine;
 
 public class ItemListUI : MonoBehaviour
 {
@@ -15,9 +15,15 @@ public class ItemListUI : MonoBehaviour
 
     public void Populate(List<ShopEntrySO> entries)
     {
+        if (contentParent == null || shopSlotPref == null || shopManager == null) return;
+
         foreach (Transform t in contentParent) Destroy(t.gameObject);
         spawnedSlots.Clear();
-        foreach (var entry in entries) {
+        currentSelected = null;
+
+        if (entries == null) return;
+        foreach (var entry in entries)
+        {
             var go = Instantiate(shopSlotPref, contentParent);
             var slot = go.GetComponent<ShopSlotUI>();
             slot.Setup(entry, shopManager);
@@ -35,7 +41,7 @@ public class ItemListUI : MonoBehaviour
 
     private void HandleSlotClicked(ShopSlotUI clickedSlot, ShopEntrySO entry)
     {
-        if (clickedSlot == currentSelected) 
+        if (currentSelected != null && clickedSlot != currentSelected)
             currentSelected.SetSelected(false);
 
         currentSelected = clickedSlot;

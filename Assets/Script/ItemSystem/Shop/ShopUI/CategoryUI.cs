@@ -19,6 +19,7 @@ public class CategoryUI : MonoBehaviour
 
     private void Awake()
     {
+        if (categoryButtons == null) return;
         foreach (var cb in categoryButtons) {
             var cat = cb.itemType;
             var btn = cb.button;
@@ -38,7 +39,9 @@ public class CategoryUI : MonoBehaviour
 
     public void SelectDefault()
     {
+        if (categoryButtons == null || categoryButtons.Count == 0) return;
         var first = categoryButtons[0];
+        if (first == null || first.button == null) return;
         HandleClick(first.itemType, first.button);
     }
 }

@@ -9,9 +9,9 @@ public class ButtonSFX : MonoBehaviour
         {
             Instance = this;
         }
-        else
+        else if (Instance != this)
         {
-            Destroy(gameObject);
+            Destroy(this);
         }
     }
     public AudioClip buttonClickSFX;

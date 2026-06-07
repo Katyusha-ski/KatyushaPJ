@@ -1,5 +1,4 @@
 ﻿using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -33,6 +32,7 @@ public class ItemDetailUI : MonoBehaviour
 
     public void ShowEntry(ShopEntrySO entry)
     {
+        if (entry?.item == null) return;
         currentEntry = entry;
         itemIcon.sprite = entry.item.itemIcon;             
         itemNameText.text = entry.item.itemName;       
@@ -55,10 +55,12 @@ public class ItemDetailUI : MonoBehaviour
     void BuildCostIcons()
     {
         foreach (Transform t in costsContainer) Destroy(t.gameObject);
+        if (currentEntry.costs == null) return;
         foreach (var cost in currentEntry.costs)
         {
+            if (cost?.item == null) continue;
             var go = Instantiate(costIconPrefab, costsContainer);
-            go.GetComponent<Image>().sprite = cost.item.itemIcon;        
+            go.GetComponentInChildren<Image>().sprite = cost.item.itemIcon;
             go.GetComponentInChildren<TextMeshProUGUI>().text = $"x{cost.amount}";
         }
     }
@@ -80,6 +82,6 @@ public class ItemDetailUI : MonoBehaviour
     {
         if (currentEntry == null) return;
         if (shopManager.Purchase(currentEntry))
-            GetComponentInParent<ShopUI>().RefreshAll();
+            shopUI.RefreshAll();
     }
 }
