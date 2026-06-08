@@ -9,7 +9,7 @@ using UnityEngine;
 public class ItemStats
 {
     [Header("Offensive Stats")]
-    public float damage = 0f;              // Main attack damage (baseAtk)
+    public float atk = 0f;                 // Main attack damage (baseAtk)
     public float critChance = 0f;          // Critical hit chance (%) (baseCritRate)
     public float critDamage = 0f;          // Critical damage multiplier (%) (baseCritDamage)
     public float armorPierce = 0f;         // Armor penetration (baseArmorPierce)
@@ -36,7 +36,7 @@ public class ItemStats
 
     public void ResetStats()
     {
-        damage = 0f;
+        atk = 0f;
         critChance = 0f;
         critDamage = 0f;
         armorPierce = 0f;
@@ -48,6 +48,7 @@ public class ItemStats
         cooldownReduction = 0f;
         hpRegen = 0f;
         dmgR = 0f;
+        skillAmp = 0f;
     }
 
     /// <summary>
@@ -57,7 +58,7 @@ public class ItemStats
     {
         return new ItemStats
         {
-            damage = this.damage,
+            atk = this.atk,
             critChance = this.critChance,
             critDamage = this.critDamage,
             armorPierce = this.armorPierce,
@@ -81,7 +82,7 @@ public class ItemStats
     {
         if (other == null) return;
 
-        damage += other.damage;
+        atk += other.atk;
         critChance += other.critChance;
         critDamage += other.critDamage;
         armorPierce += other.armorPierce;
@@ -93,6 +94,7 @@ public class ItemStats
         cooldownReduction += other.cooldownReduction;
         hpRegen += other.hpRegen;
         dmgR += other.dmgR;
+        skillAmp += other.skillAmp;
     }
 
     /// <summary>
@@ -102,7 +104,7 @@ public class ItemStats
     {
         if (other == null) return;
 
-        damage -= other.damage;
+        atk -= other.atk;
         critChance -= other.critChance;
         critDamage -= other.critDamage;
         armorPierce -= other.armorPierce;
@@ -114,6 +116,7 @@ public class ItemStats
         cooldownReduction -= other.cooldownReduction;
         hpRegen -= other.hpRegen;
         dmgR -= other.dmgR;
+        skillAmp -= other.skillAmp;
     }
 
     /// <summary>
@@ -121,9 +124,9 @@ public class ItemStats
     /// </summary>
     public bool HasStats()
     {
-        return damage != 0f || critChance != 0f || critDamage != 0f || armorPierce != 0f ||
+        return atk != 0f || critChance != 0f || critDamage != 0f || armorPierce != 0f ||
                armor != 0f || health != 0f || movementSpeed != 0f ||
                controlResistance != 0f || lifesteal != 0f || cooldownReduction != 0f || hpRegen != 0f ||
-               dmgR != 0f;
+               dmgR != 0f || skillAmp != 0f;
     }
 }

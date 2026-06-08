@@ -45,12 +45,12 @@ public class EquipmentManager : MonoBehaviour
 
         cachedEquipmentStats[slotIndex] = itemStats.Clone();
 
-        // DAMAGE
-        if (itemStats.damage != 0)
+        // ATK
+        if (itemStats.atk != 0)
         {
-            var mod = new StatsModifier(itemStats.damage, ModifierType.Additive, stack.item.itemName);
+            var mod = new StatsModifier(itemStats.atk, ModifierType.Additive, stack.item.itemName);
             characterStats.AddATKModifier(mod);
-            activeModifiers[$"slot_{slotIndex}_damage"] = mod;
+            activeModifiers[$"slot_{slotIndex}_atk"] = mod;
         }
 
         // ARMOR
@@ -152,23 +152,20 @@ public class EquipmentManager : MonoBehaviour
 
     private void RemoveEquipmentStats(int slotIndex)
     {
-        // 1️⃣ Lấy stats cũ từ cache
         ItemStats oldStats = cachedEquipmentStats[slotIndex];
         if (oldStats == null || !oldStats.HasStats()) return;
-        
-        // 2️⃣ Duyệt 10 stats - ngược lại với Apply
-        
-        // DAMAGE
-        if (oldStats.damage != 0)
+
+        // ATK
+        if (oldStats.atk != 0)
         {
-            var mod = activeModifiers[$"slot_{slotIndex}_damage"];
+            var mod = activeModifiers[$"slot_{slotIndex}_atk"];
             if (mod != null)
             {
                 characterStats.RemoveATKModifier(mod);
-                activeModifiers.Remove($"slot_{slotIndex}_damage");
+                activeModifiers.Remove($"slot_{slotIndex}_atk");
             }
         }
-        
+
         // ARMOR
         if (oldStats.armor != 0)
         {
@@ -179,7 +176,7 @@ public class EquipmentManager : MonoBehaviour
                 activeModifiers.Remove($"slot_{slotIndex}_armor");
             }
         }
-        
+
         // HEALTH
         if (oldStats.health != 0)
         {
@@ -190,7 +187,7 @@ public class EquipmentManager : MonoBehaviour
                 activeModifiers.Remove($"slot_{slotIndex}_health");
             }
         }
-        
+
         // MOVEMENT SPEED
         if (oldStats.movementSpeed != 0)
         {
@@ -201,7 +198,7 @@ public class EquipmentManager : MonoBehaviour
                 activeModifiers.Remove($"slot_{slotIndex}_movementSpeed");
             }
         }
-        
+
         // CRIT CHANCE
         if (oldStats.critChance != 0)
         {
@@ -256,7 +253,7 @@ public class EquipmentManager : MonoBehaviour
                 activeModifiers.Remove($"slot_{slotIndex}_controlResistance");
             }
         }
-        
+
         // COOLDOWN REDUCTION
         if (oldStats.cooldownReduction != 0)
         {

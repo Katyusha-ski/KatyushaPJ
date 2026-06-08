@@ -35,7 +35,7 @@ public class ShopUI : MenuUI
     {
         if (shopManager?.entries == null) return;
 
-        var filtered = category.ToString() == "None"
+        var filtered = category.ToString() == "All"
             ? shopManager.entries.Where(e => e.isUnlocked).ToList()
             : shopManager.entries
                 .Where(e => e.isUnlocked)
