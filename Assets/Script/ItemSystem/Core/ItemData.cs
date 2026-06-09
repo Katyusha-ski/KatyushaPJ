@@ -7,11 +7,20 @@ public enum EquipmentType
     None = 0,
     Chest = 1,        // Related to Armor/Defense
     Weapon = 2,       // Related to Damage/Offense
-    Ring = 3,         // Related to Health/Special effects
-    Feather = 4       // Related to Movement Speed
+    Accessory = 3,         // Related to Health/Special effects
+    Shoes = 4       // Related to Movement Speed
 }
 
 public enum UsageType { None, SingleUse, MutipleUse, Permanent }
+
+public enum SkillType
+{
+    None,
+    Range,
+    Dash,
+    Heal,
+    Counter
+}
 
 /// <summary>
 /// Core data structure for all inventory items.

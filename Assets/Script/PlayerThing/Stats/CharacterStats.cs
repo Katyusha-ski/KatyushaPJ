@@ -4,19 +4,19 @@ using System.Collections.Generic;
 public class CharacterStats : MonoBehaviour
 {
     // Base stats
-    [SerializeField] private float baseArmor = 0f;
-    [SerializeField] private float baseLifeSteal = 0f; // only applies to normal attacks, not skills
-    [SerializeField] private float baseCCRes = 0f;
-    [SerializeField] private float baseAtk = 1f; // Base normal attack damage
-    [SerializeField] private float baseCritRate = 0f; // Critical hit chance (0-100%)
-    [SerializeField] private float baseCritDamage = 75f; // Critical damage multiplier (e.g. 150 means 150% total damage, 200 means 200% total damage)
-    [SerializeField] private float baseArmorPierce = 0f; // Armor Pierce (0-100%)
-    [SerializeField] private float baseCDR = 0f; // CDR = Cooldown Reduction(%) and i will create a logic to limit it to max 40% in the future
-    [SerializeField] private int baseMaxHP = 20;
-    [SerializeField] private float baseMovementSpeed = 2.5f;
-    [SerializeField] private float baseHPRegen = 0f; // HP regeneration per 5 seconds
-    [SerializeField] private float baseDmgR = 0f; // Damage reduction (0-100%)
-    [SerializeField] private float baseSkillAmp = 0f; // Skill amplification (%)
+    [SerializeField, InspectorName("Base Armor")] private float baseArmor = 0f;
+    [SerializeField, InspectorName("Base Life Steal")] private float baseLifeSteal = 0f; // only applies to normal attacks, not skills
+    [SerializeField, InspectorName("Base CC Res")] private float baseCCRes = 0f;
+    [SerializeField, InspectorName("Base Attack")] private float baseAtk = 1f; // Base normal attack damage
+    [SerializeField, InspectorName("Base Crit Rate")] private float baseCritRate = 0f; // Critical hit chance (0-100%)
+    [SerializeField, InspectorName("Base Crit Damage")] private float baseCritDamage = 75f; // Bonus crit damage % (genshin-style: 75 = crit deals 175% total damage)
+    [SerializeField, InspectorName("Base Armor Pierce")] private float baseArmorPierce = 0f; // Armor Pierce (0-100%)
+    [SerializeField, InspectorName("Base CDR")] private float baseCDR = 0f; // CDR = Cooldown Reduction(%) and i will create a logic to limit it to max 40% in the future
+    [SerializeField, InspectorName("Base Max HP")] private int baseMaxHP = 20;
+    [SerializeField, InspectorName("Base Movement Speed")] private float baseMovementSpeed = 2.5f;
+    [SerializeField, InspectorName("Base HP Regen")] private float baseHPRegen = 0f; // HP regeneration per 5 seconds
+    [SerializeField, InspectorName("Base Damage Reduction")] private float baseDmgR = 0f; // Damage reduction (0-100%)
+    [SerializeField, InspectorName("Base Skill Amp")] private float baseSkillAmp = 0f; // Skill amplification (%)
 
     // Modifiers list
     private List<StatsModifier> armorMod = new List<StatsModifier>();
@@ -255,19 +255,19 @@ public class CharacterStats : MonoBehaviour
 
 #if UNITY_EDITOR
     [Header("═══ DEBUG: TOTAL STATS (After Modifiers) ═══")]
-    [SerializeField] private float totalAtk;
-    [SerializeField] private float totalArmor;
-    [SerializeField] private float totalMaxHP;
-    [SerializeField] private float totalMovementSpeed;
-    [SerializeField] private float totalCritRate;
-    [SerializeField] private float totalCritDamage;
-    [SerializeField] private float totalArmorPierce;
-    [SerializeField] private float totalLifesteal;
-    [SerializeField] private float totalCCRes;
-    [SerializeField] private float totalCDR;
-    [SerializeField] private float totalHPRegen;
-    [SerializeField] private float totalDmgR;
-    [SerializeField] private float totalSkillAmp;
+    [SerializeField, InspectorName("Attack")] private float totalAtk;
+    [SerializeField, InspectorName("Armor")] private float totalArmor;
+    [SerializeField, InspectorName("Max HP")] private float totalMaxHP;
+    [SerializeField, InspectorName("Movement Speed")] private float totalMovementSpeed;
+    [SerializeField, InspectorName("Crit Rate")] private float totalCritRate;
+    [SerializeField, InspectorName("Crit Damage")] private float totalCritDamage;
+    [SerializeField, InspectorName("Armor Pierce")] private float totalArmorPierce;
+    [SerializeField, InspectorName("Life Steal")] private float totalLifesteal;
+    [SerializeField, InspectorName("CC Res")] private float totalCCRes;
+    [SerializeField, InspectorName("CDR")] private float totalCDR;
+    [SerializeField, InspectorName("HP Regen")] private float totalHPRegen;
+    [SerializeField, InspectorName("Damage Reduction")] private float totalDmgR;
+    [SerializeField, InspectorName("Skill Amp")] private float totalSkillAmp;
 
     private void OnStatsChanged()
     {

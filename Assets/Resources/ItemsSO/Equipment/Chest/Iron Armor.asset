@@ -10,26 +10,27 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 462ee4e4477b62746aa569ea5d231340, type: 3}
-  m_Name: DiamondSword
+  m_Name: Iron Armor
   m_EditorClassIdentifier: Assembly-CSharp::ItemData
-  itemName: Diamond sword
-  itemIcon: {fileID: -1921438251184327610, guid: f710da723e4430f4bb64ac8b4030f4ec, type: 3}
+  itemName: Iron armor
+  itemIcon: {fileID: 21300000, guid: b30bbdea7cb1c2149b869249a8949e77, type: 3}
   itemType: 1
-  equipmentType: 2
-  description: just destroy all the enemies
+  equipmentType: 1
+  description: "Gi\xE1p s\u1EAFt \u0111\u01B0\u1EE3c nh\u1EEFng th\u1EE3 r\xE8n \u1EDF
+    l\xE0ng \u0111\xFAc ra."
   isStackable: 0
   maxStackSize: 1
   stats:
     atk: 0
-    critChance: 40
-    critDamage: 70
-    armorPierce: 50
-    armor: 0
+    critChance: 0
+    critDamage: 0
+    armorPierce: 0
+    armor: 4
     health: 0
     movementSpeed: 0
-    controlResistance: 0
-    lifesteal: 35
+    controlResistance: 10
+    lifesteal: 0
     cooldownReduction: 0
-    hpRegen: 0
+    hpRegen: 3
     dmgR: 0
-    skillAmp: 50
+    skillAmp: 0

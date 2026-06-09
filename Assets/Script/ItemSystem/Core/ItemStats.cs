@@ -9,25 +9,25 @@ using UnityEngine;
 public class ItemStats
 {
     [Header("Offensive Stats")]
-    public float atk = 0f;                 // Main attack damage (baseAtk)
-    public float critChance = 0f;          // Critical hit chance (%) (baseCritRate)
-    public float critDamage = 0f;          // Critical damage multiplier (%) (baseCritDamage)
-    public float armorPierce = 0f;         // Armor penetration (baseArmorPierce)
+    [InspectorName("Attack")] public float atk = 0f;                 // Main attack damage (baseAtk)
+    [InspectorName("Crit Chance")] public float critChance = 0f;  // Critical hit chance (%) (baseCritRate)
+    [InspectorName("Crit Damage")] public float critDamage = 0f;  // Critical damage multiplier (%) (baseCritDamage)
+    [InspectorName("Armor Pierce")] public float armorPierce = 0f;// Armor penetration (baseArmorPierce)
 
     [Header("Defensive Stats")]
-    public float armor = 0f;               // Physical defense (baseArmor)
-    public float health = 0f;              // Max health (baseMaxHP)
+    [InspectorName("Armor")] public float armor = 0f;             // Physical defense (baseArmor)
+    [InspectorName("Health")] public float health = 0f;           // Max health (baseMaxHP)
 
     [Header("Utility Stats")]
-    public float movementSpeed = 0f;       // Movement speed (baseMovementSpeed)
-    public float controlResistance = 0f;   // Crowd control resistance (%) (baseCCRes)
+    [InspectorName("Movement Speed")] public float movementSpeed = 0f;       // Movement speed (baseMovementSpeed)
+    [InspectorName("Control Resistance")] public float controlResistance = 0f;   // Crowd control resistance (%) (baseCCRes)
 
     [Header("Special Stats")]
-    public float lifesteal = 0f;           // Lifesteal (%) (baseLifeSteal)
-    public float cooldownReduction = 0f;   // Ability cooldown reduction (%) (baseCDR)
-    public float hpRegen = 0f;             // HP regeneration per 5s (baseHPRegen)
-    public float dmgR = 0f;                // Damage reduction (0-1) (baseDmgR)
-    public float skillAmp = 0f;            // Skill amplification (%) (baseSkillAmp)
+    [InspectorName("Life Steal")] public float lifesteal = 0f;           // Lifesteal (%) (baseLifeSteal)
+    [InspectorName("Cooldown Reduction")] public float cooldownReduction = 0f;   // Ability cooldown reduction (%) (baseCDR)
+    [InspectorName("HP Regen")] public float hpRegen = 0f;             // HP regeneration per 5s (baseHPRegen)
+    [InspectorName("Damage Reduction")] public float dmgR = 0f;        // Damage reduction (%) (baseDmgR)
+    [InspectorName("Skill Amp")] public float skillAmp = 0f;            // Skill amplification (%) (baseSkillAmp)
 
     public ItemStats()
     {

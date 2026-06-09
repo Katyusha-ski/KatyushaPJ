@@ -10,26 +10,26 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 462ee4e4477b62746aa569ea5d231340, type: 3}
-  m_Name: DiamondSword
+  m_Name: Royal Sword
   m_EditorClassIdentifier: Assembly-CSharp::ItemData
-  itemName: Diamond sword
-  itemIcon: {fileID: -1921438251184327610, guid: f710da723e4430f4bb64ac8b4030f4ec, type: 3}
+  itemName: Royal Sword
+  itemIcon: {fileID: 0}
   itemType: 1
   equipmentType: 2
-  description: just destroy all the enemies
+  description: 
   isStackable: 0
   maxStackSize: 1
   stats:
-    atk: 0
-    critChance: 40
-    critDamage: 70
-    armorPierce: 50
+    atk: 18
+    critChance: 12
+    critDamage: 15
+    armorPierce: 40
     armor: 0
     health: 0
     movementSpeed: 0
     controlResistance: 0
-    lifesteal: 35
+    lifesteal: 5
     cooldownReduction: 0
     hpRegen: 0
     dmgR: 0
-    skillAmp: 50
+    skillAmp: 15

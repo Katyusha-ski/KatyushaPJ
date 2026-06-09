@@ -13,8 +13,8 @@ Tài liệu này tổng hợp các loại item và chỉ số dựa trên các c
 - **None**: Không phải trang bị.
 - **Chest**: Giáp/Phòng thủ.
 - **Weapon**: Vũ khí/Sát thương.
-- **Ring**: Nhẫn/Hiệu ứng đặc biệt hoặc tăng HP.
-- **Feather**: Lông vũ/Tốc độ di chuyển.
+- **Accessory**: Trang sức/Hiệu ứng đặc biệt hoặc tăng HP.
+- **Shoes**: Giày/Tốc độ di chuyển.
 
 ## Thông tin cơ bản của item
 - **itemName**: Tên hiển thị.
@@ -53,131 +53,204 @@ Tài liệu này tổng hợp các loại item và chỉ số dựa trên các c
 
 ## Danh sách item gợi ý
 ### Equipment
-- **Leather Chest**
+#### Chest (Giáp)
+- **Cloth Armor**
+  - itemType: Equipment | equipmentType: Chest
+  - stats: armor +1, hpRegen +1
+- **Leather Armor**
   - itemType: Equipment | equipmentType: Chest
   - stats: armor +3, hpRegen +1
-- **Spectral Dagger**
+- **Iron Armor**
+  - itemType: Equipment | equipmentType: Chest
+  - stats: armor +4, hpRegen +3, controlResistance +10%
+- **Meticulous Iron Armor**
+  - itemType: Equipment | equipmentType: Chest
+  - stats: armor +6, hpRegen +4, controlResistance +14%, health +5
+- **Meteorite Armor**
+  - itemType: Equipment | equipmentType: Chest
+  - stats: armor +9, hpRegen +5, controlResistance +17%, health +10, dmgR +10%
+- **Royal Armor**
+  - itemType: Equipment | equipmentType: Chest
+  - stats: armor +16, hpRegen +8, controlResistance +20%, health +15, dmgR +25%
+
+#### Weapon (Vũ khí)
+- **Basic Dagger**
   - itemType: Equipment | equipmentType: Weapon
   - stats: damage +2
-- **Frost Spear**
+- **Farmer Axe**
   - itemType: Equipment | equipmentType: Weapon
-  - stats: damage +3, skillAmp +10
-- **Windfeather**
-  - itemType: Equipment | equipmentType: Feather
-  - stats: movementSpeed +0.4, cooldownReduction +10, skillAmp +5
-- **Skystride Feather**
-  - itemType: Equipment | equipmentType: Feather
-  - stats: movementSpeed +0.7, cooldownReduction +10, skillAmp +5, controlResistance +10
-- **Silent Veil Cloak**
-  - itemType: Equipment | equipmentType: Chest
-  - stats: armor +4, hpRegen +4, controlResistance +12
-- **Ruby Signet**
-  - itemType: Equipment | equipmentType: Ring
-  - stats: lifesteal +5, hpRegen +3, damage +4
-- **Shadow Thunder Sword**
+  - stats: damage +4, skillAmp +5%
+- **Warrior Axe**
   - itemType: Equipment | equipmentType: Weapon
-  - stats: damage +12, critChance +8, armorPierce +8
-- **Blacksteel Armor**
-  - itemType: Equipment | equipmentType: Chest
-  - stats: armor +16, health +35, dmgR +6
-- **Gale Plume**
-  - itemType: Equipment | equipmentType: Feather
-  - stats: movementSpeed +1.0, controlResistance +8, armor +6
-- **Ring of Echoes**
-  - itemType: Equipment | equipmentType: Ring
-  - stats: skillAmp +12, cooldownReduction +8, critChance +4
-- **Emberfang Blade**
+  - stats: damage +7, skillAmp +8%, critChance +5%
+- **Hunter Spear**
   - itemType: Equipment | equipmentType: Weapon
-  - stats: damage +14, critChance +6, lifesteal +5
-- **Vanguard Plate**
-  - itemType: Equipment | equipmentType: Chest
-  - stats: armor +18, dmgR +8, health +25
-- **Stoneguard Cuirass**
-  - itemType: Equipment | equipmentType: Chest
-  - stats: armor +20, health +40, hpRegen +3
-- **Blood Rite Ring**
-  - itemType: Equipment | equipmentType: Ring
-  - stats: lifesteal +8, critDamage +15, health +15
-- **Zephyr Quill**
-  - itemType: Equipment | equipmentType: Feather
-  - stats: movementSpeed +1.2, controlResistance +7, lifesteal +3
-- **Void Pulse Band**
-  - itemType: Equipment | equipmentType: Ring
-  - stats: skillAmp +15, critDamage +10, damage +5
-- **Stormbreaker Axe**
+  - stats: damage +10, skillAmp +10%, critChance +8%, armorPierce +15%
+- **Serrated Sword**
   - itemType: Equipment | equipmentType: Weapon
-  - stats: damage +18, critDamage +18, armorPierce +8
+  - stats: damage +14, skillAmp +12%, critChance +10%, armorPierce +25%, critDamage +10%
+- **Royal Sword**
+  - itemType: Equipment | equipmentType: Weapon
+  - stats: damage +18, skillAmp +15%, critChance +12%, armorPierce +40%, critDamage +15%, lifesteal +5%
+- **Royal Mace**
+  - itemType: Equipment | equipmentType: Weapon
+  - stats: damage +18, skillAmp +15%, critChance +12%, armorPierce +40%, critDamage +15%, lifesteal +5%
+- **Royal Spear**
+  - itemType: Equipment | equipmentType: Weapon
+  - stats: damage +18, skillAmp +15%, critChance +12%, armorPierce +40%, critDamage +15%, lifesteal +5%
+
+#### Accessory (Trang sức)
+- **Silver Ring**
+  - itemType: Equipment | equipmentType: Accessory
+  - stats: skillAmp +10%, cooldownReduction +10%, hpRegen +3
+- **Gemstone Necklace**
+  - itemType: Equipment | equipmentType: Accessory
+  - stats: skillAmp +18%, cooldownReduction +14%, hpRegen +4, critChance +5%
+- **Ruby Necklace**
+  - itemType: Equipment | equipmentType: Accessory
+  - stats: skillAmp +26%, cooldownReduction +18%, hpRegen +5, critChance +12%, critDamage +12%
+- **Royal Silver Medal**
+  - itemType: Equipment | equipmentType: Accessory
+  - stats: skillAmp +34%, cooldownReduction +22%, hpRegen +6, critChance +18%, critDamage +24%, health +10, lifesteal +10%
+- **Royal Gold Medal**
+  - itemType: Equipment | equipmentType: Accessory
+  - stats: skillAmp +42%, cooldownReduction +26%, hpRegen +7, critChance +24%, critDamage +37%, health +16, lifesteal +20%
+- **Lord's Necklace**
+  - itemType: Equipment | equipmentType: Accessory
+  - stats: skillAmp +50%, cooldownReduction +30%, hpRegen +8, critChance +30%, critDamage +50%, health +22, lifesteal +30%
+
+#### Shoes (Giày)
+- **Leather Shoes**
+  - itemType: Equipment | equipmentType: Shoes
+  - stats: movementSpeed +0.4, cooldownReduction +5%
+- **Nomad Shoes**
+  - itemType: Equipment | equipmentType: Shoes
+  - stats: movementSpeed +0.55, cooldownReduction +8%, controlResistance +5%
+- **Sturdy Shoes**
+  - itemType: Equipment | equipmentType: Shoes
+  - stats: movementSpeed +0.7, cooldownReduction +10%, controlResistance +8%, armor +4
+- **Ghoststone Shoes**
+  - itemType: Equipment | equipmentType: Shoes
+  - stats: movementSpeed +0.85, cooldownReduction +12%, controlResistance +10%, armor +6, armorPierce +5%
+- **Heaven Shoes**
+  - itemType: Equipment | equipmentType: Shoes
+  - stats: movementSpeed +1.0, cooldownReduction +15%, controlResistance +12%, armor +8, armorPierce +10%, lifesteal +5%
 
 ### Consumable
-- **Small Health Potion**
+- **Green Grape**
   - itemType: Consumable
-  - mô tả: Hồi 25 HP ngay lập tức.
-- **Large Health Potion**
+  - mô tả: Hồi 2 HP ngay lập tức.
+- **Cooked Meat**
   - itemType: Consumable
-  - mô tả: Hồi 80 HP ngay lập tức.
-- **Swift Elixir**
+  - mô tả: Hồi 5 HP ngay lập tức.
+- **Sweet Cake**
   - itemType: Consumable
-  - mô tả: Tăng movementSpeed +0.5 trong 20s.
-- **Cooldown Talisman**
+  - mô tả: Hồi 3 HP ngay, hồi 1 HP/giây trong 5 giây.
+- **Vitality Potion**
   - itemType: Consumable
-  - mô tả: Tăng cooldownReduction +10 trong 15s.
-- **Ironhide Tonic**
+  - mô tả: Hồi 10 HP ngay, hồi 2 HP/giây trong 5 giây.
+- **Witch's Vitality Potion**
   - itemType: Consumable
-  - mô tả: Tăng armor +8 trong 20s.
-- **Razorleaf Brew**
+  - mô tả: Hồi 20 HP ngay, hồi 2 HP/giây trong 10 giây.
+- **Strength Potion**
   - itemType: Consumable
-  - mô tả: Tăng critChance +8 trong 15s.
-- **Lifebloom Draught**
+  - mô tả: Tăng 10 ATK trong 60 giây.
+- **Witch's Strength Potion**
   - itemType: Consumable
-  - mô tả: Hồi 5 HP mỗi 5s trong 30s.
-- **Wardstone Oil**
+  - mô tả: Tăng 10 ATK, 100% critDamage trong 60 giây.
+- **Antidote**
   - itemType: Consumable
-  - mô tả: Tăng dmgR +5 trong 12s.
+  - mô tả: Giải toàn bộ hiệu ứng xấu.
+- **Immunity Potion**
+  - itemType: Consumable
+  - mô tả: Miễn nhiễm hiệu ứng xấu trong 60 giây.
+- **Holy Water**
+  - itemType: Consumable
+  - mô tả: Giải + miễn nhiễm hiệu ứng xấu trong 120 giây.
+- **Resistance Potion**
+  - itemType: Consumable
+  - mô tả: Tăng 20% dmgR trong 60 giây.
+- **Dragon's Blood**
+  - itemType: Consumable
+  - mô tả: Tăng 50% dmgR trong 60 giây.
 
 ### Material
-- **Blacksteel Ore**
+- **Coal**
   - itemType: Material
-  - mô tả: Nguyên liệu chế tạo giáp/weapon cấp thấp.
-- **Thunder Crystal**
+  - mô tả: Fuel, can be traded with Usagi for money.
+- **Beast Fang**
   - itemType: Material
-  - mô tả: Dùng nâng cấp weapon hệ sét.
-- **Spirit Feather Thread**
+  - mô tả: Material needed when buying armor from Usagi.
+- **Blue Crystal**
   - itemType: Material
-  - mô tả: Nguyên liệu chế tạo feather tăng tốc.
-- **Ashen Leather**
+  - mô tả: Can be traded for some weapons from Usagi.
+- **Red Crystal**
   - itemType: Material
-  - mô tả: Da bền dùng chế tạo chest armor.
-- **Frost Shard**
+  - mô tả: Can be traded for some weapons from Usagi.
+- **Strange Crystal**
   - itemType: Material
-  - mô tả: Mảnh băng dùng cường hóa vũ khí.
-- **Sunstone Core**
+  - mô tả: Trade for a certain weapon from Usagi.
+- **Diamond**
   - itemType: Material
-  - mô tả: Lõi năng lượng dùng khảm nhẫn.
+  - mô tả: Trade for a certain weapon from Usagi.
+- **Bird Feather**
+  - itemType: Material
+  - mô tả: Trade for shoes from Usagi.
+- **Phoenix Feather**
+  - itemType: Material
+  - mô tả: Trade for shoes from Usagi.
+- **Fox Tail**
+  - itemType: Material
+  - mô tả: Trade for potions from Usagi.
+- **Frog Leg**
+  - itemType: Material
+  - mô tả: Trade for potions from Usagi.
+- **Snail Shell**
+  - itemType: Material
+  - mô tả: Trade for potions from Usagi.
+- **Octopus Tentacle**
+  - itemType: Material
+  - mô tả: Trade for potions from Usagi.
 
 ### Quest
-- **Hunter's Pursuit Charm**
+- **Scroll**
   - itemType: Quest
-  - mô tả: Vật phẩm nhiệm vụ từ NPC thợ săn.
-- **Ancient Map Fragment**
+  - mô tả: A scroll containing information from the king.
+- **Map**
   - itemType: Quest
-  - mô tả: Thu thập 4 mảnh để mở khu vực bí ẩn.
-- **Sealed Relic Case**
+  - mô tả: A map showing the way.
+- **Key 1**
   - itemType: Quest
-  - mô tả: Hộp chứa cổ vật cần giao cho học giả.
-- **Signal Flare Kit**
+  - mô tả: The first key.
+- **Key 2**
   - itemType: Quest
-  - mô tả: Dụng cụ gọi đồng đội trong nhiệm vụ.
+  - mô tả: The second key.
+- **Key 3**
+  - itemType: Quest
+  - mô tả: The third key.
+- **Key 4**
+  - itemType: Quest
+  - mô tả: The fourth key.
+- **Key 5**
+  - itemType: Quest
+  - mô tả: The fifth key.
+- **Angel's Mirror**
+  - itemType: Quest
+  - mô tả: A gift from the king given by an angel, but it was stolen.
+- **Witch's Hat**
+  - itemType: Quest
+  - mô tả: Return this to the witch for guidance.
 
 ### Skill
-- **Skill Tome: Blade Tempest**
+- **Shoot**
   - itemType: Skill
-  - mô tả: Mở khóa kỹ năng gây sát thương diện rộng.
-- **Arcane Seal: Ice Aegis**
+  - mô tả: Hachi bắn random thing.
+- **Dash**
   - itemType: Skill
-  - mô tả: Mở khóa kỹ năng tạo khiên giảm sát thương.
-- **Skill Tome: Thunder Lance**
+  - mô tả: Hachi giúp bạn lướt đi.
+- **Heal**
   - itemType: Skill
-  - mô tả: Mở khóa kỹ năng phóng sét tầm xa.
-- **Arcane Seal: Shadow Step**
+  - mô tả: Hachi hồi máu cho bạn.
+- **Block**
   - itemType: Skill
-  - mô tả: Mở khóa kỹ năng dịch chuyển ngắn.
+  - mô tả: Hachi đỡ đòn cho bạn.
