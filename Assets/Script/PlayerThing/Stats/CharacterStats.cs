@@ -57,18 +57,18 @@ public class CharacterStats : MonoBehaviour
     }
 
     public float Armor => CalculateStat(baseArmor, armorMod);
-    public float LifeSteal => Mathf.Clamp01(CalculateStat(baseLifeSteal, lifeStealMod) / 100f) * 100f;
-    public float CCRes => Mathf.Clamp01(CalculateStat(baseCCRes, ccResMod) / 100f) * 100f;
+    public float LifeSteal => CalculateStat(baseLifeSteal, lifeStealMod);
+    public float CCRes => Mathf.Clamp(CalculateStat(baseCCRes, ccResMod), 0f, 60f);
     public float Atk => CalculateStat(baseAtk, atkMod);
-    public float CritRate => Mathf.Clamp01(CalculateStat(baseCritRate, critRateMod) / 100f) * 100f;
+    public float CritRate => CalculateStat(baseCritRate, critRateMod);
     public float CritDamage => CalculateStat(baseCritDamage, critDamageMod);
     public float ArmorPierce => Mathf.Clamp01(CalculateStat(baseArmorPierce, armorPierceMod) / 100f) * 100f;
-    public float CDR => Mathf.Clamp01(CalculateStat(baseCDR, cdrMod) / 100f) * 100f;
+    public float CDR => Mathf.Clamp(CalculateStat(baseCDR, cdrMod), 0f, 40f);
     public float MaxHP => CalculateStat(baseMaxHP, maxHPMod);
     public float MovementSpeed => CalculateStat(baseMovementSpeed, movementSpeedMod);
     public float HPRegen => CalculateStat(baseHPRegen, hpRegenMod);
-    public float DmgR => Mathf.Clamp01(CalculateStat(baseDmgR, dmgRMod) / 100f) * 100f;
-    public float SkillAmp => Mathf.Clamp01(CalculateStat(baseSkillAmp, skillAmpMod) / 100f) * 100f;
+    public float DmgR => CalculateStat(baseDmgR, dmgRMod);
+    public float SkillAmp => CalculateStat(baseSkillAmp, skillAmpMod);
 
     // ARMOR
     public void AddArmorModifier(StatsModifier mod)

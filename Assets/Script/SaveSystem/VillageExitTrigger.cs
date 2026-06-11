@@ -1,19 +1,8 @@
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
-/// <summary>
-/// Level End Trigger: Auto save and load next scene
-/// </summary>
 [RequireComponent(typeof(Collider2D))]
-public class LevelEndTrigger : MonoBehaviour
+public class VillageExitTrigger : MonoBehaviour
 {
-    [Header("Level Transition Settings")]
-    [Tooltip("Load next scene in build index")]
-    public bool loadNextScene = true;
-
-    [Tooltip("Or specify scene name")]
-    public string targetSceneName;
-
     [Header("Visual Settings")]
     public GameObject transitionEffectPrefab;
     public float transitionDelay = 1f;
@@ -35,51 +24,43 @@ public class LevelEndTrigger : MonoBehaviour
             return;
 
         isTriggered = true;
-        CompleteLevelAndTransition();
-    }
 
-    private void CompleteLevelAndTransition()
-    {
-        Debug.Log("Level completed! Transitioning...");
-
-        // Play transition effect if assigned
         if (transitionEffectPrefab != null)
         {
             Instantiate(transitionEffectPrefab, transform.position, Quaternion.identity);
         }
 
-        // Complete chapter after delay
         if (transitionDelay > 0)
         {
-            Invoke(nameof(OnChapterComplete), transitionDelay);
+            Invoke(nameof(GoToMainScene), transitionDelay);
         }
         else
         {
-            OnChapterComplete();
+            GoToMainScene();
         }
     }
 
-    private void OnChapterComplete()
+    private void GoToMainScene()
     {
         if (ChapterManager.Instance != null)
         {
-            ChapterManager.Instance.CompleteChapter();
+            ChapterManager.Instance.GoToMainScene();
         }
         else
         {
-            Debug.LogError("ChapterManager not found! Cannot complete chapter.");
+            Debug.LogError("ChapterManager not found!");
         }
     }
 
     private void OnDrawGizmos()
     {
-        Gizmos.color = Color.cyan;
+        Gizmos.color = Color.green;
         Gizmos.DrawWireCube(transform.position, Vector3.one);
     }
 
     private void OnDrawGizmosSelected()
     {
-        Gizmos.color = Color.blue;
+        Gizmos.color = Color.green;
         Gizmos.DrawCube(transform.position, Vector3.one * 1.5f);
     }
 }

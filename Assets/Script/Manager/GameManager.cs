@@ -1,5 +1,4 @@
-﻿using UnityEditor.Overlays;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public enum GameState
@@ -15,7 +14,6 @@ public class GameManager : MonoBehaviour
     public GameState CurrentGameState { get; private set; }
 
     [Header("Game state")]
-    public int currentLevel = 1;
     private float playTime = 0f;
     private SaveData tempSaveData;
 
@@ -83,7 +81,7 @@ public class GameManager : MonoBehaviour
 
         SaveData data = new SaveData
         {
-            currentLevel = this.currentLevel,
+            currentChapter = ChapterManager.Instance.CurrentChapterNumber,
             // Inventory data
             inventoryItem = Inventory.Instance.GetSerializableInventory(),
             equipmentItem = Inventory.Instance.GetSerializableEquipment(),
@@ -120,7 +118,8 @@ public class GameManager : MonoBehaviour
         }
 
         // Load game state
-        this.currentLevel = saveData.currentLevel;
+        if (ChapterManager.Instance != null)
+            ChapterManager.Instance.SetChapter(saveData.currentChapter);
         this.playTime = saveData.playTime;
 
         // Store save data temporarily
@@ -151,7 +150,8 @@ public class GameManager : MonoBehaviour
         SaveManager.DeleteSave();
 
         // Reset game state
-        currentLevel = 1;
+        if (ChapterManager.Instance != null)
+            ChapterManager.Instance.SetChapter(1);
         playTime = 0f;
 
         // Clear inventory
@@ -162,15 +162,14 @@ public class GameManager : MonoBehaviour
 
         Debug.Log("New game started!");
         
-        // Load first gameplay scene
+        // Load first village scene
         if (GameSceneController.Instance != null)
         {
-            GameSceneController.Instance.LoadGameScene("GrassScene");
+            GameSceneController.Instance.LoadGameScene("Village");
         }
         else
         {
-            // Fallback: load scene directly
-            SceneManager.LoadScene("GrassScene");
+            SceneManager.LoadScene("Village");
         }
     }
 
@@ -207,7 +206,7 @@ public class GameManager : MonoBehaviour
         // Restore player state with delay (ensure player is spawned)
         Invoke(nameof(RestorePlayerState), 0.2f);
 
-        Debug.Log($"Game loaded! Level: {currentLevel}, Play time: {playTime:F1}s");
+        Debug.Log($"Game loaded! Chapter: {ChapterManager.Instance.CurrentChapterNumber}, Play time: {playTime:F1}s");
     }
 
     /// <summary>

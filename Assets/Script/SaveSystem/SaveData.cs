@@ -4,7 +4,7 @@ using System.Collections.Generic;
 public class SaveData
 {
     // Game progression
-    public int currentLevel;
+    public int currentChapter;
 
     // Inventory data
     public List<SerializableItemStack> inventoryItem;
