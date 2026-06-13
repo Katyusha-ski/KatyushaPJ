@@ -20,11 +20,22 @@ MonoBehaviour:
   isStackable: 0
   maxStackSize: 1
   stats:
-    movementSpeed: 1.0
-    cooldownReduction: 15
-    controlResistance: 12
-    armor: 8
-    armorPierce: 10
-    lifesteal: 5
-    hpRegen: 0
-    atk: 0
+    statConfigs:
+    - statType: 6
+      value: 10
+      modifierType: 0
+    - statType: 2
+      value: 12
+      modifierType: 0
+    - statType: 1
+      value: 5
+      modifierType: 0
+    - statType: 7
+      value: 15
+      modifierType: 0
+    - statType: 9
+      value: 1
+      modifierType: 0
+    - statType: 0
+      value: 8
+      modifierType: 0

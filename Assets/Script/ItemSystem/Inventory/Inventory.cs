@@ -214,6 +214,52 @@ public class Inventory : MonoBehaviour
         return true;
     }
 
+    // ========================================================================
+    // UseItem(int slotIndex)
+    // ========================================================================
+    // Cau noi giua UI (SlotDragHandler) va Player (ConsumableManager).
+    // Flow:
+    //   SlotDragHandler (double-click)
+    //   -> Inventory.UseItem(slotIndex)
+    //   -> tim Player (tag), lay ConsumableManager
+    //   -> ConsumableManager.Use(item)
+    //   -> tao StatusEffect, apply vao StatusEffectController
+    //   -> RemoveItem(1) neu Use() thanh cong
+    // ========================================================================
+    public void UseItem(int slotIndex)
+    {
+        if (slotIndex < 0 || slotIndex >= itemSlots.Count) return;
+        ItemStack stack = itemSlots[slotIndex];
+        if (stack == null || stack.item == null) return;
+        if (stack.item.itemType != ItemType.Consumable) return;
+
+        // ---- BUOC 1: Tim Player ----
+        // Inventory la Singleton tren GameObject rieng,
+        // nen can tim Player qua tag de lay ConsumableManager
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
+        if (player == null)
+        {
+            Debug.LogError("Khong tim thay Player de su dung item");
+            return;
+        }
+
+        // ---- BUOC 2: Lay ConsumableManager ----
+        ConsumableManager consumableManager = player.GetComponent<ConsumableManager>();
+        if (consumableManager == null)
+        {
+            Debug.LogError("Player can co component ConsumableManager", player);
+            return;
+        }
+
+        // ---- BUOC 3: Goi Use() ----
+        // Neu Use() tra ve true -> item da duoc su dung thanh cong
+        // -> RemoveItem(1) de giam so luong trong inventory
+        if (consumableManager.Use(stack.item))
+        {
+            RemoveItem(stack.item, 1);
+        }
+    }
+
     public bool ClearInventory()
     {
         for (int i = 0; i < itemSlots.Count; i++)

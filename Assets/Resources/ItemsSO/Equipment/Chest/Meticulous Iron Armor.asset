@@ -16,20 +16,20 @@ MonoBehaviour:
   itemIcon: {fileID: 21300000, guid: 90618c52abe9df54ca2fb30c4dc09263, type: 3}
   itemType: 1
   equipmentType: 1
-  description: "Gi\xE1p cho l\xEDnh th\u01B0\u1EDDng \u1EDF trong th\xE0nh \u0111\xF4."
+  description: Giáp cho lính thường ở trong thành đô.
   isStackable: 0
   maxStackSize: 1
   stats:
-    atk: 0
-    critChance: 0
-    critDamage: 0
-    armorPierce: 0
-    armor: 6
-    health: 5
-    movementSpeed: 0
-    controlResistance: 14
-    lifesteal: 0
-    cooldownReduction: 0
-    hpRegen: 8
-    dmgR: 0
-    skillAmp: 0
+    statConfigs:
+    - statType: 0
+      value: 6
+      modifierType: 0
+    - statType: 8
+      value: 5
+      modifierType: 0
+    - statType: 10
+      value: 8
+      modifierType: 0
+    - statType: 2
+      value: 14
+      modifierType: 0

@@ -253,6 +253,43 @@ public class CharacterStats : MonoBehaviour
     public delegate void OnStatsChange();
     public event OnStatsChange StatsChanged;
 
+    public void AddStatModifier(StatType stat, StatsModifier mod)
+    {
+        GetModList(stat).Add(mod);
+        if (stat == StatType.MaxHP) MaxHPChanged?.Invoke(MaxHP);
+        if (stat == StatType.MovementSpeed) MovementSpeedChanged?.Invoke(MovementSpeed);
+        StatsChanged?.Invoke();
+    }
+
+    public void RemoveStatModifier(StatType stat, StatsModifier mod)
+    {
+        GetModList(stat).Remove(mod);
+        if (stat == StatType.MaxHP) MaxHPChanged?.Invoke(MaxHP);
+        if (stat == StatType.MovementSpeed) MovementSpeedChanged?.Invoke(MovementSpeed);
+        StatsChanged?.Invoke();
+    }
+
+    private System.Collections.Generic.List<StatsModifier> GetModList(StatType stat)
+    {
+        switch (stat)
+        {
+            case StatType.Armor: return armorMod;
+            case StatType.LifeSteal: return lifeStealMod;
+            case StatType.CCRes: return ccResMod;
+            case StatType.Atk: return atkMod;
+            case StatType.CritRate: return critRateMod;
+            case StatType.CritDamage: return critDamageMod;
+            case StatType.ArmorPierce: return armorPierceMod;
+            case StatType.CDR: return cdrMod;
+            case StatType.MaxHP: return maxHPMod;
+            case StatType.MovementSpeed: return movementSpeedMod;
+            case StatType.HPRegen: return hpRegenMod;
+            case StatType.DmgR: return dmgRMod;
+            case StatType.SkillAmp: return skillAmpMod;
+            default: return null;
+        }
+    }
+
 #if UNITY_EDITOR
     [Header("═══ DEBUG: TOTAL STATS (After Modifiers) ═══")]
     [SerializeField, InspectorName("Attack")] private float totalAtk;

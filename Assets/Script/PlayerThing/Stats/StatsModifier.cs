@@ -1,9 +1,35 @@
 ﻿using UnityEngine;
+using System.Collections.Generic;
 
 public enum ModifierType
 {
     Additive,
     Multiplicative
+}
+
+public enum StatType
+{
+    Armor,
+    LifeSteal,
+    CCRes,
+    Atk,
+    CritRate,
+    CritDamage,
+    ArmorPierce,
+    CDR,
+    MaxHP,
+    MovementSpeed,
+    HPRegen,
+    DmgR,
+    SkillAmp
+}
+
+[System.Serializable]
+public class StatModifierConfig
+{
+    public StatType statType = StatType.Atk;
+    public float value = 0f;
+    public ModifierType modifierType = ModifierType.Additive;
 }
 
 public class StatsModifier

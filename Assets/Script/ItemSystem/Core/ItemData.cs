@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
+using NaughtyAttributes;
 
 public enum ItemType { Consumable, Equipment, Material, Quest, Skill, All } //All is for shop filtering, not actual item type
 
@@ -22,10 +24,22 @@ public enum SkillType
     Counter
 }
 
-/// <summary>
-/// Core data structure for all inventory items.
-/// For Equipment items, contains stats that can be applied to character.
-/// </summary>
+// ============================================================================
+// ITEM DATA (ScriptableObject)
+// ============================================================================
+// Day la trung tam du lieu cua toan bo he thong item.
+// Mot SO co the duoc dung lam:
+//   - Equipment: dung stats (ItemStats) de tang chi so nhan vat
+//   - Consumable: dung consumableEffect de tao StatusEffect tam thoi
+//   - Material / Quest / Skill: chi dung Basic Information, khong co stat hay effect
+//
+// KIEN TRUC TACH:
+//   ItemData KHONG truc tiep tham chieu den StatusEffect hay CharacterStats.
+//   Thay vao do, no chua 2 field doc lap:
+//     - stats (ItemStats)        -> EquipmentManager doc, ap dung vao CharacterStats
+//     - consumableEffect (ConsumableEffect) -> ConsumableManager doc, tao StatusEffect
+//   Nhu vay ItemData la "data contract" thuan tuy, khong bi dong goi vao logic.
+// ============================================================================
 [CreateAssetMenu(menuName = "Inventory/Item")]
 public class ItemData : ScriptableObject
 {
@@ -42,35 +56,32 @@ public class ItemData : ScriptableObject
     public int maxStackSize = 99;
 
     [Header("Equipment Stats")]
-    [Tooltip("Bonus stats from weapon")]
+    [ShowIf("itemType", ItemType.Equipment)]
     public ItemStats stats = new ItemStats();
+
+    [Header("Consumable Effects")]
+    [ShowIf("itemType", ItemType.Consumable)]
+    [ReorderableList]
+    public List<ConsumableEffect> consumableEffects = new List<ConsumableEffect> { new ConsumableEffect() };
 
     private void OnEnable()
     {
-        // Initialize stats for equipment
         if (stats == null)
             stats = new ItemStats();
+        if (consumableEffects == null)
+            consumableEffects = new List<ConsumableEffect>();
     }
 
-    /// <summary>
-    /// Get stats of this item
-    /// </summary>
     public ItemStats GetStats()
     {
         return stats ?? new ItemStats();
     }
 
-    /// <summary>
-    /// Check if this item is equipment type
-    /// </summary>
     public bool IsEquipment()
     {
         return itemType == ItemType.Equipment;
     }
 
-    /// <summary>
-    /// Clone this item data for inventory instances
-    /// </summary>
     public ItemData Clone()
     {
         ItemData clone = Instantiate(this);

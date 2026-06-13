@@ -2,7 +2,23 @@
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class SlotDragHandler : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler, IDropHandler
+// ============================================================================
+// SLOT DRAG HANDLER
+// ============================================================================
+// Handle drag-and-drop + double-click cho slot inventory.
+//
+// INPUT -> OUTPUT:
+//   Drag inventory -> equipment: equip
+//   Drag equipment -> inventory: unequip
+//   Drag inventory -> inventory: swap
+//   Double-click consumable: use item
+//
+// VIEC SU DUNG ITEM:
+//   OnPointerClick() phat hien double-click
+//   -> goi Inventory.Instance.UseItem(slotIndex)
+//   -> (xem Inventory.UseItem() de biet flow tiep)
+// ============================================================================
+public class SlotDragHandler : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler, IDropHandler, IPointerClickHandler
 {
     private RectTransform rectTransform;
     private CanvasGroup canvasGroup;
@@ -10,8 +26,8 @@ public class SlotDragHandler : MonoBehaviour, IBeginDragHandler, IDragHandler, I
     private Slot slot;
     private Image draggedImage;
     private GameObject draggedOJ;
-    
-
+    private float lastClickTime = 0f;
+    private const float doubleClickThreshold = 0.3f;
 
     void Awake()
     {
@@ -44,7 +60,6 @@ public class SlotDragHandler : MonoBehaviour, IBeginDragHandler, IDragHandler, I
         {
            draggedOJ.transform.position = Input.mousePosition;
         } 
-        
     }
 
     public void OnEndDrag(PointerEventData eventData)
@@ -58,8 +73,32 @@ public class SlotDragHandler : MonoBehaviour, IBeginDragHandler, IDragHandler, I
         if (!eventData.pointerEnter) 
         {
             rectTransform.position = originalPosition; 
+        } 
+    }
+
+    // ========================================================================
+    // DOUBLE-CLICK -> USE CONSUMABLE
+    // ========================================================================
+    // Chi click vao inventory slot (khong phai equipment slot).
+    // Neu item la Consumable -> goi Inventory.UseItem()
+    // ========================================================================
+    public void OnPointerClick(PointerEventData eventData)
+    {
+        if (eventData.button != PointerEventData.InputButton.Left) return;
+        if (slot.isEquipmentSlot) return; // Equipment khong the "dung"
+        if (!slot.HasItem()) return;
+
+        // Phat hien double-click trong khoang thoi gian threshold
+        if (Time.unscaledTime - lastClickTime < doubleClickThreshold)
+        {
+            ItemStack stack = Inventory.Instance.itemSlots[slot.slotIndex];
+            if (stack != null && stack.item.itemType == ItemType.Consumable)
+            {
+                // chuyen cho Inventory xu ly (tim Player, apply effect, remove stack)
+                Inventory.Instance.UseItem(slot.slotIndex);
+            }
         }
-            
+        lastClickTime = Time.unscaledTime;
     }
 
     public void OnDrop(PointerEventData eventData)
@@ -67,10 +106,8 @@ public class SlotDragHandler : MonoBehaviour, IBeginDragHandler, IDragHandler, I
         var draggedSlotHandler = eventData.pointerDrag?.GetComponent<SlotDragHandler>();
         if (draggedSlotHandler == null || draggedSlotHandler == this) return;
 
-        // If both slots are equipment slots, do nothing
         if (draggedSlotHandler.slot.isEquipmentSlot && this.slot.isEquipmentSlot) return;
 
-        // If the target slot is an equipment slot, check if the dragged item is of the correct type
         if (this.slot.isEquipmentSlot)
         {
             ItemStack draggedStack = draggedSlotHandler.slot.isEquipmentSlot 
@@ -81,19 +118,15 @@ public class SlotDragHandler : MonoBehaviour, IBeginDragHandler, IDragHandler, I
                 (int)draggedStack.item.equipmentType != this.slot.slotIndex + 1)
                 return;
 
-            // Equip item - swap between inventory and equipment
             Inventory.Instance.SwapEquipItem(draggedSlotHandler.slot.slotIndex, this.slot.slotIndex, draggedSlotHandler.slot.isEquipmentSlot);
         }
         else if (draggedSlotHandler.slot.isEquipmentSlot)
         {
-            // Unequip - drag from equipment to inventory
             Inventory.Instance.SwapEquipItem(draggedSlotHandler.slot.slotIndex, this.slot.slotIndex, true);
         }
         else
         {
-            // Normal inventory swap
             Inventory.Instance.SwapItem(draggedSlotHandler.slot.slotIndex, this.slot.slotIndex);
         }
     }
-
 }

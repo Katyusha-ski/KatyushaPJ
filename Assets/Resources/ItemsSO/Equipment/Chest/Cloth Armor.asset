@@ -16,20 +16,14 @@ MonoBehaviour:
   itemIcon: {fileID: 21300000, guid: 40387f735e8533547815a1a2371b7faf, type: 3}
   itemType: 1
   equipmentType: 1
-  description: "\xC1o v\u1EA3i m\u1EC1m m\u01B0\u1EE3t"
+  description: Áo vải mềm mượt
   isStackable: 0
   maxStackSize: 1
   stats:
-    atk: 0
-    critChance: 0
-    critDamage: 0
-    armorPierce: 0
-    armor: 1
-    health: 0
-    movementSpeed: 0
-    controlResistance: 0
-    lifesteal: 0
-    cooldownReduction: 0
-    hpRegen: 1
-    dmgR: 0
-    skillAmp: 0
+    statConfigs:
+    - statType: 0
+      value: 1
+      modifierType: 0
+    - statType: 10
+      value: 1
+      modifierType: 0

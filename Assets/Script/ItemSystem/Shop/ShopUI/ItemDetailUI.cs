@@ -81,21 +81,10 @@ public class ItemDetailUI : MonoBehaviour
         }
 
         var sb = new System.Text.StringBuilder();
-
-        if (stats.atk > 0) sb.AppendLine($"Atk: {stats.atk}");
-        if (stats.critChance > 0) sb.AppendLine($"Crit Rate: {stats.critChance}");
-        if (stats.critDamage > 0) sb.AppendLine($"Crit Damage: {stats.critDamage}");
-        if (stats.armorPierce > 0) sb.AppendLine($"Armor Pierce: {stats.armorPierce}");
-        if (stats.armor > 0) sb.AppendLine($"Armor: {stats.armor}");
-        if (stats.health > 0) sb.AppendLine($"Max HP: {stats.health}");
-        if (stats.movementSpeed > 0) sb.AppendLine($"Movement Speed: {stats.movementSpeed}");
-        if (stats.controlResistance > 0) sb.AppendLine($"CC Res: {stats.controlResistance}");
-        if (stats.lifesteal > 0) sb.AppendLine($"Life Steal: {stats.lifesteal}");
-        if (stats.cooldownReduction > 0) sb.AppendLine($"CDR: {stats.cooldownReduction}");
-        if (stats.hpRegen > 0) sb.AppendLine($"HP Regen: {stats.hpRegen}");
-        if (stats.dmgR > 0) sb.AppendLine($"DmgR: {stats.dmgR}");
-        if (stats.skillAmp > 0) sb.AppendLine($"Skill Amp: {stats.skillAmp}");
-
+        foreach (var cfg in stats.statConfigs)
+        {
+            sb.AppendLine($"{ItemStats.GetDisplayName(cfg.statType)}: {cfg.value}");
+        }
         itemStatText.text = sb.ToString().TrimEnd('\n', '\r');
     }
 
