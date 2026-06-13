@@ -19,6 +19,8 @@ MonoBehaviour:
   description: Increase 10 ATK for 60 seconds.
   isStackable: 1
   maxStackSize: 16
+  stats:
+    statConfigs: []
   consumableEffects:
   - effectType: 3
     duration: 60
@@ -30,17 +32,3 @@ MonoBehaviour:
     - statType: 3
       value: 10
       modifierType: 0
-  stats:
-    atk: 0
-    critChance: 0
-    critDamage: 0
-    armorPierce: 0
-    armor: 0
-    health: 0
-    movementSpeed: 0
-    controlResistance: 0
-    lifesteal: 0
-    cooldownReduction: 0
-    hpRegen: 0
-    dmgR: 0
-    skillAmp: 0
