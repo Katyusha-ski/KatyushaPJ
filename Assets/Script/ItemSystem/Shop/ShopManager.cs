@@ -4,6 +4,23 @@ using UnityEngine;
 public class ShopManager : MonoBehaviour
 {
     public List<ShopEntrySO> entries;
+    public Dictionary<ShopEntrySO, RuntimeState> runtimeData = new Dictionary<ShopEntrySO, RuntimeState>();
+
+    private void Start()
+    {
+        if (entries == null)
+        {
+            Debug.LogError("[ShopManager] Start: entries list is null! Ensure it is assigned in the inspector.");
+            return;
+        }
+        foreach (var entry in entries)
+        {
+            if (entry != null && !runtimeData.ContainsKey(entry))
+            {
+                runtimeData[entry] = new RuntimeState(entry);
+            }
+        }
+    }
 
     public bool CanAfford(ShopEntrySO entry)
     {
@@ -42,7 +59,7 @@ public class ShopManager : MonoBehaviour
 
     public bool Purchase(ShopEntrySO entry)
     {
-        if (!CanAfford(entry))
+        if (!CanAfford(entry) || entry.item == null)
             return false;
 
         if (entry.costs != null)
@@ -53,13 +70,11 @@ public class ShopManager : MonoBehaviour
                     Inventory.Instance.RemoveItem(cost.item, cost.amount);
             }
         }
-
-        if (entry.item == null) return false;
         Inventory.Instance.AddItem(entry.item, entry.amount);
 
-        if (entry.stock > 0)
+        if (runtimeData[entry].currentStock > 0)
         {
-            entry.stock -= 1;
+            runtimeData[entry].ReduceStock();
         }
 
         return true;
@@ -73,5 +88,14 @@ public class ShopManager : MonoBehaviour
             if (entry != null)
                 entry.isUnlocked = entry.unlockChapter <= currentChapter;
         }
+    }
+
+    public int GetCurrentStock(ShopEntrySO entry)
+    {
+        if (runtimeData.TryGetValue(entry, out var state))
+        {
+            return state.currentStock;
+        }
+        return 0; // Default to 0 if entry not found, though ideally this should not happen if entries are properly initialized
     }
 }

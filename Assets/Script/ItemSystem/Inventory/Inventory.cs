@@ -35,13 +35,15 @@ public class Inventory : MonoBehaviour
         int count = 0;
         for (int i = 0; i < itemSlots.Count; i++)
         {
-            if (itemSlots[i] != null && itemSlots[i].item == item)
+            if (!IsSlotEmpty(itemSlots[i]) && itemSlots[i].item == item)
             {
                 count += itemSlots[i].amount;
             }
         }
         return count;
     }
+    private bool IsSlotEmpty(ItemStack slot) => slot == null || slot.item == null;
+
     public bool CanAddItem(ItemData item, int amount = 1)
     {
         if(amount <= 0) return false; // Invalid amount
@@ -51,7 +53,7 @@ public class Inventory : MonoBehaviour
         {
             for (int i = 0; i < itemSlots.Count; i++)
             {
-                if (itemSlots[i] == null)
+                if (IsSlotEmpty(itemSlots[i]))
                 {
                     freeSpace++;
                 }
@@ -62,7 +64,7 @@ public class Inventory : MonoBehaviour
         // Check for non-null slots with same item
         for (int i = 0; i < itemSlots.Count; i++)
         {
-            if (itemSlots[i] != null && itemSlots[i].item == item && itemSlots[i].amount < maxStack)
+            if (!IsSlotEmpty(itemSlots[i]) && itemSlots[i].item == item && itemSlots[i].amount < maxStack)
             {
                 freeSpace += (maxStack - itemSlots[i].amount);
             }
@@ -70,7 +72,7 @@ public class Inventory : MonoBehaviour
         // Check for null slots
         for (int i = 0; i < itemSlots.Count; i++)
         {
-            if (itemSlots[i] == null)
+            if (IsSlotEmpty(itemSlots[i]))
             {
                 freeSpace += maxStack;
             }
@@ -86,7 +88,7 @@ public class Inventory : MonoBehaviour
 
         for (int i = 0; i < itemSlots.Count && remainingToCheck > 0; i++)
         {
-            if (itemSlots[i] != null && itemSlots[i].item == item)
+            if (!IsSlotEmpty(itemSlots[i]) && itemSlots[i].item == item)
             {
                 int availableInSlot = itemSlots[i].amount;
                 remainingToCheck -= Mathf.Min(remainingToCheck, availableInSlot);
@@ -106,7 +108,7 @@ public class Inventory : MonoBehaviour
         {
             for (int i = 0; i < itemSlots.Count && amount > 0; i++)
             {
-                if (itemSlots[i] == null)
+                if (IsSlotEmpty(itemSlots[i]))
                 {
                     itemSlots[i] = new ItemStack(item, 1);
                     amount--;
@@ -118,7 +120,7 @@ public class Inventory : MonoBehaviour
             // Add to existing stacks first
             for (int i = 0; i < itemSlots.Count && amount > 0; i++)
             {
-                if (itemSlots[i] != null && itemSlots[i].item == item && itemSlots[i].amount < maxStack)
+                if (!IsSlotEmpty(itemSlots[i]) && itemSlots[i].item == item && itemSlots[i].amount < maxStack)
                 {
                     int canAdd = Mathf.Min(amount, maxStack - itemSlots[i].amount);
                     itemSlots[i].amount += canAdd;
@@ -129,7 +131,7 @@ public class Inventory : MonoBehaviour
             // Add to empty slots
             for (int i = 0; i < itemSlots.Count && amount > 0; i++)
             {
-                if (itemSlots[i] == null)
+                if (IsSlotEmpty(itemSlots[i]))
                 {
                     int stackAmount = Mathf.Min(amount, maxStack);
                     itemSlots[i] = new ItemStack(item, stackAmount);
@@ -151,7 +153,7 @@ public class Inventory : MonoBehaviour
 
         for (int i = 0; i < itemSlots.Count; i++)
         {
-            if (itemSlots[i] != null && itemSlots[i].item == item)
+            if (!IsSlotEmpty(itemSlots[i]) && itemSlots[i].item == item)
             {
                 itemSlots[i].amount -= remaining;
                 if (itemSlots[i].amount <= 0)

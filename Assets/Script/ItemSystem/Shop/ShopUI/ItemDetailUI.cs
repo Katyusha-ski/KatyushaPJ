@@ -93,7 +93,7 @@ public class ItemDetailUI : MonoBehaviour
         if (currentEntry == null) return;
 
         bool canAfford = shopManager.CanAfford(currentEntry);
-        bool inStock = currentEntry.stock != 0;
+        bool inStock = shopManager.GetCurrentStock(currentEntry) != 0;
 
         buyButton.interactable = canAfford && inStock;
         buyButtonText.text = !inStock ? "Soldout"

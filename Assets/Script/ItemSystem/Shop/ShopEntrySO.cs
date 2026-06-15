@@ -8,6 +8,21 @@ public class TransactionCost
     public int amount;
 }
 
+public class RuntimeState
+{
+    public int currentStock;
+
+    public RuntimeState(ShopEntrySO template)
+    {
+        this.currentStock = template.stock;
+    }
+
+    public void ReduceStock()
+    {
+        currentStock -= 1;
+    }
+}
+
 [CreateAssetMenu(fileName = "New Shop Entry", menuName = "Shop/Shop Entry")]
 public class ShopEntrySO : ScriptableObject
 {
