@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Royal Silver Medal
   m_EditorClassIdentifier: Assembly-CSharp::ItemData
   itemName: Royal Silver Medal
-  itemIcon: {fileID: 0}
+  itemIcon: {fileID: 21300000, guid: e1a27de2c4f743f4c985b5efbf0694f5, type: 3}
   itemType: 1
   equipmentType: 3
   description: 
@@ -42,3 +42,11 @@ MonoBehaviour:
     - statType: 7
       value: 22
       modifierType: 0
+  consumableEffects:
+  - effectType: 0
+    duration: 5
+    value: 0
+    tickInterval: 1
+    tickValue: 0
+    isDebuff: 0
+    statModifiers: []

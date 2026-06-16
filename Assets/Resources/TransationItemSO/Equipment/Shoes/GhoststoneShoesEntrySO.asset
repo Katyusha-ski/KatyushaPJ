@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a0785678fd29ac4b833a1cf9f7f1dc7, type: 3}
   m_Name: GhoststoneShoesEntrySO
   m_EditorClassIdentifier: Assembly-CSharp::ShopEntrySO
-  unlockChapter: 7
+  unlockChapter: 5
   isUnlocked: 1
   item: {fileID: 11400000, guid: 0383706d721a5fa43bde8ec96a73b5b3, type: 2}
   amount: 1

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Ghoststone Shoes
   m_EditorClassIdentifier: Assembly-CSharp::ItemData
   itemName: Ghoststone Shoes
-  itemIcon: {fileID: 0}
+  itemIcon: {fileID: 21300000, guid: 2a6764af2b3a97547a7351ec7a8700d5, type: 3}
   itemType: 1
   equipmentType: 4
   description: 
@@ -36,3 +36,11 @@ MonoBehaviour:
     - statType: 7
       value: 12
       modifierType: 0
+  consumableEffects:
+  - effectType: 0
+    duration: 5
+    value: 0
+    tickInterval: 1
+    tickValue: 0
+    isDebuff: 0
+    statModifiers: []

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Ruby Necklace
   m_EditorClassIdentifier: Assembly-CSharp::ItemData
   itemName: Ruby Necklace
-  itemIcon: {fileID: 0}
+  itemIcon: {fileID: 21300000, guid: 5487ba0bf59a3604c80f70bf88dc993f, type: 3}
   itemType: 1
   equipmentType: 3
   description: 
@@ -36,3 +36,11 @@ MonoBehaviour:
     - statType: 12
       value: 26
       modifierType: 0
+  consumableEffects:
+  - effectType: 0
+    duration: 5
+    value: 0
+    tickInterval: 1
+    tickValue: 0
+    isDebuff: 0
+    statModifiers: []

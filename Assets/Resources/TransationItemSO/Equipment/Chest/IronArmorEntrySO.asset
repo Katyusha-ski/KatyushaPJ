@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a0785678fd29ac4b833a1cf9f7f1dc7, type: 3}
   m_Name: IronArmorEntrySO
   m_EditorClassIdentifier: Assembly-CSharp::ShopEntrySO
-  unlockChapter: 7
+  unlockChapter: 4
   isUnlocked: 1
   item: {fileID: 11400000, guid: 8f5c25f0ec2b0274fac22ca0a7649227, type: 2}
   amount: 1

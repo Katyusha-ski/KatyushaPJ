@@ -6,11 +6,11 @@ public class ShopManager : MonoBehaviour
     public List<ShopEntrySO> entries;
     public Dictionary<ShopEntrySO, RuntimeState> runtimeData = new Dictionary<ShopEntrySO, RuntimeState>();
 
-    private void Start()
+    private void Awake()
     {
         if (entries == null)
         {
-            Debug.LogError("[ShopManager] Start: entries list is null! Ensure it is assigned in the inspector.");
+            Debug.LogError("[ShopManager] Awake: entries list is null! Ensure it is assigned in the inspector.");
             return;
         }
         foreach (var entry in entries)
@@ -90,6 +90,7 @@ public class ShopManager : MonoBehaviour
         }
     }
 
+
     public int GetCurrentStock(ShopEntrySO entry)
     {
         if (runtimeData.TryGetValue(entry, out var state))
@@ -97,5 +98,42 @@ public class ShopManager : MonoBehaviour
             return state.currentStock;
         }
         return 0; // Default to 0 if entry not found, though ideally this should not happen if entries are properly initialized
+    }
+
+    public void GetSerializableData(List<SerializableShopEntry> serializableEntries)
+    {
+        if (entries == null) return;
+        foreach (var entry in entries)
+        {
+            if (entry != null)
+            {
+                int remainingStock = runtimeData.TryGetValue(entry, out var state) ? state.currentStock : 0;
+                serializableEntries.Add(new SerializableShopEntry(entry.item != null ? entry.item.itemName : "Unknown Item", remainingStock));
+            }
+        }
+    }
+
+    public void LoadSerializableData(List<SerializableShopEntry> serializableEntries)
+    {
+        if (serializableEntries == null || entries == null) return;
+        foreach (var serializableEntry in serializableEntries)
+        {
+            ShopEntrySO matchingEntry = entries.Find(e => e.item != null && e.item.itemName == serializableEntry.itemName);
+            if (matchingEntry != null)
+            {
+                if (runtimeData.ContainsKey(matchingEntry))
+                {
+                    runtimeData[matchingEntry].currentStock = serializableEntry.remainingStock;
+                }
+                else
+                {
+                    Debug.LogWarning($"LoadFromSerializableData: No runtime data found for entry with item name {serializableEntry.itemName}");
+                }
+            }
+            else
+            {
+                Debug.LogWarning($"LoadFromSerializableData: No matching ShopEntrySO found for item name {serializableEntry.itemName}");
+            }
+        }
     }
 }

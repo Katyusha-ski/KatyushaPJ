@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a0785678fd29ac4b833a1cf9f7f1dc7, type: 3}
   m_Name: RoyalGoldMedalEntrySO
   m_EditorClassIdentifier: Assembly-CSharp::ShopEntrySO
-  unlockChapter: 7
+  unlockChapter: 6
   isUnlocked: 1
   item: {fileID: 11400000, guid: 34d8fb5cbbf09b54e910a92cd42f07ec, type: 2}
   amount: 1

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a0785678fd29ac4b833a1cf9f7f1dc7, type: 3}
   m_Name: MeteoriteArmorEntrySO
   m_EditorClassIdentifier: Assembly-CSharp::ShopEntrySO
-  unlockChapter: 7
+  unlockChapter: 6
   isUnlocked: 1
   item: {fileID: 11400000, guid: d2876a0d1184a3a45968ab4370725819, type: 2}
   amount: 1

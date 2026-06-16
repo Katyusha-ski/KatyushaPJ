@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a0785678fd29ac4b833a1cf9f7f1dc7, type: 3}
   m_Name: WarriorAxeEntrySO
   m_EditorClassIdentifier: Assembly-CSharp::ShopEntrySO
-  unlockChapter: 7
+  unlockChapter: 4
   isUnlocked: 1
   item: {fileID: 11400000, guid: 5750ea0f5524a4c499d6d2fbb53c9d1f, type: 2}
   amount: 1

@@ -17,6 +17,7 @@ public class ShopUI : MenuUI
         if (shopManager == null || itemDetailUI == null || categoryUI == null || itemListUI == null)
             return;
 
+        shopManager.UnlockByChapter(ChapterManager.Instance.CurrentChapterNumber);
         itemDetailUI.Init(shopManager, this);
         categoryUI.OnCategorySelected += HandleCategorySelected;
         itemListUI.OnItemSelected += HandleItemSelected;

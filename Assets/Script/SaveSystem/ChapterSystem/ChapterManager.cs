@@ -33,12 +33,18 @@ public class ChapterManager : MonoBehaviour
         currentChapterIndex++;
         if (currentChapterIndex >= chapters.Count)
         {
-            // Credit but i will do it later
             SceneManager.LoadScene("MainMenu"); 
             return;
         }
-        GameManager.Instance.SaveGame();
+        SceneManager.sceneLoaded += OnVillageLoaded;
         SceneManager.LoadScene("Village");
+    }
+
+    private void OnVillageLoaded(Scene scene, LoadSceneMode mode)
+    {
+        if (scene.name != "Village") return;
+        SceneManager.sceneLoaded -= OnVillageLoaded;
+        GameManager.Instance.SaveGame();
     }
 
     public void GoToMainScene()

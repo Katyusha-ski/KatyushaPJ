@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Lord's Necklace
   m_EditorClassIdentifier: Assembly-CSharp::ItemData
   itemName: Lord's Necklace
-  itemIcon: {fileID: 0}
+  itemIcon: {fileID: 21300000, guid: 49a873241542f67478b6fed118d30e73, type: 3}
   itemType: 1
   equipmentType: 3
   description: 
@@ -42,3 +42,11 @@ MonoBehaviour:
     - statType: 7
       value: 30
       modifierType: 0
+  consumableEffects:
+  - effectType: 0
+    duration: 5
+    value: 0
+    tickInterval: 1
+    tickValue: 0
+    isDebuff: 0
+    statModifiers: []

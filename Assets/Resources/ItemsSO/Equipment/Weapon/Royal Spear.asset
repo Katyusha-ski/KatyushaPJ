@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Royal Spear
   m_EditorClassIdentifier: Assembly-CSharp::ItemData
   itemName: Royal Spear
-  itemIcon: {fileID: 0}
+  itemIcon: {fileID: 21300000, guid: 3e39789a3578b074786d81a5f1a01ce9, type: 3}
   itemType: 1
   equipmentType: 2
   description: 
@@ -39,3 +39,11 @@ MonoBehaviour:
     - statType: 12
       value: 15
       modifierType: 0
+  consumableEffects:
+  - effectType: 0
+    duration: 5
+    value: 0
+    tickInterval: 1
+    tickValue: 0
+    isDebuff: 0
+    statModifiers: []

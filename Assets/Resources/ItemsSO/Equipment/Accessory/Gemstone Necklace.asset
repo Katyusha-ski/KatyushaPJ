@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Gemstone Necklace
   m_EditorClassIdentifier: Assembly-CSharp::ItemData
   itemName: Gemstone Necklace
-  itemIcon: {fileID: 0}
+  itemIcon: {fileID: 21300000, guid: ad86123bbc1de14418486618fdfd92df, type: 3}
   itemType: 1
   equipmentType: 3
   description: 
@@ -33,3 +33,11 @@ MonoBehaviour:
     - statType: 12
       value: 18
       modifierType: 0
+  consumableEffects:
+  - effectType: 0
+    duration: 5
+    value: 0
+    tickInterval: 1
+    tickValue: 0
+    isDebuff: 0
+    statModifiers: []

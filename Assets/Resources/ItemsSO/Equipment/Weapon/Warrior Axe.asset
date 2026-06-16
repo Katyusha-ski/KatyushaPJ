@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Warrior Axe
   m_EditorClassIdentifier: Assembly-CSharp::ItemData
   itemName: Warrior Axe
-  itemIcon: {fileID: 0}
+  itemIcon: {fileID: 21300000, guid: deecac69295e29b40bd4037cd2045b97, type: 3}
   itemType: 1
   equipmentType: 2
   description: 
@@ -30,3 +30,11 @@ MonoBehaviour:
     - statType: 12
       value: 8
       modifierType: 0
+  consumableEffects:
+  - effectType: 0
+    duration: 5
+    value: 0
+    tickInterval: 1
+    tickValue: 0
+    isDebuff: 0
+    statModifiers: []

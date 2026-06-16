@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public enum GameState
@@ -79,6 +80,11 @@ public class GameManager : MonoBehaviour
             return;
         }
 
+        List<SerializableShopEntry> shopData = new List<SerializableShopEntry>();
+        ShopManager shop = FindFirstObjectByType<ShopManager>();
+        if (shop != null)
+            shop.GetSerializableData(shopData);
+
         SaveData data = new SaveData
         {
             currentChapter = ChapterManager.Instance.CurrentChapterNumber,
@@ -93,6 +99,8 @@ public class GameManager : MonoBehaviour
             playerPositionX = playerPosition.x,
             playerPositionY = playerPosition.y,
             playerPositionZ = playerPosition.z,
+            // Shop data
+            shopEntries = shopData,
             // Metadata
             saveDataTime = System.DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"),
             playTime = this.playTime
@@ -126,7 +134,8 @@ public class GameManager : MonoBehaviour
         tempSaveData = saveData;
 
         // Load the saved scene
-        if (saveData.currentSceneIndex > 0) // Don't load Main menu
+        // TODO: sau này build map xong thì check theo sceneName thay vì sceneIndex
+        if (saveData.currentSceneIndex > 0)
         {
             Debug.Log($"Loading scene: {saveData.currentSceneName} (Index: {saveData.currentSceneIndex})");
 
@@ -149,28 +158,27 @@ public class GameManager : MonoBehaviour
     {
         SaveManager.DeleteSave();
 
-        // Reset game state
         if (ChapterManager.Instance != null)
             ChapterManager.Instance.SetChapter(1);
         playTime = 0f;
 
-        // Clear inventory
         if (Inventory.Instance != null)
         {
             Inventory.Instance.ClearInventory();
         }
 
+        tempSaveData = SaveData.Default();
+        SceneManager.sceneLoaded += OnNewGameSceneLoaded;
+
         Debug.Log("New game started!");
-        
-        // Load first village scene
-        if (GameSceneController.Instance != null)
-        {
-            GameSceneController.Instance.LoadGameScene("Village");
-        }
-        else
-        {
-            SceneManager.LoadScene("Village");
-        }
+
+        SceneManager.LoadScene("Village");
+    }
+
+    private void OnNewGameSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        SceneManager.sceneLoaded -= OnNewGameSceneLoaded;
+        Invoke(nameof(RestorePlayerState), 0.2f);
     }
 
     /// <summary>
@@ -202,6 +210,11 @@ public class GameManager : MonoBehaviour
         {
             Debug.LogWarning("Inventory instance not found after scene load!");
         }
+
+        // Restore shop data
+        ShopManager shop = FindFirstObjectByType<ShopManager>();
+        if (shop != null)
+            shop.LoadSerializableData(tempSaveData.shopEntries);
 
         // Restore player state with delay (ensure player is spawned)
         Invoke(nameof(RestorePlayerState), 0.2f);

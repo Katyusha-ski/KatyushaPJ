@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Nomad Shoes
   m_EditorClassIdentifier: Assembly-CSharp::ItemData
   itemName: Nomad Shoes
-  itemIcon: {fileID: 0}
+  itemIcon: {fileID: 21300000, guid: 1477b98c9db06a9419e73e4eb96e25c1, type: 3}
   itemType: 1
   equipmentType: 4
   description: 
@@ -30,3 +30,11 @@ MonoBehaviour:
     - statType: 7
       value: 8
       modifierType: 0
+  consumableEffects:
+  - effectType: 0
+    duration: 5
+    value: 0
+    tickInterval: 1
+    tickValue: 0
+    isDebuff: 0
+    statModifiers: []

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a0785678fd29ac4b833a1cf9f7f1dc7, type: 3}
   m_Name: SilverRingEntrySO
   m_EditorClassIdentifier: Assembly-CSharp::ShopEntrySO
-  unlockChapter: 7
+  unlockChapter: 2
   isUnlocked: 1
   item: {fileID: 11400000, guid: c2592d0082ab0444d8d0ae1b606cbee6, type: 2}
   amount: 1

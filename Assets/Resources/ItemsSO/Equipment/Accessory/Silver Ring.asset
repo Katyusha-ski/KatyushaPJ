@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Silver Ring
   m_EditorClassIdentifier: Assembly-CSharp::ItemData
   itemName: Silver Ring
-  itemIcon: {fileID: 0}
+  itemIcon: {fileID: 21300000, guid: 6796a6f46a3f1784cba895e84b655888, type: 3}
   itemType: 1
   equipmentType: 3
   description: 
@@ -30,3 +30,11 @@ MonoBehaviour:
     - statType: 12
       value: 10
       modifierType: 0
+  consumableEffects:
+  - effectType: 0
+    duration: 5
+    value: 0
+    tickInterval: 1
+    tickValue: 0
+    isDebuff: 0
+    statModifiers: []
