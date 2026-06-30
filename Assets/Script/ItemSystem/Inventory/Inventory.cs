@@ -7,13 +7,21 @@ public class Inventory : MonoBehaviour
     public static Inventory Instance { get; private set; }
     public event Action OnInventoryChanged;
     public event Action OnEquipmentChanged;
+    public event Action OnSkillMatrixChanged;
     public int maxSlots = 30;
     public List<ItemStack> itemSlots = new List<ItemStack>(30);
 
     public int equipmentSlots = 4;
     public ItemStack[] equipment = new ItemStack[4];
     public int maxStack = 99;
-    
+
+    public ItemStack[,] skillMatrix = new ItemStack[4, 5];
+
+    public static int SkillTypeToRow(SkillType type)
+    {
+        return (int)type - 1;
+    }
+
     void Awake()
     {
         if (Instance == null)
@@ -233,11 +241,7 @@ public class Inventory : MonoBehaviour
         if (slotIndex < 0 || slotIndex >= itemSlots.Count) return;
         ItemStack stack = itemSlots[slotIndex];
         if (stack == null || stack.item == null) return;
-        if (stack.item.itemType != ItemType.Consumable) return;
 
-        // ---- BUOC 1: Tim Player ----
-        // Inventory la Singleton tren GameObject rieng,
-        // nen can tim Player qua tag de lay ConsumableManager
         GameObject player = GameObject.FindGameObjectWithTag("Player");
         if (player == null)
         {
@@ -245,21 +249,47 @@ public class Inventory : MonoBehaviour
             return;
         }
 
-        // ---- BUOC 2: Lay ConsumableManager ----
-        ConsumableManager consumableManager = player.GetComponent<ConsumableManager>();
-        if (consumableManager == null)
+        if (stack.item.itemType == ItemType.Consumable)
         {
-            Debug.LogError("Player can co component ConsumableManager", player);
-            return;
+            ConsumableManager consumableManager = player.GetComponent<ConsumableManager>();
+            if (consumableManager == null)
+            {
+                Debug.LogError("Player can co component ConsumableManager", player);
+                return;
+            }
+            if (consumableManager.Use(stack.item))
+                RemoveItem(stack.item, 1);
         }
+        else if (stack.item.itemType == ItemType.Skill)
+        {
+            PlayerSkillManager skillManager = player.GetComponent<PlayerSkillManager>();
+            if (skillManager == null)
+            {
+                Debug.LogError("Player can co component PlayerSkillManager", player);
+                return;
+            }
+            if (skillManager.UseItem(stack.item))
+                RemoveItem(stack.item, 1);
+        }
+    }
 
-        // ---- BUOC 3: Goi Use() ----
-        // Neu Use() tra ve true -> item da duoc su dung thanh cong
-        // -> RemoveItem(1) de giam so luong trong inventory
-        if (consumableManager.Use(stack.item))
+    public SkillBase GetHighestSkill(int type)
+    {
+        if (type < 0 || type >= skillMatrix.GetLength(0)) return null;
+        for (int i = skillMatrix.GetLength(1) - 1; i >= 0; i--)
         {
-            RemoveItem(stack.item, 1);
+            var stack = skillMatrix[type, i];
+            if (stack != null && stack.item != null && stack.item.skillData != null)
+                return stack.item.skillData.skill;
         }
+        return null;
+    }
+
+    public void SetSkill(int row, int col, ItemStack stack)
+    {
+        if (row < 0 || row >= skillMatrix.GetLength(0) || col < 0 || col >= skillMatrix.GetLength(1)) return;
+        skillMatrix[row, col] = stack;
+        OnSkillMatrixChanged?.Invoke();
     }
 
     public bool ClearInventory()
@@ -268,7 +298,11 @@ public class Inventory : MonoBehaviour
             itemSlots[i] = null;
         for (int i = 0; i < equipment.Length; i++)
             equipment[i] = null;
+        for (int r = 0; r < skillMatrix.GetLength(0); r++)
+            for (int c = 0; c < skillMatrix.GetLength(1); c++)
+                skillMatrix[r, c] = null;
         OnInventoryChanged?.Invoke();
+        OnSkillMatrixChanged?.Invoke();
         return true;
     }
 
@@ -355,11 +389,9 @@ public class Inventory : MonoBehaviour
     {
         if (serializableEquipment == null) return;
 
-        // Clear current equipment
         for (int i = 0; i < equipment.Length; i++)
             equipment[i] = null;
 
-        // Load each item
         for (int i = 0; i < serializableEquipment.Count && i < equipment.Length; i++)
         {
             if (serializableEquipment[i] != null)
@@ -371,5 +403,41 @@ public class Inventory : MonoBehaviour
         }
 
         OnInventoryChanged?.Invoke();
+    }
+
+    public List<List<SerializableItemStack>> GetSerializableSkillMatrix()
+    {
+        var result = new List<List<SerializableItemStack>>();
+        int rows = skillMatrix.GetLength(0);
+        int cols = skillMatrix.GetLength(1);
+        for (int r = 0; r < rows; r++)
+        {
+            var row = new List<SerializableItemStack>();
+            for (int c = 0; c < cols; c++)
+            {
+                var stack = skillMatrix[r, c];
+                if (stack != null && stack.item != null)
+                    row.Add(new SerializableItemStack(stack.item.itemName, stack.amount));
+                else
+                    row.Add(null);
+            }
+            result.Add(row);
+        }
+        return result;
+    }
+
+    public void LoadSerializableSkillMatrix(List<List<SerializableItemStack>> serialized)
+    {
+        if (serialized == null) return;
+        int rows = skillMatrix.GetLength(0);
+        int cols = skillMatrix.GetLength(1);
+        for (int r = 0; r < rows && r < serialized.Count; r++)
+        {
+            for (int c = 0; c < cols && c < serialized[r].Count; c++)
+            {
+                skillMatrix[r, c] = serialized[r][c]?.ToItemStack();
+            }
+        }
+        OnSkillMatrixChanged?.Invoke();
     }
 }

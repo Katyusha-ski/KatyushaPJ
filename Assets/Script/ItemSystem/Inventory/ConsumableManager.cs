@@ -6,7 +6,7 @@ using UnityEngine;
 // Component nay dat TREN Player (cung GameObject voi StatusEffectController).
 //
 // CHUC NANG:
-//   Doc ConsumableEffect tu ItemData -> tao StatusEffect -> apply vao Player
+//   Doc EffectData tu ItemData -> tao StatusEffect -> apply vao Player
 //
 // FLOW DAY DU:
 //   Player double-click consumable trong Inventory UI
@@ -14,7 +14,7 @@ using UnityEngine;
 //   -> Inventory.UseItem(slotIndex)
 //   -> tim Player (tag), lay ConsumableManager component
 //   -> ConsumableManager.Use(item)
-//   -> CreateEffect() switch theo ConsumableEffectType
+//   -> CreateEffect() switch theo EffectDataType
 //   -> new XXXEffect(duration, target, value)
 //   -> seController.ApplyEffect(effect)
 //   -> StatusEffectController tu dong chay lifecycle: OnApply -> OnTick -> OnRemove
@@ -46,7 +46,7 @@ public class ConsumableManager : MonoBehaviour
 
         if (item.consumableEffects == null || item.consumableEffects.Count == 0)
         {
-            Debug.LogWarning($"Item {item.itemName} khong co ConsumableEffect nao", item);
+            Debug.LogWarning($"Item {item.itemName} khong co EffectData nao", item);
             return false;
         }
 
@@ -61,7 +61,7 @@ public class ConsumableManager : MonoBehaviour
 
         foreach (var effectData in item.consumableEffects)
         {
-            if (effectData == null || effectData.effectType == ConsumableEffectType.None)
+            if (effectData == null || effectData.effectType == EffectDataType.None)
                 continue;
 
             StatusEffect effect = CreateEffect(effectData, player, item.itemName);
@@ -84,18 +84,18 @@ public class ConsumableManager : MonoBehaviour
     // ========================================================================
     // FACTORY METHOD: CreateEffect()
     // ========================================================================
-    // Chuyen ConsumableEffectType -> constructor cua StatusEffect subclass.
+    // Chuyen EffectDataType -> constructor cua StatusEffect subclass.
     //
     // KHI THEM LOAI EFFECT MOI:
-    //   1. Them vao enum ConsumableEffectType
+    //   1. Them vao enum EffectDataType
     //   2. Tao class StatusEffect moi (ke thua abstract StatusEffect)
     //   3. Them 1 case switch o day
     // ========================================================================
-    private StatusEffect CreateEffect(ConsumableEffect data, GameObject target, string itemName)
+    private StatusEffect CreateEffect(EffectData data, GameObject target, string itemName)
     {
         switch (data.effectType)
         {
-            case ConsumableEffectType.Heal:
+            case EffectDataType.Heal:
                 // HealEffect: hoi mau instant (OnApply) + hoi theo thoi gian (OnTick)
                 // data.value = heal instant
                 // data.tickValue = heal moi tick
@@ -109,7 +109,7 @@ public class ConsumableManager : MonoBehaviour
                     data.tickValue     // tickAmount (per tick)
                 );
 
-            case ConsumableEffectType.DamageOverTime:
+            case EffectDataType.DamageOverTime:
                 // DoTEffect: sat thuong moi tickInterval giay
                 return new DoTEffect(
                     data.duration,
@@ -118,7 +118,7 @@ public class ConsumableManager : MonoBehaviour
                     data.tickInterval
                 );
 
-            case ConsumableEffectType.StatModifier:
+            case EffectDataType.StatModifier:
                 if (data.statModifiers == null || data.statModifiers.Count == 0)
                 {
                     Debug.LogWarning($"StatModifier effect tren {itemName} khong co statModifiers");
@@ -127,28 +127,28 @@ public class ConsumableManager : MonoBehaviour
 
                 return new StatModifierEffect(data.duration, target, data.statModifiers, data.isDebuff);
 
-            case ConsumableEffectType.Stun:
+            case EffectDataType.Stun:
                 // StunEffect: dung di chuyen + clear skill input buffer
                 return new StunEffect(
                     data.duration,
                     target
                 );
 
-            case ConsumableEffectType.Root:
+            case EffectDataType.Root:
                 // RootEffect: chi dung di chuyen (khong clear skill buffer)
                 return new RootEffect(
                     data.duration,
                     target
                 );
 
-            case ConsumableEffectType.Silent:
+            case EffectDataType.Silent:
                 // SilentEffect: cam dung skill (clear input buffer)
                 return new SilentEffect(
                     data.duration,
                     target
                 );
 
-            case ConsumableEffectType.IronBody:
+            case EffectDataType.IronBody:
                 // IronBodyEffect: mien nhiem CC
                 // Khi active, StatusEffectController se chan moi CC effect moi
                 return new IronBodyEffect(
@@ -156,7 +156,7 @@ public class ConsumableManager : MonoBehaviour
                     target
                 );
 
-            case ConsumableEffectType.Undying:
+            case EffectDataType.Undying:
                 // UndyingEffect: HP khong the ve 0
                 // OnApply: Health.SetUnDying(true)
                 // OnRemove: Health.SetUnDying(false)
@@ -165,7 +165,7 @@ public class ConsumableManager : MonoBehaviour
                     target
                 );
 
-            case ConsumableEffectType.Cleanse:
+            case EffectDataType.Cleanse:
                 // CleanseEffect: xoa toan bo CC
                 // Instant, duration khong co y nghia
                 return new CleanseEffect(
@@ -174,7 +174,7 @@ public class ConsumableManager : MonoBehaviour
                 );
 
             default:
-                Debug.LogWarning($"ConsumableEffectType {data.effectType} chua duoc xu ly");
+                Debug.LogWarning($"EffectDataType {data.effectType} chua duoc xu ly");
                 return null;
         }
     }

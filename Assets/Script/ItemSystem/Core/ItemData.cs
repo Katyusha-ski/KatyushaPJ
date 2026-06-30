@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 using NaughtyAttributes;
+using Unity.VisualScripting;
 
 public enum ItemType { Consumable, Equipment, Material, Quest, Skill, All } //All is for shop filtering, not actual item type
 
@@ -20,9 +21,10 @@ public enum SkillType
     None,
     Range,
     Dash,
-    Heal,
-    Counter
+    Defend,
+    Melee
 }
+
 
 // ============================================================================
 // ITEM DATA (ScriptableObject)
@@ -37,7 +39,7 @@ public enum SkillType
 //   ItemData KHONG truc tiep tham chieu den StatusEffect hay CharacterStats.
 //   Thay vao do, no chua 2 field doc lap:
 //     - stats (ItemStats)        -> EquipmentManager doc, ap dung vao CharacterStats
-//     - consumableEffect (ConsumableEffect) -> ConsumableManager doc, tao StatusEffect
+//     - consumableEffect (EffectData) -> ConsumableManager doc, tao StatusEffect
 //   Nhu vay ItemData la "data contract" thuan tuy, khong bi dong goi vao logic.
 // ============================================================================
 [CreateAssetMenu(menuName = "Inventory/Item")]
@@ -62,14 +64,20 @@ public class ItemData : ScriptableObject
     [Header("Consumable Effects")]
     [ShowIf("itemType", ItemType.Consumable)]
     [ReorderableList]
-    public List<ConsumableEffect> consumableEffects = new List<ConsumableEffect> { new ConsumableEffect() };
+    public List<EffectData> consumableEffects = new List<EffectData> { new EffectData() };
+
+    [Header("Skill Information")]
+    [ShowIf("itemType", ItemType.Skill)]
+    public SkillData skillData = new SkillData();
 
     private void OnEnable()
     {
         if (stats == null)
             stats = new ItemStats();
         if (consumableEffects == null)
-            consumableEffects = new List<ConsumableEffect>();
+            consumableEffects = new List<EffectData>();
+        if (skillData == null)
+            skillData = new SkillData();
     }
 
     public ItemStats GetStats()

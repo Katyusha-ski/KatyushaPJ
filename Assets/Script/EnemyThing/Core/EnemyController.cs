@@ -143,7 +143,7 @@ public class EnemyController : MonoBehaviour, IEnemyStateProvider
         }
     }
 
-    public void HandleEnemyDeath()
+    public virtual void HandleEnemyDeath()
     {
         Health health = GetComponent<Health>();
         if (health != null && health.lootManager != null)

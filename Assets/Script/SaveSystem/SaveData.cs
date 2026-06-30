@@ -9,6 +9,7 @@ public class SaveData
     // Inventory data
     public List<SerializableItemStack> inventoryItem;
     public List<SerializableItemStack> equipmentItem;
+    public List<List<SerializableItemStack>> skillMatrix;
     public List<SerializableShopEntry> shopEntries;
 
     // Scene information

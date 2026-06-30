@@ -94,7 +94,6 @@ GameObject:
   - component: {fileID: 5001543976435372399}
   - component: {fileID: 7277600427024161112}
   - component: {fileID: 2524405934424500085}
-  - component: {fileID: 1439061407190549191}
   - component: {fileID: 592216495779335461}
   - component: {fileID: 7070834218274739655}
   - component: {fileID: 161930968134896348}
@@ -102,6 +101,8 @@ GameObject:
   - component: {fileID: 2979320871452214609}
   - component: {fileID: 7154306067511663043}
   - component: {fileID: 8405047923006620357}
+  - component: {fileID: 4843439474504990744}
+  - component: {fileID: 5642885825442716595}
   m_Layer: 3
   m_Name: Player
   m_TagString: Player
@@ -311,22 +312,6 @@ MonoBehaviour:
   damageSFX: {fileID: 8300000, guid: 2038a0315fd525a4e85f47f55ebb79b5, type: 3}
   dieSFX: {fileID: 0}
   lootManager: {fileID: 0}
---- !u!114 &1439061407190549191
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2068556711473788101}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cf959a903cc2a1c4683c830f43b4e18c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  skills:
-  - {fileID: 11400000, guid: 4b328383aa6f6bf478eaa8ee7f930a6b, type: 2}
-  - {fileID: 11400000, guid: 6e60cdbc11cd60d48876fb816ffc7a61, type: 2}
-  characterStats: {fileID: 0}
 --- !u!114 &592216495779335461
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -384,7 +369,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerSkillInput
   inputConfig: {fileID: 0}
-  skillManager: {fileID: 1439061407190549191}
+  skillManager: {fileID: 0}
   inputBufferDuration: 0.1
 --- !u!114 &2979320871452214609
 MonoBehaviour:
@@ -449,6 +434,36 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb44ba896846fc245a3a9e2a4e5b94eb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerNA
+--- !u!114 &4843439474504990744
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2068556711473788101}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6bcc14cfc303c534182b26e9dd78defa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::StatusEffectController
+--- !u!114 &5642885825442716595
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2068556711473788101}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe7d3e8300113624aa033f8c9e102508, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerSkillManager
+  skills:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  characterStats: {fileID: 2979320871452214609}
 --- !u!1 &2959838015193098157
 GameObject:
   m_ObjectHideFlags: 0
@@ -908,7 +923,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   skillPanel: {fileID: 7760495464382281871}
   skillUIPrefab: {fileID: 890746081424400901, guid: f6aec2cfbd03e034fb273b5581cd8d63, type: 3}
-  playerSkillManager: {fileID: 1439061407190549191}
+  playerSkillManager: {fileID: 0}
 --- !u!1001 &3226932204298405906
 PrefabInstance:
   m_ObjectHideFlags: 0

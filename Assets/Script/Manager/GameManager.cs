@@ -60,7 +60,7 @@ public class GameManager : MonoBehaviour
         {
             Debug.LogError("Inventory instance was not found!");
             return;
-        }
+        } 
 
         Scene currentScene = SceneManager.GetActiveScene();
 
@@ -91,6 +91,7 @@ public class GameManager : MonoBehaviour
             // Inventory data
             inventoryItem = Inventory.Instance.GetSerializableInventory(),
             equipmentItem = Inventory.Instance.GetSerializableEquipment(),
+            skillMatrix = Inventory.Instance.GetSerializableSkillMatrix(),
             // Scene info
             currentSceneIndex = currentScene.buildIndex,
             currentSceneName = currentScene.name,
@@ -204,7 +205,8 @@ public class GameManager : MonoBehaviour
         {
             Inventory.Instance.LoadSerializableInventory(tempSaveData.inventoryItem);
             Inventory.Instance.LoadSerializableEquipment(tempSaveData.equipmentItem);
-            Debug.Log("Inventory and equipment restored!");
+            Inventory.Instance.LoadSerializableSkillMatrix(tempSaveData.skillMatrix);
+            Debug.Log("Inventory, equipment and skills restored!");
         }
         else
         {

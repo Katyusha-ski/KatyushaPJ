@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 930bc0214a2d13946b9204abb7763048, type: 3}
+  m_Name: MeleeSkillLv3
+  m_EditorClassIdentifier: Assembly-CSharp::MeleeSkill
+  skillName: 
+  icon: {fileID: 0}
+  skillType: 4
+  cooldown: 10
+  baseDamage: 1
+  range: 2
+  offset: {x: 0, y: 0}
+  maxTargets: 1
+  hitCount: 7
+  hitInterval: 0.2
+  effects: []
+  meleeSFX: {fileID: 0}

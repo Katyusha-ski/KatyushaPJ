@@ -5,32 +5,27 @@ using UnityEngine.UI;
 // ============================================================================
 // SLOT DRAG HANDLER
 // ============================================================================
-// Handle drag-and-drop + double-click cho slot inventory.
+// Handle drag-and-drop + double-click + right-click cho slot inventory.
 //
 // INPUT -> OUTPUT:
 //   Drag inventory -> equipment: equip
 //   Drag equipment -> inventory: unequip
 //   Drag inventory -> inventory: swap
 //   Double-click consumable: use item
-//
-// VIEC SU DUNG ITEM:
-//   OnPointerClick() phat hien double-click
-//   -> goi Inventory.Instance.UseItem(slotIndex)
-//   -> (xem Inventory.UseItem() de biet flow tiep)
+//   Right-click item: open item detail
 // ============================================================================
 public class SlotDragHandler : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler, IDropHandler, IPointerClickHandler
 {
+    private InventoryUI inventoryUI;
     private RectTransform rectTransform;
     private CanvasGroup canvasGroup;
     private Vector3 originalPosition;
     private Slot slot;
     private Image draggedImage;
     private GameObject draggedOJ;
-    private float lastClickTime = 0f;
-    private const float doubleClickThreshold = 0.3f;
-
     void Awake()
     {
+        inventoryUI = GetComponentInParent<InventoryUI>();
         rectTransform = GetComponent<RectTransform>();
         canvasGroup = GetComponent<CanvasGroup>();
         slot = GetComponent<Slot>();
@@ -38,6 +33,7 @@ public class SlotDragHandler : MonoBehaviour, IBeginDragHandler, IDragHandler, I
 
     public void OnBeginDrag(PointerEventData eventData)
     {
+        inventoryUI.HideItemDetail();
         if (!slot.HasItem()) return;
         draggedOJ = new GameObject("DraggedItem");
         Canvas canvas = Object.FindFirstObjectByType<Canvas>();
@@ -77,28 +73,17 @@ public class SlotDragHandler : MonoBehaviour, IBeginDragHandler, IDragHandler, I
     }
 
     // ========================================================================
+    // RIGHT-CLICK -> SHOW ITEM DETAIL
     // DOUBLE-CLICK -> USE CONSUMABLE
-    // ========================================================================
-    // Chi click vao inventory slot (khong phai equipment slot).
-    // Neu item la Consumable -> goi Inventory.UseItem()
     // ========================================================================
     public void OnPointerClick(PointerEventData eventData)
     {
-        if (eventData.button != PointerEventData.InputButton.Left) return;
-        if (slot.isEquipmentSlot) return; // Equipment khong the "dung"
+        if (slot.isEquipmentSlot) return;
         if (!slot.HasItem()) return;
 
-        // Phat hien double-click trong khoang thoi gian threshold
-        if (Time.unscaledTime - lastClickTime < doubleClickThreshold)
-        {
-            ItemStack stack = Inventory.Instance.itemSlots[slot.slotIndex];
-            if (stack != null && stack.item.itemType == ItemType.Consumable)
-            {
-                // chuyen cho Inventory xu ly (tim Player, apply effect, remove stack)
-                Inventory.Instance.UseItem(slot.slotIndex);
-            }
-        }
-        lastClickTime = Time.unscaledTime;
+        if (eventData.button != PointerEventData.InputButton.Right) return;
+
+        inventoryUI.ShowItemDetailAt(slot.slotIndex, rectTransform.position);
     }
 
     public void OnDrop(PointerEventData eventData)

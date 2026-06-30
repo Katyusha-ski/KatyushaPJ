@@ -30,10 +30,28 @@ public class ChapterManager : MonoBehaviour
 
     public void CompleteChapter()
     {
+        if (!string.IsNullOrEmpty(CurrentChapter.bossSceneName))
+        {
+            SceneManager.LoadScene(CurrentChapter.bossSceneName);
+            return;
+        }
+
         currentChapterIndex++;
         if (currentChapterIndex >= chapters.Count)
         {
             SceneManager.LoadScene("MainMenu"); 
+            return;
+        }
+        SceneManager.sceneLoaded += OnVillageLoaded;
+        SceneManager.LoadScene("Village");
+    }
+
+    public void CompleteBossChapter()
+    {
+        currentChapterIndex++;
+        if (currentChapterIndex >= chapters.Count)
+        {
+            SceneManager.LoadScene("MainMenu");
             return;
         }
         SceneManager.sceneLoaded += OnVillageLoaded;

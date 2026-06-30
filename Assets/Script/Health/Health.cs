@@ -1,12 +1,15 @@
-using System.Runtime.CompilerServices;
 using UnityEngine;
-using UnityEngine.SceneManagement;
+
 
 public class Health : MonoBehaviour
 {
     [SerializeField] private int maxHealth;
     [SerializeField] private int currentHealth;
     [SerializeField] private MonoBehaviour healthBar;
+    [SerializeField] private int virtualShield; 
+    public int VirtualShield => virtualShield;
+    public void SetShield(int amount) => virtualShield = Mathf.Max(0, amount);
+    public void AddShield(int amount) => virtualShield += amount;
     private IHealthBar _healthBar;
     public AudioClip damageSFX;
     public AudioClip dieSFX;
@@ -14,15 +17,23 @@ public class Health : MonoBehaviour
     public int CurrentHealth => currentHealth;
     public int MaxHealth => maxHealth;
     private bool isUnDying = false;
+    private bool isInvulnerable = false;
 
     private CharacterStats characterStats;
     private float regenTimer = 0f;
     private const float REGEN_INTERVAL = 5f; //heal every 5 seconds
 
 
+    public System.Action<int> OnDamaged;
+
     public void SetUnDying(bool value)
     {
         isUnDying = value;
+    }
+
+    public void SetInvulnerable(bool value)
+    {
+        isInvulnerable = value;
     }
 
     public void SetHealth(int health)
@@ -71,17 +82,29 @@ public class Health : MonoBehaviour
 
     public void TakeDamage(int damage)
     {
-        if (damageSFX != null)
+        if (isInvulnerable)
+            return;
+
+        if (damageSFX != null && AudioManager.Instance != null)
             AudioManager.Instance.PlaySFX(damageSFX);
 
-        if (isUnDying && damage >= currentHealth)
-        {
-            return;
-        }
+        
         // calculate final damage after armor and damage reduction (will add armor piercing in future)
         float dmgReduction = characterStats != null ? characterStats.DmgR / 100f : 0f;
         float armor = characterStats != null ? characterStats.Armor : 0f;
         float finalDamage = Mathf.Max(1f, (damage - armor) * (1f - dmgReduction));
+        if (virtualShield > 0)
+        {
+            int absorbed = Mathf.Min((int)finalDamage, virtualShield);
+            virtualShield -= absorbed;
+            finalDamage -= absorbed;
+        }
+        if (isUnDying && (int)finalDamage >= currentHealth)
+            return;
+
+        if (finalDamage == 0) return;
+
+        OnDamaged?.Invoke((int)finalDamage);
         currentHealth -= (int)finalDamage;
         
         _healthBar?.SetHealth(currentHealth, maxHealth);
@@ -133,7 +156,7 @@ public class Health : MonoBehaviour
             }
         }
         
-        if (dieSFX != null)
+        if (dieSFX != null && AudioManager.Instance != null)
         {
             AudioManager.Instance.PlaySFX(dieSFX);
         }

@@ -1,7 +1,7 @@
 using UnityEditor;
 using UnityEngine;
 
-[CustomPropertyDrawer(typeof(ConsumableEffect))]
+[CustomPropertyDrawer(typeof(EffectData))]
 public class ConsumableEffectDrawer : PropertyDrawer
 {
     public override void OnGUI(Rect position, SerializedProperty property, GUIContent label)
@@ -27,7 +27,7 @@ public class ConsumableEffectDrawer : PropertyDrawer
             SerializedProperty statModifiers = property.FindPropertyRelative("statModifiers");
 
             y = DrawProperty(position, y, effectType);
-            ConsumableEffectType type = (ConsumableEffectType)effectType.enumValueIndex;
+            EffectDataType type = (EffectDataType)effectType.enumValueIndex;
 
             if (HasDuration(type))
                 y = DrawProperty(position, y, duration);
@@ -38,10 +38,10 @@ public class ConsumableEffectDrawer : PropertyDrawer
             if (HasTick(type))
                 y = DrawProperty(position, y, tickInterval);
 
-            if (type == ConsumableEffectType.Heal)
+            if (type == EffectDataType.Heal)
                 y = DrawProperty(position, y, tickValue);
 
-            if (type == ConsumableEffectType.StatModifier)
+            if (type == EffectDataType.StatModifier)
             {
                 y = DrawProperty(position, y, isDebuff);
                 y = DrawProperty(position, y, statModifiers);
@@ -76,7 +76,7 @@ public class ConsumableEffectDrawer : PropertyDrawer
         SerializedProperty statModifiers = property.FindPropertyRelative("statModifiers");
 
         height += EditorGUI.GetPropertyHeight(effectType) + EditorGUIUtility.standardVerticalSpacing;
-        ConsumableEffectType type = (ConsumableEffectType)effectType.enumValueIndex;
+        EffectDataType type = (EffectDataType)effectType.enumValueIndex;
 
         if (HasDuration(type))
             height += EditorGUI.GetPropertyHeight(duration) + EditorGUIUtility.standardVerticalSpacing;
@@ -87,10 +87,10 @@ public class ConsumableEffectDrawer : PropertyDrawer
         if (HasTick(type))
             height += EditorGUI.GetPropertyHeight(tickInterval) + EditorGUIUtility.standardVerticalSpacing;
 
-        if (type == ConsumableEffectType.Heal)
+        if (type == EffectDataType.Heal)
             height += EditorGUI.GetPropertyHeight(tickValue) + EditorGUIUtility.standardVerticalSpacing;
 
-        if (type == ConsumableEffectType.StatModifier)
+        if (type == EffectDataType.StatModifier)
         {
             height += EditorGUI.GetPropertyHeight(isDebuff) + EditorGUIUtility.standardVerticalSpacing;
             height += EditorGUI.GetPropertyHeight(statModifiers) + EditorGUIUtility.standardVerticalSpacing;
@@ -99,21 +99,21 @@ public class ConsumableEffectDrawer : PropertyDrawer
         return height;
     }
 
-    private static bool HasDuration(ConsumableEffectType type) => type switch
+    private static bool HasDuration(EffectDataType type) => type switch
     {
-        ConsumableEffectType.None or ConsumableEffectType.Cleanse => false,
+        EffectDataType.None or EffectDataType.Cleanse => false,
         _ => true
     };
 
-    private static bool HasValue(ConsumableEffectType type) => type switch
+    private static bool HasValue(EffectDataType type) => type switch
     {
-        ConsumableEffectType.Heal or ConsumableEffectType.DamageOverTime => true,
+        EffectDataType.Heal or EffectDataType.DamageOverTime => true,
         _ => false
     };
 
-    private static bool HasTick(ConsumableEffectType type) => type switch
+    private static bool HasTick(EffectDataType type) => type switch
     {
-        ConsumableEffectType.Heal or ConsumableEffectType.DamageOverTime => true,
+        EffectDataType.Heal or EffectDataType.DamageOverTime => true,
         _ => false
     };
 }

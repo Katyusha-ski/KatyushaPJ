@@ -4,7 +4,7 @@ using UnityEngine;
 public class PlayerSkillInput : MonoBehaviour
 {
     [SerializeField] private InputConfig inputConfig;
-    [SerializeField] private SkillManager skillManager;
+    [SerializeField] private PlayerSkillManager playerSkillManager; // TODO: -> PlayerSkillManager
     [SerializeField] private float inputBufferDuration = 0.1f;
 
     private PlayerMovementController movementController;
@@ -30,9 +30,9 @@ public class PlayerSkillInput : MonoBehaviour
             inputConfig = InputConfig.GetDefault();
             Debug.Log("No InputConfig assigned. Using default configuration.");
         }
-        if (skillManager == null)
+        if (playerSkillManager == null)
         {
-            skillManager = GetComponent<SkillManager>();
+            playerSkillManager = GetComponent<PlayerSkillManager>(); // TODO: -> GetComponent<PlayerSkillManager>()
         }
         ValidateComponents();
     }
@@ -40,8 +40,8 @@ public class PlayerSkillInput : MonoBehaviour
     {
         if (movementController == null)
             Debug.LogError("SkillInputHandler requires PlayerMovementController on " + gameObject.name);
-        if (skillManager == null)
-            Debug.LogError("SkillInputHandler requires SkillManager on " + gameObject.name);
+        if (playerSkillManager == null)
+            Debug.LogError("SkillInputHandler requires SkillManager on " + gameObject.name); // TODO
     }
 
     private void Update()
@@ -52,7 +52,7 @@ public class PlayerSkillInput : MonoBehaviour
 
     private void HandleSkillInput()
     {
-        if (inputConfig == null || skillManager == null) return;
+        if (inputConfig == null || playerSkillManager == null) return; // TODO: -> PlayerSkillManager
 
         if (Input.GetKeyDown(inputConfig.skill1Key))
             BufferSkillInput(0);
@@ -99,10 +99,10 @@ public class PlayerSkillInput : MonoBehaviour
 
     private bool CanActivateSkill(int skillIndex)
     {
-        if (skillIndex < 0 || skillIndex >= skillManager.GetSkills().Count)
+        if (skillIndex < 0 || skillIndex >= playerSkillManager.GetSkills().Count) // TODO: -> PlayerSkillManager
             return false;
 
-        var skill = skillManager.GetSkills()[skillIndex];
+        var skill = playerSkillManager.GetSkills()[skillIndex]; // TODO: -> PlayerSkillManager
         return skill != null && skill.CanActivate;
     }
 
@@ -111,7 +111,7 @@ public class PlayerSkillInput : MonoBehaviour
         if (movementController == null) return;
 
         int direction = movementController.Direction;
-        skillManager.ActivateSkill(skillIndex, direction);
+        playerSkillManager.ActivateSkill(skillIndex, direction); // TODO: -> PlayerSkillManager
     }
 
     public void ClearInputBuffer()
