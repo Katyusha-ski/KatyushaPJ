@@ -1,42 +1,33 @@
-﻿using UnityEngine;
-using System.Collections;
-using Unity.VisualScripting;
-
-public class KittingState : IEnemyState
+﻿public class KittingState : IEnemyState
 {
-    public void OnEnter(EnemyController enemy)
+    public void OnEnter(IEnemyMovement movement, IEnemyCombat combat, IEnemyStateContext ctx)
     {
-        Debug.Log($"Entering Kitting State for {enemy.name}");
-        enemy.SetAnimatorBool("Run", false);
+        combat.PlayAnimBool("Run", false);
     }
 
-    public void OnUpdate(EnemyController enemy)
+    public void OnUpdate(IEnemyMovement movement, IEnemyCombat combat, IEnemyStateContext ctx)
     {
-        if (enemy is IRangedEnemy ranged)
-        { 
-            float distanceToPlayer = enemy.GetDistanceToPlayer();
+        if (movement is IEnemyRanged ranged)
+        {
+            float distanceToPlayer = movement.GetDistanceToPlayer();
 
-            // Too far from attack range → pursue
-            if (distanceToPlayer > enemy.GetAttackRange())
+            if (distanceToPlayer > combat.GetAttackRange())
             {
-                enemy.ChangeStateByName("Pursuit");
+                ctx.SwitchTo("Pursuit");
                 return;
             }
 
-            // Reached preferred distance → attack
-            if (distanceToPlayer >= ranged.GetCloseDistance() && distanceToPlayer <= ranged.GetPreferedDistance())
+            if (distanceToPlayer >= ranged.GetCloseDistance() && distanceToPlayer <= ranged.GetPreferredDistance())
             {
-                enemy.ChangeStateByName("Attack");
+                ctx.SwitchTo("Attack");
                 return;
             }
 
-            // Maintain distance - kitting
-            ranged.ExecuteKitting();
+            ranged.Kitting();
         }
     }
 
-    public void OnExit(EnemyController enemy)
+    public void OnExit(IEnemyMovement movement, IEnemyCombat combat, IEnemyStateContext ctx)
     {
-
     }
 }

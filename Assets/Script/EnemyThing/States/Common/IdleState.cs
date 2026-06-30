@@ -1,28 +1,21 @@
-using UnityEngine;
-
 public class IdleState : IEnemyState
 {
-    public void OnEnter(EnemyController enemy)
+    public void OnEnter(IEnemyMovement movement, IEnemyCombat combat, IEnemyStateContext ctx)
     {
-        Debug.Log($"{enemy.gameObject.name} entered Idle State");
-        enemy.SetAnimatorBool("Run", false);
+        combat.PlayAnimBool("Run", false);
     }
 
-    public void OnUpdate(EnemyController enemy)
+    public void OnUpdate(IEnemyMovement movement, IEnemyCombat combat, IEnemyStateContext ctx)
     {
-        float distanceToPlayer = enemy.GetDistanceToPlayer();
-        if (distanceToPlayer <= enemy.GetVisionRange())
+        if (movement.GetDistanceToPlayer() <= movement.GetVisionRange())
         {
-            Debug.Log($"{enemy.gameObject.name} sees player! Distance: {distanceToPlayer}, VisionRange: {enemy.GetVisionRange()}");
-            enemy.ChangeStateByName("Pursuit");
+            ctx.SwitchTo("Pursuit");
+            return;
         }
-        else
-        {
-            enemy.Patrol();
-        }
+        movement.Patrol();
     }
 
-    public void OnExit(EnemyController enemy)
+    public void OnExit(IEnemyMovement movement, IEnemyCombat combat, IEnemyStateContext ctx)
     {
     }
 }

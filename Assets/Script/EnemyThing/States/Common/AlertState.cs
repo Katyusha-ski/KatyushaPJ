@@ -5,31 +5,29 @@ public class AlertState : IEnemyState
     private float alertDuration = 0.5f;
     private float elapsedTime = 0f;
 
-    public void OnEnter(EnemyController enemy)
+    public void OnEnter(IEnemyMovement movement, IEnemyCombat combat, IEnemyStateContext ctx)
     {
         elapsedTime = 0f;
-        enemy.SetAnimatorBool("Run", false);
-        enemy.SetAnimatorTrigger("Alert");
+        combat.PlayAnimBool("Run", false);
+        combat.PlayAnimTrigger("Alert");
     }
 
-    public void OnUpdate(EnemyController enemy)
+    public void OnUpdate(IEnemyMovement movement, IEnemyCombat combat, IEnemyStateContext ctx)
     {
-        float distanceToPlayer = enemy.GetDistanceToPlayer();
-
-        if (distanceToPlayer <= enemy.GetVisionRange())
+        if (movement.GetDistanceToPlayer() <= movement.GetVisionRange())
         {
-            enemy.ChangeStateByName("Pursuit");
+            ctx.SwitchTo("Pursuit");
             return;
         }
 
         elapsedTime += Time.deltaTime;
         if (elapsedTime >= alertDuration)
         {
-            enemy.ChangeStateByName("Idle");
+            ctx.SwitchTo("Idle");
         }
     }
 
-    public void OnExit(EnemyController enemy)
+    public void OnExit(IEnemyMovement movement, IEnemyCombat combat, IEnemyStateContext ctx)
     {
     }
 }

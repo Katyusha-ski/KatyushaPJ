@@ -1,6 +1,7 @@
 using UnityEngine;
 
 
+[RequireComponent(typeof(CharacterStats))]
 public class Health : MonoBehaviour
 {
     [SerializeField] private int maxHealth;
@@ -74,9 +75,12 @@ public class Health : MonoBehaviour
     {
         _healthBar = healthBar as IHealthBar;
         characterStats = GetComponent<CharacterStats>();
-        maxHealth = (int)characterStats.MaxHP;
+        if (characterStats != null)
+        {
+            maxHealth = (int)characterStats.MaxHP;
+            characterStats.MaxHPChanged += OnMaxHPChanged;
+        }
         currentHealth = maxHealth;
-        characterStats.MaxHPChanged += OnMaxHPChanged;
         _healthBar?.SetMaxHealth(maxHealth);
     }
 

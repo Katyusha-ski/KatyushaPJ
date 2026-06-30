@@ -1,8 +1,8 @@
 public interface IEnemyState
 {
-    void OnEnter(EnemyController enemy);
-    void OnUpdate(EnemyController enemy);
-    void OnExit(EnemyController enemy);
+    void OnEnter(IEnemyMovement movement, IEnemyCombat combat, IEnemyStateContext ctx);
+    void OnUpdate(IEnemyMovement movement, IEnemyCombat combat, IEnemyStateContext ctx);
+    void OnExit(IEnemyMovement movement, IEnemyCombat combat, IEnemyStateContext ctx);
 }
 
 public interface IEnemyStateProvider

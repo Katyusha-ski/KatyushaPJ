@@ -4,9 +4,8 @@ public class HealState : IEnemyState
 {
     private IEnemyState previousState;
 
-    public HealState(IEnemyState previousState)
+    public HealState()
     {
-        this.previousState = previousState;
     }
 
     public void SetPreviousState(IEnemyState state)
@@ -14,34 +13,27 @@ public class HealState : IEnemyState
         previousState = state;
     }
 
-    public void OnEnter(EnemyController enemy)
+    public void OnEnter(IEnemyMovement movement, IEnemyCombat combat, IEnemyStateContext ctx)
     {
-        Debug.Log($"{enemy.gameObject.name} entered Heal State");
-        enemy.SetAnimatorBool("Run", false);
+        combat.PlayAnimBool("Run", false);
     }
 
-    public void OnUpdate(EnemyController enemy)
+    public void OnUpdate(IEnemyMovement movement, IEnemyCombat combat, IEnemyStateContext ctx)
     {
-        if (enemy is NecromancerE necromancer)
+        var health = ((MonoBehaviour)ctx).GetComponent<Health>();
+        if (health != null)
         {
-            var health = enemy.GetComponent<Health>();
-            if (health != null)
+            if (health.CurrentHealth < health.MaxHealth * 0.5f)
             {
-                // Still need healing? Cast heal
-                if (health.CurrentHealth < health.MaxHealth * 0.5f)
-                {
-                    enemy.SetAnimatorTrigger("Heal");
-                    return;
-                }
-
-                // Health recovered to 50%+ → return to previous state
-                enemy.ChangeState(previousState ?? new IdleState());
+                combat.PlayAnimTrigger("Heal");
                 return;
             }
+
+            ctx.SwitchTo("Pursuit");
         }
     }
 
-    public void OnExit(EnemyController enemy)
+    public void OnExit(IEnemyMovement movement, IEnemyCombat combat, IEnemyStateContext ctx)
     {
     }
 }

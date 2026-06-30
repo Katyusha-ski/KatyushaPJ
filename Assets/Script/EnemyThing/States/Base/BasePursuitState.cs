@@ -1,34 +1,31 @@
-using UnityEngine;
-
 public class BasePursuitState : IEnemyState
 {
-    public virtual void OnEnter(EnemyController enemy)
+    public virtual void OnEnter(IEnemyMovement movement, IEnemyCombat combat, IEnemyStateContext ctx)
     {
-        Debug.Log($"{enemy.gameObject.name} entered Pursuit State");
-        enemy.SetAnimatorBool("Run", true);
+        combat.PlayAnimBool("Run", true);
     }
 
-    public virtual void OnUpdate(EnemyController enemy)
+    public virtual void OnUpdate(IEnemyMovement movement, IEnemyCombat combat, IEnemyStateContext ctx)
     {
-        float distanceToPlayer = enemy.GetDistanceToPlayer();
+        float distanceToPlayer = movement.GetDistanceToPlayer();
 
-        if (distanceToPlayer > enemy.GetVisionRange())
+        if (distanceToPlayer > movement.GetVisionRange())
         {
-            enemy.ChangeStateByName("Idle"); 
-            return;
-        }
-        
-        if (distanceToPlayer <= enemy.GetAttackRange())
-        {
-            enemy.ChangeStateByName("Attack"); 
+            ctx.SwitchTo("Idle");
             return;
         }
 
-        enemy.Pursue();
+        if (distanceToPlayer <= combat.GetAttackRange())
+        {
+            ctx.SwitchTo("Attack");
+            return;
+        }
+
+        movement.Pursue();
     }
 
-    public virtual void OnExit(EnemyController enemy)
+    public virtual void OnExit(IEnemyMovement movement, IEnemyCombat combat, IEnemyStateContext ctx)
     {
-        enemy.SetAnimatorBool("Run", false);
+        combat.PlayAnimBool("Run", false);
     }
 }

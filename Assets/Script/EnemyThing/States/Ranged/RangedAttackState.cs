@@ -1,30 +1,21 @@
 ﻿public class RangedAttackState : BaseAttackState
 {
-
-    public override void OnEnter(EnemyController enemy)
+    public override void OnUpdate(IEnemyMovement movement, IEnemyCombat combat, IEnemyStateContext ctx)
     {
-        base.OnEnter(enemy);
-    }
+        float distanceToPlayer = movement.GetDistanceToPlayer();
 
-    public override void OnUpdate(EnemyController enemy)
-    {
-        if (enemy is IRangedEnemy ranged)
+        if (distanceToPlayer > combat.GetAttackRange())
         {
-            float distanceToPlayer = enemy.GetDistanceToPlayer();
-
-            if (distanceToPlayer > enemy.GetAttackRange())
-            {
-                enemy.ChangeStateByName("Pursuit");  
-                return;
-            }
-
-            if (distanceToPlayer < ranged.GetCloseDistance())
-            {
-                enemy.ChangeStateByName("Kitting");  
-                return;
-            }
+            ctx.SwitchTo("Pursuit");
+            return;
         }
 
-        ExecuteAttackPattern(enemy);
+        if (movement is IEnemyRanged ranged && distanceToPlayer < ranged.GetCloseDistance())
+        {
+            ctx.SwitchTo("Kitting");
+            return;
+        }
+
+        base.OnUpdate(movement, combat, ctx);
     }
 }

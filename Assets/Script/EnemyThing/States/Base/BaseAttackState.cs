@@ -1,45 +1,27 @@
-using UnityEngine;
-
 public class BaseAttackState : IEnemyState
 {
-    public virtual void OnEnter(EnemyController enemy)
+    public virtual void OnEnter(IEnemyMovement movement, IEnemyCombat combat, IEnemyStateContext ctx)
     {
-        Debug.Log($"{enemy.gameObject.name} entered Attack State");
-        enemy.SetAnimatorBool("Run", false);
-        enemy.LookAtPlayer();
+        combat.PlayAnimBool("Run", false);
+        movement.LookAtPlayer();
     }
 
-    public virtual void OnUpdate(EnemyController enemy)
+    public virtual void OnUpdate(IEnemyMovement movement, IEnemyCombat combat, IEnemyStateContext ctx)
     {
-        float distanceToPlayer = enemy.GetDistanceToPlayer();
-
-        if (distanceToPlayer > enemy.GetAttackRange())
+        if (movement.GetDistanceToPlayer() > combat.GetAttackRange())
         {
-            enemy.ChangeStateByName("Pursuit");
+            ctx.SwitchTo("Pursuit");
             return;
         }
 
-        ExecuteAttackPattern(enemy);
-    }
-
-    public virtual void OnExit(EnemyController enemy){}
-
-    protected virtual void ExecuteAttackPattern(EnemyController enemy)
-    {
-        if (IsAttackReady(enemy))
+        if (combat.IsAttackReady())
         {
-            enemy.ExecuteAttack();
-            RecordAttack(enemy);
+            combat.ExecuteAttack();
+            combat.RecordAttack();
         }
     }
 
-    protected bool IsAttackReady(EnemyController enemy)
+    public virtual void OnExit(IEnemyMovement movement, IEnemyCombat combat, IEnemyStateContext ctx)
     {
-        return Time.time - enemy.GetLastTimeAttack() >= enemy.GetAttackCooldown();
-    }
-
-    protected void RecordAttack(EnemyController enemy)
-    {
-        enemy.SetLastTimeAttack(Time.time);
     }
 }

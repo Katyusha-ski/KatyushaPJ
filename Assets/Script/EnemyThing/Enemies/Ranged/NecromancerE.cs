@@ -1,58 +1,72 @@
 ﻿using UnityEngine;
 
-public class NecromancerE : EnemyController, IRangedEnemy
+public class NecromancerE : EnemyController, IEnemyRanged
 {
     [Header("Skill List")]
     public SkillManager skillManager;
+    [SerializeField] private int skill1Index = 0;
+    [SerializeField] private int skill2Index = 1;
+    [SerializeField] private int healSkillIndex = 2;
 
-    private float closeDistance = 3f;
-    private float preferredDistance = 5f;
+    [SerializeField] private float closeDistance = 3f;
+    [SerializeField] private float preferredDistance = 5f;
+
     private HealState healState;
 
     public float GetCloseDistance() => closeDistance;
-    public float GetPreferedDistance() => preferredDistance;
+    public float GetPreferredDistance() => preferredDistance;
+
+    public void Kitting()
+    {
+        if (IsAttackReady())
+        {
+            ExecuteAttack();
+            RecordAttack();
+        }
+        RetreatFromPlayer();
+    }
 
     public override IEnemyState GetAttackState() => new RangedAttackState();
+    public override IEnemyState GetKittingState() => new KittingState();
 
-    protected override void InitializeStates()
+    protected override void CacheStates()
     {
-        base.InitializeStates();
+        base.CacheStates();
         stateCache["Kitting"] = GetKittingState();
         stateCache["Attack"] = GetAttackState();
-        healState = new HealState(null); // Initialize once
+        healState = new HealState();
         stateCache["Heal"] = healState;
     }
 
-    void Update()
+    protected override void Start()
     {
-        // Check heal priority from any state
-        if (ShouldHeal() && skillManager.skills[2].CanActivate && !(currentState is HealState))
+        base.Start();
+        ValidateSkillSetup();
+    }
+
+    protected override void Update()
+    {
+        if (ShouldHeal() && CanUseSkill(healSkillIndex) && !(currentState is HealState))
         {
-            healState.SetPreviousState(GetCurrentState() ?? new IdleState());
-            ChangeStateByName("Heal");
+            healState.SetPreviousState(currentState);
+            SwitchTo("Heal");
             return;
         }
 
-        // Normal state update
-        if (currentState != null)
-        {
-            currentState.OnUpdate(this);
-        }
+        base.Update();
     }
 
     public override void ExecuteAttack()
     {
-        // Try to cast skill 1
-        if (skillManager.skills[0].CanActivate)
+        if (CanUseSkill(skill1Index))
         {
-            SetAnimatorTrigger("Skill1");
+            PlayAnimTrigger("Skill1");
             return;
         }
 
-        // Try to cast skill 2
-        if (skillManager.skills[1].CanActivate)
+        if (CanUseSkill(skill2Index))
         {
-            SetAnimatorTrigger("Skill2");
+            PlayAnimTrigger("Skill2");
             return;
         }
     }
@@ -66,27 +80,62 @@ public class NecromancerE : EnemyController, IRangedEnemy
 
     public void CastSkill1()
     {
-        skillManager.ActivateSkill(0, direction);
+        if (CanUseSkill(skill1Index))
+            skillManager.ActivateSkill(skill1Index, GetDirection());
     }
 
     public void CastSkill2()
     {
-        skillManager.ActivateSkill(1, direction);
+        if (CanUseSkill(skill2Index))
+            skillManager.ActivateSkill(skill2Index, GetDirection());
     }
 
     public void CastHeal()
     {
-        skillManager.ActivateSkill(2, 0);
+        if (CanUseSkill(healSkillIndex))
+            skillManager.ActivateSkill(healSkillIndex, 0);
     }
 
-    public void Retreat()
+    private bool CanUseSkill(int index)
     {
-        LookAtPlayer();
-        rb.linearVelocity = new Vector2(-characterStats.MovementSpeed * 0.8f * direction, rb.linearVelocity.y);
+        return skillManager != null
+            && skillManager.skills != null
+            && index >= 0
+            && index < skillManager.skills.Count
+            && skillManager.skills[index] != null
+            && skillManager.skills[index].CanActivate;
     }
-    public void ExecuteKitting()
+
+    private void ValidateSkillSetup()
     {
-        ExecuteAttack();
-        Retreat();
+        if (skillManager == null)
+        {
+            Debug.LogError($"{name} missing SkillManager.", this);
+            return;
+        }
+
+        ValidateSkillIndex(skill1Index, nameof(skill1Index));
+        ValidateSkillIndex(skill2Index, nameof(skill2Index));
+        ValidateSkillIndex(healSkillIndex, nameof(healSkillIndex));
+    }
+
+    private void ValidateSkillIndex(int index, string fieldName)
+    {
+        if (skillManager.skills == null)
+        {
+            Debug.LogError($"{name} SkillManager has a null skills list.", this);
+            return;
+        }
+
+        if (index < 0 || index >= skillManager.skills.Count)
+        {
+            Debug.LogError($"{name} {fieldName} is out of range. Index: {index}, skill count: {skillManager.skills.Count}.", this);
+            return;
+        }
+
+        if (skillManager.skills[index] == null)
+        {
+            Debug.LogError($"{name} {fieldName} points to an empty skill slot at index {index}.", this);
+        }
     }
 }

@@ -46,6 +46,7 @@ public enum SkillType
 public class ItemData : ScriptableObject
 {
     [Header("Basic Information")]
+    public string itemId = "";
     public string itemName = "New Item";
     public Sprite itemIcon;
     public ItemType itemType = ItemType.Equipment;

@@ -8,12 +8,12 @@ public class SlimeE : EnemyController
     {
         if (checkAttack)
         {
-            NormalAttack();
+            PlayAnimTrigger("Attack");
             checkAttack = false;
         }
         else
         {
-            animator.SetTrigger("Hit");
+            PlayAnimTrigger("Hit");
             checkAttack = true;
         }
     }

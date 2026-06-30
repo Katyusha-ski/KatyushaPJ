@@ -3,39 +3,38 @@
 public class HurtState : IEnemyState
 {
     private float hurtDuration = 0.5f;
-    private float elaspedTime = 0f;
-    public IEnemyState preState;
+    private float elapsedTime = 0f;
+    private IEnemyState previousState;
 
-    public HurtState(IEnemyState preState)
+    public HurtState(IEnemyState previousState)
     {
-        this.preState = preState;
+        this.previousState = previousState;
     }
 
-    public void OnEnter(EnemyController enemy)
+    public void OnEnter(IEnemyMovement movement, IEnemyCombat combat, IEnemyStateContext ctx)
     {
-        Debug.Log($"{enemy.gameObject.name} entered Hurt State");
-        elaspedTime = 0f;
-        enemy.SetAnimatorTrigger("Hurt");
-        enemy.SetAnimatorBool("Run", false);
+        elapsedTime = 0f;
+        combat.PlayAnimTrigger("Hurt");
+        combat.PlayAnimBool("Run", false);
     }
 
-    public void OnUpdate(EnemyController enemy)
+    public void OnUpdate(IEnemyMovement movement, IEnemyCombat combat, IEnemyStateContext ctx)
     {
-        elaspedTime += Time.deltaTime;
-        if (elaspedTime >= hurtDuration)
+        elapsedTime += Time.deltaTime;
+        if (elapsedTime >= hurtDuration)
         {
-            Debug.Log($"{enemy.gameObject.name} Hurt duration ended. preState = {preState?.GetType().Name ?? "null"}");
-            if (preState != null)
+            if (previousState != null)
             {
-                enemy.ChangeState(preState);
+                ctx.SwitchTo("Pursuit");
             }
             else
             {
-                Debug.LogError($"{enemy.gameObject.name} preState is null! Returning to Idle.");
-                enemy.ChangeStateByName("Idle");
+                ctx.SwitchTo("Idle");
             }
         }
     }
 
-    public void OnExit(EnemyController enemy) { }
+    public void OnExit(IEnemyMovement movement, IEnemyCombat combat, IEnemyStateContext ctx)
+    {
+    }
 }

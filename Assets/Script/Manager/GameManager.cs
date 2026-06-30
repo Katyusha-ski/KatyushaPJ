@@ -70,9 +70,11 @@ public class GameManager : MonoBehaviour
 
         if (PlayerManager.Instance != null)
         {
-            Health health = PlayerManager.Instance.PlayerHealth;
-            playerHealth = health.CurrentHealth;
-            playerPosition = PlayerManager.Instance.PlayerTransform.position;
+            if (PlayerManager.Instance.PlayerHealth != null)
+                playerHealth = PlayerManager.Instance.PlayerHealth.CurrentHealth;
+
+            if (PlayerManager.Instance.PlayerTransform != null)
+                playerPosition = PlayerManager.Instance.PlayerTransform.position;
         }
         else
         {
@@ -85,9 +87,11 @@ public class GameManager : MonoBehaviour
         if (shop != null)
             shop.GetSerializableData(shopData);
 
+        int chapterNumber = ChapterManager.Instance != null ? ChapterManager.Instance.CurrentChapterNumber : 0;
+
         SaveData data = new SaveData
         {
-            currentChapter = ChapterManager.Instance.CurrentChapterNumber,
+            currentChapter = chapterNumber,
             // Inventory data
             inventoryItem = Inventory.Instance.GetSerializableInventory(),
             equipmentItem = Inventory.Instance.GetSerializableEquipment(),
@@ -245,17 +249,11 @@ public class GameManager : MonoBehaviour
                 tempSaveData.playerPositionY,
                 tempSaveData.playerPositionZ
             );
-            PlayerManager.Instance.PlayerTransform.position = savedPosition;
+            if (PlayerManager.Instance.PlayerTransform != null)
+                PlayerManager.Instance.PlayerTransform.position = savedPosition;
 
-            // Restore health
             if (PlayerManager.Instance.PlayerHealth != null)
-            {
                 PlayerManager.Instance.PlayerHealth.SetHealth(tempSaveData.playerHealth);
-            }
-            else
-            {
-                Debug.LogWarning("PlayerHealth component not found!");
-            }
         
 
         tempSaveData = null; 

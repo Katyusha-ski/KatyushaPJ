@@ -3,6 +3,7 @@ using UnityEngine;
 [System.Serializable]
 public class SerializableItemStack
 {
+    // TODO: Migrate save/load to ItemData.itemId. itemName is display data and can break old saves if renamed.
     public string itemName;
     public int amount;
 

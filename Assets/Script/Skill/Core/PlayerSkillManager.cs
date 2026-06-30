@@ -16,6 +16,16 @@ public class PlayerSkillManager : MonoBehaviour
 
     public void ReloadSkills()
     {
+        if (Inventory.Instance == null)
+        {
+            Debug.LogError("[PlayerSkillManager] Inventory.Instance is null!");
+            return;
+        }
+
+        int skillRows = Inventory.Instance.skillMatrix.GetLength(0);
+        while (skills.Count < skillRows)
+            skills.Add(null);
+
         for (int i = 0; i < skills.Count; i++)
         {
             skills[i] = Inventory.Instance.GetHighestSkill(i);

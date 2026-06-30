@@ -59,7 +59,7 @@ public class ShopManager : MonoBehaviour
 
     public bool Purchase(ShopEntrySO entry)
     {
-        if (!CanAfford(entry) || entry.item == null)
+        if (!CanAfford(entry) || entry.item == null || !entry.isUnlocked)
             return false;
 
         if (entry.costs != null)

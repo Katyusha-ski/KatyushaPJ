@@ -159,18 +159,18 @@ public class Inventory : MonoBehaviour
 
         int remaining = amount;
 
-        for (int i = 0; i < itemSlots.Count; i++)
+        for (int i = 0; i < itemSlots.Count && remaining > 0; i++)
         {
             if (!IsSlotEmpty(itemSlots[i]) && itemSlots[i].item == item)
             {
-                itemSlots[i].amount -= remaining;
+                int takeAmount = Mathf.Min(remaining, itemSlots[i].amount);
+                itemSlots[i].amount -= takeAmount;
+                remaining -= takeAmount;
+
                 if (itemSlots[i].amount <= 0)
                 {
-                    remaining = -itemSlots[i].amount;
                     itemSlots[i] = null;
                 }
-                if (remaining <= 0)
-                    break;
             }
         }
 

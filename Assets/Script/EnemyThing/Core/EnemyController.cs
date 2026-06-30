@@ -1,144 +1,126 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyController : MonoBehaviour, IEnemyStateProvider
+[RequireComponent(typeof(CharacterStats))]
+public class EnemyController : MonoBehaviour, IEnemyStateProvider, IEnemyMovement, IEnemyCombat, IEnemyStateContext
 {
-    protected Rigidbody2D rb;
-    protected SpriteRenderer sr;
-    protected Animator animator;
-    protected CharacterStats characterStats;
-
     [SerializeField] protected float attackRange = 1.5f;
     [SerializeField] protected float visionRange = 5f;
     [SerializeField] protected float attackCooldown = 2f;
-    [SerializeField] protected float lastTimeAttack = -Mathf.Infinity;
-    [SerializeField] protected Transform player;
 
-    protected int direction = 1;
-    protected int lastPatrolDirection = 1;
+    protected Transform player;
+    protected CharacterStats characterStats;
+
+    protected MovementManager movement;
+    protected AnimationController animationCtrl;
+    protected EnemyStateFactory stateFactory;
+
     protected IEnemyState currentState;
     protected Dictionary<string, IEnemyState> stateCache = new();
 
-    
+    protected float lastTimeAttack = -Mathf.Infinity;
 
-    void Start()
+    protected virtual void Start()
     {
-        rb = GetComponent<Rigidbody2D>();
-        sr = GetComponent<SpriteRenderer>();
-        animator = GetComponent<Animator>();
-        lastPatrolDirection = direction;
-
-        if(player == null && PlayerManager.Instance != null)
-        {
-            player = PlayerManager.Instance.PlayerTransform;
-        }
-
-        // Initialize CharacterStats (required)
+        var rb = GetComponent<Rigidbody2D>();
+        var sr = GetComponent<SpriteRenderer>();
+        var animator = GetComponent<Animator>();
         characterStats = GetComponent<CharacterStats>();
+
         if (characterStats == null)
         {
-            Debug.LogWarning($"{gameObject.name} is missing CharacterStats component! Add it to the prefab.", gameObject);
+            Debug.LogWarning($"{gameObject.name} missing CharacterStats!", gameObject);
             return;
         }
 
-        InitializeStates();
+        if (player == null && PlayerManager.Instance != null)
+            player = PlayerManager.Instance.PlayerTransform;
+
+        movement = new MovementManager(rb, sr, characterStats);
+        animationCtrl = new AnimationController(animator);
+        stateFactory = CreateStateFactory();
+
+        CacheStates();
         ChangeState(GetIdleState());
     }
 
-    void Update()
+    protected virtual void Update()
     {
-        if (currentState != null)
+        currentState?.OnUpdate(this, this, this);
+    }
+
+    protected virtual EnemyStateFactory CreateStateFactory()
+    {
+        return new EnemyStateFactory();
+    }
+
+    protected virtual void CacheStates()
+    {
+        stateCache["Idle"] = GetIdleState();
+        stateCache["Pursuit"] = GetPursuitState();
+        stateCache["Attack"] = GetAttackState();
+        stateCache["Hurt"] = GetHurtState(null);
+        stateCache["Die"] = GetDieState();
+    }
+
+    public void ChangeState(IEnemyState newState)
+    {
+        currentState?.OnExit(this, this, this);
+        currentState = newState;
+        currentState?.OnEnter(this, this, this);
+    }
+
+    public void SwitchTo(string stateName)
+    {
+        if (stateCache.TryGetValue(stateName, out var state) && state != null)
         {
-            currentState.OnUpdate(this);
-        }
-    }
-
-    #region Getters
-    public float GetDistanceToPlayer()
-    {
-        if (player == null) return Mathf.Infinity;
-        return Vector2.Distance(transform.position, player.position);
-    }
-
-    public float GetAttackRange() => attackRange;
-
-    public float GetVisionRange() => visionRange;
-
-    public float GetAttackCooldown() => attackCooldown;
-
-    public float GetLastTimeAttack() => lastTimeAttack;
-
-    public int GetDirection() => direction;
-    #endregion
-
-    #region Logic Control
-    public void Patrol()
-    {
-        direction = lastPatrolDirection;
-        rb.linearVelocityX = characterStats.MovementSpeed * direction;
-        sr.flipX = direction < 0;
-    }
-
-    public void LookAtPlayer()
-    {
-        if (player == null) return;
-
-        float diffX = player.position.x - transform.position.x;
-        bool isTooCloseX = Mathf.Abs(diffX) < 0.2f;
-        if (!isTooCloseX)
-        {
-            direction = diffX > 0 ? 1 : -1;
-            sr.flipX = direction < 0;
-        }
-        rb.linearVelocity = Vector2.zero;
-    }
-
-    public void MoveTowardPlayer()
-    {
-        if (player == null) return;
-        float diffX = player.position.x - transform.position.x;
-        bool isTooCloseX = Mathf.Abs(diffX) < 0.2f;
-        if (!isTooCloseX)
-        {
-            direction = diffX > 0 ? 1 : -1;
-            sr.flipX = direction < 0;
-            rb.linearVelocityX = characterStats.MovementSpeed * 1.5f * direction;
+            ChangeState(state);
         }
         else
         {
-            rb.linearVelocityX = 0f;
+            Debug.LogWarning($"State {stateName} not found in cache.", this);
         }
     }
 
-    /// <summary>
-    /// Pursue behavior: Look at player and move toward them
-    /// Can be overridden by subclasses for custom pursuit logic
-    /// </summary>
-    public virtual void Pursue()
-    {
-        LookAtPlayer();
-        MoveTowardPlayer();
-    }
+    public IEnemyState GetCurrentState() => currentState;
 
-    public void NormalAttack()
-    {
-        animator.SetTrigger("Attack");
-    }
+    // --- IEnemyMovement ---
+    public virtual void Patrol() => movement.Patrol();
+    public void LookAtPlayer() => movement.LookAtPlayer(player);
+    public void MoveTowardPlayer() => movement.MoveTowardPlayer(player);
+    public virtual void Pursue() { LookAtPlayer(); MoveTowardPlayer(); }
+    public virtual void RetreatFromPlayer() => movement.RetreatFromPlayer(player);
+    public void SetDirection(int dir) => movement.SetDirection(dir);
+    public int GetDirection() => movement.GetDirection();
+    public float GetDistanceToPlayer() => movement.GetDistanceToPlayer(player);
+    public float GetVisionRange() => visionRange;
 
-    public virtual void ExecuteAttack()
-    {
-        NormalAttack();
-    }
+    // --- IEnemyCombat ---
+    public bool IsAttackReady() => Time.time - lastTimeAttack >= attackCooldown;
+    public void RecordAttack() => lastTimeAttack = Time.time;
+    public float GetAttackRange() => attackRange;
+    public virtual void ExecuteAttack() => animationCtrl.PlayAttack();
+    public void PlayAnimTrigger(string trigger) => animationCtrl.SetTrigger(trigger);
+    public void PlayAnimBool(string name, bool value) => animationCtrl.SetBool(name, value);
 
+    // --- IEnemyStateProvider ---
+    public virtual IEnemyState GetIdleState() => stateFactory.CreateIdleState();
+    public virtual IEnemyState GetPursuitState() => stateFactory.CreatePursuitState();
+    public virtual IEnemyState GetAttackState() => stateFactory.CreateAttackState();
+    public virtual IEnemyState GetAlertState() => stateFactory.CreateAlertState();
+    public virtual IEnemyState GetHurtState(IEnemyState preState) => stateFactory.CreateHurtState(preState);
+    public virtual IEnemyState GetDieState() => stateFactory.CreateDieState();
+    public virtual IEnemyState GetKittingState() => stateFactory.CreateKittingState();
+
+    // --- Animation events (called from Unity) ---
     public virtual void DealNormalAttackDamage()
     {
         if (player != null && Vector2.Distance(transform.position, player.position) < attackRange)
         {
             var playerHealth = player.GetComponent<Health>();
-            if (playerHealth != null)
+            if (playerHealth != null && characterStats != null)
             {
-                int damage = (int)characterStats.Atk;
-                playerHealth.TakeDamage(damage);
+                playerHealth.TakeDamage((int)characterStats.Atk);
             }
         }
     }
@@ -150,110 +132,18 @@ public class EnemyController : MonoBehaviour, IEnemyStateProvider
         {
             health.lootManager.SpawnLoot();
         }
-
-        Debug.Log($"{gameObject.name} has died.");
-    }
-    public void SetAnimatorBool(string parameter, bool value)
-    {
-        animator.SetBool(parameter, value);
     }
 
-    public void SetAnimatorTrigger(string parameter)
-    {
-        animator.SetTrigger(parameter);
-    }
-
-    public void SetLastTimeAttack(float time)
-    {
-        lastTimeAttack = time;
-    }
-
+    // --- Collision ---
     protected void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Obstacle"))
-        {
-            direction *= -1;
-            lastPatrolDirection = direction;
-        }
+            movement.OnHitObstacle();
     }
 
     protected void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Obstacle"))
-        {
-            direction *= -1;
-            lastPatrolDirection = direction;
-        }
+            movement.OnHitObstacle();
     }
-    #endregion
-
-    #region State Management
-
-    protected virtual void InitializeStates()
-    {
-        stateCache["Idle"] = GetIdleState();
-        stateCache["Pursuit"] = GetPursuitState();
-        stateCache["Attack"] = GetAttackState();
-        stateCache["Hurt"] = GetHurtState(null);
-        stateCache["Die"] = GetDieState();
-    }
-
-    public void ChangeState(IEnemyState newState)
-    {
-        currentState?.OnExit(this);
-        currentState = newState;
-        currentState.OnEnter(this);
-    }
-
-    public void ChangeStateByName(string stateName)
-    {
-        if (stateCache.TryGetValue(stateName, out var state) && state != null)
-        {
-            ChangeState(state);
-        }
-        else
-        {
-            Debug.LogWarning($"State {stateName} not found in cache.");
-        }
-    }
-
-    public IEnemyState GetCurrentState()
-    {
-        return currentState;
-    }
-
-    public virtual IEnemyState GetIdleState()
-    {
-        return new IdleState();
-    }
-
-    public virtual IEnemyState GetPursuitState()
-    {
-        return new BasePursuitState();
-    }
-
-    public virtual IEnemyState GetAttackState()
-    {
-        return new BaseAttackState();
-    }
-
-    public virtual IEnemyState GetKittingState()
-    {
-        return new KittingState();
-    }
-
-    public virtual IEnemyState GetAlertState()
-    {
-        return new AlertState();
-    }
-    public virtual IEnemyState GetHurtState(IEnemyState preState)
-    {
-        return new HurtState(preState);
-    }
-
-    public virtual IEnemyState GetDieState()
-    {
-        return new DieState();
-    }
-    #endregion
 }

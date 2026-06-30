@@ -1,255 +1,136 @@
-# Enemy System Refactoring Plan - Detailed Implementation Guide
+# Enemy System Refactoring Plan – Revised
 
 ## Overview
-This document provides a comprehensive 5-phase refactoring plan for the enemy system, focusing on SOLID principles:
-- **SRP** (Single Responsibility Principle)
-- **OCP** (Open/Closed Principle)
-- **ISP** (Interface Segregation Principle)
-- **DIP** (Dependency Inversion Principle)
+
+Refactor enemy system để đạt SRP + DIP, nhưng **giữ pragmatic cho quy mô 5 enemy types**.  
+Tránh over-engineering: không tách class quá nhỏ, không tạo factory riêng cho từng enemy.
+
+### Nguyên tắc chính
+
+| Nguyên tắc | Áp dụng |
+|---|---|
+| **SRP** | EnemyController chỉ làm state machine. Movement → MovementManager. Animation → AnimationController. |
+| **DIP** | `IEnemyState` nhận interface, không nhận `EnemyController`. States không biết gì về MonoBehaviour. |
+| **OCP** | Thêm enemy mới = thêm subclass + override attack handler. Không sửa state code. |
+| **Keep it simple** | Không AttackCooldownTracker riêng. Không factory riêng cho từng enemy. 2 interface lớn đủ dùng. |
 
 ---
 
-## PHASE 1: Foundation - Create New Infrastructure
+## File structure sau refactor
 
-### Objective
-Build reusable, focused infrastructure components that will support the refactoring.
-
-### 1.1 Create State Factory Pattern
-
-**File**: `Assets/Script/EnemyThing/Factory/EnemyStateFactory.cs`
-
-**Purpose**: Centralize state creation logic, making states testable and decoupled from EnemyController.
-
-**Key Methods**:
 ```
-- CreateIdleState(EnemyController enemy) ? IEnemyState
-- CreateAlertState(EnemyController enemy) ? IEnemyState
-- CreatePursuitState(EnemyController enemy) ? IEnemyState
-- CreateAttackState(EnemyController enemy) ? IEnemyState
-- CreateKittingState(EnemyController enemy) ? IEnemyState
-- CreateHurtState(EnemyController enemy, IEnemyState prevState) ? IEnemyState
-- CreateDieState(EnemyController enemy) ? IEnemyState
-```
-
-**Benefits**:
-- Easy to extend for subclasses (override factory methods)
-- Consistent state creation across all enemies
-- Easy to test individual states
-
----
-
-### 1.2 Create Movement Manager
-
-**File**: `Assets/Script/EnemyThing/Controllers/MovementManager.cs`
-
-**Purpose**: Encapsulate all movement-related logic.
-
-**Responsibilities**:
-- Track current direction
-- Handle patrol movement
-- Handle pursuit movement
-- Handle retreat/kitting movement
-- Manage sprite flipping
-
-**Key Methods**:
-```
-- Patrol(float speed, int direction)
-- PursuePlayer(Transform playerTransform, float speed)
-- RetreatFromPlayer(Transform playerTransform, float speed)
-- LookAtPlayer(Transform playerTransform)
-- SetDirection(int newDirection)
-- GetDirection() ? int
-- UpdateSpriteFlip(SpriteRenderer sr)
-```
-
-**Dependencies**:
-- Rigidbody2D
-- SpriteRenderer
-- Transform (player)
-
----
-
-### 1.3 Create Animation Controller
-
-**File**: `Assets/Script/EnemyThing/Controllers/AnimationController.cs`
-
-**Purpose**: Centralize animation triggering and management.
-
-**Responsibilities**:
-- Trigger animation states
-- Pass animation parameters to Animator
-- Handle animation-related logic without game logic
-
-**Key Methods**:
-```
-- TriggerAttack()
-- TriggerMovement(float speed)
-- TriggerIdle()
-- TriggerAlert()
-- TriggerHurt()
-- TriggerDie()
-- SetAnimatorParameter(string paramName, object value)
-- SetAnimatorTrigger(string triggerName)
-```
-
-**Dependencies**:
-- Animator
-
----
-
-### 1.4 Create Attack Cooldown Tracker
-
-**File**: `Assets/Script/EnemyThing/Controllers/AttackCooldownTracker.cs`
-
-**Purpose**: Manage attack cooldown state and queries.
-
-**Responsibilities**:
-- Track last attack time
-- Check if attack is available
-- Record successful attacks
-
-**Key Methods**:
-```
-- CanAttack() ? bool
-- RecordAttack()
-- GetTimeSinceLastAttack() ? float
-- GetCooldownRemaining() ? float
-- Reset()
-```
-
-**Dependencies**:
-- Time (via Time.time)
-
----
-
-### 1.5 Create Base Attack Handler
-
-**File**: `Assets/Script/EnemyThing/Attack/IAttackHandler.cs`
-
-**Purpose**: Interface for different attack types (melee, ranged, magic, etc.)
-
-**Key Methods**:
-```
-- CanExecuteAttack() ? bool
-- ExecuteAttack()
-- GetAttackRange() ? float
-- GetAttackDamage() ? int
+Assets/Script/EnemyThing/
+├── Core/
+│   ├── EnemyController.cs          (refactored — chỉ state machine)
+│   ├── IEnemyMovement.cs           (NEW — interface cho movement/vision)
+│   ├── IEnemyCombat.cs             (NEW — interface cho attack/cooldown)
+│   ├── IEnemyRanged.cs             (NEW — interface cho ranged behavior)
+│   └── IRangedEnemy.cs             (giữ lại, remove sau khi migrate hết)
+├── Controllers/
+│   ├── MovementManager.cs          (NEW)
+│   └── AnimationController.cs      (NEW)
+├── Factory/
+│   └── EnemyStateFactory.cs        (NEW — 1 factory cho tất cả enemy)
+├── States/
+│   ├── Base/
+│   │   ├── IEnemyState.cs          (sửa — nhận interface thay vì EnemyController)
+│   │   ├── BaseAttackState.cs      (refactored)
+│   │   └── BasePursuitState.cs     (refactored)
+│   ├── Common/
+│   │   ├── IdleState.cs            (refactored)
+│   │   ├── AlertState.cs           (refactored)
+│   │   ├── HurtState.cs            (refactored)
+│   │   └── DieState.cs             (refactored)
+│   └── Ranged/
+│       ├── RangedAttackState.cs    (refactored)
+│       ├── KittingState.cs         (refactored)
+│       └── HealState.cs            (refactored)
+└── Enemies/
+    ├── Melee/
+    │   ├── SlimeE.cs               (updated)
+    │   ├── SkullE.cs               (updated)
+    │   ├── GolemE.cs               (updated)
+    │   └── NightBornE.cs           (updated)
+    └── Ranged/
+        └── NecromancerE.cs         (updated)
 ```
 
 ---
 
-## PHASE 2: Interface Segregation (ISP)
+## PHASE 1: Interfaces cốt lõi (DIP foundation)
 
-### Objective
-Break down monolithic interfaces into focused, single-responsibility interfaces.
+### 1.1 IEnemyMovement
 
-### Current Issues:
-- `EnemyController` implements `IEnemyStateProvider` (fat interface)
-- `IRangedEnemy` only used for specific enemy types
-- States receive full `EnemyController`, but only need specific data
-
-### 2.1 Split IEnemyStateProvider
-
-**File**: `Assets/Script/EnemyThing/Core/Interfaces/IBaseEnemyController.cs`
-
-**Purpose**: Core movement and vision capabilities
-
-**Methods**:
 ```csharp
-public interface IBaseEnemyController
+// Assets/Script/EnemyThing/Core/IEnemyMovement.cs
+public interface IEnemyMovement
 {
-    // Movement
     void Patrol();
     void LookAtPlayer();
     void MoveTowardPlayer();
     void Pursue();
-    
-    // Vision/Detection
+    void RetreatFromPlayer();
+    void SetDirection(int dir);
+    int GetDirection();
     float GetDistanceToPlayer();
     float GetVisionRange();
-    Transform GetPlayerTransform();
-    
-    // Direction
-    int GetDirection();
-    void SetDirection(int direction);
 }
 ```
 
----
+### 1.2 IEnemyCombat
 
-### 2.2 Create IRangedEnemyProvider
-
-**File**: `Assets/Script/EnemyThing/Core/Interfaces/IRangedEnemyProvider.cs`
-
-**Purpose**: Ranged-specific behaviors (kitting, retreat)
-
-**Methods**:
 ```csharp
-public interface IRangedEnemyProvider
+// Assets/Script/EnemyThing/Core/IEnemyCombat.cs
+public interface IEnemyCombat
 {
-    float GetCloseDistance();
-    float GetPreferredDistance();
-    void ExecuteKitting();
-    void RetreatFromPlayer();
-}
-```
-
----
-
-### 2.3 Split IRangedEnemy
-
-**File**: `Assets/Script/EnemyThing/Core/Interfaces/IDistanceProvider.cs`
-
-**Purpose**: Query distance preferences
-
-**Methods**:
-```csharp
-public interface IDistanceProvider
-{
-    float GetCloseDistance();
-    float GetPreferredDistance();
-}
-```
-
----
-
-**File**: `Assets/Script/EnemyThing/Core/Interfaces/IRetreatBehavior.cs`
-
-**Purpose**: Execute retreat logic
-
-**Methods**:
-```csharp
-public interface IRetreatBehavior
-{
-    void RetreatFromPlayer();
-    void ExecuteKitting();
-}
-```
-
----
-
-### 2.4 Create IAttackHandler Interface (if not in Phase 1)
-
-**File**: `Assets/Script/EnemyThing/Core/Interfaces/IAttackHandler.cs`
-
-**Methods**:
-```csharp
-public interface IAttackHandler
-{
-    bool CanAttack();
+    bool IsAttackReady();
     void ExecuteAttack();
+    void RecordAttack();
     float GetAttackRange();
-    int GetAttackDamage();
+    void PlayAnimTrigger(string trigger);
+    void PlayAnimBool(string name, bool value);
 }
 ```
 
+### 1.3 IEnemyRanged
+
+```csharp
+// Assets/Script/EnemyThing/Core/IEnemyRanged.cs
+public interface IEnemyRanged
+{
+    float GetCloseDistance();
+    float GetPreferredDistance();
+    void Kitting();
+}
+```
+
+**Tại sao chỉ 3 interface?**
+- `IEnemyMovement` gom movement + vision + direction — đây là nhóm chức năng luôn đi cùng nhau trong enemy AI
+- `IEnemyCombat` gom attack + cooldown + animation trigger — state chỉ cần biết "có đánh được không" và "đánh", không cần biết animator
+- `IEnemyRanged` chỉ cho enemy bắn — không gộp vào combat interface vì không phải enemy nào cũng cần
+- **Không tách** `IDistanceProvider` / `IRetreatBehavior` riêng — quá mịn, không đem lại lợi ích thực tế cho 5 enemy
+
 ---
 
-### 2.5 Update IEnemyStateProvider
+## PHASE 2: Sửa IEnemyState (quan trọng nhất)
 
-**Location**: `Assets/Script/EnemyThing/States/Base/IEnemyState.cs`
+### 2.1 Interface mới
 
-**New Version**:
+```csharp
+// Assets/Script/EnemyThing/States/Base/IEnemyState.cs
+public interface IEnemyState
+{
+    void OnEnter(IEnemyMovement movement, IEnemyCombat combat);
+    void OnUpdate(IEnemyMovement movement, IEnemyCombat combat);
+    void OnExit(IEnemyMovement movement, IEnemyCombat combat);
+}
+```
+
+**Không còn `EnemyController enemy`.** State không biết gì về MonoBehaviour.  
+State chỉ gọi movement/combat qua interface — testable, decoupled.
+
+### 2.2 IEnemyStateProvider (giữ nguyên, chỉ dùng trong EnemyController)
+
 ```csharp
 public interface IEnemyStateProvider
 {
@@ -263,570 +144,654 @@ public interface IEnemyStateProvider
 }
 ```
 
-**Classes implementing IEnemyStateProvider**:
-- `EnemyController` (base class)
-- Subclasses can override specific state factories
-
 ---
 
-## PHASE 3: Update State Classes (DIP + OCP)
+## PHASE 3: Tách Managers (SRP)
 
-### Objective
-Refactor states to depend on interfaces, not concrete classes. Support extension without modification.
+### 3.1 MovementManager
 
-### 3.1 Update BaseAttackState
-
-**File**: `Assets/Script/EnemyThing/States/Base/BaseAttackState.cs`
-
-**Changes**:
-- Depend on `IAttackHandler` instead of `EnemyController`
-- Depend on `IBaseEnemyController` for movement
-- Support subclass override points
-
-**Pseudo-code**:
 ```csharp
-public abstract class BaseAttackState : IEnemyState
+// Assets/Script/EnemyThing/Controllers/MovementManager.cs
+public class MovementManager
 {
-    protected IAttackHandler attackHandler;
-    protected IBaseEnemyController movementController;
-    protected AttackCooldownTracker cooldown;
-    
-    public BaseAttackState(IAttackHandler handler, IBaseEnemyController controller)
+    private Rigidbody2D rb;
+    private SpriteRenderer sr;
+    private CharacterStats stats;  // để lấy MovementSpeed
+    private int direction = 1;
+    private int lastPatrolDirection = 1;
+
+    public MovementManager(Rigidbody2D rb, SpriteRenderer sr, CharacterStats stats)
     {
-        attackHandler = handler;
-        movementController = controller;
+        this.rb = rb;
+        this.sr = sr;
+        this.stats = stats;
     }
-    
-    public virtual void OnEnter(EnemyController enemy) { }
-    public virtual void OnUpdate(EnemyController enemy)
+
+    public void Patrol()
     {
-        if (cooldown.CanAttack())
+        direction = lastPatrolDirection;
+        rb.linearVelocityX = stats.MovementSpeed * direction;
+        sr.flipX = direction < 0;
+    }
+
+    public void LookAtPlayer(Transform player)
+    {
+        if (player == null) return;
+        float diffX = player.position.x - rb.position.x;
+        if (Mathf.Abs(diffX) > 0.2f)
         {
-            movementController.LookAtPlayer();
-            attackHandler.ExecuteAttack();
+            direction = diffX > 0 ? 1 : -1;
+            sr.flipX = direction < 0;
+        }
+        rb.linearVelocity = Vector2.zero;
+    }
+
+    public void MoveTowardPlayer(Transform player, float speedMultiplier = 1.5f)
+    {
+        if (player == null) return;
+        float diffX = player.position.x - rb.position.x;
+        if (Mathf.Abs(diffX) > 0.2f)
+        {
+            direction = diffX > 0 ? 1 : -1;
+            sr.flipX = direction < 0;
+            rb.linearVelocityX = stats.MovementSpeed * speedMultiplier * direction;
+        }
+        else
+        {
+            rb.linearVelocityX = 0f;
         }
     }
-    public virtual void OnExit(EnemyController enemy) { }
+
+    public void RetreatFromPlayer(Transform player, float speedMultiplier = 0.8f)
+    {
+        if (player == null) return;
+        float diffX = player.position.x - rb.position.x;
+        direction = diffX > 0 ? -1 : 1;
+        sr.flipX = direction < 0;
+        rb.linearVelocityX = stats.MovementSpeed * speedMultiplier * direction;
+    }
+
+    public float GetDistanceToPlayer(Transform player)
+    {
+        if (player == null) return Mathf.Infinity;
+        return Vector2.Distance(rb.position, player.position);
+    }
+
+    public void SetDirection(int dir) { direction = dir; lastPatrolDirection = dir; }
+    public int GetDirection() => direction;
+    public void OnHitObstacle() { direction *= -1; lastPatrolDirection = direction; }
 }
 ```
 
+### 3.2 AnimationController
+
+```csharp
+// Assets/Script/EnemyThing/Controllers/AnimationController.cs
+public class AnimationController
+{
+    private Animator animator;
+
+    public AnimationController(Animator animator) => this.animator = animator;
+
+    public void SetTrigger(string trigger) => animator.SetTrigger(trigger);
+    public void SetBool(string name, bool value) => animator.SetBool(name, value);
+    public void PlayRun(bool isRunning) => animator.SetBool("Run", isRunning);
+    public void PlayAttack() => animator.SetTrigger("Attack");
+    public void PlayHurt() => animator.SetTrigger("Hurt");
+    public void PlayDie() => animator.SetTrigger("Die");
+    public void PlayAlert() => animator.SetTrigger("Alert");
+    public void ResetTrigger(string trigger) => animator.ResetTrigger(trigger);
+}
+```
+
+### 3.3 AttackCooldown — không tách riêng
+
+Attack cooldown chỉ là 2 field + 2 method.  
+Giữ trong EnemyController, expose qua `IEnemyCombat`:
+
+```csharp
+// Trong EnemyController — implement IEnemyCombat
+public bool IsAttackReady() => Time.time - lastTimeAttack >= attackCooldown;
+public void RecordAttack() => lastTimeAttack = Time.time;
+```
+
+**Không tạo class AttackCooldownTracker** — lợi ích không đủ bù chi phí.
+
 ---
 
-### 3.2 Update RangedAttackState
+## PHASE 4: EnemyController refactored
 
-**File**: `Assets/Script/EnemyThing/States/Ranged/RangedAttackState.cs`
+```csharp
+// Assets/Script/EnemyThing/Core/EnemyController.cs
+public class EnemyController : MonoBehaviour, IEnemyStateProvider, IEnemyMovement, IEnemyCombat
+{
+    // Config
+    [SerializeField] protected float attackRange = 1.5f;
+    [SerializeField] protected float visionRange = 5f;
+    [SerializeField] protected float attackCooldown = 2f;
 
-**Changes**:
-- Depend on `IRangedEnemyProvider` for ranged behavior
-- Depend on `IAttackHandler` for attack execution
-- Support skill-based attacks
+    // References
+    protected Transform player;
+    protected CharacterStats characterStats;
 
-**Pseudo-code**:
+    // Managers
+    protected MovementManager movement;
+    protected AnimationController animationCtrl;
+    protected EnemyStateFactory stateFactory;
+
+    // State machine
+    protected IEnemyState currentState;
+    protected Dictionary<string, IEnemyState> stateCache = new();
+
+    // Cooldown
+    protected float lastTimeAttack = -Mathf.Infinity;
+
+    protected virtual void Start()
+    {
+        var rb = GetComponent<Rigidbody2D>();
+        var sr = GetComponent<SpriteRenderer>();
+        var animator = GetComponent<Animator>();
+        characterStats = GetComponent<CharacterStats>();
+
+        if (characterStats == null)
+        {
+            Debug.LogWarning($"{gameObject.name} missing CharacterStats!", gameObject);
+            return;
+        }
+
+        if (player == null && PlayerManager.Instance != null)
+            player = PlayerManager.Instance.PlayerTransform;
+
+        movement = new MovementManager(rb, sr, characterStats);
+        animationCtrl = new AnimationController(animator);
+        stateFactory = new EnemyStateFactory(this);
+
+        CacheStates();
+        ChangeState(GetIdleState());
+    }
+
+    protected virtual void Update()
+    {
+        currentState?.OnUpdate(this, this);
+    }
+
+    // --- IEnemyMovement ---
+    public void Patrol() => movement.Patrol();
+    public void LookAtPlayer() => movement.LookAtPlayer(player);
+    public void MoveTowardPlayer() => movement.MoveTowardPlayer(player);
+    public virtual void Pursue() { LookAtPlayer(); MoveTowardPlayer(); }
+    public virtual void RetreatFromPlayer() => movement.RetreatFromPlayer(player);
+    public void SetDirection(int dir) => movement.SetDirection(dir);
+    public int GetDirection() => movement.GetDirection();
+    public float GetDistanceToPlayer() => movement.GetDistanceToPlayer(player);
+    public float GetVisionRange() => visionRange;
+
+    // --- IEnemyCombat ---
+    public bool IsAttackReady() => Time.time - lastTimeAttack >= attackCooldown;
+    public void RecordAttack() => lastTimeAttack = Time.time;
+    public float GetAttackRange() => attackRange;
+    public virtual void ExecuteAttack() => animationCtrl.PlayAttack();
+    public void PlayAnimTrigger(string trigger) => animationCtrl.SetTrigger(trigger);
+    public void PlayAnimBool(string name, bool val) => animationCtrl.SetBool(name, val);
+
+    // --- State management ---
+    protected virtual void CacheStates()
+    {
+        stateCache["Idle"]    = GetIdleState();
+        stateCache["Pursuit"] = GetPursuitState();
+        stateCache["Attack"]  = GetAttackState();
+        stateCache["Hurt"]    = GetHurtState(null);
+        stateCache["Die"]     = GetDieState();
+    }
+
+    public void ChangeState(IEnemyState newState)
+    {
+        currentState?.OnExit(this, this);
+        currentState = newState;
+        currentState?.OnEnter(this, this);
+    }
+
+    public void ChangeStateByName(string name)
+    {
+        if (stateCache.TryGetValue(name, out var state) && state != null)
+            ChangeState(state);
+    }
+
+    public IEnemyState GetCurrentState() => currentState;
+
+    // --- State factory methods (virtual để override) ---
+    public virtual IEnemyState GetIdleState()    => stateFactory.CreateIdleState();
+    public virtual IEnemyState GetPursuitState() => stateFactory.CreatePursuitState();
+    public virtual IEnemyState GetAttackState()  => stateFactory.CreateAttackState();
+    public virtual IEnemyState GetAlertState()   => stateFactory.CreateAlertState();
+    public virtual IEnemyState GetHurtState(IEnemyState preState) => stateFactory.CreateHurtState(preState);
+    public virtual IEnemyState GetDieState()     => stateFactory.CreateDieState();
+    public virtual IEnemyState GetKittingState() => stateFactory.CreateKittingState();
+
+    // --- Collision ---
+    protected void OnCollisionEnter2D(Collision2D c)
+    {
+        if (c.gameObject.CompareTag("Obstacle")) movement.OnHitObstacle();
+    }
+    protected void OnTriggerEnter2D(Collider2D c)
+    {
+        if (c.gameObject.CompareTag("Obstacle")) movement.OnHitObstacle();
+    }
+}
+```
+
+### EnemyController còn lại bao nhiêu?
+
+| Trước | Sau |
+|---|---|
+| ~259 dòng | ~120 dòng |
+| movement + animation + cooldown + state | chỉ state machine + orchestration |
+| state gọi `enemy.GetLastTimeAttack()` | state gọi `combat.IsAttackReady()` |
+
+---
+
+## PHASE 5: State classes refactored
+
+### 5.1 IdleState
+
+```csharp
+public class IdleState : IEnemyState
+{
+    public void OnEnter(IEnemyMovement movement, IEnemyCombat combat)
+    {
+        combat.PlayAnimBool("Run", false);
+    }
+
+    public void OnUpdate(IEnemyMovement movement, IEnemyCombat combat)
+    {
+        if (movement.GetDistanceToPlayer() <= movement.GetVisionRange())
+            // Cannot access ChangeStateByName from here — return signal
+            return; // EnemyController sẽ check transition riêng
+        movement.Patrol();
+    }
+
+    public void OnExit(IEnemyMovement movement, IEnemyCombat combat) { }
+}
+```
+
+**Vấn đề:** State không còn `EnemyController` thì không gọi `ChangeStateByName()` được.  
+**Giải pháp:** Dùng **StateReturn** pattern — state return enum signal:
+
+```csharp
+public enum StateSignal
+{
+    Continue,
+    SwitchToIdle,
+    SwitchToPursuit,
+    SwitchToAttack,
+    SwitchToHurt,
+    SwitchToDie,
+    SwitchToKitting,
+}
+```
+
+```csharp
+public interface IEnemyState
+{
+    StateSignal OnEnter(IEnemyMovement movement, IEnemyCombat combat);
+    StateSignal OnUpdate(IEnemyMovement movement, IEnemyCombat combat);
+    StateSignal OnExit(IEnemyMovement movement, IEnemyCombat combat);
+}
+```
+
+Hoặc đơn giản hơn — **giữ context object nhẹ**:
+
+```csharp
+public interface IEnemyStateContext
+{
+    void SwitchState(IEnemyState state);
+    void SwitchTo(string name);
+}
+
+public interface IEnemyState
+{
+    void OnEnter(IEnemyMovement movement, IEnemyCombat combat, IEnemyStateContext ctx);
+    void OnUpdate(IEnemyMovement movement, IEnemyCombat combat, IEnemyStateContext ctx);
+    void OnExit(IEnemyMovement movement, IEnemyCombat combat, IEnemyStateContext ctx);
+}
+```
+
+`EnemyController` implement `IEnemyStateContext`.  
+State gọi `ctx.SwitchTo("Pursuit")` mà không biết ai implement nó.
+
+→ **Khuyến nghị dùng `IEnemyStateContext`** — đơn giản, dễ hiểu, không cần enum.
+
+### 5.2 IdleState (với context)
+
+```csharp
+public class IdleState : IEnemyState
+{
+    public void OnEnter(IEnemyMovement movement, IEnemyCombat combat, IEnemyStateContext ctx)
+    {
+        combat.PlayAnimBool("Run", false);
+    }
+
+    public void OnUpdate(IEnemyMovement movement, IEnemyCombat combat, IEnemyStateContext ctx)
+    {
+        float dist = movement.GetDistanceToPlayer();
+        if (dist <= movement.GetVisionRange())
+            ctx.SwitchTo("Pursuit");
+        else
+            movement.Patrol();
+    }
+
+    public void OnExit(IEnemyMovement movement, IEnemyCombat combat, IEnemyStateContext ctx) { }
+}
+```
+
+### 5.3 BaseAttackState
+
+```csharp
+public class BaseAttackState : IEnemyState
+{
+    public virtual void OnEnter(IEnemyMovement movement, IEnemyCombat combat, IEnemyStateContext ctx)
+    {
+        combat.PlayAnimBool("Run", false);
+        movement.LookAtPlayer();
+    }
+
+    public virtual void OnUpdate(IEnemyMovement movement, IEnemyCombat combat, IEnemyStateContext ctx)
+    {
+        if (movement.GetDistanceToPlayer() > combat.GetAttackRange())
+        {
+            ctx.SwitchTo("Pursuit");
+            return;
+        }
+        if (combat.IsAttackReady())
+        {
+            combat.ExecuteAttack();
+            combat.RecordAttack();
+        }
+    }
+
+    public virtual void OnExit(IEnemyMovement movement, IEnemyCombat combat, IEnemyStateContext ctx) { }
+}
+```
+
+### 5.4 RangedAttackState
+
 ```csharp
 public class RangedAttackState : BaseAttackState
 {
-    private IRangedEnemyProvider rangedProvider;
-    
-    public RangedAttackState(IAttackHandler handler, IBaseEnemyController controller, 
-                            IRangedEnemyProvider ranged)
-        : base(handler, controller)
+    public override void OnUpdate(IEnemyMovement movement, IEnemyCombat combat, IEnemyStateContext ctx)
     {
-        rangedProvider = ranged;
-    }
-    
-    public override void OnUpdate(EnemyController enemy)
-    {
-        if (cooldown.CanAttack() && IsInAttackRange())
+        float dist = movement.GetDistanceToPlayer();
+        if (dist > combat.GetAttackRange())
         {
-            movementController.LookAtPlayer();
-            attackHandler.ExecuteAttack();
-            cooldown.RecordAttack();
+            ctx.SwitchTo("Pursuit");
+            return;
         }
+        if (movement is IEnemyRanged ranged && dist < ranged.GetCloseDistance())
+        {
+            ctx.SwitchTo("Kitting");
+            return;
+        }
+        base.OnUpdate(movement, combat, ctx);
     }
 }
 ```
 
----
+### 5.5 KittingState
 
-### 3.3 Update KittingState
-
-**File**: `Assets/Script/EnemyThing/States/Common/KittingState.cs`
-
-**Changes**:
-- Depend on `IRangedEnemyProvider`
-- Depend on `IBaseEnemyController`
-- Encapsulate distance checking logic
-
-**Pseudo-code**:
 ```csharp
 public class KittingState : IEnemyState
 {
-    private IRangedEnemyProvider rangedProvider;
-    private IBaseEnemyController movementController;
-    
-    public KittingState(IRangedEnemyProvider provider, IBaseEnemyController controller)
+    public void OnEnter(IEnemyMovement movement, IEnemyCombat combat, IEnemyStateContext ctx)
     {
-        rangedProvider = provider;
-        movementController = controller;
+        combat.PlayAnimBool("Run", false);
     }
-    
-    public void OnUpdate(EnemyController enemy)
+
+    public void OnUpdate(IEnemyMovement movement, IEnemyCombat combat, IEnemyStateContext ctx)
     {
-        float distance = movementController.GetDistanceToPlayer();
-        float preferred = rangedProvider.GetPreferredDistance();
-        
-        if (distance < preferred)
+        float dist = movement.GetDistanceToPlayer();
+        if (movement is IEnemyRanged ranged)
         {
-            movementController.Pursue();
+            if (dist > combat.GetAttackRange())
+            {
+                ctx.SwitchTo("Pursuit");
+                return;
+            }
+            if (dist >= ranged.GetCloseDistance() && dist <= ranged.GetPreferredDistance())
+            {
+                ctx.SwitchTo("Attack");
+                return;
+            }
+            ranged.Kitting();  // retreat + shoot
         }
-        // else continue kitting
     }
+
+    public void OnExit(IEnemyMovement movement, IEnemyCombat combat, IEnemyStateContext ctx) { }
 }
 ```
 
+### 5.6 HealState, HurtState, DieState, AlertState, BasePursuitState
+
+Chuyển đổi tương tự: nhận `(IEnemyMovement, IEnemyCombat, IEnemyStateContext)`, dùng `ctx.SwitchTo()`.
+
+Chi tiết xem file code cũ + thay `enemy.ChangeStateByName(x)` → `ctx.SwitchTo(x)`,  
+`enemy.GetDistanceToPlayer()` → `movement.GetDistanceToPlayer()`,  
+`enemy.SetAnimatorTrigger(x)` → `combat.PlayAnimTrigger(x)`.
+
 ---
 
-### 3.4 Update BasePursuitState
+## PHASE 6: EnemyStateFactory
 
-**File**: `Assets/Script/EnemyThing/States/Base/BasePursuitState.cs`
+1 factory duy nhất, dùng cho tất cả enemy.  
+Subclass có thể override method để trả về state khác.
 
-**Changes**:
-- Depend on `IBaseEnemyController`
-- Support custom pursuit logic via override points
-
-**Key Methods**:
 ```csharp
-public virtual bool IsInAttackRange(float distance, float attackRange)
-public virtual void UpdatePursuitLogic(EnemyController enemy)
-```
-
----
-
-### 3.5 Update IdleState
-
-**File**: `Assets/Script/EnemyThing/States/Common/IdleState.cs`
-
-**Changes**:
-- Depend on `IBaseEnemyController` for patrol
-- Make patrol direction configurable
-
----
-
-## PHASE 4: EnemyController Refactoring (SRP)
-
-### Objective
-Reduce `EnemyController` responsibilities to core state machine only.
-
-### Current Issues:
-- EnemyController handles: movement, animation, cooldown, state management
-- Violates SRP
-- Hard to test individual components
-
-### 4.1 Refactor EnemyController
-
-**File**: `Assets/Script/EnemyThing/Core/EnemyController.cs`
-
-**New Responsibilities** (Core State Machine only):
-- Manage current state
-- Transition between states
-- Provide references to managers
-- Coordinate with scene (player, physics)
-
-**Remove/Delegate**:
-- Movement logic ? MovementManager
-- Animation logic ? AnimationController
-- Cooldown tracking ? AttackCooldownTracker
-- State creation ? EnemyStateFactory
-
-**Updated Structure**:
-```csharp
-public class EnemyController : MonoBehaviour, IEnemyStateProvider, IBaseEnemyController
+// Assets/Script/EnemyThing/Factory/EnemyStateFactory.cs
+public class EnemyStateFactory
 {
-    // Core managers
-    private MovementManager movementManager;
-    private AnimationController animationController;
-    private AttackCooldownTracker cooldownTracker;
-    private EnemyStateFactory stateFactory;
-    
-    // State machine
-    private IEnemyState currentState;
-    private Dictionary<string, IEnemyState> stateCache = new();
-    
-    // External references
-    protected Transform player;
-    protected Rigidbody2D rb;
-    
-    // Configuration
-    [SerializeField] protected float visionRange = 5f;
-    [SerializeField] protected float attackRange = 1.5f;
-    [SerializeField] protected int attackDamage = 1;
-    [SerializeField] protected float attackCooldown = 2f;
-    [SerializeField] protected float speed = 2f;
-    
-    void Start()
+    protected IEnemyMovement movement;
+    protected IEnemyCombat combat;
+    protected IEnemyStateContext ctx;
+
+    public EnemyStateFactory(EnemyController enemy)
     {
-        InitializeManagers();
-        InitializeStates();
-        ChangeState(GetIdleState());
+        movement = enemy;
+        combat = enemy;
+        ctx = enemy;
     }
-    
-    void Update()
-    {
-        if (currentState != null)
-            currentState.OnUpdate(this);
-    }
-    
-    private void InitializeManagers()
-    {
-        rb = GetComponent<Rigidbody2D>();
-        var sr = GetComponent<SpriteRenderer>();
-        var animator = GetComponent<Animator>();
-        
-        movementManager = new MovementManager(rb, sr);
-        animationController = new AnimationController(animator);
-        cooldownTracker = new AttackCooldownTracker(attackCooldown);
-        stateFactory = CreateStateFactory(); // Override in subclasses
-        
-        if (player == null && PlayerManager.Instance != null)
-            player = PlayerManager.Instance.PlayerTransform;
-    }
-    
-    protected virtual EnemyStateFactory CreateStateFactory()
-    {
-        return new EnemyStateFactory(this);
-    }
-    
-    public void ChangeState(IEnemyState newState)
-    {
-        if (currentState != null)
-            currentState.OnExit(this);
-        currentState = newState;
-        currentState?.OnEnter(this);
-    }
-    
-    // Implement IBaseEnemyController
-    public void Patrol() => movementManager.Patrol(speed, GetPatrolDirection());
-    public void LookAtPlayer() => movementManager.LookAtPlayer(player);
-    public void MoveTowardPlayer() => movementManager.MoveTowardPlayer(player, speed);
-    public void Pursue() { LookAtPlayer(); MoveTowardPlayer(); }
-    public float GetDistanceToPlayer() => movementManager.GetDistanceToPlayer(player);
-    public float GetVisionRange() => visionRange;
-    public Transform GetPlayerTransform() => player;
-    public int GetDirection() => movementManager.GetDirection();
-    public void SetDirection(int direction) => movementManager.SetDirection(direction);
-    
-    // Implement IEnemyStateProvider (uses factory)
-    public virtual IEnemyState GetIdleState() => stateFactory.CreateIdleState(this);
-    public virtual IEnemyState GetAlertState() => stateFactory.CreateAlertState(this);
-    // ... etc
-    
-    // Expose managers for states
-    public AnimationController GetAnimationController() => animationController;
-    public AttackCooldownTracker GetCooldownTracker() => cooldownTracker;
-    public MovementManager GetMovementManager() => movementManager;
-    
-    // Expose configuration
-    public float GetAttackRange() => attackRange;
-    public int GetAttackDamage() => attackDamage;
+
+    public virtual IEnemyState CreateIdleState()    => new IdleState();
+    public virtual IEnemyState CreatePursuitState() => new BasePursuitState();
+    public virtual IEnemyState CreateAttackState()  => new BaseAttackState();
+    public virtual IEnemyState CreateAlertState()   => new AlertState();
+    public virtual IEnemyState CreateHurtState(IEnemyState preState) => new HurtState(preState);
+    public virtual IEnemyState CreateDieState()     => new DieState();
+    public virtual IEnemyState CreateKittingState() => new KittingState();
 }
 ```
 
----
-
-### 4.2 Update Start() and References
-
-**Coordinate initialization**:
-```csharp
-void Start()
-{
-    InitializeManagers();      // Sets up MovementManager, AnimationController, etc.
-    InitializeStates();        // Creates state cache
-    ChangeState(GetIdleState()); // Start in Idle
-}
-
-protected virtual void InitializeStates()
-{
-    // Can be overridden by subclasses to add custom states
-    // Base implementation only creates core states if needed
-}
-```
+**Không tạo NecromancerStateFactory riêng.**  
+NecromancerE chỉ cần override `GetAttackState()` và `GetKittingState()` để trả về `RangedAttackState` / `KittingState`.
 
 ---
 
-## PHASE 5: Subclass Updates
+## PHASE 7: Update enemy subclasses
 
-### Objective
-Update enemy subclasses to use new architecture with minimal changes.
+### 7.1 NecromancerE
 
-### 5.1 Update NecromancerE
-
-**File**: `Assets/Script/EnemyThing/Enemies/Ranged/NecromancerE.cs`
-
-**Changes**:
-- Implement `IRangedEnemyProvider`
-- Implement `IAttackHandler` for skill-based attacks
-- Create custom `NecromancerStateFactory`
-- Remove direct state creation in ExecuteAttack
-
-**New Structure**:
 ```csharp
-public class NecromancerE : EnemyController, IRangedEnemyProvider, IAttackHandler
+public class NecromancerE : EnemyController, IEnemyRanged
 {
-    [Header("Ranged Config")]
+    [SerializeField] private SkillManager skillManager;
+    [SerializeField] private int skill1Index = 0;
+    [SerializeField] private int skill2Index = 1;
+    [SerializeField] private int healSkillIndex = 2;
+
     [SerializeField] private float closeDistance = 3f;
     [SerializeField] private float preferredDistance = 5f;
-    
-    [Header("Skill List")]
-    public SkillManager skillManager;
-    
-    // Implement IRangedEnemyProvider
+
+    private HealState healState;
+
     public float GetCloseDistance() => closeDistance;
     public float GetPreferredDistance() => preferredDistance;
-    
-    public void ExecuteKitting()
+
+    public void Kitting()
     {
-        // Custom kitting logic if needed
-        Pursue();
-    }
-    
-    public void RetreatFromPlayer()
-    {
-        GetMovementManager().RetreatFromPlayer(GetPlayerTransform(), speed);
-    }
-    
-    // Implement IAttackHandler
-    public bool CanAttack() => GetCooldownTracker().CanAttack();
-    
-    public void ExecuteAttack()
-    {
-        if (skillManager.skills[0].CanActivate)
+        // Custom: shoot while retreating
+        if (IsAttackReady())
         {
-            GetAnimationController().SetAnimatorTrigger("Skill1");
+            ExecuteAttack();
+            RecordAttack();
+        }
+        RetreatFromPlayer();
+    }
+
+    protected override void CacheStates()
+    {
+        base.CacheStates();
+        stateCache["Kitting"] = GetKittingState();
+        stateCache["Attack"]  = GetAttackState();
+        healState = new HealState();
+        stateCache["Heal"] = healState;
+    }
+
+    protected override void Update()
+    {
+        if (ShouldHeal() && !(currentState is HealState))
+        {
+            ctx.SwitchTo("Heal");
             return;
         }
-        if (skillManager.skills[1].CanActivate)
+        base.Update();
+    }
+
+    public override void ExecuteAttack()
+    {
+        if (CanUseSkill(skill1Index)) { PlayAnimTrigger("Skill1"); return; }
+        if (CanUseSkill(skill2Index)) { PlayAnimTrigger("Skill2"); return; }
+    }
+
+    public override IEnemyState GetAttackState()  => new RangedAttackState();
+    public override IEnemyState GetKittingState() => new KittingState();
+
+    // --- Skill methods gọi từ animation event ---
+    public void CastSkill1() => skillManager?.ActivateSkill(skill1Index, GetDirection());
+    public void CastSkill2() => skillManager?.ActivateSkill(skill2Index, GetDirection());
+    public void CastHeal()   => skillManager?.ActivateSkill(healSkillIndex, 0);
+
+    private bool ShouldHeal()
+    {
+        var health = GetComponent<Health>();
+        return health != null && health.CurrentHealth < health.MaxHealth * 0.5f
+               && CanUseSkill(healSkillIndex);
+    }
+
+    private bool CanUseSkill(int index)
+    {
+        return skillManager != null && index >= 0 && index < skillManager.skills.Count
+               && skillManager.skills[index] != null && skillManager.skills[index].CanActivate;
+    }
+}
+```
+
+### 7.2 GolemE
+
+```csharp
+public class GolemE : EnemyController
+{
+    [SerializeField] private SkillManager skillManager;
+    private const int GolemMagicIndex = 0;
+    private const int StoneSpikeIndex = 1;
+    private bool checkAttack1 = false;
+
+    public override void Pursue()
+    {
+        if (CanUseSkill(GolemMagicIndex))
         {
-            GetAnimationController().SetAnimatorTrigger("Skill2");
+            PlayAnimBool("Run", false);
+            PlayAnimTrigger("Attack 2");
             return;
         }
+        base.Pursue();
     }
-    
-    public float GetAttackRange() => base.GetAttackRange(); // or override
-    public int GetAttackDamage() => base.GetAttackDamage();
-    
-    public void CastSkill1() => skillManager.ActivateSkill(0, GetDirection());
-    public void CastSkill2() => skillManager.ActivateSkill(1, GetDirection());
-    public void Heal() => skillManager.ActivateSkill(2, 0);
-    
-    // Create custom state factory for Necromancer
-    protected override EnemyStateFactory CreateStateFactory()
+
+    public override void ExecuteAttack()
     {
-        return new NecromancerStateFactory(this);
+        if (CanUseSkill(StoneSpikeIndex))
+        {
+            PlayAnimTrigger("Attack 3");
+            return;
+        }
+        if (!checkAttack1) { PlayAnimTrigger("Attack"); checkAttack1 = true; }
+        else               { PlayAnimTrigger("Attack 1"); checkAttack1 = false; }
     }
-    
-    protected override void InitializeStates()
-    {
-        base.InitializeStates();
-        // Can add Necromancer-specific states here if needed
-    }
+
+    // Animation events
+    public void CastGolemMagic() { skillManager?.ActivateSkill(GolemMagicIndex, GetDirection()); }
+    public void CastStoneSpike() { skillManager?.ActivateSkill(StoneSpikeIndex, 0); }
+
+    private bool CanUseSkill(int idx) { /* giống NecromancerE */ }
 }
 ```
 
-**New File**: `Assets/Script/EnemyThing/Factory/NecromancerStateFactory.cs`
+### 7.3 SlimeE, SkullE, NightBornE
 
-```csharp
-public class NecromancerStateFactory : EnemyStateFactory
-{
-    private NecromancerE necromancer;
-    
-    public NecromancerStateFactory(NecromancerE enemy) : base(enemy)
-    {
-        necromancer = enemy;
-    }
-    
-    public override IEnemyState CreateAttackState(EnemyController enemy)
-    {
-        return new RangedAttackState(
-            (IAttackHandler)necromancer,
-            (IBaseEnemyController)enemy,
-            necromancer
-        );
-    }
-    
-    public override IEnemyState CreateKittingState(EnemyController enemy)
-    {
-        return new KittingState(necromancer, (IBaseEnemyController)enemy);
-    }
-}
-```
+Chỉ cần override `ExecuteAttack()` / `HandleEnemyDeath()` như hiện tại,  
+nhưng thay `animator.SetTrigger(x)` → `PlayAnimTrigger(x)`.
 
 ---
 
-### 5.2 Update Other Enemies
+## Implementation order
 
-**SlimeE (Melee)**:
-- Implement `IAttackHandler` for melee attack
-- Use base `EnemyStateFactory`
-- Override `ExecuteAttack()` for melee-specific logic
-
-**SkullE (Melee)**:
-- Similar to SlimeE
-- Can override `Pursue()` if custom pursuit needed
-
-**GolemE (Melee)**:
-- Similar to SlimeE
-- Can add custom manager if needed
-
-**Pattern**:
-```csharp
-public class MeleeEnemy : EnemyController, IAttackHandler
-{
-    public bool CanAttack() => GetCooldownTracker().CanAttack();
-    
-    public void ExecuteAttack()
-    {
-        GetAnimationController().TriggerAttack();
-        GetCooldownTracker().RecordAttack();
-    }
-    
-    public float GetAttackRange() => base.GetAttackRange();
-    public int GetAttackDamage() => base.GetAttackDamage();
-}
-```
+| Bước | File | Mất bao lâu |
+|---|---|---|
+| 1. Tạo `IEnemyMovement`, `IEnemyCombat`, `IEnemyRanged`, `IEnemyStateContext` | 4 file mới | 30 phút |
+| 2. Sửa `IEnemyState` interface + các state class | 9 file | 2 giờ |
+| 3. Tạo `MovementManager`, `AnimationController` | 2 file mới | 1 giờ |
+| 4. Tạo `EnemyStateFactory` | 1 file mới | 30 phút |
+| 5. Refactor `EnemyController` | 1 file | 2 giờ |
+| 6. Update enemy subclasses (Slime, Skull, Golem, NightBorn, Necromancer) | 5 file | 2 giờ |
+| 7. Chạy thử + sửa lỗi | — | 2 giờ |
+| **Tổng** | | **~10 giờ** |
 
 ---
 
-## Implementation Order Recommendation
+## Các lưu ý quan trọng
 
-### Week 1-2: Foundation Phase
-1. Create AttackCooldownTracker (smallest component)
-2. Create AnimationController
-3. Create MovementManager
-4. Create EnemyStateFactory
-
-### Week 2-3: Interface Phase
-5. Create interface files (IBaseEnemyController, IRangedEnemyProvider, etc.)
-6. Have EnemyController implement them (backward compatible)
-
-### Week 3: State Updates
-7. Update BaseAttackState
-8. Update RangedAttackState
-9. Update KittingState, BasePursuitState, IdleState
-
-### Week 4: Core Refactoring
-10. Refactor EnemyController (use new managers and factory)
-11. Update NecromancerE and other enemies
-12. Testing and bug fixes
+1. **`IEnemyStateContext`** thay `ChangeStateByName` — state không cần biết EnemyController
+2. **Không tách AttackCooldownTracker** — giữ 2 field trong EnemyController
+3. **Factory duy nhất** — không state factory riêng cho từng enemy, subclass chỉ override state creation method
+4. **Giữ `OnCollisionEnter2D`/`OnTriggerEnter2D` trong EnemyController** — vì là MonoBehaviour lifecycle
+5. **Thêm `[RequireComponent(typeof(CharacterStats))]`** vào EnemyController (đồng bộ với Health)
 
 ---
 
-## Testing Strategy
+## Boss system (mở rộng sau này)
 
-### Unit Tests (Pseudo)
-- Test each manager independently
-- Test state transitions
-- Test attack cooldown logic
-
-### Integration Tests
-- Test state machine flow
-- Test enemy AI behavior
-- Test skill execution
-
-### Manual Tests
-- Play scene and verify behavior
-- Check animation transitions
-- Verify attack timing
-- Test edge cases (player far away, no skill ready, etc.)
-
----
-
-## Benefits of This Refactoring
-
-| Before | After |
-|--------|-------|
-| EnemyController: 200+ lines | EnemyController: ~100 lines (core only) |
-| Mixed concerns | Single Responsibility |
-| Hard to test components | Testable, isolated components |
-| Tightly coupled states | Loosely coupled via interfaces |
-| Difficult to extend | Easy to extend (new state types, new behaviors) |
-| Code duplication (melee/ranged) | Shared infrastructure via managers |
-
----
-
-## Backward Compatibility Notes
-
-- All changes are **additive** initially
-- Can migrate states gradually
-- Keep old methods if needed during transition
-- Remove deprecated methods after all enemies updated
-
----
-
-## Common Pitfalls to Avoid
-
-1. ? Don't pass full `EnemyController` to states - use specific interfaces
-2. ? Don't create new managers in state classes - reference via EnemyController
-3. ? Don't have states directly access components (rb, animator, sr)
-4. ? Don't put game logic in managers - keep them focused
-5. ? Do use dependency injection in constructors
-6. ? Do make managers stateless/reusable
-7. ? Do override factory methods for custom behavior
-
----
-
-## File Structure After Refactoring
+Khi thêm boss, tạo:
 
 ```
-Assets/Script/EnemyThing/
-??? Core/
-?   ??? EnemyController.cs (refactored)
-?   ??? Interfaces/
-?   ?   ??? IBaseEnemyController.cs (new)
-?   ?   ??? IRangedEnemyProvider.cs (new)
-?   ?   ??? IDistanceProvider.cs (new)
-?   ?   ??? IRetreatBehavior.cs (new)
-?   ?   ??? IAttackHandler.cs (new)
-?   ?   ??? IRangedEnemy.cs (legacy, can remove later)
-?   ??? (keep existing files)
-??? Controllers/ (new directory)
-?   ??? MovementManager.cs
-?   ??? AnimationController.cs
-?   ??? AttackCooldownTracker.cs
-??? Factory/ (new directory)
-?   ??? EnemyStateFactory.cs
-?   ??? NecromancerStateFactory.cs
-??? States/
-?   ??? Base/
-?   ?   ??? BaseAttackState.cs (refactored)
-?   ?   ??? BasePursuitState.cs (refactored)
-?   ?   ??? IEnemyState.cs
-?   ??? Common/
-?   ?   ??? IdleState.cs (refactored)
-?   ?   ??? KittingState.cs (refactored)
-?   ?   ??? (others)
-?   ??? Ranged/
-?       ??? RangedAttackState.cs (refactored)
-??? Enemies/
-    ??? Melee/
-    ?   ??? SlimeE.cs (updated)
-    ?   ??? SkullE.cs (updated)
-    ?   ??? GolemE.cs (updated)
-    ??? Ranged/
-        ??? NecromancerE.cs (updated)
+Assets/Script/EnemyThing/Enemies/Boss/
+├── BossController.cs       (kế thừa EnemyController, thêm phase system)
+├── BossPhase.cs            (data class: HP threshold → state list)
+└── BossArena.cs            (domain barrier, teleport player)
 ```
 
----
-
-## Next Steps
-
-1. **Review** this plan with team
-2. **Create** branch: `feature/enemy-refactor`
-3. **Implement** Phase 1 components
-4. **Test** each component thoroughly
-5. **Proceed** to Phase 2-5 following the order
+`BossController` override `Update()` để check HP threshold + switch phase.
 
 ---
 
-**Document Version**: 1.0  
-**Last Updated**: 2024  
-**Status**: Ready for Implementation
+## Backward compatibility
+
+- Tất cả thay đổi đều **additive** — enemy cũ vẫn chạy song song
+- Giữ `IRangedEnemy.cs` cũ, xoá sau khi NecromancerE migrate xong
+- Có thể migrate từng enemy một, không cần làm hết cùng lúc
+
+---
+
+## Common pitfalls
+
+1. **Đừng** để state gọi `GetComponent<>()` — đó là việc của EnemyController
+2. **Đừng** pass `EnemyController` vào state — dùng interface
+3. **Đừng** tách class quá nhỏ (AttackCooldownTracker, IDistanceProvider, ...)
+4. **Nên** dùng `IEnemyStateContext.SwitchTo()` thay vì return enum
+5. **Nên** giữ config (visionRange, attackRange...) là `[SerializeField]` trong EnemyController
