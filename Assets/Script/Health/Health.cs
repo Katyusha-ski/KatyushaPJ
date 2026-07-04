@@ -86,14 +86,17 @@ public class Health : MonoBehaviour
 
     public void TakeDamage(int damage)
     {
+        TakeDamage(damage, null);
+    }
+
+    public virtual void TakeDamage(int damage, GameObject damageSource)
+    {
         if (isInvulnerable)
             return;
 
         if (damageSFX != null && AudioManager.Instance != null)
             AudioManager.Instance.PlaySFX(damageSFX);
 
-        
-        // calculate final damage after armor and damage reduction (will add armor piercing in future)
         float dmgReduction = characterStats != null ? characterStats.DmgR / 100f : 0f;
         float armor = characterStats != null ? characterStats.Armor : 0f;
         float finalDamage = Mathf.Max(1f, (damage - armor) * (1f - dmgReduction));

@@ -52,7 +52,7 @@ Material:
     - _GlowIntensity: 1.2
     - _MorphSpeed: 1
     - _ScrollSpeed: 0.09
-    - _SwayAmount: 0.15
+    - _SwayAmount: 0.011
     - _SwayFrequency: 1
     - _SwaySpeed: 1
     - _ZWrite: 0

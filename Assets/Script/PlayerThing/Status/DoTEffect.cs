@@ -24,7 +24,7 @@ public class DoTEffect : StatusEffect
             var health = target.GetComponent<Health>();
             if (health != null)
             {
-                health.TakeDamage(damagePerTick);
+                health.TakeDamage(damagePerTick, DamageSource.SystemSource);
             }
             timeSinceLastTick = 0f;
         }

@@ -5,6 +5,43 @@
 Refactor enemy system để đạt SRP + DIP, nhưng **giữ pragmatic cho quy mô 5 enemy types**.  
 Tránh over-engineering: không tách class quá nhỏ, không tạo factory riêng cho từng enemy.
 
+### Giải thích đầy đủ
+
+Mục tiêu của refactor này là giữ hệ thống enemy **dễ hiểu, dễ mở rộng và không bị ôm quá nhiều trách nhiệm trong một class**. Trong bản cũ, `EnemyController` thường phải lo cùng lúc: đọc input từ game, điều khiển di chuyển, đổi animation, quản lý cooldown, xử lý state, và cả logic đặc thù của từng enemy. Cách đó vẫn chạy được, nhưng càng về sau càng khó sửa vì một thay đổi nhỏ có thể kéo theo nhiều phần khác.
+
+Kế hoạch này chia lại nhiệm vụ theo đúng vai trò:
+
+- **EnemyController**: đóng vai trò trung tâm điều phối. Nó tạo các thành phần cần thiết, giữ state hiện tại, thực hiện chuyển state, và cung cấp dữ liệu chung cho state sử dụng.
+- **MovementManager**: giữ toàn bộ logic di chuyển như patrol, quay mặt, đuổi theo, lùi lại, đổi hướng khi gặp chướng ngại, và tính khoảng cách tới player.
+- **AnimationController**: chỉ lo thao tác với `Animator`, ví dụ bật/tắt bool, trigger attack/hurt/die/alert. Nhờ vậy state không cần biết chi tiết animation controller hoạt động thế nào.
+- **IEnemyState**: chỉ nhận interface thay vì nhận trực tiếp `EnemyController`. Điều này giúp state không phụ thuộc vào MonoBehaviour cụ thể và giảm coupling giữa hành vi và implementation.
+- **EnemyStateFactory**: tạo ra các state dùng chung cho toàn bộ enemy. Enemy con chỉ override những state hoặc hành vi thật sự khác biệt.
+- **Enemy melee**: dùng chung bộ state cơ bản, chủ yếu khác nhau ở kiểu tấn công hoặc hiệu ứng khi chết.
+- **Necromancer**: là enemy ranged nên cần thêm hành vi kitting và heal, vì vậy có vài state và interface phụ trợ riêng.
+
+### Luồng hoạt động tổng quát
+
+1. Khi enemy được khởi tạo, `EnemyController` lấy các component cần thiết như `Rigidbody2D`, `SpriteRenderer`, `Animator`, `CharacterStats` và xác định player.
+2. Sau đó controller tạo `MovementManager`, `AnimationController` và `EnemyStateFactory`.
+3. Controller cache các state thường dùng như Idle, Pursuit, Attack, Hurt, Die để tránh tạo lại nhiều lần.
+4. Enemy vào state đầu tiên, thường là `Idle`.
+5. Mỗi frame, `Update()` gọi `currentState.OnUpdate(...)` để state tự quyết định hành vi tiếp theo.
+6. Nếu state cần đổi hướng hành vi, nó gọi `ctx.SwitchTo("TênState")` thay vì tự sửa trực tiếp controller.
+
+### Ý nghĩa của cách chia này
+
+Cách tổ chức này giúp mỗi phần có một lý do thay đổi rõ ràng:
+
+- Nếu thay đổi cách enemy di chuyển, chỉ sửa `MovementManager`.
+- Nếu thay đổi animation trigger, chỉ sửa `AnimationController`.
+- Nếu thay đổi cách một state chuyển sang state khác, chỉ sửa class state tương ứng.
+- Nếu thêm enemy mới, thường chỉ cần kế thừa `EnemyController` và override phần attack hoặc state đặc thù.
+
+### Vì sao không tách nhỏ hơn nữa
+
+Kế hoạch này cố tình không đi theo hướng tạo quá nhiều abstraction nhỏ như `AttackCooldownTracker`, `IDistanceProvider`, `IRetreatBehavior` hay factory riêng cho từng enemy. Lý do là quy mô hiện tại chỉ có khoảng 5 enemy types, nên nếu tách quá sâu sẽ làm code khó đọc hơn mà lợi ích thực tế không nhiều. Mục tiêu là **tách đúng mức cần thiết**, không over-engineering.
+
+### Nguyên tắc chính
 ### Nguyên tắc chính
 
 | Nguyên tắc | Áp dụng |

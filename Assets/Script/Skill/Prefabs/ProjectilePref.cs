@@ -69,7 +69,7 @@ public class ProjectilePref : MonoBehaviour, IProjectilePref
         if (targetHealth == null)
             return;
 
-        targetHealth.TakeDamage((int)damage);
+        targetHealth.TakeDamage((int)damage, gameObject);
         hitTargets.Add(collision.gameObject);
         hitCount++;
 
