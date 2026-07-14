@@ -13840,8 +13840,6 @@ MonoBehaviour:
   attackRange: 1.5
   visionRange: 5
   attackCooldown: 2
-  lastTimeAttack: -Infinity
-  player: {fileID: 0}
 --- !u!1001 &4394360981915310831
 PrefabInstance:
   m_ObjectHideFlags: 0

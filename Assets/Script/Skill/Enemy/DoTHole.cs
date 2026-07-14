@@ -1,5 +1,5 @@
 using UnityEngine;
-public class NercoHole : MonoBehaviour, ISpawnPref
+public class DoTHole : MonoBehaviour, ISpawnPref
 {
     public float damage = 1f;
     public float lifeTime = 4f;

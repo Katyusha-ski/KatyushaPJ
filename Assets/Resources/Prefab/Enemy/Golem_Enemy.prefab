@@ -135,7 +135,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 20
   currentHealth: 0
-  healthBar: {fileID: 9009797340540895125}
+  healthBar: {fileID: 0}
+  virtualShield: 0
   damageSFX: {fileID: 8300000, guid: 755653eaa8f3c554baecd6546bef6ac5, type: 3}
   dieSFX: {fileID: 8300000, guid: dfa6f53fa3e165241a5f8632efd259c0, type: 3}
   lootManager: {fileID: 0}
@@ -154,8 +155,6 @@ MonoBehaviour:
   attackRange: 2
   visionRange: 10
   attackCooldown: 3
-  lastTimeAttack: -Infinity
-  player: {fileID: 0}
   skillManager: {fileID: 6232635350070287290}
 --- !u!50 &7206070235188588880
 Rigidbody2D:
@@ -245,6 +244,7 @@ MonoBehaviour:
   skills:
   - {fileID: 11400000, guid: 5844515675d222d438d9c095e89049b5, type: 2}
   - {fileID: 11400000, guid: d04244af77238e642973add1d2940e2e, type: 2}
+  characterStats: {fileID: 0}
 --- !u!114 &3695371048334333859
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -267,6 +267,22 @@ MonoBehaviour:
   baseCDR: 0
   baseMaxHP: 20
   baseMovementSpeed: 2.5
+  baseHPRegen: 0
+  baseDmgR: 0
+  baseSkillAmp: 0
+  totalAtk: 0
+  totalArmor: 0
+  totalMaxHP: 0
+  totalMovementSpeed: 0
+  totalCritRate: 0
+  totalCritDamage: 0
+  totalArmorPierce: 0
+  totalLifesteal: 0
+  totalCCRes: 0
+  totalCDR: 0
+  totalHPRegen: 0
+  totalDmgR: 0
+  totalSkillAmp: 0
 --- !u!1001 &104532870924171368
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -355,6 +371,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 986374125580062948, guid: 9f176e676efb02b48a3dc14de2bbe441, type: 3}
+      propertyPath: m_Value
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4913150913781755038, guid: 9f176e676efb02b48a3dc14de2bbe441, type: 3}
       propertyPath: m_Layer
       value: 7
@@ -383,13 +403,17 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 1.55
       objectReference: {fileID: 0}
-    - target: {fileID: 7453120115407544575, guid: 9f176e676efb02b48a3dc14de2bbe441, type: 3}
-      propertyPath: m_AnchorMax.x
+    - target: {fileID: 7187951909236280713, guid: 9f176e676efb02b48a3dc14de2bbe441, type: 3}
+      propertyPath: m_PresetInfoIsWorld
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7453120115407544575, guid: 9f176e676efb02b48a3dc14de2bbe441, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7453120115407544575, guid: 9f176e676efb02b48a3dc14de2bbe441, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7796950959067707844, guid: 9f176e676efb02b48a3dc14de2bbe441, type: 3}
       propertyPath: m_Layer
@@ -405,7 +429,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8100149129055850704, guid: 9f176e676efb02b48a3dc14de2bbe441, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8286824914012511862, guid: 9f176e676efb02b48a3dc14de2bbe441, type: 3}
       propertyPath: m_Layer
@@ -421,14 +445,3 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 788942669992416328, guid: 9f176e676efb02b48a3dc14de2bbe441, type: 3}
   m_PrefabInstance: {fileID: 104532870924171368}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &9009797340540895125 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8969581553428170749, guid: 9f176e676efb02b48a3dc14de2bbe441, type: 3}
-  m_PrefabInstance: {fileID: 104532870924171368}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fff217c3f49922949b8ae1d0c2be02f4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 

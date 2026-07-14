@@ -5,16 +5,21 @@ using UnityEngine;
 public class BatBossController : EnemyController
 {
     [Header("Boss Settings")]
-    public SkillManager skillManager;
     [SerializeField] private float hoverHeight = 4f;
     [SerializeField] private float hoverSpeed = 0.8f;
     [SerializeField] private float hoverAmplitude = 1.5f;
     [Header("Spawn Prefabs")]
     [SerializeField] private GameObject batSpherePrefab;
     [SerializeField] private GameObject pillarPrefab;
-    [SerializeField] private GameObject hazardZonePrefab;
+    [SerializeField] private GameObject holePrefab;
     [SerializeField] private Transform[] sphereSpawnPoints;
     [SerializeField] private Transform[] pillarSpawnPoints;
+
+    [Header("Pillar Spawn Config")]
+    [SerializeField] private int maxActivePillars = 3;
+    [SerializeField] private float pillarSpawnCooldown = 7f;
+    [SerializeField] private float maxPlayerDistance = 12f;
+    [SerializeField] private float minPillarDistance = 5f;
 
     [Header("Hurt Effect")]
     [SerializeField] private SpriteRenderer bossSprite;
@@ -29,7 +34,11 @@ public class BatBossController : EnemyController
     private float hoverPhase;
     private Color originalColor;
     private bool isDead;
+    private bool isAwake;
     private int cachedMaxHP;
+
+    private List<Pillar> activePillars = new List<Pillar>();
+    private float pillarSpawnTimer;
 
     public event System.Action OnBossDefeated;
     public int PillarBurstDamage => Mathf.RoundToInt(cachedMaxHP * 0.25f);
@@ -61,23 +70,25 @@ public class BatBossController : EnemyController
             originalColor = bossSprite.color;
 
         CacheBossStates();
-        ChangeState(stateCache["Hover"]);
+
+        isAwake = false;
+        animator.Play("Bat_Sleep", 0, 0f);
     }
 
     protected override void Update()
     {
-        if (isDead) return;
+        if (isDead || !isAwake) return;
         base.Update();
+        UpdatePillarSpawning(Time.deltaTime);
     }
 
     private void CacheBossStates()
     {
         stateCache["Hover"] = new BatHoverState();
-        stateCache["DropSphere"] = new BatAttackAnimState("Attack1", 1.2f, "Hover");
-        stateCache["SpawnDoT"] = new BatAttackAnimState("Attack2", 1.2f, "Hover");
-        stateCache["SpawnPillar"] = new BatAttackAnimState("Attack3", 1.5f, "Hover");
-        stateCache["Hurt"] = new BatHurtState();
-        stateCache["Die"] = new BatDieState();
+        stateCache["DropSphere"] = new GenericAttackState("Atk1", 1.2f, "Hover");
+        stateCache["SpawnDoT"] = new GenericAttackState("Atk2", 1.2f, "Hover");
+        stateCache["Hurt"] = new HurtState("Hover", false);
+        stateCache["Die"] = new DieState(2f, () => HandleEnemyDeath());
     }
 
     // --- Movement (no-ops — boss flies) ---
@@ -86,8 +97,7 @@ public class BatBossController : EnemyController
     public override void RetreatFromPlayer() { }
     public override void ExecuteAttack() { }
     public override void DealNormalAttackDamage() { }
-
-    public override IEnemyState GetHurtState(IEnemyState preState) => stateCache["Hurt"];
+    public override IEnemyState GetHurtState(IEnemyState currentState) => currentState;
     public override IEnemyState GetDieState() => stateCache["Die"];
 
     // --- Hover ---
@@ -104,12 +114,16 @@ public class BatBossController : EnemyController
     public void PickNextAttack()
     {
         float roll = Random.value;
-        if (roll < 0.4f)
+        if (roll < 0.5f)
             SwitchTo("DropSphere");
-        else if (roll < 0.7f)
-            SwitchTo("SpawnDoT");
         else
-            SwitchTo("SpawnPillar");
+            SwitchTo("SpawnDoT");
+    }
+
+    public void ForceHurtState()
+    {
+        FlashHurt();
+        ChangeState(stateCache["Hurt"]);
     }
 
     // ============================================================
@@ -128,37 +142,93 @@ public class BatBossController : EnemyController
 
     public void SpawnPillar()
     {
-        if (pillarPrefab == null || pillarSpawnPoints == null || pillarSpawnPoints.Length == 0)
-            return;
-
-        Transform pt = pillarSpawnPoints[Random.Range(0, pillarSpawnPoints.Length)];
-        GameObject pillar = Instantiate(pillarPrefab, pt.position, Quaternion.identity);
-        pillar.GetComponent<Pillar>()?.Init(this);
+        TrySpawnPillar();
     }
 
-    public void SpawnDoTZone()
+    private void UpdatePillarSpawning(float dt)
     {
-        if (hazardZonePrefab == null || player == null)
+        activePillars.RemoveAll(p => p == null);
+
+        if (activePillars.Count >= maxActivePillars)
+        {
+            pillarSpawnTimer = pillarSpawnCooldown;
+            return;
+        }
+
+        pillarSpawnTimer -= dt;
+        if (pillarSpawnTimer <= 0f)
+        {
+            if (TrySpawnPillar())
+                pillarSpawnTimer = pillarSpawnCooldown;
+        }
+    }
+
+    private bool TrySpawnPillar()
+    {
+        if (pillarPrefab == null || pillarSpawnPoints == null || pillarSpawnPoints.Length == 0 || player == null)
+            return false;
+
+        activePillars.RemoveAll(p => p == null);
+
+        if (activePillars.Count >= maxActivePillars)
+            return false;
+
+        var validPoints = new List<Transform>();
+        foreach (var pt in pillarSpawnPoints)
+        {
+            if (pt == null) continue;
+
+            if (Vector2.Distance(pt.position, player.position) > maxPlayerDistance)
+                continue;
+
+            bool tooClose = false;
+            foreach (var _pillar in activePillars)
+            {
+                if (_pillar != null && Vector2.Distance(pt.position, _pillar.transform.position) < minPillarDistance)
+                {
+                    tooClose = true;
+                    break;
+                }
+            }
+            if (tooClose) continue;
+
+            validPoints.Add(pt);
+        }
+
+        if (validPoints.Count == 0)
+            return false;
+
+        Transform chosen = validPoints[Random.Range(0, validPoints.Count)];
+        GameObject obj = Instantiate(pillarPrefab, chosen.position, Quaternion.identity);
+        Pillar pillar = obj.GetComponent<Pillar>();
+        if (pillar != null)
+        {
+            pillar.Init(this);
+            activePillars.Add(pillar);
+        }
+        return true;
+    }
+
+    public void SpawnAoECircle()
+    {
+        if (holePrefab == null || player == null)
             return;
 
         Vector3 spawnPos = player.position;
         spawnPos.y = transform.position.y - hoverHeight;
-        GameObject zone = Instantiate(hazardZonePrefab, spawnPos, Quaternion.identity);
-        HazardZone haz = zone.GetComponent<HazardZone>();
-        if (haz != null)
-            haz.Init(3, 1f, 3f, 5f);
-        else
-            Destroy(zone, 5f);
+        Instantiate(holePrefab, spawnPos, Quaternion.identity);
     }
 
-    /// <summary>
-    /// Optional: gọi từ animation event cuối clip để kết thúc state sớm.
-    /// Nếu không dùng, state tự kết thúc theo timer.
-    /// </summary>
     public void OnAttackAnimEnd()
     {
-        if (currentState is BatAttackAnimState)
+        if (currentState is GenericAttackState)
             SwitchTo("Hover");
+    }
+
+    public void OnWakeUpComplete()
+    {
+        isAwake = true;
+        ChangeState(stateCache["Hover"]);
     }
 
     // --- Hurt ---

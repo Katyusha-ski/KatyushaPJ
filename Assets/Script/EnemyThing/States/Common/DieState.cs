@@ -1,12 +1,23 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 public class DieState : IEnemyState
 {
-    private float dieDuration = 1.0f;
-    private float elapsedTime = 0f;
+    private float dieDuration;
+    private float elapsedTime;
+    private Action onDeath;
+
+    public DieState() : this(1.0f, null) { }
+
+    public DieState(float dieDuration = 1.0f, Action onDeath = null)
+    {
+        this.dieDuration = dieDuration;
+        this.onDeath = onDeath;
+    }
 
     public void OnEnter(IEnemyMovement movement, IEnemyCombat combat, IEnemyStateContext ctx)
     {
+        elapsedTime = 0f;
         combat.PlayAnimTrigger("Die");
     }
 
@@ -15,7 +26,8 @@ public class DieState : IEnemyState
         elapsedTime += Time.deltaTime;
         if (elapsedTime >= dieDuration)
         {
-            Object.Destroy(((MonoBehaviour)ctx).gameObject);
+            onDeath?.Invoke();
+            GameObject.Destroy(((MonoBehaviour)ctx).gameObject);
         }
     }
 

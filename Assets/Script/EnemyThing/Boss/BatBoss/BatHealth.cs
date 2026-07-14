@@ -3,6 +3,7 @@ using UnityEngine;
 public class BatHealth : Health
 {
     [SerializeField] private AudioClip deflectSFX;
+    [SerializeField] private float rangedDamageMultiplier = 1.5f;
 
     public override void TakeDamage(int damage, GameObject damageSource)
     {
@@ -19,9 +20,23 @@ public class BatHealth : Health
             return;
         }
 
-        if (src.sourceType == DamageSourceType.Ranged || src.sourceType == DamageSourceType.Pillar || src.sourceType == DamageSourceType.System)
+        if (src.sourceType == DamageSourceType.Ranged)
+        {
+            int bonusDamage = Mathf.RoundToInt(damage * rangedDamageMultiplier);
+            base.TakeDamage(bonusDamage, damageSource);
+            return;
+        }
+
+        if (src.sourceType == DamageSourceType.Pillar || src.sourceType == DamageSourceType.System)
         {
             base.TakeDamage(damage, damageSource);
+
+            if (src.sourceType == DamageSourceType.Pillar)
+            {
+                var boss = GetComponent<BatBossController>();
+                if (boss != null)
+                    boss.ForceHurtState();
+            }
             return;
         }
 

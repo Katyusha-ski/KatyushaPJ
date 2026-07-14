@@ -1,18 +1,12 @@
 using UnityEngine;
-
-/// <summary>
-/// Generic attack state: trigger animation → chờ timer → về Hover.
-/// Các method spawn (DropSphere, SpawnPillar, SpawnDoTZone)
-/// được gọi từ Animation Events trong clip, không gọi từ state.
-/// </summary>
-public class BatAttackAnimState : IEnemyState
+public class GenericAttackState : IEnemyState
 {
     private string animTrigger;
     private float animDuration;
     private string returnState;
     private float elapsed;
 
-    public BatAttackAnimState(string animTrigger, float animDuration, string returnState)
+    public GenericAttackState(string animTrigger, float animDuration, string returnState)
     {
         this.animTrigger = animTrigger;
         this.animDuration = animDuration;

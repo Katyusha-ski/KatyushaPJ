@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class Pillar : MonoBehaviour
 {
-    [SerializeField] private int hp = 3;
+    [SerializeField] private int hp = 20;
     [SerializeField] private AudioClip destroySFX;
     [SerializeField] private GameObject destroyVFX;
 
