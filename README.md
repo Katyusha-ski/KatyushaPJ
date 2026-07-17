@@ -177,6 +177,13 @@ SkillBase (SO, abstract)
 | `GolemE` | Melee/Ranged hybrid | Has `SkillManager` (GolemMagic, StoneSpike) |
 | `NecromancerE` | Ranged | Implements `IEnemyRanged`, has kitting + heal states, 3 skills |
 
+**Bosses** (`Boss/`):
+
+| Class | Chapter | FSM | Special Mechanics |
+|-------|---------|-----|-------------------|
+| **BatBoss** | 4 | 5 states: `BatHoverState` (unique) + 4 generic states | Deflect system (Melee/Stand bounce), Pillar burst (25% MaxHP), Atk1/Ak2 **50/50 pure random** |
+| **VoidBoss** | 6 | 9 states: 3 custom (`VoidIdleState`, `VoidPursuitState`, `BloodMoonState`) + 6 generic states | Super Armor (no flinch), Facing Lock, BloodMoon Ultimate (5 waves × 5 telegraphs), **Ultimate ưu tiên ngắt Pursuit** |
+
 ### 7. Item System — `Assets/Script/ItemSystem/`
 
 **Core data** (all ScriptableObjects):
@@ -307,3 +314,5 @@ HP Regen: every 5 seconds, heal = HPRegen
 | `Assets/Script/SaveSystem/ChapterSystem/SaveSystemChanges.md` | Old level-based → chapter-based migration |
 | `Assets/Script/HuongDan/ItemInfo.md` | Full item catalog (Vietnamese) |
 | `Assets/Script/HuongDan/ROADMAP_UNITY_FIREBASE_INTERN.md` | Firebase integration roadmap |
+| `Docs/Contexts/Katyusha_BatBoss_Context.md` | BatBoss architecture: FSM, Health, Pillar system, deflect mechanics |
+| `Docs/Contexts/Katyusha_VoidBoss_Context.md` | VoidBoss architecture: FSM, AI decision, Super Armor, BloodMoon, cleanup |

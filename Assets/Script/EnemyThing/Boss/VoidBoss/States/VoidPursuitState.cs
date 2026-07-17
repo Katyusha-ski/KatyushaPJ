@@ -13,6 +13,14 @@ public class VoidPursuitState : IEnemyState
         {
             float distance = movement.GetDistanceToPlayer();
 
+            // --- [ARCHITECT DECISION: Option A] BloodMoon interrupt — ưu tiên tuyệt đối ---
+            if (boss.IsBloodMoonReady())
+            {
+                boss.UseBloodMoon();
+                ctx.SwitchTo("BloodMoon");
+                return;
+            }
+
             // --- Interrupt: skill hồi khi đang chạy → dừng xả chiêu ---
             if (distance > boss.MeleeRange)
             {
