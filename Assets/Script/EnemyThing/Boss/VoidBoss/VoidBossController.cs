@@ -38,12 +38,15 @@ public class VoidBossController : EnemyController
     private bool isAwake;
     private int cachedMaxHP;
 
+    private const string BLOOD_MOON_POOL_TAG = "BloodMoonTelegraph";
+
     private float skill1ReadyTime = -Mathf.Infinity;
     private float skill2ReadyTime = -Mathf.Infinity;
     private float bloodMoonReadyTime = -Mathf.Infinity;
 
     private bool facingLocked;
     private List<GameObject> activeProjectiles = new();
+    private List<GameObject> activeTelegraphs = new(); // Pool-managed BloodMoon telegraphs
 
     public event System.Action OnBossDefeated;
 
@@ -204,8 +207,23 @@ public class VoidBossController : EnemyController
             if (!tooClose)
             {
                 chosen.Add(candidate);
-                GameObject t = Instantiate(bloodMoonTelegraphPrefab, candidate, Quaternion.identity);
+
+                ObjectPool pool = ObjectPool.Instance;
+                GameObject t;
+
+                if (pool != null)
+                {
+                    t = pool.SpawnFromPool(BLOOD_MOON_POOL_TAG, candidate, Quaternion.identity);
+                    if (t == null)
+                        t = Object.Instantiate(bloodMoonTelegraphPrefab, candidate, Quaternion.identity);
+                }
+                else
+                {
+                    t = Object.Instantiate(bloodMoonTelegraphPrefab, candidate, Quaternion.identity);
+                }
+
                 activeProjectiles.Add(t);
+                activeTelegraphs.Add(t);
             }
         }
     }
@@ -248,6 +266,20 @@ public class VoidBossController : EnemyController
     public override void HandleEnemyDeath()
     {
         isDead = true;
+
+        ObjectPool pool = ObjectPool.Instance;
+
+        for (int i = activeTelegraphs.Count - 1; i >= 0; i--)
+        {
+            if (activeTelegraphs[i] != null)
+            {
+                if (pool != null)
+                    pool.ReturnToPool(activeTelegraphs[i]);
+                else
+                    Destroy(activeTelegraphs[i]);
+            }
+        }
+        activeTelegraphs.Clear();
 
         for (int i = activeProjectiles.Count - 1; i >= 0; i--)
         {

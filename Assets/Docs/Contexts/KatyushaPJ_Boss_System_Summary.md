@@ -211,6 +211,7 @@ Các điểm còn mơ hồ, cần Architect xác nhận thêm trước khi giao 
 - **Skill 3:** Đã cắt khỏi thiết kế.
 - **Skill 4 — Ultimate (Blood Moon):** Kích hoạt theo Timer/Cooldown cực dài, không phụ thuộc % HP.
   - Nhiều vùng Telegraph đỏ xuất hiện quanh Player: trục X random `Player.X ± a`, **trục Y random thuần túy `Player.Y ± b`** (random đối xứng cả 2 phía, **không dùng Raycast, không dán đất** — tạo cả vùng nổ lơ lửng trên không, ép Player kết hợp Nhảy + Chạy).
+  - **Object Pool (Architect Decision):** Prefab vụ nổ Telegraph phải được lấy/trả qua hệ thống `ObjectPool` sẵn có của project (`Pattern/ObjectPool.cs` — generic singleton pool), KHÔNG dùng `Instantiate`/`Destroy` trực tiếp. Do 1 wave sinh ra nhiều prefab liên tục tại các tọa độ X/Y khác nhau trong thời gian ngắn, việc cấp phát bộ nhớ liên tục sẽ gây GC spike — bắt buộc tái sử dụng object qua Pool.
   - Anti-Overlap: các điểm trong cùng 1 wave không được cách nhau gần hơn `minSpacing`, random lại nếu vi phạm (giới hạn `maxAttempts`).
   - Sau delay, các vùng đồng loạt nổ/chiếu tia sáng đỏ — sát thương DPS cực lớn, đủ giết Player dù giáp tốt nhất Chapter nếu ăn đủ đòn. Lặp nhiều wave trong 1 lần kích hoạt.
 
@@ -308,7 +309,6 @@ Nếu Distance > MeleeRange:
 **Sát thương — Cọc Đá Đâm** (tuyệt đối KHÔNG bám đuổi/tracking):
 - Phase 1–2 (Mức 1-2): vùng cảnh báo AOE nhỏ, delay dài.
 - Phase 3–4 (Mức 3 → Max 4): vùng cảnh báo AOE khổng lồ, delay cực ngắn, cooldown liên tục — ép Player Dash liên tục để thoát.
-
 
 ---
 
