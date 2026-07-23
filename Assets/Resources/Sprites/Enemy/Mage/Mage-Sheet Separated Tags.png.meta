@@ -271,7 +271,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -337,12 +337,12 @@ TextureImporter:
       name: Mage-Sheet Separated Tags_0
       rect:
         serializedVersion: 2
-        x: 47
-        y: 191
-        width: 18
-        height: 33
+        x: 0
+        y: 192
+        width: 112
+        height: 48
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -359,12 +359,12 @@ TextureImporter:
       name: Mage-Sheet Separated Tags_1
       rect:
         serializedVersion: 2
-        x: 159
-        y: 191
-        width: 18
-        height: 33
+        x: 112
+        y: 192
+        width: 112
+        height: 48
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -381,12 +381,12 @@ TextureImporter:
       name: Mage-Sheet Separated Tags_2
       rect:
         serializedVersion: 2
-        x: 271
-        y: 191
-        width: 18
-        height: 33
+        x: 224
+        y: 192
+        width: 112
+        height: 48
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -403,12 +403,12 @@ TextureImporter:
       name: Mage-Sheet Separated Tags_3
       rect:
         serializedVersion: 2
-        x: 383
-        y: 191
-        width: 18
-        height: 33
+        x: 336
+        y: 192
+        width: 112
+        height: 48
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -425,12 +425,12 @@ TextureImporter:
       name: Mage-Sheet Separated Tags_4
       rect:
         serializedVersion: 2
-        x: 46
-        y: 143
-        width: 19
-        height: 33
+        x: 0
+        y: 144
+        width: 112
+        height: 48
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -447,12 +447,12 @@ TextureImporter:
       name: Mage-Sheet Separated Tags_5
       rect:
         serializedVersion: 2
-        x: 157
-        y: 143
-        width: 20
-        height: 33
+        x: 112
+        y: 144
+        width: 112
+        height: 48
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -469,12 +469,12 @@ TextureImporter:
       name: Mage-Sheet Separated Tags_6
       rect:
         serializedVersion: 2
-        x: 269
-        y: 143
-        width: 20
-        height: 33
+        x: 224
+        y: 144
+        width: 112
+        height: 48
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -491,12 +491,12 @@ TextureImporter:
       name: Mage-Sheet Separated Tags_7
       rect:
         serializedVersion: 2
-        x: 382
-        y: 143
-        width: 19
-        height: 33
+        x: 336
+        y: 144
+        width: 112
+        height: 48
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -513,12 +513,12 @@ TextureImporter:
       name: Mage-Sheet Separated Tags_8
       rect:
         serializedVersion: 2
-        x: 455
-        y: 126
-        width: 36
-        height: 12
+        x: 0
+        y: 96
+        width: 112
+        height: 48
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -535,12 +535,12 @@ TextureImporter:
       name: Mage-Sheet Separated Tags_9
       rect:
         serializedVersion: 2
-        x: 466
-        y: 95
-        width: 70
-        height: 39
+        x: 112
+        y: 96
+        width: 112
+        height: 48
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -557,12 +557,12 @@ TextureImporter:
       name: Mage-Sheet Separated Tags_10
       rect:
         serializedVersion: 2
-        x: 521
-        y: 120
-        width: 34
-        height: 17
+        x: 224
+        y: 96
+        width: 112
+        height: 48
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -579,12 +579,12 @@ TextureImporter:
       name: Mage-Sheet Separated Tags_11
       rect:
         serializedVersion: 2
-        x: 563
-        y: 109
-        width: 26
-        height: 30
+        x: 336
+        y: 96
+        width: 112
+        height: 48
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -601,12 +601,12 @@ TextureImporter:
       name: Mage-Sheet Separated Tags_12
       rect:
         serializedVersion: 2
-        x: 572
-        y: 125
-        width: 22
-        height: 11
+        x: 448
+        y: 96
+        width: 112
+        height: 48
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -623,12 +623,12 @@ TextureImporter:
       name: Mage-Sheet Separated Tags_13
       rect:
         serializedVersion: 2
-        x: 574
-        y: 95
-        width: 74
-        height: 39
+        x: 560
+        y: 96
+        width: 112
+        height: 48
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -645,12 +645,12 @@ TextureImporter:
       name: Mage-Sheet Separated Tags_14
       rect:
         serializedVersion: 2
-        x: 600
-        y: 133
-        width: 35
-        height: 6
+        x: 672
+        y: 96
+        width: 112
+        height: 48
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -667,12 +667,12 @@ TextureImporter:
       name: Mage-Sheet Separated Tags_15
       rect:
         serializedVersion: 2
-        x: 631
-        y: 133
-        width: 27
-        height: 9
+        x: 784
+        y: 96
+        width: 112
+        height: 48
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -689,12 +689,12 @@ TextureImporter:
       name: Mage-Sheet Separated Tags_16
       rect:
         serializedVersion: 2
-        x: 653
-        y: 99
-        width: 17
-        height: 34
+        x: 896
+        y: 96
+        width: 112
+        height: 48
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -711,12 +711,12 @@ TextureImporter:
       name: Mage-Sheet Separated Tags_17
       rect:
         serializedVersion: 2
-        x: 681
-        y: 124
-        width: 40
-        height: 17
+        x: 1008
+        y: 96
+        width: 112
+        height: 48
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -733,12 +733,12 @@ TextureImporter:
       name: Mage-Sheet Separated Tags_18
       rect:
         serializedVersion: 2
-        x: 690
-        y: 95
-        width: 64
-        height: 39
+        x: 0
+        y: 48
+        width: 112
+        height: 48
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -755,12 +755,12 @@ TextureImporter:
       name: Mage-Sheet Separated Tags_19
       rect:
         serializedVersion: 2
-        x: 725
-        y: 124
-        width: 38
-        height: 13
+        x: 112
+        y: 48
+        width: 112
+        height: 48
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -777,12 +777,12 @@ TextureImporter:
       name: Mage-Sheet Separated Tags_20
       rect:
         serializedVersion: 2
-        x: 736
-        y: 128
-        width: 38
-        height: 13
+        x: 0
+        y: 0
+        width: 112
+        height: 48
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -799,12 +799,12 @@ TextureImporter:
       name: Mage-Sheet Separated Tags_21
       rect:
         serializedVersion: 2
-        x: 802
-        y: 113
-        width: 38
-        height: 28
+        x: 112
+        y: 0
+        width: 112
+        height: 48
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -821,12 +821,12 @@ TextureImporter:
       name: Mage-Sheet Separated Tags_22
       rect:
         serializedVersion: 2
-        x: 847
-        y: 123
-        width: 14
-        height: 14
+        x: 224
+        y: 0
+        width: 112
+        height: 48
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -843,12 +843,12 @@ TextureImporter:
       name: Mage-Sheet Separated Tags_23
       rect:
         serializedVersion: 2
-        x: 867
-        y: 122
-        width: 19
-        height: 17
+        x: 336
+        y: 0
+        width: 112
+        height: 48
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -865,12 +865,12 @@ TextureImporter:
       name: Mage-Sheet Separated Tags_24
       rect:
         serializedVersion: 2
-        x: 904
-        y: 115
-        width: 34
-        height: 22
+        x: 448
+        y: 0
+        width: 112
+        height: 48
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -887,12 +887,12 @@ TextureImporter:
       name: Mage-Sheet Separated Tags_25
       rect:
         serializedVersion: 2
-        x: 935
-        y: 29
-        width: 51
-        height: 108
+        x: 560
+        y: 0
+        width: 112
+        height: 48
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -909,12 +909,12 @@ TextureImporter:
       name: Mage-Sheet Separated Tags_26
       rect:
         serializedVersion: 2
-        x: 939
-        y: 129
-        width: 14
-        height: 13
+        x: 672
+        y: 0
+        width: 112
+        height: 48
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -931,12 +931,12 @@ TextureImporter:
       name: Mage-Sheet Separated Tags_27
       rect:
         serializedVersion: 2
-        x: 982
-        y: 120
-        width: 39
-        height: 18
+        x: 784
+        y: 0
+        width: 112
+        height: 48
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -953,12 +953,12 @@ TextureImporter:
       name: Mage-Sheet Separated Tags_28
       rect:
         serializedVersion: 2
-        x: 1034
-        y: 95
-        width: 72
-        height: 46
+        x: 908
+        y: 0
+        width: 112
+        height: 48
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -971,1111 +971,11 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
-    - serializedVersion: 2
-      name: Mage-Sheet Separated Tags_29
-      rect:
-        serializedVersion: 2
-        x: 33
-        y: 95
-        width: 31
-        height: 33
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: f7f3525f751d3e570800000000000000
-      internalID: 8494863497856106367
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Mage-Sheet Separated Tags_30
-      rect:
-        serializedVersion: 2
-        x: 71
-        y: 101
-        width: 9
-        height: 20
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 73163d0d2e0975a20800000000000000
-      internalID: 3051066576407322935
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Mage-Sheet Separated Tags_31
-      rect:
-        serializedVersion: 2
-        x: 144
-        y: 121
-        width: 12
-        height: 8
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: be4a40a7c6b9f90a0800000000000000
-      internalID: -6872603616138189589
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Mage-Sheet Separated Tags_32
-      rect:
-        serializedVersion: 2
-        x: 147
-        y: 106
-        width: 11
-        height: 17
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 4fdec120ffcf5c8b0800000000000000
-      internalID: -5132418028136501772
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Mage-Sheet Separated Tags_33
-      rect:
-        serializedVersion: 2
-        x: 158
-        y: 95
-        width: 18
-        height: 33
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 8b12b51774b2590f0800000000000000
-      internalID: -1110934147232489032
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Mage-Sheet Separated Tags_34
-      rect:
-        serializedVersion: 2
-        x: 178
-        y: 102
-        width: 11
-        height: 20
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 02ef54a459b85ef50800000000000000
-      internalID: 6910082676582383136
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Mage-Sheet Separated Tags_35
-      rect:
-        serializedVersion: 2
-        x: 182
-        y: 118
-        width: 10
-        height: 10
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 3487216109ef16f40800000000000000
-      internalID: 5720132896536295491
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Mage-Sheet Separated Tags_36
-      rect:
-        serializedVersion: 2
-        x: 230
-        y: 115
-        width: 10
-        height: 11
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 0e9db826f238445b0800000000000000
-      internalID: -5385035014888236576
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Mage-Sheet Separated Tags_37
-      rect:
-        serializedVersion: 2
-        x: 258
-        y: 115
-        width: 12
-        height: 15
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 7e6021362eba43270800000000000000
-      internalID: 8229391407925823207
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Mage-Sheet Separated Tags_38
-      rect:
-        serializedVersion: 2
-        x: 269
-        y: 95
-        width: 21
-        height: 33
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: e48225149c856ece0800000000000000
-      internalID: -1376315014707533746
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Mage-Sheet Separated Tags_39
-      rect:
-        serializedVersion: 2
-        x: 289
-        y: 111
-        width: 19
-        height: 19
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 131e03e1e386795e0800000000000000
-      internalID: -1902937701536964303
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Mage-Sheet Separated Tags_40
-      rect:
-        serializedVersion: 2
-        x: 320
-        y: 106
-        width: 8
-        height: 17
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 4b597bd0bcc717760800000000000000
-      internalID: 7453876069825222068
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Mage-Sheet Separated Tags_41
-      rect:
-        serializedVersion: 2
-        x: 342
-        y: 114
-        width: 31
-        height: 17
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 4ff682eb9a403d4f0800000000000000
-      internalID: -805294781282881548
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Mage-Sheet Separated Tags_42
-      rect:
-        serializedVersion: 2
-        x: 352
-        y: 95
-        width: 73
-        height: 37
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 10054a8858e226ab0800000000000000
-      internalID: -5016395883879313407
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Mage-Sheet Separated Tags_43
-      rect:
-        serializedVersion: 2
-        x: 407
-        y: 97
-        width: 34
-        height: 26
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: be5c2780499365240800000000000000
-      internalID: 4780071362460042731
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Mage-Sheet Separated Tags_44
-      rect:
-        serializedVersion: 2
-        x: 459
-        y: 103
-        width: 13
-        height: 22
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 727743b86c6b46e00800000000000000
-      internalID: 1037154778057307943
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Mage-Sheet Separated Tags_45
-      rect:
-        serializedVersion: 2
-        x: 529
-        y: 108
-        width: 10
-        height: 18
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 348139f5cf74a87c0800000000000000
-      internalID: -4068360164115015613
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Mage-Sheet Separated Tags_46
-      rect:
-        serializedVersion: 2
-        x: 643
-        y: 110
-        width: 14
-        height: 22
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 8f22e542b887d5030800000000000000
-      internalID: 3485074225660568312
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Mage-Sheet Separated Tags_47
-      rect:
-        serializedVersion: 2
-        x: 675
-        y: 96
-        width: 25
-        height: 27
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 0ee5593a3f47f2690800000000000000
-      internalID: -7624747054344610080
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Mage-Sheet Separated Tags_48
-      rect:
-        serializedVersion: 2
-        x: 745
-        y: 104
-        width: 28
-        height: 21
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 63713179196b24380800000000000000
-      internalID: -8988421169856964810
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Mage-Sheet Separated Tags_49
-      rect:
-        serializedVersion: 2
-        x: 790
-        y: 106
-        width: 7
-        height: 24
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 3ff891e043ae4a450800000000000000
-      internalID: 6099257304662249459
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Mage-Sheet Separated Tags_50
-      rect:
-        serializedVersion: 2
-        x: 812
-        y: 110
-        width: 10
-        height: 13
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: cd61c71abc2524af0800000000000000
-      internalID: -413677181223561508
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Mage-Sheet Separated Tags_51
-      rect:
-        serializedVersion: 2
-        x: 820
-        y: 95
-        width: 46
-        height: 34
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: f34a033978afa0b50800000000000000
-      internalID: 6560331267415516223
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Mage-Sheet Separated Tags_52
-      rect:
-        serializedVersion: 2
-        x: 855
-        y: 116
-        width: 10
-        height: 7
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: a7b6c5f5e6ade7770800000000000000
-      internalID: 8610559705160117114
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Mage-Sheet Separated Tags_53
-      rect:
-        serializedVersion: 2
-        x: 866
-        y: 115
-        width: 10
-        height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 5244c260500a2fee0800000000000000
-      internalID: -1228743804879879131
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Mage-Sheet Separated Tags_54
-      rect:
-        serializedVersion: 2
-        x: 35
-        y: 105
-        width: 8
-        height: 9
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 3642de5c9d15fb140800000000000000
-      internalID: 4737595328787457123
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Mage-Sheet Separated Tags_55
-      rect:
-        serializedVersion: 2
-        x: 243
-        y: 97
-        width: 17
-        height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: bd8ad1bda108f74b0800000000000000
-      internalID: -5440488972006610725
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Mage-Sheet Separated Tags_56
-      rect:
-        serializedVersion: 2
-        x: 294
-        y: 107
-        width: 9
-        height: 7
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 823090185e3fc9880800000000000000
-      internalID: -8602733021146578136
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Mage-Sheet Separated Tags_57
-      rect:
-        serializedVersion: 2
-        x: 307
-        y: 110
-        width: 11
-        height: 7
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: aa23f337f22620730800000000000000
-      internalID: 3963838577975964330
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Mage-Sheet Separated Tags_58
-      rect:
-        serializedVersion: 2
-        x: 400
-        y: 99
-        width: 32
-        height: 18
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 530879faf3d101ab0800000000000000
-      internalID: -5039495823661498315
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Mage-Sheet Separated Tags_59
-      rect:
-        serializedVersion: 2
-        x: 450
-        y: 97
-        width: 17
-        height: 22
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 9cb0de6719c0c3df0800000000000000
-      internalID: -199270464606106679
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Mage-Sheet Separated Tags_60
-      rect:
-        serializedVersion: 2
-        x: 735
-        y: 95
-        width: 47
-        height: 20
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: d7a738d09b5ee6b20800000000000000
-      internalID: 3129691374027504253
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Mage-Sheet Separated Tags_61
-      rect:
-        serializedVersion: 2
-        x: 849
-        y: 109
-        width: 15
-        height: 6
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 9339c7ad1d5319e80800000000000000
-      internalID: -8173692673270705351
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Mage-Sheet Separated Tags_62
-      rect:
-        serializedVersion: 2
-        x: 866
-        y: 96
-        width: 24
-        height: 18
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 9f6d2ceafc0e59090800000000000000
-      internalID: -8028263578123184391
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Mage-Sheet Separated Tags_63
-      rect:
-        serializedVersion: 2
-        x: 350
-        y: 97
-        width: 25
-        height: 11
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 447a621274a44d0e0800000000000000
-      internalID: -2246088644791720124
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Mage-Sheet Separated Tags_64
-      rect:
-        serializedVersion: 2
-        x: 522
-        y: 96
-        width: 25
-        height: 10
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 3b9b442c72fc85eb0800000000000000
-      internalID: -4730803638882747981
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Mage-Sheet Separated Tags_65
-      rect:
-        serializedVersion: 2
-        x: 572
-        y: 96
-        width: 23
-        height: 10
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 1a749d8091a0bd580800000000000000
-      internalID: -8801429944126584927
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Mage-Sheet Separated Tags_66
-      rect:
-        serializedVersion: 2
-        x: 640
-        y: 100
-        width: 16
-        height: 8
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: aef71db49059e9150800000000000000
-      internalID: 5881302030551711722
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Mage-Sheet Separated Tags_67
-      rect:
-        serializedVersion: 2
-        x: 809
-        y: 98
-        width: 13
-        height: 8
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: ae2e912ba09632910800000000000000
-      internalID: 1811406969791701738
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Mage-Sheet Separated Tags_68
-      rect:
-        serializedVersion: 2
-        x: 922
-        y: 100
-        width: 6
-        height: 7
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 213c4aad8ec0373d0800000000000000
-      internalID: -3210207915144854766
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Mage-Sheet Separated Tags_69
-      rect:
-        serializedVersion: 2
-        x: 46
-        y: 47
-        width: 17
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 00e38117660b568d0800000000000000
-      internalID: -2853680834838774272
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Mage-Sheet Separated Tags_70
-      rect:
-        serializedVersion: 2
-        x: 158
-        y: 47
-        width: 17
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: bc5f22be367438330800000000000000
-      internalID: 3711889012355691979
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Mage-Sheet Separated Tags_71
-      rect:
-        serializedVersion: 2
-        x: 46
-        y: 0
-        width: 17
-        height: 31
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: abc5ab6e495742c90800000000000000
-      internalID: -7195497022244627270
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Mage-Sheet Separated Tags_72
-      rect:
-        serializedVersion: 2
-        x: 158
-        y: 0
-        width: 17
-        height: 31
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 3efb9e38709499280800000000000000
-      internalID: -9036110880715456541
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Mage-Sheet Separated Tags_73
-      rect:
-        serializedVersion: 2
-        x: 265
-        y: 0
-        width: 22
-        height: 31
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 5ca1edfa6f2260c10800000000000000
-      internalID: 2019339925830113989
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Mage-Sheet Separated Tags_74
-      rect:
-        serializedVersion: 2
-        x: 383
-        y: 0
-        width: 23
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: dfc2fae8f5783d390800000000000000
-      internalID: -7794737685562708739
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Mage-Sheet Separated Tags_75
-      rect:
-        serializedVersion: 2
-        x: 491
-        y: 1
-        width: 24
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: e9e4356c86f3c9b40800000000000000
-      internalID: 5448299368447954590
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Mage-Sheet Separated Tags_76
-      rect:
-        serializedVersion: 2
-        x: 604
-        y: 2
-        width: 21
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 5f13b56673d6f3680800000000000000
-      internalID: -8773173464386555403
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Mage-Sheet Separated Tags_77
-      rect:
-        serializedVersion: 2
-        x: 720
-        y: 3
-        width: 16
-        height: 33
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 807fd75a2ad2b0b90800000000000000
-      internalID: -7274670596502456568
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Mage-Sheet Separated Tags_78
-      rect:
-        serializedVersion: 2
-        x: 835
-        y: 24
-        width: 13
-        height: 17
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: ea32e9e1fc394f0f0800000000000000
-      internalID: -1084079092508253266
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
     outline: []
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 0bff0e84230196544ae0bfa72cb856c2
     internalID: 0
     vertices: []
     indices: 
@@ -2083,7 +983,9 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     spriteCustomMetadata:
-      entries: []
+      entries:
+      - key: SpriteEditor.SliceSettings
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":10.0,"y":5.0},"gridSpriteSize":{"x":112.0,"y":48.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":2,"keepEmptyRects":false,"isAlternate":false}'
     nameFileIdTable:
       Mage-Sheet Separated Tags_0: 391834219054119932
       Mage-Sheet Separated Tags_1: 1813413894932492016
@@ -2107,61 +1009,11 @@ TextureImporter:
       Mage-Sheet Separated Tags_26: -7453413576647626444
       Mage-Sheet Separated Tags_27: 2388608821519205238
       Mage-Sheet Separated Tags_28: 5668220588879836826
-      Mage-Sheet Separated Tags_29: 8494863497856106367
       Mage-Sheet Separated Tags_3: -1737526870222795308
-      Mage-Sheet Separated Tags_30: 3051066576407322935
-      Mage-Sheet Separated Tags_31: -6872603616138189589
-      Mage-Sheet Separated Tags_32: -5132418028136501772
-      Mage-Sheet Separated Tags_33: -1110934147232489032
-      Mage-Sheet Separated Tags_34: 6910082676582383136
-      Mage-Sheet Separated Tags_35: 5720132896536295491
-      Mage-Sheet Separated Tags_36: -5385035014888236576
-      Mage-Sheet Separated Tags_37: 8229391407925823207
-      Mage-Sheet Separated Tags_38: -1376315014707533746
-      Mage-Sheet Separated Tags_39: -1902937701536964303
       Mage-Sheet Separated Tags_4: 1640024120315871285
-      Mage-Sheet Separated Tags_40: 7453876069825222068
-      Mage-Sheet Separated Tags_41: -805294781282881548
-      Mage-Sheet Separated Tags_42: -5016395883879313407
-      Mage-Sheet Separated Tags_43: 4780071362460042731
-      Mage-Sheet Separated Tags_44: 1037154778057307943
-      Mage-Sheet Separated Tags_45: -4068360164115015613
-      Mage-Sheet Separated Tags_46: 3485074225660568312
-      Mage-Sheet Separated Tags_47: -7624747054344610080
-      Mage-Sheet Separated Tags_48: -8988421169856964810
-      Mage-Sheet Separated Tags_49: 6099257304662249459
       Mage-Sheet Separated Tags_5: 5267673421788945678
-      Mage-Sheet Separated Tags_50: -413677181223561508
-      Mage-Sheet Separated Tags_51: 6560331267415516223
-      Mage-Sheet Separated Tags_52: 8610559705160117114
-      Mage-Sheet Separated Tags_53: -1228743804879879131
-      Mage-Sheet Separated Tags_54: 4737595328787457123
-      Mage-Sheet Separated Tags_55: -5440488972006610725
-      Mage-Sheet Separated Tags_56: -8602733021146578136
-      Mage-Sheet Separated Tags_57: 3963838577975964330
-      Mage-Sheet Separated Tags_58: -5039495823661498315
-      Mage-Sheet Separated Tags_59: -199270464606106679
       Mage-Sheet Separated Tags_6: 6853203274730842387
-      Mage-Sheet Separated Tags_60: 3129691374027504253
-      Mage-Sheet Separated Tags_61: -8173692673270705351
-      Mage-Sheet Separated Tags_62: -8028263578123184391
-      Mage-Sheet Separated Tags_63: -2246088644791720124
-      Mage-Sheet Separated Tags_64: -4730803638882747981
-      Mage-Sheet Separated Tags_65: -8801429944126584927
-      Mage-Sheet Separated Tags_66: 5881302030551711722
-      Mage-Sheet Separated Tags_67: 1811406969791701738
-      Mage-Sheet Separated Tags_68: -3210207915144854766
-      Mage-Sheet Separated Tags_69: -2853680834838774272
       Mage-Sheet Separated Tags_7: -7646556326527830509
-      Mage-Sheet Separated Tags_70: 3711889012355691979
-      Mage-Sheet Separated Tags_71: -7195497022244627270
-      Mage-Sheet Separated Tags_72: -9036110880715456541
-      Mage-Sheet Separated Tags_73: 2019339925830113989
-      Mage-Sheet Separated Tags_74: -7794737685562708739
-      Mage-Sheet Separated Tags_75: 5448299368447954590
-      Mage-Sheet Separated Tags_76: -8773173464386555403
-      Mage-Sheet Separated Tags_77: -7274670596502456568
-      Mage-Sheet Separated Tags_78: -1084079092508253266
       Mage-Sheet Separated Tags_8: 1751160249291571439
       Mage-Sheet Separated Tags_9: 6628517692282353008
   mipmapLimitGroupName: 

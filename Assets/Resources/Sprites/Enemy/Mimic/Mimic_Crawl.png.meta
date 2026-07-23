@@ -46,7 +46,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -112,9 +112,10 @@ TextureImporter:
       name: Mimic_Crawl_0
       rect:
         serializedVersion: 2
-        x: 36
-        y: 37
-        width: 34
+        x: 0
+        y: 0
+        width: 108
+        height: 108
         height: 25
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -134,9 +135,10 @@ TextureImporter:
       name: Mimic_Crawl_1
       rect:
         serializedVersion: 2
-        x: 147
-        y: 37
-        width: 39
+        x: 108
+        y: 0
+        width: 108
+        height: 108
         height: 28
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -156,9 +158,10 @@ TextureImporter:
       name: Mimic_Crawl_2
       rect:
         serializedVersion: 2
-        x: 245
-        y: 37
-        width: 55
+        x: 216
+        y: 0
+        width: 108
+        height: 108
         height: 29
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -178,9 +181,10 @@ TextureImporter:
       name: Mimic_Crawl_3
       rect:
         serializedVersion: 2
-        x: 362
-        y: 37
-        width: 40
+        x: 324
+        y: 0
+        width: 108
+        height: 108
         height: 26
       alignment: 0
       pivot: {x: 0, y: 0}

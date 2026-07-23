@@ -94,7 +94,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -160,12 +160,12 @@ TextureImporter:
       name: slime-Sheet_0
       rect:
         serializedVersion: 2
-        x: 1
+        x: 0
         y: 50
-        width: 30
-        height: 16
+        width: 32
+        height: 25
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -182,12 +182,12 @@ TextureImporter:
       name: slime-Sheet_1
       rect:
         serializedVersion: 2
-        x: 33
+        x: 32
         y: 50
-        width: 30
-        height: 16
+        width: 32
+        height: 25
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -204,12 +204,12 @@ TextureImporter:
       name: slime-Sheet_2
       rect:
         serializedVersion: 2
-        x: 65
+        x: 64
         y: 50
-        width: 30
-        height: 16
+        width: 32
+        height: 25
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -226,12 +226,12 @@ TextureImporter:
       name: slime-Sheet_3
       rect:
         serializedVersion: 2
-        x: 97
+        x: 96
         y: 50
-        width: 30
-        height: 15
+        width: 32
+        height: 25
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -248,12 +248,12 @@ TextureImporter:
       name: slime-Sheet_4
       rect:
         serializedVersion: 2
-        x: 131
+        x: 128
         y: 50
-        width: 28
-        height: 14
+        width: 32
+        height: 25
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -270,12 +270,12 @@ TextureImporter:
       name: slime-Sheet_5
       rect:
         serializedVersion: 2
-        x: 163
+        x: 160
         y: 50
-        width: 28
-        height: 14
+        width: 32
+        height: 25
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -292,12 +292,12 @@ TextureImporter:
       name: slime-Sheet_6
       rect:
         serializedVersion: 2
-        x: 195
+        x: 192
         y: 50
-        width: 26
-        height: 14
+        width: 32
+        height: 25
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -314,12 +314,12 @@ TextureImporter:
       name: slime-Sheet_7
       rect:
         serializedVersion: 2
-        x: 227
+        x: 224
         y: 50
-        width: 28
-        height: 13
+        width: 32
+        height: 25
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -336,12 +336,12 @@ TextureImporter:
       name: slime-Sheet_8
       rect:
         serializedVersion: 2
-        x: 1
+        x: 0
         y: 25
-        width: 30
-        height: 13
+        width: 32
+        height: 25
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -358,12 +358,12 @@ TextureImporter:
       name: slime-Sheet_9
       rect:
         serializedVersion: 2
-        x: 33
+        x: 32
         y: 25
-        width: 31
-        height: 13
+        width: 32
+        height: 25
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -380,12 +380,12 @@ TextureImporter:
       name: slime-Sheet_10
       rect:
         serializedVersion: 2
-        x: 65
+        x: 64
         y: 25
-        width: 30
-        height: 22
+        width: 32
+        height: 25
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -402,12 +402,12 @@ TextureImporter:
       name: slime-Sheet_11
       rect:
         serializedVersion: 2
-        x: 97
+        x: 96
         y: 25
-        width: 30
-        height: 17
+        width: 32
+        height: 25
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -424,12 +424,12 @@ TextureImporter:
       name: slime-Sheet_12
       rect:
         serializedVersion: 2
-        x: 129
+        x: 128
         y: 25
-        width: 30
-        height: 14
+        width: 32
+        height: 25
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -446,12 +446,12 @@ TextureImporter:
       name: slime-Sheet_13
       rect:
         serializedVersion: 2
-        x: 161
+        x: 160
         y: 25
-        width: 30
-        height: 16
+        width: 32
+        height: 25
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -468,12 +468,12 @@ TextureImporter:
       name: slime-Sheet_14
       rect:
         serializedVersion: 2
-        x: 193
+        x: 192
         y: 25
-        width: 30
-        height: 17
+        width: 32
+        height: 25
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -492,10 +492,10 @@ TextureImporter:
         serializedVersion: 2
         x: 224
         y: 25
-        width: 31
-        height: 15
+        width: 32
+        height: 25
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -512,12 +512,12 @@ TextureImporter:
       name: slime-Sheet_16
       rect:
         serializedVersion: 2
-        x: 1
+        x: 0
         y: 0
-        width: 30
-        height: 15
+        width: 32
+        height: 25
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -534,12 +534,12 @@ TextureImporter:
       name: slime-Sheet_17
       rect:
         serializedVersion: 2
-        x: 33
+        x: 32
         y: 0
-        width: 30
-        height: 16
+        width: 32
+        height: 25
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -556,12 +556,12 @@ TextureImporter:
       name: slime-Sheet_18
       rect:
         serializedVersion: 2
-        x: 65
+        x: 64
         y: 0
-        width: 30
-        height: 18
+        width: 32
+        height: 25
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -578,12 +578,12 @@ TextureImporter:
       name: slime-Sheet_19
       rect:
         serializedVersion: 2
-        x: 95
+        x: 96
         y: 0
-        width: 65
-        height: 11
+        width: 32
+        height: 25
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -596,11 +596,33 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: slime-Sheet_20
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 0
+        width: 32
+        height: 25
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2d570ae9d5eaddc4588bc9726db0ff2d
+      internalID: -1059973920
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 6e5809ddf2b5ad6458cea62d579bfb26
     internalID: 0
     vertices: []
     indices: 
@@ -608,7 +630,9 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     spriteCustomMetadata:
-      entries: []
+      entries:
+      - key: SpriteEditor.SliceSettings
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":8.0,"y":3.0},"gridSpriteSize":{"x":32.0,"y":25.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":2,"keepEmptyRects":false,"isAlternate":false}'
     nameFileIdTable:
       slime-Sheet_0: 3225832317793331946
       slime-Sheet_1: 5952692474738800764
@@ -623,6 +647,7 @@ TextureImporter:
       slime-Sheet_18: 1577109790741768683
       slime-Sheet_19: -2658792678680092322
       slime-Sheet_2: 4909821198284645373
+      slime-Sheet_20: -1059973920
       slime-Sheet_3: 4179155057698957012
       slime-Sheet_4: -8154299252778131244
       slime-Sheet_5: 1734891440256307957

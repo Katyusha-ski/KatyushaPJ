@@ -82,7 +82,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -148,12 +148,12 @@ TextureImporter:
       name: A1_0
       rect:
         serializedVersion: 2
-        x: 90
-        y: 845
-        width: 77
-        height: 80
+        x: 0
+        y: 768
+        width: 256
+        height: 256
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -170,12 +170,12 @@ TextureImporter:
       name: A1_1
       rect:
         serializedVersion: 2
-        x: 341
-        y: 845
-        width: 88
-        height: 79
+        x: 256
+        y: 768
+        width: 256
+        height: 256
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -192,12 +192,12 @@ TextureImporter:
       name: A1_2
       rect:
         serializedVersion: 2
-        x: 583
-        y: 845
-        width: 104
-        height: 79
+        x: 512
+        y: 768
+        width: 256
+        height: 256
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -214,12 +214,12 @@ TextureImporter:
       name: A1_3
       rect:
         serializedVersion: 2
-        x: 824
-        y: 845
-        width: 109
-        height: 78
+        x: 768
+        y: 768
+        width: 256
+        height: 256
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -236,12 +236,12 @@ TextureImporter:
       name: A1_4
       rect:
         serializedVersion: 2
-        x: 54
-        y: 589
-        width: 104
-        height: 78
+        x: 0
+        y: 512
+        width: 256
+        height: 256
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -258,12 +258,12 @@ TextureImporter:
       name: A1_5
       rect:
         serializedVersion: 2
-        x: 342
-        y: 589
-        width: 73
-        height: 78
+        x: 256
+        y: 512
+        width: 256
+        height: 256
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -280,12 +280,12 @@ TextureImporter:
       name: A1_6
       rect:
         serializedVersion: 2
-        x: 609
-        y: 589
-        width: 93
-        height: 80
+        x: 512
+        y: 512
+        width: 256
+        height: 256
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -302,12 +302,12 @@ TextureImporter:
       name: A1_7
       rect:
         serializedVersion: 2
-        x: 863
-        y: 589
-        width: 89
-        height: 79
+        x: 768
+        y: 512
+        width: 256
+        height: 256
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -324,12 +324,12 @@ TextureImporter:
       name: A1_8
       rect:
         serializedVersion: 2
-        x: 96
-        y: 333
-        width: 87
-        height: 79
+        x: 0
+        y: 256
+        width: 256
+        height: 256
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -346,12 +346,12 @@ TextureImporter:
       name: A1_9
       rect:
         serializedVersion: 2
-        x: 367
-        y: 333
-        width: 69
-        height: 79
+        x: 256
+        y: 256
+        width: 256
+        height: 256
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -368,12 +368,12 @@ TextureImporter:
       name: A1_10
       rect:
         serializedVersion: 2
-        x: 622
-        y: 333
-        width: 62
-        height: 79
+        x: 512
+        y: 256
+        width: 256
+        height: 256
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -390,12 +390,12 @@ TextureImporter:
       name: A1_11
       rect:
         serializedVersion: 2
-        x: 872
-        y: 333
-        width: 64
-        height: 80
+        x: 768
+        y: 256
+        width: 256
+        height: 256
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -412,12 +412,12 @@ TextureImporter:
       name: A1_12
       rect:
         serializedVersion: 2
-        x: 94
-        y: 77
-        width: 75
-        height: 80
+        x: 0
+        y: 0
+        width: 256
+        height: 256
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -434,12 +434,12 @@ TextureImporter:
       name: A1_13
       rect:
         serializedVersion: 2
-        x: 344
-        y: 77
-        width: 81
-        height: 80
+        x: 256
+        y: 0
+        width: 256
+        height: 256
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -456,12 +456,12 @@ TextureImporter:
       name: A1_14
       rect:
         serializedVersion: 2
-        x: 600
-        y: 77
-        width: 80
-        height: 80
+        x: 512
+        y: 0
+        width: 256
+        height: 256
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -478,12 +478,12 @@ TextureImporter:
       name: A1_15
       rect:
         serializedVersion: 2
-        x: 857
-        y: 77
-        width: 79
-        height: 80
+        x: 768
+        y: 0
+        width: 256
+        height: 256
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -500,7 +500,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: d2754a5bd19b5b94eae46238c045b264
     internalID: 0
     vertices: []
     indices: 
@@ -508,7 +508,9 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     spriteCustomMetadata:
-      entries: []
+      entries:
+      - key: SpriteEditor.SliceSettings
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":4.0,"y":4.0},"gridSpriteSize":{"x":256.0,"y":256.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":2,"keepEmptyRects":false,"isAlternate":false}'
     nameFileIdTable:
       A1_0: 7839472567634266479
       A1_1: -4440101090844853559

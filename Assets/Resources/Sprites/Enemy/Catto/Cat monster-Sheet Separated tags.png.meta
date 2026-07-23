@@ -136,7 +136,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -202,12 +202,12 @@ TextureImporter:
       name: Cat monster-Sheet Separated tags_0
       rect:
         serializedVersion: 2
-        x: 12
-        y: 255
-        width: 19
-        height: 17
+        x: 0
+        y: 256
+        width: 48
+        height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -224,12 +224,12 @@ TextureImporter:
       name: Cat monster-Sheet Separated tags_1
       rect:
         serializedVersion: 2
-        x: 11
-        y: 223
-        width: 20
-        height: 18
+        x: 0
+        y: 224
+        width: 48
+        height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -246,12 +246,12 @@ TextureImporter:
       name: Cat monster-Sheet Separated tags_2
       rect:
         serializedVersion: 2
-        x: 61
-        y: 223
-        width: 20
-        height: 21
+        x: 48
+        y: 224
+        width: 48
+        height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -268,12 +268,12 @@ TextureImporter:
       name: Cat monster-Sheet Separated tags_3
       rect:
         serializedVersion: 2
-        x: 13
-        y: 191
-        width: 20
-        height: 23
+        x: 0
+        y: 192
+        width: 48
+        height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -290,12 +290,12 @@ TextureImporter:
       name: Cat monster-Sheet Separated tags_4
       rect:
         serializedVersion: 2
-        x: 61
-        y: 191
-        width: 20
-        height: 26
+        x: 48
+        y: 192
+        width: 48
+        height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -312,12 +312,12 @@ TextureImporter:
       name: Cat monster-Sheet Separated tags_5
       rect:
         serializedVersion: 2
-        x: 109
-        y: 191
-        width: 20
-        height: 26
+        x: 96
+        y: 192
+        width: 48
+        height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -334,12 +334,12 @@ TextureImporter:
       name: Cat monster-Sheet Separated tags_6
       rect:
         serializedVersion: 2
-        x: 157
-        y: 191
-        width: 21
-        height: 24
+        x: 144
+        y: 192
+        width: 48
+        height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -356,12 +356,12 @@ TextureImporter:
       name: Cat monster-Sheet Separated tags_7
       rect:
         serializedVersion: 2
-        x: 13
-        y: 159
-        width: 19
-        height: 23
+        x: 0
+        y: 160
+        width: 48
+        height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -378,12 +378,12 @@ TextureImporter:
       name: Cat monster-Sheet Separated tags_8
       rect:
         serializedVersion: 2
-        x: 58
-        y: 159
-        width: 21
-        height: 23
+        x: 48
+        y: 160
+        width: 48
+        height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -400,12 +400,12 @@ TextureImporter:
       name: Cat monster-Sheet Separated tags_9
       rect:
         serializedVersion: 2
-        x: 108
-        y: 159
-        width: 16
-        height: 25
+        x: 96
+        y: 160
+        width: 48
+        height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -422,12 +422,12 @@ TextureImporter:
       name: Cat monster-Sheet Separated tags_10
       rect:
         serializedVersion: 2
-        x: 159
-        y: 159
-        width: 17
-        height: 24
+        x: 144
+        y: 160
+        width: 48
+        height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -444,12 +444,12 @@ TextureImporter:
       name: Cat monster-Sheet Separated tags_11
       rect:
         serializedVersion: 2
-        x: 207
-        y: 159
-        width: 18
-        height: 25
+        x: 192
+        y: 160
+        width: 48
+        height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -466,12 +466,12 @@ TextureImporter:
       name: Cat monster-Sheet Separated tags_12
       rect:
         serializedVersion: 2
-        x: 13
-        y: 127
-        width: 20
-        height: 21
+        x: 0
+        y: 128
+        width: 48
+        height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -488,12 +488,12 @@ TextureImporter:
       name: Cat monster-Sheet Separated tags_13
       rect:
         serializedVersion: 2
-        x: 59
-        y: 127
-        width: 20
-        height: 18
+        x: 48
+        y: 128
+        width: 48
+        height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -510,12 +510,12 @@ TextureImporter:
       name: Cat monster-Sheet Separated tags_14
       rect:
         serializedVersion: 2
-        x: 12
-        y: 95
-        width: 19
-        height: 17
+        x: 0
+        y: 96
+        width: 48
+        height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -532,12 +532,12 @@ TextureImporter:
       name: Cat monster-Sheet Separated tags_15
       rect:
         serializedVersion: 2
-        x: 61
-        y: 95
-        width: 18
-        height: 17
+        x: 48
+        y: 96
+        width: 48
+        height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -554,12 +554,12 @@ TextureImporter:
       name: Cat monster-Sheet Separated tags_16
       rect:
         serializedVersion: 2
-        x: 110
-        y: 95
-        width: 17
-        height: 18
+        x: 96
+        y: 96
+        width: 48
+        height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -576,12 +576,12 @@ TextureImporter:
       name: Cat monster-Sheet Separated tags_17
       rect:
         serializedVersion: 2
-        x: 158
-        y: 95
-        width: 17
-        height: 18
+        x: 144
+        y: 96
+        width: 48
+        height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -598,12 +598,12 @@ TextureImporter:
       name: Cat monster-Sheet Separated tags_18
       rect:
         serializedVersion: 2
-        x: 14
-        y: 63
-        width: 17
-        height: 18
+        x: 0
+        y: 64
+        width: 48
+        height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -620,12 +620,12 @@ TextureImporter:
       name: Cat monster-Sheet Separated tags_19
       rect:
         serializedVersion: 2
-        x: 54
-        y: 63
-        width: 34
-        height: 27
+        x: 48
+        y: 64
+        width: 48
+        height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -642,12 +642,12 @@ TextureImporter:
       name: Cat monster-Sheet Separated tags_20
       rect:
         serializedVersion: 2
-        x: 101
-        y: 63
-        width: 38
-        height: 31
+        x: 96
+        y: 64
+        width: 48
+        height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -664,12 +664,12 @@ TextureImporter:
       name: Cat monster-Sheet Separated tags_21
       rect:
         serializedVersion: 2
-        x: 147
-        y: 63
-        width: 43
-        height: 24
+        x: 144
+        y: 64
+        width: 48
+        height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -686,12 +686,12 @@ TextureImporter:
       name: Cat monster-Sheet Separated tags_22
       rect:
         serializedVersion: 2
-        x: 198
-        y: 63
-        width: 33
-        height: 21
+        x: 192
+        y: 64
+        width: 48
+        height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -708,12 +708,12 @@ TextureImporter:
       name: Cat monster-Sheet Separated tags_23
       rect:
         serializedVersion: 2
-        x: 252
-        y: 63
-        width: 19
-        height: 17
+        x: 240
+        y: 64
+        width: 48
+        height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -730,12 +730,12 @@ TextureImporter:
       name: Cat monster-Sheet Separated tags_24
       rect:
         serializedVersion: 2
-        x: 14
-        y: 33
-        width: 19
-        height: 25
+        x: 0
+        y: 32
+        width: 48
+        height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -752,12 +752,12 @@ TextureImporter:
       name: Cat monster-Sheet Separated tags_25
       rect:
         serializedVersion: 2
-        x: 62
-        y: 33
-        width: 19
-        height: 25
+        x: 48
+        y: 32
+        width: 48
+        height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -774,12 +774,12 @@ TextureImporter:
       name: Cat monster-Sheet Separated tags_26
       rect:
         serializedVersion: 2
-        x: 355
-        y: 21
-        width: 56
-        height: 12
+        x: 0
+        y: 0
+        width: 48
+        height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -796,12 +796,12 @@ TextureImporter:
       name: Cat monster-Sheet Separated tags_27
       rect:
         serializedVersion: 2
-        x: 14
-        y: 1
-        width: 19
-        height: 25
+        x: 48
+        y: 0
+        width: 48
+        height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -818,12 +818,12 @@ TextureImporter:
       name: Cat monster-Sheet Separated tags_28
       rect:
         serializedVersion: 2
-        x: 62
-        y: 1
-        width: 19
-        height: 25
+        x: 96
+        y: 0
+        width: 48
+        height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -840,12 +840,12 @@ TextureImporter:
       name: Cat monster-Sheet Separated tags_29
       rect:
         serializedVersion: 2
-        x: 106
+        x: 144
         y: 0
-        width: 23
-        height: 26
+        width: 48
+        height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -862,12 +862,12 @@ TextureImporter:
       name: Cat monster-Sheet Separated tags_30
       rect:
         serializedVersion: 2
-        x: 158
-        y: 1
-        width: 23
-        height: 26
+        x: 192
+        y: 0
+        width: 48
+        height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -884,12 +884,12 @@ TextureImporter:
       name: Cat monster-Sheet Separated tags_31
       rect:
         serializedVersion: 2
-        x: 207
-        y: 5
-        width: 21
-        height: 22
+        x: 240
+        y: 0
+        width: 48
+        height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -906,12 +906,12 @@ TextureImporter:
       name: Cat monster-Sheet Separated tags_32
       rect:
         serializedVersion: 2
-        x: 254
-        y: 6
-        width: 18
-        height: 22
+        x: 288
+        y: 0
+        width: 48
+        height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -928,12 +928,12 @@ TextureImporter:
       name: Cat monster-Sheet Separated tags_33
       rect:
         serializedVersion: 2
-        x: 303
-        y: 7
-        width: 14
-        height: 22
+        x: 336
+        y: 0
+        width: 48
+        height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -946,11 +946,33 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: Cat monster-Sheet Separated tags_34
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 0
+        width: 48
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bc560777e31a06a4281c16830a94a657
+      internalID: 858179091
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 2f1ab1a89f3a56a4292a0eec7dd65405
     internalID: 0
     vertices: []
     indices: 
@@ -958,7 +980,9 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     spriteCustomMetadata:
-      entries: []
+      entries:
+      - key: SpriteEditor.SliceSettings
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":9.0,"y":9.0},"gridSpriteSize":{"x":48.0,"y":32.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":2,"keepEmptyRects":false,"isAlternate":false}'
     nameFileIdTable:
       Cat monster-Sheet Separated tags_0: 1797867407650390533
       Cat monster-Sheet Separated tags_1: 2668888204601993872
@@ -988,6 +1012,7 @@ TextureImporter:
       Cat monster-Sheet Separated tags_31: -5608125333185101182
       Cat monster-Sheet Separated tags_32: 8630641152546286151
       Cat monster-Sheet Separated tags_33: 5576932481978436096
+      Cat monster-Sheet Separated tags_34: 858179091
       Cat monster-Sheet Separated tags_4: -3688846284278660523
       Cat monster-Sheet Separated tags_5: 4783975692715131057
       Cat monster-Sheet Separated tags_6: 4557403314966528474

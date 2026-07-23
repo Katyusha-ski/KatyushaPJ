@@ -196,7 +196,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -210,7 +210,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 16
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -262,12 +262,12 @@ TextureImporter:
       name: Mad Ghost-Sheet Separated tags_0
       rect:
         serializedVersion: 2
-        x: 22
+        x: 0
         y: 384
-        width: 25
-        height: 38
+        width: 64
+        height: 64
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -284,12 +284,12 @@ TextureImporter:
       name: Mad Ghost-Sheet Separated tags_1
       rect:
         serializedVersion: 2
-        x: 87
-        y: 385
-        width: 24
-        height: 38
+        x: 64
+        y: 384
+        width: 64
+        height: 64
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -306,12 +306,12 @@ TextureImporter:
       name: Mad Ghost-Sheet Separated tags_2
       rect:
         serializedVersion: 2
-        x: 152
+        x: 128
         y: 384
-        width: 22
-        height: 39
+        width: 64
+        height: 64
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -328,12 +328,12 @@ TextureImporter:
       name: Mad Ghost-Sheet Separated tags_3
       rect:
         serializedVersion: 2
-        x: 215
+        x: 192
         y: 384
-        width: 23
-        height: 38
+        width: 64
+        height: 64
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -350,12 +350,12 @@ TextureImporter:
       name: Mad Ghost-Sheet Separated tags_4
       rect:
         serializedVersion: 2
-        x: 15
+        x: 0
         y: 320
-        width: 26
-        height: 39
+        width: 64
+        height: 64
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -372,12 +372,12 @@ TextureImporter:
       name: Mad Ghost-Sheet Separated tags_5
       rect:
         serializedVersion: 2
-        x: 78
+        x: 64
         y: 320
-        width: 27
-        height: 39
+        width: 64
+        height: 64
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -394,12 +394,12 @@ TextureImporter:
       name: Mad Ghost-Sheet Separated tags_6
       rect:
         serializedVersion: 2
-        x: 141
-        y: 319
-        width: 28
-        height: 39
+        x: 128
+        y: 320
+        width: 64
+        height: 64
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -416,12 +416,12 @@ TextureImporter:
       name: Mad Ghost-Sheet Separated tags_7
       rect:
         serializedVersion: 2
-        x: 206
-        y: 319
-        width: 27
-        height: 39
+        x: 192
+        y: 320
+        width: 64
+        height: 64
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -438,12 +438,12 @@ TextureImporter:
       name: Mad Ghost-Sheet Separated tags_8
       rect:
         serializedVersion: 2
-        x: 22
+        x: 0
         y: 256
-        width: 25
-        height: 38
+        width: 64
+        height: 64
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -460,12 +460,12 @@ TextureImporter:
       name: Mad Ghost-Sheet Separated tags_9
       rect:
         serializedVersion: 2
-        x: 41
-        y: 282
-        width: 8
-        height: 14
+        x: 64
+        y: 256
+        width: 64
+        height: 64
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -482,12 +482,12 @@ TextureImporter:
       name: Mad Ghost-Sheet Separated tags_10
       rect:
         serializedVersion: 2
-        x: 87
-        y: 257
-        width: 24
-        height: 38
+        x: 128
+        y: 256
+        width: 64
+        height: 64
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -504,12 +504,12 @@ TextureImporter:
       name: Mad Ghost-Sheet Separated tags_11
       rect:
         serializedVersion: 2
-        x: 97
-        y: 289
-        width: 14
-        height: 12
+        x: 192
+        y: 256
+        width: 64
+        height: 64
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -526,12 +526,12 @@ TextureImporter:
       name: Mad Ghost-Sheet Separated tags_12
       rect:
         serializedVersion: 2
-        x: 140
-        y: 273
-        width: 10
-        height: 21
+        x: 256
+        y: 256
+        width: 64
+        height: 64
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -548,12 +548,12 @@ TextureImporter:
       name: Mad Ghost-Sheet Separated tags_13
       rect:
         serializedVersion: 2
-        x: 152
-        y: 256
-        width: 22
-        height: 39
+        x: 0
+        y: 192
+        width: 64
+        height: 64
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -570,12 +570,12 @@ TextureImporter:
       name: Mad Ghost-Sheet Separated tags_14
       rect:
         serializedVersion: 2
-        x: 160
-        y: 294
-        width: 12
-        height: 13
+        x: 64
+        y: 192
+        width: 64
+        height: 64
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -592,12 +592,12 @@ TextureImporter:
       name: Mad Ghost-Sheet Separated tags_15
       rect:
         serializedVersion: 2
-        x: 203
-        y: 277
-        width: 11
-        height: 18
+        x: 128
+        y: 192
+        width: 64
+        height: 64
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -614,12 +614,12 @@ TextureImporter:
       name: Mad Ghost-Sheet Separated tags_16
       rect:
         serializedVersion: 2
-        x: 215
-        y: 256
-        width: 23
-        height: 38
+        x: 0
+        y: 128
+        width: 64
+        height: 64
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -636,12 +636,12 @@ TextureImporter:
       name: Mad Ghost-Sheet Separated tags_17
       rect:
         serializedVersion: 2
-        x: 222
-        y: 293
-        width: 11
-        height: 17
+        x: 64
+        y: 128
+        width: 64
+        height: 64
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -658,12 +658,12 @@ TextureImporter:
       name: Mad Ghost-Sheet Separated tags_18
       rect:
         serializedVersion: 2
-        x: 267
-        y: 280
-        width: 18
-        height: 21
+        x: 128
+        y: 128
+        width: 64
+        height: 64
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -680,12 +680,12 @@ TextureImporter:
       name: Mad Ghost-Sheet Separated tags_19
       rect:
         serializedVersion: 2
-        x: 279
-        y: 256
-        width: 24
-        height: 38
+        x: 192
+        y: 128
+        width: 64
+        height: 64
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -702,12 +702,12 @@ TextureImporter:
       name: Mad Ghost-Sheet Separated tags_20
       rect:
         serializedVersion: 2
-        x: 286
-        y: 293
-        width: 17
-        height: 18
+        x: 0
+        y: 64
+        width: 64
+        height: 64
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -724,12 +724,12 @@ TextureImporter:
       name: Mad Ghost-Sheet Separated tags_21
       rect:
         serializedVersion: 2
-        x: 12
-        y: 267
-        width: 11
-        height: 13
+        x: 64
+        y: 64
+        width: 64
+        height: 64
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -746,12 +746,12 @@ TextureImporter:
       name: Mad Ghost-Sheet Separated tags_22
       rect:
         serializedVersion: 2
-        x: 77
-        y: 267
-        width: 8
-        height: 19
+        x: 0
+        y: 0
+        width: 64
+        height: 64
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -768,12 +768,12 @@ TextureImporter:
       name: Mad Ghost-Sheet Separated tags_23
       rect:
         serializedVersion: 2
-        x: 14
-        y: 192
-        width: 27
-        height: 39
+        x: 64
+        y: 0
+        width: 64
+        height: 64
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -790,12 +790,12 @@ TextureImporter:
       name: Mad Ghost-Sheet Separated tags_24
       rect:
         serializedVersion: 2
-        x: 20
-        y: 226
-        width: 19
-        height: 21
+        x: 128
+        y: 0
+        width: 64
+        height: 64
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -812,12 +812,12 @@ TextureImporter:
       name: Mad Ghost-Sheet Separated tags_25
       rect:
         serializedVersion: 2
-        x: 38
-        y: 191
-        width: 22
-        height: 52
+        x: 192
+        y: 0
+        width: 64
+        height: 64
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -834,12 +834,12 @@ TextureImporter:
       name: Mad Ghost-Sheet Separated tags_26
       rect:
         serializedVersion: 2
-        x: 77
-        y: 191
-        width: 32
-        height: 39
+        x: 256
+        y: 0
+        width: 64
+        height: 64
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -856,12 +856,12 @@ TextureImporter:
       name: Mad Ghost-Sheet Separated tags_27
       rect:
         serializedVersion: 2
-        x: 93
-        y: 230
-        width: 17
-        height: 18
+        x: 320
+        y: 0
+        width: 64
+        height: 64
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -878,12 +878,12 @@ TextureImporter:
       name: Mad Ghost-Sheet Separated tags_28
       rect:
         serializedVersion: 2
-        x: 114
-        y: 198
-        width: 9
-        height: 40
+        x: 384
+        y: 0
+        width: 64
+        height: 64
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -900,12 +900,12 @@ TextureImporter:
       name: Mad Ghost-Sheet Separated tags_29
       rect:
         serializedVersion: 2
-        x: 142
-        y: 191
-        width: 27
-        height: 39
+        x: 448
+        y: 0
+        width: 64
+        height: 64
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -922,12 +922,12 @@ TextureImporter:
       name: Mad Ghost-Sheet Separated tags_30
       rect:
         serializedVersion: 2
-        x: 166
-        y: 200
-        width: 20
-        height: 49
+        x: 512
+        y: 0
+        width: 64
+        height: 64
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -940,517 +940,11 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
-    - serializedVersion: 2
-      name: Mad Ghost-Sheet Separated tags_31
-      rect:
-        serializedVersion: 2
-        x: 3
-        y: 138
-        width: 20
-        height: 13
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 1a190975b6b094700800000000000000
-      internalID: 524963387223871905
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Mad Ghost-Sheet Separated tags_32
-      rect:
-        serializedVersion: 2
-        x: 22
-        y: 128
-        width: 25
-        height: 38
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: c788d4f91a1d45470800000000000000
-      internalID: 8382555298535934076
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Mad Ghost-Sheet Separated tags_33
-      rect:
-        serializedVersion: 2
-        x: 42
-        y: 129
-        width: 18
-        height: 17
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 8868acfdb77a7e1d0800000000000000
-      internalID: -3321502049685043576
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Mad Ghost-Sheet Separated tags_34
-      rect:
-        serializedVersion: 2
-        x: 65
-        y: 129
-        width: 51
-        height: 38
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 3bedfb198046af790800000000000000
-      internalID: -7495568641836982605
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Mad Ghost-Sheet Separated tags_35
-      rect:
-        serializedVersion: 2
-        x: 73
-        y: 136
-        width: 6
-        height: 6
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 9605e9059cdd14d60800000000000000
-      internalID: 7872817480331055209
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Mad Ghost-Sheet Separated tags_36
-      rect:
-        serializedVersion: 2
-        x: 113
-        y: 136
-        width: 6
-        height: 6
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 4a747e7c859d3ba20800000000000000
-      internalID: 3077041945758353316
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Mad Ghost-Sheet Separated tags_37
-      rect:
-        serializedVersion: 2
-        x: 115
-        y: 128
-        width: 11
-        height: 19
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: ba3dc2ecfb8d06fd0800000000000000
-      internalID: -2350640687178001493
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Mad Ghost-Sheet Separated tags_38
-      rect:
-        serializedVersion: 2
-        x: 127
-        y: 128
-        width: 65
-        height: 39
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: a865e7754122cd260800000000000000
-      internalID: 7123606181355869834
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Mad Ghost-Sheet Separated tags_39
-      rect:
-        serializedVersion: 2
-        x: 196
-        y: 128
-        width: 58
-        height: 38
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 4c3901b23da09c1d0800000000000000
-      internalID: -3330118547386887228
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Mad Ghost-Sheet Separated tags_40
-      rect:
-        serializedVersion: 2
-        x: 23
-        y: 65
-        width: 24
-        height: 37
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 0a0acc81e60ca57c0800000000000000
-      internalID: -4081738533162934112
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Mad Ghost-Sheet Separated tags_41
-      rect:
-        serializedVersion: 2
-        x: 87
-        y: 65
-        width: 24
-        height: 37
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 312880301975e9db0800000000000000
-      internalID: -4783289473888124397
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Mad Ghost-Sheet Separated tags_42
-      rect:
-        serializedVersion: 2
-        x: 23
-        y: 1
-        width: 24
-        height: 37
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 5baedac25128cc700800000000000000
-      internalID: 561967080969988789
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Mad Ghost-Sheet Separated tags_43
-      rect:
-        serializedVersion: 2
-        x: 87
-        y: 1
-        width: 24
-        height: 37
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 35a2e92d0a038e480800000000000000
-      internalID: -8869785998819710381
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Mad Ghost-Sheet Separated tags_44
-      rect:
-        serializedVersion: 2
-        x: 148
-        y: 0
-        width: 27
-        height: 38
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 7859edae05557e0a0800000000000000
-      internalID: -6852414501994719865
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Mad Ghost-Sheet Separated tags_45
-      rect:
-        serializedVersion: 2
-        x: 214
-        y: 0
-        width: 26
-        height: 39
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: a8abcf3d85329bcc0800000000000000
-      internalID: -3694883154860131702
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Mad Ghost-Sheet Separated tags_46
-      rect:
-        serializedVersion: 2
-        x: 278
-        y: 3
-        width: 23
-        height: 37
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 0eab418cac4a90220800000000000000
-      internalID: 2452672662927096544
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Mad Ghost-Sheet Separated tags_47
-      rect:
-        serializedVersion: 2
-        x: 347
-        y: 21
-        width: 21
-        height: 20
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 33e20b05364048980800000000000000
-      internalID: -8537694168985620941
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Mad Ghost-Sheet Separated tags_48
-      rect:
-        serializedVersion: 2
-        x: 408
-        y: 9
-        width: 23
-        height: 33
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 27c1ce408364c9420800000000000000
-      internalID: 2638060688146963570
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Mad Ghost-Sheet Separated tags_49
-      rect:
-        serializedVersion: 2
-        x: 476
-        y: 26
-        width: 18
-        height: 24
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: e306f88a06d1da300800000000000000
-      internalID: 264900254066761790
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Mad Ghost-Sheet Separated tags_50
-      rect:
-        serializedVersion: 2
-        x: 541
-        y: 31
-        width: 17
-        height: 18
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 52c83fb9df28248a0800000000000000
-      internalID: -6322346901119988699
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Mad Ghost-Sheet Separated tags_51
-      rect:
-        serializedVersion: 2
-        x: 295
-        y: 3
-        width: 7
-        height: 10
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: fbf33275b02954c80800000000000000
-      internalID: -8339098557602381889
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Mad Ghost-Sheet Separated tags_52
-      rect:
-        serializedVersion: 2
-        x: 344
-        y: 5
-        width: 12
-        height: 18
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 0ba8453727841d7d0800000000000000
-      internalID: -2895453429024126288
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Mad Ghost-Sheet Separated tags_53
-      rect:
-        serializedVersion: 2
-        x: 353
-        y: 8
-        width: 10
-        height: 9
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 7c980b29d07161e10800000000000000
-      internalID: 2167945617688529351
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
     outline: []
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 133e48a18e3610749b7ccc043ec91e9d
     internalID: 0
     vertices: []
     indices: 
@@ -1458,7 +952,9 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     spriteCustomMetadata:
-      entries: []
+      entries:
+      - key: SpriteEditor.SliceSettings
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":9.0,"y":7.0},"gridSpriteSize":{"x":64.0,"y":64.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":2,"keepEmptyRects":false,"isAlternate":false}'
     nameFileIdTable:
       Mad Ghost-Sheet Separated tags_0: -6941382658408942510
       Mad Ghost-Sheet Separated tags_1: -2966351622901934546
@@ -1485,31 +981,8 @@ TextureImporter:
       Mad Ghost-Sheet Separated tags_29: 1507228846318027907
       Mad Ghost-Sheet Separated tags_3: 472849692016736752
       Mad Ghost-Sheet Separated tags_30: -3895959662391925656
-      Mad Ghost-Sheet Separated tags_31: 524963387223871905
-      Mad Ghost-Sheet Separated tags_32: 8382555298535934076
-      Mad Ghost-Sheet Separated tags_33: -3321502049685043576
-      Mad Ghost-Sheet Separated tags_34: -7495568641836982605
-      Mad Ghost-Sheet Separated tags_35: 7872817480331055209
-      Mad Ghost-Sheet Separated tags_36: 3077041945758353316
-      Mad Ghost-Sheet Separated tags_37: -2350640687178001493
-      Mad Ghost-Sheet Separated tags_38: 7123606181355869834
-      Mad Ghost-Sheet Separated tags_39: -3330118547386887228
       Mad Ghost-Sheet Separated tags_4: 8445342760321731690
-      Mad Ghost-Sheet Separated tags_40: -4081738533162934112
-      Mad Ghost-Sheet Separated tags_41: -4783289473888124397
-      Mad Ghost-Sheet Separated tags_42: 561967080969988789
-      Mad Ghost-Sheet Separated tags_43: -8869785998819710381
-      Mad Ghost-Sheet Separated tags_44: -6852414501994719865
-      Mad Ghost-Sheet Separated tags_45: -3694883154860131702
-      Mad Ghost-Sheet Separated tags_46: 2452672662927096544
-      Mad Ghost-Sheet Separated tags_47: -8537694168985620941
-      Mad Ghost-Sheet Separated tags_48: 2638060688146963570
-      Mad Ghost-Sheet Separated tags_49: 264900254066761790
       Mad Ghost-Sheet Separated tags_5: 392738833659218386
-      Mad Ghost-Sheet Separated tags_50: -6322346901119988699
-      Mad Ghost-Sheet Separated tags_51: -8339098557602381889
-      Mad Ghost-Sheet Separated tags_52: -2895453429024126288
-      Mad Ghost-Sheet Separated tags_53: 2167945617688529351
       Mad Ghost-Sheet Separated tags_6: -7180025935775440916
       Mad Ghost-Sheet Separated tags_7: -1386717744325795880
       Mad Ghost-Sheet Separated tags_8: 1327913776480653472

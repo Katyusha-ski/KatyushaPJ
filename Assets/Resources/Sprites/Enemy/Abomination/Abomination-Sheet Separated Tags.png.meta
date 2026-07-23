@@ -145,7 +145,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -159,7 +159,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 16
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -212,11 +212,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 143
-        width: 50
-        height: 97
+        y: 192
+        width: 112
+        height: 48
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -233,12 +233,12 @@ TextureImporter:
       name: Abomination-Sheet Separated Tags_1
       rect:
         serializedVersion: 2
-        x: 111
-        y: 143
-        width: 51
-        height: 97
+        x: 112
+        y: 192
+        width: 112
+        height: 48
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -255,12 +255,12 @@ TextureImporter:
       name: Abomination-Sheet Separated Tags_2
       rect:
         serializedVersion: 2
-        x: 223
-        y: 191
-        width: 52
-        height: 49
+        x: 224
+        y: 192
+        width: 112
+        height: 48
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -277,12 +277,12 @@ TextureImporter:
       name: Abomination-Sheet Separated Tags_3
       rect:
         serializedVersion: 2
-        x: 223
-        y: 143
-        width: 52
-        height: 49
+        x: 336
+        y: 192
+        width: 112
+        height: 48
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -299,12 +299,12 @@ TextureImporter:
       name: Abomination-Sheet Separated Tags_4
       rect:
         serializedVersion: 2
-        x: 335
-        y: 191
-        width: 51
-        height: 49
+        x: 0
+        y: 144
+        width: 112
+        height: 48
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -321,12 +321,12 @@ TextureImporter:
       name: Abomination-Sheet Separated Tags_5
       rect:
         serializedVersion: 2
-        x: 335
-        y: 143
-        width: 51
-        height: 50
+        x: 112
+        y: 144
+        width: 112
+        height: 48
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -343,12 +343,12 @@ TextureImporter:
       name: Abomination-Sheet Separated Tags_6
       rect:
         serializedVersion: 2
-        x: 0
-        y: 47
-        width: 49
-        height: 50
+        x: 224
+        y: 144
+        width: 112
+        height: 48
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -365,12 +365,12 @@ TextureImporter:
       name: Abomination-Sheet Separated Tags_7
       rect:
         serializedVersion: 2
-        x: 1
-        y: 95
-        width: 45
-        height: 49
+        x: 336
+        y: 144
+        width: 112
+        height: 48
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -387,12 +387,12 @@ TextureImporter:
       name: Abomination-Sheet Separated Tags_8
       rect:
         serializedVersion: 2
-        x: 112
-        y: 95
-        width: 43
-        height: 50
+        x: 0
+        y: 96
+        width: 112
+        height: 48
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -410,11 +410,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 112
-        y: 47
-        width: 49
-        height: 50
+        y: 96
+        width: 112
+        height: 48
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -432,11 +432,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 224
-        y: 95
-        width: 43
-        height: 50
+        y: 96
+        width: 112
+        height: 48
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -453,12 +453,12 @@ TextureImporter:
       name: Abomination-Sheet Separated Tags_11
       rect:
         serializedVersion: 2
-        x: 339
-        y: 95
-        width: 76
-        height: 47
+        x: 336
+        y: 96
+        width: 112
+        height: 48
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -475,12 +475,12 @@ TextureImporter:
       name: Abomination-Sheet Separated Tags_12
       rect:
         serializedVersion: 2
-        x: 451
-        y: 95
-        width: 104
-        height: 47
+        x: 448
+        y: 96
+        width: 112
+        height: 48
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -497,12 +497,12 @@ TextureImporter:
       name: Abomination-Sheet Separated Tags_13
       rect:
         serializedVersion: 2
-        x: 563
-        y: 95
-        width: 109
-        height: 47
+        x: 560
+        y: 96
+        width: 112
+        height: 48
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -519,12 +519,12 @@ TextureImporter:
       name: Abomination-Sheet Separated Tags_14
       rect:
         serializedVersion: 2
-        x: 673
-        y: 95
-        width: 109
+        x: 672
+        y: 96
+        width: 112
         height: 48
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -541,12 +541,12 @@ TextureImporter:
       name: Abomination-Sheet Separated Tags_15
       rect:
         serializedVersion: 2
-        x: 786
-        y: 95
-        width: 77
-        height: 49
+        x: 784
+        y: 96
+        width: 112
+        height: 48
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -564,11 +564,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 896
-        y: 95
-        width: 49
-        height: 49
+        y: 96
+        width: 112
+        height: 48
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -585,12 +585,12 @@ TextureImporter:
       name: Abomination-Sheet Separated Tags_17
       rect:
         serializedVersion: 2
-        x: 1007
-        y: 95
-        width: 51
-        height: 50
+        x: 1008
+        y: 96
+        width: 112
+        height: 48
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -608,11 +608,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 0
-        width: 49
-        height: 49
+        y: 48
+        width: 112
+        height: 48
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -630,11 +630,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 112
-        y: 0
-        width: 49
-        height: 49
+        y: 48
+        width: 112
+        height: 48
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -651,12 +651,12 @@ TextureImporter:
       name: Abomination-Sheet Separated Tags_20
       rect:
         serializedVersion: 2
-        x: 224
+        x: 0
         y: 0
-        width: 49
-        height: 49
+        width: 112
+        height: 48
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -673,12 +673,12 @@ TextureImporter:
       name: Abomination-Sheet Separated Tags_21
       rect:
         serializedVersion: 2
-        x: 340
+        x: 112
         y: 0
-        width: 44
-        height: 49
+        width: 112
+        height: 48
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -695,12 +695,12 @@ TextureImporter:
       name: Abomination-Sheet Separated Tags_22
       rect:
         serializedVersion: 2
-        x: 449
-        y: 1
-        width: 46
+        x: 224
+        y: 0
+        width: 112
         height: 48
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -717,12 +717,12 @@ TextureImporter:
       name: Abomination-Sheet Separated Tags_23
       rect:
         serializedVersion: 2
-        x: 475
-        y: 29
-        width: 6
-        height: 20
+        x: 336
+        y: 0
+        width: 112
+        height: 48
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -739,12 +739,12 @@ TextureImporter:
       name: Abomination-Sheet Separated Tags_24
       rect:
         serializedVersion: 2
-        x: 561
-        y: 2
-        width: 46
-        height: 47
+        x: 448
+        y: 0
+        width: 112
+        height: 48
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -761,12 +761,12 @@ TextureImporter:
       name: Abomination-Sheet Separated Tags_25
       rect:
         serializedVersion: 2
-        x: 673
-        y: 3
-        width: 43
-        height: 45
+        x: 560
+        y: 0
+        width: 112
+        height: 48
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -783,12 +783,12 @@ TextureImporter:
       name: Abomination-Sheet Separated Tags_26
       rect:
         serializedVersion: 2
-        x: 798
-        y: 32
-        width: 26
-        height: 15
+        x: 672
+        y: 0
+        width: 112
+        height: 48
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -805,12 +805,12 @@ TextureImporter:
       name: Abomination-Sheet Separated Tags_27
       rect:
         serializedVersion: 2
-        x: 912
-        y: 36
-        width: 10
-        height: 8
+        x: 784
+        y: 0
+        width: 112
+        height: 48
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -827,12 +827,12 @@ TextureImporter:
       name: Abomination-Sheet Separated Tags_28
       rect:
         serializedVersion: 2
-        x: 916
-        y: 42
-        width: 8
-        height: 6
+        x: 897
+        y: 0
+        width: 112
+        height: 48
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -845,187 +845,11 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
-    - serializedVersion: 2
-      name: Abomination-Sheet Separated Tags_29
-      rect:
-        serializedVersion: 2
-        x: 337
-        y: 32
-        width: 6
-        height: 6
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 297d073ab21af9ea0800000000000000
-      internalID: -5863790981015349358
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Abomination-Sheet Separated Tags_30
-      rect:
-        serializedVersion: 2
-        x: 338
-        y: 20
-        width: 7
-        height: 9
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 224e86186e09f94e0800000000000000
-      internalID: -1972698792076975070
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Abomination-Sheet Separated Tags_31
-      rect:
-        serializedVersion: 2
-        x: 342
-        y: 11
-        width: 7
-        height: 12
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: d8cd36b7c96816530800000000000000
-      internalID: 3846503563394276493
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Abomination-Sheet Separated Tags_32
-      rect:
-        serializedVersion: 2
-        x: 484
-        y: 8
-        width: 12
-        height: 13
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 19d6e3e3ab75a3110800000000000000
-      internalID: 1241401104713805201
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Abomination-Sheet Separated Tags_33
-      rect:
-        serializedVersion: 2
-        x: 569
-        y: 12
-        width: 7
-        height: 14
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 441b7976a484e8d20800000000000000
-      internalID: 3282640662802444612
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Abomination-Sheet Separated Tags_34
-      rect:
-        serializedVersion: 2
-        x: 576
-        y: 19
-        width: 9
-        height: 11
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: be8353e763ec6f700800000000000000
-      internalID: 573872735977289963
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Abomination-Sheet Separated Tags_35
-      rect:
-        serializedVersion: 2
-        x: 343
-        y: 0
-        width: 6
-        height: 11
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 669d45c760724c880800000000000000
-      internalID: -8591699280306841242
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Abomination-Sheet Separated Tags_36
-      rect:
-        serializedVersion: 2
-        x: 482
-        y: 3
-        width: 7
-        height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: eec0028b16dea2090800000000000000
-      internalID: -8058367579269362450
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
     outline: []
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 12c0bfc0e0668764b93410036895fe49
     internalID: 0
     vertices: []
     indices: 
@@ -1033,7 +857,9 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     spriteCustomMetadata:
-      entries: []
+      entries:
+      - key: SpriteEditor.SliceSettings
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":10.0,"y":5.0},"gridSpriteSize":{"x":112.0,"y":48.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":2,"keepEmptyRects":false,"isAlternate":false}'
     nameFileIdTable:
       Abomination-Sheet Separated Tags_0: 6019927278572852912
       Abomination-Sheet Separated Tags_1: -1365325062867153190
@@ -1057,15 +883,7 @@ TextureImporter:
       Abomination-Sheet Separated Tags_26: 1461599202385580825
       Abomination-Sheet Separated Tags_27: -2512427651902725910
       Abomination-Sheet Separated Tags_28: -6479762552390110109
-      Abomination-Sheet Separated Tags_29: -5863790981015349358
       Abomination-Sheet Separated Tags_3: -7112405036701037928
-      Abomination-Sheet Separated Tags_30: -1972698792076975070
-      Abomination-Sheet Separated Tags_31: 3846503563394276493
-      Abomination-Sheet Separated Tags_32: 1241401104713805201
-      Abomination-Sheet Separated Tags_33: 3282640662802444612
-      Abomination-Sheet Separated Tags_34: 573872735977289963
-      Abomination-Sheet Separated Tags_35: -8591699280306841242
-      Abomination-Sheet Separated Tags_36: -8058367579269362450
       Abomination-Sheet Separated Tags_4: 5199986249269449282
       Abomination-Sheet Separated Tags_5: 3781868409547839212
       Abomination-Sheet Separated Tags_6: 5879647546568473720

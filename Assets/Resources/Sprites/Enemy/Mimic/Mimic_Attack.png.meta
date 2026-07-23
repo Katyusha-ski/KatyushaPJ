@@ -46,7 +46,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -112,9 +112,10 @@ TextureImporter:
       name: Mimic_Attack_0
       rect:
         serializedVersion: 2
-        x: 37
-        y: 37
-        width: 32
+        x: 0
+        y: 0
+        width: 108
+        height: 108
         height: 26
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -134,9 +135,10 @@ TextureImporter:
       name: Mimic_Attack_1
       rect:
         serializedVersion: 2
-        x: 138
-        y: 37
-        width: 41
+        x: 108
+        y: 0
+        width: 108
+        height: 108
         height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -156,9 +158,10 @@ TextureImporter:
       name: Mimic_Attack_2
       rect:
         serializedVersion: 2
-        x: 244
-        y: 37
-        width: 53
+        x: 216
+        y: 0
+        width: 108
+        height: 108
         height: 26
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -178,9 +181,10 @@ TextureImporter:
       name: Mimic_Attack_3
       rect:
         serializedVersion: 2
-        x: 358
-        y: 37
-        width: 48
+        x: 324
+        y: 0
+        width: 108
+        height: 108
         height: 28
       alignment: 0
       pivot: {x: 0, y: 0}
