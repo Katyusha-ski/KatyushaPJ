@@ -1,0 +1,897 @@
+fileFormatVersion: 2
+guid: 325dbd2a9702d5f4685961c0a1d10fed
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -6828862234240259367
+    second: Mad Ghost Separated frame 18_0
+  - first:
+      213: 8348015740232007818
+    second: Mad Ghost Separated frame 18_1
+  - first:
+      213: -1704661652190972030
+    second: Mad Ghost Separated frame 18_2
+  - first:
+      213: -6636679437338011162
+    second: Mad Ghost Separated frame 18_3
+  - first:
+      213: -1407726658555288386
+    second: Mad Ghost Separated frame 18_4
+  - first:
+      213: -921825372423449811
+    second: Mad Ghost Separated frame 18_5
+  - first:
+      213: 7864577892690535033
+    second: Mad Ghost Separated frame 18_6
+  - first:
+      213: 3409492447009164287
+    second: Mad Ghost Separated frame 18_7
+  - first:
+      213: 5567257288947983153
+    second: Mad Ghost Separated frame 18_8
+  - first:
+      213: -1881388839213347283
+    second: Mad Ghost Separated frame 18_9
+  - first:
+      213: 1275870062399366315
+    second: Mad Ghost Separated frame 18_10
+  - first:
+      213: 66935373285795293
+    second: Mad Ghost Separated frame 18_11
+  - first:
+      213: -7225554879154778963
+    second: Mad Ghost Separated frame 18_12
+  - first:
+      213: 2346178735089148964
+    second: Mad Ghost Separated frame 18_13
+  - first:
+      213: -69715305862625809
+    second: Mad Ghost Separated frame 18_14
+  - first:
+      213: 2419849983112432733
+    second: Mad Ghost Separated frame 18_15
+  - first:
+      213: -182811099832649841
+    second: Mad Ghost Separated frame 18_16
+  - first:
+      213: -8414452890101967224
+    second: Mad Ghost Separated frame 18_17
+  - first:
+      213: -7094170269357334130
+    second: Mad Ghost Separated frame 18_18
+  - first:
+      213: 6221333605280314600
+    second: Mad Ghost Separated frame 18_19
+  - first:
+      213: -4989030528512223551
+    second: Mad Ghost Separated frame 18_20
+  - first:
+      213: 4084105740673387159
+    second: Mad Ghost Separated frame 18_21
+  - first:
+      213: 5387555533751128322
+    second: Mad Ghost Separated frame 18_22
+  - first:
+      213: 445471666978865169
+    second: Mad Ghost Separated frame 18_23
+  - first:
+      213: 7582606471284918096
+    second: Mad Ghost Separated frame 18_24
+  - first:
+      213: 9219333689545000199
+    second: Mad Ghost Separated frame 18_25
+  - first:
+      213: 2070913096807192161
+    second: Mad Ghost Separated frame 18_26
+  - first:
+      213: -8167573989502570340
+    second: Mad Ghost Separated frame 18_27
+  - first:
+      213: -5665068990134201526
+    second: Mad Ghost Separated frame 18_28
+  - first:
+      213: 7017786928852041253
+    second: Mad Ghost Separated frame 18_29
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Mad Ghost Separated frame 18_0
+      rect:
+        serializedVersion: 2
+        x: 44
+        y: 119
+        width: 12
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9da67049af10b31a0800000000000000
+      internalID: -6828862234240259367
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mad Ghost Separated frame 18_1
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 119
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a8006e7061c1ad370800000000000000
+      internalID: 8348015740232007818
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mad Ghost Separated frame 18_2
+      rect:
+        serializedVersion: 2
+        x: 124
+        y: 4
+        width: 102
+        height: 187
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2873dee4243d758e0800000000000000
+      internalID: -1704661652190972030
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mad Ghost Separated frame 18_3
+      rect:
+        serializedVersion: 2
+        x: 24
+        y: 94
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6e91451e637c5e3a0800000000000000
+      internalID: -6636679437338011162
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mad Ghost Separated frame 18_4
+      rect:
+        serializedVersion: 2
+        x: 69
+        y: 99
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: eb4e6ffff00c67ce0800000000000000
+      internalID: -1407726658555288386
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mad Ghost Separated frame 18_5
+      rect:
+        serializedVersion: 2
+        x: 79
+        y: 94
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d2312c335b40533f0800000000000000
+      internalID: -921825372423449811
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mad Ghost Separated frame 18_6
+      rect:
+        serializedVersion: 2
+        x: 284
+        y: 84
+        width: 12
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 972a532dce7942d60800000000000000
+      internalID: 7864577892690535033
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mad Ghost Separated frame 18_7
+      rect:
+        serializedVersion: 2
+        x: 49
+        y: 89
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ffbcb58f053f05f20800000000000000
+      internalID: 3409492447009164287
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mad Ghost Separated frame 18_8
+      rect:
+        serializedVersion: 2
+        x: 89
+        y: 79
+        width: 12
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 133e2f8f10fd24d40800000000000000
+      internalID: 5567257288947983153
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mad Ghost Separated frame 18_9
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 84
+        width: 7
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d2ecd4a91d6f3e5e0800000000000000
+      internalID: -1881388839213347283
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mad Ghost Separated frame 18_10
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 74
+        width: 11
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ba4aed8df0dc4b110800000000000000
+      internalID: 1275870062399366315
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mad Ghost Separated frame 18_11
+      rect:
+        serializedVersion: 2
+        x: 79
+        y: 74
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dd5ab9b0e5dcde000800000000000000
+      internalID: 66935373285795293
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mad Ghost Separated frame 18_12
+      rect:
+        serializedVersion: 2
+        x: 249
+        y: 79
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dac83eabe1ca9bb90800000000000000
+      internalID: -7225554879154778963
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mad Ghost Separated frame 18_13
+      rect:
+        serializedVersion: 2
+        x: 299
+        y: 74
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4246094012d4f8020800000000000000
+      internalID: 2346178735089148964
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mad Ghost Separated frame 18_14
+      rect:
+        serializedVersion: 2
+        x: 19
+        y: 59
+        width: 12
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fe586a67c42580ff0800000000000000
+      internalID: -69715305862625809
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mad Ghost Separated frame 18_15
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 69
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d5cc62d1db8059120800000000000000
+      internalID: 2419849983112432733
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mad Ghost Separated frame 18_16
+      rect:
+        serializedVersion: 2
+        x: 219
+        y: 59
+        width: 12
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f87f975f546867df0800000000000000
+      internalID: -182811099832649841
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mad Ghost Separated frame 18_17
+      rect:
+        serializedVersion: 2
+        x: 279
+        y: 69
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 886963a9dabd93b80800000000000000
+      internalID: -8414452890101967224
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mad Ghost Separated frame 18_18
+      rect:
+        serializedVersion: 2
+        x: 309
+        y: 69
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e81a1def9b17c8d90800000000000000
+      internalID: -7094170269357334130
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mad Ghost Separated frame 18_19
+      rect:
+        serializedVersion: 2
+        x: 54
+        y: 59
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8e4fee3b3fd965650800000000000000
+      internalID: 6221333605280314600
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mad Ghost Separated frame 18_20
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 54
+        width: 12
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1c61376da2763cab0800000000000000
+      internalID: -4989030528512223551
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mad Ghost Separated frame 18_21
+      rect:
+        serializedVersion: 2
+        x: 234
+        y: 59
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 79a88f95888ada830800000000000000
+      internalID: 4084105740673387159
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mad Ghost Separated frame 18_22
+      rect:
+        serializedVersion: 2
+        x: 249
+        y: 59
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2011de4a63174ca40800000000000000
+      internalID: 5387555533751128322
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mad Ghost Separated frame 18_23
+      rect:
+        serializedVersion: 2
+        x: 44
+        y: 39
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 110c6c3fe12ae2600800000000000000
+      internalID: 445471666978865169
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mad Ghost Separated frame 18_24
+      rect:
+        serializedVersion: 2
+        x: 234
+        y: 34
+        width: 7
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 05704884964da3960800000000000000
+      internalID: 7582606471284918096
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mad Ghost Separated frame 18_25
+      rect:
+        serializedVersion: 2
+        x: 269
+        y: 34
+        width: 7
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7050f1ff427a1ff70800000000000000
+      internalID: 9219333689545000199
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mad Ghost Separated frame 18_26
+      rect:
+        serializedVersion: 2
+        x: 244
+        y: 24
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 16695e74d7c5dbc10800000000000000
+      internalID: 2070913096807192161
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mad Ghost Separated frame 18_27
+      rect:
+        serializedVersion: 2
+        x: 254
+        y: 9
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c90bafeeab2f6ae80800000000000000
+      internalID: -8167573989502570340
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mad Ghost Separated frame 18_28
+      rect:
+        serializedVersion: 2
+        x: 289
+        y: 14
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a4358fea4c1a161b0800000000000000
+      internalID: -5665068990134201526
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mad Ghost Separated frame 18_29
+      rect:
+        serializedVersion: 2
+        x: 264
+        y: 4
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 52efa9ba700346160800000000000000
+      internalID: 7017786928852041253
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      Mad Ghost Separated frame 18_0: -6828862234240259367
+      Mad Ghost Separated frame 18_1: 8348015740232007818
+      Mad Ghost Separated frame 18_10: 1275870062399366315
+      Mad Ghost Separated frame 18_11: 66935373285795293
+      Mad Ghost Separated frame 18_12: -7225554879154778963
+      Mad Ghost Separated frame 18_13: 2346178735089148964
+      Mad Ghost Separated frame 18_14: -69715305862625809
+      Mad Ghost Separated frame 18_15: 2419849983112432733
+      Mad Ghost Separated frame 18_16: -182811099832649841
+      Mad Ghost Separated frame 18_17: -8414452890101967224
+      Mad Ghost Separated frame 18_18: -7094170269357334130
+      Mad Ghost Separated frame 18_19: 6221333605280314600
+      Mad Ghost Separated frame 18_2: -1704661652190972030
+      Mad Ghost Separated frame 18_20: -4989030528512223551
+      Mad Ghost Separated frame 18_21: 4084105740673387159
+      Mad Ghost Separated frame 18_22: 5387555533751128322
+      Mad Ghost Separated frame 18_23: 445471666978865169
+      Mad Ghost Separated frame 18_24: 7582606471284918096
+      Mad Ghost Separated frame 18_25: 9219333689545000199
+      Mad Ghost Separated frame 18_26: 2070913096807192161
+      Mad Ghost Separated frame 18_27: -8167573989502570340
+      Mad Ghost Separated frame 18_28: -5665068990134201526
+      Mad Ghost Separated frame 18_29: 7017786928852041253
+      Mad Ghost Separated frame 18_3: -6636679437338011162
+      Mad Ghost Separated frame 18_4: -1407726658555288386
+      Mad Ghost Separated frame 18_5: -921825372423449811
+      Mad Ghost Separated frame 18_6: 7864577892690535033
+      Mad Ghost Separated frame 18_7: 3409492447009164287
+      Mad Ghost Separated frame 18_8: 5567257288947983153
+      Mad Ghost Separated frame 18_9: -1881388839213347283
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

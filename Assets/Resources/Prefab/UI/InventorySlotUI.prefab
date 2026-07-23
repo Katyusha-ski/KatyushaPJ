@@ -178,6 +178,7 @@ MonoBehaviour:
   m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
+  m_characterHorizontalScale: 1
   m_wordSpacing: 0
   m_lineSpacing: 0
   m_lineSpacingMax: 0
@@ -408,6 +409,7 @@ MonoBehaviour:
   slotIndex: 0
   itemIcon: {fileID: 1341332165331480812}
   quantityText: {fileID: 867199233101522595}
+  isEquipmentSlot: 0
 --- !u!114 &4256700925253057190
 MonoBehaviour:
   m_ObjectHideFlags: 0

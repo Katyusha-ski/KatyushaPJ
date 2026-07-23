@@ -249,9 +249,9 @@ Pillar.cs:
 | Trigger | `"Atk1"` (set bởi `GenericAttackState`) |
 | Animation Event | `DropSphere()` |
 | Prefab | `batSpherePrefab` |
-| Spawn Position | `sphereSpawnPoints[random]` |
-| Post-spawn | `BatSphere.Init(player)` — tự điều hướng đến Player |
-| On Impact | Tạo `HazardZone` (damage vùng) |
+| Spawn Position | `(player.position.x, transform.position.y, 0f)` — thẳng trên đầu Player |
+| Post-spawn | Rơi thẳng đứng xuống đất (không homing, không bay chéo) |
+| On Impact | Nổ burst AoE + tạo `HazardZone` (damage vùng) |
 
 ### 5.2 Atk2 — SpawnAoE (HolePrefab)
 
@@ -333,9 +333,9 @@ transform.position = lerp(transform.position, target, dt * 2f)
 
 [Header("Spawn Prefabs")]
 [SerializeField] private GameObject batSpherePrefab;    // Atk1 projectile
+[SerializeField] private float dropHeight = 4f;         // Atk1 spawn Y offset
 [SerializeField] private GameObject pillarPrefab;       // Passive spawn
 [SerializeField] private GameObject holePrefab;         // Atk2 AoE
-[SerializeField] private Transform[] sphereSpawnPoints;
 [SerializeField] private Transform[] pillarSpawnPoints;
 
 [Header("Pillar Spawn Config")]
@@ -362,8 +362,9 @@ Hover Position:
   x = hoverOrigin.x + sin(hoverPhase) * hoverAmplitude
   y = hoverOrigin.y + hoverHeight + sin(hoverPhase * 0.7) * 0.5
 
-PillarBurstDamage = Round(cachedMaxHP * 0.25f)
-AoECircleSpawnY  = transform.position.y - hoverHeight
+PillarBurstDamage  = Round(cachedMaxHP * 0.25f)
+DropSphereSpawnPos = (player.position.x, transform.position.y, 0f)
+AoECircleSpawnY   = transform.position.y - hoverHeight
 
 Ranged Damage    = incoming * 1.5  (bonus multiplier)
 ```

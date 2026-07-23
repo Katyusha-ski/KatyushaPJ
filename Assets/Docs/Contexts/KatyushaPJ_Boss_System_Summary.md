@@ -85,7 +85,7 @@ DieState (generic, duration=2f, callback=HandleEnemyDeath)
 ```
 
 ### 1.4 Cơ chế Tấn công
-- **Atk1 — DropSphere:** Spawn `batSpherePrefab` tại 1 điểm ngẫu nhiên trong `sphereSpawnPoints[]`, quả cầu tự bay về hướng Player, chạm đất tự nổ và sinh ra `HazardZone` (vùng gây DoT).
+- **Atk1 — DropSphere:** Spawn `batSpherePrefab` thẳng tại `(player.position.x, transform.position.y)` — trên đầu Player. Quả cầu rơi thẳng đứng xuống (không homing), chạm đất nổ burst AoE + sinh `HazardZone` (vùng gây DoT).
 - **Atk2 — SpawnAoECircle (hole):** Spawn `holePrefab` (vòng tròn nổ chậm) tại vị trí Player (tọa độ Y = mặt đất, trừ đi `hoverHeight`).
 
 ### 1.5 Hệ thống Cột (Pillar Spawn Manager) — chạy ngầm, độc lập với đòn tấn công

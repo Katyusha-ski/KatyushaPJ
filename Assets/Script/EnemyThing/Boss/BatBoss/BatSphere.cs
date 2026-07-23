@@ -32,16 +32,6 @@ public class BatSphere : MonoBehaviour
         player = playerTarget;
     }
 
-    private void Start()
-    {
-        if (player != null)
-        {
-            Vector3 pos = transform.position;
-            pos.x = player.position.x;
-            transform.position = pos;
-        }
-    }
-
     private void Update()
     {
         if (isExploding) return;

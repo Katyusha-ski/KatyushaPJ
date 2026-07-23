@@ -156,6 +156,9 @@ public override IEnemyState GetDieState() => stateCache["Die"];
 2. **Hỏi trước khi hành động** — mọi thay đổi kiến trúc / thêm state mới / sửa generic states cần Architect approve.
 3. **Commit message** — Tiếng Anh, ngắn gọn, theo pattern `scope: message` (ví dụ: `batboss: restore GetHurtState override`).
 4. **Tài liệu** — Mọi thay đổi state machine / health mechanic phải cập nhật vào `Docs/Contexts/`.
+5. **Cập nhật tài liệu theo hệ thống thực tế** — mỗi khi thay đổi code, phải sửa nội dung file `.md` liên quan cho khớp với hệ thống hiện tại, không cần changelog riêng.
+   - Ví dụ: sửa BatBoss → cập nhật `Katyusha_BatBoss_Context.md`.
+   - Ví dụ: sửa cơ chế chung boss → cập nhật `KatyushaPJ_Boss_System_Summary.md` và `README.md`.
 
 ---
 

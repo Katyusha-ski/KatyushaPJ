@@ -10,9 +10,9 @@ public class BatBossController : EnemyController
     [SerializeField] private float hoverAmplitude = 1.5f;
     [Header("Spawn Prefabs")]
     [SerializeField] private GameObject batSpherePrefab;
+    [SerializeField] private float dropHeight = 4f;
     [SerializeField] private GameObject pillarPrefab;
     [SerializeField] private GameObject holePrefab;
-    [SerializeField] private Transform[] sphereSpawnPoints;
     [SerializeField] private Transform[] pillarSpawnPoints;
 
     [Header("Pillar Spawn Config")]
@@ -132,11 +132,11 @@ public class BatBossController : EnemyController
 
     public void DropSphere()
     {
-        if (batSpherePrefab == null || sphereSpawnPoints == null || sphereSpawnPoints.Length == 0)
+        if (batSpherePrefab == null || player == null)
             return;
 
-        Transform pt = sphereSpawnPoints[Random.Range(0, sphereSpawnPoints.Length)];
-        GameObject sphere = Instantiate(batSpherePrefab, pt.position, Quaternion.identity);
+        Vector3 spawnPos = new Vector3(player.position.x, transform.position.y + dropHeight, 0f);
+        GameObject sphere = Instantiate(batSpherePrefab, spawnPos, Quaternion.identity);
         sphere.GetComponent<BatSphere>()?.Init(player);
     }
 
@@ -264,10 +264,9 @@ public class BatBossController : EnemyController
 
     private void OnDrawGizmosSelected()
     {
+        Gizmos.color = Color.cyan;
+        if (player != null) Gizmos.DrawWireSphere(new Vector3(player.position.x, transform.position.y, 0f), 0.3f);
         Gizmos.color = Color.magenta;
-        if (sphereSpawnPoints != null)
-            foreach (var pt in sphereSpawnPoints)
-                if (pt != null) Gizmos.DrawWireSphere(pt.position, 0.3f);
         if (pillarSpawnPoints != null)
             foreach (var pt in pillarSpawnPoints)
                 if (pt != null) Gizmos.DrawWireCube(pt.position, Vector3.one * 0.5f);

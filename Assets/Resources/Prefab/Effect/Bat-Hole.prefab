@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 2156007202475585453}
   - component: {fileID: 4890661433182771560}
   - component: {fileID: 2435878765680454023}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Bat-Hole
   m_TagString: Untagged
   m_Icon: {fileID: 0}

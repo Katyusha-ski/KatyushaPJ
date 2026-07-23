@@ -1,0 +1,1521 @@
+fileFormatVersion: 2
+guid: 2f2e6668b243623408c3009b47930085
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -7136106217806814572
+    second: Mad Ghost-Sheet Single Row_0
+  - first:
+      213: -6246630249932680716
+    second: Mad Ghost-Sheet Single Row_1
+  - first:
+      213: -4143903327694265348
+    second: Mad Ghost-Sheet Single Row_2
+  - first:
+      213: -2205574918257036581
+    second: Mad Ghost-Sheet Single Row_3
+  - first:
+      213: -6632763837307695649
+    second: Mad Ghost-Sheet Single Row_4
+  - first:
+      213: 2850225816507631814
+    second: Mad Ghost-Sheet Single Row_5
+  - first:
+      213: 3266990156445326463
+    second: Mad Ghost-Sheet Single Row_6
+  - first:
+      213: -5001575733854030559
+    second: Mad Ghost-Sheet Single Row_7
+  - first:
+      213: 8872203889050388879
+    second: Mad Ghost-Sheet Single Row_8
+  - first:
+      213: 6150077267607190264
+    second: Mad Ghost-Sheet Single Row_9
+  - first:
+      213: -1521802539848472805
+    second: Mad Ghost-Sheet Single Row_10
+  - first:
+      213: 8996121549477662896
+    second: Mad Ghost-Sheet Single Row_11
+  - first:
+      213: -6888730675378940940
+    second: Mad Ghost-Sheet Single Row_12
+  - first:
+      213: 2863475687832531343
+    second: Mad Ghost-Sheet Single Row_13
+  - first:
+      213: -6120489333461498062
+    second: Mad Ghost-Sheet Single Row_14
+  - first:
+      213: 7009371633308799280
+    second: Mad Ghost-Sheet Single Row_15
+  - first:
+      213: 5655893587078822364
+    second: Mad Ghost-Sheet Single Row_16
+  - first:
+      213: -8347748487236706571
+    second: Mad Ghost-Sheet Single Row_17
+  - first:
+      213: 5052023466807528111
+    second: Mad Ghost-Sheet Single Row_18
+  - first:
+      213: 3901036074535908190
+    second: Mad Ghost-Sheet Single Row_19
+  - first:
+      213: 5686699691322205741
+    second: Mad Ghost-Sheet Single Row_20
+  - first:
+      213: -4142625026826716550
+    second: Mad Ghost-Sheet Single Row_21
+  - first:
+      213: -7458381802750489616
+    second: Mad Ghost-Sheet Single Row_22
+  - first:
+      213: -657677351667491262
+    second: Mad Ghost-Sheet Single Row_23
+  - first:
+      213: 2401701945505778671
+    second: Mad Ghost-Sheet Single Row_24
+  - first:
+      213: 6234405852487438136
+    second: Mad Ghost-Sheet Single Row_25
+  - first:
+      213: -7019233697041420888
+    second: Mad Ghost-Sheet Single Row_26
+  - first:
+      213: 6715131520810462153
+    second: Mad Ghost-Sheet Single Row_27
+  - first:
+      213: -7961065608484801825
+    second: Mad Ghost-Sheet Single Row_28
+  - first:
+      213: 555230557088314662
+    second: Mad Ghost-Sheet Single Row_29
+  - first:
+      213: 5988320561645736656
+    second: Mad Ghost-Sheet Single Row_30
+  - first:
+      213: -1724550722834436
+    second: Mad Ghost-Sheet Single Row_31
+  - first:
+      213: 1354862465258491829
+    second: Mad Ghost-Sheet Single Row_32
+  - first:
+      213: -2342078996085982228
+    second: Mad Ghost-Sheet Single Row_33
+  - first:
+      213: 3546064981788702653
+    second: Mad Ghost-Sheet Single Row_34
+  - first:
+      213: 4171843188399233357
+    second: Mad Ghost-Sheet Single Row_35
+  - first:
+      213: -5006664953735196796
+    second: Mad Ghost-Sheet Single Row_36
+  - first:
+      213: 8034035394044399707
+    second: Mad Ghost-Sheet Single Row_37
+  - first:
+      213: -7488807317929761734
+    second: Mad Ghost-Sheet Single Row_38
+  - first:
+      213: -9015700265450986260
+    second: Mad Ghost-Sheet Single Row_39
+  - first:
+      213: -5564478528962209067
+    second: Mad Ghost-Sheet Single Row_40
+  - first:
+      213: 4332724144087361880
+    second: Mad Ghost-Sheet Single Row_41
+  - first:
+      213: -5366448923056768356
+    second: Mad Ghost-Sheet Single Row_42
+  - first:
+      213: -2019646040095871301
+    second: Mad Ghost-Sheet Single Row_43
+  - first:
+      213: 790235362937785784
+    second: Mad Ghost-Sheet Single Row_44
+  - first:
+      213: -4980765313556795744
+    second: Mad Ghost-Sheet Single Row_45
+  - first:
+      213: -1331154562237293407
+    second: Mad Ghost-Sheet Single Row_46
+  - first:
+      213: 9145317065198947744
+    second: Mad Ghost-Sheet Single Row_47
+  - first:
+      213: 7826323318902671586
+    second: Mad Ghost-Sheet Single Row_48
+  - first:
+      213: -93763813946143480
+    second: Mad Ghost-Sheet Single Row_49
+  - first:
+      213: 7120032439147422469
+    second: Mad Ghost-Sheet Single Row_50
+  - first:
+      213: -8771850338647876160
+    second: Mad Ghost-Sheet Single Row_51
+  - first:
+      213: -661407195912168372
+    second: Mad Ghost-Sheet Single Row_52
+  - first:
+      213: 1293678024066227544
+    second: Mad Ghost-Sheet Single Row_53
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Mad Ghost-Sheet Single Row_0
+      rect:
+        serializedVersion: 2
+        x: 22
+        y: 0
+        width: 25
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4922b20243577fc90800000000000000
+      internalID: -7136106217806814572
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mad Ghost-Sheet Single Row_1
+      rect:
+        serializedVersion: 2
+        x: 87
+        y: 1
+        width: 24
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4f19d8d32e28f49a0800000000000000
+      internalID: -6246630249932680716
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mad Ghost-Sheet Single Row_2
+      rect:
+        serializedVersion: 2
+        x: 152
+        y: 0
+        width: 22
+        height: 39
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cf36939f0e5ed76c0800000000000000
+      internalID: -4143903327694265348
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mad Ghost-Sheet Single Row_3
+      rect:
+        serializedVersion: 2
+        x: 215
+        y: 0
+        width: 23
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bd237c72c493461e0800000000000000
+      internalID: -2205574918257036581
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mad Ghost-Sheet Single Row_4
+      rect:
+        serializedVersion: 2
+        x: 271
+        y: 0
+        width: 26
+        height: 39
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fddc73e8e60b3f3a0800000000000000
+      internalID: -6632763837307695649
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mad Ghost-Sheet Single Row_5
+      rect:
+        serializedVersion: 2
+        x: 334
+        y: 0
+        width: 27
+        height: 39
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6c8c59a67490e8720800000000000000
+      internalID: 2850225816507631814
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mad Ghost-Sheet Single Row_6
+      rect:
+        serializedVersion: 2
+        x: 397
+        y: 0
+        width: 28
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f7c1f9fec3ea65d20800000000000000
+      internalID: 3266990156445326463
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mad Ghost-Sheet Single Row_7
+      rect:
+        serializedVersion: 2
+        x: 462
+        y: 0
+        width: 27
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 125ba6a9e55d69ab0800000000000000
+      internalID: -5001575733854030559
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mad Ghost-Sheet Single Row_8
+      rect:
+        serializedVersion: 2
+        x: 524
+        y: 11
+        width: 11
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f8900bd1e66602b70800000000000000
+      internalID: 8872203889050388879
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mad Ghost-Sheet Single Row_9
+      rect:
+        serializedVersion: 2
+        x: 534
+        y: 0
+        width: 25
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8fa7eecb0b6795550800000000000000
+      internalID: 6150077267607190264
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mad Ghost-Sheet Single Row_10
+      rect:
+        serializedVersion: 2
+        x: 553
+        y: 26
+        width: 8
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b176b0227a871eae0800000000000000
+      internalID: -1521802539848472805
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mad Ghost-Sheet Single Row_11
+      rect:
+        serializedVersion: 2
+        x: 589
+        y: 11
+        width: 8
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0b05ad0c2e4a8dc70800000000000000
+      internalID: 8996121549477662896
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mad Ghost-Sheet Single Row_12
+      rect:
+        serializedVersion: 2
+        x: 599
+        y: 1
+        width: 24
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4f393b4e2ff4660a0800000000000000
+      internalID: -6888730675378940940
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mad Ghost-Sheet Single Row_13
+      rect:
+        serializedVersion: 2
+        x: 609
+        y: 33
+        width: 14
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f81b93c77fb1db720800000000000000
+      internalID: 2863475687832531343
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mad Ghost-Sheet Single Row_14
+      rect:
+        serializedVersion: 2
+        x: 652
+        y: 17
+        width: 10
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 237c5730167af0ba0800000000000000
+      internalID: -6120489333461498062
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mad Ghost-Sheet Single Row_15
+      rect:
+        serializedVersion: 2
+        x: 664
+        y: 0
+        width: 22
+        height: 39
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 031121efc5a464160800000000000000
+      internalID: 7009371633308799280
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mad Ghost-Sheet Single Row_16
+      rect:
+        serializedVersion: 2
+        x: 672
+        y: 38
+        width: 12
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cd93e315045cd7e40800000000000000
+      internalID: 5655893587078822364
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mad Ghost-Sheet Single Row_17
+      rect:
+        serializedVersion: 2
+        x: 715
+        y: 21
+        width: 11
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5fe93f7aaf6d62c80800000000000000
+      internalID: -8347748487236706571
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mad Ghost-Sheet Single Row_18
+      rect:
+        serializedVersion: 2
+        x: 727
+        y: 0
+        width: 23
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: faa000883946c1640800000000000000
+      internalID: 5052023466807528111
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mad Ghost-Sheet Single Row_19
+      rect:
+        serializedVersion: 2
+        x: 734
+        y: 37
+        width: 11
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e5372b624a3432630800000000000000
+      internalID: 3901036074535908190
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mad Ghost-Sheet Single Row_20
+      rect:
+        serializedVersion: 2
+        x: 779
+        y: 24
+        width: 18
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d2665956d373bee40800000000000000
+      internalID: 5686699691322205741
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mad Ghost-Sheet Single Row_21
+      rect:
+        serializedVersion: 2
+        x: 791
+        y: 0
+        width: 24
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a7ab9569c707286c0800000000000000
+      internalID: -4142625026826716550
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mad Ghost-Sheet Single Row_22
+      rect:
+        serializedVersion: 2
+        x: 798
+        y: 37
+        width: 17
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0fbc1df34418e7890800000000000000
+      internalID: -7458381802750489616
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mad Ghost-Sheet Single Row_23
+      rect:
+        serializedVersion: 2
+        x: 846
+        y: 0
+        width: 27
+        height: 39
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 24e1a05eee57fd6f0800000000000000
+      internalID: -657677351667491262
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mad Ghost-Sheet Single Row_24
+      rect:
+        serializedVersion: 2
+        x: 852
+        y: 34
+        width: 19
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: feb8c36d13f845120800000000000000
+      internalID: 2401701945505778671
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mad Ghost-Sheet Single Row_25
+      rect:
+        serializedVersion: 2
+        x: 870
+        y: 0
+        width: 22
+        height: 51
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 83f412f671f058650800000000000000
+      internalID: 6234405852487438136
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mad Ghost-Sheet Single Row_26
+      rect:
+        serializedVersion: 2
+        x: 909
+        y: 0
+        width: 32
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8ade46c542ca69e90800000000000000
+      internalID: -7019233697041420888
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mad Ghost-Sheet Single Row_27
+      rect:
+        serializedVersion: 2
+        x: 925
+        y: 38
+        width: 17
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9cbafe53a80f03d50800000000000000
+      internalID: 6715131520810462153
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mad Ghost-Sheet Single Row_28
+      rect:
+        serializedVersion: 2
+        x: 946
+        y: 6
+        width: 9
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fd23fa4320d948190800000000000000
+      internalID: -7961065608484801825
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mad Ghost-Sheet Single Row_29
+      rect:
+        serializedVersion: 2
+        x: 974
+        y: 0
+        width: 27
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 625f0bbff3394b700800000000000000
+      internalID: 555230557088314662
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mad Ghost-Sheet Single Row_30
+      rect:
+        serializedVersion: 2
+        x: 998
+        y: 8
+        width: 20
+        height: 49
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0d2df06c2d9ca1350800000000000000
+      internalID: 5988320561645736656
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mad Ghost-Sheet Single Row_31
+      rect:
+        serializedVersion: 2
+        x: 1027
+        y: 10
+        width: 20
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cffa4ceb78fd9fff0800000000000000
+      internalID: -1724550722834436
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mad Ghost-Sheet Single Row_32
+      rect:
+        serializedVersion: 2
+        x: 1046
+        y: 0
+        width: 25
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5bf0e39db307dc210800000000000000
+      internalID: 1354862465258491829
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mad Ghost-Sheet Single Row_33
+      rect:
+        serializedVersion: 2
+        x: 1066
+        y: 1
+        width: 18
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ceb346adf834f7fd0800000000000000
+      internalID: -2342078996085982228
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mad Ghost-Sheet Single Row_34
+      rect:
+        serializedVersion: 2
+        x: 1089
+        y: 1
+        width: 51
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: db7b7f52057263130800000000000000
+      internalID: 3546064981788702653
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mad Ghost-Sheet Single Row_35
+      rect:
+        serializedVersion: 2
+        x: 1097
+        y: 8
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d495b27c64d55e930800000000000000
+      internalID: 4171843188399233357
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mad Ghost-Sheet Single Row_36
+      rect:
+        serializedVersion: 2
+        x: 1137
+        y: 8
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 48f473340c0c48ab0800000000000000
+      internalID: -5006664953735196796
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mad Ghost-Sheet Single Row_37
+      rect:
+        serializedVersion: 2
+        x: 1139
+        y: 0
+        width: 11
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b509eeeef90ae7f60800000000000000
+      internalID: 8034035394044399707
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mad Ghost-Sheet Single Row_38
+      rect:
+        serializedVersion: 2
+        x: 1151
+        y: 0
+        width: 65
+        height: 39
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a346377fb69621890800000000000000
+      internalID: -7488807317929761734
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mad Ghost-Sheet Single Row_39
+      rect:
+        serializedVersion: 2
+        x: 1220
+        y: 0
+        width: 58
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ce42664306cc1e280800000000000000
+      internalID: -9015700265450986260
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mad Ghost-Sheet Single Row_40
+      rect:
+        serializedVersion: 2
+        x: 1303
+        y: 1
+        width: 24
+        height: 37
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5da5be0824007c2b0800000000000000
+      internalID: -5564478528962209067
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mad Ghost-Sheet Single Row_41
+      rect:
+        serializedVersion: 2
+        x: 1367
+        y: 1
+        width: 24
+        height: 37
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 859e51e37ade02c30800000000000000
+      internalID: 4332724144087361880
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mad Ghost-Sheet Single Row_42
+      rect:
+        serializedVersion: 2
+        x: 1431
+        y: 1
+        width: 24
+        height: 37
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c9a7ceb132b8685b0800000000000000
+      internalID: -5366448923056768356
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mad Ghost-Sheet Single Row_43
+      rect:
+        serializedVersion: 2
+        x: 1495
+        y: 1
+        width: 24
+        height: 37
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bbeaf0880a6c8f3e0800000000000000
+      internalID: -2019646040095871301
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mad Ghost-Sheet Single Row_44
+      rect:
+        serializedVersion: 2
+        x: 1556
+        y: 0
+        width: 27
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8bdcbd030ea77fa00800000000000000
+      internalID: 790235362937785784
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mad Ghost-Sheet Single Row_45
+      rect:
+        serializedVersion: 2
+        x: 1622
+        y: 0
+        width: 26
+        height: 39
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0ae2cd72654c0eab0800000000000000
+      internalID: -4980765313556795744
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mad Ghost-Sheet Single Row_46
+      rect:
+        serializedVersion: 2
+        x: 1686
+        y: 3
+        width: 23
+        height: 37
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1ac94b87af9c68de0800000000000000
+      internalID: -1331154562237293407
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mad Ghost-Sheet Single Row_47
+      rect:
+        serializedVersion: 2
+        x: 1703
+        y: 3
+        width: 7
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0ad4085ba61baee70800000000000000
+      internalID: 9145317065198947744
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mad Ghost-Sheet Single Row_48
+      rect:
+        serializedVersion: 2
+        x: 1752
+        y: 5
+        width: 12
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2e8cc88c79fac9c60800000000000000
+      internalID: 7826323318902671586
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mad Ghost-Sheet Single Row_49
+      rect:
+        serializedVersion: 2
+        x: 1755
+        y: 21
+        width: 21
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 80d44f8de42e2bef0800000000000000
+      internalID: -93763813946143480
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mad Ghost-Sheet Single Row_50
+      rect:
+        serializedVersion: 2
+        x: 1761
+        y: 8
+        width: 10
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 503e3a4a7cf6fc260800000000000000
+      internalID: 7120032439147422469
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mad Ghost-Sheet Single Row_51
+      rect:
+        serializedVersion: 2
+        x: 1816
+        y: 9
+        width: 23
+        height: 33
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0cdd00e9790244680800000000000000
+      internalID: -8771850338647876160
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mad Ghost-Sheet Single Row_52
+      rect:
+        serializedVersion: 2
+        x: 1884
+        y: 26
+        width: 18
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c4c94cbd8a532d6f0800000000000000
+      internalID: -661407195912168372
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mad Ghost-Sheet Single Row_53
+      rect:
+        serializedVersion: 2
+        x: 1949
+        y: 31
+        width: 17
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 85d52360f4114f110800000000000000
+      internalID: 1293678024066227544
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      Mad Ghost-Sheet Single Row_0: -7136106217806814572
+      Mad Ghost-Sheet Single Row_1: -6246630249932680716
+      Mad Ghost-Sheet Single Row_10: -1521802539848472805
+      Mad Ghost-Sheet Single Row_11: 8996121549477662896
+      Mad Ghost-Sheet Single Row_12: -6888730675378940940
+      Mad Ghost-Sheet Single Row_13: 2863475687832531343
+      Mad Ghost-Sheet Single Row_14: -6120489333461498062
+      Mad Ghost-Sheet Single Row_15: 7009371633308799280
+      Mad Ghost-Sheet Single Row_16: 5655893587078822364
+      Mad Ghost-Sheet Single Row_17: -8347748487236706571
+      Mad Ghost-Sheet Single Row_18: 5052023466807528111
+      Mad Ghost-Sheet Single Row_19: 3901036074535908190
+      Mad Ghost-Sheet Single Row_2: -4143903327694265348
+      Mad Ghost-Sheet Single Row_20: 5686699691322205741
+      Mad Ghost-Sheet Single Row_21: -4142625026826716550
+      Mad Ghost-Sheet Single Row_22: -7458381802750489616
+      Mad Ghost-Sheet Single Row_23: -657677351667491262
+      Mad Ghost-Sheet Single Row_24: 2401701945505778671
+      Mad Ghost-Sheet Single Row_25: 6234405852487438136
+      Mad Ghost-Sheet Single Row_26: -7019233697041420888
+      Mad Ghost-Sheet Single Row_27: 6715131520810462153
+      Mad Ghost-Sheet Single Row_28: -7961065608484801825
+      Mad Ghost-Sheet Single Row_29: 555230557088314662
+      Mad Ghost-Sheet Single Row_3: -2205574918257036581
+      Mad Ghost-Sheet Single Row_30: 5988320561645736656
+      Mad Ghost-Sheet Single Row_31: -1724550722834436
+      Mad Ghost-Sheet Single Row_32: 1354862465258491829
+      Mad Ghost-Sheet Single Row_33: -2342078996085982228
+      Mad Ghost-Sheet Single Row_34: 3546064981788702653
+      Mad Ghost-Sheet Single Row_35: 4171843188399233357
+      Mad Ghost-Sheet Single Row_36: -5006664953735196796
+      Mad Ghost-Sheet Single Row_37: 8034035394044399707
+      Mad Ghost-Sheet Single Row_38: -7488807317929761734
+      Mad Ghost-Sheet Single Row_39: -9015700265450986260
+      Mad Ghost-Sheet Single Row_4: -6632763837307695649
+      Mad Ghost-Sheet Single Row_40: -5564478528962209067
+      Mad Ghost-Sheet Single Row_41: 4332724144087361880
+      Mad Ghost-Sheet Single Row_42: -5366448923056768356
+      Mad Ghost-Sheet Single Row_43: -2019646040095871301
+      Mad Ghost-Sheet Single Row_44: 790235362937785784
+      Mad Ghost-Sheet Single Row_45: -4980765313556795744
+      Mad Ghost-Sheet Single Row_46: -1331154562237293407
+      Mad Ghost-Sheet Single Row_47: 9145317065198947744
+      Mad Ghost-Sheet Single Row_48: 7826323318902671586
+      Mad Ghost-Sheet Single Row_49: -93763813946143480
+      Mad Ghost-Sheet Single Row_5: 2850225816507631814
+      Mad Ghost-Sheet Single Row_50: 7120032439147422469
+      Mad Ghost-Sheet Single Row_51: -8771850338647876160
+      Mad Ghost-Sheet Single Row_52: -661407195912168372
+      Mad Ghost-Sheet Single Row_53: 1293678024066227544
+      Mad Ghost-Sheet Single Row_6: 3266990156445326463
+      Mad Ghost-Sheet Single Row_7: -5001575733854030559
+      Mad Ghost-Sheet Single Row_8: 8872203889050388879
+      Mad Ghost-Sheet Single Row_9: 6150077267607190264
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

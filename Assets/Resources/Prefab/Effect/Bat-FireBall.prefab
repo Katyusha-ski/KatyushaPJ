@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 1512669324477300418}
   - component: {fileID: 8954694937904003185}
   - component: {fileID: 8790486070290455058}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Bat-FireBall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5004,7 +5004,7 @@ MonoBehaviour:
   playerLayer:
     serializedVersion: 2
     m_Bits: 8
-  hazardZonePrefab: {fileID: 6693899148082878927}
+  hazardZonePrefab: {fileID: 630972497525595940, guid: eef2f356f95c84541b187a474700c624, type: 3}
   hazardDuration: 5
   dotDamage: 3
   dotInterval: 1

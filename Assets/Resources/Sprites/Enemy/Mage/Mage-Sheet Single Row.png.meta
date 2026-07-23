@@ -1,0 +1,2171 @@
+fileFormatVersion: 2
+guid: ebf97c469cefbe2469626beaf2582538
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 1230661023203659057
+    second: Mage-Sheet Single Row_0
+  - first:
+      213: -8062637905355349902
+    second: Mage-Sheet Single Row_1
+  - first:
+      213: -5381661826392423743
+    second: Mage-Sheet Single Row_2
+  - first:
+      213: 4336472890859717164
+    second: Mage-Sheet Single Row_3
+  - first:
+      213: -2740096285963210694
+    second: Mage-Sheet Single Row_4
+  - first:
+      213: -6376225335693726842
+    second: Mage-Sheet Single Row_5
+  - first:
+      213: -730057398554268309
+    second: Mage-Sheet Single Row_6
+  - first:
+      213: -3295601140541239814
+    second: Mage-Sheet Single Row_7
+  - first:
+      213: -8100496263907133665
+    second: Mage-Sheet Single Row_8
+  - first:
+      213: -7510709540649810476
+    second: Mage-Sheet Single Row_9
+  - first:
+      213: 5053063643789998733
+    second: Mage-Sheet Single Row_10
+  - first:
+      213: 3764497784290857271
+    second: Mage-Sheet Single Row_11
+  - first:
+      213: 7533834823366349118
+    second: Mage-Sheet Single Row_12
+  - first:
+      213: -8049140452743541501
+    second: Mage-Sheet Single Row_13
+  - first:
+      213: -340990299605454864
+    second: Mage-Sheet Single Row_14
+  - first:
+      213: 911814699038093517
+    second: Mage-Sheet Single Row_15
+  - first:
+      213: -7813417741300490671
+    second: Mage-Sheet Single Row_16
+  - first:
+      213: 5397289423627075140
+    second: Mage-Sheet Single Row_17
+  - first:
+      213: 341523812123510337
+    second: Mage-Sheet Single Row_18
+  - first:
+      213: 3833575329764919744
+    second: Mage-Sheet Single Row_19
+  - first:
+      213: 1373368911925359628
+    second: Mage-Sheet Single Row_20
+  - first:
+      213: -3208006438953028035
+    second: Mage-Sheet Single Row_21
+  - first:
+      213: 1514695762092110455
+    second: Mage-Sheet Single Row_22
+  - first:
+      213: 1029165506260508504
+    second: Mage-Sheet Single Row_23
+  - first:
+      213: 4117129132767907299
+    second: Mage-Sheet Single Row_24
+  - first:
+      213: 3578568337165211048
+    second: Mage-Sheet Single Row_25
+  - first:
+      213: -8562027175512095595
+    second: Mage-Sheet Single Row_26
+  - first:
+      213: 4100783624719653417
+    second: Mage-Sheet Single Row_27
+  - first:
+      213: -4625635832122717295
+    second: Mage-Sheet Single Row_28
+  - first:
+      213: -3247537158086176652
+    second: Mage-Sheet Single Row_29
+  - first:
+      213: 8375887918878658113
+    second: Mage-Sheet Single Row_30
+  - first:
+      213: 880910488528132012
+    second: Mage-Sheet Single Row_31
+  - first:
+      213: -5319519545387864932
+    second: Mage-Sheet Single Row_32
+  - first:
+      213: 7340718712175448735
+    second: Mage-Sheet Single Row_33
+  - first:
+      213: -8950455197979372501
+    second: Mage-Sheet Single Row_34
+  - first:
+      213: 1763214407356138771
+    second: Mage-Sheet Single Row_35
+  - first:
+      213: -1113832420548590208
+    second: Mage-Sheet Single Row_36
+  - first:
+      213: 1160648899005421217
+    second: Mage-Sheet Single Row_37
+  - first:
+      213: 2112200473258224924
+    second: Mage-Sheet Single Row_38
+  - first:
+      213: -4591628563479624449
+    second: Mage-Sheet Single Row_39
+  - first:
+      213: -3998791457852502510
+    second: Mage-Sheet Single Row_40
+  - first:
+      213: -5457473795252024314
+    second: Mage-Sheet Single Row_41
+  - first:
+      213: 561243197474952564
+    second: Mage-Sheet Single Row_42
+  - first:
+      213: 6773942843300643810
+    second: Mage-Sheet Single Row_43
+  - first:
+      213: 9203947215836918685
+    second: Mage-Sheet Single Row_44
+  - first:
+      213: 4027955604284771160
+    second: Mage-Sheet Single Row_45
+  - first:
+      213: 7856857975776180861
+    second: Mage-Sheet Single Row_46
+  - first:
+      213: -7886995621063591646
+    second: Mage-Sheet Single Row_47
+  - first:
+      213: -403317537349760877
+    second: Mage-Sheet Single Row_48
+  - first:
+      213: 8941339415621122133
+    second: Mage-Sheet Single Row_49
+  - first:
+      213: -299635203047253613
+    second: Mage-Sheet Single Row_50
+  - first:
+      213: 4550048436170105327
+    second: Mage-Sheet Single Row_51
+  - first:
+      213: 1202850727239324809
+    second: Mage-Sheet Single Row_52
+  - first:
+      213: 1518571742471194901
+    second: Mage-Sheet Single Row_53
+  - first:
+      213: 3388505796623326907
+    second: Mage-Sheet Single Row_54
+  - first:
+      213: -3026942853045956395
+    second: Mage-Sheet Single Row_55
+  - first:
+      213: 5340709796611563730
+    second: Mage-Sheet Single Row_56
+  - first:
+      213: -1690834141516882391
+    second: Mage-Sheet Single Row_57
+  - first:
+      213: 4543373762545228491
+    second: Mage-Sheet Single Row_58
+  - first:
+      213: -3572923891894921029
+    second: Mage-Sheet Single Row_59
+  - first:
+      213: -488639400960728194
+    second: Mage-Sheet Single Row_60
+  - first:
+      213: -2696613177449117188
+    second: Mage-Sheet Single Row_61
+  - first:
+      213: -4723446768569274343
+    second: Mage-Sheet Single Row_62
+  - first:
+      213: 2981067977981590252
+    second: Mage-Sheet Single Row_63
+  - first:
+      213: 1694372374375459509
+    second: Mage-Sheet Single Row_64
+  - first:
+      213: -7441064827885379036
+    second: Mage-Sheet Single Row_65
+  - first:
+      213: -8731555131405987777
+    second: Mage-Sheet Single Row_66
+  - first:
+      213: 3588001060030032594
+    second: Mage-Sheet Single Row_67
+  - first:
+      213: -2200978129213008241
+    second: Mage-Sheet Single Row_68
+  - first:
+      213: 4119067536993136484
+    second: Mage-Sheet Single Row_69
+  - first:
+      213: -2447572858486172899
+    second: Mage-Sheet Single Row_70
+  - first:
+      213: 2394807387392257730
+    second: Mage-Sheet Single Row_71
+  - first:
+      213: -6300061432976186186
+    second: Mage-Sheet Single Row_72
+  - first:
+      213: 3308480255124875789
+    second: Mage-Sheet Single Row_73
+  - first:
+      213: -7694531456773656437
+    second: Mage-Sheet Single Row_74
+  - first:
+      213: -6032617551752987490
+    second: Mage-Sheet Single Row_75
+  - first:
+      213: -6756073098647774438
+    second: Mage-Sheet Single Row_76
+  - first:
+      213: 4916618392139731605
+    second: Mage-Sheet Single Row_77
+  - first:
+      213: -5839758439764849582
+    second: Mage-Sheet Single Row_78
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Mage-Sheet Single Row_0
+      rect:
+        serializedVersion: 2
+        x: 1351
+        y: 30
+        width: 36
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 13d09f62eaf241110800000000000000
+      internalID: 1230661023203659057
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mage-Sheet Single Row_1
+      rect:
+        serializedVersion: 2
+        x: 1362
+        y: 0
+        width: 70
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 270e1b2fa81cb1090800000000000000
+      internalID: -8062637905355349902
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mage-Sheet Single Row_2
+      rect:
+        serializedVersion: 2
+        x: 1417
+        y: 24
+        width: 34
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1c28998051f7055b0800000000000000
+      internalID: -5381661826392423743
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mage-Sheet Single Row_3
+      rect:
+        serializedVersion: 2
+        x: 1459
+        y: 13
+        width: 26
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c220ecd5e1f3e2c30800000000000000
+      internalID: 4336472890859717164
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mage-Sheet Single Row_4
+      rect:
+        serializedVersion: 2
+        x: 1468
+        y: 29
+        width: 22
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a30bbc012f839f9d0800000000000000
+      internalID: -2740096285963210694
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mage-Sheet Single Row_5
+      rect:
+        serializedVersion: 2
+        x: 1470
+        y: 0
+        width: 74
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 68b212207d81387a0800000000000000
+      internalID: -6376225335693726842
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mage-Sheet Single Row_6
+      rect:
+        serializedVersion: 2
+        x: 1496
+        y: 37
+        width: 35
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b6de68df9a05ed5f0800000000000000
+      internalID: -730057398554268309
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mage-Sheet Single Row_7
+      rect:
+        serializedVersion: 2
+        x: 1527
+        y: 37
+        width: 27
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: afdcaa8393ca342d0800000000000000
+      internalID: -3295601140541239814
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mage-Sheet Single Row_8
+      rect:
+        serializedVersion: 2
+        x: 1549
+        y: 3
+        width: 17
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f17bf65f091459f80800000000000000
+      internalID: -8100496263907133665
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mage-Sheet Single Row_9
+      rect:
+        serializedVersion: 2
+        x: 1577
+        y: 28
+        width: 40
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4d54e6a577994c790800000000000000
+      internalID: -7510709540649810476
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mage-Sheet Single Row_10
+      rect:
+        serializedVersion: 2
+        x: 1586
+        y: 0
+        width: 64
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d8a3b8b9c96102640800000000000000
+      internalID: 5053063643789998733
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mage-Sheet Single Row_11
+      rect:
+        serializedVersion: 2
+        x: 1621
+        y: 28
+        width: 38
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 731d6662ace2e3430800000000000000
+      internalID: 3764497784290857271
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mage-Sheet Single Row_12
+      rect:
+        serializedVersion: 2
+        x: 1632
+        y: 32
+        width: 38
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e31183b1bde8d8860800000000000000
+      internalID: 7533834823366349118
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mage-Sheet Single Row_13
+      rect:
+        serializedVersion: 2
+        x: 1698
+        y: 17
+        width: 38
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 30d8ef68765bb4090800000000000000
+      internalID: -8049140452743541501
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mage-Sheet Single Row_14
+      rect:
+        serializedVersion: 2
+        x: 1743
+        y: 27
+        width: 14
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0ffa920112f844bf0800000000000000
+      internalID: -340990299605454864
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mage-Sheet Single Row_15
+      rect:
+        serializedVersion: 2
+        x: 1763
+        y: 26
+        width: 19
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dc0352543aa67ac00800000000000000
+      internalID: 911814699038093517
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mage-Sheet Single Row_16
+      rect:
+        serializedVersion: 2
+        x: 1800
+        y: 19
+        width: 34
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 15e9c0826f9219390800000000000000
+      internalID: -7813417741300490671
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mage-Sheet Single Row_17
+      rect:
+        serializedVersion: 2
+        x: 1831
+        y: 0
+        width: 51
+        height: 41
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 44eb34d722607ea40800000000000000
+      internalID: 5397289423627075140
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mage-Sheet Single Row_18
+      rect:
+        serializedVersion: 2
+        x: 1835
+        y: 33
+        width: 14
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 14685fff8165db400800000000000000
+      internalID: 341523812123510337
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mage-Sheet Single Row_19
+      rect:
+        serializedVersion: 2
+        x: 1878
+        y: 24
+        width: 39
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0c9c6568378933530800000000000000
+      internalID: 3833575329764919744
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mage-Sheet Single Row_20
+      rect:
+        serializedVersion: 2
+        x: 1930
+        y: 0
+        width: 72
+        height: 45
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c0430ecbfbf2f0310800000000000000
+      internalID: 1373368911925359628
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mage-Sheet Single Row_21
+      rect:
+        serializedVersion: 2
+        x: 3075
+        y: 24
+        width: 123
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d36f909f32fda73d0800000000000000
+      internalID: -3208006438953028035
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mage-Sheet Single Row_22
+      rect:
+        serializedVersion: 2
+        x: 47
+        y: 0
+        width: 18
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7723a4a35c7450510800000000000000
+      internalID: 1514695762092110455
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mage-Sheet Single Row_23
+      rect:
+        serializedVersion: 2
+        x: 159
+        y: 0
+        width: 18
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 85f1ebf3394584e00800000000000000
+      internalID: 1029165506260508504
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mage-Sheet Single Row_24
+      rect:
+        serializedVersion: 2
+        x: 271
+        y: 0
+        width: 18
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3ed0b0df12bf22930800000000000000
+      internalID: 4117129132767907299
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mage-Sheet Single Row_25
+      rect:
+        serializedVersion: 2
+        x: 383
+        y: 0
+        width: 18
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8a5513d41f0a9a130800000000000000
+      internalID: 3578568337165211048
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mage-Sheet Single Row_26
+      rect:
+        serializedVersion: 2
+        x: 494
+        y: 0
+        width: 19
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5944c5eb5a19d2980800000000000000
+      internalID: -8562027175512095595
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mage-Sheet Single Row_27
+      rect:
+        serializedVersion: 2
+        x: 605
+        y: 0
+        width: 20
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 92a5724daf8e8e830800000000000000
+      internalID: 4100783624719653417
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mage-Sheet Single Row_28
+      rect:
+        serializedVersion: 2
+        x: 717
+        y: 0
+        width: 20
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 19bc106e7b07ecfb0800000000000000
+      internalID: -4625635832122717295
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mage-Sheet Single Row_29
+      rect:
+        serializedVersion: 2
+        x: 830
+        y: 0
+        width: 19
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4705461392e6ee2d0800000000000000
+      internalID: -3247537158086176652
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mage-Sheet Single Row_30
+      rect:
+        serializedVersion: 2
+        x: 929
+        y: 0
+        width: 31
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 14e8f335fa12d3470800000000000000
+      internalID: 8375887918878658113
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mage-Sheet Single Row_31
+      rect:
+        serializedVersion: 2
+        x: 967
+        y: 5
+        width: 9
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ca792ab0c6f993c00800000000000000
+      internalID: 880910488528132012
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mage-Sheet Single Row_32
+      rect:
+        serializedVersion: 2
+        x: 1040
+        y: 25
+        width: 12
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c9ca86158254d26b0800000000000000
+      internalID: -5319519545387864932
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mage-Sheet Single Row_33
+      rect:
+        serializedVersion: 2
+        x: 1043
+        y: 10
+        width: 11
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f92d743a6c87fd560800000000000000
+      internalID: 7340718712175448735
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mage-Sheet Single Row_34
+      rect:
+        serializedVersion: 2
+        x: 1054
+        y: 0
+        width: 18
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b2414624b6899c380800000000000000
+      internalID: -8950455197979372501
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mage-Sheet Single Row_35
+      rect:
+        serializedVersion: 2
+        x: 1074
+        y: 6
+        width: 11
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 315405d5922387810800000000000000
+      internalID: 1763214407356138771
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mage-Sheet Single Row_36
+      rect:
+        serializedVersion: 2
+        x: 1078
+        y: 22
+        width: 10
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 08543e9905fda80f0800000000000000
+      internalID: -1113832420548590208
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mage-Sheet Single Row_37
+      rect:
+        serializedVersion: 2
+        x: 1126
+        y: 19
+        width: 10
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1a69a2636047b1010800000000000000
+      internalID: 1160648899005421217
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mage-Sheet Single Row_38
+      rect:
+        serializedVersion: 2
+        x: 1154
+        y: 19
+        width: 12
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c1de7f6b32b005d10800000000000000
+      internalID: 2112200473258224924
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mage-Sheet Single Row_39
+      rect:
+        serializedVersion: 2
+        x: 1165
+        y: 0
+        width: 21
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ff4824526224740c0800000000000000
+      internalID: -4591628563479624449
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mage-Sheet Single Row_40
+      rect:
+        serializedVersion: 2
+        x: 1185
+        y: 15
+        width: 19
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 21ec5d70b507188c0800000000000000
+      internalID: -3998791457852502510
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mage-Sheet Single Row_41
+      rect:
+        serializedVersion: 2
+        x: 1216
+        y: 10
+        width: 8
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 60c00078f782344b0800000000000000
+      internalID: -5457473795252024314
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mage-Sheet Single Row_42
+      rect:
+        serializedVersion: 2
+        x: 1238
+        y: 18
+        width: 31
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 475591ae6bfe9c700800000000000000
+      internalID: 561243197474952564
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mage-Sheet Single Row_43
+      rect:
+        serializedVersion: 2
+        x: 1248
+        y: 0
+        width: 73
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2e30cb74021e10e50800000000000000
+      internalID: 6773942843300643810
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mage-Sheet Single Row_44
+      rect:
+        serializedVersion: 2
+        x: 1303
+        y: 1
+        width: 34
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d93b76b6a3dfabf70800000000000000
+      internalID: 9203947215836918685
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mage-Sheet Single Row_45
+      rect:
+        serializedVersion: 2
+        x: 1355
+        y: 7
+        width: 13
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 85b0074f74c26e730800000000000000
+      internalID: 4027955604284771160
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mage-Sheet Single Row_46
+      rect:
+        serializedVersion: 2
+        x: 1425
+        y: 12
+        width: 10
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d7a75d893ba290d60800000000000000
+      internalID: 7856857975776180861
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mage-Sheet Single Row_47
+      rect:
+        serializedVersion: 2
+        x: 1539
+        y: 14
+        width: 14
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 229717d0543cb8290800000000000000
+      internalID: -7886995621063591646
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mage-Sheet Single Row_48
+      rect:
+        serializedVersion: 2
+        x: 1571
+        y: 0
+        width: 25
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 398059e26d0276af0800000000000000
+      internalID: -403317537349760877
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mage-Sheet Single Row_49
+      rect:
+        serializedVersion: 2
+        x: 1641
+        y: 8
+        width: 28
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 558bb4443d4061c70800000000000000
+      internalID: 8941339415621122133
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mage-Sheet Single Row_50
+      rect:
+        serializedVersion: 2
+        x: 1686
+        y: 10
+        width: 7
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3999a20de5b77dbf0800000000000000
+      internalID: -299635203047253613
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mage-Sheet Single Row_51
+      rect:
+        serializedVersion: 2
+        x: 1708
+        y: 14
+        width: 10
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fe1adbc02f4052f30800000000000000
+      internalID: 4550048436170105327
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mage-Sheet Single Row_52
+      rect:
+        serializedVersion: 2
+        x: 1716
+        y: 0
+        width: 46
+        height: 33
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9849bea0d5261b010800000000000000
+      internalID: 1202850727239324809
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mage-Sheet Single Row_53
+      rect:
+        serializedVersion: 2
+        x: 1751
+        y: 20
+        width: 10
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 51901fb34fc031510800000000000000
+      internalID: 1518571742471194901
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mage-Sheet Single Row_54
+      rect:
+        serializedVersion: 2
+        x: 1762
+        y: 19
+        width: 10
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bbed517a114660f20800000000000000
+      internalID: 3388505796623326907
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mage-Sheet Single Row_55
+      rect:
+        serializedVersion: 2
+        x: 2062
+        y: 0
+        width: 17
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5d0d9c833832ef5d0800000000000000
+      internalID: -3026942853045956395
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mage-Sheet Single Row_56
+      rect:
+        serializedVersion: 2
+        x: 2174
+        y: 0
+        width: 17
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2d02b7383430e1a40800000000000000
+      internalID: 5340709796611563730
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mage-Sheet Single Row_57
+      rect:
+        serializedVersion: 2
+        x: 2286
+        y: 0
+        width: 17
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 92e98c48e43f888e0800000000000000
+      internalID: -1690834141516882391
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mage-Sheet Single Row_58
+      rect:
+        serializedVersion: 2
+        x: 2398
+        y: 0
+        width: 17
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bca965e7d5e4d0f30800000000000000
+      internalID: 4543373762545228491
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mage-Sheet Single Row_59
+      rect:
+        serializedVersion: 2
+        x: 2505
+        y: 0
+        width: 22
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bb8d81686ac6a6ec0800000000000000
+      internalID: -3572923891894921029
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mage-Sheet Single Row_60
+      rect:
+        serializedVersion: 2
+        x: 2623
+        y: 0
+        width: 23
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e73e972cd010839f0800000000000000
+      internalID: -488639400960728194
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mage-Sheet Single Row_61
+      rect:
+        serializedVersion: 2
+        x: 2731
+        y: 1
+        width: 24
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cf902853a94b39ad0800000000000000
+      internalID: -2696613177449117188
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mage-Sheet Single Row_62
+      rect:
+        serializedVersion: 2
+        x: 2844
+        y: 2
+        width: 21
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 91036fb9032f27eb0800000000000000
+      internalID: -4723446768569274343
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mage-Sheet Single Row_63
+      rect:
+        serializedVersion: 2
+        x: 2960
+        y: 3
+        width: 16
+        height: 33
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cea72e61881ee5920800000000000000
+      internalID: 2981067977981590252
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mage-Sheet Single Row_64
+      rect:
+        serializedVersion: 2
+        x: 931
+        y: 9
+        width: 8
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5ba62e382be938710800000000000000
+      internalID: 1694372374375459509
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mage-Sheet Single Row_65
+      rect:
+        serializedVersion: 2
+        x: 1139
+        y: 1
+        width: 17
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4222d37a6f60cb890800000000000000
+      internalID: -7441064827885379036
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mage-Sheet Single Row_66
+      rect:
+        serializedVersion: 2
+        x: 1190
+        y: 11
+        width: 9
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f309ec7aed843d680800000000000000
+      internalID: -8731555131405987777
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mage-Sheet Single Row_67
+      rect:
+        serializedVersion: 2
+        x: 1203
+        y: 14
+        width: 11
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2daa0dc34f32bc130800000000000000
+      internalID: 3588001060030032594
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mage-Sheet Single Row_68
+      rect:
+        serializedVersion: 2
+        x: 1296
+        y: 3
+        width: 32
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f86dad18d0e8471e0800000000000000
+      internalID: -2200978129213008241
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mage-Sheet Single Row_69
+      rect:
+        serializedVersion: 2
+        x: 1346
+        y: 1
+        width: 17
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 46fa154e91ed92930800000000000000
+      internalID: 4119067536993136484
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mage-Sheet Single Row_70
+      rect:
+        serializedVersion: 2
+        x: 1631
+        y: 0
+        width: 47
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d135b08f379780ed0800000000000000
+      internalID: -2447572858486172899
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mage-Sheet Single Row_71
+      rect:
+        serializedVersion: 2
+        x: 1745
+        y: 13
+        width: 15
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2ce2ffe61a01c3120800000000000000
+      internalID: 2394807387392257730
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mage-Sheet Single Row_72
+      rect:
+        serializedVersion: 2
+        x: 1762
+        y: 0
+        width: 24
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6b4e050818fa198a0800000000000000
+      internalID: -6300061432976186186
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mage-Sheet Single Row_73
+      rect:
+        serializedVersion: 2
+        x: 1246
+        y: 1
+        width: 25
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d0aac1153451aed20800000000000000
+      internalID: 3308480255124875789
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mage-Sheet Single Row_74
+      rect:
+        serializedVersion: 2
+        x: 1418
+        y: 0
+        width: 25
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b80ffed4868873590800000000000000
+      internalID: -7694531456773656437
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mage-Sheet Single Row_75
+      rect:
+        serializedVersion: 2
+        x: 1468
+        y: 0
+        width: 23
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e9cf9f18c46d74ca0800000000000000
+      internalID: -6032617551752987490
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mage-Sheet Single Row_76
+      rect:
+        serializedVersion: 2
+        x: 1536
+        y: 4
+        width: 16
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a1bd68edf4b9d32a0800000000000000
+      internalID: -6756073098647774438
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mage-Sheet Single Row_77
+      rect:
+        serializedVersion: 2
+        x: 1705
+        y: 2
+        width: 13
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 59214a7d0665b3440800000000000000
+      internalID: 4916618392139731605
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mage-Sheet Single Row_78
+      rect:
+        serializedVersion: 2
+        x: 1818
+        y: 4
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 25c0abfa3a205fea0800000000000000
+      internalID: -5839758439764849582
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      Mage-Sheet Single Row_0: 1230661023203659057
+      Mage-Sheet Single Row_1: -8062637905355349902
+      Mage-Sheet Single Row_10: 5053063643789998733
+      Mage-Sheet Single Row_11: 3764497784290857271
+      Mage-Sheet Single Row_12: 7533834823366349118
+      Mage-Sheet Single Row_13: -8049140452743541501
+      Mage-Sheet Single Row_14: -340990299605454864
+      Mage-Sheet Single Row_15: 911814699038093517
+      Mage-Sheet Single Row_16: -7813417741300490671
+      Mage-Sheet Single Row_17: 5397289423627075140
+      Mage-Sheet Single Row_18: 341523812123510337
+      Mage-Sheet Single Row_19: 3833575329764919744
+      Mage-Sheet Single Row_2: -5381661826392423743
+      Mage-Sheet Single Row_20: 1373368911925359628
+      Mage-Sheet Single Row_21: -3208006438953028035
+      Mage-Sheet Single Row_22: 1514695762092110455
+      Mage-Sheet Single Row_23: 1029165506260508504
+      Mage-Sheet Single Row_24: 4117129132767907299
+      Mage-Sheet Single Row_25: 3578568337165211048
+      Mage-Sheet Single Row_26: -8562027175512095595
+      Mage-Sheet Single Row_27: 4100783624719653417
+      Mage-Sheet Single Row_28: -4625635832122717295
+      Mage-Sheet Single Row_29: -3247537158086176652
+      Mage-Sheet Single Row_3: 4336472890859717164
+      Mage-Sheet Single Row_30: 8375887918878658113
+      Mage-Sheet Single Row_31: 880910488528132012
+      Mage-Sheet Single Row_32: -5319519545387864932
+      Mage-Sheet Single Row_33: 7340718712175448735
+      Mage-Sheet Single Row_34: -8950455197979372501
+      Mage-Sheet Single Row_35: 1763214407356138771
+      Mage-Sheet Single Row_36: -1113832420548590208
+      Mage-Sheet Single Row_37: 1160648899005421217
+      Mage-Sheet Single Row_38: 2112200473258224924
+      Mage-Sheet Single Row_39: -4591628563479624449
+      Mage-Sheet Single Row_4: -2740096285963210694
+      Mage-Sheet Single Row_40: -3998791457852502510
+      Mage-Sheet Single Row_41: -5457473795252024314
+      Mage-Sheet Single Row_42: 561243197474952564
+      Mage-Sheet Single Row_43: 6773942843300643810
+      Mage-Sheet Single Row_44: 9203947215836918685
+      Mage-Sheet Single Row_45: 4027955604284771160
+      Mage-Sheet Single Row_46: 7856857975776180861
+      Mage-Sheet Single Row_47: -7886995621063591646
+      Mage-Sheet Single Row_48: -403317537349760877
+      Mage-Sheet Single Row_49: 8941339415621122133
+      Mage-Sheet Single Row_5: -6376225335693726842
+      Mage-Sheet Single Row_50: -299635203047253613
+      Mage-Sheet Single Row_51: 4550048436170105327
+      Mage-Sheet Single Row_52: 1202850727239324809
+      Mage-Sheet Single Row_53: 1518571742471194901
+      Mage-Sheet Single Row_54: 3388505796623326907
+      Mage-Sheet Single Row_55: -3026942853045956395
+      Mage-Sheet Single Row_56: 5340709796611563730
+      Mage-Sheet Single Row_57: -1690834141516882391
+      Mage-Sheet Single Row_58: 4543373762545228491
+      Mage-Sheet Single Row_59: -3572923891894921029
+      Mage-Sheet Single Row_6: -730057398554268309
+      Mage-Sheet Single Row_60: -488639400960728194
+      Mage-Sheet Single Row_61: -2696613177449117188
+      Mage-Sheet Single Row_62: -4723446768569274343
+      Mage-Sheet Single Row_63: 2981067977981590252
+      Mage-Sheet Single Row_64: 1694372374375459509
+      Mage-Sheet Single Row_65: -7441064827885379036
+      Mage-Sheet Single Row_66: -8731555131405987777
+      Mage-Sheet Single Row_67: 3588001060030032594
+      Mage-Sheet Single Row_68: -2200978129213008241
+      Mage-Sheet Single Row_69: 4119067536993136484
+      Mage-Sheet Single Row_7: -3295601140541239814
+      Mage-Sheet Single Row_70: -2447572858486172899
+      Mage-Sheet Single Row_71: 2394807387392257730
+      Mage-Sheet Single Row_72: -6300061432976186186
+      Mage-Sheet Single Row_73: 3308480255124875789
+      Mage-Sheet Single Row_74: -7694531456773656437
+      Mage-Sheet Single Row_75: -6032617551752987490
+      Mage-Sheet Single Row_76: -6756073098647774438
+      Mage-Sheet Single Row_77: 4916618392139731605
+      Mage-Sheet Single Row_78: -5839758439764849582
+      Mage-Sheet Single Row_8: -8100496263907133665
+      Mage-Sheet Single Row_9: -7510709540649810476
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

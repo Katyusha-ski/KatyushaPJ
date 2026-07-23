@@ -173,7 +173,7 @@ SkillBase (SO, abstract)
 |---|---|---|
 | `SlimeE` | Melee | Alternates attack/hit animations |
 | `SkullE` | Melee | Default |
-| `NightBornE` | Melee | Spawns `DeathExplosion` on death |
+| `NightBorneE` | Melee | Explosion burst + HazardZone on death |
 | `GolemE` | Melee/Ranged hybrid | Has `SkillManager` (GolemMagic, StoneSpike) |
 | `NecromancerE` | Ranged | Implements `IEnemyRanged`, has kitting + heal states, 3 skills |
 
@@ -316,3 +316,4 @@ HP Regen: every 5 seconds, heal = HPRegen
 | `Assets/Script/HuongDan/ROADMAP_UNITY_FIREBASE_INTERN.md` | Firebase integration roadmap |
 | `Docs/Contexts/Katyusha_BatBoss_Context.md` | BatBoss architecture: FSM, Health, Pillar system, deflect mechanics |
 | `Docs/Contexts/Katyusha_VoidBoss_Context.md` | VoidBoss architecture: FSM, AI decision, Super Armor, BloodMoon, cleanup |
+| `Docs/Contexts/KatyushaPJ_Boss_System_Summary.md` | Boss system summary: BatBoss, VoidBoss, Duo Golem design |

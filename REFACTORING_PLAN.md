@@ -87,7 +87,7 @@ Assets/Script/EnemyThing/
     │   ├── SlimeE.cs               (updated)
     │   ├── SkullE.cs               (updated)
     │   ├── GolemE.cs               (updated)
-    │   └── NightBornE.cs           (updated)
+    │   └── NightBorneE.cs          (updated)
     └── Ranged/
         └── NecromancerE.cs         (updated)
 ```
@@ -770,7 +770,7 @@ public class GolemE : EnemyController
 }
 ```
 
-### 7.3 SlimeE, SkullE, NightBornE
+### 7.3 SlimeE, SkullE, NightBorneE
 
 Chỉ cần override `ExecuteAttack()` / `HandleEnemyDeath()` như hiện tại,  
 nhưng thay `animator.SetTrigger(x)` → `PlayAnimTrigger(x)`.

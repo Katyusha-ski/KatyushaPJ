@@ -257,11 +257,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 272402843423800930}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8565c2a2430b943438c346c954239a67, type: 3}
+  m_Script: {fileID: 11500000, guid: dd10732b17b02a54d8e8972b24a34848, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::SkullE
+  m_EditorClassIdentifier: Assembly-CSharp::NightBorneE
   attackRange: 1.5
   visionRange: 5
   attackCooldown: 2
-  lastTimeAttack: -Infinity
-  player: {fileID: 0}
+  explosionRadius: 2.5
+  explosionDamage: 15
+  hazardZonePrefab: {fileID: 0}

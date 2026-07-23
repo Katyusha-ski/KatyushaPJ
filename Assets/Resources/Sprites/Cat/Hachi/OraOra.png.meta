@@ -1,0 +1,340 @@
+fileFormatVersion: 2
+guid: 0b87772cf0a314a44a1fbf5cb3276314
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -7659288626604818720
+    second: OraOra_0
+  - first:
+      213: -1420519307550612281
+    second: OraOra_1
+  - first:
+      213: -1558048524225910060
+    second: OraOra_2
+  - first:
+      213: -1042570382207071193
+    second: OraOra_3
+  - first:
+      213: -4562799022062817241
+    second: OraOra_4
+  - first:
+      213: -1044965164796603080
+    second: OraOra_5
+  - first:
+      213: 1491656890894276081
+    second: OraOra_6
+  - first:
+      213: -9099905102383088615
+    second: OraOra_7
+  - first:
+      213: 5849854617300309995
+    second: OraOra_8
+  - first:
+      213: 294379730243852113
+    second: OraOra_9
+  - first:
+      213: -8128139986929199702
+    second: OraOra_10
+  - first:
+      213: 5225470675296447797
+    second: OraOra_11
+  - first:
+      213: -921985306518444749
+    second: OraOra_12
+  - first:
+      213: -961821632401759909
+    second: OraOra_13
+  - first:
+      213: -8730304659309316678
+    second: OraOra_14
+  - first:
+      213: 7432499166017712263
+    second: OraOra_15
+  - first:
+      213: -3708321109223522733
+    second: OraOra_16
+  - first:
+      213: -8677389071803103394
+    second: OraOra_17
+  - first:
+      213: 4374906636339838154
+    second: OraOra_18
+  - first:
+      213: 505182925163375756
+    second: OraOra_19
+  - first:
+      213: -7657353804309825583
+    second: OraOra_20
+  - first:
+      213: -5602064882308815669
+    second: OraOra_21
+  - first:
+      213: -712283376330215712
+    second: OraOra_22
+  - first:
+      213: -7953570385253344625
+    second: OraOra_23
+  - first:
+      213: 4523803480007702754
+    second: OraOra_24
+  - first:
+      213: -786375159343942194
+    second: OraOra_25
+  - first:
+      213: -1940903761870472932
+    second: OraOra_26
+  - first:
+      213: -4022293829404510569
+    second: OraOra_27
+  - first:
+      213: -8298690699418541601
+    second: OraOra_28
+  - first:
+      213: -8830494002943510593
+    second: OraOra_29
+  - first:
+      213: -8102769344666578396
+    second: OraOra_30
+  - first:
+      213: 5798100780558504131
+    second: OraOra_31
+  - first:
+      213: 9091157854468912119
+    second: OraOra_32
+  - first:
+      213: -2241924963178665858
+    second: OraOra_33
+  - first:
+      213: 3272909714041364733
+    second: OraOra_34
+  - first:
+      213: -6871351584835532278
+    second: OraOra_35
+  - first:
+      213: 1786521143015976183
+    second: OraOra_36
+  - first:
+      213: -152216840891534782
+    second: OraOra_37
+  - first:
+      213: -6457028807609213106
+    second: OraOra_38
+  - first:
+      213: -6666608269894237444
+    second: OraOra_39
+  - first:
+      213: 7061843927254115667
+    second: OraOra_40
+  - first:
+      213: 7671053033261777005
+    second: OraOra_41
+  - first:
+      213: 5209982228094662621
+    second: OraOra_42
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: OraOra_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0eeb703239db4b590800000000000000
+      internalID: -7659288626604818720
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OraOra_1
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 0
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7c4acdc473d494ce0800000000000000
+      internalID: -1420519307550612281
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OraOra_2
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 0
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4da61b24f13b06ae0800000000000000
+      internalID: -1558048524225910060
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OraOra_3
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 0
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 72c443bd2cb0881f0800000000000000
+      internalID: -1042570382207071193
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 37966112b0676f141814458537de52f6
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries:
+      - key: SpriteEditor.SliceSettings
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":4.0,"y":1.0},"gridSpriteSize":{"x":256.0,"y":256.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":2,"keepEmptyRects":false,"isAlternate":false}'
+    nameFileIdTable:
+      OraOra_0: -7659288626604818720
+      OraOra_1: -1420519307550612281
+      OraOra_2: -1558048524225910060
+      OraOra_3: -1042570382207071193
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
