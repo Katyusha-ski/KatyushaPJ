@@ -113,6 +113,8 @@ public class EnemyController : MonoBehaviour, IEnemyStateProvider, IEnemyMovemen
     public virtual IEnemyState GetKittingState() => stateFactory.CreateKittingState();
 
     // --- Animation events (called from Unity) ---
+    // VoidBoss overrides ExecuteAttack() as no-op và không gọi method này qua Animation Event
+    // hitbox damage của VoidBoss: Stomp/SpikePierce dùng OverlapCircleAll/OverlapBoxAll trực tiếp (SỬA 4)
     public virtual void DealNormalAttackDamage()
     {
         if (player != null && Vector2.Distance(transform.position, player.position) < attackRange)

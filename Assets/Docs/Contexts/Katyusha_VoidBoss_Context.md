@@ -52,10 +52,11 @@ EnemyController (base)
 ### 2.1 State Map
 
 ```
-Sleep (khởi tạo, animator.Play "Void_Sleep")
-  └── OnWakeUpComplete() → isAwake = true → UnlockFacing → ChangeState("VoidIdle")
-
 VoidIdle (VoidIdleState) — CUSTOM
+  ├── Khởi tạo: isAwake = false, animation Idle chạy xuyên suốt.
+  │     AI decision KHÔNG chạy khi chưa aggro.
+  │     Khi Player vào vùng phát hiện → WakeUpFromAggro()
+  │     → isAwake = true → AI decision bắt đầu.
   ├── OnEnter: UnlockFacing, reset DECISION_INTERVAL (0.5s)
   ├── AI decision mỗi 0.5s:
   │     Nếu distance <= meleeRange:
@@ -70,9 +71,11 @@ VoidIdle (VoidIdleState) — CUSTOM
 Stomp / SpikePierce / VoidSphere / AmbushSummon (GenericAttackState)
   ├── OnEnter → combat.PlayAnimTrigger("Stomp"/...)
   ├── [FACING LOCK] Boss không Flip trong suốt thời gian này
-  ├── Animation Event giữa clip:
-  │     ├── SpawnVoidSphere() / SpawnAmbushTrap() / ...
+  ├── Animation Event tại ranh giới frame 2 (riêng VoidSphere):
+  │     ├── SpawnVoidSphere() tại time 0.1667 (frame 2) — ranh giới cầu tách khỏi Boss
+  │     ├── Sau Instantiate → animator.Play() từ offset normalizedTime = 2/totalFrames
   │     └── activeProjectiles.Add(instantiated)
+  ├── Các clip khác (Stomp/SpikePierce/AmbushSummon): Animation Event giữa clip
   └── Timer (1.0s–1.2s) → SwitchTo("VoidIdle")  → UnlockFacing
 
 Pursuit (VoidPursuitState) — CUSTOM
@@ -137,6 +140,9 @@ private void CacheBossStates()
 - **Animation Event → Public Method:** `SpawnVoidSphere()`, `SpawnAmbushTrap()`, `SpawnBloodMoonWave()`, `OnAttackAnimEnd()`.
 - **`OnAttackAnimEnd()` fallback:** `SwitchTo("VoidIdle")` nếu current là `GenericAttackState`.
 - **Facing Lock:** Lock trước khi `SwitchTo` attack state, Unlock trong `VoidIdleState.OnEnter`.
+- **Wake-up (Aggro):** `WakeUpFromAggro()` set `isAwake = true`, UnlockFacing, SwitchTo("VoidIdle").
+  - **Không còn Sleep clip** — Boss dùng Idle animation xuyên suốt (SỬA 1).
+  - Cơ chế trigger "vùng phát hiện Player" gọi `WakeUpFromAggro()` **chưa implement** → cần Architect thêm sau.
 
 ---
 
@@ -173,7 +179,7 @@ public override void LookAtPlayer()
 
 **Cơ chế:**
 - `LockFacing()` gọi trong `PickMeleeAttack()`, `UseSkill1()`, `UseSkill2()`, `UseBloodMoon()` — trước khi SwitchTo attack state.
-- `UnlockFacing()` gọi trong `VoidIdleState.OnEnter()` và `OnWakeUpComplete()`.
+- `UnlockFacing()` gọi trong `VoidIdleState.OnEnter()` và `WakeUpFromAggro()`.
 - `LookAtPlayer()` override kiểm tra flag → nếu locked, không Flip.
 - `MoveTowardPlayer()` không override (non-virtual) nhưng không bao giờ chạy trong attack state vì GenericAttackState không gọi movement.
 
@@ -194,6 +200,14 @@ Mỗi lần spawn (từ Animation Event), object được add vào list:
 public void SpawnVoidSphere()
 {
     GameObject sphere = Instantiate(voidSpherePrefab, ...);
+    // Fly clip starts from frame 0 (no cast frames on projectile)
+    Animator sphereAnim = sphere.GetComponent<Animator>();
+    if (sphereAnim != null && sphereAnim.runtimeAnimatorController != null
+        && sphereAnim.runtimeAnimatorController.animationClips.Length > 0)
+    {
+        string clipName = sphereAnim.runtimeAnimatorController.animationClips[0].name;
+        sphereAnim.Play(clipName, 0, 0f);
+    }
     activeProjectiles.Add(sphere);
 }
 ```
@@ -239,7 +253,7 @@ public override void HandleEnemyDeath()
 
 ### 5.3 Hitbox Prefab Layer
 
-- Mọi Prefab đòn đánh (Stomp, SpikePierce, VoidSphere, AmbushTrap, BloodMoon) được instantiate ở Layer `EnemyAttack`.
+- Stomp/SpikePierce: damage xử lý trực tiếp trong Controller qua `OverlapCircleAll`/`OverlapBoxAll` — không cần Prefab hitbox riêng. Các đòn khác (VoidSphere, AmbushTrap, BloodMoon) dùng Prefab riêng, instantiate ở Layer `EnemyAttack`.
 - `EnemyAttack` layer **KHÔNG bị ignore** bởi `Player` → Collision Matrix cho phép `EnemyAttack` ↔ `Player` trigger.
 - Prefab tự quản lý vòng đời: `OnTriggerEnter2D` → `Health.TakeDamage()` → tự Destroy.
 - **TUYỆT ĐỐI không dùng** `Vector2.Distance` check cứng trong Controller.
@@ -314,8 +328,8 @@ bloodMoonReadyTime = Time.time + bloodMoonCooldown; // 45s
 |---|---|
 | Trigger | `"Stomp"` (GenericAttackState) |
 | Animation Event | `SpawnStompAoE()` |
-| Prefab | stompAoEPrefab — Layer `EnemyAttack` |
-| Effect | AoE damage + `StunEffect` (prefab `OnTriggerEnter2D` → Health.TakeDamage) |
+| Damage Method | `Physics2D.OverlapCircleAll(transform.position, stompRadius, playerLayer)` — trực tiếp trong Controller, không cần Prefab hitbox |
+| Effect | `stompDamage` + `StunEffect(stompStunDuration)` lên Player |
 
 ### 7.2 NA2 — Spike Pierce
 
@@ -323,19 +337,22 @@ bloodMoonReadyTime = Time.time + bloodMoonCooldown; // 45s
 |---|---|
 | Trigger | `"SpikePierce"` (GenericAttackState) |
 | Animation Event | `SpawnSpikePierce()` |
-| Prefab | spikePiercePrefab — Layer `EnemyAttack` |
-| Effect | Sát thương vật lý cực lớn đường thẳng |
+| Damage Method | `Physics2D.OverlapBoxAll(center, size, 0f, playerLayer)` — hình chữ nhật dài theo hướng Boss đang face, không cần Prefab hitbox |
+| Effect | `spikeDamage` sát thương vật lý đường thẳng |
 
 ### 7.3 Skill 1 — Void Sphere
 
 | Element | Detail |
 |---|---|
 | Trigger | `"VoidSphere"` (GenericAttackState) |
-| Animation Event | `SpawnVoidSphere()` |
+| Animation Event | `SpawnVoidSphere()` — **tại ranh giới frame 2** (time 0.1667) |
+| Animation Timing | Frame 0–2: Boss vận cầu (cầu dính vào sprite Boss). Frame 2 trở đi: cầu tồn tại độc lập |
 | Prefab | `voidSpherePrefab` — Layer `EnemyAttack` |
+| Prefab Animation | Chia 2 clip: `VoidSphere_Fly` (frame 2-4, 3 frame, 12fps, looping) + `VoidSphere_Explode` (frame 5-13, 9 frame, 12fps, non-looping). `sphereAnim.Play("VoidSphere_Fly", 0, 0f)` khi spawn. `VoidSphere.cs` gọi `animator.SetTrigger("Explode")` khi `OnTriggerEnter2D` (Player). Animation Event `OnVoidSphereExplodeEnd()` → ReturnToPool/Destroy |
+| Prefab Script | `VoidSphereProjectile.cs` (standalone) — gắn trực tiếp trên prefab. Homing: `Rigidbody2D.velocity` → Player mỗi FixedUpdate |
 | Spawn Position | `transform.position` (từ boss) |
 | Post-spawn | Homing → Player (VoidSphere tự điều hướng) |
-| On Impact | Damage + Micro-Stun + Slow + Debuff Giảm Giáp |
+| On Impact | `OnTriggerEnter2D` → `Health.TakeDamage(damage)` + `StunEffect(0.5s)` + `StatModifierEffect(Slow: -50% MovementSpeed, 2s)` + `StatModifierEffect(Giảm Giáp: -15 Armor, 3s)` → `Destroy(gameObject)` |
 | Cooldown | 4s |
 
 ### 7.4 Skill 2 — Ambush Summon
@@ -346,6 +363,7 @@ bloodMoonReadyTime = Time.time + bloodMoonCooldown; // 45s
 | Animation Event | `SpawnAmbushTrap()` |
 | Prefab | `ambushTrapPrefab` — Layer `EnemyAttack` |
 | Spawn Position | `player.position` (dưới chân Player) |
+| Prefab Script | `AmbushTrapController.cs` (standalone) — gắn trực tiếp trên prefab. Animation Event `DealDamage()` → `Health.TakeDamage` + `SilentEffect`. `OnAnimEnd()` → `Destroy` |
 | Behavior | Trap trồi lên, chém 1 nhát, tự huỷ |
 | On Hit | Damage lớn + `SilentEffect` (Câm lặng) |
 | Cooldown | 10s |
@@ -357,9 +375,13 @@ bloodMoonReadyTime = Time.time + bloodMoonCooldown; // 45s
 | Trigger | `"BloodMoon"` (BloodMoonState) |
 | Spawn Method | `SpawnBloodMoonWave()` gọi mỗi wave |
 | Prefab | `bloodMoonTelegraphPrefab` — Layer `EnemyAttack` |
+| Prefab Script | `BloodMoonTelegraphController.cs` (standalone) — **gắn trực tiếp trên prefab** (không AddComponent runtime). `damageRadius`/`damageAmount` là `[SerializeField]` |
 | Waves | 5 waves × 5 telegraphs/wave, interval 0.8s |
 | Spawn Pattern | Random ±X (`Player.X ± a`) + ±Y (`Player.Y ± b`) + **Anti-Overlap** |
-| Behavior | Telegraph → delay → nổ DPS cực khủng (prefab tự quản lý) |
+| Animation | `BloodExplosion.controller` + `BloodExplosion.anim` (8 frame, 12fps, non-looping). Frame 0 = telegraph indicator (Blood Explosion-Sheet_0) |
+| Damage Timing | `DealAoEDamage()` tại frame 3 (time 0.25) — OverlapCircleAll (r=2.5f) → `Health.TakeDamage(30)` — **chỉ 1 lần** |
+| Cleanup Timing | `OnExplosionAnimEnd()` tại frame cuối (time 0.58333) → `ObjectPool.ReturnToPool()` (không Destroy trực tiếp) |
+| Anti-Double-Damage | `hasDealtDamage` flag reset trong `OnEnable()`, guard trong `DealAoEDamage()` |
 | Cooldown | 45s |
 
 #### Anti-Overlap Algorithm
@@ -404,11 +426,11 @@ Mỗi wave sinh ra tới 5 telegraph tại vị trí ngẫu nhiên xung quanh Pl
 
 | Clip | Method | Timing | Note |
 |---|---|---|---|
-| `Stomp` | `SpawnStompAoE()` | Giữa clip | Prefab Layer `EnemyAttack` |
-| `SpikePierce` | `SpawnSpikePierce()` | Giữa clip | Prefab Layer `EnemyAttack` |
-| `VoidSphere` | `SpawnVoidSphere()` | Giữa clip | + `activeProjectiles.Add()` |
-| `AmbushSummon` | `SpawnAmbushTrap()` | Giữa clip | + `activeProjectiles.Add()` |
-| `BloodMoon` | (state tự quản lý) | N/A | + `activeProjectiles.Add()` |
+| `VoidBoss_Atk1` (Stomp) | `SpawnStompAoE()` | 0.4167 (mid clip — impact) | + `OnAttackAnimEnd()` tại 0.6667 |
+| `VoidBoss_Atk2` (SpikePierce) | `SpawnSpikePierce()` | 0.25 (mid clip — impact) | + `OnAttackAnimEnd()` tại 0.4167 |
+| `VoidBoss_Skill1` (VoidSphere) | `SpawnVoidSphere()` | **Ranh giới frame 2** (0.1667) — cầu dính Boss frame 0-2 | Prefab play `VoidSphere_Fly` từ frame 0. Prefab `OnTriggerEnter2D` → `SetTrigger("Explode")` → `VoidSphere_Explode`. `OnAttackAnimEnd()` tại 0.4667 |
+| `VoidBoss_Skill2` (AmbushSummon) | `SpawnAmbushTrap()` | 0.3333 (mid clip — triệu hồi) | + `OnAttackAnimEnd()` tại 0.5 |
+| `VoidBoss_Skill3` (BloodMoon) | (state tự quản lý wave timer) | N/A — đã xoá event | `BloodMoonState.OnUpdate()` spawn wave mỗi 0.8s. Chỉ giữ `OnAttackAnimEnd()` an toàn |
 | Any attack | `OnAttackAnimEnd()` | Cuối clip | Fallback: SwitchTo("VoidIdle") |
 
 ```csharp
@@ -574,18 +596,52 @@ Die Duration              = 2f
 
 | # | Issue | Priority | Ghi chú |
 |---|---|---|---|
-| 1 | Prefab `voidSpherePrefab` chưa implement | High | Homing projectile + hazard zone |
-| 2 | Prefab `ambushTrapPrefab` chưa implement | High | Trap Layer `EnemyAttack`, tự huỷ |
-| 3 | Prefab `bloodMoonTelegraphPrefab` chưa implement | High | Telegraph → delayed explosion |
-| 4 | Prefab `stompAoEPrefab` / `spikePiercePrefab` chưa có | High | Cần spawn method + prefab field |
-| 5 | Animator Controller chưa tạo trigger set | High | Stomp, SpikePierce, VoidSphere, AmbushSummon, BloodMoon, Die, Run |
-| 6 | `SpawnStompAoE()` / `SpawnSpikePierce()` chưa có trong controller | Medium | Cần thêm method + prefab field |
-| 7 | Boss animation clip length chưa đồng bộ `animDuration` | Medium | Sync sau khi có clip |
+| 1 | ~~Prefab `voidSpherePrefab` chưa implement~~ | ~~High~~ | ✅ **Hoàn tất.** VoidSphere.prefab có Animator + controller `VoidSphere_Projectile.controller` + `VoidSphere_Projectile.anim` (14 frame từ Void sphere-Sheet.png, 12fps, looping). Default sprite là Void sphere-Sheet_0 |
+| 2 | ~~Prefab `ambushTrapPrefab` chưa implement~~ | ~~High~~ | ✅ **Đã tạo** `Assets/Resources/Prefab/Effect/AmbushTrap.prefab`. SpriteRenderer + Rigidbody2D + BoxCollider2D(trigger) + DamageSource(EnemySkill) |
+| 3 | ~~Prefab `bloodMoonTelegraphPrefab` chưa implement~~ | ~~High~~ | ✅ **Đã tạo** `Assets/Resources/Prefab/Effect/BloodMoonTelegraph.prefab`. SpriteRenderer + Rigidbody2D + BoxCollider2D(trigger) + DamageSource(EnemySkill) |
+| 4 | ~~Prefab `stompAoEPrefab` / `spikePiercePrefab` chưa có~~ | ~~High~~ | ❌ **Đã đổi hướng:** Không dùng Prefab hitbox riêng. Stomp/SpikePierce dùng `OverlapCircleAll`/`OverlapBoxAll` trực tiếp trong Controller (SỬA 4). Prefab StompAoE/SpikePierce đã tạo trước đó **không dùng nữa** |
+| 5 | ~~Animator Controller chưa tạo trigger set~~ | ~~High~~ | ✅ **Đã sửa**. `VoidBoss.controller` có 7 parameters: Run(Bool), Stomp/SpikePierce/VoidSphere/AmbushSummon/BloodMoon/Die(Triggers). AnyState transitions cho tất cả triggers. Thêm VoidBoss_Die state (tạm dùng Idle anim — chờ animation thật) |
+| 6 | ~~`VoidBoss.prefab` chưa tồn tại~~ | ~~High~~ | ✅ **Đã tạo** `Assets/Resources/Prefab/Enemy/VoidBoss.prefab` gồm: Transform, SpriteRenderer, Animator (VoidBoss.controller), VoidBossController, Rigidbody2D, BoxCollider2D, Health(500HP), CharacterStats. `bossSprite` tự trỏ SpriteRenderer. **Architect cần:** assign prefab references (hitbox prefabs), assign deathVFX, thêm collider hitbox (trigger) nếu cần |
+| 7 | Boss animation clip length chưa đồng bộ `animDuration` | Medium | Animation hiện tại (Atk1/Atk2, timing lệch design) là bản placeholder dựng tạm để test flow — KHÔNG phải bản final, chưa cần sync animDuration/tên trigger. Sẽ đồng bộ lại khi có animation chính thức |
 | 8 | `EnemyController.MoveTowardPlayer()` non-virtual | Low | Facing Lock an toàn vì GenericAttackState không gọi movement |
+| 9 | ~~Bug B14: Double Destroy telegraph khi pool null~~ | ~~Critical~~ | ✅ **Đã fix**: `activeTelegraphs` tách riêng khỏi `activeProjectiles`. Telegraph CHỈ vào 1 list, cleanup xử lý đúng 1 lần |
+| 10 | ~~Bug B15: ObjectPool thiếu tracking borrowed vs available~~ | ~~Medium~~ | ✅ **Đã fix** — Option B (PoolMember). Queue chỉ chứa available object. Thêm `Debug.LogWarning("[ObjectPool] Pool '...' exhausted...")` khi queue cạn. Nếu thấy warning này thường xuyên, cần tăng pool size trong Inspector |
+| 11 | **TODO** Animation Die chưa có cho bất kỳ Boss nào | Medium | `VoidBoss_Die.anim` là placeholder (6 sprite keyframe từ sheet VoidBoss, non-looping, 0.83s). Animation dùng sprite Idle. Cần asset artist tạo sprite Die riêng. Xem `KatyushaPJ_Boss_System_Summary.md` mục 5.5 |
+| 12 | **TODO** Assign hitbox prefabs vào VoidBoss.prefab Inspector | High | voidSpherePrefab, ambushTrapPrefab, bloodMoonTelegraphPrefab đang `{fileID: 0}`. ~~stompAoEPrefab/spikePiercePrefab~~ không cần nữa — dùng Overlap check trực tiếp. Cần kéo prefab vào Inspector trong Unity |
+| 13 | **TODO** BossHealthBarUI trong scene | High | Prefab đã tạo tại `Assets/Resources/Prefab/UI/BossHealthBarUI.prefab`. **Architect cần:** kéo vào Canvas scene, gọi `SetHealthBar()` từ script scene |
+| 14 | **TODO** VoidBoss maxHealth chưa chốt số | High | Prefab hiện để tạm 500HP — con số tự đặt, **không có trong design**. Architect cần xác nhận hoặc assign trong Inspector |
+| 15 | **TODO** VoidBoss_Die.anim .meta GUID đã có | Done | `9ebbb5e1bfb812144bbe36ba82b18336`. Đã cập nhật vào controller Die state |
+| 16 | ~~VoidSphere_Projectile.anim + controller~~ | ~~Done~~ | ĐÃ XOÁ. Thay bằng `VoidSphere_Fly.anim` (frame 2-4, loop) + `VoidSphere_Explode.anim` (frame 5-13, non-loop, event OnVoidSphereExplodeEnd) + `VoidSphere.controller` (trigger Explode: Fly→Explode). `VoidSphere.cs` xử lý OnTriggerEnter2D→Explode→cleanup |
+| 17 | **DONE** BloodExplosion.anim | Done | 8 frame từ Blood Explosion-Sheet.png (PPU=100, 64×64, GUID `c944141a8eb358b4f81952e41097aef9`). 12fps, non-looping. Chưa gắn prefab nào — chờ Architect dùng sau |
 
 ---
 
-## 13. FILE MAP
+## 13. TRẠNG THÁI UNITY EDITOR
+
+Các hạng mục dưới đây **không phải bug code** — là phần việc Editor-side, cần làm sau khi code hoàn thiện:
+
+| Hạng mục | Trạng thái | Ghi chú |
+|---|---|---|
+| **Animator Controller** `VoidBoss.controller` | ✅ Complete | 7 parameters (Run Bool + 6 Triggers). AnyState transitions. VoidBoss_Die state (placeholder). Xem mục 7.6 cho event table |
+| **Animation Clips** — Die | ⚠️ Placeholder | `VoidBoss_Die.anim` đã tạo (6 sprite keyframe, non-looping, 0.83s) nhưng dùng sprite Idle. **Cần asset artist tạo sprite Die riêng.** Không cần `Void_Sleep` — Boss dùng Idle xuyên suốt (SỬA 1) |
+| **Animation Events** trong clip | ✅ Complete | Tất cả 5 clip (Atk1, Atk2, Skill1, Skill2, Skill3) đã có Animation Events: Spawn method tại frame 2 + OnAttackAnimEnd tại frame cuối |
+| **VoidBoss.prefab** | ⚠️ Tạo rồi — chờ assign refs | `Assets/Resources/Prefab/Enemy/VoidBoss.prefab`. **Cần:** kéo voidSpherePrefab, ambushTrapPrefab, bloodMoonTelegraphPrefab vào Inspector, assign deathVFX, set collider size |
+| **voidSpherePrefab** | ✅ Complete | `Assets/Resources/Prefab/Effect/VoidSphere.prefab`. CircleCollider2D(Trigger) + Rigidbody2D(Kinematic) + `VoidSphereProjectile.cs` (homing + damage + stun/slow/armor debuff → destroy) |
+| **VoidSphere_Fly.anim** | ✅ Complete | `Assets/Animation/Enemy/VoidBoss/VoidSphere_Fly.anim` (frame 2-4, 3 frame, 12fps, loop). Void sphere-Sheet.png |
+| **VoidSphere_Explode.anim** | ✅ Complete | `Assets/Animation/Enemy/VoidBoss/VoidSphere_Explode.anim` (frame 5-13, 9 frame, 12fps, non-loop). Event `OnVoidSphereExplodeEnd` tại frame cuối |
+| **BloodExplosion.anim** | ✅ Complete | `Assets/Animation/Enemy/VoidBoss/BloodExplosion.anim` (8 frame Blood Explosion-Sheet, 12fps, non-looping). Chưa gắn prefab — dùng sau |
+| **ambushTrapPrefab** | ✅ Complete | `Assets/Resources/Prefab/Effect/AmbushTrap.prefab`. BoxCollider2D(Trigger) + Rigidbody2D(Kinematic) + `AmbushTrapController.cs` (damage + SilentEffect → destroy) |
+| **bloodMoonTelegraphPrefab** | ✅ Complete | `Assets/Resources/Prefab/Effect/BloodMoonTelegraph.prefab`. CircleCollider2D(Trigger) + `BloodMoonTelegraphController.cs` gắn trực tiếp (không AddComponent). `damageRadius`/`damageAmount` config qua Inspector |
+| ~~stompAoEPrefab~~ | ❌ **Không dùng** | Đã đổi sang `OverlapCircleAll` trực tiếp trong Controller. Prefab cũ giữ lại nhưng không reference |
+| ~~spikePiercePrefab~~ | ❌ **Không dùng** | Đã đổi sang `OverlapBoxAll` trực tiếp trong Controller. Prefab cũ giữ lại nhưng không reference |
+| **Layer Collision Matrix** | ✅ Complete | `Enemy`(7) × `Player`(3) = IGNORE. `EnemyAttack`(10) × `Player`(3) = enabled |
+| **ObjectPool.prefab** | ✅ Tạo rồi | `Assets/Resources/Prefab/ObjectPool.prefab` với entry `BloodMoonTelegraph` (size 25) |
+| **BossHealthBarUI** trong scene | ⚠️ Prefab tạo rồi | `Assets/Resources/Prefab/UI/BossHealthBarUI.prefab` — WorldSpace Canvas với Slider + Fill + Border + BossnameText. **Cần:** kéo vào scene, gọi `SetHealthBar()` |
+| **VoidBoss_Die.anim .meta** | ❌ Chưa có | Die state tạm dùng Idle anim GUID. Cần Unity Editor để sinh GUID thật cho placeholder clip |
+
+---
+
+## 14. FILE MAP
 
 ```
 Assets/Script/EnemyThing/
@@ -613,7 +669,7 @@ Assets/Script/EnemyThing/
 
 ---
 
-## 14. ARCHITECT DECISIONS (2026-07-18)
+## 15. ARCHITECT DECISIONS (2026-07-18)
 
 ### Decision 1 — Ultimate Priority (VoidBoss)
 
@@ -651,3 +707,32 @@ Assets/Script/EnemyThing/
 | Giải pháp | **50/50 pure random** — không distance check, không conditional logic |
 | File áp dụng | `BatBossController.PickNextAttack()` |
 | Trạng thái | ✅ Giữ nguyên. Xem `Katyusha_BatBoss_Context.md` |
+
+### Decision 5 — ObjectPool tracking (đã fix)
+
+| Mục | Chi tiết |
+|-----|----------|
+| Vấn đề | `ObjectPool.SpawnFromPool()` dequeue rồi enqueue ngay → không phân biệt object đang dùng vs rảnh. Có thể reposition object đang active. Ảnh hưởng Loot + VoidBoss BloodMoon |
+| Giải pháp | **Option B** — PoolMember component gắn trên mỗi object (tự động trong Awake). Queue chỉ chứa available object. `SpawnFromPool` = Dequeue (không re-enqueue). `ReturnToPool` = đọc PoolMember → Enqueue đúng queue. Khi queue rỗng → Instantiate fallback + `Debug.LogWarning` cảnh báo pool size thiếu |
+| File áp dụng | `Pattern/PoolMember.cs` (mới), `Pattern/ObjectPool.cs` (sửa 3 method) |
+| Impact callers | ✅ 0 caller cần sửa: LootManager, ItemFloat, VoidBossController giữ nguyên signature |
+| Trạng thái | ✅ **Đã implement** |
+
+### Decision 6 — Bỏ Sleep animation, dùng Idle xuyên suốt (SỬA 1, 2026-07-26)
+
+| Mục | Chi tiết |
+|-----|----------|
+| Vấn đề | VoidBoss không có clip/chuyển animation riêng cho "chưa phát hiện Player" — animation Idle chạy xuyên suốt |
+| Giải pháp | Xoá `animator.Play("Void_Sleep", ...)`. `isAwake = false` gate AI logic, không gate animation. Thêm `WakeUpFromAggro()` để trigger aggro. Animation Idle chạy từ Start |
+| File áp dụng | `VoidBossController.cs` (Start, OnWakeUpComplete → WakeUpFromAggro) |
+| Còn thiếu | Cơ chế trigger "vùng phát hiện Player" gọi `WakeUpFromAggro()` **chưa có** — Architect cần tự thêm |
+| Trạng thái | ✅ Code đã sửa |
+
+### Decision 7 — Timing Animation Event Void Sphere (SỬA 2, 2026-07-26)
+
+| Mục | Chi tiết |
+|-----|----------|
+| Vấn đề | Frame 0-2 là Boss vận cầu (dính vào sprite), frame 2+ cầu độc lập — event phải đúng ranh giới |
+| Giải pháp | `SpawnVoidSphere()` tại time 0.1667 (frame 2). Prefab Instantiate → `animator.Play` từ offset `2/totalFrames` |
+| File áp dụng | `VoidBoss_Skill1.anim` (event), `VoidBossController.cs` (offset code), Context docs |
+| Trạng thái | ✅ Đã implement |

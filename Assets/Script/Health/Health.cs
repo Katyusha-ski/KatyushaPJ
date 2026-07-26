@@ -99,6 +99,14 @@ public class Health : MonoBehaviour
 
         float dmgReduction = characterStats != null ? characterStats.DmgR / 100f : 0f;
         float armor = characterStats != null ? characterStats.Armor : 0f;
+
+        if (damageSource != null)
+        {
+            CharacterStats attackerStats = damageSource.GetComponent<CharacterStats>();
+            if (attackerStats != null && attackerStats.ArmorPierce > 0f)
+                armor *= (1f - attackerStats.ArmorPierce / 100f);
+        }
+
         float finalDamage = Mathf.Max(1f, (damage - armor) * (1f - dmgReduction));
         if (virtualShield > 0)
         {
@@ -126,7 +134,8 @@ public class Health : MonoBehaviour
             if (enemyController != null)
             {
                 IEnemyState hurtState = enemyController.GetHurtState(enemyController.GetCurrentState());
-                enemyController.ChangeState(hurtState);
+                if (hurtState != enemyController.GetCurrentState())
+                    enemyController.ChangeState(hurtState);
             }
         }
     }

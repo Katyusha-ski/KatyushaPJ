@@ -6,7 +6,7 @@ AnimationClip:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: VoidBoss_Idle
+  m_Name: VoidBoss_Die
   serializedVersion: 7
   m_Legacy: 0
   m_Compressed: 0
@@ -26,14 +26,10 @@ AnimationClip:
       value: {fileID: -8564221113473020370, guid: bee1be23b3a50fb448c39c5d2090bc02, type: 3}
     - time: 0.25
       value: {fileID: 5074003677872096747, guid: bee1be23b3a50fb448c39c5d2090bc02, type: 3}
-    - time: 0.33333334
-      value: {fileID: 463284076773125320, guid: bee1be23b3a50fb448c39c5d2090bc02, type: 3}
     - time: 0.41666666
+      value: {fileID: 463284076773125320, guid: bee1be23b3a50fb448c39c5d2090bc02, type: 3}
+    - time: 0.5833333
       value: {fileID: -6752182369573039849, guid: bee1be23b3a50fb448c39c5d2090bc02, type: 3}
-    - time: 0.5
-      value: {fileID: 299402412938383834, guid: bee1be23b3a50fb448c39c5d2090bc02, type: 3}
-    - time: 0.6666667
-      value: {fileID: -928271950951402507, guid: bee1be23b3a50fb448c39c5d2090bc02, type: 3}
     - time: 0.75
       value: {fileID: -12512172735926347, guid: bee1be23b3a50fb448c39c5d2090bc02, type: 3}
     attribute: m_Sprite
@@ -63,8 +59,6 @@ AnimationClip:
     - {fileID: 5074003677872096747, guid: bee1be23b3a50fb448c39c5d2090bc02, type: 3}
     - {fileID: 463284076773125320, guid: bee1be23b3a50fb448c39c5d2090bc02, type: 3}
     - {fileID: -6752182369573039849, guid: bee1be23b3a50fb448c39c5d2090bc02, type: 3}
-    - {fileID: 299402412938383834, guid: bee1be23b3a50fb448c39c5d2090bc02, type: 3}
-    - {fileID: -928271950951402507, guid: bee1be23b3a50fb448c39c5d2090bc02, type: 3}
     - {fileID: -12512172735926347, guid: bee1be23b3a50fb448c39c5d2090bc02, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
@@ -76,7 +70,7 @@ AnimationClip:
     m_Level: 0
     m_CycleOffset: 0
     m_HasAdditiveReferencePose: 0
-    m_LoopTime: 1
+    m_LoopTime: 0
     m_LoopBlend: 0
     m_LoopBlendOrientation: 0
     m_LoopBlendPositionY: 0

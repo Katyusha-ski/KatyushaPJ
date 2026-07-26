@@ -11,6 +11,19 @@ public class VoidBossController : EnemyController
     [SerializeField] private GameObject ambushTrapPrefab;
     [SerializeField] private GameObject bloodMoonTelegraphPrefab;
 
+    [Header("Stomp")]
+    [SerializeField] private float stompRadius = 3f;
+    [SerializeField] private int stompDamage = 20;
+    [SerializeField] private float stompStunDuration = 1f;
+
+    [Header("Spike Pierce")]
+    [SerializeField] private float spikeRange = 5f;
+    [SerializeField] private float spikeWidth = 1.5f;
+    [SerializeField] private int spikeDamage = 15;
+
+    [Header("Layer Masks")]
+    [SerializeField] private LayerMask playerLayer;
+
     [Header("Skill Cooldowns")]
     [SerializeField] private float skill1Cooldown = 4f;
     [SerializeField] private float skill2Cooldown = 10f;
@@ -36,7 +49,12 @@ public class VoidBossController : EnemyController
     private Color originalColor;
     private bool isDead;
     private bool isAwake;
-    private int cachedMaxHP;
+
+    private void OnValidate()
+    {
+        if (visionRange <= meleeRange)
+            Debug.LogWarning($"VoidBoss: visionRange ({visionRange}) <= meleeRange ({meleeRange}). Boss may loop between Pursuit and VoidIdle. Set visionRange > meleeRange in Inspector.");
+    }
 
     private const string BLOOD_MOON_POOL_TAG = "BloodMoonTelegraph";
 
@@ -102,7 +120,9 @@ public class VoidBossController : EnemyController
         animationCtrl = new AnimationController(animator);
         stateFactory = null;
 
-        cachedMaxHP = (int)characterStats.MaxHP;
+        Health health = GetComponent<Health>();
+        if (health != null)
+            health.OnDamaged += _ => FlashHurt();
 
         if (bossSprite != null)
             originalColor = bossSprite.color;
@@ -110,7 +130,6 @@ public class VoidBossController : EnemyController
         CacheBossStates();
 
         isAwake = false;
-        animator.Play("Void_Sleep", 0, 0f);
     }
 
     protected override void Update()
@@ -165,6 +184,18 @@ public class VoidBossController : EnemyController
     {
         if (voidSpherePrefab == null || player == null) return;
         GameObject sphere = Instantiate(voidSpherePrefab, transform.position, Quaternion.identity);
+        Animator sphereAnim = sphere.GetComponent<Animator>();
+        if (sphereAnim != null && sphereAnim.runtimeAnimatorController != null)
+        {
+            int clipCount = sphereAnim.runtimeAnimatorController.animationClips.Length;
+            if (clipCount > 0)
+            {
+                string clipName = sphereAnim.runtimeAnimatorController.animationClips[0].name;
+                sphereAnim.Play(clipName, 0, 0f);
+            }
+        }
+        if (sphere.GetComponent<VoidSphereProjectile>() == null)
+            sphere.AddComponent<VoidSphereProjectile>();
         activeProjectiles.Add(sphere);
     }
 
@@ -173,6 +204,39 @@ public class VoidBossController : EnemyController
         if (ambushTrapPrefab == null || player == null) return;
         GameObject trap = Instantiate(ambushTrapPrefab, player.position, Quaternion.identity);
         activeProjectiles.Add(trap);
+    }
+
+    public void SpawnStompAoE()
+    {
+        Collider2D[] hits = Physics2D.OverlapCircleAll(transform.position, stompRadius, playerLayer);
+        foreach (var hit in hits)
+        {
+            Health health = hit.GetComponent<Health>();
+            if (health != null)
+            {
+                health.TakeDamage(stompDamage, gameObject);
+                StatusEffectController sec = hit.GetComponent<StatusEffectController>();
+                if (sec == null) sec = hit.gameObject.AddComponent<StatusEffectController>();
+                sec.ApplyEffect(new StunEffect(stompStunDuration, hit.gameObject));
+            }
+        }
+    }
+
+    public void SpawnSpikePierce()
+    {
+        int dir = GetDirection();
+        Vector2 center = new Vector2(
+            transform.position.x + dir * spikeRange * 0.5f,
+            transform.position.y
+        );
+        Vector2 size = new Vector2(spikeRange, spikeWidth);
+        Collider2D[] hits = Physics2D.OverlapBoxAll(center, size, 0f, playerLayer);
+        foreach (var hit in hits)
+        {
+            Health health = hit.GetComponent<Health>();
+            if (health != null)
+                health.TakeDamage(spikeDamage, gameObject);
+        }
     }
 
     public void SpawnBloodMoonWave()
@@ -222,7 +286,8 @@ public class VoidBossController : EnemyController
                     t = Object.Instantiate(bloodMoonTelegraphPrefab, candidate, Quaternion.identity);
                 }
 
-                activeProjectiles.Add(t);
+                if (t.GetComponent<BloodMoonTelegraphController>() == null)
+                    t.AddComponent<BloodMoonTelegraphController>();
                 activeTelegraphs.Add(t);
             }
         }
@@ -239,6 +304,16 @@ public class VoidBossController : EnemyController
         isAwake = true;
         UnlockFacing();
         ChangeState(stateCache["VoidIdle"]);
+    }
+
+    public void WakeUpFromAggro()
+    {
+        if (!isAwake)
+        {
+            isAwake = true;
+            UnlockFacing();
+            ChangeState(stateCache["VoidIdle"]);
+        }
     }
 
     // ============================================================

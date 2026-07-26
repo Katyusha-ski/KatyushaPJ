@@ -43,6 +43,8 @@ public class ObjectPool : MonoBehaviour
                 GameObject obj = Instantiate(pool.prefab, poolContainer.transform);
                 obj.name = pool.prefab.name + "_" + i;
                 obj.SetActive(false);
+                PoolMember pm = obj.AddComponent<PoolMember>();
+                pm.poolTag = pool.tag;
                 objectPool.Enqueue(obj);
             }
 
@@ -58,20 +60,45 @@ public class ObjectPool : MonoBehaviour
             return null;
         }
 
-        GameObject objectToSpawn = poolDictionary[tag].Dequeue();
+        Queue<GameObject> queue = poolDictionary[tag];
+
+        if (queue.Count == 0)
+        {
+            Pool poolDef = pools.Find(p => p.tag == tag);
+            if (poolDef == null || poolDef.prefab == null)
+            {
+                Debug.LogWarning($"[ObjectPool] Pool '{tag}' exhausted and no prefab found for fallback.");
+                return null;
+            }
+            Debug.LogWarning($"[ObjectPool] Pool '{tag}' exhausted — falling back to Instantiate. Consider increasing pool size.");
+            GameObject fallback = Object.Instantiate(poolDef.prefab, position, rotation);
+            fallback.name = poolDef.prefab.name + "_fallback";
+            PoolMember pm = fallback.AddComponent<PoolMember>();
+            pm.poolTag = tag;
+            return fallback;
+        }
+
+        GameObject objectToSpawn = queue.Dequeue();
 
         objectToSpawn.SetActive(true);
         objectToSpawn.transform.position = position;
         objectToSpawn.transform.rotation = rotation;
-
-        poolDictionary[tag].Enqueue(objectToSpawn);
 
         return objectToSpawn;
     }
 
     public void ReturnToPool(GameObject obj)
     {
-        obj.SetActive(false);
-        obj.transform.position = Vector3.zero;
+        PoolMember member = obj.GetComponent<PoolMember>();
+        if (member != null && poolDictionary.ContainsKey(member.poolTag))
+        {
+            obj.SetActive(false);
+            obj.transform.position = Vector3.zero;
+            poolDictionary[member.poolTag].Enqueue(obj);
+        }
+        else
+        {
+            Destroy(obj);
+        }
     }
 }

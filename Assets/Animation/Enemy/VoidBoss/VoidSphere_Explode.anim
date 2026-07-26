@@ -6,7 +6,7 @@ AnimationClip:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: VoidBoss_Skill2
+  m_Name: VoidSphere_Explode
   serializedVersion: 7
   m_Legacy: 0
   m_Compressed: 0
@@ -21,19 +21,23 @@ AnimationClip:
   - serializedVersion: 2
     curve:
     - time: 0.0
-      value: {fileID: 8926064172975249837, guid: bee1be23b3a50fb448c39c5d2090bc02, type: 3}
+      value: {fileID: 2322885568858065358, guid: b3b2d631e1a57f84a9ed8ab120b63fb0, type: 3}
     - time: 0.08333333333333333
-      value: {fileID: -1721291590848937709, guid: bee1be23b3a50fb448c39c5d2090bc02, type: 3}
+      value: {fileID: -3157123759875951635, guid: b3b2d631e1a57f84a9ed8ab120b63fb0, type: 3}
     - time: 0.16666666666666666
-      value: {fileID: 890840587498854377, guid: bee1be23b3a50fb448c39c5d2090bc02, type: 3}
+      value: {fileID: 6940710433483136896, guid: b3b2d631e1a57f84a9ed8ab120b63fb0, type: 3}
     - time: 0.25
-      value: {fileID: -2102792383809073352, guid: bee1be23b3a50fb448c39c5d2090bc02, type: 3}
+      value: {fileID: -4876644113121063706, guid: b3b2d631e1a57f84a9ed8ab120b63fb0, type: 3}
     - time: 0.3333333333333333
-      value: {fileID: 5950991285647701083, guid: bee1be23b3a50fb448c39c5d2090bc02, type: 3}
+      value: {fileID: -2531962592017155416, guid: b3b2d631e1a57f84a9ed8ab120b63fb0, type: 3}
     - time: 0.4166666666666667
-      value: {fileID: 8613842960059573131, guid: bee1be23b3a50fb448c39c5d2090bc02, type: 3}
+      value: {fileID: -3078500652943198599, guid: b3b2d631e1a57f84a9ed8ab120b63fb0, type: 3}
     - time: 0.5
-      value: {fileID: -435314383990934912, guid: bee1be23b3a50fb448c39c5d2090bc02, type: 3}
+      value: {fileID: 7058025514360437461, guid: b3b2d631e1a57f84a9ed8ab120b63fb0, type: 3}
+    - time: 0.5833333333333334
+      value: {fileID: -1322438492509597651, guid: b3b2d631e1a57f84a9ed8ab120b63fb0, type: 3}
+    - time: 0.6666666666666666
+      value: {fileID: -3856902330986306666, guid: b3b2d631e1a57f84a9ed8ab120b63fb0, type: 3}
     attribute: m_Sprite
     path: 
     classID: 212
@@ -56,19 +60,21 @@ AnimationClip:
       isIntCurve: 0
       isSerializeReferenceCurve: 0
     pptrCurveMapping:
-    - {fileID: 8926064172975249837, guid: bee1be23b3a50fb448c39c5d2090bc02, type: 3}
-    - {fileID: -1721291590848937709, guid: bee1be23b3a50fb448c39c5d2090bc02, type: 3}
-    - {fileID: 890840587498854377, guid: bee1be23b3a50fb448c39c5d2090bc02, type: 3}
-    - {fileID: -2102792383809073352, guid: bee1be23b3a50fb448c39c5d2090bc02, type: 3}
-    - {fileID: 5950991285647701083, guid: bee1be23b3a50fb448c39c5d2090bc02, type: 3}
-    - {fileID: 8613842960059573131, guid: bee1be23b3a50fb448c39c5d2090bc02, type: 3}
-    - {fileID: -435314383990934912, guid: bee1be23b3a50fb448c39c5d2090bc02, type: 3}
+    - {fileID: 2322885568858065358, guid: b3b2d631e1a57f84a9ed8ab120b63fb0, type: 3}
+    - {fileID: -3157123759875951635, guid: b3b2d631e1a57f84a9ed8ab120b63fb0, type: 3}
+    - {fileID: 6940710433483136896, guid: b3b2d631e1a57f84a9ed8ab120b63fb0, type: 3}
+    - {fileID: -4876644113121063706, guid: b3b2d631e1a57f84a9ed8ab120b63fb0, type: 3}
+    - {fileID: -2531962592017155416, guid: b3b2d631e1a57f84a9ed8ab120b63fb0, type: 3}
+    - {fileID: -3078500652943198599, guid: b3b2d631e1a57f84a9ed8ab120b63fb0, type: 3}
+    - {fileID: 7058025514360437461, guid: b3b2d631e1a57f84a9ed8ab120b63fb0, type: 3}
+    - {fileID: -1322438492509597651, guid: b3b2d631e1a57f84a9ed8ab120b63fb0, type: 3}
+    - {fileID: -3856902330986306666, guid: b3b2d631e1a57f84a9ed8ab120b63fb0, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 0.5833333333333334
+    m_StopTime: 0.75
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0
@@ -88,15 +94,8 @@ AnimationClip:
   m_HasGenericRootTransform: 0
   m_HasMotionFloatCurves: 0
   m_Events:
-  - time: 0.3333333333333333
-    functionName: SpawnAmbushTrap
-    data: 
-    objectReferenceParameter: {fileID: 0}
-    floatParameter: 0
-    intParameter: 0
-    messageOptions: 0
-  - time: 0.5
-    functionName: OnAttackAnimEnd
+  - time: 0.66666667
+    functionName: OnVoidSphereExplodeEnd
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0

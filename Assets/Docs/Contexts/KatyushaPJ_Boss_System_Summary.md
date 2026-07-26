@@ -312,10 +312,22 @@ Nếu Distance > MeleeRange:
 
 ---
 
+## 5.5 Die Animation TODO (All Bosses)
+
+⚠️ **Animation chết (Die) chưa có asset chính thức cho bất kỳ Boss nào.**
+
+- `VoidBoss_Die.anim` đã tạo placeholder (6 sprite keyframe từ sheet VoidBoss, non-looping, 0.83s) — nhưng dùng sprite Idle làm frame.
+- BatBoss cũng chưa có Die animation riêng — hiện tại dùng Idle fallback qua Animator.
+- Duo Golem chưa code, chưa có animation gì.
+
+**Cần:** Asset artist tạo sprite Die riêng cho từng Boss, cập nhật .anim clip tương ứng.
+
+---
+
 ## 6. GHI CHÚ TỔNG HỢP
 
 | Boss | Trạng thái | Đặc trưng cơ chế lọc sát thương | Nguồn gây khó chính |
 |---|---|---|---|
 | BatBoss (Ch.4) | Đã code, đã refactor FSM (dùng Generic State) | Deflect Melee, 1.5x Ranged, Pillar → Hurt | Bay lơ lửng + Pillar hệ thống ngầm |
-| VoidBoss (Ch.6) | Đã thiết kế FSM + đang code Controller | Không lọc, sát thương thường từ mọi nguồn | CC/Debuff tầm xa dồn dập + Ultimate Blood Moon |
+| VoidBoss (Ch.6) | Đã code Controller + 5 hitbox prefab + controller + BossHealthBarUI | Không lọc, sát thương thường từ mọi nguồn | CC/Debuff tầm xa dồn dập + Ultimate Blood Moon |
 | Duo Golem | Mới có GDD, **chưa code** | Không áp dụng cho Golem (chỉ 1 đòn đấm chay) | Toàn bộ độ khó đến từ Môi trường (4 skill theo Phase) |
