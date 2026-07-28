@@ -3862,6 +3862,10 @@ MonoBehaviour:
   target: {fileID: 746156131}
   offset: {x: 0, y: 3, z: -10}
   smoothSpeed: 5
+  bossRevealZoomSize: 8
+  zoomOutDuration: 1.5
+  holdDuration: 1
+  zoomInDuration: 1
 --- !u!114 &519420034
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13607,6 +13611,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: BloodMoonTelegraph
       objectReference: {fileID: 0}
+    - target: {fileID: 1674866566526946666, guid: 2dbf3957c13f06441aa5e2feba1cdd20, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8984496507589669117, guid: 2dbf3957c13f06441aa5e2feba1cdd20, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.67
@@ -13873,6 +13881,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: VoidSphere
       objectReference: {fileID: 0}
+    - target: {fileID: 7659254160968381457, guid: d940331b51fda144d8ff9a8c4f92dda8, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8859847678895149653, guid: d940331b51fda144d8ff9a8c4f92dda8, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.60596
@@ -14029,11 +14041,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5994858246153461056, guid: 7b0cfab0b6f7ce44a9e920dc8f2a305d, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.60596
+      value: 1.45
       objectReference: {fileID: 0}
     - target: {fileID: 5994858246153461056, guid: 7b0cfab0b6f7ce44a9e920dc8f2a305d, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.56284
+      value: -2.51
       objectReference: {fileID: 0}
     - target: {fileID: 5994858246153461056, guid: 7b0cfab0b6f7ce44a9e920dc8f2a305d, type: 3}
       propertyPath: m_LocalPosition.z
@@ -14161,6 +14173,22 @@ PrefabInstance:
     - target: {fileID: 444722692198636932, guid: d8ddbf1bffec37c4b962f8feb7a22c50, type: 3}
       propertyPath: m_Name
       value: Void Boss
+      objectReference: {fileID: 0}
+    - target: {fileID: 444722692198636934, guid: d8ddbf1bffec37c4b962f8feb7a22c50, type: 3}
+      propertyPath: m_Size.x
+      value: 10.275933
+      objectReference: {fileID: 0}
+    - target: {fileID: 444722692198636934, guid: d8ddbf1bffec37c4b962f8feb7a22c50, type: 3}
+      propertyPath: m_Size.y
+      value: 4.8633385
+      objectReference: {fileID: 0}
+    - target: {fileID: 444722692198636934, guid: d8ddbf1bffec37c4b962f8feb7a22c50, type: 3}
+      propertyPath: m_Offset.x
+      value: 0.30396795
+      objectReference: {fileID: 0}
+    - target: {fileID: 444722692198636934, guid: d8ddbf1bffec37c4b962f8feb7a22c50, type: 3}
+      propertyPath: m_Offset.y
+      value: -0.22552478
       objectReference: {fileID: 0}
     - target: {fileID: 444722692198636935, guid: d8ddbf1bffec37c4b962f8feb7a22c50, type: 3}
       propertyPath: ambushTrapPrefab

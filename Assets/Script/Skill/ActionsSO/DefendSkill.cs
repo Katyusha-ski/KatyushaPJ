@@ -27,6 +27,8 @@ public class DefendSkill : SkillBase
 
         cooldownTimer = cooldown;
 
+        user.GetComponentInChildren<Animator>()?.SetTrigger("Def");
+
         if (AudioManager.Instance != null)
             AudioManager.Instance.PlaySFX(defendSFX);
 

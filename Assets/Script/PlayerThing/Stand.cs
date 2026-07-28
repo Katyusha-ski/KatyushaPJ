@@ -17,6 +17,7 @@ public class Stand : MonoBehaviour
 
     private HashSet<GameObject> damagedEnemies = new HashSet<GameObject>();
     private int lastDirection = 1;
+    private bool useNA2Next;
 
     private void Start()
     {
@@ -55,7 +56,11 @@ public class Stand : MonoBehaviour
     {   
         if (animator != null)
         {
-            animator.SetTrigger(punchTrigger);
+            if (useNA2Next)
+                animator.SetTrigger("NA2");
+            else
+                animator.SetTrigger(punchTrigger);
+            useNA2Next = !useNA2Next;
             damagedEnemies.Clear();
         }
     }

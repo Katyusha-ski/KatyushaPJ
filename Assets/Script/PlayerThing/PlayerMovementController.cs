@@ -23,6 +23,7 @@ public class PlayerMovementController : MonoBehaviour
     public float CurrentSpeed => currentSpeed;
     public int Direction => direction;
     public bool IsGrounded => isGrounded;
+    public bool CanMove { get; set; } = true;
 
     private void Awake()
     {
@@ -60,6 +61,7 @@ public class PlayerMovementController : MonoBehaviour
     public void Move(float horizontalInput, bool isRunning)
     {
         if(rb == null) return;
+        if(!CanMove) return;
         if(seController != null && seController.IsStunned)
         {
             return;
@@ -87,6 +89,7 @@ public class PlayerMovementController : MonoBehaviour
     public bool TryJump()
     {
         if (rb == null || !isGrounded) return false;
+        if (!CanMove) return false;
         rb.AddForce(new Vector2(0, jumpForce), ForceMode2D.Impulse);
         return true;
     }

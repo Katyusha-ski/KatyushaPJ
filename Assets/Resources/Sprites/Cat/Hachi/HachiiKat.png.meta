@@ -162,7 +162,7 @@ TextureImporter:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 256
+        width: 384
         height: 256
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -182,9 +182,9 @@ TextureImporter:
       name: HachiiKat_1
       rect:
         serializedVersion: 2
-        x: 256
+        x: 384
         y: 0
-        width: 256
+        width: 384
         height: 256
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -204,9 +204,9 @@ TextureImporter:
       name: HachiiKat_2
       rect:
         serializedVersion: 2
-        x: 512
+        x: 768
         y: 0
-        width: 256
+        width: 384
         height: 256
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -226,9 +226,9 @@ TextureImporter:
       name: HachiiKat_3
       rect:
         serializedVersion: 2
-        x: 768
+        x: 1152
         y: 0
-        width: 256
+        width: 384
         height: 256
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -248,9 +248,9 @@ TextureImporter:
       name: HachiiKat_4
       rect:
         serializedVersion: 2
-        x: 1024
+        x: 1536
         y: 0
-        width: 256
+        width: 384
         height: 256
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -270,9 +270,9 @@ TextureImporter:
       name: HachiiKat_5
       rect:
         serializedVersion: 2
-        x: 1280
+        x: 1920
         y: 0
-        width: 256
+        width: 384
         height: 256
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -292,9 +292,9 @@ TextureImporter:
       name: HachiiKat_6
       rect:
         serializedVersion: 2
-        x: 1536
+        x: 2304
         y: 0
-        width: 256
+        width: 384
         height: 256
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -314,9 +314,9 @@ TextureImporter:
       name: HachiiKat_7
       rect:
         serializedVersion: 2
-        x: 1792
+        x: 2688
         y: 0
-        width: 256
+        width: 384
         height: 256
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -336,9 +336,9 @@ TextureImporter:
       name: HachiiKat_8
       rect:
         serializedVersion: 2
-        x: 2048
+        x: 3072
         y: 0
-        width: 256
+        width: 384
         height: 256
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -358,9 +358,9 @@ TextureImporter:
       name: HachiiKat_9
       rect:
         serializedVersion: 2
-        x: 2304
+        x: 3456
         y: 0
-        width: 256
+        width: 384
         height: 256
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -380,9 +380,9 @@ TextureImporter:
       name: HachiiKat_10
       rect:
         serializedVersion: 2
-        x: 2560
+        x: 3840
         y: 0
-        width: 256
+        width: 384
         height: 256
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -402,9 +402,9 @@ TextureImporter:
       name: HachiiKat_11
       rect:
         serializedVersion: 2
-        x: 2816
+        x: 4224
         y: 0
-        width: 256
+        width: 384
         height: 256
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -416,6 +416,160 @@ TextureImporter:
       bones: []
       spriteID: 9141b2cb73a4d6240800000000000000
       internalID: 4786563582205301785
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HachiiKat_12
+      rect:
+        serializedVersion: 2
+        x: 4608
+        y: 0
+        width: 384
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f1384a26ab1101c46883722c98ccfc1e
+      internalID: -1929817218
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HachiiKat_13
+      rect:
+        serializedVersion: 2
+        x: 4992
+        y: 0
+        width: 384
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5ebfa8eca62227546b24ef5f0db6689b
+      internalID: 745516021
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HachiiKat_14
+      rect:
+        serializedVersion: 2
+        x: 5376
+        y: 0
+        width: 384
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3aabbc60cdccf3e4bb89c074a89f8fb1
+      internalID: -868801634
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HachiiKat_15
+      rect:
+        serializedVersion: 2
+        x: 5760
+        y: 0
+        width: 384
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 17e01c85293396246ac318177b351ef3
+      internalID: -820863690
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HachiiKat_16
+      rect:
+        serializedVersion: 2
+        x: 6144
+        y: 0
+        width: 384
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 27b3c1ff256c76644bba2632f2812af1
+      internalID: -1603429965
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HachiiKat_17
+      rect:
+        serializedVersion: 2
+        x: 6528
+        y: 0
+        width: 384
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b48c552a0f2d6644e933c10fddcf4190
+      internalID: -275699308
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HachiiKat_18
+      rect:
+        serializedVersion: 2
+        x: 6912
+        y: 0
+        width: 384
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 207b63702eca67b4798bf20faeb75b7d
+      internalID: -1462334807
       vertices: []
       indices: 
       edges: []
@@ -434,12 +588,19 @@ TextureImporter:
     spriteCustomMetadata:
       entries:
       - key: SpriteEditor.SliceSettings
-        value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":256.0,"y":256.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":1,"keepEmptyRects":false,"isAlternate":false}'
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":19.0,"y":1.0},"gridSpriteSize":{"x":384.0,"y":256.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":2,"keepEmptyRects":false,"isAlternate":false}'
     nameFileIdTable:
       HachiiKat_0: 1146232457851931358
       HachiiKat_1: -1853959010842579282
       HachiiKat_10: -2017190527460806420
       HachiiKat_11: 4786563582205301785
+      HachiiKat_12: -1929817218
+      HachiiKat_13: 745516021
+      HachiiKat_14: -868801634
+      HachiiKat_15: -820863690
+      HachiiKat_16: -1603429965
+      HachiiKat_17: -275699308
+      HachiiKat_18: -1462334807
       HachiiKat_2: 8850776703212635551
       HachiiKat_3: -5255322775459714825
       HachiiKat_4: -6120702675938816455

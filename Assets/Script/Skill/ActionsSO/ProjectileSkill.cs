@@ -59,6 +59,7 @@ public class ProjectileSkill : SpawnDamageSkillBase
                 armorDebuffDuration = armorDebuffDuration
             });
         }
+        user.GetComponentInChildren<Animator>()?.SetTrigger("Def");
         cooldownTimer = cooldown;
     }
 }

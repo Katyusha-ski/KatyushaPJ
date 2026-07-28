@@ -4,7 +4,7 @@ using UnityEngine;
 [RequireComponent(typeof(CharacterStats))]
 public class Health : MonoBehaviour
 {
-    [SerializeField] private int maxHealth;
+    [SerializeField] private int maxHealth = 300;
     [SerializeField] private int currentHealth;
     [SerializeField] private MonoBehaviour healthBar;
     [SerializeField] private int virtualShield; 

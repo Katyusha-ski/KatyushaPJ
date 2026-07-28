@@ -4,7 +4,7 @@ using UnityEngine;
 public class VoidBossController : EnemyController
 {
     [Header("Boss Settings")]
-    [SerializeField] private float meleeRange = 2.5f;
+    [SerializeField] private float meleeRange = 6f;
 
     [Header("Attack Prefabs")]
     [SerializeField] private GameObject voidSpherePrefab;
@@ -13,13 +13,13 @@ public class VoidBossController : EnemyController
 
     [Header("Stomp")]
     [SerializeField] private float stompRadius = 3f;
-    [SerializeField] private int stompDamage = 20;
+    [SerializeField] private int stompDamage = 15;
     [SerializeField] private float stompStunDuration = 1f;
 
     [Header("Spike Pierce")]
     [SerializeField] private float spikeRange = 5f;
     [SerializeField] private float spikeWidth = 1.5f;
-    [SerializeField] private int spikeDamage = 15;
+    [SerializeField] private int spikeDamage = 25;
 
     [Header("Layer Masks")]
     [SerializeField] private LayerMask playerLayer;
@@ -35,6 +35,9 @@ public class VoidBossController : EnemyController
     [SerializeField] private float bloodMoonSpread = 2.5f;
     [SerializeField] private int bloodMoonPerWave = 5;
     [SerializeField] private float bloodMoonMinSpacing = 1.5f;
+
+    [Header("Ambush Trap")]
+    [SerializeField] private float spawnOffsetDistance = 2f;
 
     [Header("Hurt Effect")]
     [SerializeField] private SpriteRenderer bossSprite;
@@ -195,14 +198,19 @@ public class VoidBossController : EnemyController
             }
         }
         if (sphere.GetComponent<VoidSphereProjectile>() == null)
-            sphere.AddComponent<VoidSphereProjectile>();
+            Debug.LogError("VoidSphere.prefab missing VoidSphereProjectile component!", sphere);
         activeProjectiles.Add(sphere);
     }
 
     public void SpawnAmbushTrap()
     {
         if (ambushTrapPrefab == null || player == null) return;
-        GameObject trap = Instantiate(ambushTrapPrefab, player.position, Quaternion.identity);
+        Vector3 spawnPos = player.position;
+        if (player.position.x < 0f)
+            spawnPos += Vector3.right * spawnOffsetDistance;
+        else
+            spawnPos += Vector3.left * spawnOffsetDistance;
+        GameObject trap = Instantiate(ambushTrapPrefab, spawnPos, Quaternion.identity);
         activeProjectiles.Add(trap);
     }
 
@@ -287,7 +295,7 @@ public class VoidBossController : EnemyController
                 }
 
                 if (t.GetComponent<BloodMoonTelegraphController>() == null)
-                    t.AddComponent<BloodMoonTelegraphController>();
+                    Debug.LogError("BloodMoonTelegraph.prefab missing BloodMoonTelegraphController component!", t);
                 activeTelegraphs.Add(t);
             }
         }
@@ -297,13 +305,6 @@ public class VoidBossController : EnemyController
     {
         if (currentState is GenericAttackState)
             SwitchTo("VoidIdle");
-    }
-
-    public void OnWakeUpComplete()
-    {
-        isAwake = true;
-        UnlockFacing();
-        ChangeState(stateCache["VoidIdle"]);
     }
 
     public void WakeUpFromAggro()

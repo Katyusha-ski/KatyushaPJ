@@ -1,43 +1,74 @@
-using System.Collections;
 using UnityEngine;
 
 public class AmbushTrapController : MonoBehaviour
 {
     [SerializeField] private float delayBeforeStrike = 0.5f;
-    [SerializeField] private int damage = 40;
+    [SerializeField] private int damage = 35;
     [SerializeField] private float silentDuration = 2f;
-    [SerializeField] private float strikeRadius = 1.5f;
+    [SerializeField] private float dashSpeed = 10f;
+    [SerializeField] private float maxDashDistance = 4f;
 
+    private SpriteRenderer spriteRenderer;
     private bool hasDealtDamage;
+    private Vector3 dashDirection;
+    private float distanceTraveled;
+    private bool isDashing;
+
+    private void Awake()
+    {
+        spriteRenderer = GetComponent<SpriteRenderer>();
+    }
 
     private void Start()
     {
-        StartCoroutine(StrikeRoutine());
+        Invoke(nameof(BeginDash), delayBeforeStrike);
     }
 
-    private IEnumerator StrikeRoutine()
+    private void BeginDash()
     {
-        yield return new WaitForSeconds(delayBeforeStrike);
+        Transform player = PlayerManager.Instance != null ? PlayerManager.Instance.PlayerTransform : null;
+        if (player == null)
+        {
+            Destroy(gameObject);
+            return;
+        }
 
-        DealDamage();
-        Destroy(gameObject);
+        Vector3 targetPos = player.position;
+        dashDirection = (targetPos - transform.position).normalized;
+        dashDirection.z = 0f;
+        if (spriteRenderer != null)
+            spriteRenderer.flipX = dashDirection.x > 0f;
+        distanceTraveled = 0f;
+        isDashing = true;
     }
 
-    private void DealDamage()
+    private void Update()
     {
-        if (hasDealtDamage) return;
+        if (!isDashing) return;
+
+        float step = dashSpeed * Time.deltaTime;
+        transform.position += dashDirection * step;
+        distanceTraveled += step;
+
+        if (distanceTraveled >= maxDashDistance)
+            Destroy(gameObject);
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (!isDashing || hasDealtDamage) return;
+        if (!other.CompareTag("Player")) return;
+
         hasDealtDamage = true;
 
-        Collider2D[] hits = Physics2D.OverlapCircleAll(transform.position, strikeRadius);
-        foreach (var hit in hits)
-        {
-            Health health = hit.GetComponent<Health>();
-            if (health != null)
-                health.TakeDamage(damage, gameObject);
+        Health health = other.GetComponent<Health>();
+        if (health != null)
+            health.TakeDamage(damage, gameObject);
 
-            StatusEffectController sec = hit.GetComponent<StatusEffectController>();
-            if (sec == null) sec = hit.gameObject.AddComponent<StatusEffectController>();
-            sec.ApplyEffect(new SilentEffect(silentDuration, hit.gameObject));
-        }
+        StatusEffectController sec = other.GetComponent<StatusEffectController>();
+        if (sec == null) sec = other.gameObject.AddComponent<StatusEffectController>();
+        sec.ApplyEffect(new SilentEffect(silentDuration, other.gameObject));
+
+        Destroy(gameObject);
     }
 }

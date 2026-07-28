@@ -142,7 +142,7 @@ private void CacheBossStates()
 - **Facing Lock:** Lock trước khi `SwitchTo` attack state, Unlock trong `VoidIdleState.OnEnter`.
 - **Wake-up (Aggro):** `WakeUpFromAggro()` set `isAwake = true`, UnlockFacing, SwitchTo("VoidIdle").
   - **Không còn Sleep clip** — Boss dùng Idle animation xuyên suốt (SỬA 1).
-  - Cơ chế trigger "vùng phát hiện Player" gọi `WakeUpFromAggro()` **chưa implement** → cần Architect thêm sau.
+  - Cơ chế trigger "vùng phát hiện Player" gọi `WakeUpFromAggro()` — đã implement qua `VoidAggroTrigger.cs` (SỬA 8).
 
 ---
 
@@ -329,7 +329,8 @@ bloodMoonReadyTime = Time.time + bloodMoonCooldown; // 45s
 | Trigger | `"Stomp"` (GenericAttackState) |
 | Animation Event | `SpawnStompAoE()` |
 | Damage Method | `Physics2D.OverlapCircleAll(transform.position, stompRadius, playerLayer)` — trực tiếp trong Controller, không cần Prefab hitbox |
-| Effect | `stompDamage` + `StunEffect(stompStunDuration)` lên Player |
+| Damage | `stompDamage = 15` (PLACEHOLDER) |
+| Effect | `StunEffect(stompStunDuration = 1s)` lên Player |
 
 ### 7.2 NA2 — Spike Pierce
 
@@ -338,7 +339,8 @@ bloodMoonReadyTime = Time.time + bloodMoonCooldown; // 45s
 | Trigger | `"SpikePierce"` (GenericAttackState) |
 | Animation Event | `SpawnSpikePierce()` |
 | Damage Method | `Physics2D.OverlapBoxAll(center, size, 0f, playerLayer)` — hình chữ nhật dài theo hướng Boss đang face, không cần Prefab hitbox |
-| Effect | `spikeDamage` sát thương vật lý đường thẳng |
+| Damage | `spikeDamage = 25` (PLACEHOLDER) |
+| Effect | Sát thương vật lý đường thẳng, không debuff |
 
 ### 7.3 Skill 1 — Void Sphere
 
@@ -352,20 +354,24 @@ bloodMoonReadyTime = Time.time + bloodMoonCooldown; // 45s
 | Prefab Script | `VoidSphereProjectile.cs` (standalone) — gắn trực tiếp trên prefab. Homing: `Rigidbody2D.velocity` → Player mỗi FixedUpdate |
 | Spawn Position | `transform.position` (từ boss) |
 | Post-spawn | Homing → Player (VoidSphere tự điều hướng) |
+| Damage | `damage = 20` (PLACEHOLDER) |
+| Timeout | `lifeTime = 5s` — hết 5s chưa trúng Player → tự Explode (dùng chung clip/effect Explode) → Destroy |
 | On Impact | `OnTriggerEnter2D` → `Health.TakeDamage(damage)` + `StunEffect(0.5s)` + `StatModifierEffect(Slow: -50% MovementSpeed, 2s)` + `StatModifierEffect(Giảm Giáp: -15 Armor, 3s)` → `Destroy(gameObject)` |
 | Cooldown | 4s |
 
 ### 7.4 Skill 2 — Ambush Summon
 
 | Element | Detail |
-|---|---|
+|---|---|---|
 | Trigger | `"AmbushSummon"` (GenericAttackState) |
 | Animation Event | `SpawnAmbushTrap()` |
 | Prefab | `ambushTrapPrefab` — Layer `EnemyAttack` |
-| Spawn Position | `player.position` (dưới chân Player) |
-| Prefab Script | `AmbushTrapController.cs` (standalone) — gắn trực tiếp trên prefab. Animation Event `DealDamage()` → `Health.TakeDamage` + `SilentEffect`. `OnAnimEnd()` → `Destroy` |
-| Behavior | Trap trồi lên, chém 1 nhát, tự huỷ |
-| On Hit | Damage lớn + `SilentEffect` (Câm lặng) |
+| Spawn Position | `player.position + offset` — Hướng spawn xác định theo vị trí Player so với tâm map (x=0): Player bên trái map → trap spawn bên PHẢI Player (`Vector3.right * spawnOffsetDistance`); Player bên phải map → trap spawn bên TRÁI Player (`Vector3.left * spawnOffsetDistance`). Giả định tâm map luôn ở world x=0. |
+| Spawn Offset | `spawnOffsetDistance = 2f` (`[SerializeField]`) |
+| Prefab Behavior | Sprite tĩnh (không animation). Chờ `delayBeforeStrike` giây → tính 1 vector hướng về vị trí Player tại thời điểm bắt đầu lao (không homing) → dash theo đường thẳng với `dashSpeed` trong `Update()`. Dừng khi: (1) trúng Player → damage + `SilentEffect` → Destroy ngay; (2) dash hết `maxDashDistance` mà chưa trúng → tự Destroy. |
+| Prefab Fields | `[SerializeField] float delayBeforeStrike`, `int damage`, `float silentDuration`, `float dashSpeed`, `float maxDashDistance` |
+| Damage | `damage = 35` (PLACEHOLDER) |
+| On Hit | Damage + `SilentEffect(silentDuration = 2s)` (Câm lặng) |
 | Cooldown | 10s |
 
 ### 7.5 Ultimate — Blood Moon
@@ -514,12 +520,26 @@ public class BloodMoonState : IEnemyState
 
 ```csharp
 [Header("Boss Settings")]
-[SerializeField] private float meleeRange = 2.5f;
+[SerializeField] private float meleeRange = 6f;
+// visionRange kế thừa từ EnemyController, set = 8f trong OnValidate()
 
 [Header("Attack Prefabs")]
 [SerializeField] private GameObject voidSpherePrefab;
 [SerializeField] private GameObject ambushTrapPrefab;
 [SerializeField] private GameObject bloodMoonTelegraphPrefab;
+
+[Header("Stomp")]
+[SerializeField] private float stompRadius = 3f;
+[SerializeField] private int stompDamage = 15;          // PLACEHOLDER
+[SerializeField] private float stompStunDuration = 1f;
+
+[Header("Spike Pierce")]
+[SerializeField] private float spikeRange = 5f;
+[SerializeField] private float spikeWidth = 1.5f;
+[SerializeField] private int spikeDamage = 25;          // PLACEHOLDER
+
+[Header("Layer Masks")]
+[SerializeField] private LayerMask playerLayer;
 
 [Header("Skill Cooldowns")]
 [SerializeField] private float skill1Cooldown = 4f;
@@ -532,6 +552,9 @@ public class BloodMoonState : IEnemyState
 [SerializeField] private float bloodMoonSpread = 2.5f;
 [SerializeField] private int bloodMoonPerWave = 5;
 [SerializeField] private float bloodMoonMinSpacing = 1.5f;
+
+[Header("Ambush Trap")]
+[SerializeField] private float spawnOffsetDistance = 2f;
 
 [Header("Hurt Effect")]
 [SerializeField] private SpriteRenderer bossSprite;
@@ -548,11 +571,18 @@ public class BloodMoonState : IEnemyState
 ## 10. KEY FORMULAS
 
 ```
-Melee Attack Range       = meleeRange (2.5f)
+Melee Attack Range       = meleeRange (6f) — TÂM Boss tới Player
+Vision Range             = visionRange (8f) — Mất tầm nhìn → về VoidIdle
 Blood Moon Spread        = ±a (2.5f) trên X, ±b (2.5f) trên Y
 Blood Moon MinSpacing    = 1.5f
 Waves                    = 5 waves × 5 telegraphs/wave
 Wave Interval            = 0.8s
+
+Ambush Trap Spawn Offset  = spawnOffsetDistance (2f)
+  Player.x < 0  → spawnPos = player.position + Vector3.right * offset
+  Player.x >= 0 → spawnPos = player.position + Vector3.left  * offset
+Ambush Trap Dash          = delayBeforeStrike (0.5s), dashSpeed (10f), maxDashDistance (4f)
+  Sau delay: dash 1 đường thẳng fixed hướng về Player tại thời điểm bắt đầu lao
 
 Cooldowns:
   Skill 1 (Void Sphere)    = 4s
@@ -592,7 +622,54 @@ Die Duration              = 2f
 
 ---
 
-## 12. KNOWN ISSUES / TODOs
+## 12. BOSS REVEAL CAMERA
+
+### 12.1 Cơ chế
+
+Khi Player vào vùng Aggro của VoidBoss (`VoidAggroTrigger`):
+
+1. `VoidAggroTrigger.OnTriggerEnter2D()` disable collider của trigger để không kích hoạt lại.
+2. Gọi `CameraFollow.ZoomToBossReveal()` — coroutine:
+   - Lerp `orthographicSize` từ size hiện tại → `bossRevealZoomSize` trong `zoomOutDuration` giây.
+   - Trong lúc Lerp, camera theo trung điểm Player + Boss (không chỉ Player).
+   - Giữ `holdDuration` giây.
+   - Lerp ngược lại size gốc trong `zoomInDuration` giây.
+3. Hết cinematic → callback → `parentController.WakeUpFromAggro()` → Boss bắt đầu AI.
+
+### 12.2 CameraFollow fields
+
+```
+[Header("Boss Reveal Zoom")]
+[SerializeField] private float bossRevealZoomSize = 8f;
+[SerializeField] private float zoomOutDuration = 1.5f;
+[SerializeField] private float holdDuration = 1f;
+[SerializeField] private float zoomInDuration = 1f;
+```
+
+### 12.3 Flow
+
+```
+Player vào trigger
+  → trigger collider disabled (chạy 1 lần)
+  → CameraZoomReveal (coroutine)
+  │   ├── zoomOut (1.5s): focus midpoint Player+Boss
+  │   ├── hold (1s)
+  │   └── zoomIn (1s): về follow Player bình thường
+  └── onComplete → boss.WakeUpFromAggro() → AI bắt đầu
+```
+
+### 12.4 Field cần Architect chỉnh số
+
+| Field | File | Giá trị |
+|---|---|---|
+| `bossRevealZoomSize` | `CameraController.cs` | 8f |
+| `zoomOutDuration` | `CameraController.cs` | 1.5s |
+| `holdDuration` | `CameraController.cs` | 1s |
+| `zoomInDuration` | `CameraController.cs` | 1s |
+
+---
+
+## 13. KNOWN ISSUES / TODOs
 
 | # | Issue | Priority | Ghi chú |
 |---|---|---|---|
@@ -601,7 +678,7 @@ Die Duration              = 2f
 | 3 | ~~Prefab `bloodMoonTelegraphPrefab` chưa implement~~ | ~~High~~ | ✅ **Đã tạo** `Assets/Resources/Prefab/Effect/BloodMoonTelegraph.prefab`. SpriteRenderer + Rigidbody2D + BoxCollider2D(trigger) + DamageSource(EnemySkill) |
 | 4 | ~~Prefab `stompAoEPrefab` / `spikePiercePrefab` chưa có~~ | ~~High~~ | ❌ **Đã đổi hướng:** Không dùng Prefab hitbox riêng. Stomp/SpikePierce dùng `OverlapCircleAll`/`OverlapBoxAll` trực tiếp trong Controller (SỬA 4). Prefab StompAoE/SpikePierce đã tạo trước đó **không dùng nữa** |
 | 5 | ~~Animator Controller chưa tạo trigger set~~ | ~~High~~ | ✅ **Đã sửa**. `VoidBoss.controller` có 7 parameters: Run(Bool), Stomp/SpikePierce/VoidSphere/AmbushSummon/BloodMoon/Die(Triggers). AnyState transitions cho tất cả triggers. Thêm VoidBoss_Die state (tạm dùng Idle anim — chờ animation thật) |
-| 6 | ~~`VoidBoss.prefab` chưa tồn tại~~ | ~~High~~ | ✅ **Đã tạo** `Assets/Resources/Prefab/Enemy/VoidBoss.prefab` gồm: Transform, SpriteRenderer, Animator (VoidBoss.controller), VoidBossController, Rigidbody2D, BoxCollider2D, Health(500HP), CharacterStats. `bossSprite` tự trỏ SpriteRenderer. **Architect cần:** assign prefab references (hitbox prefabs), assign deathVFX, thêm collider hitbox (trigger) nếu cần |
+| 6 | ~~`VoidBoss.prefab` chưa tồn tại~~ | ~~High~~ | ✅ **Đã tạo** `Assets/Resources/Prefab/Enemy/VoidBoss.prefab` gồm: Transform, SpriteRenderer, Animator (VoidBoss.controller), VoidBossController, Rigidbody2D, BoxCollider2D, Health(300HP), CharacterStats. `bossSprite` tự trỏ SpriteRenderer. **Architect cần:** assign prefab references (hitbox prefabs), assign deathVFX, thêm collider hitbox (trigger) nếu cần |
 | 7 | Boss animation clip length chưa đồng bộ `animDuration` | Medium | Animation hiện tại (Atk1/Atk2, timing lệch design) là bản placeholder dựng tạm để test flow — KHÔNG phải bản final, chưa cần sync animDuration/tên trigger. Sẽ đồng bộ lại khi có animation chính thức |
 | 8 | `EnemyController.MoveTowardPlayer()` non-virtual | Low | Facing Lock an toàn vì GenericAttackState không gọi movement |
 | 9 | ~~Bug B14: Double Destroy telegraph khi pool null~~ | ~~Critical~~ | ✅ **Đã fix**: `activeTelegraphs` tách riêng khỏi `activeProjectiles`. Telegraph CHỈ vào 1 list, cleanup xử lý đúng 1 lần |
@@ -616,7 +693,7 @@ Die Duration              = 2f
 
 ---
 
-## 13. TRẠNG THÁI UNITY EDITOR
+## 14. TRẠNG THÁI UNITY EDITOR
 
 Các hạng mục dưới đây **không phải bug code** — là phần việc Editor-side, cần làm sau khi code hoàn thiện:
 
@@ -626,7 +703,7 @@ Các hạng mục dưới đây **không phải bug code** — là phần việc
 | **Animation Clips** — Die | ⚠️ Placeholder | `VoidBoss_Die.anim` đã tạo (6 sprite keyframe, non-looping, 0.83s) nhưng dùng sprite Idle. **Cần asset artist tạo sprite Die riêng.** Không cần `Void_Sleep` — Boss dùng Idle xuyên suốt (SỬA 1) |
 | **Animation Events** trong clip | ✅ Complete | Tất cả 5 clip (Atk1, Atk2, Skill1, Skill2, Skill3) đã có Animation Events: Spawn method tại frame 2 + OnAttackAnimEnd tại frame cuối |
 | **VoidBoss.prefab** | ⚠️ Tạo rồi — chờ assign refs | `Assets/Resources/Prefab/Enemy/VoidBoss.prefab`. **Cần:** kéo voidSpherePrefab, ambushTrapPrefab, bloodMoonTelegraphPrefab vào Inspector, assign deathVFX, set collider size |
-| **voidSpherePrefab** | ✅ Complete | `Assets/Resources/Prefab/Effect/VoidSphere.prefab`. CircleCollider2D(Trigger) + Rigidbody2D(Kinematic) + `VoidSphereProjectile.cs` (homing + damage + stun/slow/armor debuff → destroy) |
+| **voidSpherePrefab** | ✅ Complete | `Assets/Resources/Prefab/Effect/VoidSphere.prefab`. CircleCollider2D(Trigger) + Rigidbody2D(Kinematic) + `VoidSphereProjectile.cs` (homing + timeout 5s + damage + stun/slow/armor debuff → destroy) |
 | **VoidSphere_Fly.anim** | ✅ Complete | `Assets/Animation/Enemy/VoidBoss/VoidSphere_Fly.anim` (frame 2-4, 3 frame, 12fps, loop). Void sphere-Sheet.png |
 | **VoidSphere_Explode.anim** | ✅ Complete | `Assets/Animation/Enemy/VoidBoss/VoidSphere_Explode.anim` (frame 5-13, 9 frame, 12fps, non-loop). Event `OnVoidSphereExplodeEnd` tại frame cuối |
 | **BloodExplosion.anim** | ✅ Complete | `Assets/Animation/Enemy/VoidBoss/BloodExplosion.anim` (8 frame Blood Explosion-Sheet, 12fps, non-looping). Chưa gắn prefab — dùng sau |
@@ -637,39 +714,47 @@ Các hạng mục dưới đây **không phải bug code** — là phần việc
 | **Layer Collision Matrix** | ✅ Complete | `Enemy`(7) × `Player`(3) = IGNORE. `EnemyAttack`(10) × `Player`(3) = enabled |
 | **ObjectPool.prefab** | ✅ Tạo rồi | `Assets/Resources/Prefab/ObjectPool.prefab` với entry `BloodMoonTelegraph` (size 25) |
 | **BossHealthBarUI** trong scene | ⚠️ Prefab tạo rồi | `Assets/Resources/Prefab/UI/BossHealthBarUI.prefab` — WorldSpace Canvas với Slider + Fill + Border + BossnameText. **Cần:** kéo vào scene, gọi `SetHealthBar()` |
+| **VoidAggroTrigger.cs** | ✅ Complete | `Assets/Script/EnemyThing/Boss/VoidBoss/VoidAggroTrigger.cs`. Gắn trên CHILD GameObject (CircleCollider2D, Trigger). OnTriggerEnter2D(Player) → disable collider → gọi `CameraFollow.ZoomToBossReveal()` → cinematic xong → `WakeUpFromAggro()` |
 | **VoidBoss_Die.anim .meta** | ❌ Chưa có | Die state tạm dùng Idle anim GUID. Cần Unity Editor để sinh GUID thật cho placeholder clip |
 
 ---
-
-## 14. FILE MAP
+## 15. FILE MAP
 
 ```
-Assets/Script/EnemyThing/
-├── Boss/VoidBoss/
-│   ├── VoidBossController.cs          ← FSM, Super Armor, Facing Lock,
-│   │                                      Cleanup, Anti-Overlap BM
-│   └── States/
-│       ├── VoidIdleState.cs           ← AI Decision Brain
-│       ├── VoidPursuitState.cs        ← Interruptible Pursuit
-│       └── BloodMoonState.cs          ← Multi-wave Ultimate
+
+Assets/Script/
+├── Effect/CameraController.cs         ← CameraFollow + Boss Reveal Zoom
 │
-├── Boss/BatBoss/   (existing)
-│
-├── States/Common/
-│   ├── GenericAttackState.cs
-│   ├── HurtState.cs
-│   └── DieState.cs
-│
+└── EnemyThing/
+    ├── Boss/VoidBoss/
+    │   ├── VoidBossController.cs          ← FSM, Super Armor, Facing Lock,
+    │   │                                      Cleanup, Anti-Overlap BM
+    │   ├── VoidAggroTrigger.cs            ← Aggro zone → camera zoom → wake
+    │   ├── VoidSphereProjectile.cs        ← Homing projectile + timeout
+    │   ├── AmbushTrapController.cs        ← Trap delay dash + SilentEffect
+    │   ├── BloodMoonTelegraphController.cs← Pool-managed AoE telegraph
+    │   └── States/
+    │       ├── VoidIdleState.cs           ← AI Decision Brain
+    │       ├── VoidPursuitState.cs        ← Interruptible Pursuit
+    │       └── BloodMoonState.cs          ← Multi-wave Ultimate
+    │
+    ├── Boss/BatBoss/   (existing)
+    │
+    ├── States/Common/
+    │   ├── GenericAttackState.cs
+    │   ├── HurtState.cs
+    │   └── DieState.cs
+    │
     └── Core/
-    ├── EnemyController.cs
-    ├── IEnemyStateContext.cs
-    ├── IEnemyMovement.cs
-    └── IEnemyCombat.cs
+        ├── EnemyController.cs
+        ├── IEnemyStateContext.cs
+        ├── IEnemyMovement.cs
+        └── IEnemyCombat.cs
 ```
 
 ---
 
-## 15. ARCHITECT DECISIONS (2026-07-18)
+## 16. ARCHITECT DECISIONS (2026-07-18)
 
 ### Decision 1 — Ultimate Priority (VoidBoss)
 
@@ -724,8 +809,8 @@ Assets/Script/EnemyThing/
 |-----|----------|
 | Vấn đề | VoidBoss không có clip/chuyển animation riêng cho "chưa phát hiện Player" — animation Idle chạy xuyên suốt |
 | Giải pháp | Xoá `animator.Play("Void_Sleep", ...)`. `isAwake = false` gate AI logic, không gate animation. Thêm `WakeUpFromAggro()` để trigger aggro. Animation Idle chạy từ Start |
-| File áp dụng | `VoidBossController.cs` (Start, OnWakeUpComplete → WakeUpFromAggro) |
-| Còn thiếu | Cơ chế trigger "vùng phát hiện Player" gọi `WakeUpFromAggro()` **chưa có** — Architect cần tự thêm |
+| File áp dụng | `VoidBossController.cs` (Start, WakeUpFromAggro) |
+| Còn thiếu | ~~Cơ chế trigger "vùng phát hiện Player" gọi `WakeUpFromAggro()` chưa có~~ ✅ Đã implement (SỬA 8) |
 | Trạng thái | ✅ Code đã sửa |
 
 ### Decision 7 — Timing Animation Event Void Sphere (SỬA 2, 2026-07-26)
@@ -733,6 +818,15 @@ Assets/Script/EnemyThing/
 | Mục | Chi tiết |
 |-----|----------|
 | Vấn đề | Frame 0-2 là Boss vận cầu (dính vào sprite), frame 2+ cầu độc lập — event phải đúng ranh giới |
-| Giải pháp | `SpawnVoidSphere()` tại time 0.1667 (frame 2). Prefab Instantiate → `animator.Play` từ offset `2/totalFrames` |
-| File áp dụng | `VoidBoss_Skill1.anim` (event), `VoidBossController.cs` (offset code), Context docs |
+| Giải pháp | `SpawnVoidSphere()` tại time 0.1667 (frame 2). Prefab Instantiate → `sphereAnim.Play(clipName, 0, 0f)` — clip `VoidSphere_Fly` đã được trim từ frame 2 nên play từ 0f là đúng |
+| File áp dụng | `VoidBoss_Skill1.anim` (event), `VoidBossController.cs` (spawn), Context docs |
+| Trạng thái | ✅ Đã implement |
+
+### Decision 8 — Aggro zone + xoá OnWakeUpComplete (SỬA 8, 2026-07-27)
+
+| Mục | Chi tiết |
+|-----|----------|
+| Vấn đề | Cơ chế trigger "vùng phát hiện Player" gọi `WakeUpFromAggro()` chưa có. `OnWakeUpComplete()` còn sót lại từ SỬA 1 nhưng không được dùng |
+| Giải pháp | Tạo `VoidAggroTrigger.cs` — script gắn trên CHILD GameObject (CircleCollider2D, Trigger). `OnTriggerEnter2D(Player)` → `parentController.WakeUpFromAggro()`. Xoá `OnWakeUpComplete()` khỏi `VoidBossController.cs` |
+| File áp dụng | `VoidAggroTrigger.cs` (mới), `VoidBossController.cs` (xoá OnWakeUpComplete) |
 | Trạng thái | ✅ Đã implement |
