@@ -96,6 +96,7 @@ public class GameManager : MonoBehaviour
             inventoryItem = Inventory.Instance.GetSerializableInventory(),
             equipmentItem = Inventory.Instance.GetSerializableEquipment(),
             skillMatrix = Inventory.Instance.GetSerializableSkillMatrix(),
+            questItems = Inventory.Instance.GetSerializableQuestItems(),
             // Scene info
             currentSceneIndex = currentScene.buildIndex,
             currentSceneName = currentScene.name,
@@ -210,7 +211,8 @@ public class GameManager : MonoBehaviour
             Inventory.Instance.LoadSerializableInventory(tempSaveData.inventoryItem);
             Inventory.Instance.LoadSerializableEquipment(tempSaveData.equipmentItem);
             Inventory.Instance.LoadSerializableSkillMatrix(tempSaveData.skillMatrix);
-            Debug.Log("Inventory, equipment and skills restored!");
+            Inventory.Instance.LoadSerializableQuestItems(tempSaveData.questItems);
+            Debug.Log("Inventory, equipment, skills and quest items restored!");
         }
         else
         {

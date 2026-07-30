@@ -70,6 +70,16 @@ public class CharacterStats : MonoBehaviour
     public float DmgR => CalculateStat(baseDmgR, dmgRMod);
     public float SkillAmp => CalculateStat(baseSkillAmp, skillAmpMod);
 
+    public void SetBaseAttack(float value)
+    {
+        baseAtk = value;
+    }
+
+    public void SetBaseMovementSpeed(float value)
+    {
+        baseMovementSpeed = value;
+    }
+
     // ARMOR
     public void AddArmorModifier(StatsModifier mod)
     {

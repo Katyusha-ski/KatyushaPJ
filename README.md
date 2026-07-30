@@ -183,6 +183,7 @@ SkillBase (SO, abstract)
 |-------|---------|-----|-------------------|
 | **BatBoss** | 4 | 5 states: `BatHoverState` (unique) + 4 generic states | Deflect system (Melee/Stand bounce), Pillar burst (25% MaxHP), Atk1/Ak2 **50/50 pure random** |
 | **VoidBoss** | 6 | 9 states: 3 custom (`VoidIdleState`, `VoidPursuitState`, `BloodMoonState`) + 6 generic states | Super Armor (no flinch), Facing Lock, BloodMoon Ultimate (5 waves × 5 telegraphs), **Ultimate ưu tiên ngắt Pursuit** |
+| **DuoGolem** (A/B) | (future) | 6 states: `GolemAttackState` (custom) + 2 custom (`ParalyzedState`, `RevivalChannelingState`) + 3 generic | Resurrection Loop (8s channel), 4-phase Enrage (speed scaling), ArenaHazardController (4 environment skills), SnapTrap physical blocking |
 
 ### 7. Item System — `Assets/Script/ItemSystem/`
 
@@ -301,6 +302,11 @@ HP Regen: every 5 seconds, heal = HPRegen
 - `AssisterController` is legacy/unused
 - Defend and Melee skill SO assets not yet created
 - `SkillMatrix` save serialization structure needs review
+- DuoGolem hazard skills need real prefab instantiation (all marked `// TODO: chờ prefab`)
+- DuoGolem all damage/cooldown/hitbox values are placeholders (XML-documented as "Architect: chua chot so lieu")
+- DuoGolem Animator Controller not yet created (needs triggers: "Punch", "Run", "Die")
+- DuoGolem `partnerGolem` reference must be assigned in Inspector on both Golem prefabs
+- DuoGolem Chapter assignment TBD (which chapter this boss belongs to)
 
 ---
 
@@ -316,4 +322,5 @@ HP Regen: every 5 seconds, heal = HPRegen
 | `Assets/Script/HuongDan/ROADMAP_UNITY_FIREBASE_INTERN.md` | Firebase integration roadmap |
 | `Docs/Contexts/Katyusha_BatBoss_Context.md` | BatBoss architecture: FSM, Health, Pillar system, deflect mechanics |
 | `Docs/Contexts/Katyusha_VoidBoss_Context.md` | VoidBoss architecture: FSM, AI decision, Super Armor, BloodMoon, cleanup |
-| `Docs/Contexts/KatyushaPJ_Boss_System_Summary.md` | Boss system summary: BatBoss, VoidBoss, Duo Golem design |
+| `Docs/Contexts/KatyushaPJ_Boss_System_Summary.md` | Boss system summary: BatBoss, VoidBoss, Duo Golem design + implementation |
+| `Assets/Script/EnemyThing/Boss/DuoGolem/` | Duo Golem full source (11 files): controller, 2 prefab classes, 3 custom states, 4 hazard skills |

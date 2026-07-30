@@ -8,6 +8,7 @@ public class Inventory : MonoBehaviour
     public event Action OnInventoryChanged;
     public event Action OnEquipmentChanged;
     public event Action OnSkillMatrixChanged;
+    public event Action OnQuestItemsChanged;
     public int maxSlots = 30;
     public List<ItemStack> itemSlots = new List<ItemStack>(30);
 
@@ -16,6 +17,7 @@ public class Inventory : MonoBehaviour
     public int maxStack = 99;
 
     public ItemStack[,] skillMatrix = new ItemStack[4, 5];
+    public List<ItemData> questItems = new List<ItemData>();
 
     public static int SkillTypeToRow(SkillType type)
     {
@@ -54,6 +56,8 @@ public class Inventory : MonoBehaviour
 
     public bool CanAddItem(ItemData item, int amount = 1)
     {
+        if (item == null) return false;
+        if (item.itemType == ItemType.Quest) return true;
         if(amount <= 0) return false; // Invalid amount
         int freeSpace = 0;
         // Check for non-stackable items
@@ -106,9 +110,18 @@ public class Inventory : MonoBehaviour
         return remainingToCheck == 0;
     }
 
+    // TODO: xem xet bo routing quest ra khoi AddItem(),
+    //       luc do NPC se goi AddQuestItem() rieng.
     public void AddItem(ItemData item, int amount = 1)
     {
-        // Check if we can add the item
+        if (item == null) return;
+        if (item.itemType == ItemType.Quest)
+        {
+            for (int i = 0; i < amount; i++)
+                questItems.Add(item);
+            OnQuestItemsChanged?.Invoke();
+            return;
+        }
         if (!CanAddItem(item, amount)) 
             return;
 
@@ -285,6 +298,18 @@ public class Inventory : MonoBehaviour
         return null;
     }
 
+    public (SkillBase activeSkill, int currentLevel) GetSkillPanelData(int skillRowIndex)
+    {
+        if (skillRowIndex < 0 || skillRowIndex >= skillMatrix.GetLength(0)) return (null, 0);
+        for (int col = 4; col >= 0; col--)
+        {
+            var stack = skillMatrix[skillRowIndex, col];
+            if (stack != null && stack.item != null && stack.item.skillData != null)
+                return (stack.item.skillData.skill, col + 1);
+        }
+        return (null, 0);
+    }
+
     public void SetSkill(int row, int col, ItemStack stack)
     {
         if (row < 0 || row >= skillMatrix.GetLength(0) || col < 0 || col >= skillMatrix.GetLength(1)) return;
@@ -301,11 +326,30 @@ public class Inventory : MonoBehaviour
         for (int r = 0; r < skillMatrix.GetLength(0); r++)
             for (int c = 0; c < skillMatrix.GetLength(1); c++)
                 skillMatrix[r, c] = null;
+        questItems.Clear();
         OnInventoryChanged?.Invoke();
         OnSkillMatrixChanged?.Invoke();
+        OnQuestItemsChanged?.Invoke();
         return true;
     }
 
+    public void AddQuestItem(ItemData item)
+    {
+        if (item == null || item.itemType != ItemType.Quest) return;
+        questItems.Add(item);
+        OnQuestItemsChanged?.Invoke();
+    }
+
+    public void RemoveQuestItem(ItemData item)
+    {
+        if (questItems.Remove(item))
+            OnQuestItemsChanged?.Invoke();
+    }
+
+    public bool HasQuestItem(ItemData item)
+    {
+        return questItems.Contains(item);
+    }
 
     /// <summary>
     /// Converts the current Inventory to a Serializable format
@@ -439,5 +483,36 @@ public class Inventory : MonoBehaviour
             }
         }
         OnSkillMatrixChanged?.Invoke();
+    }
+
+    public List<string> GetSerializableQuestItems()
+    {
+        var names = new List<string>();
+        foreach (var item in questItems)
+            names.Add(item != null ? item.itemName : null);
+        return names;
+    }
+
+    public void LoadSerializableQuestItems(List<string> serialized)
+    {
+        if (serialized == null) return;
+        questItems.Clear();
+        foreach (var name in serialized)
+        {
+            if (string.IsNullOrEmpty(name)) continue;
+            ItemData item = Resources.Load<ItemData>($"Items/{name}");
+            if (item == null)
+            {
+                string[] subfolders = { "Consumables", "Equipments", "Materials", "Quests", "Skills" };
+                foreach (var folder in subfolders)
+                {
+                    item = Resources.Load<ItemData>($"Items/{folder}/{name}");
+                    if (item != null) break;
+                }
+            }
+            if (item != null)
+                questItems.Add(item);
+        }
+        OnQuestItemsChanged?.Invoke();
     }
 }

@@ -7192,6 +7192,7 @@ MonoBehaviour:
   - item: {fileID: 0}
     amount: 0
   maxStack: 64
+  questItems: []
 --- !u!4 &962489023
 Transform:
   m_ObjectHideFlags: 0
@@ -14039,6 +14040,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: AmbushTrap
       objectReference: {fileID: 0}
+    - target: {fileID: 290327522158283287, guid: 7b0cfab0b6f7ce44a9e920dc8f2a305d, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5994858246153461056, guid: 7b0cfab0b6f7ce44a9e920dc8f2a305d, type: 3}
       propertyPath: m_LocalPosition.x
       value: 1.45
@@ -14241,6 +14246,10 @@ PrefabInstance:
     - target: {fileID: 3691317574380081105, guid: d8ddbf1bffec37c4b962f8feb7a22c50, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4154004212099038647, guid: d8ddbf1bffec37c4b962f8feb7a22c50, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

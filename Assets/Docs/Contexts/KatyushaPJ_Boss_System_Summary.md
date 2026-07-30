@@ -250,7 +250,7 @@ Nếu Distance > MeleeRange:
 
 ---
 
-## 5. DUO GOLEM (Trận Chiến Tiêu Hao) — *Chỉ có thiết kế (GDD), chưa code*
+## 5. DUO GOLEM (Trận Chiến Tiêu Hao) — *Đã code*
 
 ### 5.1 Tổng quan
 - Duo Boss gồm **Golem A** và **Golem B** (phân biệt màu sắc).
@@ -312,13 +312,53 @@ Nếu Distance > MeleeRange:
 
 ---
 
-## 5.5 Die Animation TODO (All Bosses)
+## 5.6 Implementation Notes
+
+**File structure** `Assets/Script/EnemyThing/Boss/DuoGolem/` (11 files):
+
+```
+DuoGolem/
+├── GolemController.cs           # Base: HP phase, death loop, animation stubs
+├── GolemA.cs                    # SnapTrap + RollingStone factory
+├── GolemB.cs                    # TremorHailstorm + StoneSpikeStab factory
+├── IEnvironmentSkill.cs         # Interface: Enable(phase), Disable()
+├── ArenaHazardController.cs     # 2-slot plain class (not MB), phase gating
+├── States/
+│   ├── GolemAttackState.cs      # Single punch (Mức 3, timer-based)
+│   ├── ParalyzedState.cs        # Disable ALL colliders + hazards
+│   └── RevivalChannelingState.cs# 8s timer, HP snap, death check
+└── GolemAHazards/
+│   ├── SnapTrapSkill.cs         # Wall trap (CC), physical Dash block
+│   └── RollingStoneSkill.cs     # Boulder spawn (Damage)
+└── GolemBHazards/
+    ├── TremorHailstormSkill.cs  # Slow tremor + falling debris (CC→Damage)
+    └── StoneSpikeStabSkill.cs   # Ground AoE spikes (Damage)
+```
+
+**Key implementation decisions** (documented in code comments):
+- SnapTrap blocks Dash via **collision matrix** (TrapWall layer), not by disabling the Dash skill
+- Downward force in SnapTrap Phase 4 uses direct `Rigidbody2D.linearVelocity.y = value`, NOT `AddForce`
+- ParalyzedState calls `GetComponents<Collider2D>()` → disable **all** colliders (prevent Hachiware lifesteal exploit)
+- Revival HP snap: `revivedHP = partnerHealth.CurrentHP` (exact mirror per GDD)
+- Phase gate: `hazard.SetPhase(Mathf.Max(0, myPhase - 1))` — edge case at Phase 0 (keeps Phase 1)
+- No separate Manager/referee class per GDD; symmetric FSM with re-entrancy guard (`isParalyzedOrReviving`)
+
+**Pending setup** (not in code — marked as `// TODO` or XML `"chua chot so lieu"`):
+- Hazard prefab instantiation needs real prefab references
+- Damage/cooldown/hitbox values all placeholder for Architect tuning
+- `partnerGolem` reference must be assigned in Inspector
+- Animator Controller needs triggers: "Punch", "Run", "Die"
+- Chapter assignment TBD
+
+---
+
+## 5.7 Die Animation TODO (All Bosses)
 
 ⚠️ **Animation chết (Die) chưa có asset chính thức cho bất kỳ Boss nào.**
 
 - `VoidBoss_Die.anim` đã tạo placeholder (6 sprite keyframe từ sheet VoidBoss, non-looping, 0.83s) — nhưng dùng sprite Idle làm frame.
 - BatBoss cũng chưa có Die animation riêng — hiện tại dùng Idle fallback qua Animator.
-- Duo Golem chưa code, chưa có animation gì.
+- Duo Golem chưa có animation (code đã có, chờ Animator Controller + sprite).
 
 **Cần:** Asset artist tạo sprite Die riêng cho từng Boss, cập nhật .anim clip tương ứng.
 
@@ -330,4 +370,4 @@ Nếu Distance > MeleeRange:
 |---|---|---|---|
 | BatBoss (Ch.4) | Đã code, đã refactor FSM (dùng Generic State) | Deflect Melee, 1.5x Ranged, Pillar → Hurt | Bay lơ lửng + Pillar hệ thống ngầm |
 | VoidBoss (Ch.6) | Đã code Controller + 5 hitbox prefab + controller + BossHealthBarUI | Không lọc, sát thương thường từ mọi nguồn | CC/Debuff tầm xa dồn dập + Ultimate Blood Moon |
-| Duo Golem | Mới có GDD, **chưa code** | Không áp dụng cho Golem (chỉ 1 đòn đấm chay) | Toàn bộ độ khó đến từ Môi trường (4 skill theo Phase) |
+| Duo Golem | **Đã code** (11 files: controller, 2 classes, 3 states, 4 hazards, 2 interfaces) | Không áp dụng cho Golem (chỉ 1 đòn đấm chay) | Toàn bộ độ khó đến từ Môi trường (4 skill theo Phase) |

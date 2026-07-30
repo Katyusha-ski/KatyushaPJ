@@ -10,6 +10,7 @@ public class SaveData
     public List<SerializableItemStack> inventoryItem;
     public List<SerializableItemStack> equipmentItem;
     public List<List<SerializableItemStack>> skillMatrix;
+    public List<string> questItems;
     public List<SerializableShopEntry> shopEntries;
 
     // Scene information
@@ -33,6 +34,7 @@ public class SaveData
             currentChapter = 1,
             inventoryItem = new List<SerializableItemStack>(),
             equipmentItem = new List<SerializableItemStack>(),
+            questItems = new List<string>(),
             shopEntries = new List<SerializableShopEntry>(),
             // TODO: set sceneIndex & sceneName theo cơ chế riêng sau
             currentSceneIndex = -1,
