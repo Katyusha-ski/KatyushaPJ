@@ -120,6 +120,10 @@ public class InventoryUI : MonoBehaviour
         if (item == null) return;
 
         itemDetailPanel.SetActive(true);
+
+        if (useItemButton != null)
+            useItemButton.gameObject.SetActive(item.itemType == ItemType.Consumable);
+
         var panelRect = itemDetailPanel.GetComponent<RectTransform>();
 
         if (itemNameText != null)
@@ -160,6 +164,8 @@ public class InventoryUI : MonoBehaviour
     public void HideItemDetail()
     {
         itemDetailPanel.SetActive(false);
+        if (useItemButton != null)
+            useItemButton.gameObject.SetActive(false);
         useSlotIndex = -1;
     }
 

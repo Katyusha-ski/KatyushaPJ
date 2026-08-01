@@ -183,7 +183,7 @@ SkillBase (SO, abstract)
 |-------|---------|-----|-------------------|
 | **BatBoss** | 4 | 5 states: `BatHoverState` (unique) + 4 generic states | Deflect system (Melee/Stand bounce), Pillar burst (25% MaxHP), Atk1/Ak2 **50/50 pure random** |
 | **VoidBoss** | 6 | 9 states: 3 custom (`VoidIdleState`, `VoidPursuitState`, `BloodMoonState`) + 6 generic states | Super Armor (no flinch), Facing Lock, BloodMoon Ultimate (5 waves × 5 telegraphs), **Ultimate ưu tiên ngắt Pursuit** |
-| **DuoGolem** (A/B) | (future) | 6 states: `GolemAttackState` (custom) + 2 custom (`ParalyzedState`, `RevivalChannelingState`) + 3 generic | Resurrection Loop (8s channel), 4-phase Enrage (speed scaling), ArenaHazardController (4 environment skills), SnapTrap physical blocking |
+| **DuoGolem** (A/B) | TBD | 6 states: `GolemAttackState` (custom) + 2 custom (`ParalyzedState`, `RevivalChannelingState`) + 3 generic | Resurrection Loop (8s channel), 4-phase Enrage (speed scaling), ArenaHazardController (4 environment skills), SnapTrap physical blocking |
 
 ### 7. Item System — `Assets/Script/ItemSystem/`
 
@@ -194,7 +194,7 @@ SkillBase (SO, abstract)
 - `SkillData` — `SkillBase skill` + `int Level`
 - `ItemStack` — runtime stack: `ItemData` + `amount`
 
-**Inventory** (`Inventory/Inventory.cs`): Persistent singleton. 3 arrays: `itemSlots[30]`, `equipment[4]`, `skillMatrix[4,5]`. Events: `OnInventoryChanged`, `OnEquipmentChanged`, `OnSkillMatrixChanged`.
+**Inventory** (`Inventory/Inventory.cs`): Persistent singleton. Storage: `itemSlots` (List, 30 slots), `equipment[4]`, `skillMatrix[4,5]`, `questItems` (Quest items, no slot limit, not stackable). Events: `OnInventoryChanged`, `OnEquipmentChanged`, `OnSkillMatrixChanged`, `OnQuestItemsChanged`.
 
 **Key data flows:**
 
@@ -211,6 +211,10 @@ Equipment equip:
 Skill item use:
   UI → Inventory.UseItem() → PlayerSkillManager.UseItem()
     → checks level gating → updates skillMatrix → fires OnSkillMatrixChanged
+
+Quest item pickup:
+  Loot/ItemFloat → Inventory.AddItem() → routes `ItemType.Quest` to questItems
+    → fires OnQuestItemsChanged (no slot/stack limit)
 ```
 
 **Shop** (`Shop/`):
@@ -237,7 +241,7 @@ Skill item use:
 | Class | File | Responsibility |
 |---|---|---|
 | **SaveManager** (static) | `SaveManager.cs` | JSON save/load to `persistentDataPath/savefile.json` via `JsonUtility` |
-| **SaveData** | `SaveData.cs` | Serializable container: chapter, inventory, equipment, skillMatrix, shop, scene, player pos/health, metadata |
+| **SaveData** | `SaveData.cs` | Serializable container: chapter, inventory, equipment, skillMatrix, questItems, shop, scene, player pos/health, metadata |
 | **SerializableItemStack** | `SerializableItemStack.cs` | Saves item by `itemName` string → `Resources.Load<ItemData>()` on load (searches subfolders: Items/, Items/Consumables/, Items/Equipments/, etc.) |
 | **ChapterManager** | `ChapterSystem/ChapterManager.cs` | Persistent singleton. Chapter list + progression. Auto-saves on village load. |
 | **ChapterDataSO** | `ChapterSystem/ChapterDataSO.cs` | ScriptableObject: `chapterID`, `chapterName`, `mainSceneName`, `bossSceneName` |
@@ -262,6 +266,9 @@ Skill item use:
 | **Slot** | `Inventory/Slot.cs` | Single inventory slot UI (icon, quantity, index) |
 | **SlotDragHandler** | `Inventory/SlotDragHandler.cs` | Drag-equip/unequip/swap, right-click details |
 | **SkillSystemUI** | `Inventory/SkillSystemUI.cs` | 4×5 skill matrix UI |
+| **InventoryBoardUI** | `ItemSystem/Inventory/InventoryBoardUI.cs` | Tabbed inventory board (Inventory ⇄ Skill panels) |
+| **InventorySkillPanelUI** | `ItemSystem/Inventory/InventorySkillPanelUI.cs` | Skill matrix panel inside the Inventory Board |
+| **InventorySkillSlotUI** | `ItemSystem/Inventory/InventorySkillSlotUI.cs` | Individual skill slot in the inventory board |
 
 **Shop UI:**
 - `CategoryUI` — filter buttons, fires `OnCategorySelected(ItemType)`
@@ -280,6 +287,18 @@ Skill item use:
 | `Scene/` | `GameSceneController` | Scene navigation singleton |
 | `Shader/` | `HPBar.shader` | UI shader: clips by `_Health`, color gradient + glint |
 | `Shader/` | `PurpleSmoke.shader` | Multi-layer noise morphing, vertex sway, color cycling |
+
+### 12. Dialogue System — `Assets/Script/Dialogue/`
+
+| Class | File | Responsibility |
+|---|---|---|
+| **DialogueManager** | `DialogueManager.cs` | Persistent singleton. Starts/advances/ends dialogues, locks `PlayerMovementController.CanMove` |
+| **DialogueData** | `DialogueData.cs` | ScriptableObject: `List<DialogueLine>` (speaker + text) |
+| **CharacterProfile** | `Profiles/CharacterProfile.cs` | ScriptableObject speaker profile (name/portrait) |
+| **DialogueUI** | `DialogueUI.cs` | Singleton UI: shows/updates/hides current line |
+| **NPCDialogueTrigger** | `NPCDialogueTrigger.cs` | World/NPC trigger → `DialogueManager.StartDialogue()` |
+
+**Dependencies:** DOTween (Demigiant) is bundled under `Assets/Plugins/` and used for tweening (boss/VFX systems).
 
 ---
 
@@ -315,12 +334,15 @@ HP Regen: every 5 seconds, heal = HPRegen
 | File | Content |
 |---|---|
 | `REFACTORING_PLAN.md` | Enemy system refactor: SRP + DIP, state machine architecture |
-| `Docs/SKILL_SYSTEM_PLAN.md` | Skill system design, CDR fix, 5 levels per skill |
+| `Assets/Docs/SKILL_SYSTEM_PLAN.md` | Skill system design, CDR fix, 5 levels per skill |
+| `Assets/Docs/Roadmap.md` | Project roadmap |
+| `Assets/Docs/Directives.md` | Dev directives / conventions |
 | `Assets/Script/ItemSystem/Core/REFACTOR_ItemStats_EquipmentManager.md` | Unified stat modifier API migration |
 | `Assets/Script/SaveSystem/ChapterSystem/SaveSystemChanges.md` | Old level-based → chapter-based migration |
 | `Assets/Script/HuongDan/ItemInfo.md` | Full item catalog (Vietnamese) |
 | `Assets/Script/HuongDan/ROADMAP_UNITY_FIREBASE_INTERN.md` | Firebase integration roadmap |
-| `Docs/Contexts/Katyusha_BatBoss_Context.md` | BatBoss architecture: FSM, Health, Pillar system, deflect mechanics |
-| `Docs/Contexts/Katyusha_VoidBoss_Context.md` | VoidBoss architecture: FSM, AI decision, Super Armor, BloodMoon, cleanup |
-| `Docs/Contexts/KatyushaPJ_Boss_System_Summary.md` | Boss system summary: BatBoss, VoidBoss, Duo Golem design + implementation |
+| `Assets/Docs/Contexts/Katyusha_BatBoss_Context.md` | BatBoss architecture: FSM, Health, Pillar system, deflect mechanics |
+| `Assets/Docs/Contexts/Katyusha_VoidBoss_Context.md` | VoidBoss architecture: FSM, AI decision, Super Armor, BloodMoon, cleanup |
+| `Assets/Docs/Contexts/KatyushaPJ_Boss_System_Summary.md` | Boss system summary: BatBoss, VoidBoss, Duo Golem design + implementation |
+| `Assets/Script/EnemyThing/Boss/BatBoss/README.md` | BatBoss source-level notes |
 | `Assets/Script/EnemyThing/Boss/DuoGolem/` | Duo Golem full source (11 files): controller, 2 prefab classes, 3 custom states, 4 hazard skills |

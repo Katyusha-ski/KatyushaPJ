@@ -14179,6 +14179,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Void Boss
       objectReference: {fileID: 0}
+    - target: {fileID: 444722692198636932, guid: d8ddbf1bffec37c4b962f8feb7a22c50, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 444722692198636934, guid: d8ddbf1bffec37c4b962f8feb7a22c50, type: 3}
       propertyPath: m_Size.x
       value: 10.275933
