@@ -14,7 +14,12 @@ public class SkillSystemUI : MonoBehaviour
         public bool isUnlocked;
     }
 
-    public SkillCell[,] cells = new SkillCell[4, 5];
+    private const int Rows = 4;
+    private const int Cols = 5;
+
+    public SkillCell[] cells = new SkillCell[Rows * Cols];
+
+    private static int ToIndex(int row, int col) => row * Cols + col;
 
     private void OnEnable()
     {
@@ -32,9 +37,9 @@ public class SkillSystemUI : MonoBehaviour
     public void Refresh()
     {
         if (Inventory.Instance == null) return;
-        for (int r = 0; r < 4; r++)
+        for (int r = 0; r < Rows; r++)
         {
-            for (int c = 0; c < 5; c++)
+            for (int c = 0; c < Cols; c++)
             {
                 bool unlocked = Inventory.Instance.IsSkillUnlocked(r, c);
                 SetUnlocked(r, c, unlocked);
@@ -44,14 +49,16 @@ public class SkillSystemUI : MonoBehaviour
 
     public void SetUnlocked(int row, int col, bool unlocked)
     {
-        if (row < 0 || row >= 4 || col < 0 || col >= 5 || cells[row, col] == null) return;
-        cells[row, col].isUnlocked = unlocked;
-        ApplyCellState(row, col);
+        if (row < 0 || row >= Rows || col < 0 || col >= Cols) return;
+        int index = ToIndex(row, col);
+        if (cells[index] == null) return;
+        cells[index].isUnlocked = unlocked;
+        ApplyCellState(index);
     }
 
-    private void ApplyCellState(int row, int col)
+    private void ApplyCellState(int index)
     {
-        var cell = cells[row, col];
+        var cell = cells[index];
         if (cell.background != null)
         {
             cell.background.sprite = cell.isUnlocked ? cell.unlockedBackground : cell.lockedBackground;
