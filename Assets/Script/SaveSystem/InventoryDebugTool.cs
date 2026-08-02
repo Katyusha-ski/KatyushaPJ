@@ -103,19 +103,9 @@ public static class InventoryDebugTool
         {
             inventoryItem = inventory.GetSerializableInventory(),
             equipmentItem = inventory.GetSerializableEquipment(),
+            skillUnlocked = inventory.GetSerializableSkillUnlocked(),
             questItems = inventory.GetSerializableQuestItems()
         };
-
-        // Flatten skillMatrix 2D -> 1D vì JsonUtility không hỗ trợ List<List<T>>
-        List<List<SerializableItemStack>> skillMatrix2D = inventory.GetSerializableSkillMatrix();
-        snapshot.skillRows = skillMatrix2D.Count;
-        snapshot.skillCols = skillMatrix2D.Count > 0 ? skillMatrix2D[0].Count : 0;
-        snapshot.skillMatrixFlat = new List<SerializableItemStack>();
-        foreach (List<SerializableItemStack> row in skillMatrix2D)
-        {
-            foreach (SerializableItemStack cell in row)
-                snapshot.skillMatrixFlat.Add(cell);
-        }
 
         string json = JsonUtility.ToJson(snapshot, true);
 
@@ -179,24 +169,8 @@ public static class InventoryDebugTool
 
         inventory.LoadSerializableInventory(snapshot.inventoryItem);
         inventory.LoadSerializableEquipment(snapshot.equipmentItem);
+        inventory.LoadSerializableSkillUnlocked(snapshot.skillUnlocked);
         inventory.LoadSerializableQuestItems(snapshot.questItems);
-
-        // Dựng lại skillMatrix 2D từ flat list
-        if (snapshot.skillMatrixFlat != null && snapshot.skillRows > 0 && snapshot.skillCols > 0)
-        {
-            List<List<SerializableItemStack>> matrix2D = new List<List<SerializableItemStack>>();
-            for (int r = 0; r < snapshot.skillRows; r++)
-            {
-                List<SerializableItemStack> row = new List<SerializableItemStack>();
-                for (int c = 0; c < snapshot.skillCols; c++)
-                {
-                    int flatIndex = r * snapshot.skillCols + c;
-                    row.Add(flatIndex < snapshot.skillMatrixFlat.Count ? snapshot.skillMatrixFlat[flatIndex] : null);
-                }
-                matrix2D.Add(row);
-            }
-            inventory.LoadSerializableSkillMatrix(matrix2D);
-        }
 
         Debug.Log($"[InventoryDebugTool] Đã load inventory debug snapshot: {SnapshotPath}");
     }

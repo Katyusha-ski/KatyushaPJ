@@ -1,0 +1,203 @@
+{
+    "inventoryItem": [
+        {
+            "itemName": "Diamond sword",
+            "amount": 1
+        },
+        {
+            "itemName": "",
+            "amount": 0
+        },
+        {
+            "itemName": "",
+            "amount": 0
+        },
+        {
+            "itemName": "",
+            "amount": 0
+        },
+        {
+            "itemName": "",
+            "amount": 0
+        },
+        {
+            "itemName": "",
+            "amount": 0
+        },
+        {
+            "itemName": "",
+            "amount": 0
+        },
+        {
+            "itemName": "",
+            "amount": 0
+        },
+        {
+            "itemName": "",
+            "amount": 0
+        },
+        {
+            "itemName": "",
+            "amount": 0
+        },
+        {
+            "itemName": "",
+            "amount": 0
+        },
+        {
+            "itemName": "",
+            "amount": 0
+        },
+        {
+            "itemName": "",
+            "amount": 0
+        },
+        {
+            "itemName": "",
+            "amount": 0
+        },
+        {
+            "itemName": "",
+            "amount": 0
+        },
+        {
+            "itemName": "",
+            "amount": 0
+        },
+        {
+            "itemName": "",
+            "amount": 0
+        },
+        {
+            "itemName": "",
+            "amount": 0
+        },
+        {
+            "itemName": "",
+            "amount": 0
+        },
+        {
+            "itemName": "",
+            "amount": 0
+        },
+        {
+            "itemName": "",
+            "amount": 0
+        },
+        {
+            "itemName": "",
+            "amount": 0
+        },
+        {
+            "itemName": "",
+            "amount": 0
+        },
+        {
+            "itemName": "",
+            "amount": 0
+        }
+    ],
+    "equipmentItem": [
+        {
+            "itemName": "",
+            "amount": 0
+        },
+        {
+            "itemName": "",
+            "amount": 0
+        },
+        {
+            "itemName": "",
+            "amount": 0
+        },
+        {
+            "itemName": "",
+            "amount": 0
+        }
+    ],
+    "skillRows": 4,
+    "skillCols": 5,
+    "skillMatrixFlat": [
+        {
+            "itemName": "",
+            "amount": 0
+        },
+        {
+            "itemName": "",
+            "amount": 0
+        },
+        {
+            "itemName": "",
+            "amount": 0
+        },
+        {
+            "itemName": "",
+            "amount": 0
+        },
+        {
+            "itemName": "",
+            "amount": 0
+        },
+        {
+            "itemName": "",
+            "amount": 0
+        },
+        {
+            "itemName": "",
+            "amount": 0
+        },
+        {
+            "itemName": "",
+            "amount": 0
+        },
+        {
+            "itemName": "",
+            "amount": 0
+        },
+        {
+            "itemName": "",
+            "amount": 0
+        },
+        {
+            "itemName": "",
+            "amount": 0
+        },
+        {
+            "itemName": "",
+            "amount": 0
+        },
+        {
+            "itemName": "",
+            "amount": 0
+        },
+        {
+            "itemName": "",
+            "amount": 0
+        },
+        {
+            "itemName": "",
+            "amount": 0
+        },
+        {
+            "itemName": "",
+            "amount": 0
+        },
+        {
+            "itemName": "",
+            "amount": 0
+        },
+        {
+            "itemName": "",
+            "amount": 0
+        },
+        {
+            "itemName": "",
+            "amount": 0
+        },
+        {
+            "itemName": "",
+            "amount": 0
+        }
+    ],
+    "questItems": []
+}

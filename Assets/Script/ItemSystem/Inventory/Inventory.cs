@@ -16,12 +16,38 @@ public class Inventory : MonoBehaviour
     public ItemStack[] equipment = new ItemStack[4];
     public int maxStack = 99;
 
-    public ItemStack[,] skillMatrix = new ItemStack[4, 5];
+    [Tooltip("Kéo asset SkillMatrixLayout vào đây — quy định skill nào nằm ở ô nào")]
+    public SkillMatrixLayout skillMatrixLayout;
+
+    // Trạng thái mở khóa runtime, 20 ô phẳng (index = row*5+col), thay cho việc lưu
+    // trực tiếp ItemStack — vì item ở mỗi ô giờ cố định theo skillMatrixLayout, chỉ
+    // cần biết đã mở khóa hay chưa.
+    public bool[] skillUnlocked = new bool[20];
     public List<ItemData> questItems = new List<ItemData>();
 
     public static int SkillTypeToRow(SkillType type)
     {
         return (int)type - 1;
+    }
+
+    public ItemData GetSkillItemAt(int row, int col)
+    {
+        return skillMatrixLayout != null ? skillMatrixLayout.GetItemAt(row, col) : null;
+    }
+
+    public bool IsSkillUnlocked(int row, int col)
+    {
+        int index = row * 5 + col;
+        if (index < 0 || index >= skillUnlocked.Length) return false;
+        return skillUnlocked[index];
+    }
+
+    public void UnlockSkill(int row, int col)
+    {
+        int index = row * 5 + col;
+        if (index < 0 || index >= skillUnlocked.Length) return;
+        skillUnlocked[index] = true;
+        OnSkillMatrixChanged?.Invoke();
     }
 
     void Awake()
@@ -38,6 +64,8 @@ public class Inventory : MonoBehaviour
 
         for (int i = 0; i < maxSlots; i++) itemSlots.Add(null);
         for (int i = 0; i < equipmentSlots; i++) equipment[i] = null;
+        if (skillUnlocked == null || skillUnlocked.Length != 20)
+            skillUnlocked = new bool[20];
     }
 
     public int GetItemCount(ItemData item)
@@ -288,33 +316,32 @@ public class Inventory : MonoBehaviour
 
     public SkillBase GetHighestSkill(int type)
     {
-        if (type < 0 || type >= skillMatrix.GetLength(0)) return null;
-        for (int i = skillMatrix.GetLength(1) - 1; i >= 0; i--)
+        if (type < 0 || type >= 4) return null;
+        for (int col = 4; col >= 0; col--)
         {
-            var stack = skillMatrix[type, i];
-            if (stack != null && stack.item != null && stack.item.skillData != null)
-                return stack.item.skillData.skill;
+            if (IsSkillUnlocked(type, col))
+            {
+                ItemData item = GetSkillItemAt(type, col);
+                if (item != null && item.skillData != null)
+                    return item.skillData.skill;
+            }
         }
         return null;
     }
 
     public (SkillBase activeSkill, int currentLevel) GetSkillPanelData(int skillRowIndex)
     {
-        if (skillRowIndex < 0 || skillRowIndex >= skillMatrix.GetLength(0)) return (null, 0);
+        if (skillRowIndex < 0 || skillRowIndex >= 4) return (null, 0);
         for (int col = 4; col >= 0; col--)
         {
-            var stack = skillMatrix[skillRowIndex, col];
-            if (stack != null && stack.item != null && stack.item.skillData != null)
-                return (stack.item.skillData.skill, col + 1);
+            if (IsSkillUnlocked(skillRowIndex, col))
+            {
+                ItemData item = GetSkillItemAt(skillRowIndex, col);
+                if (item != null && item.skillData != null)
+                    return (item.skillData.skill, col + 1);
+            }
         }
         return (null, 0);
-    }
-
-    public void SetSkill(int row, int col, ItemStack stack)
-    {
-        if (row < 0 || row >= skillMatrix.GetLength(0) || col < 0 || col >= skillMatrix.GetLength(1)) return;
-        skillMatrix[row, col] = stack;
-        OnSkillMatrixChanged?.Invoke();
     }
 
     public bool ClearInventory()
@@ -323,9 +350,8 @@ public class Inventory : MonoBehaviour
             itemSlots[i] = null;
         for (int i = 0; i < equipment.Length; i++)
             equipment[i] = null;
-        for (int r = 0; r < skillMatrix.GetLength(0); r++)
-            for (int c = 0; c < skillMatrix.GetLength(1); c++)
-                skillMatrix[r, c] = null;
+        for (int i = 0; i < skillUnlocked.Length; i++)
+            skillUnlocked[i] = false;
         questItems.Clear();
         OnInventoryChanged?.Invoke();
         OnSkillMatrixChanged?.Invoke();
@@ -449,39 +475,16 @@ public class Inventory : MonoBehaviour
         OnInventoryChanged?.Invoke();
     }
 
-    public List<List<SerializableItemStack>> GetSerializableSkillMatrix()
+    public List<bool> GetSerializableSkillUnlocked()
     {
-        var result = new List<List<SerializableItemStack>>();
-        int rows = skillMatrix.GetLength(0);
-        int cols = skillMatrix.GetLength(1);
-        for (int r = 0; r < rows; r++)
-        {
-            var row = new List<SerializableItemStack>();
-            for (int c = 0; c < cols; c++)
-            {
-                var stack = skillMatrix[r, c];
-                if (stack != null && stack.item != null)
-                    row.Add(new SerializableItemStack(stack.item.itemName, stack.amount));
-                else
-                    row.Add(null);
-            }
-            result.Add(row);
-        }
-        return result;
+        return new List<bool>(skillUnlocked);
     }
 
-    public void LoadSerializableSkillMatrix(List<List<SerializableItemStack>> serialized)
+    public void LoadSerializableSkillUnlocked(List<bool> serialized)
     {
         if (serialized == null) return;
-        int rows = skillMatrix.GetLength(0);
-        int cols = skillMatrix.GetLength(1);
-        for (int r = 0; r < rows && r < serialized.Count; r++)
-        {
-            for (int c = 0; c < cols && c < serialized[r].Count; c++)
-            {
-                skillMatrix[r, c] = serialized[r][c]?.ToItemStack();
-            }
-        }
+        for (int i = 0; i < skillUnlocked.Length && i < serialized.Count; i++)
+            skillUnlocked[i] = serialized[i];
         OnSkillMatrixChanged?.Invoke();
     }
 
@@ -500,17 +503,7 @@ public class Inventory : MonoBehaviour
         foreach (var name in serialized)
         {
             if (string.IsNullOrEmpty(name)) continue;
-            ItemData item = Resources.Load<ItemData>($"Items/{name}");
-            if (item == null)
-            {
-                string[] subfolders = { "Consumables", "Equipments", "Materials", "Quests", "Skills" };
-                foreach (var folder in subfolders)
-                {
-                    item = Resources.Load<ItemData>($"Items/{folder}/{name}");
-                    if (item != null) break;
-                }
-            }
-            if (item != null)
+            if (SerializableItemStack.ItemCache.TryGetValue(name, out ItemData item) && item != null)
                 questItems.Add(item);
         }
         OnQuestItemsChanged?.Invoke();

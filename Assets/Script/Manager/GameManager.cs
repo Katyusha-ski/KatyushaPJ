@@ -89,8 +89,7 @@ public class GameManager : MonoBehaviour
 
         int chapterNumber = ChapterManager.Instance != null ? ChapterManager.Instance.CurrentChapterNumber : 0;
 
-        var skillMatrix2D = Inventory.Instance.GetSerializableSkillMatrix();
-        var flatSkillMatrix = SaveData.FlattenSkillMatrix(skillMatrix2D, out int skillRows, out int skillCols);
+        var skillMatrix2D = Inventory.Instance.GetSerializableSkillUnlocked();
 
         SaveData data = new SaveData
         {
@@ -98,9 +97,7 @@ public class GameManager : MonoBehaviour
             // Inventory data
             inventoryItem = Inventory.Instance.GetSerializableInventory(),
             equipmentItem = Inventory.Instance.GetSerializableEquipment(),
-            skillRows = skillRows,
-            skillCols = skillCols,
-            skillMatrixFlat = flatSkillMatrix,
+            skillUnlocked = skillMatrix2D,
             questItems = Inventory.Instance.GetSerializableQuestItems(),
             // Scene info
             currentSceneIndex = currentScene.buildIndex,
@@ -215,9 +212,7 @@ public class GameManager : MonoBehaviour
         {
             Inventory.Instance.LoadSerializableInventory(tempSaveData.inventoryItem);
             Inventory.Instance.LoadSerializableEquipment(tempSaveData.equipmentItem);
-            var skillMatrix2D = SaveData.UnflattenSkillMatrix(
-                tempSaveData.skillMatrixFlat, tempSaveData.skillRows, tempSaveData.skillCols);
-            Inventory.Instance.LoadSerializableSkillMatrix(skillMatrix2D);
+            Inventory.Instance.LoadSerializableSkillUnlocked(tempSaveData.skillUnlocked);
             Inventory.Instance.LoadSerializableQuestItems(tempSaveData.questItems);
             Debug.Log("Inventory, equipment, skills and quest items restored!");
         }

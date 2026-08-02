@@ -32,12 +32,11 @@ public class SkillSystemUI : MonoBehaviour
     public void Refresh()
     {
         if (Inventory.Instance == null) return;
-        var matrix = Inventory.Instance.skillMatrix;
         for (int r = 0; r < 4; r++)
         {
             for (int c = 0; c < 5; c++)
             {
-                bool unlocked = matrix[r, c] != null && matrix[r, c].item != null;
+                bool unlocked = Inventory.Instance.IsSkillUnlocked(r, c);
                 SetUnlocked(r, c, unlocked);
             }
         }

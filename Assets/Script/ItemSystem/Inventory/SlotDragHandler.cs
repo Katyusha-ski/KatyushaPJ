@@ -33,6 +33,15 @@ public class SlotDragHandler : MonoBehaviour, IBeginDragHandler, IDragHandler, I
 
     public void OnBeginDrag(PointerEventData eventData)
     {
+        if (eventData.button != PointerEventData.InputButton.Left) return;
+
+        if (draggedOJ != null)
+        {
+            Destroy(draggedOJ);
+            draggedOJ = null;
+            draggedImage = null;
+        }
+
         inventoryUI.HideItemDetail();
         if (!slot.HasItem()) return;
         draggedOJ = new GameObject("DraggedItem");
@@ -52,6 +61,8 @@ public class SlotDragHandler : MonoBehaviour, IBeginDragHandler, IDragHandler, I
 
     public void OnDrag(PointerEventData eventData)
     {
+        if (eventData.button != PointerEventData.InputButton.Left) return;
+
         if(draggedOJ != null)
         {
            draggedOJ.transform.position = Input.mousePosition;
@@ -60,9 +71,13 @@ public class SlotDragHandler : MonoBehaviour, IBeginDragHandler, IDragHandler, I
 
     public void OnEndDrag(PointerEventData eventData)
     {
+        if (eventData.button != PointerEventData.InputButton.Left) return;
+
         if (draggedOJ != null)
         {
             Destroy(draggedOJ);
+            draggedOJ = null;
+            draggedImage = null;
         }
         slot.itemIcon.color = Color.white;
 
@@ -88,6 +103,8 @@ public class SlotDragHandler : MonoBehaviour, IBeginDragHandler, IDragHandler, I
 
     public void OnDrop(PointerEventData eventData)
     {
+        if (eventData.button != PointerEventData.InputButton.Left) return;
+
         var draggedSlotHandler = eventData.pointerDrag?.GetComponent<SlotDragHandler>();
         if (draggedSlotHandler == null || draggedSlotHandler == this) return;
 

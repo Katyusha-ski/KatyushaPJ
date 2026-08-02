@@ -76,6 +76,18 @@ public class InventoryUI : MonoBehaviour
     private void Update()
     {
         if (!itemDetailPanel.activeSelf) return;
+
+        // Chuột trái: đóng panel luôn, bất kể click trúng gì (kể cả slot khác) —
+        // vì chuột trái trên slot chỉ dùng cho kéo-thả/swap, không có logic nào
+        // cần giữ panel Item Detail mở.
+        if (Input.GetMouseButtonDown(0))
+        {
+            HideItemDetail();
+            return;
+        }
+
+        // Chuột phải: giữ nguyên logic cũ — bỏ qua nếu trúng Slot, để không tự đóng
+        // ngay panel vừa mở bằng chuột phải trên chính slot đó.
         if (Input.GetMouseButtonDown(1))
         {
             var pointer = new PointerEventData(EventSystem.current) { position = Input.mousePosition };
@@ -122,7 +134,16 @@ public class InventoryUI : MonoBehaviour
         itemDetailPanel.SetActive(true);
 
         if (useItemButton != null)
-            useItemButton.gameObject.SetActive(item.itemType == ItemType.Consumable);
+        {
+            bool showUseButton = item.itemType == ItemType.Consumable || item.itemType == ItemType.Skill;
+            useItemButton.gameObject.SetActive(showUseButton);
+            if (showUseButton)
+            {
+                var buttonText = useItemButton.GetComponentInChildren<TMP_Text>();
+                if (buttonText != null)
+                    buttonText.text = (item.itemType == ItemType.Skill) ? "Học skill" : "Dùng";
+            }
+        }
 
         var panelRect = itemDetailPanel.GetComponent<RectTransform>();
 

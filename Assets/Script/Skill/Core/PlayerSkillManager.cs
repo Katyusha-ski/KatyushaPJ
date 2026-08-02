@@ -22,7 +22,7 @@ public class PlayerSkillManager : MonoBehaviour
             return;
         }
 
-        int skillRows = Inventory.Instance.skillMatrix.GetLength(0);
+        const int skillRows = 4;
         while (skills.Count < skillRows)
             skills.Add(null);
 
@@ -65,9 +65,9 @@ public class PlayerSkillManager : MonoBehaviour
         if (row < 0) return false;
 
         int currentLevel = 0;
-        for (int i = Inventory.Instance.skillMatrix.GetLength(1) - 1; i >= 0; i--)
+        for (int i = 4; i >= 0; i--)
         {
-            if (Inventory.Instance.skillMatrix[row, i] != null)
+            if (Inventory.Instance.IsSkillUnlocked(row, i))
             {
                 currentLevel = i + 1;
                 break;
@@ -80,7 +80,15 @@ public class PlayerSkillManager : MonoBehaviour
             return false;
         }
 
-        Inventory.Instance.SetSkill(row, newLevel - 1, new ItemStack(skillItem, 1));
+        ItemData expectedItem = Inventory.Instance.GetSkillItemAt(row, newLevel - 1);
+        if (expectedItem != skillItem)
+        {
+            Debug.LogWarning($"Item {skillItem?.itemName} không khớp layout tại vị trí " +
+                $"({row},{newLevel - 1}) — expected {expectedItem?.itemName}.");
+            return false;
+        }
+
+        Inventory.Instance.UnlockSkill(row, newLevel - 1);
         ReloadSkills();
         return true;
     }
