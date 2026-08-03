@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Dash Lv1
   m_EditorClassIdentifier: 
   icon: {fileID: 21300000, guid: 1bafe9d8b38ab4bf9ba9db099e4d7156, type: 3}
+  skillType: 2
   cooldown: 3
   baseDamage: 0
   dashSpeed: 15

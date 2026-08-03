@@ -112,6 +112,43 @@ public static class InventoryTabSceneSetup
             "rồi Save Scene (Ctrl+S). Icon tab Skill/Quest đang là placeholder tạm, thay sau khi có icon thật.");
     }
 
+    [MenuItem("Tools/Setup/Repair Skill Cells Wiring")]
+    public static void RepairSkillCellsWiring()
+    {
+        GameObject uiThing = GameObject.Find("UIthing");
+        if (uiThing == null) { Debug.LogError("[Repair] Không tìm thấy UIthing."); return; }
+
+        Transform skillContentT = uiThing.transform.Find("Inventory UI/SkillContent");
+        if (skillContentT == null) { Debug.LogError("[Repair] Không tìm thấy SkillContent."); return; }
+
+        SkillSystemUI skillUI = skillContentT.GetComponent<SkillSystemUI>();
+        if (skillUI == null) { Debug.LogError("[Repair] SkillContent không có SkillSystemUI."); return; }
+
+        SkillCellUI[] allCells = skillContentT.GetComponentsInChildren<SkillCellUI>(true);
+        if (allCells.Length == 0) { Debug.LogError("[Repair] Không tìm thấy ô SkillCellUI nào bên trong SkillContent."); return; }
+
+        int fixedCount = 0;
+        foreach (var cellUI in allCells)
+        {
+            int index = cellUI.row * 5 + cellUI.col;
+            if (index < 0 || index >= skillUI.cells.Length) continue;
+            skillUI.cells[index] = new SkillSystemUI.SkillCell
+            {
+                background = cellUI.background,
+                icon = cellUI.icon,
+                lockedBackground = cellUI.lockedBackground,
+                unlockedBackground = cellUI.unlockedBackground,
+                skillIcon = cellUI.skillIcon
+            };
+            fixedCount++;
+        }
+
+        EditorUtility.SetDirty(skillUI);
+        UnityEditor.SceneManagement.EditorSceneManager.MarkSceneDirty(skillContentT.gameObject.scene);
+        Debug.Log($"[Repair] Đã wiring lại {fixedCount}/{allCells.Length} ô vào SkillSystemUI.cells. " +
+            "Nhớ Save Scene (Ctrl+S).");
+    }
+
     private static TabController.TabEntry MakeTabEntry(string name, GameObject button, GameObject content)
     {
         Image bg = button.GetComponent<Image>();
@@ -248,6 +285,20 @@ public static class InventoryTabSceneSetup
                 cellUI.lockedBackground = frameSprite;
                 cellUI.unlockedBackground = frameSprite;
                 cellUI.skillIcon = null;
+
+                SkillSystemUI skillUIRef = skillContent.GetComponent<SkillSystemUI>();
+                if (skillUIRef != null)
+                {
+                    int index = r * 5 + c;
+                    skillUIRef.cells[index] = new SkillSystemUI.SkillCell
+                    {
+                        background = cellUI.background,
+                        icon = cellUI.icon,
+                        lockedBackground = cellUI.lockedBackground,
+                        unlockedBackground = cellUI.unlockedBackground,
+                        skillIcon = cellUI.skillIcon
+                    };
+                }
             }
         }
     }
