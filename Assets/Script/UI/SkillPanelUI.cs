@@ -5,7 +5,7 @@ public class SKillPanelUI : MonoBehaviour
 {
     public Transform skillPanel; // Kéo thả SkillPanel vào đây
     public GameObject skillUIPrefab; // Kéo prefab SkillItem vào đây
-    public PlayerSkillManager playerSkillManager; // TODO: -> PlayerSkillManager
+    public PlayerSkillManager playerSkillManager;
 
     private List<SkillUI> skillUIs = new List<SkillUI>();
 
@@ -13,7 +13,7 @@ public class SKillPanelUI : MonoBehaviour
     {
         if (playerSkillManager != null)
         {
-            SetSkills(playerSkillManager.GetSkills()); // TODO: -> PlayerSkillManager
+            SetSkills(playerSkillManager.GetSkills());
         }
     }
 
@@ -43,10 +43,10 @@ public class SKillPanelUI : MonoBehaviour
 
     private void Update()
     {
-        if (playerSkillManager != null) // TODO: -> PlayerSkillManager
+        if (playerSkillManager != null)
         {
             var cooldowns = new List<float>();
-            foreach (var skill in playerSkillManager.GetSkills()) // TODO
+            foreach (var skill in playerSkillManager.GetSkills())
             {
                 cooldowns.Add(skill != null ? skill.CooldownTimer : 0f);
             }

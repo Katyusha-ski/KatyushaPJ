@@ -280,7 +280,7 @@ Quest item pickup:
 
 | Location | Class | Description |
 |---|---|---|
-| `Effect/` | `CameraFollow` | Smooth lerp follow camera |
+| `Effect/` | `CameraController` | Smooth lerp follow camera |
 | `Effect/` | `ButtonSFX` | Singleton button click SFX |
 | `Effect/` | `AutoDestroy` | Timed particle/effect cleanup |
 | `Pattern/` | `ObjectPool` | Generic singleton pool (`Dictionary<tag, Queue>`) |
@@ -316,11 +316,10 @@ HP Regen: every 5 seconds, heal = HPRegen
 
 ## Known Issues / TODOs
 
-- Save/load uses `itemName` string lookup via `Resources.Load` — fragile; migrate to `itemId`
-- Armor pierce stat exists in `CharacterStats` but not applied in damage calculation
+- ~~Save/load itemName lookup~~ — đã sửa: SerializableItemStack dùng Resources.LoadAll + Dictionary cache (itemName vẫn là khoá tra cứu, chưa migrate sang itemId — nợ kỹ thuật nhẹ, không gấp)
 - `AssisterController` is legacy/unused
-- Defend and Melee skill SO assets not yet created
-- `SkillMatrix` save serialization structure needs review
+- 18/20 skill ItemData còn thiếu itemIcon (chỉ Range Lv1 và Dash Lv1 có sẵn) — thuần thiết kế mỹ thuật, không phải bug code. Icon tab Skill/Quest trong Tab UI cũng đang dùng placeholder tạm (charged1.png / I_Scroll.png).
+- ~~SkillMatrix serialization~~ — đã sửa: tách SkillMatrixLayout (ScriptableObject, cố định) + Inventory.skillUnlocked (bool[20], runtime/save)
 - DuoGolem hazard skills need real prefab instantiation (all marked `// TODO: chờ prefab`)
 - DuoGolem all damage/cooldown/hitbox values are placeholders (XML-documented as "Architect: chua chot so lieu")
 - DuoGolem Animator Controller not yet created (needs triggers: "Punch", "Run", "Die")

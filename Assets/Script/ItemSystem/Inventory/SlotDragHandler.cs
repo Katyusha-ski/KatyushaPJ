@@ -35,6 +35,8 @@ public class SlotDragHandler : MonoBehaviour, IBeginDragHandler, IDragHandler, I
     {
         if (eventData.button != PointerEventData.InputButton.Left) return;
 
+        originalPosition = rectTransform.position;
+
         if (draggedOJ != null)
         {
             Destroy(draggedOJ);
