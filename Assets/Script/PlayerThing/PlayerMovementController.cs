@@ -18,6 +18,8 @@ public class PlayerMovementController : MonoBehaviour
     private bool isGrounded;
     private int direction = 1;// 1 for right, -1 for left
     private float currentSpeed;
+    private float cachedHorizontalInput;
+    private bool cachedIsRunning;
 
     // Properties for external access
     public float CurrentSpeed => currentSpeed;
@@ -58,6 +60,11 @@ public class PlayerMovementController : MonoBehaviour
         CheckGrounded();
     }
 
+    private void FixedUpdate()
+    {
+        ApplyMovement();
+    }
+
     public void Move(float horizontalInput, bool isRunning)
     {
         if(rb == null) return;
@@ -81,9 +88,9 @@ public class PlayerMovementController : MonoBehaviour
         // Use CharacterStats for movement speed (includes modifiers like slow effects)
         float effectiveSpeed = stats != null ? stats.MovementSpeed : baseSpeed;
         currentSpeed = effectiveSpeed * (isRunning ? runMultiplier : 1f);
-        bool isMoving = horizontalInput != 0;
-        rb.linearVelocity = new Vector2(horizontalInput * currentSpeed, rb.linearVelocity.y);
-        animationController.SetMovementState(isMoving, isRunning);
+        cachedHorizontalInput = horizontalInput;
+        cachedIsRunning = isRunning;
+        animationController.SetMovementState(horizontalInput != 0, isRunning);
     }
 
     public bool TryJump()
@@ -98,6 +105,8 @@ public class PlayerMovementController : MonoBehaviour
     {
         if(rb == null) return;
 
+        cachedHorizontalInput = 0f;
+        cachedIsRunning = false;
         rb.linearVelocity = new Vector2(0, rb.linearVelocity.y);
         animationController.SetMovementState(false, false);
     }
@@ -131,6 +140,18 @@ public class PlayerMovementController : MonoBehaviour
     private void OnMovementSpeedChanged(float newSpeed)
     {
         baseSpeed = newSpeed;
+    }
+
+    private void ApplyMovement()
+    {
+        if (rb == null) return;
+        if (!CanMove) return;
+        if (seController != null && seController.IsStunned)
+            return;
+
+        float effectiveSpeed = stats != null ? stats.MovementSpeed : baseSpeed;
+        currentSpeed = effectiveSpeed * (cachedIsRunning ? runMultiplier : 1f);
+        rb.linearVelocity = new Vector2(cachedHorizontalInput * currentSpeed, rb.linearVelocity.y);
     }
 
     private void OnDestroy()

@@ -279,38 +279,55 @@ public class Inventory : MonoBehaviour
     // ========================================================================
     public void UseItem(int slotIndex)
     {
-        if (slotIndex < 0 || slotIndex >= itemSlots.Count) return;
-        ItemStack stack = itemSlots[slotIndex];
-        if (stack == null || stack.item == null) return;
-
-        GameObject player = GameObject.FindGameObjectWithTag("Player");
-        if (player == null)
+        if (slotIndex < 0 || slotIndex >= itemSlots.Count)
         {
-            Debug.LogError("Khong tim thay Player de su dung item");
+            Debug.LogWarning($"[Inventory] UseItem aborted: invalid slot index {slotIndex}.");
             return;
         }
+        ItemStack stack = itemSlots[slotIndex];
+        if (stack == null || stack.item == null)
+        {
+            Debug.LogWarning($"[Inventory] UseItem aborted: slot {slotIndex} is empty.");
+            return;
+        }
+
+        if (PlayerManager.Instance == null || PlayerManager.Instance.PlayerController == null)
+        {
+            Debug.LogWarning("[Inventory] UseItem aborted: PlayerManager or PlayerController is missing.");
+            return;
+        }
+
+        GameObject player = PlayerManager.Instance.PlayerController.gameObject;
 
         if (stack.item.itemType == ItemType.Consumable)
         {
             ConsumableManager consumableManager = player.GetComponent<ConsumableManager>();
             if (consumableManager == null)
             {
-                Debug.LogError("Player can co component ConsumableManager", player);
+                Debug.LogWarning("[Inventory] UseItem aborted: Player is missing ConsumableManager.", player);
                 return;
             }
             if (consumableManager.Use(stack.item))
                 RemoveItem(stack.item, 1);
+            else
+                Debug.LogWarning($"[Inventory] UseItem failed for consumable '{stack.item.itemName}' at slot {slotIndex}.");
         }
         else if (stack.item.itemType == ItemType.Skill)
         {
             PlayerSkillManager skillManager = player.GetComponent<PlayerSkillManager>();
             if (skillManager == null)
             {
-                Debug.LogError("Player can co component PlayerSkillManager", player);
+                Debug.LogWarning("[Inventory] UseItem aborted: Player is missing PlayerSkillManager.", player);
                 return;
             }
             if (skillManager.UseItem(stack.item))
                 RemoveItem(stack.item, 1);
+            else
+                Debug.LogWarning($"[Inventory] UseItem failed for skill item '{stack.item.itemName}' at slot {slotIndex}.");
+        }
+        else
+        {
+            Debug.LogWarning($"[Inventory] UseItem aborted: unsupported item type {stack.item.itemType} for '{stack.item.itemName}'.");
         }
     }
 

@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 5965210314842640706}
   - component: {fileID: 647074040362078815}
   - component: {fileID: 6345269854787849234}
+  - component: {fileID: 2345678901234567890}
   m_Layer: 0
   m_Name: HachiiKat
   m_TagString: Untagged
@@ -133,3 +134,15 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 0
   punchTrigger: Punch
+--- !u!114 &2345678901234567890
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8519166136676381979}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0920d71666794f30ada8389e31fe73cc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

@@ -12,8 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 462ee4e4477b62746aa569ea5d231340, type: 3}
   m_Name: Green Grape
   m_EditorClassIdentifier: Assembly-CSharp::ItemData
+  itemId: 
   itemName: Green Grape
-  itemIcon: {fileID: 0}
+  itemIcon: {fileID: 21300000, guid: 3f1ab84b1a325a541bd55cf36fcc02fb, type: 3}
   itemType: 0
   equipmentType: 0
   description: Restore 2 HP instantly.
@@ -29,3 +30,6 @@ MonoBehaviour:
     tickValue: 0
     isDebuff: 0
     statModifiers: []
+  skillData:
+    skill: {fileID: 0}
+    Level: 0

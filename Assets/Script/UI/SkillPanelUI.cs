@@ -1,7 +1,7 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections.Generic;
 
-public class SKillPanelUI : MonoBehaviour
+public class SkillPanelUI : MonoBehaviour
 {
     public Transform skillPanel; // Kéo thả SkillPanel vào đây
     public GameObject skillUIPrefab; // Kéo prefab SkillItem vào đây
@@ -9,26 +9,60 @@ public class SKillPanelUI : MonoBehaviour
 
     private List<SkillUI> skillUIs = new List<SkillUI>();
 
-    private void Start()
+    private void Awake()
     {
-        if (playerSkillManager != null)
-        {
-            SetSkills(playerSkillManager.GetSkills());
-        }
+        if (playerSkillManager == null)
+            playerSkillManager = GetComponentInParent<PlayerSkillManager>();
     }
 
-    public void SetSkills(List<SkillBase> skills)
+    private void Start()
     {
+        RefreshSkills();
+    }
+
+    private void OnEnable()
+    {
+        if (Inventory.Instance != null)
+            Inventory.Instance.OnSkillMatrixChanged += RefreshSkills;
+        RefreshSkills();
+    }
+
+    private void OnDisable()
+    {
+        if (Inventory.Instance != null)
+            Inventory.Instance.OnSkillMatrixChanged -= RefreshSkills;
+    }
+
+    public void RefreshSkills()
+    {
+        if (skillPanel == null || skillUIPrefab == null)
+        {
+            Debug.LogWarning("[SkillPanelUI] Skill panel or prefab is not assigned.", this);
+            return;
+        }
+
+        if (playerSkillManager == null)
+        {
+            Debug.LogWarning("[SkillPanelUI] PlayerSkillManager is missing.", this);
+            return;
+        }
+
         foreach (Transform child in skillPanel)
             Destroy(child.gameObject);
         skillUIs.Clear();
 
-        foreach (var skill in skills)
+        foreach (var skill in playerSkillManager.GetSkills())
         {
             var go = Instantiate(skillUIPrefab, skillPanel);
             var ui = go.GetComponent<SkillUI>();
-            if (skill != null)
-                ui.SetIcon(skill.icon);
+            if (ui == null)
+            {
+                Debug.LogWarning("[SkillPanelUI] SkillUIPrefab is missing SkillUI component.", go);
+                continue;
+            }
+
+            ui.SetSkill(skill);
+
             skillUIs.Add(ui);
         }
     }
@@ -53,5 +87,4 @@ public class SKillPanelUI : MonoBehaviour
             UpdateSkillCooldowns(cooldowns);
         }
     }
-
 }

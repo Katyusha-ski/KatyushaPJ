@@ -14,7 +14,7 @@ public enum EquipmentType
     Shoes = 4       // Related to Movement Speed
 }
 
-public enum UsageType { None, SingleUse, MutipleUse, Permanent }
+public enum UsageType { None, SingleUse, MultipleUse, Permanent }
 
 public enum SkillType
 {
@@ -29,18 +29,18 @@ public enum SkillType
 // ============================================================================
 // ITEM DATA (ScriptableObject)
 // ============================================================================
-// Day la trung tam du lieu cua toan bo he thong item.
-// Mot SO co the duoc dung lam:
-//   - Equipment: dung stats (ItemStats) de tang chi so nhan vat
-//   - Consumable: dung consumableEffect de tao StatusEffect tam thoi
-//   - Material / Quest / Skill: chi dung Basic Information, khong co stat hay effect
+// Đây là trung tâm dữ liệu của toàn bộ hệ thống item.
+// Một SO có thể được dùng làm:
+//   - Equipment: dùng stats (ItemStats) để tăng chỉ số nhân vật
+//   - Consumable: dùng consumableEffect để tạo StatusEffect tạm thời
+//   - Material / Quest / Skill: chỉ dùng Basic Information, không có stat hay effect
 //
-// KIEN TRUC TACH:
-//   ItemData KHONG truc tiep tham chieu den StatusEffect hay CharacterStats.
-//   Thay vao do, no chua 2 field doc lap:
-//     - stats (ItemStats)        -> EquipmentManager doc, ap dung vao CharacterStats
-//     - consumableEffect (EffectData) -> ConsumableManager doc, tao StatusEffect
-//   Nhu vay ItemData la "data contract" thuan tuy, khong bi dong goi vao logic.
+// KIẾN TRÚC TÁCH:
+//   ItemData KHÔNG trực tiếp tham chiếu đến StatusEffect hay CharacterStats.
+//   Thay vào đó, nó chứa 2 field độc lập:
+//     - stats (ItemStats)        -> EquipmentManager đọc, áp dụng vào CharacterStats
+//     - consumableEffect (EffectData) -> ConsumableManager đọc, tạo StatusEffect
+//   Như vậy ItemData là "data contract" thuần túy, không bị đóng gói vào logic.
 // ============================================================================
 [CreateAssetMenu(menuName = "Inventory/Item")]
 public class ItemData : ScriptableObject

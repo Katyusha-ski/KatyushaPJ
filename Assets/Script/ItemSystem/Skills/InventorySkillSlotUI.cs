@@ -19,8 +19,11 @@ public class InventorySkillSlotUI : MonoBehaviour
             return;
         }
 
-        icon.sprite = skill.icon;
-        icon.enabled = true;
+        if (icon != null)
+        {
+            icon.sprite = skill.icon;
+            icon.enabled = skill.icon != null;
+        }
 
         for (int i = 0; i < levelPips.Length; i++)
         {
@@ -31,14 +34,20 @@ public class InventorySkillSlotUI : MonoBehaviour
             }
         }
 
-        levelText.text = level > 0 ? $"Lv.{level}" : "Locked";
-        levelText.gameObject.SetActive(true);
+        if (levelText != null)
+        {
+            levelText.text = level > 0 ? $"Lv.{level}" : "Locked";
+            levelText.gameObject.SetActive(true);
+        }
     }
 
     public void ClearSlot()
     {
-        icon.sprite = null;
-        icon.enabled = false;
+        if (icon != null)
+        {
+            icon.sprite = null;
+            icon.enabled = false;
+        }
 
         foreach (var pip in levelPips)
         {
@@ -46,6 +55,7 @@ public class InventorySkillSlotUI : MonoBehaviour
                 pip.enabled = false;
         }
 
-        levelText.gameObject.SetActive(false);
+        if (levelText != null)
+            levelText.gameObject.SetActive(false);
     }
 }

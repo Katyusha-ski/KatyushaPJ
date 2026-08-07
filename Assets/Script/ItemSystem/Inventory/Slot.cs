@@ -8,6 +8,7 @@ public class Slot : MonoBehaviour
     public Image itemIcon;
     public TMP_Text quantityText;
     public bool isEquipmentSlot = false;
+    private ItemData currentItem;
 
     // Sets the item in the slot with the specified amount.
     public void SetItem(ItemData item, int amount)
@@ -18,9 +19,20 @@ public class Slot : MonoBehaviour
             return;
         }
 
-        itemIcon.sprite = item.itemIcon;
-        itemIcon.enabled = true;
-        quantityText.enabled = true;
+        currentItem = item;
+
+        if (itemIcon != null)
+        {
+            itemIcon.sprite = item.itemIcon;
+            itemIcon.enabled = true;
+        }
+        else
+        {
+            Debug.LogWarning($"[Slot] itemIcon is missing on slot {slotIndex}.", this);
+        }
+
+        if (quantityText != null)
+            quantityText.enabled = true;
 
         if (quantityText != null)
         {
@@ -39,8 +51,12 @@ public class Slot : MonoBehaviour
 
     public void ClearSlot()
     {
-        itemIcon.sprite = null;
-        itemIcon.enabled = false;
+        currentItem = null;
+        if (itemIcon != null)
+        {
+            itemIcon.sprite = null;
+            itemIcon.enabled = false;
+        }
         if (quantityText != null)
         {
             quantityText.gameObject.SetActive(false);
@@ -49,6 +65,11 @@ public class Slot : MonoBehaviour
 
     public bool HasItem()
     {
-        return itemIcon.sprite != null && itemIcon.sprite != null;
+        return currentItem != null;
+    }
+
+    public ItemData GetItemData()
+    {
+        return currentItem;
     }
 }

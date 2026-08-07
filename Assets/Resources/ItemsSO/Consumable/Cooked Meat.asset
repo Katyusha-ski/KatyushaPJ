@@ -12,30 +12,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 462ee4e4477b62746aa569ea5d231340, type: 3}
   m_Name: Cooked Meat
   m_EditorClassIdentifier: Assembly-CSharp::ItemData
+  itemId: 
   itemName: Cooked Meat
-  itemIcon: {fileID: 0}
+  itemIcon: {fileID: 21300000, guid: 4bca1dc7c87bea24f9933e6066776143, type: 3}
   itemType: 0
   equipmentType: 0
   description: Restore 5 HP instantly.
   isStackable: 1
-  maxStackSize: 99
+  maxStackSize: 16
+  stats:
+    statConfigs: []
   consumableEffects:
   - effectType: 1
     duration: 0
     value: 5
     tickInterval: 1
     tickValue: 0
-  stats:
-    atk: 0
-    critChance: 0
-    critDamage: 0
-    armorPierce: 0
-    armor: 0
-    health: 0
-    movementSpeed: 0
-    controlResistance: 0
-    lifesteal: 0
-    cooldownReduction: 0
-    hpRegen: 0
-    dmgR: 0
-    skillAmp: 0
+    isDebuff: 0
+    statModifiers: []
+  skillData:
+    skill: {fileID: 0}
+    Level: 0

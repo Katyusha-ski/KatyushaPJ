@@ -78,6 +78,7 @@ GameManager
 | **PlayerMovementController** | `PlayerMovementController.cs` | Walk/run/jump physics, ground detection, direction flip |
 | **PlayerSkillInput** | `PlayerSkillInput.cs` | Input buffer system (E/Q/R/F), buffered activation when off cooldown |
 | **PlayerAnimationController** | `PlayerAnimationController.cs` | Animator parameter driver (cached hash IDs) |
+| **StandAnimationController** | `StandAnimationController.cs` | Hachi/Stand Animator driver (cached hash IDs) — routes the shared `Def` cast-stance trigger from skills |
 | **Stand** | `Stand.cs` | Hachiware companion; box-overlap punch attack with crit/lifesteal |
 | **PlayerNA** | `PlayerNA.cs` | Normal attack (KeypadEnter) → `Stand.Punch()` |
 | **InputConfig** | `InputConfig.cs` | ScriptableObject key binding definition |
@@ -138,6 +139,8 @@ SkillBase (SO, abstract)
 **Concrete skills** are `[CreateAssetMenu]` ScriptableObjects in `ActionsSO/`.
 
 **Skill matrix:** `Inventory.skillMatrix[4, 5]` — 4 skill types × 5 levels. Items must be acquired in order (Lv1 → Lv2 → ...). `PlayerSkillManager.ReloadSkills()` loads from inventory.
+
+**Skill animation routing:** Melee/Defend/Range share the shared `Def` cast-stance trigger on Hachi. `PlayerSkillManager.ActivateSkill()` calls `StandAnimationController.TriggerCastStance()` (the single place that sets trigger `Def`, cached hash ID). Dash uses its own `Dash` trigger handled inside `DashSkill` via the Player Animator.
 
 **Enemy skills:** `StoneSpike` (ground hazard), `NercoHole` (persistent AoE), `DeathExplosion` (on NightBorn death), `GolemMagic` (projectile).
 
@@ -316,6 +319,8 @@ HP Regen: every 5 seconds, heal = HPRegen
 
 ## Known Issues / TODOs
 
+- Health shield absorb order: code đã sửa theo pipeline absorb-first, nhưng cần Play Mode verify lại 2 test case shield to/overflow trước khi gạch khỏi danh sách hoàn toàn.
+- Dialogue movement lock: code đã chuyển sang lấy `PlayerMovementController` tại thời điểm dùng, nhưng cần Play Mode verify qua scene reload / respawn để xác nhận không còn soft-lock.
 - ~~Save/load itemName lookup~~ — đã sửa: SerializableItemStack dùng Resources.LoadAll + Dictionary cache (itemName vẫn là khoá tra cứu, chưa migrate sang itemId — nợ kỹ thuật nhẹ, không gấp)
 - `AssisterController` is legacy/unused
 - 18/20 skill ItemData còn thiếu itemIcon (chỉ Range Lv1 và Dash Lv1 có sẵn) — thuần thiết kế mỹ thuật, không phải bug code. Icon tab Skill/Quest trong Tab UI cũng đang dùng placeholder tạm (charged1.png / I_Scroll.png).

@@ -6,6 +6,13 @@ public class PlayerSkillManager : MonoBehaviour
     public List<SkillBase> skills = new List<SkillBase>();
     public CharacterStats characterStats;
 
+    private StandAnimationController standAnimation;
+
+    private void Awake()
+    {
+        standAnimation = GetComponentInChildren<StandAnimationController>();
+    }
+
     private void Start()
     {
         if (characterStats == null)
@@ -51,7 +58,23 @@ public class PlayerSkillManager : MonoBehaviour
     public void ActivateSkill(int skillIndex, int direction)
     {
         if (skillIndex >= 0 && skillIndex < skills.Count)
-            skills[skillIndex]?.Activate(gameObject, direction);
+        {
+            SkillBase skill = skills[skillIndex];
+            if (skill == null) return;
+
+            skill.Activate(gameObject, direction);
+
+            // Animation routing (tập trung 1 điểm duy nhất):
+            // - Melee/Defend/Range dùng chung stance "Def" của Hachi.
+            // - Dash có animation riêng (dashTriggerName), xử lý trong DashSkill.
+            // StandAnimationController là nơi duy nhất gọi SetTrigger("Def").
+            if (skill.skillType == SkillType.Melee ||
+                skill.skillType == SkillType.Defend ||
+                skill.skillType == SkillType.Range)
+            {
+                standAnimation?.TriggerCastStance();
+            }
+        }
     }
 
     public bool UseItem(ItemData skillItem)

@@ -97,6 +97,19 @@ public class Health : MonoBehaviour
         if (damageSFX != null && AudioManager.Instance != null)
             AudioManager.Instance.PlaySFX(damageSFX);
 
+        if (virtualShield > 0)
+        {
+            int absorbed = Mathf.Min(damage, virtualShield);
+            virtualShield -= absorbed;
+            damage -= absorbed;
+
+            if (damage <= 0)
+            {
+                _healthBar?.SetHealth(currentHealth, maxHealth);
+                return;
+            }
+        }
+
         float dmgReduction = characterStats != null ? characterStats.DmgR / 100f : 0f;
         float armor = characterStats != null ? characterStats.Armor : 0f;
 
@@ -108,12 +121,6 @@ public class Health : MonoBehaviour
         }
 
         float finalDamage = Mathf.Max(1f, (damage - armor) * (1f - dmgReduction));
-        if (virtualShield > 0)
-        {
-            int absorbed = Mathf.Min((int)finalDamage, virtualShield);
-            virtualShield -= absorbed;
-            finalDamage -= absorbed;
-        }
         if (isUnDying && (int)finalDamage >= currentHealth)
             return;
 

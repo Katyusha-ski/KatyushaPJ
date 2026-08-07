@@ -8,8 +8,6 @@ public class DialogueManager : MonoBehaviour
     private int currentLineIndex;
     private bool isDialogueActive;
 
-    private PlayerMovementController playerMovement;
-
     private void Awake()
     {
         if (Instance != null)
@@ -19,11 +17,6 @@ public class DialogueManager : MonoBehaviour
         }
         Instance = this;
         DontDestroyOnLoad(gameObject);
-    }
-
-    private void Start()
-    {
-        playerMovement = FindFirstObjectByType<PlayerMovementController>();
     }
 
     public bool IsDialogueActive => isDialogueActive;
@@ -36,8 +29,7 @@ public class DialogueManager : MonoBehaviour
         currentLineIndex = 0;
         isDialogueActive = true;
 
-        if (playerMovement != null)
-            playerMovement.CanMove = false;
+        SetPlayerMovementCanMove(false);
 
         if (DialogueUI.Instance != null)
             DialogueUI.Instance.Show(currentData.lines[0]);
@@ -67,10 +59,32 @@ public class DialogueManager : MonoBehaviour
         currentData = null;
         currentLineIndex = 0;
 
-        if (playerMovement != null)
-            playerMovement.CanMove = true;
+        SetPlayerMovementCanMove(true);
 
         if (DialogueUI.Instance != null)
             DialogueUI.Instance.Hide();
+    }
+
+    private PlayerMovementController GetCurrentPlayerMovement()
+    {
+        if (PlayerManager.Instance == null || PlayerManager.Instance.PlayerController == null)
+        {
+            Debug.LogWarning("[DialogueManager] PlayerManager or PlayerController is missing. Dialogue movement lock could not be resolved.");
+            return null;
+        }
+
+        PlayerMovementController movement = PlayerManager.Instance.PlayerController.GetComponent<PlayerMovementController>();
+        if (movement == null)
+            Debug.LogWarning("[DialogueManager] Current PlayerMovementController is missing on the active player.");
+
+        return movement;
+    }
+
+    private void SetPlayerMovementCanMove(bool canMove)
+    {
+        PlayerMovementController movement = GetCurrentPlayerMovement();
+        if (movement == null) return;
+
+        movement.CanMove = canMove;
     }
 }

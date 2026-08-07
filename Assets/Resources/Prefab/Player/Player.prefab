@@ -255,7 +255,7 @@ Rigidbody2D:
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 0
-  m_Interpolate: 0
+  m_Interpolate: 1
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
@@ -309,6 +309,7 @@ MonoBehaviour:
   maxHealth: 20
   currentHealth: 0
   healthBar: {fileID: 144493525237223881}
+  virtualShield: 0
   damageSFX: {fileID: 8300000, guid: 2038a0315fd525a4e85f47f55ebb79b5, type: 3}
   dieSFX: {fileID: 0}
   lootManager: {fileID: 0}
@@ -369,8 +370,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerSkillInput
   inputConfig: {fileID: 0}
-  skillManager: {fileID: 0}
-  inputBufferDuration: 0.1
+  playerSkillManager: {fileID: 5642885825442716595}
+  inputBufferDuration: 0.01
 --- !u!114 &2979320871452214609
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -461,7 +462,7 @@ MonoBehaviour:
   skills:
   - {fileID: 0}
   - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 11400000, guid: 492eb6d0ea63ba44fbd64a212c20f91e, type: 2}
   - {fileID: 0}
   characterStats: {fileID: 2979320871452214609}
 --- !u!1 &2959838015193098157
@@ -932,6 +933,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 8204092655413958187}
     m_Modifications:
+    - target: {fileID: 3923640604694036577, guid: 9c3c282795abbe844a460590b02c45c2, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3923640604694036577, guid: 9c3c282795abbe844a460590b02c45c2, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3923640604694036577, guid: 9c3c282795abbe844a460590b02c45c2, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3923640604694036577, guid: 9c3c282795abbe844a460590b02c45c2, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.158

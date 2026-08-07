@@ -5,11 +5,11 @@
             "amount": 1
         },
         {
-            "itemName": "",
-            "amount": 0
+            "itemName": "Cooked Meat",
+            "amount": 1
         },
         {
-            "itemName": "",
+            "itemName": "Defend Skill Lv1",
             "amount": 0
         },
         {
@@ -115,89 +115,27 @@
             "amount": 0
         }
     ],
-    "skillRows": 4,
-    "skillCols": 5,
-    "skillMatrixFlat": [
-        {
-            "itemName": "",
-            "amount": 0
-        },
-        {
-            "itemName": "",
-            "amount": 0
-        },
-        {
-            "itemName": "",
-            "amount": 0
-        },
-        {
-            "itemName": "",
-            "amount": 0
-        },
-        {
-            "itemName": "",
-            "amount": 0
-        },
-        {
-            "itemName": "",
-            "amount": 0
-        },
-        {
-            "itemName": "",
-            "amount": 0
-        },
-        {
-            "itemName": "",
-            "amount": 0
-        },
-        {
-            "itemName": "",
-            "amount": 0
-        },
-        {
-            "itemName": "",
-            "amount": 0
-        },
-        {
-            "itemName": "",
-            "amount": 0
-        },
-        {
-            "itemName": "",
-            "amount": 0
-        },
-        {
-            "itemName": "",
-            "amount": 0
-        },
-        {
-            "itemName": "",
-            "amount": 0
-        },
-        {
-            "itemName": "",
-            "amount": 0
-        },
-        {
-            "itemName": "",
-            "amount": 0
-        },
-        {
-            "itemName": "",
-            "amount": 0
-        },
-        {
-            "itemName": "",
-            "amount": 0
-        },
-        {
-            "itemName": "",
-            "amount": 0
-        },
-        {
-            "itemName": "",
-            "amount": 0
-        }
+    "skillUnlocked": [
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false
     ],
     "questItems": []
 }

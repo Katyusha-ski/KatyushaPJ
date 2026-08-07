@@ -16,7 +16,7 @@ MonoBehaviour:
   skillType: 1
   cooldown: 4
   baseDamage: 7
-  spawnPrefab: {fileID: 0}
+  spawnPrefab: {fileID: 1443903596702937622, guid: 64984fae67bd4904b8b102f8897731d5, type: 3}
   skillsName: 
   projectileSFX: {fileID: 0}
   isItNeedToFlip: 1

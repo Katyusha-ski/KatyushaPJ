@@ -12,6 +12,7 @@ public class InventoryUI : MonoBehaviour
     public GameObject slotPrefab;
     public Button useItemButton;
     public GameObject itemDetailPanel;
+    public Image itemIcon;
     public TMP_Text itemNameText;
     public TMP_Text itemDescriptionText;
     public TMP_Text itemStatsText;
@@ -77,11 +78,23 @@ public class InventoryUI : MonoBehaviour
     {
         if (!itemDetailPanel.activeSelf) return;
 
-        // Chuột trái: đóng panel luôn, bất kể click trúng gì (kể cả slot khác) —
-        // vì chuột trái trên slot chỉ dùng cho kéo-thả/swap, không có logic nào
-        // cần giữ panel Item Detail mở.
+        // Chỉ đóng panel khi click ra ngoài item detail panel.
+        // Nếu click vào chính nút Use hoặc các control con, để Button.onClick chạy bình thường.
         if (Input.GetMouseButtonDown(0))
         {
+            var pointer = new PointerEventData(EventSystem.current) { position = Input.mousePosition };
+            var results = new List<RaycastResult>();
+            EventSystem.current.RaycastAll(pointer, results);
+
+            foreach (var r in results)
+            {
+                if (r.gameObject == null)
+                    continue;
+
+                if (r.gameObject.transform.IsChildOf(itemDetailPanel.transform))
+                    return;
+            }
+
             HideItemDetail();
             return;
         }
@@ -128,6 +141,12 @@ public class InventoryUI : MonoBehaviour
     public void ShowItemDetailAt(int slotIndex, Vector3 position)
     {
         useSlotIndex = slotIndex;
+        if (slotIndex < 0 || slotIndex >= Inventory.Instance.itemSlots.Count)
+        {
+            Debug.LogWarning($"[InventoryUI] ShowItemDetailAt aborted: invalid slot index {slotIndex}.", this);
+            return;
+        }
+
         var item = Inventory.Instance.itemSlots[slotIndex]?.item;
         if (item == null) return;
 
@@ -152,6 +171,14 @@ public class InventoryUI : MonoBehaviour
 
         if (itemDescriptionText != null)
             itemDescriptionText.text = item.description;
+
+        if (itemIcon != null)
+        {
+            itemIcon.sprite = item.itemIcon;
+            itemIcon.enabled = true;
+            if (item.itemIcon == null)
+                Debug.LogWarning($"[InventoryUI] Item '{item.itemName}' has no icon. Using blank icon in detail panel.", item);
+        }
 
         if (itemStatsText != null)
         {

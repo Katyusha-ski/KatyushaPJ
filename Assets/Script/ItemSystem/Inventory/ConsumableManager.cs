@@ -41,18 +41,27 @@ public class ConsumableManager : MonoBehaviour
     // ========================================================================
     public bool Use(ItemData item)
     {
-        if (item == null || item.itemType != ItemType.Consumable)
+        if (item == null)
+        {
+            Debug.LogWarning("[ConsumableManager] Use aborted: item is null.", this);
             return false;
+        }
+
+        if (item.itemType != ItemType.Consumable)
+        {
+            Debug.LogWarning($"[ConsumableManager] Use aborted: '{item.itemName}' is not a Consumable.", item);
+            return false;
+        }
 
         if (item.consumableEffects == null || item.consumableEffects.Count == 0)
         {
-            Debug.LogWarning($"Item {item.itemName} khong co EffectData nao", item);
+            Debug.LogWarning($"[ConsumableManager] Use aborted: item '{item.itemName}' has no EffectData.", item);
             return false;
         }
 
         if (seController == null)
         {
-            Debug.LogError("Khong tim thay StatusEffectController tren Player", this);
+            Debug.LogWarning("[ConsumableManager] Use aborted: StatusEffectController is missing on Player.", this);
             return false;
         }
 
@@ -74,7 +83,7 @@ public class ConsumableManager : MonoBehaviour
 
         if (!anyApplied)
         {
-            Debug.LogWarning($"Item {item.itemName} khong co effect nao duoc tao", item);
+            Debug.LogWarning($"[ConsumableManager] Use failed: no effect could be created for '{item.itemName}'.", item);
             return false;
         }
 

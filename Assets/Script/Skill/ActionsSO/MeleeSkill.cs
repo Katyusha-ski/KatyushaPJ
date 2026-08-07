@@ -21,8 +21,6 @@ public class MeleeSkill : DirectDmgSkillBase
 
         cooldownTimer = cooldown;
 
-        user.GetComponentInChildren<Animator>()?.SetTrigger("Def");
-
         if (AudioManager.Instance != null)
             AudioManager.Instance.PlaySFX(meleeSFX);
 
