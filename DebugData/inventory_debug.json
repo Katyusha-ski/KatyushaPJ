@@ -9,12 +9,12 @@
             "amount": 1
         },
         {
-            "itemName": "Defend Skill Lv1",
-            "amount": 0
+            "itemName": "DashTranformSkill",
+            "amount": 1
         },
         {
-            "itemName": "",
-            "amount": 0
+            "itemName": "Defend Skill Lv1",
+            "amount": 1
         },
         {
             "itemName": "",
@@ -126,7 +126,7 @@
         false,
         false,
         false,
-        false,
+        true,
         false,
         false,
         false,

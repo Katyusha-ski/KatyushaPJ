@@ -12,7 +12,6 @@ public class SkillCellUI : MonoBehaviour
     public Image icon;
     public Sprite lockedBackground;
     public Sprite unlockedBackground;
-    public Sprite skillIcon;
 
     private void Awake()
     {
@@ -35,8 +34,7 @@ public class SkillCellUI : MonoBehaviour
             background = background,
             icon = icon,
             lockedBackground = lockedBackground,
-            unlockedBackground = unlockedBackground,
-            skillIcon = skillIcon
+            unlockedBackground = unlockedBackground
         };
     }
 }

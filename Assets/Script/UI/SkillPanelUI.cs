@@ -13,17 +13,22 @@ public class SkillPanelUI : MonoBehaviour
     {
         if (playerSkillManager == null)
             playerSkillManager = GetComponentInParent<PlayerSkillManager>();
+        Debug.Log($"[SkillPanelDebug] Awake: playerSkillManager = {(playerSkillManager != null ? playerSkillManager.name + " (" + playerSkillManager.GetInstanceID() + ")" : "NULL")}, gameObject={gameObject.name}", this);
     }
 
     private void Start()
     {
+        Debug.Log("[SkillPanelDebug] Start() called", this);
+        if (Inventory.Instance != null)
+            Inventory.Instance.OnSkillMatrixChanged += RefreshSkills;
+        else
+            Debug.LogWarning("[SkillPanelUI] Inventory.Instance is missing during Start; skill matrix events will not be received.", this);
+
         RefreshSkills();
     }
 
     private void OnEnable()
     {
-        if (Inventory.Instance != null)
-            Inventory.Instance.OnSkillMatrixChanged += RefreshSkills;
         RefreshSkills();
     }
 
@@ -35,6 +40,8 @@ public class SkillPanelUI : MonoBehaviour
 
     public void RefreshSkills()
     {
+        Debug.Log($"[SkillPanelDebug] RefreshSkills() ENTER: skillPanel={(skillPanel != null ? "OK" : "NULL")}, skillUIPrefab={(skillUIPrefab != null ? "OK" : "NULL")}, playerSkillManager={(playerSkillManager != null ? playerSkillManager.name : "NULL")}", this);
+
         if (skillPanel == null || skillUIPrefab == null)
         {
             Debug.LogWarning("[SkillPanelUI] Skill panel or prefab is not assigned.", this);

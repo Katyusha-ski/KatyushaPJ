@@ -42,11 +42,21 @@ public class Inventory : MonoBehaviour
         return skillUnlocked[index];
     }
 
+    /// <summary>
+    /// Chỉ cập nhật data (không bắn event). Caller chủ động bắn
+    /// NotifySkillMatrixChanged() sau khi đã hoàn tất mọi thay đổi trạng thái
+    /// (VD: PlayerSkillManager.UseItem gọi sau khi ReloadSkills xong),
+    /// tránh subscriber đọc phải dữ liệu cũ giữa chừng.
+    /// </summary>
     public void UnlockSkill(int row, int col)
     {
         int index = row * 5 + col;
         if (index < 0 || index >= skillUnlocked.Length) return;
         skillUnlocked[index] = true;
+    }
+
+    public void NotifySkillMatrixChanged()
+    {
         OnSkillMatrixChanged?.Invoke();
     }
 

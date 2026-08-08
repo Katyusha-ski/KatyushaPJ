@@ -36,9 +36,14 @@ public class PlayerSkillManager : MonoBehaviour
         for (int i = 0; i < skills.Count; i++)
         {
             skills[i] = Inventory.Instance.GetHighestSkill(i);
+            Debug.Log($"[SkillPanelDebug] ReloadSkills row={i}: skill={(skills[i] != null ? skills[i].name : "NULL")}, icon={(skills[i] != null && skills[i].icon != null ? skills[i].icon.name : "NULL")}");
             if (skills[i] != null)
                 skills[i].Initialize(characterStats);
         }
+
+        // Bắn event ĐÚNG MỘT LẦN, sau khi mọi thay đổi (UnlockSkill + ReloadSkills)
+        // đã hoàn tất, để subscriber (SkillPanelUI/SkillSystemUI) đọc được dữ liệu mới nhất.
+        Inventory.Instance.NotifySkillMatrixChanged();
     }
 
     public List<SkillBase> GetSkills()
@@ -112,7 +117,7 @@ public class PlayerSkillManager : MonoBehaviour
         }
 
         Inventory.Instance.UnlockSkill(row, newLevel - 1);
-        ReloadSkills();
+        ReloadSkills(); // bắn NotifySkillMatrixChanged 1 lần sau khi mọi thứ xong
         return true;
     }
 }

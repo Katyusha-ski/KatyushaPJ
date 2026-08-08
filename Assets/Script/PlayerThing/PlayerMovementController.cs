@@ -27,6 +27,11 @@ public class PlayerMovementController : MonoBehaviour
     public bool IsGrounded => isGrounded;
     public bool CanMove { get; set; } = true;
 
+    // Bật trong lúc đang dash (VD: DashSkill set true khi bắt đầu, false khi kết thúc).
+    // Khi true, FixedUpdate KHÔNG ghi đè rb.linearVelocity — để Dash giữ được vận tốc
+    // riêng của nó thay vì bị movement thường áp đè (regression từ jitter fix).
+    public bool IsDashing { get; set; }
+
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -147,6 +152,8 @@ public class PlayerMovementController : MonoBehaviour
         if (rb == null) return;
         if (!CanMove) return;
         if (seController != null && seController.IsStunned)
+            return;
+        if (IsDashing)
             return;
 
         float effectiveSpeed = stats != null ? stats.MovementSpeed : baseSpeed;

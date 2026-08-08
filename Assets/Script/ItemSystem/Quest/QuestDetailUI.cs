@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.UI;
 using TMPro;
 /* ============================================================================
  * GHI CHÚ: Tab UI (Inventory / Skill Matrix / Quest Item) + Skill Matrix Refactor
@@ -40,10 +39,11 @@ using TMPro;
  *
  * VIỆC PHỤ CÒN LẠI (không gấp, làm khi rảnh):
  * -----------------------------------------------------------------------
- * [ ] Gán skillIcon cho 20 ô trong SkillSystemUI (hiện để trống — ô mở khóa
- *     chỉ đổi khung nền, chưa có icon hiện ra)
- * [ ] 18/20 ItemData skill chưa có itemIcon (chỉ Range Lv1 + Dash Lv1 có sẵn
- *     lúc đầu) — cần thiết kế/gán icon riêng từng skill
+ * [x] Icon skill matrix giờ đọc ĐỘNG runtime từ ItemData.skillData.skill.icon
+ *     (SkillSystemUI.ApplyCellState) — không cần gán skillIcon tay cho 20 ô nữa.
+ *     Lưu ý: 18/20 ItemData skill chưa có skill.icon (chỉ Range Lv1 + Dash Lv1
+ *     có sẵn lúc đầu) — ô mở khóa của skill chưa gán icon sẽ hiện khung trống,
+ *     cần gán icon vào SkillBase.icon của từng skill khi có.
  * [ ] Icon tab Skill (đang tạm dùng "charged1") và tab Quest (đang tạm dùng
  *     "I_Scroll") — thay bằng icon thật khi có
  * [ ] Bug SlotDragHandler.cs: field originalPosition chưa từng được gán giá
@@ -74,8 +74,6 @@ using TMPro;
 public class QuestDetailUI : MonoBehaviour
 {
     [Header("Tham chiếu UI (tự kéo trong Inspector)")]
-    public Image icon;
-    public TMP_Text nameText;
     public TMP_Text descriptionText;
 
     [Tooltip("GameObject cha chứa toàn bộ khung detail — ẩn khi chưa chọn item nào")]
@@ -97,10 +95,6 @@ public class QuestDetailUI : MonoBehaviour
         if (detailRoot != null)
             detailRoot.SetActive(true);
 
-        if (icon != null)
-            icon.sprite = item.itemIcon;
-        if (nameText != null)
-            nameText.text = item.itemName;
         if (descriptionText != null)
             descriptionText.text = item.description;
     }

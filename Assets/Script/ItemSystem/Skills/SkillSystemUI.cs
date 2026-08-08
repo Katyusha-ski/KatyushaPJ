@@ -10,7 +10,6 @@ public class SkillSystemUI : MonoBehaviour
         public Image icon;
         public Sprite lockedBackground;
         public Sprite unlockedBackground;
-        public Sprite skillIcon;
         public bool isUnlocked;
     }
 
@@ -63,11 +62,25 @@ public class SkillSystemUI : MonoBehaviour
         {
             cell.background.sprite = cell.isUnlocked ? cell.unlockedBackground : cell.lockedBackground;
         }
+
+        // Icon đọc ĐỘNG từ ItemData tại ô (row,col) lúc runtime — không phụ thuộc
+        // sprite lưu sẵn trong scene (tránh lệch data/GUID như bug trước).
+        // Skill chưa học: icon ẩn hoàn toàn.
+        int row = index / Cols;
+        int col = index % Cols;
+        Sprite iconSprite = null;
+        if (cell.isUnlocked && Inventory.Instance != null)
+        {
+            ItemData item = Inventory.Instance.GetSkillItemAt(row, col);
+            if (item != null && item.skillData != null && item.skillData.skill != null)
+                iconSprite = item.skillData.skill.icon;
+        }
+
         if (cell.icon != null)
         {
-            cell.icon.sprite = cell.skillIcon;
-            cell.icon.enabled = cell.isUnlocked;
-            cell.icon.gameObject.SetActive(cell.isUnlocked);
+            cell.icon.sprite = iconSprite;
+            cell.icon.enabled = cell.isUnlocked && iconSprite != null;
+            cell.icon.gameObject.SetActive(cell.isUnlocked && iconSprite != null);
         }
     }
 }

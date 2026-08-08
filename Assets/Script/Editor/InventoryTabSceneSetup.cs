@@ -1,6 +1,7 @@
 #if UNITY_EDITOR
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 using UnityEditor;
 using UnityEditor.SceneManagement;
 
@@ -60,7 +61,7 @@ public static class InventoryTabSceneSetup
         skillContent.SetActive(false);
 
         GameObject questContent = CreateCenteredPanel(inventoryUI.transform, "QuestContent", frameAnchoredPos, frameSize, frameSprite);
-        BuildQuestPlaceholder(questContent);
+        BuildQuestDetailLayout(questContent, frameSprite);
         questContent.SetActive(false);
 
         float tabBarWidth = 88f;
@@ -137,8 +138,7 @@ public static class InventoryTabSceneSetup
                 background = cellUI.background,
                 icon = cellUI.icon,
                 lockedBackground = cellUI.lockedBackground,
-                unlockedBackground = cellUI.unlockedBackground,
-                skillIcon = cellUI.skillIcon
+                unlockedBackground = cellUI.unlockedBackground
             };
             fixedCount++;
         }
@@ -284,7 +284,6 @@ public static class InventoryTabSceneSetup
                 cellUI.icon = iconGO.GetComponent<Image>();
                 cellUI.lockedBackground = frameSprite;
                 cellUI.unlockedBackground = frameSprite;
-                cellUI.skillIcon = null;
 
                 SkillSystemUI skillUIRef = skillContent.GetComponent<SkillSystemUI>();
                 if (skillUIRef != null)
@@ -295,30 +294,174 @@ public static class InventoryTabSceneSetup
                         background = cellUI.background,
                         icon = cellUI.icon,
                         lockedBackground = cellUI.lockedBackground,
-                        unlockedBackground = cellUI.unlockedBackground,
-                        skillIcon = cellUI.skillIcon
+                        unlockedBackground = cellUI.unlockedBackground
                     };
                 }
             }
         }
     }
 
-    private static void BuildQuestPlaceholder(GameObject questContent)
+    [MenuItem("Tools/Setup/Build Quest Detail Layout")]
+    public static void BuildQuestDetailLayoutInOpenScene()
     {
-        GameObject textGO = new GameObject("PlaceholderText", typeof(RectTransform), typeof(Text));
-        textGO.transform.SetParent(questContent.transform, false);
-        RectTransform rt = textGO.GetComponent<RectTransform>();
-        rt.anchorMin = Vector2.zero;
-        rt.anchorMax = Vector2.one;
-        rt.offsetMin = Vector2.zero;
-        rt.offsetMax = Vector2.zero;
+        GameObject uiThing = GameObject.Find("UIthing");
+        Transform questContent = uiThing != null ? uiThing.transform.Find("Inventory UI/QuestContent") : null;
+        if (questContent == null)
+        {
+            Debug.LogError("[InventoryTabSceneSetup] QuestContent was not found in the open scene.");
+            return;
+        }
 
-        Text text = textGO.GetComponent<Text>();
-        text.text = "Quest Item — đang phát triển";
-        text.alignment = TextAnchor.MiddleCenter;
-        text.color = Color.black;
-        text.font = Resources.GetBuiltinResource<Font>("LegacyRuntime.ttf");
-        text.fontSize = 20;
+        Sprite frameSprite = LoadSpriteByGuid(FrameSpriteGuid, FrameSpriteFileId);
+        BuildQuestDetailLayout(questContent.gameObject, frameSprite);
+        EditorSceneManager.MarkSceneDirty(questContent.gameObject.scene);
+        Selection.activeGameObject = questContent.gameObject;
+        Debug.Log("[InventoryTabSceneSetup] Quest detail layout built. Save the scene to keep the changes.");
+    }
+
+    private static void BuildQuestDetailLayout(GameObject questContent, Sprite frameSprite)
+    {
+        for (int i = questContent.transform.childCount - 1; i >= 0; i--)
+            Object.DestroyImmediate(questContent.transform.GetChild(i).gameObject);
+
+        GameObject listCard = CreateCard(questContent.transform, "QuestItemsCard", frameSprite);
+        SetRect(listCard, new Vector2(0f, 0f), new Vector2(0f, 1f), new Vector2(12f, 12f), new Vector2(232f, -12f));
+        CreateText(listCard.transform, "Title", "Quest items", 16, TextAlignmentOptions.Left, new Vector2(12f, -12f), new Vector2(-12f, -42f));
+
+        GameObject scroll = CreateUIObject(listCard.transform, "QuestScroll", typeof(Image), typeof(ScrollRect));
+        SetRect(scroll, new Vector2(0f, 0f), new Vector2(1f, 1f), new Vector2(10f, 10f), new Vector2(-10f, -48f));
+        scroll.GetComponent<Image>().color = new Color(0f, 0f, 0f, 0.08f);
+        ScrollRect scrollRect = scroll.GetComponent<ScrollRect>();
+        scrollRect.horizontal = false;
+        scrollRect.vertical = true;
+        scrollRect.movementType = ScrollRect.MovementType.Clamped;
+
+        GameObject viewport = CreateUIObject(scroll.transform, "Viewport", typeof(Image), typeof(Mask));
+        SetStretch(viewport);
+        viewport.GetComponent<Image>().color = new Color(1f, 1f, 1f, 0f);
+        viewport.GetComponent<Mask>().showMaskGraphic = false;
+        scrollRect.viewport = viewport.GetComponent<RectTransform>();
+
+        GameObject content = CreateUIObject(viewport.transform, "Content", typeof(VerticalLayoutGroup), typeof(ContentSizeFitter));
+        SetRect(content, new Vector2(0f, 1f), new Vector2(1f, 1f), new Vector2(6f, 0f), new Vector2(-6f, 0f));
+        RectTransform contentRT = content.GetComponent<RectTransform>();
+        contentRT.pivot = new Vector2(0.5f, 1f);
+        VerticalLayoutGroup contentLayout = content.GetComponent<VerticalLayoutGroup>();
+        contentLayout.spacing = 6f;
+        contentLayout.padding = new RectOffset(2, 2, 2, 2);
+        contentLayout.childForceExpandWidth = true;
+        contentLayout.childForceExpandHeight = false;
+        ContentSizeFitter contentFitter = content.GetComponent<ContentSizeFitter>();
+        contentFitter.verticalFit = ContentSizeFitter.FitMode.PreferredSize;
+        scrollRect.content = contentRT;
+
+        GameObject slotTemplate = CreateQuestSlotTemplate(questContent.transform, frameSprite);
+        slotTemplate.SetActive(false);
+
+        GameObject detailCard = CreateCard(questContent.transform, "QuestDetailCard", frameSprite);
+        SetRect(detailCard, new Vector2(0f, 0f), new Vector2(1f, 1f), new Vector2(242f, 12f), new Vector2(-12f, -12f));
+        CreateText(detailCard.transform, "Title", "Quest details", 16, TextAlignmentOptions.Left, new Vector2(14f, -12f), new Vector2(-14f, -42f));
+
+        GameObject detailController = CreateUIObject(detailCard.transform, "QuestDetailController", typeof(QuestDetailUI));
+        // This object only hosts the QuestDetailUI controller; the UI layout lives on DetailBody.
+        GameObject detailBody = CreateUIObject(detailController.transform, "DetailBody", typeof(RectTransform));
+        SetRect(detailBody, new Vector2(0f, 0f), new Vector2(1f, 1f), new Vector2(14f, 14f), new Vector2(-14f, -50f));
+
+        TMP_Text detailDescription = CreateText(detailBody.transform, "Description", "", 15, TextAlignmentOptions.TopLeft, Vector2.zero, Vector2.zero);
+
+        QuestDetailUI detailUI = detailController.GetComponent<QuestDetailUI>();
+        detailUI.descriptionText = detailDescription;
+        detailUI.detailRoot = detailBody;
+
+        QuestListUI listUI = listCard.AddComponent<QuestListUI>();
+        listUI.contentParent = content.transform;
+        listUI.slotPrefab = slotTemplate;
+        listUI.detailUI = detailUI;
+    }
+
+    private static GameObject CreateQuestSlotTemplate(Transform parent, Sprite frameSprite)
+    {
+        GameObject row = CreateUIObject(parent, "QuestSlotTemplate", typeof(Image), typeof(Button), typeof(LayoutElement), typeof(QuestSlotUI));
+        row.GetComponent<Image>().sprite = frameSprite;
+        row.GetComponent<Image>().type = Image.Type.Sliced;
+        row.GetComponent<Image>().color = new Color(1f, 1f, 1f, 0.45f);
+        LayoutElement rowLayout = row.GetComponent<LayoutElement>();
+        rowLayout.minHeight = 42f;
+        rowLayout.preferredHeight = 42f;
+        rowLayout.flexibleWidth = 1f;
+
+        GameObject border = CreateUIObject(row.transform, "SelectionBorder", typeof(Image));
+        SetStretch(border, 2f);
+        border.GetComponent<Image>().sprite = frameSprite;
+        border.GetComponent<Image>().type = Image.Type.Sliced;
+        border.GetComponent<Image>().raycastTarget = false;
+
+        GameObject icon = CreateUIObject(row.transform, "Icon", typeof(Image));
+        SetRect(icon, new Vector2(0f, 0.5f), new Vector2(0f, 0.5f), new Vector2(6f, -17f), new Vector2(38f, 17f));
+        icon.GetComponent<Image>().preserveAspect = true;
+
+        TMP_Text nameText = CreateText(row.transform, "Name", "", 14, TextAlignmentOptions.Left, new Vector2(50f, 0f), new Vector2(-6f, 0f));
+        nameText.GetComponent<RectTransform>().anchorMin = new Vector2(0f, 0f);
+        nameText.GetComponent<RectTransform>().anchorMax = new Vector2(1f, 1f);
+        nameText.GetComponent<RectTransform>().offsetMin = new Vector2(50f, 0f);
+        nameText.GetComponent<RectTransform>().offsetMax = new Vector2(-6f, 0f);
+
+        QuestSlotUI slotUI = row.GetComponent<QuestSlotUI>();
+        slotUI.icon = icon.GetComponent<Image>();
+        slotUI.nameText = nameText;
+        slotUI.button = row.GetComponent<Button>();
+        slotUI.selectionBorder = border.GetComponent<Image>();
+        slotUI.selectedBorderColor = new Color(1f, 0.8f, 0.2f, 1f);
+        slotUI.normalBorderColor = new Color(1f, 1f, 1f, 0.25f);
+        row.GetComponent<Button>().targetGraphic = row.GetComponent<Image>();
+        return row;
+    }
+
+    private static GameObject CreateCard(Transform parent, string name, Sprite frameSprite)
+    {
+        GameObject card = CreateUIObject(parent, name, typeof(Image));
+        Image image = card.GetComponent<Image>();
+        image.sprite = frameSprite;
+        image.type = Image.Type.Sliced;
+        image.color = new Color(1f, 1f, 1f, 0.92f);
+        return card;
+    }
+
+    private static GameObject CreateUIObject(Transform parent, string name, params System.Type[] componentTypes)
+    {
+        GameObject go = new GameObject(name, componentTypes);
+        go.transform.SetParent(parent, false);
+        return go;
+    }
+
+    private static void SetStretch(GameObject go, float inset = 0f)
+    {
+        SetRect(go, Vector2.zero, Vector2.one, new Vector2(inset, inset), new Vector2(-inset, -inset));
+    }
+
+    private static void SetRect(GameObject go, Vector2 anchorMin, Vector2 anchorMax, Vector2 offsetMin, Vector2 offsetMax)
+    {
+        RectTransform rt = go.GetComponent<RectTransform>();
+        rt.anchorMin = anchorMin;
+        rt.anchorMax = anchorMax;
+        rt.offsetMin = offsetMin;
+        rt.offsetMax = offsetMax;
+    }
+
+    private static TMP_Text CreateText(Transform parent, string name, string text, float fontSize, TextAlignmentOptions alignment, Vector2 offsetMin, Vector2 offsetMax)
+    {
+        GameObject go = CreateUIObject(parent, name, typeof(TextMeshProUGUI));
+        SetRect(go, Vector2.zero, Vector2.one, offsetMin, offsetMax);
+        TextMeshProUGUI tmp = go.GetComponent<TextMeshProUGUI>();
+        tmp.text = text;
+        tmp.fontSize = fontSize;
+        tmp.alignment = alignment;
+        tmp.color = Color.black;
+        tmp.enableWordWrapping = true;
+        tmp.raycastTarget = false;
+        if (TMP_Settings.defaultFontAsset != null)
+            tmp.font = TMP_Settings.defaultFontAsset;
+        return tmp;
     }
 
     private static Sprite LoadSpriteByGuid(string guid, long fileId)

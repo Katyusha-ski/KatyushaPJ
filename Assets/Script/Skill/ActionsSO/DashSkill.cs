@@ -59,40 +59,54 @@ public class DashSkill : DirectDmgSkillBase
         if (animator != null && !string.IsNullOrEmpty(dashTriggerName))
             animator.SetTrigger(dashTriggerName);
 
+        // Vô hiệu hóa movement controller ghi đè velocity trong lúc dash
+        // (Fix: regression từ jitter fix — FixedUpdate áp đè vận tốc dash về 0).
+        var mover = player.GetComponent<PlayerMovementController>();
+        if (mover != null)
+            mover.IsDashing = true;
+
         float timer = 0f;
         HashSet<GameObject> damagedEnemies = new HashSet<GameObject>();
         float finalDamage = applyDashDamage ? CalculateFinalDamage() : 0f;
 
-        while (timer < dashDuration)
+        try
         {
-            rb.linearVelocity = new Vector2(direction * dashSpeed, 0f);
-
-            if (applyDashDamage)
+            while (timer < dashDuration)
             {
-                var hits = Physics2D.OverlapBoxAll(player.transform.position, playerCollider.bounds.size, 0, LayerMask.GetMask("Enemy"));
-                foreach (var hit in hits)
-                {
-                    if (!damagedEnemies.Contains(hit.gameObject))
-                    {
-                        var health = hit.GetComponent<Health>();
-                        if (health != null)
-                        {
-                            health.TakeDamage((int)finalDamage);
-                            damagedEnemies.Add(hit.gameObject);
+                rb.linearVelocity = new Vector2(direction * dashSpeed, 0f);
 
-                            if (applyStun)
-                                ApplyStun(hit.gameObject);
+                if (applyDashDamage)
+                {
+                    var hits = Physics2D.OverlapBoxAll(player.transform.position, playerCollider.bounds.size, 0, LayerMask.GetMask("Enemy"));
+                    foreach (var hit in hits)
+                    {
+                        if (!damagedEnemies.Contains(hit.gameObject))
+                        {
+                            var health = hit.GetComponent<Health>();
+                            if (health != null)
+                            {
+                                health.TakeDamage((int)finalDamage);
+                                damagedEnemies.Add(hit.gameObject);
+
+                                if (applyStun)
+                                    ApplyStun(hit.gameObject);
+                            }
                         }
                     }
                 }
+
+                timer += Time.deltaTime;
+                yield return null;
             }
-
-            timer += Time.deltaTime;
-            yield return null;
         }
+        finally
+        {
+            if (mover != null)
+                mover.IsDashing = false;
 
-        rb.linearVelocity = Vector2.zero;
-        player.gameObject.layer = oldLayer;
+            rb.linearVelocity = Vector2.zero;
+            player.gameObject.layer = oldLayer;
+        }
 
         // Push out if stuck in enemy
         Collider2D overlap = Physics2D.OverlapBox(player.transform.position, playerCollider.bounds.size, 0, LayerMask.GetMask("Enemy"));

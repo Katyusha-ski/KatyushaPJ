@@ -8,9 +8,14 @@ public class QuestSlotUI : MonoBehaviour
     public Image icon;
     public TMP_Text nameText;
     public Button button;
+    public Image selectionBorder;
+    public Color selectedBorderColor = Color.white;
+    public Color normalBorderColor = new Color(1f, 1f, 1f, 0.35f);
 
     private ItemData questItem;
     private System.Action<ItemData> onClickCallback;
+
+    public ItemData Item => questItem;
 
     public void Setup(ItemData item, System.Action<ItemData> onClick)
     {
@@ -27,5 +32,13 @@ public class QuestSlotUI : MonoBehaviour
             button.onClick.RemoveAllListeners();
             button.onClick.AddListener(() => onClickCallback?.Invoke(questItem));
         }
+    }
+
+    public void SetSelected(bool selected)
+    {
+        if (selectionBorder == null) return;
+
+        selectionBorder.enabled = true;
+        selectionBorder.color = selected ? selectedBorderColor : normalBorderColor;
     }
 }
