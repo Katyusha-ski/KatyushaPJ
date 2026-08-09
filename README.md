@@ -295,11 +295,11 @@ Quest item pickup:
 
 | Class | File | Responsibility |
 |---|---|---|
-| **DialogueManager** | `DialogueManager.cs` | Persistent singleton. Starts/advances/ends dialogues, locks `PlayerMovementController.CanMove` |
+| **DialogueManager** | `DialogueManager.cs` | Persistent singleton. Starts/advances/ends dialogues, locks `PlayerMovementController.CanMove`, auto-resets dialogue state on scene change (prevents movement soft-lock) |
 | **DialogueData** | `DialogueData.cs` | ScriptableObject: `List<DialogueLine>` (speaker + text) |
 | **CharacterProfile** | `Profiles/CharacterProfile.cs` | ScriptableObject speaker profile (name/portrait) |
 | **DialogueUI** | `DialogueUI.cs` | Singleton UI: shows/updates/hides current line |
-| **NPCDialogueTrigger** | `NPCDialogueTrigger.cs` | World/NPC trigger → `DialogueManager.StartDialogue()` |
+| **NPCDialogueTrigger** | `NPCDialogueTrigger.cs` | World/NPC trigger → `DialogueManager.StartDialogue()`; plays once per session unless `isRepeatable` is checked |
 
 **Dependencies:** DOTween (Demigiant) is bundled under `Assets/Plugins/` and used for tweening (boss/VFX systems).
 
@@ -320,7 +320,7 @@ HP Regen: every 5 seconds, heal = HPRegen
 ## Known Issues / TODOs
 
 - Health shield absorb order: code đã sửa theo pipeline absorb-first, nhưng cần Play Mode verify lại 2 test case shield to/overflow trước khi gạch khỏi danh sách hoàn toàn.
-- Dialogue movement lock: code đã chuyển sang lấy `PlayerMovementController` tại thời điểm dùng, nhưng cần Play Mode verify qua scene reload / respawn để xác nhận không còn soft-lock.
+- Dialogue movement lock: code đã chuyển sang lấy `PlayerMovementController` tại thời điểm dùng và thêm auto-reset trên `SceneManager.sceneLoaded` khi dialogue đang active, nhưng cần Play Mode verify qua scene reload / respawn để xác nhận không còn soft-lock.
 - ~~Save/load itemName lookup~~ — đã sửa: SerializableItemStack dùng Resources.LoadAll + Dictionary cache (itemName vẫn là khoá tra cứu, chưa migrate sang itemId — nợ kỹ thuật nhẹ, không gấp)
 - `AssisterController` is legacy/unused
 - 18/20 skill ItemData còn thiếu itemIcon (chỉ Range Lv1 và Dash Lv1 có sẵn) — thuần thiết kế mỹ thuật, không phải bug code. Icon tab Skill/Quest trong Tab UI cũng đang dùng placeholder tạm (charged1.png / I_Scroll.png).

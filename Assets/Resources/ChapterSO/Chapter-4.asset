@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Chapter-4
   m_EditorClassIdentifier: Assembly-CSharp::ChapterDataSO
   chapterID: 4
-  chapterName: 
-  mainSceneName: GrassScene
+  chapterName: Thành phố Mira
+  mainSceneName: MiraScene
   bossSceneName: 

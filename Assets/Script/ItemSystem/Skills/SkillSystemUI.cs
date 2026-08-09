@@ -16,6 +16,9 @@ public class SkillSystemUI : MonoBehaviour
     private const int Rows = 4;
     private const int Cols = 5;
 
+    [SerializeField, Tooltip("Icon shown on a skill cell when the skill is locked")]
+    private Sprite lockedSkillIcon;
+
     public SkillCell[] cells = new SkillCell[Rows * Cols];
 
     private static int ToIndex(int row, int col) => row * Cols + col;
@@ -65,7 +68,7 @@ public class SkillSystemUI : MonoBehaviour
 
         // Icon đọc ĐỘNG từ ItemData tại ô (row,col) lúc runtime — không phụ thuộc
         // sprite lưu sẵn trong scene (tránh lệch data/GUID như bug trước).
-        // Skill chưa học: icon ẩn hoàn toàn.
+        // Locked skill: show the shared lock icon (lockedSkillIcon) instead of hiding the icon.
         int row = index / Cols;
         int col = index % Cols;
         Sprite iconSprite = null;
@@ -75,12 +78,16 @@ public class SkillSystemUI : MonoBehaviour
             if (item != null && item.skillData != null && item.skillData.skill != null)
                 iconSprite = item.skillData.skill.icon;
         }
+        else
+        {
+            iconSprite = lockedSkillIcon;
+        }
 
         if (cell.icon != null)
         {
             cell.icon.sprite = iconSprite;
-            cell.icon.enabled = cell.isUnlocked && iconSprite != null;
-            cell.icon.gameObject.SetActive(cell.isUnlocked && iconSprite != null);
+            cell.icon.enabled = iconSprite != null;
+            cell.icon.gameObject.SetActive(iconSprite != null);
         }
     }
 }

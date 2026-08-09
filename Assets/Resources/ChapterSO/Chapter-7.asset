@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Chapter-7
   m_EditorClassIdentifier: Assembly-CSharp::ChapterDataSO
   chapterID: 7
-  chapterName: 
-  mainSceneName: GrassScene
+  chapterName: Thủ đô Hyvoria
+  mainSceneName: HyvoriaScene
   bossSceneName: 

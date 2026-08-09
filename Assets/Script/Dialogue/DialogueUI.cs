@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -5,8 +6,8 @@ public class DialogueUI : MonoBehaviour
 {
     public static DialogueUI Instance { get; private set; }
 
-    [SerializeField] private Text nameText;
-    [SerializeField] private Text lineText;
+    [SerializeField] private TMP_Text nameText;
+    [SerializeField] private TMP_Text lineText;
     [SerializeField] private Image portraitImage;
     [SerializeField] private Button nextButton;
     [SerializeField] private GameObject panel;

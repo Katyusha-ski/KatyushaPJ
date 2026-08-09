@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Chapter-3
   m_EditorClassIdentifier: Assembly-CSharp::ChapterDataSO
   chapterID: 3
-  chapterName: 
-  mainSceneName: GrassScene
+  chapterName: Trang trại Kuri
+  mainSceneName: KuriFarmScene
   bossSceneName: 

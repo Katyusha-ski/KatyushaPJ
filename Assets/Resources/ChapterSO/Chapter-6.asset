@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Chapter-6
   m_EditorClassIdentifier: Assembly-CSharp::ChapterDataSO
   chapterID: 6
-  chapterName: 
-  mainSceneName: GrassScene
+  chapterName: Khu rừng Mytharite
+  mainSceneName: MytharaScene
   bossSceneName: 

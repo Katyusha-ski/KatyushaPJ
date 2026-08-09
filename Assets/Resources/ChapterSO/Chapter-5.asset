@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Chapter-5
   m_EditorClassIdentifier: Assembly-CSharp::ChapterDataSO
   chapterID: 5
-  chapterName: 
-  mainSceneName: GrassScene
+  chapterName: Hang động Kynarite
+  mainSceneName: KynariteScene
   bossSceneName: 

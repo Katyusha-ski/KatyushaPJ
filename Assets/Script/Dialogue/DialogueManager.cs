@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class DialogueManager : MonoBehaviour
 {
@@ -17,6 +18,27 @@ public class DialogueManager : MonoBehaviour
         }
         Instance = this;
         DontDestroyOnLoad(gameObject);
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+    private void OnDestroy()
+    {
+        if (Instance == this)
+            SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
+
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        if (!isDialogueActive) return;
+
+        Debug.LogWarning("[DialogueManager] Scene changed while dialogue was active. Forcing reset to prevent movement soft-lock.");
+        isDialogueActive = false;
+        currentData = null;
+        currentLineIndex = 0;
+        SetPlayerMovementCanMove(true);
+
+        if (DialogueUI.Instance != null)
+            DialogueUI.Instance.Hide();
     }
 
     public bool IsDialogueActive => isDialogueActive;

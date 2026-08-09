@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Chapter-2
   m_EditorClassIdentifier: Assembly-CSharp::ChapterDataSO
   chapterID: 2
-  chapterName: 
-  mainSceneName: GrassScene
+  chapterName: Rohok
+  mainSceneName: RohokScene
   bossSceneName: 
