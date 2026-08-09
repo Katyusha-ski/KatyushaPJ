@@ -24,11 +24,34 @@ public class GameManager : MonoBehaviour
         {
             Instance = this;
             DontDestroyOnLoad(gameObject);
+            SceneManager.sceneLoaded += OnAnySceneLoaded;
         }
         else
         {
             Destroy(gameObject);
         }
+    }
+
+    private void OnDestroy()
+    {
+        if (Instance == this)
+            SceneManager.sceneLoaded -= OnAnySceneLoaded;
+    }
+
+    private void OnAnySceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        WireCameraFollowToPlayer();
+    }
+
+    private void WireCameraFollowToPlayer()
+    {
+        if (PlayerManager.Instance == null || PlayerManager.Instance.PlayerTransform == null)
+            return;
+
+        CameraFollow cameraFollow = FindFirstObjectByType<CameraFollow>();
+        if (cameraFollow == null) return;
+
+        cameraFollow.SetTarget(PlayerManager.Instance.PlayerTransform);
     }
 
     private void Update()

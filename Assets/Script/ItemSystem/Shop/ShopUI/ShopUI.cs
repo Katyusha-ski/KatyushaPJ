@@ -9,13 +9,15 @@ public class ShopUI : MenuUI
     public ItemListUI itemListUI;
     public ItemDetailUI itemDetailUI;
 
-    [Header("Data")]
-    public ShopManager shopManager;
-
     void OnEnable() 
     {
+        ShopManager shopManager = ShopManager.Instance;
+
         if (shopManager == null || itemDetailUI == null || categoryUI == null || itemListUI == null)
+        {
+            Debug.LogWarning("[ShopUI] No active ShopManager found in current scene — shop cannot open.");
             return;
+        }
 
         shopManager.UnlockByChapter(ChapterManager.Instance.CurrentChapterNumber);
         itemDetailUI.Init(shopManager, this);
@@ -34,6 +36,7 @@ public class ShopUI : MenuUI
 
     void HandleCategorySelected(ItemType category) 
     {
+        ShopManager shopManager = ShopManager.Instance;
         if (shopManager?.entries == null) return;
 
         var filtered = category.ToString() == "All"

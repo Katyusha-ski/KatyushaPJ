@@ -34,6 +34,11 @@ public class CameraFollow : MonoBehaviour
         transform.position = smoothedPosition;
     }
 
+    public void SetTarget(Transform newTarget)
+    {
+        target = newTarget;
+    }
+
     public void ZoomToBossReveal(Transform bossTarget, Action onComplete)
     {
         if (cam == null || bossTarget == null) return;

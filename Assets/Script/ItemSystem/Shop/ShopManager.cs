@@ -3,11 +3,15 @@ using UnityEngine;
 
 public class ShopManager : MonoBehaviour
 {
+    public static ShopManager Instance { get; private set; }
+
     public List<ShopEntrySO> entries;
     public Dictionary<ShopEntrySO, RuntimeState> runtimeData = new Dictionary<ShopEntrySO, RuntimeState>();
 
     private void Awake()
     {
+        Instance = this;
+
         if (entries == null)
         {
             Debug.LogError("[ShopManager] Awake: entries list is null! Ensure it is assigned in the inspector.");
@@ -20,6 +24,12 @@ public class ShopManager : MonoBehaviour
                 runtimeData[entry] = new RuntimeState(entry);
             }
         }
+    }
+
+    private void OnDestroy()
+    {
+        if (Instance == this)
+            Instance = null;
     }
 
     public bool CanAfford(ShopEntrySO entry)
