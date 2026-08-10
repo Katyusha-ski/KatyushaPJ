@@ -98,6 +98,10 @@ Tài liệu này tổng hợp các loại item và chỉ số dựa trên các c
 - **Royal Spear**
   - itemType: Equipment | equipmentType: Weapon
   - stats: damage +18, skillAmp +15%, critChance +12%, armorPierce +40%, critDamage +15%, lifesteal +5%
+- **Diamond Sword**
+  - itemType: Equipment | equipmentType: Weapon
+  - stats: critChance +40%, critDamage +70%, armorPierce +50%, lifesteal +35%, skillAmp +50%
+  - mô tả: Vũ khí endgame mạnh nhất, mở khóa ở Chapter 7.
 
 #### Accessory (Trang sức)
 - **Silver Ring**

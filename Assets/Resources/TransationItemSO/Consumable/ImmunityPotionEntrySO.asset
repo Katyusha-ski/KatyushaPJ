@@ -12,11 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a0785678fd29ac4b833a1cf9f7f1dc7, type: 3}
   m_Name: ImmunityPotionEntrySO
   m_EditorClassIdentifier: Assembly-CSharp::ShopEntrySO
-  unlockChapter: 7
-  isUnlocked: 1
-  item: {fileID: 11400000, guid: c1395c073df47f942b839d953a29820d, type: 2}
+  unlockChapter: 4
+  isUnlocked: 0
+  item: {fileID: 11400000, guid: 85983df0e6ecfd746ae77f3ceeb3b117, type: 2}
   amount: 1
   costs:
   - item: {fileID: 11400000, guid: 1fce87340f6298c459ad153a48f16046, type: 2}
-    amount: 30
-  stock: 1
+    amount: 20
+  - item: {fileID: 11400000, guid: 6a838d6e4b1c5e54fb538763b9b71b39, type: 2}
+    amount: 1
+  stock: 5

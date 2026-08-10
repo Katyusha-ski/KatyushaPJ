@@ -12,11 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a0785678fd29ac4b833a1cf9f7f1dc7, type: 3}
   m_Name: DragonsBloodEntrySO
   m_EditorClassIdentifier: Assembly-CSharp::ShopEntrySO
-  unlockChapter: 7
-  isUnlocked: 1
-  item: {fileID: 11400000, guid: c1395c073df47f942b839d953a29820d, type: 2}
+  unlockChapter: 6
+  isUnlocked: 0
+  item: {fileID: 11400000, guid: 02bdb4215723eeb45b326cb52fe48270, type: 2}
   amount: 1
   costs:
   - item: {fileID: 11400000, guid: 1fce87340f6298c459ad153a48f16046, type: 2}
-    amount: 30
-  stock: 1
+    amount: 35
+  - item: {fileID: 11400000, guid: c76d29098ca05da43bb2fa8e32e68a5f, type: 2}
+    amount: 2
+  stock: 3

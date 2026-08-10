@@ -457,7 +457,7 @@ public static class InventoryTabSceneSetup
         tmp.fontSize = fontSize;
         tmp.alignment = alignment;
         tmp.color = Color.black;
-        tmp.enableWordWrapping = true;
+        tmp.textWrappingMode = TextWrappingModes.Normal;
         tmp.raycastTarget = false;
         if (TMP_Settings.defaultFontAsset != null)
             tmp.font = TMP_Settings.defaultFontAsset;

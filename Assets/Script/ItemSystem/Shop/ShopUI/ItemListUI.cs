@@ -6,7 +6,6 @@ public class ItemListUI : MonoBehaviour
 {
     public Transform contentParent;
     public GameObject shopSlotPref;
-    public ShopManager shopManager;
 
     public event Action<ShopEntrySO> OnItemSelected;
 
@@ -15,6 +14,8 @@ public class ItemListUI : MonoBehaviour
 
     public void Populate(List<ShopEntrySO> entries)
     {
+        ShopManager shopManager = ShopManager.Instance;
+
         if (contentParent == null || shopSlotPref == null || shopManager == null) return;
 
         foreach (Transform t in contentParent) Destroy(t.gameObject);
