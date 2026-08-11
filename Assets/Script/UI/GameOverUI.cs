@@ -9,7 +9,6 @@ public class GameOverUI: MonoBehaviour
         if (Instance == null)
         {
             Instance = this;
-            DontDestroyOnLoad(gameObject);
         }
        
     }
