@@ -11,10 +11,12 @@ public class TransactionCost
 public class RuntimeState
 {
     public int currentStock;
+    public bool isUnlocked;
 
     public RuntimeState(ShopEntrySO template)
     {
         this.currentStock = template.stock;
+        this.isUnlocked = template.isUnlocked;
     }
 
     public void ReduceStock()

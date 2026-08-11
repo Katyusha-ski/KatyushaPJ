@@ -40,9 +40,9 @@ public class ShopUI : MenuUI
         if (shopManager?.entries == null) return;
 
         var filtered = category.ToString() == "All"
-            ? shopManager.entries.Where(e => e.isUnlocked).ToList()
+            ? shopManager.entries.Where(e => shopManager.IsUnlocked(e)).ToList()
             : shopManager.entries
-                .Where(e => e.isUnlocked)
+                .Where(e => shopManager.IsUnlocked(e))
                 .Where(e => e.item.itemType == category)
                 .ToList();
 

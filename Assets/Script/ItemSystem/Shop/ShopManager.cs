@@ -69,7 +69,7 @@ public class ShopManager : MonoBehaviour
 
     public bool Purchase(ShopEntrySO entry)
     {
-        if (!CanAfford(entry) || entry.item == null || !entry.isUnlocked)
+        if (!CanAfford(entry) || entry.item == null || !IsUnlocked(entry))
             return false;
 
         if (entry.costs != null)
@@ -95,11 +95,16 @@ public class ShopManager : MonoBehaviour
         if (entries == null) return;
         foreach (var entry in entries)
         {
-            if (entry != null)
-                entry.isUnlocked = entry.unlockChapter <= currentChapter;
+            if (entry != null && runtimeData.TryGetValue(entry, out var state))
+                state.isUnlocked = entry.unlockChapter <= currentChapter;
         }
     }
 
+    public bool IsUnlocked(ShopEntrySO entry)
+    {
+        if (entry == null) return false;
+        return runtimeData.TryGetValue(entry, out var state) && state.isUnlocked;
+    }
 
     public int GetCurrentStock(ShopEntrySO entry)
     {
