@@ -53,8 +53,9 @@ public class ChapterManager : MonoBehaviour
             SceneManager.LoadScene("MainMenu"); 
             return;
         }
-        SceneManager.sceneLoaded += OnVillageLoaded;
-        SceneManager.LoadScene("Village");
+        GoToMainScene();
+        if (GameManager.Instance != null)
+            GameManager.Instance.SaveGame();
     }
 
     public void CompleteBossChapter()
@@ -70,15 +71,9 @@ public class ChapterManager : MonoBehaviour
             SceneManager.LoadScene("MainMenu");
             return;
         }
-        SceneManager.sceneLoaded += OnVillageLoaded;
-        SceneManager.LoadScene("Village");
-    }
-
-    private void OnVillageLoaded(Scene scene, LoadSceneMode mode)
-    {
-        if (scene.name != "Village") return;
-        SceneManager.sceneLoaded -= OnVillageLoaded;
-        GameManager.Instance.SaveGame();
+        GoToMainScene();
+        if (GameManager.Instance != null)
+            GameManager.Instance.SaveGame();
     }
 
     public void GoToMainScene()

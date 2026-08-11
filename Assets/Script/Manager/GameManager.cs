@@ -203,7 +203,8 @@ public class GameManager : MonoBehaviour
 
         Debug.Log("New game started!");
 
-        SceneManager.LoadScene("Village");
+        if (ChapterManager.Instance != null)
+            ChapterManager.Instance.GoToMainScene();
     }
 
     private void OnNewGameSceneLoaded(Scene scene, LoadSceneMode mode)
