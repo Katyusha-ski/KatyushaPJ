@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -5,6 +6,7 @@ public class DialogueManager : MonoBehaviour
 {
     public static DialogueManager Instance { get; private set; }
 
+    public event Action<DialogueData> OnDialogueEnded;
     private DialogueData currentData;
     private int currentLineIndex;
     private bool isDialogueActive;
@@ -78,8 +80,11 @@ public class DialogueManager : MonoBehaviour
     private void EndDialogue()
     {
         isDialogueActive = false;
+        DialogueData endedData = currentData;
         currentData = null;
         currentLineIndex = 0;
+
+        OnDialogueEnded?.Invoke(endedData);
 
         SetPlayerMovementCanMove(true);
 

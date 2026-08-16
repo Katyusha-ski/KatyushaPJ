@@ -36,61 +36,46 @@ public class DialogueUI : MonoBehaviour
         if (panel != null)
             panel.SetActive(true);
 
-        var speaker = line.speaker;
-        if (speaker != null)
-        {
-            if (nameText != null)
-                nameText.text = speaker.characterName;
-
-            if (portraitImage != null)
-            {
-                if (speaker.portrait != null)
-                {
-                    portraitImage.sprite = speaker.portrait;
-                    portraitImage.enabled = true;
-                }
-                else
-                {
-                    portraitImage.enabled = false;
-                }
-            }
-        }
-
-        if (lineText != null)
-            lineText.text = line.text;
+        SetDialogueUI(line);
     }
 
     public void UpdateLine(DialogueLine line)
     {
         if (panel == null) return;
 
-        var speaker = line.speaker;
-        if (speaker != null)
-        {
-            if (nameText != null)
-                nameText.text = speaker.characterName;
-
-            if (portraitImage != null)
-            {
-                if (speaker.portrait != null)
-                {
-                    portraitImage.sprite = speaker.portrait;
-                    portraitImage.enabled = true;
-                }
-                else
-                {
-                    portraitImage.enabled = false;
-                }
-            }
-        }
-
-        if (lineText != null)
-            lineText.text = line.text;
+        SetDialogueUI(line);
     }
 
     public void Hide()
     {
         if (panel != null)
             panel.SetActive(false);
+    }
+    private void SetDialogueUI(DialogueLine line)
+    {
+        if (line == null) return;
+
+        var speaker = line.speaker;
+        if (speaker != null)
+        {
+            if (nameText != null)
+                nameText.text = speaker.characterName;
+        }
+
+        if (portraitImage != null)
+        {
+            if (speaker != null && speaker.portrait != null)
+            {
+                portraitImage.sprite = speaker.portrait;
+                portraitImage.enabled = true;
+            }
+            else
+            {
+                portraitImage.enabled = false;
+            }
+        }
+
+        if (lineText != null)
+            lineText.text = line.text;
     }
 }
