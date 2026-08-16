@@ -544,3 +544,44 @@ Trước khi hoàn tất, nhờ review toàn diện: (a) subscribe/unsubscribe c
 - Code theo **từng Phase**, dừng ở **checkpoint** và gọi giám sát review trước khi sang Phase kế.
 - Đọc lại mục 0 (3 nguyên tắc) mỗi khi lạc lối: **Lệnh gói `Execute()` / Kịch bản là data / Hệ thống giao tiếp bằng event**.
 - Có 6 file mới trong Phase 3: `SequenceAction` (abstract), `DialogueAction`, `TeleportAction`, `AnimationAction`, `CutsceneData`, `SequencePlayer` — mỗi file nhỏ, không gộp. (Shop là component riêng `ShopKeeperDialogue` ở mục 3.3.d, không thuộc Sequencer.)
+
+---
+
+## TODO — Trạng thái hiện tại & bước tiếp theo (cập nhật 17/08/2026)
+
+> Commit gần nhất: `a42b51d` "feat: Sequencer data-driven cutscene system" — đã chứa toàn bộ code Sequencer, editor, assets & docs. Chưa push.
+
+### Bối cảnh đã xong (đừng làm lại)
+
+- **Phase 1 (Dialogue):** `DialogueManager` có event `OnDialogueEnded` (để Sequencer chờ hết thoại); `DialogueUI` đã DRY qua `SetDialogueUI(...)`. Cả hai đã commit.
+- **Phase 3 (Sequencer):** 6 file core + trigger đã commit:
+  - `SequenceAction` là class abstract `[System.Serializable]` (**KHÔNG** phải ScriptableObject) vì `[SerializeReference]` không hoạt động trên `UnityEngine.Object` — Inspector vanilla chỉ hiện object-picker, không có dropdown type.
+  - Vì vanilla Inspector **không** vẽ dropdown cho danh sách `[SerializeReference]` đa hình, đã viết **custom editor** `Assets/Script/Editor/CutsceneDataDrawer.cs` (`[CustomEditor(typeof(CutsceneData))]`, dùng `TypeCache.GetTypesDerivedFrom<SequenceAction>()` + `managedReferenceValue`). Sau khi sửa xong cần cho Unity compile lại rồi mới mở asset.
+  - `SequencePlayer` chạy từng action bằng `Execute()` trả về `IEnumerator`; **Red Flags mục 5** bắt buộc tuân thủ (chỉ `rb.position`, chỉ `SetTrigger`, subscribe/unsubscribe cân bằng, guard null `yield break`).
+- **Assets đã tạo:** `Resources/DialogueSO/Characters/{Kati,Hachi,Usagi}.asset`, `Resources/DialogueSO/Dialogues/TestDialogue.asset`, `Resources/DialogueSO/Cutscenes/TestCutscene.asset`, `Resources/Prefab/Props/HachiChest.prefab`. Đã commit.
+- **Kịch bản:** `Docs/DialogueScript.md` — Ch.1 có Narrator, Kati, Hachi, Villagers; Usagi (chủ shop) xuất hiện; `characterName` trong asset còn trống cần điền.
+
+### Các bước tiếp theo (làm theo thứ tự)
+
+1. **Hoàn tất asset test `TestCutscene` (todo cũ #1)**
+   - Sau khi Unity compile lại custom editor: mở `Resources/DialogueSO/Cutscenes/TestCutscene.asset` → danh sách actions đang có **3 phần tử null** (do YAML cũ sinh ra) → xoá hết, bấm **"+ Add Action"** để tạo mới từ dropdown:
+     - Action 1: `DialogueAction` → gán `TestDialogue` (chứa vài câu thoại).
+     - Action 2: `TeleportAction` → chọn target đích + câu "vượt không gian...".
+   - Kiểm tra dropdown type hiện đúng; nếu không thấy dropdown → custom editor chưa hoạt động, dừng lại và báo giám sát.
+2. **Tạo trigger test (todo cũ #1)**
+   - Tạo 1 `GameObject` trigger trong scene Outskirts (dùng `SequenceCutsceneTrigger` — `OnTriggerEnter2D` gọi `SequencePlayer.Play()`, đã viết sẵn).
+   - Vào Play mode, đưa Player chạm trigger → kỳ vọng: thoại chạy → hết thoại → màn đen + câu chữ → dời vị trí → sáng lại. Đúng => hệ thống chạy.
+3. **Tích hợp cutscene đầu game (todo cũ #2)**
+   - Dùng `HachiChest.prefab` (đã có trong `Resources/Prefab/Props/`) làm trigger/điểm mở cutscene Ch.1 (Narrator + Kati + Hachi).
+   - Gắn `SequenceCutsceneTrigger` + asset `CutsceneData` tương ứng (đặt sẵn sau khi test asset mẫu ở bước 1/2 thành công).
+4. **Wire shop Usagi (todo cũ #3)**
+   - Code `ShopKeeperDialogue` đã commit (`OnDialogueEnded` → `ShopUI.ShowMenuAndPause()`).
+   - Cần gắn component lên NPC Usagi trong scene + tạo `DialogueData` thoại shop cho cô ấy. Điền `characterName` cho Usagi trong `CharacterProfile`.
+5. **Đưa FadeUI + TeleportManager vào scene (todo cũ #4)**
+   - Kéo `Resources/Prefab/UI/FadeUI.prefab` vào OutskirtsScene; gắn `TeleportManager` (đã commit ở `2d7ab6b`) và trỏ đúng `FadePanel`.
+   - **Chú ý:** scene hiện có thay đổi chưa commit (OutskirtsScene.unity đang modified) — hoàn tất việc đặt FadeUI rồi mới commit scene.
+6. **Điền `characterName` + portrait cho 3 CharacterProfile (todo cũ #5)**
+   - `Kati.asset`, `Hachi.asset`, `Usagi.asset` đã có nhưng `characterName` còn trống — điền tên hiển thị đúng theo `DialogueScript.md`.
+7. **Dựng map OutskirtsScene theo kịch bản Ch.1 (todo cũ #6)** — cảnh đầu: Player + villagers + Usagi shop + chest/Hachi trigger.
+8. **Commit & push (todo cũ #7)**
+   - Kiểm tra `git status`: chỉ commit những file thuộc công việc Sequencer. **KHÔNG** commit các thay đổi lạ nằm sẵn trong working tree: `Player.prefab` (đang xoá BoxCollider2D), `Tileset.png.meta`, `Monocraft SDF.asset`, `EditorBuildSettings.asset`, vụ di chuyển shader (`Script/Shader` → `Script/Skill/Shader`), `JumpTutorialTrigger.cs`, `MovementTutorialUI.cs`. Commit `a42b51d` đã được stage đúng phạm vi này.
