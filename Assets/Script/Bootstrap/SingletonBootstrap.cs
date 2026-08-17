@@ -2,7 +2,7 @@ using UnityEngine;
 
 public static class SingletonBootstrap
 {
-    private const string CoreSystemPath = "Prefab/System/SystemObjectPrefab";
+    private const string CoreSystemPath = "Prefab/System/CoreSystem";
 
     [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
     private static void EnsureSingletons()
