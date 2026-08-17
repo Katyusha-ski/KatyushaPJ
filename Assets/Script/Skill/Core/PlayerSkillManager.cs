@@ -25,7 +25,7 @@ public class PlayerSkillManager : MonoBehaviour
     {
         if (Inventory.Instance == null)
         {
-            Debug.LogError("[PlayerSkillManager] Inventory.Instance is null!");
+            Debug.LogWarning("[PlayerSkillManager] Inventory.Instance is null; skill matrix is not loaded.");
             return;
         }
 
@@ -36,7 +36,6 @@ public class PlayerSkillManager : MonoBehaviour
         for (int i = 0; i < skills.Count; i++)
         {
             skills[i] = Inventory.Instance.GetHighestSkill(i);
-            Debug.Log($"[SkillPanelDebug] ReloadSkills row={i}: skill={(skills[i] != null ? skills[i].name : "NULL")}, icon={(skills[i] != null && skills[i].icon != null ? skills[i].icon.name : "NULL")}");
             if (skills[i] != null)
                 skills[i].Initialize(characterStats);
         }

@@ -15,12 +15,18 @@ public class EquipmentManager : MonoBehaviour
 
     private void Start()
     {
+        if (Inventory.Instance == null)
+        {
+            Debug.LogWarning("[EquipmentManager] Inventory.Instance is null during Start; equipment stats are not applied.", this);
+            return;
+        }
         Inventory.Instance.OnEquipmentChanged += HandleEquipmentChanged;
         ApplyAllCurrentEquipment();
     }
     private void OnDestroy()
     {
-        Inventory.Instance.OnEquipmentChanged -= HandleEquipmentChanged;
+        if (Inventory.Instance != null)
+            Inventory.Instance.OnEquipmentChanged -= HandleEquipmentChanged;
     }
 
     private void HandleEquipmentChanged()

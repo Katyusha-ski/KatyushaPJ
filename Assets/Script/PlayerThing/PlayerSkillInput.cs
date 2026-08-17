@@ -28,7 +28,7 @@ public class PlayerSkillInput : MonoBehaviour
         if (inputConfig == null)
         {
             inputConfig = InputConfig.GetDefault();
-            Debug.Log("No InputConfig assigned. Using default configuration.");
+            Debug.LogWarning("No InputConfig assigned. Using default configuration.");
         }
         if (playerSkillManager == null)
         {
@@ -100,6 +100,8 @@ public class PlayerSkillInput : MonoBehaviour
     private bool CanActivateSkill(int skillIndex)
     {
         if (skillIndex < 0 || skillIndex >= playerSkillManager.GetSkills().Count)
+            return false;
+        if (movementController == null || !movementController.CanMove)
             return false;
 
         var skill = playerSkillManager.GetSkills()[skillIndex];

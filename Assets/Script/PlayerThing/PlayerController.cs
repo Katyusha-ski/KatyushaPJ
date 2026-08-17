@@ -62,7 +62,6 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKeyDown(inputConfig.jumpKey))
         {
             movementController.TryJump();
-            Debug.Log("Jump");
         }
     }
 

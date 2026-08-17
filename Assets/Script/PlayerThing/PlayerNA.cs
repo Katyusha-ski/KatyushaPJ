@@ -22,7 +22,7 @@ public class PlayerNA : MonoBehaviour
         if (inputConfig == null)
         {
             inputConfig = InputConfig.GetDefault();
-            Debug.Log("No InputConfig found. Using default.");
+            Debug.LogWarning("No InputConfig found. Using default.");
         }
 
         if (Hachiware == null)

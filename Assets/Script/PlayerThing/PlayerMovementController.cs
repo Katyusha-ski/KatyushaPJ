@@ -47,7 +47,24 @@ public class PlayerMovementController : MonoBehaviour
             stats.MovementSpeedChanged += OnMovementSpeedChanged;
         }
 
+        SetupZeroFrictionCollider();
         ValidateComponents();
+    }
+
+    // Collider player dùng BoxCollider2D (thêm ở từng scene) không có physics material,
+    // friction mặc định 0.4 làm player bị "dính" vào mặt bên / góc collider ground.
+    // Đặt friction = 0 → combined friction (friction player * friction ground) = 0.
+    private void SetupZeroFrictionCollider()
+    {
+        Collider2D col = GetComponent<Collider2D>();
+        if (col == null || col.sharedMaterial != null) return;
+
+        PhysicsMaterial2D mat = new PhysicsMaterial2D("PlayerNoFriction")
+        {
+            friction = 0f,
+            bounciness = 0f
+        };
+        col.sharedMaterial = mat;
     }
 
     private void ValidateComponents()
@@ -73,7 +90,14 @@ public class PlayerMovementController : MonoBehaviour
     public void Move(float horizontalInput, bool isRunning)
     {
         if(rb == null) return;
-        if(!CanMove) return;
+        if(!CanMove)
+        {
+            // Khi bị khóa (thoại/cutscene...): dừng animation run/walk + khử vận tốc ngang
+            // để player đứng yên chứ không giữ nguyên trạng thái run đang chạy.
+            animationController?.SetMovementState(false, false);
+            rb.linearVelocity = new Vector2(0f, rb.linearVelocity.y);
+            return;
+        }
         if(seController != null && seController.IsStunned)
         {
             return;
