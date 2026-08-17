@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "Skill/MeleeSkill")]
+[CreateAssetMenu(fileName = "MeleeSkill", menuName = "Katyusha/Skills/Abilities/Melee Skill")]
 public class MeleeSkill : DirectDmgSkillBase
 {
     public float range = 2f;

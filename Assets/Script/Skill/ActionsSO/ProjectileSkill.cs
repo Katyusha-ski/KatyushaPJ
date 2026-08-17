@@ -1,6 +1,6 @@
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "Skill/ProjectileSkill")]
+[CreateAssetMenu(fileName = "ProjectileSkill", menuName = "Katyusha/Skills/Abilities/Projectile Skill")]
 public class ProjectileSkill : SpawnDamageSkillBase
 {
     public AudioClip projectileSFX;

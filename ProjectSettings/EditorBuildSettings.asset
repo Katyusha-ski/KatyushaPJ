@@ -17,6 +17,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Test/StoneScene.unity
     guid: 77a1d4fc0593ac94b87657ae5ec4153a
+  - enabled: 1
+    path: Assets/Scenes/OutskirtsScene.unity
+    guid: 29149acda35a4b841855a2acda8cd3fb
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   m_UseUCBPForAssetBundles: 0

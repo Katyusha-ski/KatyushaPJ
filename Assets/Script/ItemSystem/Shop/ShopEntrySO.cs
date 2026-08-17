@@ -25,7 +25,7 @@ public class RuntimeState
     }
 }
 
-[CreateAssetMenu(fileName = "New Shop Entry", menuName = "Shop/Shop Entry")]
+[CreateAssetMenu(fileName = "New Shop Entry", menuName = "Katyusha/Shop/Shop Entry")]
 public class ShopEntrySO : ScriptableObject
 {
     [Header("Unlock")]

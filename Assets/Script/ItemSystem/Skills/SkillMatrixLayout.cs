@@ -1,6 +1,6 @@
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "SkillMatrixLayout", menuName = "Katyusha/Skill Matrix Layout")]
+[CreateAssetMenu(fileName = "SkillMatrixLayout", menuName = "Katyusha/Skills/Skill Matrix Layout")]
 public class SkillMatrixLayout : ScriptableObject
 {
     private const int Rows = 4;

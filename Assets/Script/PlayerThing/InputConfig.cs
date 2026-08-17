@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-[CreateAssetMenu(menuName = "Config/InputConfig")]
+[CreateAssetMenu(fileName = "InputConfig", menuName = "Katyusha/Config/Input Config")]
 public class InputConfig : ScriptableObject
 {
     [Header("Movement")]

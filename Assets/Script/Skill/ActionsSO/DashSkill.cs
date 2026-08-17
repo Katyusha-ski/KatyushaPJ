@@ -2,7 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 
-[CreateAssetMenu(menuName = "Skill/DashSkill")]
+[CreateAssetMenu(fileName = "DashSkill", menuName = "Katyusha/Skills/Abilities/Dash Skill")]
 public class DashSkill : DirectDmgSkillBase
 {
     [Header("Dash")]

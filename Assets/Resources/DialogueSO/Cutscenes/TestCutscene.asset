@@ -13,11 +13,17 @@ MonoBehaviour:
   m_Name: TestCutscene
   m_EditorClassIdentifier: Assembly-CSharp::CutsceneData
   actions:
-  - rid: -2
-  - rid: -2
-  - rid: -2
+  - rid: 5747512716968329216
+  - rid: 5747512716968329217
   references:
     version: 2
     RefIds:
-    - rid: -2
-      type: {class: , ns: , asm: }
+    - rid: 5747512716968329216
+      type: {class: DialogueAction, ns: , asm: Assembly-CSharp}
+      data:
+        dialogue: {fileID: 11400000, guid: 58d7a99bd085c7f42a1ca500a12a0ff1, type: 2}
+    - rid: 5747512716968329217
+      type: {class: TeleportAction, ns: , asm: Assembly-CSharp}
+      data:
+        destination: {x: 0, y: 0}
+        loadingMessage: Test Tele

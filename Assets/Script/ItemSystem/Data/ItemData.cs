@@ -42,7 +42,7 @@ public enum SkillType
 //     - consumableEffect (EffectData) -> ConsumableManager đọc, tạo StatusEffect
 //   Như vậy ItemData là "data contract" thuần túy, không bị đóng gói vào logic.
 // ============================================================================
-[CreateAssetMenu(menuName = "Inventory/Item")]
+[CreateAssetMenu(fileName = "Item", menuName = "Katyusha/Inventory/Item")]
 public class ItemData : ScriptableObject
 {
     [Header("Basic Information")]

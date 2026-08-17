@@ -1,6 +1,6 @@
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "ChapterDataSO", menuName = "Scriptable Objects/ChapterDataSO")]
+[CreateAssetMenu(fileName = "ChapterDataSO", menuName = "Katyusha/Chapter/Chapter Data")]
 public class ChapterDataSO : ScriptableObject
 {
     public int chapterID;   

@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "Skill/DefendSkill")]
+[CreateAssetMenu(fileName = "DefendSkill", menuName = "Katyusha/Skills/Abilities/Defend Skill")]
 public class DefendSkill : SkillBase
 {
     [Header("Defend Stats")]

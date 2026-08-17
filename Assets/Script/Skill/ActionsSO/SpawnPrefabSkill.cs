@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-[CreateAssetMenu(menuName = "Skill/SpawnPrefabSkill")]
+[CreateAssetMenu(fileName = "SpawnPrefabSkill", menuName = "Katyusha/Skills/Abilities/Spawn Prefab Skill")]
 public class SpawnPrefabSkill : SpawnDamageSkillBase
 {
     public AudioClip spawnSFX;

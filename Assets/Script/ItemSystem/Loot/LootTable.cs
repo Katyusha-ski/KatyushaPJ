@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Collections.Generic;
 
-[CreateAssetMenu(menuName = "Inventory/LootTable")]
+[CreateAssetMenu(fileName = "LootTable", menuName = "Katyusha/Inventory/Loot Table")]
 public class LootTable : ScriptableObject
 {
     public List<LootEntry> lootEntries = new List<LootEntry>();
