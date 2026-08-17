@@ -1,15 +1,9 @@
 using UnityEngine;
 
-public class VictoryUI : MonoBehaviour
+public class VictoryUI : Singleton<VictoryUI>
 {
-    public static VictoryUI Instance { get; private set; }
-    public void Awake()
-    {
-        if (Instance == null)
-        {
-            Instance = this;
-        }
-    }
+    protected override bool PersistAcrossScenes => false;
+
     private void Start()
     {
         gameObject.SetActive(false);

@@ -1,17 +1,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ShopManager : MonoBehaviour
+public class ShopManager : Singleton<ShopManager>
 {
-    public static ShopManager Instance { get; private set; }
+    protected override bool PersistAcrossScenes => false;
 
     public List<ShopEntrySO> entries;
     public Dictionary<ShopEntrySO, RuntimeState> runtimeData = new Dictionary<ShopEntrySO, RuntimeState>();
 
-    private void Awake()
+    protected override void OnSingletonAwake()
     {
-        Instance = this;
-
         if (entries == null)
         {
             Debug.LogError("[ShopManager] Awake: entries list is null! Ensure it is assigned in the inspector.");
@@ -24,12 +22,6 @@ public class ShopManager : MonoBehaviour
                 runtimeData[entry] = new RuntimeState(entry);
             }
         }
-    }
-
-    private void OnDestroy()
-    {
-        if (Instance == this)
-            Instance = null;
     }
 
     public bool CanAfford(ShopEntrySO entry)

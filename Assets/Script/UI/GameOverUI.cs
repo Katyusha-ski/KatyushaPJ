@@ -1,17 +1,9 @@
 using UnityEngine;
 
-public class GameOverUI: MonoBehaviour
+public class GameOverUI : Singleton<GameOverUI>
 {
-    public static GameOverUI Instance { get; private set; }
+    protected override bool PersistAcrossScenes => false;
 
-    private void Awake()
-    {
-        if (Instance == null)
-        {
-            Instance = this;
-        }
-       
-    }
     private void Start()
     {
         gameObject.SetActive(false);

@@ -2,31 +2,23 @@ using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class DialogueManager : MonoBehaviour
+public class DialogueManager : Singleton<DialogueManager>
 {
-    public static DialogueManager Instance { get; private set; }
-
     public event Action<DialogueData> OnDialogueEnded;
     private DialogueData currentData;
     private int currentLineIndex;
     private bool isDialogueActive;
 
-    private void Awake()
+    protected override void OnSingletonAwake()
     {
-        if (Instance != null)
-        {
-            Destroy(gameObject);
-            return;
-        }
-        Instance = this;
-        DontDestroyOnLoad(gameObject);
         SceneManager.sceneLoaded += OnSceneLoaded;
     }
 
-    private void OnDestroy()
+    protected override void OnDestroy()
     {
         if (Instance == this)
             SceneManager.sceneLoaded -= OnSceneLoaded;
+        base.OnDestroy();
     }
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)

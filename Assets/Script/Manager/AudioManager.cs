@@ -1,10 +1,8 @@
 using UnityEngine;
 using UnityEngine.Audio;
 
-public class AudioManager : MonoBehaviour
+public class AudioManager : Singleton<AudioManager>
 {
-    public static AudioManager Instance { get; private set; }
-
     [Header("Mixer")]
     public AudioMixer audioMixer;
 
@@ -23,19 +21,6 @@ public class AudioManager : MonoBehaviour
         {
             audioMixer.GetFloat("SFXVolume", out float value);
             return Mathf.Pow(10, value / 20);
-        }
-    }
-
-    private void Awake()
-    {
-        if (Instance == null)
-        {
-            Instance = this;
-            DontDestroyOnLoad(gameObject);
-        }
-        else
-        {
-            Destroy(gameObject);
         }
     }
 

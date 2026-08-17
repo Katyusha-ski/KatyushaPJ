@@ -1,25 +1,10 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class GameSceneController : MonoBehaviour
+public class GameSceneController : Singleton<GameSceneController>
 {
-    public static GameSceneController Instance { get; private set; }
-
     [Header("Scene Configuration")]
     public int mainMenuSceneIndex = 0; // Index của main menu
-
-    private void Awake()
-    {
-        if (Instance == null)
-        {
-            Instance = this;
-            DontDestroyOnLoad(gameObject);
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
-    }
 
     public void LoadMainMenu()
     {

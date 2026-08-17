@@ -2,9 +2,8 @@ using System;
 using UnityEngine;
 using System.Collections.Generic;
 
-public class Inventory : MonoBehaviour
+public class Inventory : Singleton<Inventory>
 {
-    public static Inventory Instance { get; private set; }
     public event Action OnInventoryChanged;
     public event Action OnEquipmentChanged;
     public event Action OnSkillMatrixChanged;
@@ -60,18 +59,8 @@ public class Inventory : MonoBehaviour
         OnSkillMatrixChanged?.Invoke();
     }
 
-    void Awake()
+    protected override void OnSingletonAwake()
     {
-        if (Instance == null)
-        {
-            Instance = this;
-            DontDestroyOnLoad(gameObject);
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
-
         for (int i = 0; i < maxSlots; i++) itemSlots.Add(null);
         for (int i = 0; i < equipmentSlots; i++) equipment[i] = null;
         if (skillUnlocked == null || skillUnlocked.Length != 20)

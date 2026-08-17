@@ -4,30 +4,24 @@ using UnityEngine.UI;
 using TMPro;
 using DG.Tweening;
 
-public class TeleportManager : MonoBehaviour
+public class TeleportManager : Singleton<TeleportManager>
 {
-    public static TeleportManager Instance { get; private set; }
-
-    [Header("UI")]
-    [SerializeField] private Image fadePanel;
-    [SerializeField] private TextMeshProUGUI loadingText;
-
     [Header("Settings")]
     [SerializeField] private float fadeDuration = 0.5f;
     [SerializeField] private float holdSeconds = 1f;
 
-    private void Awake()
+    private Image GetFadePanel()
     {
-        if (Instance != null && Instance != this)
-        {
-            Destroy(this.gameObject);
-            return;
-        }
-        Instance = this;
-        DontDestroyOnLoad(this.gameObject);
+        return FadeUI.Instance != null ? FadeUI.Instance.FadePanel : null;
     }
 
     public IEnumerator FadeToBlack(float duration){
+        Image fadePanel = GetFadePanel();
+        if (fadePanel == null)
+        {
+            Debug.LogError("[TeleportManager] Không tìm thấy FadeUI (cần đặt trong GameUIRoot).");
+            yield break;
+        }
         DOTween.Kill(fadePanel);
         fadePanel.color = new Color(0f,0f,0f,0f);
         fadePanel.raycastTarget = true;
@@ -36,6 +30,12 @@ public class TeleportManager : MonoBehaviour
 
     public IEnumerator FadeFromBlack(float duration)
     {
+        Image fadePanel = GetFadePanel();
+        if (fadePanel == null)
+        {
+            Debug.LogError("[TeleportManager] Không tìm thấy FadeUI (cần đặt trong GameUIRoot).");
+            yield break;
+        }
         DOTween.Kill(fadePanel);
         fadePanel.color = new Color(0f, 0f, 0f, 1f);
         yield return fadePanel.DOFade(0f, duration).SetEase(Ease.OutQuad).WaitForCompletion();
@@ -49,9 +49,15 @@ public class TeleportManager : MonoBehaviour
             Debug.LogError("[TeleportManager] Player Rigidbody2D is null. Cannot teleport.");
             yield break;
         }
+        if (FadeUI.Instance == null)
+        {
+            Debug.LogError("[TeleportManager] Không tìm thấy FadeUI (cần đặt trong GameUIRoot).");
+            yield break;
+        }
 
         yield return FadeToBlack(fadeDuration);
 
+        TextMeshProUGUI loadingText = FadeUI.Instance.LoadingText;
         if (!string.IsNullOrEmpty(loadingMessage))
         {
             loadingText.text = loadingMessage;

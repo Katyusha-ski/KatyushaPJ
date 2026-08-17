@@ -9,33 +9,24 @@ public enum GameState
     Pause,
 }
 
-public class GameManager : MonoBehaviour
+public class GameManager : Singleton<GameManager>
 {
-    public static GameManager Instance { get; private set; }
     public GameState CurrentGameState { get; private set; }
 
     [Header("Game state")]
     private float playTime = 0f;
     private SaveData tempSaveData;
 
-    private void Awake()
+    protected override void OnSingletonAwake()
     {
-        if (Instance == null)
-        {
-            Instance = this;
-            DontDestroyOnLoad(gameObject);
-            SceneManager.sceneLoaded += OnAnySceneLoaded;
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
+        SceneManager.sceneLoaded += OnAnySceneLoaded;
     }
 
-    private void OnDestroy()
+    protected override void OnDestroy()
     {
         if (Instance == this)
             SceneManager.sceneLoaded -= OnAnySceneLoaded;
+        base.OnDestroy();
     }
 
     private void OnAnySceneLoaded(Scene scene, LoadSceneMode mode)

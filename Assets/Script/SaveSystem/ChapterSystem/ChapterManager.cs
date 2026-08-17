@@ -2,26 +2,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class ChapterManager : MonoBehaviour
+public class ChapterManager : Singleton<ChapterManager>
 {
-    public static ChapterManager Instance { get; private set; }
-
     [SerializeField] private List<ChapterDataSO> chapters;
     [SerializeField] private int currentChapterIndex;
     private ChapterDataSO CurrentChapter => chapters[currentChapterIndex];
     public int CurrentChapterNumber => currentChapterIndex + 1;
-
-    private void Awake()
-    {
-        if (Instance == null)
-        {
-            Instance = this;
-            DontDestroyOnLoad(gameObject);
-        } else
-        {
-            Destroy(gameObject);
-        }
-    }
 
     public void SetChapter(int ChapterNumber)
     {

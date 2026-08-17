@@ -2,25 +2,15 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class DialogueUI : MonoBehaviour
+public class DialogueUI : Singleton<DialogueUI>
 {
-    public static DialogueUI Instance { get; private set; }
+    protected override bool PersistAcrossScenes => false;
 
     [SerializeField] private TMP_Text nameText;
     [SerializeField] private TMP_Text lineText;
     [SerializeField] private Image portraitImage;
     [SerializeField] private Button nextButton;
     [SerializeField] private GameObject panel;
-
-    private void Awake()
-    {
-        if (Instance != null)
-        {
-            Destroy(gameObject);
-            return;
-        }
-        Instance = this;
-    }
 
     private void Start()
     {
@@ -67,11 +57,11 @@ public class DialogueUI : MonoBehaviour
             if (speaker != null && speaker.portrait != null)
             {
                 portraitImage.sprite = speaker.portrait;
-                portraitImage.enabled = true;
+                portraitImage.gameObject.SetActive(true);
             }
             else
             {
-                portraitImage.enabled = false;
+                portraitImage.gameObject.SetActive(false);
             }
         }
 

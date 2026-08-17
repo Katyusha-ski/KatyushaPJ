@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ObjectPool : MonoBehaviour
+public class ObjectPool : Singleton<ObjectPool>
 {
     [System.Serializable]
     public class Pool
@@ -14,22 +14,8 @@ public class ObjectPool : MonoBehaviour
     public List<Pool> pools;
     private Dictionary<string, Queue<GameObject>> poolDictionary;
 
-    private static ObjectPool _instance;
-    public static ObjectPool Instance => _instance;
-
-    private void Awake()
+    protected override void OnSingletonAwake()
     {
-        if (_instance != null && _instance != this)
-        {
-            Destroy(gameObject);
-            return;
-        }
-        _instance = this;
-        if (gameObject.scene.name != "DontDestroyOnLoad")
-        {
-            DontDestroyOnLoad(gameObject);
-        }
-
         poolDictionary = new Dictionary<string, Queue<GameObject>>();
 
         foreach (Pool pool in pools)
