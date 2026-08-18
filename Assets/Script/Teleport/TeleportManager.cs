@@ -8,7 +8,6 @@ public class TeleportManager : Singleton<TeleportManager>
 {
     [Header("Settings")]
     [SerializeField] private float fadeDuration = 0.5f;
-    [SerializeField] private float holdSeconds = 1f;
 
     private Image GetFadePanel()
     {
@@ -65,14 +64,22 @@ public class TeleportManager : Singleton<TeleportManager>
             yield return loadingText.DOFade(1f, fadeDuration).WaitForCompletion();
         }
 
-        yield return new WaitForSeconds(holdSeconds);
+        // 3) Chờ người đọc câu chữ — click vào vùng trống (panel đen) để tiếp tục
+        yield return WaitForClick();
 
-        playerRB.position = destination;
+        // 4) DỜI PLAYER — BẮT BUỘC QUA RIGIDBODY
+        playerRB.position = destination;               // rb.position, KHÔNG phải transform.position!
 
         if (!string.IsNullOrEmpty(loadingMessage)) 
         {
             yield return loadingText.DOFade(0f, fadeDuration).WaitForCompletion();
         }
         yield return FadeFromBlack(fadeDuration);
+    }
+
+    private IEnumerator WaitForClick()
+    {
+        while (!Input.GetMouseButtonDown(0))
+            yield return null;
     }
 }

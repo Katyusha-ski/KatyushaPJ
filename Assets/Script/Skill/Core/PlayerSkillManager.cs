@@ -10,7 +10,7 @@ public class PlayerSkillManager : MonoBehaviour
 
     private void Awake()
     {
-        standAnimation = GetComponentInChildren<StandAnimationController>();
+        standAnimation = GetComponentInChildren<StandAnimationController>(true);
     }
 
     private void Start()

@@ -8,7 +8,6 @@ using UnityEngine;
 public class CutsceneDataDrawer : Editor
 {
     private SerializedProperty actions;
-    private bool showActions = true;
 
     private void OnEnable()
     {

@@ -12,7 +12,7 @@ public class PlayerNA : MonoBehaviour
     private void Start()
     {
         stats = GetComponent<CharacterStats>();
-        Hachiware = GetComponentInChildren<Stand>();
+        Hachiware = GetComponentInChildren<Stand>(true);
 
         // Get InputConfig from scene or use default
         var playerController = GetComponent<PlayerController>();

@@ -19,6 +19,7 @@ public class SequencePlayer : MonoBehaviour
         foreach (var action in cutsceneData.actions)
         {
             if (action == null) continue;
+            action.Runner = gameObject;
             yield return StartCoroutine(action.Execute());
 
         }

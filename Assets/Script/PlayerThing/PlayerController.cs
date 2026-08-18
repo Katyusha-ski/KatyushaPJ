@@ -3,11 +3,21 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    [Header("Hachi Appearance")]
+    [Tooltip("Công tắc: bật khi Hachi đã xuất hiện để hiện HachiiKat, SkillPanelUI và nút Inventory.")]
+    [SerializeField] private bool hasHachi;
+    [SerializeField] private GameObject hachiiKatBody;
+    [SerializeField] private GameObject skillPanelUI;
+    [SerializeField] private GameObject inventoryButton;
+
     [SerializeField] private InputConfig inputConfig;
     
     private PlayerMovementController movementController;
     private PlayerSkillInput skillInputHandler;
     private Health health;
+
+    public bool HasHachi => hasHachi;
+    public event System.Action OnHachiAppearanceChanged;
 
     // Public properties for external access
     public Rigidbody2D Rb => movementController?.GetRigidbody();
@@ -26,7 +36,26 @@ public class PlayerController : MonoBehaviour
             inputConfig = InputConfig.GetDefault();
         }
 
+        if (hachiiKatBody == null)
+            hachiiKatBody = transform.Find("HachiiKat")?.gameObject;
+
         ValidateComponents();
+        ApplyHachiAppearance();
+    }
+
+    public void SetHachiAppeared(bool appeared)
+    {
+        if (hasHachi == appeared) return;
+        hasHachi = appeared;
+        ApplyHachiAppearance();
+        OnHachiAppearanceChanged?.Invoke();
+    }
+
+    private void ApplyHachiAppearance()
+    {
+        if (hachiiKatBody != null) hachiiKatBody.SetActive(hasHachi);
+        if (skillPanelUI != null) skillPanelUI.SetActive(hasHachi);
+        if (inventoryButton != null) inventoryButton.SetActive(hasHachi);
     }
 
     private void ValidateComponents()

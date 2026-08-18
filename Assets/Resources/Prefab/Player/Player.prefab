@@ -102,6 +102,7 @@ GameObject:
   - component: {fileID: 8405047923006620357}
   - component: {fileID: 4843439474504990744}
   - component: {fileID: 5642885825442716595}
+  - component: {fileID: 7831731487944925077}
   m_Layer: 3
   m_Name: Player
   m_TagString: Player
@@ -224,6 +225,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e91c47c024bcd54689a610b07a72715, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hasHachi: 0
+  hachiiKatBody: {fileID: 6553429913261079817}
+  skillPanelUI: {fileID: 8767560242753441040}
+  inventoryButton: {fileID: 0}
   inputConfig: {fileID: 0}
 --- !u!95 &7277600427024161112
 Animator:
@@ -418,6 +423,52 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 492eb6d0ea63ba44fbd64a212c20f91e, type: 2}
   - {fileID: 0}
   characterStats: {fileID: 2979320871452214609}
+--- !u!61 &7831731487944925077
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2068556711473788101}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: 0.030253053, y: 0.06358799}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 3.125, y: 3.125}
+    newSize: {x: 3.125, y: 3.125}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Size: {x: 1.1887989, y: 0.99732274}
+  m_EdgeRadius: 0.01
 --- !u!1 &2959838015193098157
 GameObject:
   m_ObjectHideFlags: 0
@@ -958,5 +1009,10 @@ PrefabInstance:
 --- !u!4 &1926361866648406131 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3923640604694036577, guid: 9c3c282795abbe844a460590b02c45c2, type: 3}
+  m_PrefabInstance: {fileID: 3226932204298405906}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &6553429913261079817 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8519166136676381979, guid: 9c3c282795abbe844a460590b02c45c2, type: 3}
   m_PrefabInstance: {fileID: 3226932204298405906}
   m_PrefabAsset: {fileID: 0}

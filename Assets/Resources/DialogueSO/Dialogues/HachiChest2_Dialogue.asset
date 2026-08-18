@@ -1,0 +1,83 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 12efb4e91f50acd42999f69a91d76dab, type: 3}
+  m_Name: HachiChest2_Dialogue
+  m_EditorClassIdentifier: Assembly-CSharp::DialogueData
+  lines:
+  - speaker: {fileID: 11400000, guid: cdfbdabbf8285304690416cec3c5c792, type: 2}
+    text: "G\u1EEBrrr!!"
+  - speaker: {fileID: 11400000, guid: 02a1fc921f4037d4bb7357b2fa36c700, type: 2}
+    text: "\xD4i... l\xE2u l\u1EAFm r\u1ED3i t\xF4i m\u1EDBi th\u1EA5y \u0111\u01B0\u1EE3c
+      t\u1EF1 do nh\u01B0 th\u1EBF n\xE0y. Kh\xF4ng bi\u1EBFt \u0111\xE3 bao l\xE2u
+      r\u1ED3i t\xF4i m\u1EDBi \u0111\u01B0\u1EE3c nh\xECn th\u1EA5y th\u1EBF gi\u1EDBi
+      b\xEAn ngo\xE0i."
+  - speaker: {fileID: 11400000, guid: cdfbdabbf8285304690416cec3c5c792, type: 2}
+    text: "...M\u1EB7t m\xE0y gi\u1ED1ng m\xE8o m\xE0 th\xE2n th\xEC v\u1EE1 v\u1EE5n
+      k\u1EF3 d\u1ECB v\u1EADy?"
+  - speaker: {fileID: 11400000, guid: 02a1fc921f4037d4bb7357b2fa36c700, type: 2}
+    text: "Ch\u1EAFc c\u1EADu l\xE0 ng\u01B0\u1EDDi \u0111\xE3 gi\u1EA3i tho\xE1t
+      cho t\xF4i \u0111\xFAng kh\xF4ng? C\u1EA3m \u01A1n c\u1EADu nhi\u1EC1u l\u1EAFm.
+      Xin l\u1ED7i v\xEC l\xFAc n\xE3y l\xE0m c\u1EADu s\u1EE3 \u2014 t\xF4i t\xEAn
+      Hachi, t\xF4i \u0111\u1EBFn t\u1EEB m\u1ED9t th\u1EBF gi\u1EDBi kh\xE1c."
+  - speaker: {fileID: 11400000, guid: cdfbdabbf8285304690416cec3c5c792, type: 2}
+    text: "C-c\xE1i g\xEC? Th\u1EBF gi\u1EDBi kh\xE1c?"
+  - speaker: {fileID: 11400000, guid: 02a1fc921f4037d4bb7357b2fa36c700, type: 2}
+    text: "\u0110\xFAng v\u1EADy. Chuy\u1EC7n d\xE0i l\u1EAFm, \u0111\u1EC3 t\xF4i
+      k\u1EC3 cho c\u1EADu nghe."
+  - speaker: {fileID: 11400000, guid: 02a1fc921f4037d4bb7357b2fa36c700, type: 2}
+    text: "\u0110\u1EC3 t\xF4i k\u1EC3 g\u1ECDn cho c\u1EADu nghe \u2014 t\xF4i v\u1ED1n
+      l\xE0 chi\u1EBFn binh t\u1EADp s\u1EF1 c\u1EE7a v\u01B0\u01A1ng qu\u1ED1c Tanria,
+      th\u1EBF gi\u1EDBi Eldzanha. Tr\u1EBB m\u1ED3 c\xF4i, \u0111\u01B0\u1EE3c th\u1EA7y
+      Shisa \u2014 ph\xE1p s\u01B0 ho\xE0ng gia \u2014 nh\u1EADn nu\xF4i d\u1EA1y
+      d\u1ED7."
+  - speaker: {fileID: 11400000, guid: 02a1fc921f4037d4bb7357b2fa36c700, type: 2}
+    text: "R\u1ED3i m\u1ED9t h\xF4m, l\u0169 qu\u1EF7 t\u1EEB b\xEAn kia th\u1EBF
+      gi\u1EDBi \u1EADp t\u1EDBi t\u1EA5n c\xF4ng. C\u1EA3 th\u1EE7 \u0111\xF4 th\u1EA5t
+      th\u1EE7 trong ch\u1EDBp m\u1EAFt."
+  - speaker: {fileID: 11400000, guid: 02a1fc921f4037d4bb7357b2fa36c700, type: 2}
+    text: "L\xFAc nguy c\u1EA5p, th\u1EA7y Shisa tung ra m\u1ED9t chi\xEAu \xF4ng
+      nghi\xEAn c\u1EE9u c\u1EA3 \u0111\u1EDDi \u2014 thu\u1EADt d\u1ECBch chuy\u1EC3n
+      \u2014 \u0111\u1ECBnh \u0111\u01B0a t\xF4i \u0111i c\u1EA7u c\u1EE9u."
+  - speaker: {fileID: 11400000, guid: 02a1fc921f4037d4bb7357b2fa36c700, type: 2}
+    text: "Nh\u01B0ng ph\xE9p ch\u01B0a ho\xE0n thi\u1EC7n, c\u1ED9ng th\xEAm ma
+      thu\u1EADt c\u1EE7a qu\u1EF7 \u0111\xE3 \u0103n s\xE2u v\xE0o ng\u01B0\u1EDDi
+      th\u1EA7y, n\xEAn \u0111\u01B0\u1EDDng \u0111i b\u1ECB l\u1EC7ch, v\u0103ng
+      t\xF4i qua t\u1EADn \u0111\xE2y."
+  - speaker: {fileID: 11400000, guid: cdfbdabbf8285304690416cec3c5c792, type: 2}
+    text: ...
+  - speaker: {fileID: 11400000, guid: 02a1fc921f4037d4bb7357b2fa36c700, type: 2}
+    text: "N\xE0y, c\u1EADu gi\xFAp t\xF4i gi\u1EA3i tho\xE1t v\u01B0\u01A1ng qu\u1ED1c
+      c\u1EE7a m\xECnh \u0111i!"
+  - speaker: {fileID: 11400000, guid: cdfbdabbf8285304690416cec3c5c792, type: 2}
+    text: "N\xE0y \u0111\u1EEBng c\xF3 \u0111i\xEAn. T\xF4i c\xF2n nhi\u1EC1u vi\u1EC7c
+      ph\u1EA3i l\xE0m, kh\xF4ng r\u1EA3nh xen v\xE0o chuy\u1EC7n c\u1EE7a c\u1EADu.
+      V\u1EDBi l\u1EA1i t\xF4i c\xF3 s\u1EE9c m\u1EA1nh g\xEC \u0111\xE2u m\xE0 gi\xFAp."
+  - speaker: {fileID: 11400000, guid: 02a1fc921f4037d4bb7357b2fa36c700, type: 2}
+    text: "\xC0, qu\xEAn n\xF3i \u2014 linh h\u1ED3n t\xF4i \u0111\xE3 g\u1EAFn v\u1EDBi
+      c\u1EADu r\u1ED3i."
+  - speaker: {fileID: 11400000, guid: cdfbdabbf8285304690416cec3c5c792, type: 2}
+    text: "H\u1EA3?!"
+  - speaker: {fileID: 11400000, guid: 02a1fc921f4037d4bb7357b2fa36c700, type: 2}
+    text: "L\xFAc d\u1ECBch chuy\u1EC3n h\xECnh nh\u01B0 kh\xF4ng k\xE9o \u0111\u01B0\u1EE3c
+      c\u01A1 th\u1EC3 t\xF4i theo, n\xEAn n\xF3 ch\u1EC9 b\u1ECB giam trong chi\u1EBFc
+      r\u01B0\u01A1ng kia. Nh\u01B0ng c\u1EADu l\u1EE1 c\u1EA1y r\u01B0\u01A1ng ra
+      r\u1ED3i, linh h\u1ED3n t\xF4i t\u1EF1 \u0111\u1ED9ng t\xECm th\u1EE9 g\u1EA7n
+      nh\u1EA5t \u0111\u1EC3 k\xFD sinh v\xE0o... v\xE0 \u0111\xF3 l\xE0 c\u01A1
+      th\u1EC3 c\u1EADu."
+  - speaker: {fileID: 11400000, guid: 02a1fc921f4037d4bb7357b2fa36c700, type: 2}
+    text: "C\xE1i n\xE0y th\xEC ch\u1ECBu th\xF4i ch\u1EE9 t\xF4i c\u0169ng kh\xF4ng
+      ki\u1EC3m so\xE1t \u0111\u01B0\u1EE3c vi\u1EC7c n\xE0y."
+  - speaker: {fileID: 11400000, guid: 02a1fc921f4037d4bb7357b2fa36c700, type: 2}
+    text: "Mu\u1ED1n t\xE1ch ch\xFAng ta ra, c\xE1ch duy nh\u1EA5t l\xE0 t\xECm l\u1EA1i
+      c\u01A1 th\u1EC3 c\u0169 c\u1EE7a t\xF4i."
+  - speaker: {fileID: 11400000, guid: cdfbdabbf8285304690416cec3c5c792, type: 2}
+    text: "TH\u1EA2 T\xD4I RA! TH\u1EA2 T\xD4I RA NGAY!"

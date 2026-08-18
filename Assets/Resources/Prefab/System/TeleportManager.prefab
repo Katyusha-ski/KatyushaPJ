@@ -45,4 +45,3 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TeleportManager
   fadeDuration: 0.5
-  holdSeconds: 1
