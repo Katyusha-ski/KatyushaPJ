@@ -22,6 +22,8 @@ public class SequencePlayer : MonoBehaviour
             action.Runner = gameObject;
             yield return StartCoroutine(action.Execute());
 
+            if (action.waitForClick && !action.HandlesClickInternally)
+                yield return action.WaitForClick();
         }
         IsPlaying = false;
         OnSequenceCompleted?.Invoke();

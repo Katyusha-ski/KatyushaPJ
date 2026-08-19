@@ -337,6 +337,8 @@ HP Regen: every 5 seconds, heal = HPRegen
 
 | File | Content |
 |---|---|
+| `Assets/Docs/SequencerContext.md` | Step-by-step guide + current progress for the data-driven Sequencer (cutscene system: SequenceAction / SequencePlayer / CutsceneData) |
+| `Assets/Docs/DialogueScript.md` | Full 7-chapter dialogue script + cast reference (Kati, Hachi, Usagi...) |
 | `REFACTORING_PLAN.md` | Enemy system refactor: SRP + DIP, state machine architecture |
 | `Assets/Docs/SKILL_SYSTEM_PLAN.md` | Skill system design, CDR fix, 5 levels per skill |
 | `Assets/Docs/Roadmap.md` | Project roadmap |

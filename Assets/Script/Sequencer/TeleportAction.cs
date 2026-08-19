@@ -7,6 +7,8 @@ public class TeleportAction : SequenceAction
     public Vector2 destination;
     [TextArea] public string loadingMessage;
 
+    public override bool HandlesClickInternally => true;
+
     public override IEnumerator Execute()
     {
         if (TeleportManager.Instance == null)

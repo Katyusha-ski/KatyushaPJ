@@ -27,10 +27,12 @@ MonoBehaviour:
     - rid: 5747512740848336975
       type: {class: DialogueAction, ns: , asm: Assembly-CSharp}
       data:
+        waitForClick: 0
         dialogue: {fileID: 11400000, guid: e2880faa1d768114ebd5ba00b51ca3b8, type: 2}
     - rid: 5747512740848336976
       type: {class: AnimationAction, ns: , asm: Assembly-CSharp}
       data:
+        waitForClick: 0
         target: {fileID: 6325387189172078457, guid: d6ed950ae2a892542bc17ee1449e1585, type: 3}
         activateOnStart: 1
         triggerName: Open
@@ -38,31 +40,36 @@ MonoBehaviour:
     - rid: 5747512740848336977
       type: {class: DialogueAction, ns: , asm: Assembly-CSharp}
       data:
+        waitForClick: 0
         dialogue: {fileID: 11400000, guid: cfc0183500ac3d64c8fe2edc9eb3464d, type: 2}
     - rid: 5747512740848336978
       type: {class: NarrationAction, ns: , asm: Assembly-CSharp}
       data:
+        waitForClick: 1
         text: "Sau m\u1ED9t h\u1ED3i c\u1ED1 t\xE1ch Hachi nh\u01B0ng ra b\u1EA5t
           th\xE0nh, Kati \u0111\xE0nh b\u1ECF cu\u1ED9c."
         darkAlpha: 1
         fadeDuration: 0.5
-        waitForClick: 1
         autoHoldSeconds: 2
     - rid: 5747512740848336979
       type: {class: DialogueAction, ns: , asm: Assembly-CSharp}
       data:
+        waitForClick: 0
         dialogue: {fileID: 11400000, guid: c462ae704fc3b63428cd672bae7b914e, type: 2}
     - rid: 5747512740848336980
       type: {class: TeleportAction, ns: , asm: Assembly-CSharp}
       data:
-        destination: {x: 0, y: 0}
+        waitForClick: 0
+        destination: {x: 100, y: 0}
         loadingMessage: "Hachi d\xF9ng mi\u1EBFng m\u1EC1 \u0111ay \u0111\u1EC3 k\xE9o
           c\u1EA3 2 v\xE0o c\u1ED5ng kh\xF4ng gian. Tuy cu\u1ED9c h\xE0nh tr\xECnh
           kh\xF4ng d\u1EC5 ch\u1ECBu m\u1EA5y nh\u01B0ng cu\u1ED1i c\xF9ng h\u1ECD
-          c\u0169ng \u0111\xE3 \u0111\u1EBFn n\u01A1i :\u0110
+          c\u0169ng \u0111\xE3 \u0111\u1EBFn n\u01A1i :\u0110"
     - rid: 5747512740848336981
       type: {class: ShowHachiRevealAction, ns: , asm: Assembly-CSharp}
-      data: {}
+      data:
+        waitForClick: 1
     - rid: 5747512740848336982
       type: {class: UnlockHachiAction, ns: , asm: Assembly-CSharp}
-      data: {}"
+      data:
+        waitForClick: 0

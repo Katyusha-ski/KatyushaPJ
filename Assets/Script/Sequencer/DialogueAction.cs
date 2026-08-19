@@ -7,6 +7,8 @@ public class DialogueAction : SequenceAction
     public DialogueData dialogue;
     private bool waiting;
 
+    public override bool HandlesClickInternally => true;
+
     private void OnEnded(DialogueData ended)
     {
         if (ended == dialogue)   

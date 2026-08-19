@@ -547,41 +547,75 @@ Trước khi hoàn tất, nhờ review toàn diện: (a) subscribe/unsubscribe c
 
 ---
 
-## TODO — Trạng thái hiện tại & bước tiếp theo (cập nhật 17/08/2026)
+## TODO — Trạng thái hiện tại & bước tiếp theo (cập nhật 20/08/2026)
 
-> Commit gần nhất: `a42b51d` "feat: Sequencer data-driven cutscene system" — đã chứa toàn bộ code Sequencer, editor, assets & docs. Chưa push.
+> Commit gần nhất: `c971fe9` "Add Hachi chest intro cutscene flow" (đã push lên `origin/main`).
+> **Đang làm dở (chưa commit):** refactor click-pacing — xem mục "Công việc đang dở" bên dưới.
 
 ### Bối cảnh đã xong (đừng làm lại)
 
-- **Phase 1 (Dialogue):** `DialogueManager` có event `OnDialogueEnded` (để Sequencer chờ hết thoại); `DialogueUI` đã DRY qua `SetDialogueUI(...)`. Cả hai đã commit.
-- **Phase 3 (Sequencer):** 6 file core + trigger đã commit:
+- **Phase 1 (Dialogue):** `DialogueManager` có event `OnDialogueEnded` (để Sequencer chờ hết thoại); `DialogueUI` đã DRY qua `SetDialogueUI(...)`. Đã commit.
+- **Phase 3 (Sequencer):** 6 file core + trigger + custom editor đã commit:
   - `SequenceAction` là class abstract `[System.Serializable]` (**KHÔNG** phải ScriptableObject) vì `[SerializeReference]` không hoạt động trên `UnityEngine.Object` — Inspector vanilla chỉ hiện object-picker, không có dropdown type.
-  - Vì vanilla Inspector **không** vẽ dropdown cho danh sách `[SerializeReference]` đa hình, đã viết **custom editor** `Assets/Script/Editor/CutsceneDataDrawer.cs` (`[CustomEditor(typeof(CutsceneData))]`, dùng `TypeCache.GetTypesDerivedFrom<SequenceAction>()` + `managedReferenceValue`). Sau khi sửa xong cần cho Unity compile lại rồi mới mở asset.
+  - Vì vanilla Inspector **không** vẽ dropdown cho danh sách `[SerializeReference]` đa hình, đã viết **custom editor** `Assets/Script/Editor/CutsceneDataDrawer.cs` (`[CustomEditor(typeof(CutsceneData))]`, dùng `TypeCache.GetTypesDerivedFrom<SequenceAction>()` + `managedReferenceValue`).
   - `SequencePlayer` chạy từng action bằng `Execute()` trả về `IEnumerator`; **Red Flags mục 5** bắt buộc tuân thủ (chỉ `rb.position`, chỉ `SetTrigger`, subscribe/unsubscribe cân bằng, guard null `yield break`).
-- **Assets đã tạo:** `Resources/DialogueSO/Characters/{Kati,Hachi,Usagi}.asset`, `Resources/DialogueSO/Dialogues/TestDialogue.asset`, `Resources/DialogueSO/Cutscenes/TestCutscene.asset`, `Resources/Prefab/Props/HachiChest.prefab`. Đã commit.
-- **Kịch bản:** `Docs/DialogueScript.md` — Ch.1 có Narrator, Kati, Hachi, Villagers; Usagi (chủ shop) xuất hiện; `characterName` trong asset còn trống cần điền.
+- **Cutscene mở rương Hachi (Ch.1) — đã hoàn tất ở `c971fe9`:**
+  - Assets thoại: `Resources/DialogueSO/Dialogues/HachiChest{1..4}_Dialogue.asset`; cutscene: `Resources/DialogueSO/Cutscenes/HachiChestCutscene.asset`.
+  - `HachiChest.controller` (Animator) có trigger `Open`; `HachiChest.prefab` gắn thẳng `SequencePlayer` (thay cho trigger test trong scene — OutskirtsScene đã gỡ trigger cũ).
+  - Actions mới: `NarrationAction` (fade + chữ dẫn truyện, chờ click), `ShowHachiRevealAction`, `UnlockHachiAction`.
+  - `SequenceAction` có field `[NonSerialized] Runner` — `SequencePlayer` inject GameObject đang chạy để action dùng đúng context runtime.
+  - Player: thêm trạng thái `hasHachi` — bật/tắt HachiiKat, skill UI, inventory theo tiến trình cutscene.
+  - `characterName` đã điền đủ cho 3 CharacterProfile (`Kati`, `Hachi`, `Usagi`). **Portrait vẫn còn trống** (chưa có ảnh).
+- **FadeUI + TeleportManager:** đã tách khỏi scene → singleton prefab (`FadeUI.prefab`, `TeleportManager.prefab`, `GameUIRoot.prefab`) nạp qua bootstrap `CoreSystem` (commit `a1e8dfb`, `cbae68f`). Không còn việc "kéo FadeUI vào OutskirtsScene" như todo cũ.
+
+### Công việc đang dở (working tree — 8 file modified, chưa commit)
+
+**Refactor click-pacing:** đưa logic "chờ click" lên Runner thay vì giấu trong từng action.
+
+- `SequenceAction.cs`: thêm field `waitForClick` + virtual `HandlesClickInternally` + method `WaitForClick()`.
+- `SequencePlayer.cs`: sau mỗi action, nếu `action.waitForClick && !action.HandlesClickInternally` → `yield return action.WaitForClick()`.
+- `DialogueAction.cs`, `NarrationAction.cs`, `TeleportAction.cs`: override `HandlesClickInternally => true` (đã tự xử lý click bên trong, tránh chờ click 2 lần).
+- `NarrationAction.cs`: bỏ field `waitForClick` cục bộ + `WaitForClick()` riêng → dùng cơ chế chung của base.
+- `HachiChest.prefab`: thêm child `HachiReveal` (SpriteRenderer + Animator) + mở rộng `BoxCollider2D` (m_Offset.y 0.63→1.85, m_Size.y 1.31→3.75).
+- `GameUIRoot.prefab`: đảo `m_SortingOrder` giữa 2 Canvas (0↔1).
+- `HachiChestCutscene.asset`: fix YAML nhỏ (đóng chuỗi/`{}`).
+
+**Danh sách file đang modified:** `HachiChestCutscene.asset`, `HachiChest.prefab`, `GameUIRoot.prefab`, `DialogueAction.cs`, `NarrationAction.cs`, `SequenceAction.cs`, `SequencePlayer.cs`, `TeleportAction.cs`.
 
 ### Các bước tiếp theo (làm theo thứ tự)
 
-1. **Hoàn tất asset test `TestCutscene` (todo cũ #1)**
-   - Sau khi Unity compile lại custom editor: mở `Resources/DialogueSO/Cutscenes/TestCutscene.asset` → danh sách actions đang có **3 phần tử null** (do YAML cũ sinh ra) → xoá hết, bấm **"+ Add Action"** để tạo mới từ dropdown:
-     - Action 1: `DialogueAction` → gán `TestDialogue` (chứa vài câu thoại).
-     - Action 2: `TeleportAction` → chọn target đích + câu "vượt không gian...".
-   - Kiểm tra dropdown type hiện đúng; nếu không thấy dropdown → custom editor chưa hoạt động, dừng lại và báo giám sát.
-2. **Tạo trigger test (todo cũ #1)**
-   - Tạo 1 `GameObject` trigger trong scene Outskirts (dùng `SequenceCutsceneTrigger` — `OnTriggerEnter2D` gọi `SequencePlayer.Play()`, đã viết sẵn).
-   - Vào Play mode, đưa Player chạm trigger → kỳ vọng: thoại chạy → hết thoại → màn đen + câu chữ → dời vị trí → sáng lại. Đúng => hệ thống chạy.
-3. **Tích hợp cutscene đầu game (todo cũ #2)**
-   - Dùng `HachiChest.prefab` (đã có trong `Resources/Prefab/Props/`) làm trigger/điểm mở cutscene Ch.1 (Narrator + Kati + Hachi).
-   - Gắn `SequenceCutsceneTrigger` + asset `CutsceneData` tương ứng (đặt sẵn sau khi test asset mẫu ở bước 1/2 thành công).
-4. **Wire shop Usagi (todo cũ #3)**
-   - Code `ShopKeeperDialogue` đã commit (`OnDialogueEnded` → `ShopUI.ShowMenuAndPause()`).
-   - Cần gắn component lên NPC Usagi trong scene + tạo `DialogueData` thoại shop cho cô ấy. Điền `characterName` cho Usagi trong `CharacterProfile`.
-5. **Đưa FadeUI + TeleportManager vào scene (todo cũ #4)**
-   - Kéo `Resources/Prefab/UI/FadeUI.prefab` vào OutskirtsScene; gắn `TeleportManager` (đã commit ở `2d7ab6b`) và trỏ đúng `FadePanel`.
-   - **Chú ý:** scene hiện có thay đổi chưa commit (OutskirtsScene.unity đang modified) — hoàn tất việc đặt FadeUI rồi mới commit scene.
-6. **Điền `characterName` + portrait cho 3 CharacterProfile (todo cũ #5)**
-   - `Kati.asset`, `Hachi.asset`, `Usagi.asset` đã có nhưng `characterName` còn trống — điền tên hiển thị đúng theo `DialogueScript.md`.
-7. **Dựng map OutskirtsScene theo kịch bản Ch.1 (todo cũ #6)** — cảnh đầu: Player + villagers + Usagi shop + chest/Hachi trigger.
-8. **Commit & push (todo cũ #7)**
-   - Kiểm tra `git status`: chỉ commit những file thuộc công việc Sequencer. **KHÔNG** commit các thay đổi lạ nằm sẵn trong working tree: `Player.prefab` (đang xoá BoxCollider2D), `Tileset.png.meta`, `Monocraft SDF.asset`, `EditorBuildSettings.asset`, vụ di chuyển shader (`Script/Shader` → `Script/Skill/Shader`), `JumpTutorialTrigger.cs`, `MovementTutorialUI.cs`. Commit `a42b51d` đã được stage đúng phạm vi này.
+1. **Hoàn tất refactor click-pacing (đang dở):**
+   - Compile lại trong Unity, mở `HachiChestCutscene.asset` xác nhận các action vẫn giữ nguyên data sau khi `SequenceAction` thêm field mới.
+   - Vào Play Mode: chạy `HachiChest` → thoại HachiChest1 → Hachi hiện ra (chờ click) → thoại tiếp → teleport. Kiểm tra click không bị chờ 2 lần, action `waitForClick` dừng đúng nhịp.
+2. **Test hitbox + anim rương:** `Open.anim`/`HachiChest.controller` (trigger `Open`), `HachiReveal` hiện đúng lúc, collider mở rộng không cản Player oan.
+3. **Commit working tree hiện tại** đúng phạm vi Sequencer (8 file trên). Không kéo theo file lạ.
+4. **Wire shop Usagi (todo cũ #3):** gắn `ShopKeeperDialogue` lên NPC Usagi trong scene + tạo `DialogueData` thoại shop; điền portrait cho 3 `CharacterProfile`.
+5. **Dựng map OutskirtsScene theo kịch bản Ch.1 (todo cũ #6):** Player + villagers + Usagi shop + chest/Hachi trigger.
+6. **Push** sau khi commit xong.
+
+---
+
+## Ghi chú nghiên cứu: Tele qua scene khác + đổi ảnh BG (20/08/2026)
+
+> Đã nghiên cứu xong hiện trạng code, **CHƯA code gì cả** — đây là bản ghi nhớ để làm sau (khi dựng xong 6 scene chapter còn thiếu).
+
+### Hiện trạng
+
+- **TeleportManager** (`Assets/Script/Teleport/TeleportManager.cs:44`) chỉ tele **trong cùng scene**: fade → chữ → click → `playerRB.position = destination` → fade. **Không có `SceneManager` nào.**
+- **Load scene** hiện tại toàn bộ qua `GameSceneController.cs` + `ChapterManager.cs` (non-additive, single scene). `ChapterManager` dùng `SceneManager.LoadScene(bossSceneName / mainSceneName)`.
+- **7 ChapterDataSO** (`Resources/ChapterSO/`) khai tên scene: `OutskirtsScene, RohokScene, KuriFarmScene, MiraScene, KynariteScene, MytharaScene, HyvoriaScene`. **Chỉ `OutskirtsScene` có file thật** — 6 scene còn lại chưa tồn tại, `EditorBuildSettings` chỉ có 5 scene (MainMenu, Grass, Snow, Stone, Outskirts).
+- **BG** tồn tại 2 kiểu:
+  - OutskirtsScene: 1 object world-space `BG` (SpriteRenderer) + `CameraFollowParallax` (`Assets/Script/Effect/CameraFollowParallax.cs`) — chỉ parallax scroll, **không swap sprite**.
+  - Grass/Snow/StoneScene (test): BG dạng **UI Canvas** (`BG` Canvas + `BG Img`).
+  - **Không có** `BackgroundAction`, `ChangeBackground`, `SwapBackground`, `ParallaxBackground` (grep = 0). BG swap là tính năng mới hoàn toàn.
+- **FadeUI** là Singleton nhưng nằm **trong `GameUIRoot` đặt theo từng scene** → sau khi load scene khác mà scene đó thiếu `GameUIRoot` thì `FadeUI.Instance == null` → Teleport/Narration lỗi. `TeleportManager` tự nó là persistent (bootstrap từ `CoreSystem`), nhưng phụ thuộc FadeUI không bền.
+- **TeleportAction** hiện chỉ có `Vector2 destination` + `loadingMessage` — chưa có field scene.
+
+### Hướng triển khai khi làm (đúng kiến trúc hiện tại)
+
+1. **TeleportManager**: thêm overload `TeleportToScene(sceneName, spawnPoint, loadingMessage)` — fade → chữ → click → `SceneManager.LoadScene(sceneName)` → chờ `SceneManager.sceneLoaded` → tìm lại `Rigidbody2D` của Player (playerRB bị destroy khi unload) → set `rb.position = spawnPoint` → fade sáng.
+2. **BackgroundAction** (action mới của Sequencer): field `SpriteRenderer target` + `Sprite bg` + tùy chọn cập nhật `CameraFollowParallax` (sceneStartX/EndX, startOffsetX/endOffsetX). Swap `target.sprite`.
+3. **TeleportAction**: thêm field `sceneName` — để trống = tele cùng scene như cũ (không phá asset cũ); có giá trị = gọi nhánh scene.
+4. **Tách FadeUI khỏi GameUIRoot** sang persistent root (giống TeleportManager/CoreSystem), hoặc chấp nhận giới hạn: mọi scene target phải có `GameUIRoot`.
+5. **Điều kiện tiên quyết**: tạo đủ 6 scene chapter còn thiếu + đưa vào `EditorBuildSettings` trước khi test tele liên scene.
+6. **Note liên quan**: `GameManager.cs:159` còn TODO "check theo sceneName thay vì sceneIndex" — đổi cơ chế này trước khi tele theo tên scene hoạt động ổn định với save/load.

@@ -12,10 +12,10 @@ public class NarrationAction : SequenceAction
     public float darkAlpha = 1f;
     [Tooltip("Thời gian fade tối/sáng màn hình (giây).")]
     public float fadeDuration = 0.5f;
-    [Tooltip("true = chờ click chuột mới qua; false = tự qua sau autoHoldSeconds.")]
-    public bool waitForClick = true;
     [Tooltip("Thời gian giữ text khi waitForClick = false.")]
     public float autoHoldSeconds = 2f;
+
+    public override bool HandlesClickInternally => true;
 
     public override IEnumerator Execute()
     {
@@ -52,12 +52,6 @@ public class NarrationAction : SequenceAction
         panel.raycastTarget = false;
 
         SetPlayerCanMove(true);
-    }
-
-    private IEnumerator WaitForClick()
-    {
-        while (!Input.GetMouseButtonDown(0))
-            yield return null;
     }
 
     private void SetPlayerCanMove(bool canMove)
