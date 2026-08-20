@@ -41,7 +41,7 @@ public class TeleportManager : Singleton<TeleportManager>
         fadePanel.raycastTarget = false;
     }
 
-    public IEnumerator Teleport(Rigidbody2D playerRB, Vector2 destination, string loadingMessage)
+    public IEnumerator Teleport(Rigidbody2D playerRB, Vector2 destination, string loadingMessage, IEnumerator workDuringBlack = null)
     {
         if (playerRB == null)
         {
@@ -69,6 +69,9 @@ public class TeleportManager : Singleton<TeleportManager>
 
         // 4) DỜI PLAYER — BẮT BUỘC QUA RIGIDBODY
         playerRB.position = destination;               // rb.position, KHÔNG phải transform.position!
+
+        if (workDuringBlack != null)
+            yield return workDuringBlack;
 
         if (!string.IsNullOrEmpty(loadingMessage)) 
         {

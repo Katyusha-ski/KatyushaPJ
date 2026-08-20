@@ -7,6 +7,8 @@ using UnityEngine;
 [CustomEditor(typeof(CutsceneData))]
 public class CutsceneDataDrawer : Editor
 {
+    private static readonly HashSet<string> NestedActionListFieldNames = new() { "workInBlack" };
+
     private SerializedProperty actions;
 
     private void OnEnable()
@@ -19,23 +21,23 @@ public class CutsceneDataDrawer : Editor
         serializedObject.Update();
 
         EditorGUILayout.LabelField("Cutscene Actions", EditorStyles.boldLabel);
-        DrawActionList();
+        DrawActionList(actions, showAddButton: false);
 
         if (GUILayout.Button("+ Add Action", GUILayout.Height(24)))
         {
-            BuildTypeMenu(-1).ShowAsContext();
+            BuildTypeMenu(actions, -1).ShowAsContext();
         }
 
         serializedObject.ApplyModifiedProperties();
     }
 
-    private void DrawActionList()
+    private void DrawActionList(SerializedProperty listProp, bool showAddButton = true)
     {
-        if (actions == null) return;
+        if (listProp == null) return;
 
-        for (int i = 0; i < actions.arraySize; i++)
+        for (int i = 0; i < listProp.arraySize; i++)
         {
-            SerializedProperty element = actions.GetArrayElementAtIndex(i);
+            SerializedProperty element = listProp.GetArrayElementAtIndex(i);
             bool isNull = element.managedReferenceValue == null;
 
             EditorGUILayout.BeginVertical(EditorStyles.helpBox);
@@ -46,9 +48,14 @@ public class CutsceneDataDrawer : Editor
             GUILayout.FlexibleSpace();
             int captured = i;
             if (GUILayout.Button("Type", GUILayout.Width(50)))
-                BuildTypeMenu(captured).ShowAsContext();
+                BuildTypeMenu(listProp, captured).ShowAsContext();
             if (GUILayout.Button("-", GUILayout.Width(24)))
-                actions.DeleteArrayElementAtIndex(captured);
+            {
+                listProp.DeleteArrayElementAtIndex(captured);
+                EditorGUILayout.EndHorizontal();
+                EditorGUILayout.EndVertical();
+                break;
+            }
             EditorGUILayout.EndHorizontal();
 
             if (element.isExpanded && !isNull)
@@ -59,6 +66,11 @@ public class CutsceneDataDrawer : Editor
             }
 
             EditorGUILayout.EndVertical();
+        }
+
+        if (showAddButton && GUILayout.Button("+ Add Nested Action", GUILayout.Height(24)))
+        {
+            BuildTypeMenu(listProp, -1).ShowAsContext();
         }
     }
 
@@ -78,12 +90,19 @@ public class CutsceneDataDrawer : Editor
             if (iterator.name == "waiting")
                 continue;
 
+            if (NestedActionListFieldNames.Contains(iterator.name))
+            {
+                EditorGUILayout.LabelField(iterator.displayName, EditorStyles.boldLabel);
+                DrawActionList(iterator.Copy());
+                continue;
+            }
+
             EditorGUILayout.PropertyField(iterator, true);
         }
         EditorGUI.indentLevel--;
     }
 
-    private GenericMenu BuildTypeMenu(int targetIndex)
+    private GenericMenu BuildTypeMenu(SerializedProperty listProp, int targetIndex)
     {
         GenericMenu menu = new GenericMenu();
         foreach (Type type in GetActionTypes())
@@ -92,11 +111,11 @@ public class CutsceneDataDrawer : Editor
             {
                 object instance = Activator.CreateInstance(type);
                 if (targetIndex >= 0)
-                    actions.GetArrayElementAtIndex(targetIndex).managedReferenceValue = instance;
+                    listProp.GetArrayElementAtIndex(targetIndex).managedReferenceValue = instance;
                 else
                 {
-                    actions.arraySize++;
-                    actions.GetArrayElementAtIndex(actions.arraySize - 1).managedReferenceValue = instance;
+                    listProp.arraySize++;
+                    listProp.GetArrayElementAtIndex(listProp.arraySize - 1).managedReferenceValue = instance;
                 }
                 serializedObject.ApplyModifiedProperties();
                 EditorUtility.SetDirty(target);
