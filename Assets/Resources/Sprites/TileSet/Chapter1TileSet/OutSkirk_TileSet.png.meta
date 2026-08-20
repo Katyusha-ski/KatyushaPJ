@@ -1,0 +1,1500 @@
+fileFormatVersion: 2
+guid: 1655ffb470accc24b86b2bf309e1389b
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -8221477822140851712
+    second: OutSkirk_TileSet_0
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: OutSkirk_TileSet_0
+      rect:
+        serializedVersion: 2
+        x: 42
+        y: 1138
+        width: 168
+        height: 168
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 69f8ab06773a454380bd8cdd432821e4
+      internalID: -8221477822140851712
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OutSkirk_TileSet_1
+      rect:
+        serializedVersion: 2
+        x: 546
+        y: 1391
+        width: 170
+        height: 168
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6a954489b7af40c4aa1cf1cddfcf0f8c
+      internalID: 2064090142
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OutSkirk_TileSet_2
+      rect:
+        serializedVersion: 2
+        x: 294
+        y: 1390
+        width: 170
+        height: 168
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0e7d2b3ceb3a4e909cb03663fcd3af78
+      internalID: 1164382324
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OutSkirk_TileSet_3
+      rect:
+        serializedVersion: 2
+        x: 42
+        y: 1391
+        width: 168
+        height: 168
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1fc72a72c5384458a979d3e428e297c2
+      internalID: 2001671279
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OutSkirk_TileSet_4
+      rect:
+        serializedVersion: 2
+        x: 800
+        y: 1390
+        width: 170
+        height: 168
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1652768e145540fab4b2de1f78d349d8
+      internalID: -586819567
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OutSkirk_TileSet_5
+      rect:
+        serializedVersion: 2
+        x: 1052
+        y: 1390
+        width: 170
+        height: 168
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b8ef150695de4ccda853934f6a099f4a
+      internalID: 131122076
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OutSkirk_TileSet_6
+      rect:
+        serializedVersion: 2
+        x: 1306
+        y: 1390
+        width: 170
+        height: 168
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b7e04d64936840129ef8784840c1077a
+      internalID: 1260988115
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OutSkirk_TileSet_7
+      rect:
+        serializedVersion: 2
+        x: 1558
+        y: 1390
+        width: 170
+        height: 168
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b72613419a5f460f940fcc5233a5b92b
+      internalID: -1846837314
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OutSkirk_TileSet_8
+      rect:
+        serializedVersion: 2
+        x: 1811
+        y: 1390
+        width: 170
+        height: 168
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5034ea1c09bc470fb288ad1599310760
+      internalID: -163687501
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OutSkirk_TileSet_9
+      rect:
+        serializedVersion: 2
+        x: 2064
+        y: 1390
+        width: 170
+        height: 168
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5481b22f32be4cce912a096662d97a96
+      internalID: -1977424271
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OutSkirk_TileSet_10
+      rect:
+        serializedVersion: 2
+        x: 2316
+        y: 1390
+        width: 170
+        height: 168
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e5c6d7deefaf4c47a2d83541f67d0ffc
+      internalID: -883206011
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OutSkirk_TileSet_11
+      rect:
+        serializedVersion: 2
+        x: 42
+        y: 886
+        width: 168
+        height: 168
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7b3a57dd16b1491fa9f962b6571b5643
+      internalID: -1777874110
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OutSkirk_TileSet_12
+      rect:
+        serializedVersion: 2
+        x: 42
+        y: 632
+        width: 168
+        height: 168
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3b3ba3f98fe4436d8f2f196813e20671
+      internalID: 1095972825
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OutSkirk_TileSet_13
+      rect:
+        serializedVersion: 2
+        x: 42
+        y: 378
+        width: 168
+        height: 168
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b1a01d61e27a4009b60ad0969fc2cca0
+      internalID: -911597332
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OutSkirk_TileSet_14
+      rect:
+        serializedVersion: 2
+        x: 42
+        y: 126
+        width: 168
+        height: 168
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 87787d3a76cb49a5868219a4f92d66bf
+      internalID: -362256099
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OutSkirk_TileSet_15
+      rect:
+        serializedVersion: 2
+        x: 294
+        y: 1138
+        width: 170
+        height: 168
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 16d92438968142508615461ca3845df0
+      internalID: 17000000015
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OutSkirk_TileSet_16
+      rect:
+        serializedVersion: 2
+        x: 546
+        y: 1138
+        width: 170
+        height: 168
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6e9a790327d8418e9b212c3fc9124eb4
+      internalID: 17000000016
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OutSkirk_TileSet_17
+      rect:
+        serializedVersion: 2
+        x: 800
+        y: 1138
+        width: 170
+        height: 168
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a6f49859fd764dbc828891ed2ca620fe
+      internalID: 17000000017
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OutSkirk_TileSet_18
+      rect:
+        serializedVersion: 2
+        x: 1052
+        y: 1138
+        width: 170
+        height: 168
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3f73c550162a4aed874e81be0f67dc07
+      internalID: 17000000018
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OutSkirk_TileSet_19
+      rect:
+        serializedVersion: 2
+        x: 1306
+        y: 1138
+        width: 170
+        height: 168
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: aa78eea289c242b8867020aa00ae5523
+      internalID: 17000000019
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OutSkirk_TileSet_20
+      rect:
+        serializedVersion: 2
+        x: 1558
+        y: 1138
+        width: 170
+        height: 168
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8985755b8b9d44d0a9ce60ae0d1372ca
+      internalID: 17000000020
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OutSkirk_TileSet_21
+      rect:
+        serializedVersion: 2
+        x: 1811
+        y: 1138
+        width: 170
+        height: 168
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b04a529de0914b3bae3b14dcbf2b5bd9
+      internalID: 17000000021
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OutSkirk_TileSet_22
+      rect:
+        serializedVersion: 2
+        x: 2064
+        y: 1138
+        width: 170
+        height: 168
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f370b24775f94798ab20f6886805d65b
+      internalID: 17000000022
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OutSkirk_TileSet_23
+      rect:
+        serializedVersion: 2
+        x: 2316
+        y: 1138
+        width: 170
+        height: 168
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9cb4d890d72f45268871ead37e5be104
+      internalID: 17000000023
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OutSkirk_TileSet_24
+      rect:
+        serializedVersion: 2
+        x: 294
+        y: 886
+        width: 170
+        height: 168
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c9f1d4f2e6f94927b48c707af7fa8601
+      internalID: 17000000024
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OutSkirk_TileSet_25
+      rect:
+        serializedVersion: 2
+        x: 546
+        y: 886
+        width: 170
+        height: 168
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 71d500ff51744133bbd5d5f6c7547d20
+      internalID: 17000000025
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OutSkirk_TileSet_26
+      rect:
+        serializedVersion: 2
+        x: 800
+        y: 886
+        width: 170
+        height: 168
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bebae949c25f4053b45cc46bda842d0f
+      internalID: 17000000026
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OutSkirk_TileSet_27
+      rect:
+        serializedVersion: 2
+        x: 1052
+        y: 886
+        width: 170
+        height: 168
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9adc6ecab203490b9af52b305cb51322
+      internalID: 17000000027
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OutSkirk_TileSet_28
+      rect:
+        serializedVersion: 2
+        x: 1306
+        y: 886
+        width: 170
+        height: 168
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9cefadb9d45e4f36afdc5f39a3a68a2e
+      internalID: 17000000028
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OutSkirk_TileSet_29
+      rect:
+        serializedVersion: 2
+        x: 1558
+        y: 886
+        width: 170
+        height: 168
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 91b9a1c1b33d4bc1a03eb5014f157769
+      internalID: 17000000029
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OutSkirk_TileSet_30
+      rect:
+        serializedVersion: 2
+        x: 1811
+        y: 886
+        width: 170
+        height: 168
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5d14e514590a4b8090f9e38eca9a0f06
+      internalID: 17000000030
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OutSkirk_TileSet_31
+      rect:
+        serializedVersion: 2
+        x: 2064
+        y: 886
+        width: 170
+        height: 168
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e2f6ba59749c4dd1990a9eaf25e55a10
+      internalID: 17000000031
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OutSkirk_TileSet_32
+      rect:
+        serializedVersion: 2
+        x: 2316
+        y: 886
+        width: 170
+        height: 168
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 83d92aca47da43c184d054089698c574
+      internalID: 17000000032
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OutSkirk_TileSet_33
+      rect:
+        serializedVersion: 2
+        x: 294
+        y: 632
+        width: 170
+        height: 168
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f5e9aa116fab4b298f9d94613ebf5ee4
+      internalID: 17000000033
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OutSkirk_TileSet_34
+      rect:
+        serializedVersion: 2
+        x: 546
+        y: 632
+        width: 170
+        height: 168
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5431ac0a3c7e407e8627c8f91babc067
+      internalID: 17000000034
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OutSkirk_TileSet_35
+      rect:
+        serializedVersion: 2
+        x: 800
+        y: 632
+        width: 170
+        height: 168
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fef8315069924265924d1c0efbd44015
+      internalID: 17000000035
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OutSkirk_TileSet_36
+      rect:
+        serializedVersion: 2
+        x: 1052
+        y: 632
+        width: 170
+        height: 168
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4bb16a6cd10740ee9bb7b49986d0bddc
+      internalID: 17000000036
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OutSkirk_TileSet_37
+      rect:
+        serializedVersion: 2
+        x: 1306
+        y: 632
+        width: 170
+        height: 168
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 67cbc151f2d644009d692e11359153e8
+      internalID: 17000000037
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OutSkirk_TileSet_38
+      rect:
+        serializedVersion: 2
+        x: 1558
+        y: 632
+        width: 170
+        height: 168
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8f55e2be135740bfa2d1366f0c2da24c
+      internalID: 17000000038
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OutSkirk_TileSet_39
+      rect:
+        serializedVersion: 2
+        x: 1811
+        y: 632
+        width: 170
+        height: 168
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6a705f913fed4c5f82e4680749665782
+      internalID: 17000000039
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OutSkirk_TileSet_40
+      rect:
+        serializedVersion: 2
+        x: 2064
+        y: 632
+        width: 170
+        height: 168
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e16f60d602d745469d53675c9d19b836
+      internalID: 17000000040
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OutSkirk_TileSet_41
+      rect:
+        serializedVersion: 2
+        x: 2316
+        y: 632
+        width: 170
+        height: 168
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 87ecfed5c486410983476141b524d226
+      internalID: 17000000041
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OutSkirk_TileSet_42
+      rect:
+        serializedVersion: 2
+        x: 294
+        y: 378
+        width: 170
+        height: 168
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c1b32496e4644379ac6e99ae55721d0c
+      internalID: 17000000042
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OutSkirk_TileSet_43
+      rect:
+        serializedVersion: 2
+        x: 546
+        y: 378
+        width: 170
+        height: 168
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 089da5980c6b426db630c92fcf53c60c
+      internalID: 17000000043
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OutSkirk_TileSet_44
+      rect:
+        serializedVersion: 2
+        x: 800
+        y: 378
+        width: 170
+        height: 168
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2c996ae5422447058ecd3df31ba26697
+      internalID: 17000000044
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OutSkirk_TileSet_45
+      rect:
+        serializedVersion: 2
+        x: 1052
+        y: 378
+        width: 170
+        height: 168
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d0198db81b1945fba56e8f4696c509f8
+      internalID: 17000000045
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OutSkirk_TileSet_46
+      rect:
+        serializedVersion: 2
+        x: 1306
+        y: 378
+        width: 170
+        height: 168
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e36ef270e0bd48eabfcaaaaae41aafbf
+      internalID: 17000000046
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OutSkirk_TileSet_47
+      rect:
+        serializedVersion: 2
+        x: 1558
+        y: 378
+        width: 170
+        height: 168
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 342acfb4ead44a8a8e717e67a6bedca3
+      internalID: 17000000047
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OutSkirk_TileSet_48
+      rect:
+        serializedVersion: 2
+        x: 1811
+        y: 378
+        width: 170
+        height: 168
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7cae186affbf47a9ba6e10e221c9e695
+      internalID: 17000000048
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OutSkirk_TileSet_49
+      rect:
+        serializedVersion: 2
+        x: 2064
+        y: 378
+        width: 170
+        height: 168
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e4eac8d2f7f2428390da549d9a40b29b
+      internalID: 17000000049
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OutSkirk_TileSet_50
+      rect:
+        serializedVersion: 2
+        x: 2316
+        y: 378
+        width: 170
+        height: 168
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3840716420be4ff6814fa794b085b991
+      internalID: 17000000050
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OutSkirk_TileSet_51
+      rect:
+        serializedVersion: 2
+        x: 294
+        y: 126
+        width: 170
+        height: 168
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8cc07a9667264ba281e9e3a94d39a575
+      internalID: 17000000051
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OutSkirk_TileSet_52
+      rect:
+        serializedVersion: 2
+        x: 546
+        y: 126
+        width: 170
+        height: 168
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c619cb8b2b944f3fa82d550e115170b4
+      internalID: 17000000052
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OutSkirk_TileSet_53
+      rect:
+        serializedVersion: 2
+        x: 800
+        y: 126
+        width: 170
+        height: 168
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cf35bf504fa746ac86caac521362652a
+      internalID: 17000000053
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OutSkirk_TileSet_54
+      rect:
+        serializedVersion: 2
+        x: 1052
+        y: 126
+        width: 170
+        height: 168
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 667d3c305ba846f298129c91fba9e70f
+      internalID: 17000000054
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OutSkirk_TileSet_55
+      rect:
+        serializedVersion: 2
+        x: 1306
+        y: 126
+        width: 170
+        height: 168
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 01fc7132ab784df3bd5a628cdc9a3c64
+      internalID: 17000000055
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OutSkirk_TileSet_56
+      rect:
+        serializedVersion: 2
+        x: 1558
+        y: 126
+        width: 170
+        height: 168
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 285928c39b0742f28a1c18ffc273ccbc
+      internalID: 17000000056
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OutSkirk_TileSet_57
+      rect:
+        serializedVersion: 2
+        x: 1811
+        y: 126
+        width: 170
+        height: 168
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d23f126b3f11435299d2375d04a84678
+      internalID: 17000000057
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OutSkirk_TileSet_58
+      rect:
+        serializedVersion: 2
+        x: 2064
+        y: 126
+        width: 170
+        height: 168
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 02b9ea02ba004725bbbdd1ca2236fafa
+      internalID: 17000000058
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OutSkirk_TileSet_59
+      rect:
+        serializedVersion: 2
+        x: 2316
+        y: 126
+        width: 170
+        height: 168
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c3ad0c1db7fb49108cd3cdbd3399d312
+      internalID: 17000000059
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: b24ac91030bab124fb6d31cd842bedf8
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      OutSkirk_TileSet_0: -8221477822140851712
+      OutSkirk_TileSet_1: 2064090142
+      OutSkirk_TileSet_10: -883206011
+      OutSkirk_TileSet_11: -1777874110
+      OutSkirk_TileSet_12: 1095972825
+      OutSkirk_TileSet_13: -911597332
+      OutSkirk_TileSet_14: -362256099
+      OutSkirk_TileSet_15: 17000000015
+      OutSkirk_TileSet_16: 17000000016
+      OutSkirk_TileSet_17: 17000000017
+      OutSkirk_TileSet_18: 17000000018
+      OutSkirk_TileSet_19: 17000000019
+      OutSkirk_TileSet_2: 1164382324
+      OutSkirk_TileSet_20: 17000000020
+      OutSkirk_TileSet_21: 17000000021
+      OutSkirk_TileSet_22: 17000000022
+      OutSkirk_TileSet_23: 17000000023
+      OutSkirk_TileSet_24: 17000000024
+      OutSkirk_TileSet_25: 17000000025
+      OutSkirk_TileSet_26: 17000000026
+      OutSkirk_TileSet_27: 17000000027
+      OutSkirk_TileSet_28: 17000000028
+      OutSkirk_TileSet_29: 17000000029
+      OutSkirk_TileSet_3: 2001671279
+      OutSkirk_TileSet_30: 17000000030
+      OutSkirk_TileSet_31: 17000000031
+      OutSkirk_TileSet_32: 17000000032
+      OutSkirk_TileSet_33: 17000000033
+      OutSkirk_TileSet_34: 17000000034
+      OutSkirk_TileSet_35: 17000000035
+      OutSkirk_TileSet_36: 17000000036
+      OutSkirk_TileSet_37: 17000000037
+      OutSkirk_TileSet_38: 17000000038
+      OutSkirk_TileSet_39: 17000000039
+      OutSkirk_TileSet_4: -586819567
+      OutSkirk_TileSet_40: 17000000040
+      OutSkirk_TileSet_41: 17000000041
+      OutSkirk_TileSet_42: 17000000042
+      OutSkirk_TileSet_43: 17000000043
+      OutSkirk_TileSet_44: 17000000044
+      OutSkirk_TileSet_45: 17000000045
+      OutSkirk_TileSet_46: 17000000046
+      OutSkirk_TileSet_47: 17000000047
+      OutSkirk_TileSet_48: 17000000048
+      OutSkirk_TileSet_49: 17000000049
+      OutSkirk_TileSet_5: 131122076
+      OutSkirk_TileSet_50: 17000000050
+      OutSkirk_TileSet_51: 17000000051
+      OutSkirk_TileSet_52: 17000000052
+      OutSkirk_TileSet_53: 17000000053
+      OutSkirk_TileSet_54: 17000000054
+      OutSkirk_TileSet_55: 17000000055
+      OutSkirk_TileSet_56: 17000000056
+      OutSkirk_TileSet_57: 17000000057
+      OutSkirk_TileSet_58: 17000000058
+      OutSkirk_TileSet_59: 17000000059
+      OutSkirk_TileSet_6: 1260988115
+      OutSkirk_TileSet_7: -1846837314
+      OutSkirk_TileSet_8: -163687501
+      OutSkirk_TileSet_9: -1977424271
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

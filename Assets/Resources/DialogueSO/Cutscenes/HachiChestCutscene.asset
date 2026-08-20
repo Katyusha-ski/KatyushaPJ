@@ -21,6 +21,7 @@ MonoBehaviour:
   - rid: 5747512740848336982
   - rid: 5747512740848336979
   - rid: 5747512740848336980
+  - rid: 5747512787751141455
   references:
     version: 2
     RefIds:
@@ -65,6 +66,7 @@ MonoBehaviour:
           c\u1EA3 2 v\xE0o c\u1ED5ng kh\xF4ng gian. Tuy cu\u1ED9c h\xE0nh tr\xECnh
           kh\xF4ng d\u1EC5 ch\u1ECBu m\u1EA5y nh\u01B0ng cu\u1ED1i c\xF9ng h\u1ECD
           c\u0169ng \u0111\xE3 \u0111\u1EBFn n\u01A1i :\u0110"
+        workInBlack: []
     - rid: 5747512740848336981
       type: {class: ShowHachiRevealAction, ns: , asm: Assembly-CSharp}
       data:
@@ -73,3 +75,14 @@ MonoBehaviour:
       type: {class: UnlockHachiAction, ns: , asm: Assembly-CSharp}
       data:
         waitForClick: 0
+    - rid: 5747512787751141455
+      type: {class: BackgroundAction, ns: , asm: Assembly-CSharp}
+      data:
+        waitForClick: 0
+        targetName: BG
+        bg: {fileID: 6974097392169830822, guid: 67ea330f95f6d9c4588a156a8f4f3d59, type: 3}
+        updateParallax: 0
+        sceneStartX: 100
+        sceneEndX: 0
+        startOffsetX: 6.07
+        endOffsetX: -6.07
