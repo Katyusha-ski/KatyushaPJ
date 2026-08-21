@@ -619,3 +619,34 @@ Trước khi hoàn tất, nhờ review toàn diện: (a) subscribe/unsubscribe c
 4. **Tách FadeUI khỏi GameUIRoot** sang persistent root (giống TeleportManager/CoreSystem), hoặc chấp nhận giới hạn: mọi scene target phải có `GameUIRoot`.
 5. **Điều kiện tiên quyết**: tạo đủ 6 scene chapter còn thiếu + đưa vào `EditorBuildSettings` trước khi test tele liên scene.
 6. **Note liên quan**: `GameManager.cs:159` còn TODO "check theo sceneName thay vì sceneIndex" — đổi cơ chế này trước khi tele theo tên scene hoạt động ổn định với save/load.
+
+---
+
+## Quy tắc runtime hiện tại
+
+### Health và trạng thái chết
+
+- `Health.isDead` xác định entity đã chết vĩnh viễn.
+- `TakeDamage()` bỏ qua damage khi entity đã chết hoặc đang bất tử.
+- `Die()` chỉ được xử lý một lần; `OnDied` phát đúng một lần trước khi enemy chuyển sang `DieState`.
+- `Heal()` không hồi máu cho entity đã chết vĩnh viễn.
+- `SetHealth(0)` chỉ đặt HP về 0 và không tự phát `OnDied`. Duo Golem dùng hành vi này cho trạng thái bị hạ tạm thời trước khi hồi sinh.
+- Enemy chết vĩnh viễn đi theo luồng `TakeDamage → Die() → OnDied → DieState → Destroy`.
+
+### SequenceEnemiesClearedTrigger
+
+- Component dùng event `Health.OnDied`, không poll mỗi frame.
+- `markedEnemies` có phần tử: chỉ theo dõi các `Health` được chỉ định và còn sống khi bắt đầu.
+- `markedEnemies` rỗng: tự quét các object có tag `Enemy` và `CurrentHealth > 0` trong scene khi bắt đầu.
+- Enemy chết sau khi đăng ký sẽ bị xóa khỏi tập theo dõi qua `OnDied`.
+- `hasFired` bảo đảm sequence chỉ được kích hoạt một lần.
+- Enemy spawn sau khi trigger bắt đầu không tự động được đăng ký. Nếu encounter cần hỗ trợ spawn động, phải bổ sung cơ chế đăng ký enemy.
+- Enemy thuộc encounter phải rời scene qua lifecycle chết chuẩn; không dùng `Destroy` trực tiếp để thay thế cho chết gameplay.
+
+### SequencePlayer và quyền di chuyển
+
+- `SequencePlayer` đặt `PlayerMovementController.CanMove = false` trước khi chạy sequence và trước mỗi action.
+- Player được mở khóa sau khi sequence hoàn thành bình thường.
+- Nếu `SequencePlayer` bị hủy trong lúc đang chạy, `OnDestroy()` mở khóa player để tránh kẹt điều khiển.
+- `playOncePerSession` hiện lưu trạng thái trên instance của `SequencePlayer`; nó không phải trạng thái save/load toàn game.
+- `SequencePlayer` không tự hủy sequence giữa chừng. Việc bố trí vùng trigger cần tránh các nguồn sát thương có thể làm gián đoạn cutscene.

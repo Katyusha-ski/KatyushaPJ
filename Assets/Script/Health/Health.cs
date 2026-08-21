@@ -19,6 +19,7 @@ public class Health : MonoBehaviour
     public int MaxHealth => maxHealth;
     private bool isUnDying = false;
     private bool isInvulnerable = false;
+    private bool isDead = false;
 
     private CharacterStats characterStats;
     private float regenTimer = 0f;
@@ -26,6 +27,7 @@ public class Health : MonoBehaviour
 
 
     public System.Action<int> OnDamaged;
+    public event System.Action<Health> OnDied;
 
     public void SetUnDying(bool value)
     {
@@ -91,7 +93,7 @@ public class Health : MonoBehaviour
 
     public virtual void TakeDamage(int damage, GameObject damageSource)
     {
-        if (isInvulnerable)
+        if (isDead || isInvulnerable)
             return;
 
         if (damageSFX != null && AudioManager.Instance != null)
@@ -149,7 +151,7 @@ public class Health : MonoBehaviour
 
     public void Heal(int amount)
     {
-        if (amount <= 0) return;
+        if (isDead || amount <= 0) return;
         
         currentHealth = Mathf.Clamp(currentHealth + amount, 0, maxHealth);
         
@@ -158,6 +160,12 @@ public class Health : MonoBehaviour
 
     private void Die()
     {
+        if (isDead)
+            return;
+
+        isDead = true;
+        OnDied?.Invoke(this);
+
         if (gameObject.CompareTag("Enemy"))
         {
             EnemyController enemyController = GetComponent<EnemyController>();

@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 12efb4e91f50acd42999f69a91d76dab, type: 3}
+  m_Name: HachiChest4_Dialogue
+  m_EditorClassIdentifier: Assembly-CSharp::DialogueData
+  lines:
+  - speaker: {fileID: 11400000, guid: 02a1fc921f4037d4bb7357b2fa36c700, type: 2}
+    text: "Hmmm... H\xCCnh nh\u01B0 ta \u0111\xE3 b\u1ECB d\u1ECBch chuy\u1EC3n t\u1EDBi
+      1 ng\xF4i l\xE0ng \u1EDF r\xECa \u0111\u1EA5t n\u01B0\u1EDBc r\u1ED3i"
+  - speaker: {fileID: 11400000, guid: 02a1fc921f4037d4bb7357b2fa36c700, type: 2}
+    text: "N\u1EBFu t\xF4i kh\xF4ng nh\u1EA7m th\xEC \u0111\xE2y ch\u1EAFc l\xE0
+      l\xE0ng Helga. Nh\xECn quanh \u0111\xE2y th\xEC ch\u1EAFc n\u01A1i n\xE0y c\u0169ng
+      kh\xF4ng c\xF3 k\u1EBFt c\u1EE5c t\u1ED1t \u0111\u1EB9p r\u1ED3i."
+  - speaker: {fileID: 11400000, guid: cdfbdabbf8285304690416cec3c5c792, type: 2}
+    text: "Th\u1EBF gi\u1EDD ta ph\u1EA3i l\xE0m g\xEC \u0111\xE2y Hachi?"
+  - speaker: {fileID: 11400000, guid: 02a1fc921f4037d4bb7357b2fa36c700, type: 2}
+    text: "Ch\xFAng ta d\u1EA1o xung quanh xem c\xF2n ai s\u1ED1ng s\xF3t kh\xF4ng?
+      Ph\u1EA3i c\u1EA9n th\u1EADn l\u0169 qu\u1EF7 \u0111\u1EA5y"

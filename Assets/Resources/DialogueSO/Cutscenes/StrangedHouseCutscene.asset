@@ -1,0 +1,61 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c45bb7f5d2c75bc42afde98aabf02457, type: 3}
+  m_Name: StrangedHouseCutscene
+  m_EditorClassIdentifier: Assembly-CSharp::CutsceneData
+  actions:
+  - rid: 690000000000000001
+  - rid: 690000000000000002
+  - rid: 690000000000000003
+  - rid: 690000000000000004
+  - rid: 690000000000000005
+  - rid: 690000000000000006
+  references:
+    version: 2
+    RefIds:
+    - rid: 690000000000000001
+      type: {class: DialogueAction, ns: , asm: Assembly-CSharp}
+      data:
+        waitForClick: 0
+        dialogue: {fileID: 11400000, guid: 5fe0648d82854609946f4678bb2cbb7b, type: 2}
+    - rid: 690000000000000002
+      type: {class: TeleportAction, ns: , asm: Assembly-CSharp}
+      data:
+        waitForClick: 0
+        destination: {x: 100, y: 100}
+        loadingMessage: "C\u1ea3 hai c\xf9ng ti\u1ebfn v\xe0o b\xean trong. Hachi t\xecm th\u1ea5y \u0111\u01b0\u1ee3c m\u1ed9t h\u1ea7m tr\xfa \u1ea9n, c\u1ea3 hai b\u01b0\u1edbc v\xe0o v\xe0 th\u1ea5y m\u1ed9t nh\xf3m d\xe2n l\xe0ng \u0111ang run r\u1ea9y trong b\xf3ng t\u1ed1i. H\u1ecd nh\xecn th\u1ea5y Hachi v\xe0 Kati, \xe1nh m\u1eaft v\u1eeba s\u1ee3 h\xe3i v\u1eeba hy v\u1ecdng."
+        workInBlack: []
+    - rid: 690000000000000003
+      type: {class: DialogueAction, ns: , asm: Assembly-CSharp}
+      data:
+        waitForClick: 0
+        dialogue: {fileID: 11400000, guid: b3aa3223bf92445687d74eb80cf2acf9, type: 2}
+    - rid: 690000000000000004
+      type: {class: NarrationAction, ns: , asm: Assembly-CSharp}
+      data:
+        waitForClick: 1
+        text: "Hachi nu\u1ed1t con dao v\xe0o ng\u01b0\u1eddi."
+        darkAlpha: 1
+        fadeDuration: 0.5
+        autoHoldSeconds: 2
+    - rid: 690000000000000005
+      type: {class: DialogueAction, ns: , asm: Assembly-CSharp}
+      data:
+        waitForClick: 0
+        dialogue: {fileID: 11400000, guid: c63abc6d312b4de8b8c0094724199497, type: 2}
+    - rid: 690000000000000006
+      type: {class: TeleportAction, ns: , asm: Assembly-CSharp}
+      data:
+        waitForClick: 0
+        destination: {x: 100, y: 0}
+        loadingMessage: "C\u1ea3 hai c\xf9ng \u0111i ra ngo\xe0i, chu\u1ea9n b\u1ecb chi\u1ebfn \u0111\u1ea5u v\u1edbi l\u0169 qu\u1ef7"
+        workInBlack: []

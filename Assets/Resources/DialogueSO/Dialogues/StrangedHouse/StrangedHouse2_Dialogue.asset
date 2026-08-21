@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 12efb4e91f50acd42999f69a91d76dab, type: 3}
+  m_Name: StrangedHouse2_Dialogue
+  m_EditorClassIdentifier: Assembly-CSharp::DialogueData
+  lines:
+  - speaker: {fileID: 11400000, guid: 15a6c98b59ae4afea97487223c929705, type: 2}
+    text: "L\xe0 qu\u1ef7 sao?! Huhu m\u1eb9 \u01a1i, con s\u1eafp ch\u1ebft r\u1ed3i!"
+  - speaker: {fileID: 11400000, guid: ddb92e141eae46898509938b09c7140d, type: 2}
+    text: "Kh\xf4ng ph\u1ea3i \u0111\xe2u, c\u1eadu \u1ea5y kh\xf4ng ph\u1ea3i qu\u1ef7, c\u1eadu \u1ea5y c\xf9ng gi\u1ed1ng lo\xe0i v\u1edbi ch\xfang ta \u0111\u1ed3 ng\u1ed1c \u1ea1. B\xecnh t\u0129nh l\u1ea1i \u0111i."
+  - speaker: {fileID: 11400000, guid: 02a1fc921f4037d4bb7357b2fa36c700, type: 2}
+    text: "T\xf4i l\xe0 Hachi, chi\u1ebfn binh ho\xe0ng gia, tuy c\xf3 nhi\u1ec1u chuy\u1ec7n x\u1ea3y ra khi\u1ebfn t\xf4i ch\u1ec9 c\xf2n l\u1ea1i linh h\u1ed3n th\xf4i nh\u01b0ng t\xf4i v\u1eabn c\xf2n s\u1ee9c m\u1ea1nh \u0111\u1ec3 gi\xfap c\xe1c c\u1eadu. Tr\u01b0\u1edbc h\u1ebft t\xf4i c\u1ea7n bi\u1ebft, c\xe1c c\u1eadu c\xf2n v\u0169 kh\xed g\xec kh\xf4ng?"
+  - speaker: {fileID: 11400000, guid: ddb92e141eae46898509938b09c7140d, type: 2}
+    text: "Ng\xf4i l\xe0ng n\xe0y ch\u1ec9 l\xe0 m\u1ed9t l\xe0ng nh\u1ecf, ngu\u1ed3n s\u1ed1ng ch\xednh c\u1ee7a ch\xfang t\xf4i d\u1ef1a v\xe0o n\xf4ng nghi\u1ec7p."
+  - speaker: {fileID: 11400000, guid: ddb92e141eae46898509938b09c7140d, type: 2}
+    text: "T\xf4i l\xe0 t\xean l\xe0 Snake, ng\u01b0\u1eddi duy nh\u1ea5t \u1edf \u0111\xe2y bi\u1ebft m\u1ed9t ch\xfat v\u1ec1 chi\u1ebfn \u0111\u1ea5u v\xe0 ma thu\u1eadt. Ph\u1ea7n l\u1edbn v\u0169 kh\xed c\u1ee7a ch\xfang t\xf4i \u0111\u1ec1u r\u1ea5t th\xf4 s\u01a1, t\xf4i ch\u1ec9 c\xf3 m\u1ed9t con dao nh\u1ecf th\xf4i."
+  - speaker: {fileID: 11400000, guid: 753499cfd0274996b830a0328388dfd9, type: 2}
+    text: "Tuy kh\xf4ng t\u1ed1t nh\u01b0 nh\u1eefng th\u1ee9 c\u1eadu t\u1eebng s\u1eed d\u1ee5ng, nh\u01b0ng \u0111\xf3 l\xe0 v\u0169 kh\xed di\u1ec7t qu\u1ef7 t\u1ed1t nh\u1ea5t m\xe0 ch\xfang t\xf4i c\xf3 \u1edf \u0111\xe2y."
+  - speaker: {fileID: 11400000, guid: 02a1fc921f4037d4bb7357b2fa36c700, type: 2}
+    text: "C\u1ea3m \u01a1n anh. C\xf3 v\u1ebb anh l\xe0 ng\u01b0\u1eddi d\u1ef1ng l\xean k\u1ebft gi\u1edbi \u0111\u1ec3 h\u1ea1n ch\u1ebf ma l\u1ef1c c\u1ee7a d\xe2n l\xe0ng n\xe0y \u0111\u1ec3 \u1ea9n n\u1ea5p ph\u1ea3i kh\xf4ng? Anh y\xean t\xe2m, t\xf4i s\u1ebd di\u1ec7t s\u1ea1ch b\u1ecdn ch\xfang."
+  - speaker: {fileID: 11400000, guid: 753499cfd0274996b830a0328388dfd9, type: 2}
+    text: "C\u1ea3m \u01a1n c\u1eadu. T\xf4i \u0111\u1eb7t h\u1ebft ni\u1ec1m tin v\xe0o c\u1eadu \u0111\u1ea5y."

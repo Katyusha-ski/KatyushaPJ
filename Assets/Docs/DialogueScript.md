@@ -67,16 +67,31 @@
 
 *(Họ tìm thấy một hang động nhỏ — nơi dân làng còn sống sót đang trú ẩn.)*
 
-- [Hachi]: Tôi là chiến binh hoàng gia, tôi tới đây để giải cứu mọi người. Ở đây có ai còn vũ khí phòng thân không? Tôi sẽ giúp diệt lũ quỷ ngoài kia.
-- [Dân Làng]: (mừng rỡ) Chiến binh hoàng gia thật sao?! Đây, chúng tôi chỉ còn con dao nhỏ này thôi, mong là giúp được gì đó.
+- [Hachi]: Nè Kati, dừng chân 1 chút đi, ngôi nhà này thật kì lạ.
+- [Kati]: (ngó quanh) ...Kì lạ là sao? Cậu thấy điểm gì bất thường à?
+- [Hachi]: tôi không rõ tuy nó rất yếu ớt nhưng mà hình như vẫn còn người sống ở đây.
+- [Narrator](Teleaction xuống tọa độ 100, 100): cả 2 cùng tiến vào bên trong. Hachi tìm thấy được một hầm trú ẩn, cả hai bước vào và thấy một nhóm dân làng đang run rẩy trong bóng tối. Họ nhìn thấy Hachi và Kati, ánh mắt vừa sợ hãi vừa hy vọng.
+- [Dân làng có vẻ sợ hãi]: Là quỷ sao?! Huhu mẹ ơi, con sắp chết rồi!
+- [Dân làng có vẻ điềm tĩnh]: Không phải đâu, cậu ấy không phải quỷ, cậu ấy cùng giống loài với chúng ta đồ ngốc ạ. Bình tĩnh lại đi.
+- [Hachi]: Tôi là Hachi, chiến binh hoàng gia, tuy có nhiều chuyện xảy ra khiến tôi chỉ còn lại linh hồn thôi nhưng tôi vẫn còn sức mạnh để giúp các cậu. Trước hết tôi cần biết, các cậu còn vũ khí gì không?
+- [Dân làng có vẻ bình tĩnh]: Ngôi làng này chỉ là một làng nhỏ, nguồn sống chính của chúng tôi dựa vào nông nghiệp.
+- [Dân làng có vẻ bình tĩnh]: Tôi là tên là Snake, người duy nhất ở đây biết một chút về chiến đấu và ma thuật. Phần lớn vũ khí của chúng tôi đều rất thô sơ, tôi chỉ có một con dao nhỏ thôi.
+- [Snake]: Tuy không tốt như những thứ cậu từng sử dụng, nhưng đó là vũ khí diệt quỷ tốt nhất mà chúng tôi có ở đây.
+- [Hachi]: Cảm ơn anh. Có vẻ anh là người dựng lên kết giới để hạn chế ma lực của dân làng này để ẩn nấp phải không? Anh yên tâm, tôi sẽ diệt sạch bọn chúng.
+- [Snake]: Cảm ơn cậu. Tôi đặt hết niềm tin vào cậu đấy.
 
-*(Hachi nuốt con dao vào người.)*
+*(Hachi nuốt con dao vào người.)* (cảnh này sẽ làm 1 action để hiện cái img này lên, nhưng tôi chưa có vẽ)
 
 - [Kati]: (giật mình) ...Cậu vừa làm cái gì vậy?!
 - [Hachi]: Hehe, tuy không còn cơ thể như trước nhưng bù lại làm được trò này nè =))
-- [Kati]: (mệt mỏi) ...Thôi tôi không hỏi nữa.
-
-*(Với sức mạnh của Hachi, cả hai càn quét sạch lũ quỷ quanh khu vực. Đêm đó, dân làng ăn mừng.)*
+- [Kati]: (mệt mỏi) ...Thôi tôi không hỏi nữa. Dù gì nãy giờ thì cũng điên quá rồi.
+*(tele ra ngoài ngôi nhà lúc đầu, Text:"Cả hai cùng đi ra ngoài, chuẩn bị chiến đấu với lũ quỷ")*
+*End cutscene.
+*(Với sức mạnh của Hachi, cả hai càn quét sạch lũ quỷ quanh khu vực)*
+- [Hachi]: Xong rồi, tôi nghĩ đấy là con cuối cùng rồi đấy. 
+- [Kati]: Hộc, hộc... (thở dốc) ...Cũng may là còn sống. Việc di chuyển liên tục mệt quá đi. Tôi kiệt sức rồi.
+- [Hachi]: Cũng phải ha, từ đầu tới giờ cậu chưa được nghỉ ngơi. Chúng ta về lại hầm trú ẩn để thông báo cho họ rồi nghỉ ngơi đi.
+*(Tele về lại hầm trú ẩn, Text:"Cả hai cùng quay về hầm, đêm đó mọi người ăn mừng với nhau bỗng nhiên có một người lạ xuất hiện"  .)*
 
 **Scene 1.4 — Gặp Usagi**
 
@@ -86,9 +101,18 @@
 - [Usagi]: Tôi chỉ đơn giản là đi bán hàng thôi. Nếu người trong đây "hẹo" hết thì tôi mất khách, mà vật phẩm rơi ra từ lũ quỷ cũng có giá lắm đó.
 - [Kati]: (nhìn Usagi với ánh mắt kỳ lạ) ...Tên này lạc quan kiểu gì vậy trời.
 - [Usagi]: Tôi có thể cung cấp vũ khí, trang bị cho hai người — nhưng nhớ phải có thứ trao đổi nhé, tôi cũng cần tiền để sống mà.
-- [Hachi]: Được thôi, tôi hiểu nỗi khổ của cậu mà.
+- [Hachi]: Hahaha. Được thôi, tôi hiểu nỗi khổ của cậu mà.
 - [Usagi]: Vậy bây giờ cứ đi tới làng Rohok trước đi, nơi đó chưa bị lũ quỷ xâm thực nặng như đây đâu. Nếu mục tiêu của hai người là thủ đô thì đó là đường tốt nhất rồi. Tôi sẽ gặp lại hai người sau — hy vọng lúc đó vẫn còn sống để mua đồ từ tôi ha.
+- [Usagi]: Nhưng mà quên nữa, 2 người có muốn mua bán gì không ấy nhỉ?
+* End cutscene.
 
+- Cả 2 đi tới chỗ của Snake để chào tạm biệt anh ấy (Đây không phải action mà là đi tìm Triiger để mở cutscene của snake)
+- [Snake]: Cậu quen Usagi à Hachi? Cậu ấy lần trước đã cung cấp nhu yếu phẩm cho chúng tôi, nếu không có cậu ấy chắc chúng tôi đã chết hết rồi.
+- [Hachi]: Đúng vậy, cậu ấy nổi tiếng mà. Nhìn vậy thôi chứ cậu ta là một thiên tài trong các ma thuật ẩn thân đấy. Nên tới chắc đó giờ cậu ấy vẫn luôn giúp đỡ những người dân như mọi người ở đây.
+- [Kati]: Tên quái gở này coi vậy mà cũng tốt đấy chứ.
+- [Snake]: Nè, nghe nói hồi nãy các cậu định tới Rohok. Tôi tặng con dao cho các cậu đấy. Coi như quà tạm biệt, chúc các cậu may mắn.
+- [Hachi]: Cảm ơn anh, tôi sẽ giải thoát quốc gia này.
+*End cutscene.
 ---
 
 ## Chapter 2 — Rohok

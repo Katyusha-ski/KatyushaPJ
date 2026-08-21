@@ -11,6 +11,8 @@ public class SequenceCutsceneTrigger : MonoBehaviour
     private void Awake()
     {
         sequencePlayer = GetComponent<SequencePlayer>();
+        if (sequencePlayer == null)
+            Debug.LogWarning("[SequenceCutsceneTrigger] Missing SequencePlayer on this GameObject!");
     }
 
     private void OnTriggerEnter2D(Collider2D other)

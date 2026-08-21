@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c45bb7f5d2c75bc42afde98aabf02457, type: 3}
+  m_Name: ClearDemonsCutscene
+  m_EditorClassIdentifier: Assembly-CSharp::CutsceneData
+  actions:
+  - rid: 690000000000000257
+  - rid: 690000000000000258
+  references:
+    version: 2
+    RefIds:
+    - rid: 690000000000000257
+      type: {class: DialogueAction, ns: , asm: Assembly-CSharp}
+      data:
+        waitForClick: 0
+        dialogue: {fileID: 11400000, guid: 1bfc9719ee2d474f9f74e87617592533, type: 2}
+    - rid: 690000000000000258
+      type: {class: TeleportAction, ns: , asm: Assembly-CSharp}
+      data:
+        waitForClick: 0
+        destination: {x: 100, y: 100}
+        loadingMessage: "C\u1ea3 hai c\xf9ng quay v\u1ec1 h\u1ea7m, \u0111\xeam \u0111\xf3 m\u1ecdi ng\u01b0\u1eddi \u0103n m\u1eebng v\u1edbi nhau b\u1ed7ng nhi\xean c\xf3 m\u1ed9t ng\u01b0\u1eddi l\u1ea1 xu\u1ea5t hi\u1ec7n"
+        workInBlack: []
