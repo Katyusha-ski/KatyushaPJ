@@ -21,7 +21,7 @@ MonoBehaviour:
   - rid: 5747512740848336982
   - rid: 5747512740848336979
   - rid: 5747512740848336980
-  - rid: 5747512787751141455
+  - rid: 5747512806416842753
   references:
     version: 2
     RefIds:
@@ -66,7 +66,8 @@ MonoBehaviour:
           c\u1EA3 2 v\xE0o c\u1ED5ng kh\xF4ng gian. Tuy cu\u1ED9c h\xE0nh tr\xECnh
           kh\xF4ng d\u1EC5 ch\u1ECBu m\u1EA5y nh\u01B0ng cu\u1ED1i c\xF9ng h\u1ECD
           c\u0169ng \u0111\xE3 \u0111\u1EBFn n\u01A1i :\u0110"
-        workInBlack: []
+        workInBlack:
+        - rid: 5747512806416842752
     - rid: 5747512740848336981
       type: {class: ShowHachiRevealAction, ns: , asm: Assembly-CSharp}
       data:
@@ -75,7 +76,7 @@ MonoBehaviour:
       type: {class: UnlockHachiAction, ns: , asm: Assembly-CSharp}
       data:
         waitForClick: 0
-    - rid: 5747512787751141455
+    - rid: 5747512806416842752
       type: {class: BackgroundAction, ns: , asm: Assembly-CSharp}
       data:
         waitForClick: 0
@@ -86,3 +87,8 @@ MonoBehaviour:
         sceneEndX: 0
         startOffsetX: 6.07
         endOffsetX: -6.07
+    - rid: 5747512806416842753
+      type: {class: DialogueAction, ns: , asm: Assembly-CSharp}
+      data:
+        waitForClick: 0
+        dialogue: {fileID: 11400000, guid: bee8f03e0d3596c419dc3adbe6fad640, type: 2}

@@ -32,7 +32,12 @@ MonoBehaviour:
       data:
         waitForClick: 0
         destination: {x: 100, y: 100}
-        loadingMessage: "C\u1ea3 hai c\xf9ng ti\u1ebfn v\xe0o b\xean trong. Hachi t\xecm th\u1ea5y \u0111\u01b0\u1ee3c m\u1ed9t h\u1ea7m tr\xfa \u1ea9n, c\u1ea3 hai b\u01b0\u1edbc v\xe0o v\xe0 th\u1ea5y m\u1ed9t nh\xf3m d\xe2n l\xe0ng \u0111ang run r\u1ea9y trong b\xf3ng t\u1ed1i. H\u1ecd nh\xecn th\u1ea5y Hachi v\xe0 Kati, \xe1nh m\u1eaft v\u1eeba s\u1ee3 h\xe3i v\u1eeba hy v\u1ecdng."
+        loadingMessage: "C\u1EA3 hai c\xF9ng ti\u1EBFn v\xE0o b\xEAn trong. Hachi
+          t\xECm th\u1EA5y \u0111\u01B0\u1EE3c m\u1ED9t h\u1EA7m tr\xFA \u1EA9n,
+          c\u1EA3 hai b\u01B0\u1EDBc v\xE0o v\xE0 th\u1EA5y m\u1ED9t nh\xF3m d\xE2n
+          l\xE0ng \u0111ang run r\u1EA9y trong b\xF3ng t\u1ED1i. H\u1ECD nh\xECn
+          th\u1EA5y Hachi v\xE0 Kati, \xE1nh m\u1EAFt v\u1EEBa s\u1EE3 h\xE3i v\u1EEBa
+          hy v\u1ECDng."
         workInBlack: []
     - rid: 690000000000000003
       type: {class: DialogueAction, ns: , asm: Assembly-CSharp}
@@ -43,7 +48,7 @@ MonoBehaviour:
       type: {class: NarrationAction, ns: , asm: Assembly-CSharp}
       data:
         waitForClick: 1
-        text: "Hachi nu\u1ed1t con dao v\xe0o ng\u01b0\u1eddi."
+        text: "Hachi nu\u1ED1t con dao v\xE0o ng\u01B0\u1EDDi."
         darkAlpha: 1
         fadeDuration: 0.5
         autoHoldSeconds: 2
@@ -56,6 +61,7 @@ MonoBehaviour:
       type: {class: TeleportAction, ns: , asm: Assembly-CSharp}
       data:
         waitForClick: 0
-        destination: {x: 100, y: 0}
-        loadingMessage: "C\u1ea3 hai c\xf9ng \u0111i ra ngo\xe0i, chu\u1ea9n b\u1ecb chi\u1ebfn \u0111\u1ea5u v\u1edbi l\u0169 qu\u1ef7"
+        destination: {x: 168.75, y: 0}
+        loadingMessage: "C\u1EA3 hai c\xF9ng \u0111i ra ngo\xE0i, chu\u1EA9n b\u1ECB
+          chi\u1EBFn \u0111\u1EA5u v\u1EDBi l\u0169 qu\u1EF7"
         workInBlack: []
