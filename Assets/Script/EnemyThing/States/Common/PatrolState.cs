@@ -1,15 +1,10 @@
-using UnityEngine;
+﻿using UnityEngine;
 
-public class IdleState : IEnemyState
+public class PatrolState : IEnemyState
 {
-    private const float IdleDuration = 1.5f;
-    private float elapsedTime;
-
     public void OnEnter(IEnemyMovement movement, IEnemyCombat combat, IEnemyStateContext ctx)
     {
-        elapsedTime = 0f;
-        combat.PlayAnimBool("Run", false);
-        movement.Stop();
+        combat.PlayAnimBool("Run", true);
     }
 
     public void OnUpdate(IEnemyMovement movement, IEnemyCombat combat, IEnemyStateContext ctx)
@@ -26,12 +21,11 @@ public class IdleState : IEnemyState
             return;
         }
 
-        elapsedTime += Time.deltaTime;
-        if (elapsedTime >= IdleDuration)
-            ctx.SwitchTo("Patrol");
+        movement.Patrol();
     }
 
     public void OnExit(IEnemyMovement movement, IEnemyCombat combat, IEnemyStateContext ctx)
     {
+        combat.PlayAnimBool("Run", false);
     }
 }

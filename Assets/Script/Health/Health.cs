@@ -140,7 +140,7 @@ public class Health : MonoBehaviour
         else if(gameObject.CompareTag("Enemy"))
         {
             EnemyController enemyController = GetComponent<EnemyController>();
-            if (enemyController != null)
+            if (enemyController != null && !(enemyController.GetCurrentState() is HurtState))
             {
                 IEnemyState hurtState = enemyController.GetHurtState(enemyController.GetCurrentState());
                 if (hurtState != enemyController.GetCurrentState())

@@ -11,4 +11,10 @@ public interface IEnemyMovement
     int GetDirection();
     float GetDistanceToPlayer();
     float GetVisionRange();
+    void Stop();
+    void MoveTowardsX(float targetX);
+    bool IsGrounded();
+    void SnapToY(float targetY);
+    void SnapToPosition(Vector2 targetPos);
+    bool IsAtPlatformEdge();
 }

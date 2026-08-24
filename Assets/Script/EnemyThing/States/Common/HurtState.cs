@@ -31,17 +31,10 @@ public class HurtState : IEnemyState
     public void OnUpdate(IEnemyMovement movement, IEnemyCombat combat, IEnemyStateContext ctx)
     {
         elapsedTime += Time.deltaTime;
-        if (elapsedTime >= hurtDuration)
-        {
-            if (previousState != null)
-            {
-                ctx.SwitchTo("Pursuit");
-            }
-            else
-            {
-                ctx.SwitchTo(returnState);
-            }
-        }
+        if (elapsedTime < hurtDuration) return;
+
+        EnemyController enemy = (EnemyController)ctx;
+        ctx.SwitchTo(enemy.ShouldReengage() ? "Pursuit" : "ReturnToPost");
     }
 
     public void OnExit(IEnemyMovement movement, IEnemyCombat combat, IEnemyStateContext ctx)
