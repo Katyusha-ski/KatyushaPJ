@@ -12,6 +12,7 @@ public class SaveData
     public List<bool> skillUnlocked;
     public List<string> questItems;
     public List<SerializableShopEntry> shopEntries;
+    public List<ChestInventorySave> chestInventories;
 
     // Scene information
     public int currentSceneIndex;
@@ -37,6 +38,7 @@ public class SaveData
             skillUnlocked = new List<bool>(new bool[20]),
             questItems = new List<string>(),
             shopEntries = new List<SerializableShopEntry>(),
+            chestInventories = new List<ChestInventorySave>(),
             // TODO: set sceneIndex & sceneName theo cơ chế riêng sau
             currentSceneIndex = -1,
             currentSceneName = null,

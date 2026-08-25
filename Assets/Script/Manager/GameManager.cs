@@ -11,7 +11,10 @@ public enum GameState
 
 public class GameManager : Singleton<GameManager>
 {
+    public const string UsagiShopChestId = "usagi_shop_storage";
+
     public GameState CurrentGameState { get; private set; }
+    public ChestInventory UsagiShopChest { get; private set; }
 
     [Header("Game state")]
     private float playTime = 0f;
@@ -19,6 +22,7 @@ public class GameManager : Singleton<GameManager>
 
     protected override void OnSingletonAwake()
     {
+        UsagiShopChest = new ChestInventory(UsagiShopChestId);
         SceneManager.sceneLoaded += OnAnySceneLoaded;
     }
 
@@ -101,6 +105,14 @@ public class GameManager : Singleton<GameManager>
         if (shop != null)
             shop.GetSerializableData(shopData);
 
+        List<ChestInventorySave> chestData = new List<ChestInventorySave>
+        {
+            new ChestInventorySave(
+                UsagiShopChest.chestId,
+                UsagiShopChest.GetSerializableItems()
+            )
+        };
+
         int chapterNumber = ChapterManager.Instance != null ? ChapterManager.Instance.CurrentChapterNumber : 0;
 
         var skillMatrix2D = Inventory.Instance.GetSerializableSkillUnlocked();
@@ -123,6 +135,8 @@ public class GameManager : Singleton<GameManager>
             playerPositionZ = playerPosition.z,
             // Shop data
             shopEntries = shopData,
+            // Chest data
+            chestInventories = chestData,
             // Metadata
             saveDataTime = System.DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"),
             playTime = this.playTime
@@ -189,6 +203,8 @@ public class GameManager : Singleton<GameManager>
             Inventory.Instance.ClearInventory();
         }
 
+        UsagiShopChest?.Clear();
+
         tempSaveData = SaveData.Default();
         SceneManager.sceneLoaded += OnNewGameSceneLoaded;
 
@@ -240,6 +256,16 @@ public class GameManager : Singleton<GameManager>
         ShopManager shop = FindFirstObjectByType<ShopManager>();
         if (shop != null)
             shop.LoadSerializableData(tempSaveData.shopEntries);
+
+        ChestInventorySave savedChest = null;
+        if (tempSaveData.chestInventories != null)
+        {
+            savedChest = tempSaveData.chestInventories.Find(
+                chest => chest != null && chest.chestId == UsagiShopChestId
+            );
+        }
+
+        UsagiShopChest.LoadSerializableItems(savedChest?.items);
 
         // Restore player state with delay (ensure player is spawned)
         Invoke(nameof(RestorePlayerState), 0.2f);
