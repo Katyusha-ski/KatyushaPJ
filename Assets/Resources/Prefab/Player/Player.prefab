@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 1859762493201933506}
   - component: {fileID: 2747868456146071157}
   - component: {fileID: 3609685890611650500}
+  - component: {fileID: 8986659158951560001}
   m_Layer: 5
   m_Name: Health Text
   m_TagString: Untagged
@@ -79,6 +80,18 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: 
+--- !u!114 &8986659158951560001
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1512339805043286325}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 951e60f5e06101a43b92396be9d2b512, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2068556711473788101
 GameObject:
   m_ObjectHideFlags: 0
@@ -103,6 +116,7 @@ GameObject:
   - component: {fileID: 4843439474504990744}
   - component: {fileID: 5642885825442716595}
   - component: {fileID: 7831731487944925077}
+  - component: {fileID: 3591476521204253994}
   m_Layer: 3
   m_Name: Player
   m_TagString: Player
@@ -469,6 +483,18 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1.1887989, y: 0.99732274}
   m_EdgeRadius: 0.01
+--- !u!114 &3591476521204253994
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2068556711473788101}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 951e60f5e06101a43b92396be9d2b512, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ConsumableManager
 --- !u!1 &2959838015193098157
 GameObject:
   m_ObjectHideFlags: 0

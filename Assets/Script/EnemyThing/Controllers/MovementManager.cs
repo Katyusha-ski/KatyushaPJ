@@ -116,6 +116,11 @@ public class MovementManager
         rb.linearVelocityX = 0f;
     }
 
+    public bool IsNearlyStill(float threshold = 0.05f)
+    {
+        return rb.linearVelocity.magnitude <= threshold;
+    }
+
     private void Flip()
     {
         direction *= -1;

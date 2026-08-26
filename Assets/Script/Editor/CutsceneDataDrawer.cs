@@ -46,17 +46,47 @@ public class CutsceneDataDrawer : Editor
             element.isExpanded = EditorGUILayout.Foldout(element.isExpanded,
                 isNull ? "None (SequenceAction)" : element.managedReferenceValue.GetType().Name, true);
             GUILayout.FlexibleSpace();
+
             int captured = i;
+            bool shouldRefresh = false;
+            int moveTarget = -1;
+
+            using (new EditorGUI.DisabledScope(captured == 0))
+            {
+                if (GUILayout.Button("↑", GUILayout.Width(24)))
+                {
+                    moveTarget = captured - 1;
+                    shouldRefresh = true;
+                }
+            }
+
+            using (new EditorGUI.DisabledScope(captured >= listProp.arraySize - 1))
+            {
+                if (GUILayout.Button("↓", GUILayout.Width(24)))
+                {
+                    moveTarget = captured + 1;
+                    shouldRefresh = true;
+                }
+            }
+
             if (GUILayout.Button("Type", GUILayout.Width(50)))
                 BuildTypeMenu(listProp, captured).ShowAsContext();
             if (GUILayout.Button("-", GUILayout.Width(24)))
             {
                 listProp.DeleteArrayElementAtIndex(captured);
-                EditorGUILayout.EndHorizontal();
-                EditorGUILayout.EndVertical();
-                break;
+                shouldRefresh = true;
             }
             EditorGUILayout.EndHorizontal();
+
+            if (shouldRefresh)
+            {
+                EditorGUILayout.EndVertical();
+                if (moveTarget >= 0)
+                    SwapArrayElements(listProp, captured, moveTarget);
+                break;
+            }
+
+
 
             if (element.isExpanded && !isNull)
             {
@@ -100,6 +130,17 @@ public class CutsceneDataDrawer : Editor
             EditorGUILayout.PropertyField(iterator, true);
         }
         EditorGUI.indentLevel--;
+    }
+
+    private void SwapArrayElements(SerializedProperty listProp, int indexA, int indexB)
+    {
+        SerializedProperty elementA = listProp.GetArrayElementAtIndex(indexA);
+        SerializedProperty elementB = listProp.GetArrayElementAtIndex(indexB);
+        object valueA = elementA.managedReferenceValue;
+        elementA.managedReferenceValue = elementB.managedReferenceValue;
+        elementB.managedReferenceValue = valueA;
+        serializedObject.ApplyModifiedProperties();
+        EditorUtility.SetDirty(target);
     }
 
     private GenericMenu BuildTypeMenu(SerializedProperty listProp, int targetIndex)

@@ -16,8 +16,10 @@ MonoBehaviour:
   - rid: 690000000000000001
   - rid: 690000000000000002
   - rid: 690000000000000003
+  - rid: 5747512877583171702
   - rid: 690000000000000004
   - rid: 690000000000000005
+  - rid: 5747512877583171666
   - rid: 690000000000000006
   references:
     version: 2
@@ -31,7 +33,7 @@ MonoBehaviour:
       type: {class: TeleportAction, ns: , asm: Assembly-CSharp}
       data:
         waitForClick: 0
-        destination: {x: 100, y: 100}
+        destination: {x: 100, y: -100}
         loadingMessage: "C\u1EA3 hai c\xF9ng ti\u1EBFn v\xE0o b\xEAn trong. Hachi
           t\xECm th\u1EA5y \u0111\u01B0\u1EE3c m\u1ED9t h\u1EA7m tr\xFA \u1EA9n,
           c\u1EA3 hai b\u01B0\u1EDBc v\xE0o v\xE0 th\u1EA5y m\u1ED9t nh\xF3m d\xE2n
@@ -65,3 +67,17 @@ MonoBehaviour:
         loadingMessage: "C\u1EA3 hai c\xF9ng \u0111i ra ngo\xE0i, chu\u1EA9n b\u1ECB
           chi\u1EBFn \u0111\u1EA5u v\u1EDBi l\u0169 qu\u1EF7"
         workInBlack: []
+    - rid: 5747512877583171666
+      type: {class: AddItemAction, ns: , asm: Assembly-CSharp}
+      data:
+        waitForClick: 0
+        item: {fileID: 11400000, guid: 34638127c88476541848086865ffb8f6, type: 2}
+        amount: 1
+    - rid: 5747512877583171702
+      type: {class: ShowImageAction, ns: , asm: Assembly-CSharp}
+      data:
+        waitForClick: 0
+        image: {fileID: 9154156278621988706, guid: 16fddb00c236f5f4b9946fe7b0f0d7c3, type: 3}
+        darkAlpha: 0.9
+        fadeDuration: 0.5
+        autoHoldSeconds: 2

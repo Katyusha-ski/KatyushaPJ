@@ -69,9 +69,12 @@ MonoBehaviour:
         workInBlack:
         - rid: 5747512806416842752
     - rid: 5747512740848336981
-      type: {class: ShowHachiRevealAction, ns: , asm: Assembly-CSharp}
+      type: {class: ActivateObjectsAction, ns: , asm: Assembly-CSharp}
       data:
         waitForClick: 1
+        targetPaths:
+        - HachiChest/HachiReveal
+        setActive: 1
     - rid: 5747512740848336982
       type: {class: UnlockHachiAction, ns: , asm: Assembly-CSharp}
       data:

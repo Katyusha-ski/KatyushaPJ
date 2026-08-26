@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CutsceneData
   actions:
   - rid: 690000000000000769
+  - rid: 690000000000000770
   references:
     version: 2
     RefIds:
@@ -22,3 +23,10 @@ MonoBehaviour:
       data:
         waitForClick: 0
         dialogue: {fileID: 11400000, guid: 24b93b70f04a4d809497f2f44a17d30b, type: 2}
+    - rid: 690000000000000770
+      type: {class: SceneTransitionAction, ns: , asm: Assembly-CSharp}
+      data:
+        waitForClick: 0
+        sceneName: RohokScene
+        setChapterNumber: 2
+        fadeDuration: 0.5

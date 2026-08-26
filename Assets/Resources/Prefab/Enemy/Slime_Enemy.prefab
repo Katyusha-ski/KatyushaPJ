@@ -159,7 +159,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: -0.10423899, y: -0.08746421}
+  m_Offset: {x: -0.10423899, y: -0.073011756}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -169,8 +169,8 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 1.122508, y: 0.9173701}
-  m_EdgeRadius: 0
+  m_Size: {x: 1.102508, y: 0.8684652}
+  m_EdgeRadius: 0.01
 --- !u!95 &1069538978520040518
 Animator:
   serializedVersion: 7
@@ -205,9 +205,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a663b0be8130c4d4994e7b144eb991cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 20
+  maxHealth: 10
   currentHealth: 0
-  healthBar: {fileID: 4997388236761846782}
+  healthBar: {fileID: 9055896183433342558}
+  virtualShield: 0
   damageSFX: {fileID: 8300000, guid: 409c4d7167e2f5b4eba87d8820af0a93, type: 3}
   dieSFX: {fileID: 8300000, guid: 35b64328b4772624f93f8b1653d7c305, type: 3}
   lootManager: {fileID: 0}
@@ -226,8 +227,12 @@ MonoBehaviour:
   attackRange: 1.5
   visionRange: 5
   attackCooldown: 2
-  lastTimeAttack: -Infinity
-  player: {fileID: 0}
+  maxChaseDistance: 15
+  loseTargetDelay: 0.5
+  recoveryTimeout: 8
+  homeTolerance: 0.3
+  patrolHalfWidth: 2
+  minReEngageDistance: 2
 --- !u!114 &-4958668805065828188
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -248,8 +253,24 @@ MonoBehaviour:
   baseCritDamage: 0.75
   baseArmorPierce: 0
   baseCDR: 0
-  baseMaxHP: 20
+  baseMaxHP: 10
   baseMovementSpeed: 2.5
+  baseHPRegen: 0
+  baseDmgR: 0
+  baseSkillAmp: 0
+  totalAtk: 0
+  totalArmor: 0
+  totalMaxHP: 0
+  totalMovementSpeed: 0
+  totalCritRate: 0
+  totalCritDamage: 0
+  totalArmorPierce: 0
+  totalLifesteal: 0
+  totalCCRes: 0
+  totalCDR: 0
+  totalHPRegen: 0
+  totalDmgR: 0
+  totalSkillAmp: 0
 --- !u!1001 &4116308723786077187
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -368,14 +389,14 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 788942669992416328, guid: 9f176e676efb02b48a3dc14de2bbe441, type: 3}
   m_PrefabInstance: {fileID: 4116308723786077187}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &4997388236761846782 stripped
+--- !u!114 &9055896183433342558 stripped
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8969581553428170749, guid: 9f176e676efb02b48a3dc14de2bbe441, type: 3}
+  m_CorrespondingSourceObject: {fileID: 4939623474122488413, guid: 9f176e676efb02b48a3dc14de2bbe441, type: 3}
   m_PrefabInstance: {fileID: 4116308723786077187}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fff217c3f49922949b8ae1d0c2be02f4, type: 3}
+  m_Script: {fileID: 11500000, guid: 08492eb84e59cce438023a5b3d01e54e, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyHealthBar

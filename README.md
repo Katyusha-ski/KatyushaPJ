@@ -1,354 +1,100 @@
 # KatyushaPJ
 
-> 2D side-scrolling Action RPG built with Unity URP.
-> Người chơi điều khiển nhân vật chính cùng companion "Hachiware" (stand/spirit) chiến đấu qua các chapter.
+> Một game 2D side-scrolling Action RPG làm bằng Unity URP. Người chơi điều khiển nhân vật chính và companion Hachiware chiến đấu, khám phá chapter, thu thập vật phẩm và nâng cấp kỹ năng.
 
----
+## Trạng thái hiện tại
 
-## Scenes
+- Unity `6000.3.11f1` với URP.
+- Gameplay chính gồm di chuyển, tấn công thường, skill, enemy state machine, health/stat modifier, inventory, equipment, shop, dialogue, cutscene sequencer và save/load.
+- `GameUIRoot` hiện có Inventory UI, Skill UI, Shop UI và các panel gameplay cơ bản.
+- Shop của Usagi dùng `UsagiShopTrigger`: player vào vùng `BoxCollider2D` thì hiện nút shop, ra khỏi vùng thì ẩn nút.
+- Health của enemy được đồng bộ với `CharacterStats.baseMaxHP` trong các prefab đã cấu hình.
 
-| Scene | Role |
+## Scene hiện có
+
+| Scene | Vai trò |
 |---|---|
-| `MainMenuScene` | Main menu |
-| `GrassScene` | Chapter 1 main level |
-| `StoneScene` | Chapter 2 main level |
-| `SnowScene` | Chapter 3 main level |
-| `ShaderTest` | Dev/testing |
+| `MainMenuScene` | Menu chính, Continue/New Game và các tùy chọn cơ bản |
+| `Test/GrassScene` | Scene gameplay/test nền cỏ |
+| `Test/SnowScene` | Scene gameplay/test nền tuyết |
+| `Test/StoneScene` | Scene gameplay/test nền đá |
+| `OutskirtsScene` | Scene chapter 1 hiện đang được khai báo trong `Chapter-1.asset` |
+| `Test/ShaderTest` | Scene kiểm thử shader |
 
-## Game Loop (per chapter)
+Các scene trên đều đang được bật trong `ProjectSettings/EditorBuildSettings.asset`. Lưu ý: `MainMenuUI` hiện load scene theo tên `GrassScene`, còn dữ liệu chapter 1 trỏ tới `OutskirtsScene`; đây là điểm cần thống nhất khi hoàn thiện flow chapter.
 
-```
-MainMenu → New Game → Village (hub)
-  → VillageExitTrigger → MainLevel (GrassScene/StoneScene/SnowScene)
-    → LevelEndTrigger → BossLevel (if boss exists) or next Village
-      → BossEndTrigger → next chapter's Village
-```
+## Cấu trúc code
 
----
+Các thư mục chính nằm trong `Assets/Script/`:
 
-## Architecture Overview
-
-All core managers are **persistent singletons** (`DontDestroyOnLoad`). Systems communicate via:
-1. **Singleton access** (`ClassName.Instance`)
-2. **C# events** (`System.Action`)
-3. **Direct method calls**
-4. **Interface-based decoupling** (enemy state machine)
-
-### Dependency Map
-
-```
-GameManager
- ├── PlayerManager ──┬── PlayerController ──┬── PlayerMovementController
- │                   │                      ├── PlayerSkillInput
- │                   │                      ├── PlayerAnimationController
- │                   │                      └── Stand (Hachiware companion)
- │                   ├── CharacterStats (13 stats, modifier system)
- │                   ├── StatusEffectController (12+ effect types)
- │                   └── Health (damage formula, shield, regen)
- ├── Inventory ──┬── ItemData SO (5 types: Consumable/Equipment/Material/Quest/Skill)
- │               ├── EquipmentManager (applies ItemStats → CharacterStats)
- │               ├── ConsumableManager (bridge: EffectData → StatusEffect)
- │               └── ShopManager (chapter-based unlock, stock tracking)
- ├── ChapterManager ──┬── ChapterDataSO (mainSceneName, bossSceneName)
- │                    └── Triggers (LevelEndTrigger, BossEndTrigger, VillageExitTrigger)
- ├── SaveManager (static, JSON via JsonUtility)
- ├── AudioManager (AudioMixer, music/SFX volume)
- ├── UIManager (delegates to GameSceneController)
- └── ObjectPool (loot items, projectiles)
-```
-
----
-
-## System Breakdown
-
-### 1. Manager Layer — `Assets/Script/Manager/`
-
-| Class | File | Responsibility |
-|---|---|---|
-| **GameManager** | `GameManager.cs` | GameState machine (MainMenu/Gameplay/Pause), save/load orchestration, play time |
-| **PlayerManager** | `PlayerManager.cs` | Player reference hub (controller, health, transform, rigidbody) |
-| **UIManager** | `UIManager.cs` | Thin facade for scene/UI actions |
-| **AudioManager** | `AudioManager.cs` | AudioMixer wrapper, PlaySFX() |
-
-### 2. Player System — `Assets/Script/PlayerThing/`
-
-| Class | File | Responsibility |
-|---|---|---|
-| **PlayerController** | `PlayerController.cs` | Top-level coordinator: movement input, skill input, health |
-| **PlayerMovementController** | `PlayerMovementController.cs` | Walk/run/jump physics, ground detection, direction flip |
-| **PlayerSkillInput** | `PlayerSkillInput.cs` | Input buffer system (E/Q/R/F), buffered activation when off cooldown |
-| **PlayerAnimationController** | `PlayerAnimationController.cs` | Animator parameter driver (cached hash IDs) |
-| **StandAnimationController** | `StandAnimationController.cs` | Hachi/Stand Animator driver (cached hash IDs) — routes the shared `Def` cast-stance trigger from skills |
-| **Stand** | `Stand.cs` | Hachiware companion; box-overlap punch attack with crit/lifesteal |
-| **PlayerNA** | `PlayerNA.cs` | Normal attack (KeypadEnter) → `Stand.Punch()` |
-| **InputConfig** | `InputConfig.cs` | ScriptableObject key binding definition |
-
-### 3. Stats System — `Assets/Script/PlayerThing/Stats/`
-
-| Class | File | Responsibility |
-|---|---|---|
-| **CharacterStats** | `CharacterStats.cs` | 13 stats with additive+multiplicative modifier lists. Events: `StatsChanged`, `MaxHPChanged`, `MovementSpeedChanged` |
-| **StatsModifier** | `StatsModifier.cs` | Immutable modifier: `Value`, `Type` (Additive/Multiplicative), `Source` |
-| **StatModifierConfig** | `StatsModifier.cs` | Serializable config used in ItemStats/EffectData |
-
-**Stats:** Armor, LifeSteal, CCRes (cap 60%), Atk, CritRate, CritDamage, ArmorPierce, CDR (cap 40%), MaxHP, MovementSpeed, HPRegen, DmgR, SkillAmp
-
-**Formula:** `stat = (base + sum(additives)) * product(1 + each multiplicative)`
-
-### 4. Status Effect System — `Assets/Script/PlayerThing/Status/`
-
-**Base:** `StatusEffect` (abstract) — lifecycle: `OnApply()` → `OnTick()` → `OnRemove()`
-
-**Controller:** `StatusEffectController` — manages active effects, checks `IronBody` before applying CC
-
-Concrete effects (all in same directory):
-
-| Effect | Type | Behavior |
-|---|---|---|
-| `StunEffect` | CC | Stop movement + clear skill buffer |
-| `RootEffect` | CC | Stop movement only |
-| `SilentEffect` | CC | Clear skill buffer only |
-| `DoTEffect` | Debuff | Damage over time with tick interval |
-| `StatModifierEffect` | Buff/Debuff | Apply `StatModifierConfig` list to `CharacterStats` |
-| `HealEffect` | Buff | Instant heal + tick-based HoT |
-| `UndyingEffect` | Buff | HP cannot drop to 0 |
-| `UntargetableEffect` | Buff | Immune to all damage |
-| `VirtualShieldEffect` | Buff | Absorb damage shield |
-| `IronBodyEffect` | Buff | CC immunity |
-| `CleanseEffect` | Buff | Remove all CC effects |
-
-**Entry point from items:** `ConsumableManager` reads `EffectData` → factory switch → creates `StatusEffect` → `StatusEffectController.ApplyEffect()`
-
-### 5. Skill System — `Assets/Script/Skill/`
-
-**SkillBase** (ScriptableObject): `skillName`, `icon`, `SkillType`, `cooldown`. CDR-modified cooldown tick. Abstract methods: `Initialize(CharacterStats)`, `Activate(GameObject user, int direction)`.
-
-**Hierarchy:**
-```
-SkillBase (SO, abstract)
- ├── DirectDmgSkillBase — damage without spawned prefab
- ├── SpawnDamageSkillBase — spawns prefab (projectiles/traps), has CalculateFinalDamage()
- └── (concrete skills)
-      ├── MeleeSkill — OverlapCircle attack, multi-hit, applies effects
-      ├── ProjectileSkill — spawns IProjectilePref with config
-      ├── DashSkill — coroutine: layer pass-through, Untargetable, damage+stun
-      ├── DefendSkill — coroutine: shield, reflect, root/slow
-      └── SpawnPrefabSkill — generic prefab spawner
-```
-
-**Concrete skills** are `[CreateAssetMenu]` ScriptableObjects in `ActionsSO/`.
-
-**Skill matrix:** `Inventory.skillMatrix[4, 5]` — 4 skill types × 5 levels. Items must be acquired in order (Lv1 → Lv2 → ...). `PlayerSkillManager.ReloadSkills()` loads from inventory.
-
-**Skill animation routing:** Melee/Defend/Range share the shared `Def` cast-stance trigger on Hachi. `PlayerSkillManager.ActivateSkill()` calls `StandAnimationController.TriggerCastStance()` (the single place that sets trigger `Def`, cached hash ID). Dash uses its own `Dash` trigger handled inside `DashSkill` via the Player Animator.
-
-**Enemy skills:** `StoneSpike` (ground hazard), `NercoHole` (persistent AoE), `DeathExplosion` (on NightBorn death), `GolemMagic` (projectile).
-
-### 6. Enemy System — `Assets/Script/EnemyThing/`
-
-**Architecture: State Machine + Interface Injection**
-
-**Core interfaces:** `IEnemyMovement`, `IEnemyCombat`, `IEnemyRanged`, `IEnemyStateContext`, `IEnemyState`, `IEnemyStateProvider`
-
-**Controllers** (pure classes, not MonoBehaviours):
-- `MovementManager` — patrol, pursue, retreat, obstacle collision
-- `AnimationController` — wraps Animator with named methods
-
-**Orchestrator:** `EnemyController` — state machine hub. `Update()` → `currentState.OnUpdate()`. References `PlayerManager.Instance.PlayerTransform`.
-
-**States:**
-
-| State | Transitions |
+| Khu vực | Nội dung |
 |---|---|
-| **IdleState** | Patrol → Pursuit if player in vision range |
-| **AlertState** | Alert anim → Pursuit or Idle |
-| **BasePursuitState** | Move to player → Attack if in range, Idle if out of vision |
-| **BaseAttackState** | Attack on cooldown → Pursuit if player moves away |
-| **RangedAttackState** | Extends BaseAttackState, adds Kitting transition |
-| **KittingState** | Retreat while attacking → Attack at preferred distance |
-| **HealState** | Heal when HP < 50% |
-| **HurtState** | 0.5s hurt anim → Pursuit |
-| **DieState** | Death anim → destroy |
+| `Manager/` | `GameManager`, `PlayerManager`, `UIManager`, `AudioManager` |
+| `PlayerThing/` | Player controller, movement, animation, normal attack, companion và stats |
+| `EnemyThing/` | Enemy controller, state machine, enemy types và boss |
+| `Health/` | Damage, HP, shield, regen và health bar |
+| `Skill/` | Skill ScriptableObject, projectile, melee, dash, defend và spawn skill |
+| `ItemSystem/` | Inventory, equipment, consumable, loot và shop |
+| `Dialogue/` | Dialogue data, character profile, manager, UI và trigger |
+| `Sequencer/` | Data-driven cutscene với `SequencePlayer` và các `SequenceAction` |
+| `SaveSystem/` | Save/load JSON, chapter progression và save point |
+| `UI/` | Main menu, pause, option, inventory, skill, stats, game over và victory UI |
 
-**Enemy types** (`Enemies/Melee/` and `Enemies/Ranged/`):
+## Các hệ thống chính
 
-| Class | Type | Special |
-|---|---|---|
-| `SlimeE` | Melee | Alternates attack/hit animations |
-| `SkullE` | Melee | Default |
-| `NightBorneE` | Melee | Explosion burst + HazardZone on death |
-| `GolemE` | Melee/Ranged hybrid | Has `SkillManager` (GolemMagic, StoneSpike) |
-| `NecromancerE` | Ranged | Implements `IEnemyRanged`, has kitting + heal states, 3 skills |
+### Player và combat
 
-**Bosses** (`Boss/`):
+- `PlayerController` điều phối movement, skill input, animation và health.
+- `Stand` đại diện cho Hachiware companion và xử lý normal attack.
+- `CharacterStats` hỗ trợ stat cơ bản cùng modifier additive/multiplicative.
+- `Health` nhận damage, xử lý armor, damage reduction, shield, regen và đồng bộ Max HP từ `CharacterStats`.
 
-| Class | Chapter | FSM | Special Mechanics |
-|-------|---------|-----|-------------------|
-| **BatBoss** | 4 | 5 states: `BatHoverState` (unique) + 4 generic states | Deflect system (Melee/Stand bounce), Pillar burst (25% MaxHP), Atk1/Ak2 **50/50 pure random** |
-| **VoidBoss** | 6 | 9 states: 3 custom (`VoidIdleState`, `VoidPursuitState`, `BloodMoonState`) + 6 generic states | Super Armor (no flinch), Facing Lock, BloodMoon Ultimate (5 waves × 5 telegraphs), **Ultimate ưu tiên ngắt Pursuit** |
-| **DuoGolem** (A/B) | TBD | 6 states: `GolemAttackState` (custom) + 2 custom (`ParalyzedState`, `RevivalChannelingState`) + 3 generic | Resurrection Loop (8s channel), 4-phase Enrage (speed scaling), ArenaHazardController (4 environment skills), SnapTrap physical blocking |
+### Enemy và boss
 
-### 7. Item System — `Assets/Script/ItemSystem/`
+- Enemy dùng state machine với các state idle, alert, pursuit, attack, hurt, heal, kiting và die.
+- Enemy hiện có các prefab như Slime, Skull, NightBorne, Golem, Necromancer, Abomination và VoidBoss.
+- Boss code hiện có `BatBoss`, `VoidBoss` và `DuoGolem`.
+- `DuoGolem` vẫn còn nhiều thông số thiết kế và hazard prefab cần hoàn thiện.
 
-**Core data** (all ScriptableObjects):
-- `ItemData` — central item definition (`itemId`, `itemName`, `ItemType`, `EquipmentType`, `ItemStats`, `List<EffectData>`, `SkillData`)
-- `ItemStats` — `List<StatModifierConfig>`
-- `EffectData` — effect config (type, duration, value, tick, statModifiers)
-- `SkillData` — `SkillBase skill` + `int Level`
-- `ItemStack` — runtime stack: `ItemData` + `amount`
+### Item, inventory và shop
 
-**Inventory** (`Inventory/Inventory.cs`): Persistent singleton. Storage: `itemSlots` (List, 30 slots), `equipment[4]`, `skillMatrix[4,5]`, `questItems` (Quest items, no slot limit, not stackable). Events: `OnInventoryChanged`, `OnEquipmentChanged`, `OnSkillMatrixChanged`, `OnQuestItemsChanged`.
+- Item data được lưu bằng ScriptableObject.
+- Inventory gồm item slots, equipment, skill matrix và quest items.
+- Equipment áp dụng `ItemStats` vào `CharacterStats`.
+- Consumable tạo và áp dụng status effect thông qua `ConsumableManager`.
+- Shop dùng `ShopManager`, `ShopEntrySO`, category filter, item list và item detail UI.
 
-**Key data flows:**
+### Dialogue, sequencer và progression
 
-```
-Consumable use:
-  UI → Inventory.UseItem() → ConsumableManager.Use()
-    → creates StatusEffect from EffectData → StatusEffectController.ApplyEffect()
-    → Inventory.RemoveItem()
+- Dialogue dùng `DialogueData`, `CharacterProfile`, `DialogueManager` và `DialogueUI`.
+- Sequencer hỗ trợ dialogue, narration, animation, background, image, teleport, add item, activate object và scene transition.
+- Chapter data lưu scene chính, boss scene và tiến trình chapter.
+- Save system lưu dữ liệu game bằng JSON trong `Application.persistentDataPath`.
 
-Equipment equip:
-  UI → Inventory.SwapEquipItem() → fires OnEquipmentChanged
-    → EquipmentManager → CharacterStats.AddStatModifier() / RemoveStatModifier()
+## Cách mở project
 
-Skill item use:
-  UI → Inventory.UseItem() → PlayerSkillManager.UseItem()
-    → checks level gating → updates skillMatrix → fires OnSkillMatrixChanged
+1. Mở project bằng Unity `6000.3.11f1`.
+2. Mở `MainMenuScene` để chạy flow menu.
+3. Dùng các scene trong `Assets/Scenes/Test/` khi cần kiểm tra gameplay riêng lẻ.
+4. Nếu chỉnh shop Usagi, kiểm tra đồng thời:
+   - `Assets/Resources/Prefab/UI/GameUIRoot.prefab`
+   - `Assets/Resources/Prefab/Props/UsagiShopTrigger.prefab`
+   - instance `UsagiShopTrigger` trong `OutskirtsScene`
 
-Quest item pickup:
-  Loot/ItemFloat → Inventory.AddItem() → routes `ItemType.Quest` to questItems
-    → fires OnQuestItemsChanged (no slot/stack limit)
-```
+## Known issues / phần còn lại
 
-**Shop** (`Shop/`):
-- `ShopManager` — runtime stock tracking, chapter-based unlock (`UnlockByChapter()`), purchase validation
-- `ShopEntrySO` — ScriptableObject: item, cost(s), stock (-1 = infinite), unlockChapter
-- `ShopUI` — category filter + item list + detail panel
+- Flow scene giữa `GrassScene` và `OutskirtsScene` cần được thống nhất.
+- `DuoGolem` còn các hazard skill chờ prefab và thông số gameplay chính thức.
+- Save system vẫn tra item bằng `itemName`; chưa migrate hoàn toàn sang `itemId`.
+- Một số icon item/skill vẫn là placeholder hoặc còn thiếu.
+- Các thay đổi gameplay và layout UI nên được kiểm tra lại trong Unity Play Mode sau khi merge prefab/scene.
 
-**Loot** (`Itemfloat/`):
-- `LootTable` (ScriptableObject) — list of `LootEntry` (item, dropChance, min/max amount). `GetRandomLoot()` rolls each entry independently.
-- `LootManager` — on enemies; spawns `ItemFloat` via `ObjectPool` on death
-- `ItemFloat` — world pickup; on trigger → `Inventory.AddItem()` → return to pool
+## Tài liệu liên quan
 
-### 8. Health System — `Assets/Script/Health/`
+- [REFACTORING_PLAN.md](REFACTORING_PLAN.md) — kế hoạch refactor enemy system.
+- [Assets/Docs/SequencerContext.md](Assets/Docs/SequencerContext.md) — hướng dẫn sequencer.
+- [Assets/Docs/SKILL_SYSTEM_PLAN.md](Assets/Docs/SKILL_SYSTEM_PLAN.md) — thiết kế skill system.
+- [Assets/Docs/Roadmap.md](Assets/Docs/Roadmap.md) — roadmap dự án.
+- [Assets/Docs/DialogueScript.md](Assets/Docs/DialogueScript.md) — dialogue và cast.
+- [Assets/Script/HuongDan/ItemInfo.md](Assets/Script/HuongDan/ItemInfo.md) — catalog item.
 
-| Class | File | Responsibility |
-|---|---|---|
-| **Health** | `Health.cs` | Damageable entity. Damage formula: `max(1, (incoming - armor) * (1 - dmgR))`. Shield absorbs first. HP regen every 5s. Events: `OnDamaged` |
-| **IHealthBar** | `IHealthBar.cs` | Interface for health bar display |
-| **PlayerHealthBar** | `PlayerHealthBar.cs` | Shader-based (`_Health`) + text |
-| **EnemyHealthBar** | `EnemyHealthBar.cs` | Slider-based |
-
-### 9. Save System — `Assets/Script/SaveSystem/`
-
-| Class | File | Responsibility |
-|---|---|---|
-| **SaveManager** (static) | `SaveManager.cs` | JSON save/load to `persistentDataPath/savefile.json` via `JsonUtility` |
-| **SaveData** | `SaveData.cs` | Serializable container: chapter, inventory, equipment, skillMatrix, questItems, shop, scene, player pos/health, metadata |
-| **SerializableItemStack** | `SerializableItemStack.cs` | Saves item by `itemName` string → `Resources.Load<ItemData>()` on load (searches subfolders: Items/, Items/Consumables/, Items/Equipments/, etc.) |
-| **ChapterManager** | `ChapterSystem/ChapterManager.cs` | Persistent singleton. Chapter list + progression. Auto-saves on village load. |
-| **ChapterDataSO** | `ChapterSystem/ChapterDataSO.cs` | ScriptableObject: `chapterID`, `chapterName`, `mainSceneName`, `bossSceneName` |
-| **SavePoint** | `SavePoint.cs` | World trigger → `GameManager.SaveGame()` |
-| **LevelEndTrigger** | `LevelEndTrigger.cs` | → `ChapterManager.CompleteChapter()` |
-| **VillageExitTrigger** | `VillageExitTrigger.cs` | → `ChapterManager.GoToMainScene()` |
-| **BossEndTrigger** | `BossEndTrigger.cs` | → `ChapterManager.CompleteBossChapter()` |
-
-### 10. UI System — `Assets/Script/UI/`
-
-| Class | File | Description |
-|---|---|---|
-| **MainMenuUI** | `MainMenuUI.cs` | Play, Continue, New Game, Save, About, Quit |
-| **MenuUI** (base) | `MenuUI.cs` | Pause/menu panel base: `ShowMenuAndPause()`, `HideMenuAndResume()` |
-| **OptionUI** | `OptionUI.cs` | Music/SFX volume sliders → AudioManager |
-| **GameOverUI** | `GameOverUI.cs` | Singleton. Shows on player death. |
-| **VictoryUI** | `VictoryUI.cs` | Singleton. Victory panel. |
-| **CharacterStatsUI** | `CharacterStatsUI.cs` | Displays all 13 stats from CharacterStats |
-| **SkillUI** | `SkillUI.cs` | Individual skill slot (icon + cooldown overlay) |
-| **SkillPanelUI** | `SkillPanelUI.cs` | Container for 4 skill slots, updates each frame |
-| **InventoryUI** | `Inventory/InventoryUI.cs` | Full inventory grid (30 slots + 4 equipment). Right-click detail popup. |
-| **Slot** | `Inventory/Slot.cs` | Single inventory slot UI (icon, quantity, index) |
-| **SlotDragHandler** | `Inventory/SlotDragHandler.cs` | Drag-equip/unequip/swap, right-click details |
-| **SkillSystemUI** | `Inventory/SkillSystemUI.cs` | 4×5 skill matrix UI |
-| **InventoryBoardUI** | `ItemSystem/Inventory/InventoryBoardUI.cs` | Tabbed inventory board (Inventory ⇄ Skill panels) |
-| **InventorySkillPanelUI** | `ItemSystem/Inventory/InventorySkillPanelUI.cs` | Skill matrix panel inside the Inventory Board |
-| **InventorySkillSlotUI** | `ItemSystem/Inventory/InventorySkillSlotUI.cs` | Individual skill slot in the inventory board |
-
-**Shop UI:**
-- `CategoryUI` — filter buttons, fires `OnCategorySelected(ItemType)`
-- `ItemListUI` — scrollable item list
-- `ItemDetailUI` — selected item details + buy button
-- `ShopSlotUI` — individual slot (icon, affordability color)
-
-### 11. Utility — `Assets/Script/`
-
-| Location | Class | Description |
-|---|---|---|
-| `Effect/` | `CameraController` | Smooth lerp follow camera |
-| `Effect/` | `ButtonSFX` | Singleton button click SFX |
-| `Effect/` | `AutoDestroy` | Timed particle/effect cleanup |
-| `Pattern/` | `ObjectPool` | Generic singleton pool (`Dictionary<tag, Queue>`) |
-| `Scene/` | `GameSceneController` | Scene navigation singleton |
-| `Shader/` | `HPBar.shader` | UI shader: clips by `_Health`, color gradient + glint |
-| `Shader/` | `PurpleSmoke.shader` | Multi-layer noise morphing, vertex sway, color cycling |
-
-### 12. Dialogue System — `Assets/Script/Dialogue/`
-
-| Class | File | Responsibility |
-|---|---|---|
-| **DialogueManager** | `DialogueManager.cs` | Persistent singleton. Starts/advances/ends dialogues, locks `PlayerMovementController.CanMove`, auto-resets dialogue state on scene change (prevents movement soft-lock) |
-| **DialogueData** | `DialogueData.cs` | ScriptableObject: `List<DialogueLine>` (speaker + text) |
-| **CharacterProfile** | `Profiles/CharacterProfile.cs` | ScriptableObject speaker profile (name/portrait) |
-| **DialogueUI** | `DialogueUI.cs` | Singleton UI: shows/updates/hides current line |
-| **NPCDialogueTrigger** | `NPCDialogueTrigger.cs` | World/NPC trigger → `DialogueManager.StartDialogue()`; plays once per session unless `isRepeatable` is checked |
-
-**Dependencies:** DOTween (Demigiant) is bundled under `Assets/Plugins/` and used for tweening (boss/VFX systems).
-
----
-
-## Key Formulas
-
-```
-CDR: actualCooldown = baseCooldown / (1 - CDR/100)    [CDR cap: 40%]
-Damage: finalDamage = max(1, (incoming - armor) * (1 - dmgR))
-Crit: totalDamage = damage * (1 + critDamage/100)      [if crit roll succeeds]
-Stat: value = (base + sum(additives)) * product(1 + each multiplicative)
-HP Regen: every 5 seconds, heal = HPRegen
-```
-
----
-
-## Known Issues / TODOs
-
-- Health shield absorb order: code đã sửa theo pipeline absorb-first, nhưng cần Play Mode verify lại 2 test case shield to/overflow trước khi gạch khỏi danh sách hoàn toàn.
-- Dialogue movement lock: code đã chuyển sang lấy `PlayerMovementController` tại thời điểm dùng và thêm auto-reset trên `SceneManager.sceneLoaded` khi dialogue đang active, nhưng cần Play Mode verify qua scene reload / respawn để xác nhận không còn soft-lock.
-- ~~Save/load itemName lookup~~ — đã sửa: SerializableItemStack dùng Resources.LoadAll + Dictionary cache (itemName vẫn là khoá tra cứu, chưa migrate sang itemId — nợ kỹ thuật nhẹ, không gấp)
-- `AssisterController` is legacy/unused
-- 18/20 skill ItemData còn thiếu itemIcon (chỉ Range Lv1 và Dash Lv1 có sẵn) — thuần thiết kế mỹ thuật, không phải bug code. Icon tab Skill/Quest trong Tab UI cũng đang dùng placeholder tạm (charged1.png / I_Scroll.png).
-- ~~SkillMatrix serialization~~ — đã sửa: tách SkillMatrixLayout (ScriptableObject, cố định) + Inventory.skillUnlocked (bool[20], runtime/save)
-- DuoGolem hazard skills need real prefab instantiation (all marked `// TODO: chờ prefab`)
-- DuoGolem all damage/cooldown/hitbox values are placeholders (XML-documented as "Architect: chua chot so lieu")
-- DuoGolem Animator Controller not yet created (needs triggers: "Punch", "Run", "Die")
-- DuoGolem `partnerGolem` reference must be assigned in Inspector on both Golem prefabs
-- DuoGolem Chapter assignment TBD (which chapter this boss belongs to)
-
----
-
-## Related Documentation
-
-| File | Content |
-|---|---|
-| `Assets/Docs/SequencerContext.md` | Step-by-step guide + current progress for the data-driven Sequencer (cutscene system: SequenceAction / SequencePlayer / CutsceneData) |
-| `Assets/Docs/DialogueScript.md` | Full 7-chapter dialogue script + cast reference (Kati, Hachi, Usagi...) |
-| `REFACTORING_PLAN.md` | Enemy system refactor: SRP + DIP, state machine architecture |
-| `Assets/Docs/SKILL_SYSTEM_PLAN.md` | Skill system design, CDR fix, 5 levels per skill |
-| `Assets/Docs/Roadmap.md` | Project roadmap |
-| `Assets/Docs/Directives.md` | Dev directives / conventions |
-| `Assets/Script/ItemSystem/Core/REFACTOR_ItemStats_EquipmentManager.md` | Unified stat modifier API migration |
-| `Assets/Script/SaveSystem/ChapterSystem/SaveSystemChanges.md` | Old level-based → chapter-based migration |
-| `Assets/Script/HuongDan/ItemInfo.md` | Full item catalog (Vietnamese) |
-| `Assets/Script/HuongDan/ROADMAP_UNITY_FIREBASE_INTERN.md` | Firebase integration roadmap |
-| `Assets/Docs/Contexts/Katyusha_BatBoss_Context.md` | BatBoss architecture: FSM, Health, Pillar system, deflect mechanics |
-| `Assets/Docs/Contexts/Katyusha_VoidBoss_Context.md` | VoidBoss architecture: FSM, AI decision, Super Armor, BloodMoon, cleanup |
-| `Assets/Docs/Contexts/KatyushaPJ_Boss_System_Summary.md` | Boss system summary: BatBoss, VoidBoss, Duo Golem design + implementation |
-| `Assets/Script/EnemyThing/Boss/BatBoss/README.md` | BatBoss source-level notes |
-| `Assets/Script/EnemyThing/Boss/DuoGolem/` | Duo Golem full source (11 files): controller, 2 prefab classes, 3 custom states, 4 hazard skills |

@@ -143,8 +143,8 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 0.98786545, y: 1.3863982}
-  m_EdgeRadius: 0
+  m_Size: {x: 0.96786547, y: 1.3663982}
+  m_EdgeRadius: 0.01
 --- !u!95 &177902642500866214
 Animator:
   serializedVersion: 7
@@ -206,9 +206,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a663b0be8130c4d4994e7b144eb991cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 10
+  maxHealth: 5
   currentHealth: 0
   healthBar: {fileID: 3008290122146142640}
+  virtualShield: 0
   damageSFX: {fileID: 8300000, guid: f7a08f45200bf464ab2a0408e5f29cb1, type: 3}
   dieSFX: {fileID: 8300000, guid: d8f7c8b1797784542965bee7b596d68c, type: 3}
   lootManager: {fileID: 79319132487125086}
@@ -227,8 +228,12 @@ MonoBehaviour:
   attackRange: 1.5
   visionRange: 5
   attackCooldown: 2
-  lastTimeAttack: -Infinity
-  player: {fileID: 0}
+  maxChaseDistance: 15
+  loseTargetDelay: 0.5
+  recoveryTimeout: 8
+  homeTolerance: 0.3
+  patrolHalfWidth: 2
+  minReEngageDistance: 2
 --- !u!114 &79319132487125086
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -266,7 +271,7 @@ MonoBehaviour:
   baseCritDamage: 0.75
   baseArmorPierce: 0
   baseCDR: 0
-  baseMaxHP: 20
+  baseMaxHP: 5
   baseMovementSpeed: 2.5
   baseHPRegen: 0
   baseDmgR: 0

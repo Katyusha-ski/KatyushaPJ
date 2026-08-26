@@ -9,7 +9,7 @@ public class EnemyController : MonoBehaviour, IEnemyStateProvider, IEnemyMovemen
     [SerializeField] protected float attackCooldown = 2f;
 
     [Header("Leash / Home")]
-    [SerializeField] protected float maxChaseDistance = 10f;
+    [SerializeField] protected float maxChaseDistance = 15f;
     [SerializeField] protected float loseTargetDelay = 0.5f;
     [SerializeField] protected float recoveryTimeout = 8f;
     [SerializeField] protected float homeTolerance = 0.3f;
@@ -33,6 +33,14 @@ public class EnemyController : MonoBehaviour, IEnemyStateProvider, IEnemyMovemen
     protected float lastTimeAttack = -Mathf.Infinity;
     private float lastDisplacementCheckTime = -Mathf.Infinity;
     private const float DisplacementCheckInterval = 0.3f;
+    protected Rigidbody2D rb2d;
+
+    // Settle-capture: chốt homePosition sau khi enemy đáp đất ổn định
+    private bool homeCaptured;
+    private int settleFrames;
+    private const int SettleFramesRequired = 3;
+    private const float SettleVelocityThreshold = 0.05f;
+
     protected virtual void Start()
     {
         var rb = GetComponent<Rigidbody2D>();
@@ -49,12 +57,9 @@ public class EnemyController : MonoBehaviour, IEnemyStateProvider, IEnemyMovemen
         if (player == null && PlayerManager.Instance != null)
             player = PlayerManager.Instance.PlayerTransform;
 
-        homePosition = transform.position;
-        patrolMinX = homePosition.x - patrolHalfWidth;
-        patrolMaxX = homePosition.x + patrolHalfWidth;
+        rb2d = rb;
 
         movement = new MovementManager(rb, sr, characterStats);
-        movement.SetPatrolBounds(patrolMinX, patrolMaxX);
         animationCtrl = new AnimationController(animator);
         stateFactory = CreateStateFactory();
 
@@ -64,6 +69,9 @@ public class EnemyController : MonoBehaviour, IEnemyStateProvider, IEnemyMovemen
 
     protected virtual void Update()
     {
+        if (!homeCaptured && movement != null)
+            TryCaptureHome();
+
         currentState?.OnUpdate(this, this, this);
     }
 
@@ -117,8 +125,12 @@ public class EnemyController : MonoBehaviour, IEnemyStateProvider, IEnemyMovemen
     public float ReEngageDistance =>
         Mathf.Max(maxChaseDistance - visionRange, minReEngageDistance);
 
-    // Mọi check leash phải dùng cái này, KHÔNG tự viết Vector2.Distance
-    public float DistanceFromHomeX => Mathf.Abs(transform.position.x - homePosition.x);
+    // Mọi check leash phải dùng cái này, KHÔNG tự viết Vector2.Distance.
+    // Chưa capture home → trả 0: toàn bộ rule leash tự vô hiệu (pre-capture gate).
+    public float DistanceFromHomeX =>
+        homeCaptured ? Mathf.Abs(transform.position.x - homePosition.x) : 0f;
+
+    public bool HomeCaptured => homeCaptured;
 
     // Rule re-engage duy nhất (mục 18): ngoài dead zone + Player còn trong tầm nhìn.
     // Dùng chung bởi ReturnToPostState, và sau này HurtState / check định kỳ Patrol-Idle.
@@ -135,6 +147,26 @@ public class EnemyController : MonoBehaviour, IEnemyStateProvider, IEnemyMovemen
 
         lastDisplacementCheckTime = Time.time;
         return DistanceFromHomeX > MaxChaseDistance && IsGrounded();
+    }
+
+    // Settle-capture (mục 18): chốt home đúng độ cao tiếp đất, không phải độ cao spawn
+    private void TryCaptureHome()
+    {
+        if (!IsGrounded() || !movement.IsNearlyStill(SettleVelocityThreshold))
+        {
+            settleFrames = 0;
+            return;
+        }
+
+        settleFrames++;
+        if (settleFrames < SettleFramesRequired)
+            return;
+
+        homePosition = transform.position;
+        patrolMinX = homePosition.x - patrolHalfWidth;
+        patrolMaxX = homePosition.x + patrolHalfWidth;
+        movement.SetPatrolBounds(patrolMinX, patrolMaxX);
+        homeCaptured = true;
     }
 
     // --- IEnemyMovement ---
@@ -216,6 +248,8 @@ public class EnemyController : MonoBehaviour, IEnemyStateProvider, IEnemyMovemen
     // --- Gizmos kiểm chứng leash (chỉ vẽ khi chọn object trong Scene view) ---
     protected virtual void OnDrawGizmosSelected()
     {
+        if (Application.isPlaying && !homeCaptured) return;
+
         Vector2 home = Application.isPlaying ? homePosition : (Vector2)transform.position;
         float minX = Application.isPlaying ? patrolMinX : home.x - patrolHalfWidth;
         float maxX = Application.isPlaying ? patrolMaxX : home.x + patrolHalfWidth;

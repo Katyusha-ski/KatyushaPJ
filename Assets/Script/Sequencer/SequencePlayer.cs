@@ -12,6 +12,7 @@ public class SequencePlayer : MonoBehaviour
     public bool IsPlaying { get; private set; }
 
     private bool hasCompleted;
+    public bool HasCompleted => hasCompleted;
 
     public void Play()
     {

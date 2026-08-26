@@ -156,6 +156,11 @@ Movement hiện chưa có:
 - Phân biệt ground enemy và flying enemy.
 - Điều hướng giữa nhiều tầng hoặc platform.
 
+Ghi chú triển khai: IsGrounded và edge check hiện tính dựa trên bounds của Collider2D —
+raycast thẳng xuống từ tâm collider (skin 0.08, ContactFilter2D bỏ qua trigger, tự loại
+chính enemy qua attachedRigidbody); edge check đặt tia trước mặt theo hướng di chuyển
+(lookAhead 0.6, dung sai bậc thang 0.3).
+
 ## 7. Các giới hạn behavior hiện tại
 
 ### Enemy rời khỏi vùng patrol
@@ -490,7 +495,7 @@ Việc phân biệt boss phải dựa trên loại controller hoặc capability 
 Enemy thường cần các dữ liệu sau:
 
 ```text
-homePosition        : tọa độ cố định lúc enemy spawn
+homePosition        : tọa độ neo cố định, capture sau khi enemy đáp đất ổn định (settle-capture, xem dưới)
 patrolMinX          : biên trái của patrol zone
 patrolMaxX          : biên phải của patrol zone
 maxChaseDistance    : khoảng cách X tối đa được phép rời home
@@ -508,6 +513,37 @@ recoveryTimeout     : thời gian tối đa được phép bị kẹt khi quay v
 Patrol zone chỉ xét trục X. `homePosition.y` là độ cao khôi phục mặc định.
 
 `loseTargetDelay` tồn tại để tránh vòng lặp đổi state tương tự dead zone, nhưng xảy ra ở biên `visionRange` thay vì biên `maxChaseDistance`: nếu Player di chuyển lượn ngay rìa tầm nhìn, enemy có thể bị flap liên tục giữa Pursuit và ReturnToPost chỉ vì sai số vị trí rất nhỏ. Player chỉ được coi là mất dấu khi nằm ngoài `visionRange` liên tục qua hết `loseTargetDelay`, không phải ngay khung hình đầu tiên ra khỏi vùng.
+
+### Capture homePosition sau khi đáp đất (settle-capture)
+
+Designer khó canh đúng độ cao spawn trùng mặt nền: enemy thường được đặt hơi lơ lửng,
+gravity kéo nó xuống vị trí đứng thật trong vài frame đầu. Nếu chốt homePosition ngay
+lúc Start(), Y thu được là độ cao trên không, khiến recovery snap Y đưa enemy về treo
+lơ lửng thay vì về mặt đất.
+
+Vì vậy homePosition được capture theo quy trình:
+
+```text
+mỗi frame kể từ khi khởi tạo:
+    chưa grounded hoặc vận tốc còn đáng kể
+      → reset bộ đếm, chờ frame sau
+
+    grounded và vận tốc gần bằng 0, liên tục đủ 3 frame
+      → homePosition = vị trí hiện tại (độ cao tiếp đất thật)
+      → tính patrolMinX/patrolMaxX quanh home, nạp vào MovementManager
+      → chốt 1 lần duy nhất, không capture lại suốt vòng đời
+```
+
+Trong khoảng trước khi capture xong (thường vài trăm ms), toàn bộ rule leash tự vô hiệu:
+DistanceFromHomeX trả về 0 nên Pursuit/Attack không thể vượt maxChase và ShouldReturnHome
+luôn false. Enemy vẫn patrol/detect bình thường trong lúc đó.
+
+Failsafe: mọi enemy thường đều là ground enemy (không có enemy bay); nếu designer spawn
+enemy rơi vào hố, instance đó không bao giờ capture và leash tắt vĩnh viễn với instance
+đó — trách nhiệm đặt điểm spawn hợp lệ thuộc designer, khớp ràng buộc ở mục 20.
+
+Boss không bị ảnh hưởng: chỉ DuoGolem kế thừa base.Start() (capture chạy nhưng vô hại vì
+không dùng state leash); BatBoss và VoidBoss tự viết Start riêng, không qua cơ chế này.
 
 ### Dead zone
 
@@ -587,6 +623,8 @@ reset vận tốc Rigidbody2D
 ```
 
 Recovery không reset HP, không hồi sinh enemy đã chết và không reset các giá trị balance/combat không liên quan.
+
+Độ cao snap lấy từ homePosition đã được capture lúc enemy đáp đất (mục 18), nên không còn phụ thuộc độ cao spawn mà designer đặt ban đầu.
 
 Việc snap Y là chủ đích thiết kế cho các platform lơ lửng tách rời: enemy mặt đất không có khả năng tự đi bộ ngang giữa các platform để quay về home nếu bị rơi hoặc bị đẩy xuống một nền thấp hơn, nên cần teleport thẳng lên độ cao gốc. Vì vậy một enemy có thể rơi từ `homePosition.y = 1` xuống `y = 0`, sau đó khi quay lại đúng vùng X sẽ được đưa trở lại độ cao `y = 1`.
 

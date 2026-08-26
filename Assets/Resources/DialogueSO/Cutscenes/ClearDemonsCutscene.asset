@@ -15,6 +15,7 @@ MonoBehaviour:
   actions:
   - rid: 690000000000000257
   - rid: 690000000000000258
+  - rid: 5747512877583171683
   references:
     version: 2
     RefIds:
@@ -27,6 +28,15 @@ MonoBehaviour:
       type: {class: TeleportAction, ns: , asm: Assembly-CSharp}
       data:
         waitForClick: 0
-        destination: {x: 100, y: 100}
-        loadingMessage: "C\u1ea3 hai c\xf9ng quay v\u1ec1 h\u1ea7m, \u0111\xeam \u0111\xf3 m\u1ecdi ng\u01b0\u1eddi \u0103n m\u1eebng v\u1edbi nhau b\u1ed7ng nhi\xean c\xf3 m\u1ed9t ng\u01b0\u1eddi l\u1ea1 xu\u1ea5t hi\u1ec7n"
+        destination: {x: 100, y: -100}
+        loadingMessage: "C\u1EA3 hai c\xF9ng quay v\u1EC1 h\u1EA7m, \u0111\xEAm \u0111\xF3
+          m\u1ECDi ng\u01B0\u1EDDi \u0103n m\u1EEBng v\u1EDBi nhau b\u1ED7ng nhi\xEAn
+          c\xF3 m\u1ED9t ng\u01B0\u1EDDi l\u1EA1 xu\u1EA5t hi\u1EC7n"
         workInBlack: []
+    - rid: 5747512877583171683
+      type: {class: ActivateObjectsAction, ns: , asm: Assembly-CSharp}
+      data:
+        waitForClick: 0
+        targetPaths:
+        - UsagiShopTrigger
+        setActive: 1

@@ -15,16 +15,6 @@ public class MenuUI : MonoBehaviour
         UI.SetActive(false);
         GameManager.Instance.ResumeGame();
     }
-
-    public void JustShowMenu()
-    {
-        UI.SetActive(true);
-    }
-
-    public void JustHideMenu()
-    {
-        if (UI != null) UI.SetActive(false);
-    }
 }
 
 
