@@ -1,0 +1,35 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 12efb4e91f50acd42999f69a91d76dab, type: 3}
+  m_Name: Rohok1_Dialogue
+  m_EditorClassIdentifier: Assembly-CSharp::DialogueData
+  lines:
+  - speaker: {fileID: 11400000, guid: cdfbdabbf8285304690416cec3c5c792, type: 2}
+    text: "(nhìn quanh) Đây là Rohok à."
+  - speaker: {fileID: 11400000, guid: cdfbdabbf8285304690416cec3c5c792, type: 2}
+    text: "Nè Hachi, chả phải Usagi nói là nơi này chưa bị quỷ chiếm đóng nặng sao? Sao mà hoang tàn quá vậy?"
+  - speaker: {fileID: 11400000, guid: 02a1fc921f4037d4bb7357b2fa36c700, type: 2}
+    text: "Thật kì lạ, dấu vết ma lực còn rất mới, có vẻ như lũ quỷ vừa mới tấn công thêm một đợt nữa."
+  - speaker: {fileID: 11400000, guid: cdfbdabbf8285304690416cec3c5c792, type: 2}
+    text: "Để xem còn ai sống sót không, đi tìm dân làng thôi."
+  - speaker: {fileID: 11400000, guid: 02a1fc921f4037d4bb7357b2fa36c700, type: 2}
+    text: "À mà nè, do tôi đã quen với việc kí sinh vào cơ thể cậu nên giờ tôi có thể sử dụng được một vài chiêu thức lại rồi."
+  - speaker: {fileID: 11400000, guid: cdfbdabbf8285304690416cec3c5c792, type: 2}
+    text: "Hả? Vậy sao? Tôi tưởng cậu là chiến binh chứ không phải pháp sư."
+  - speaker: {fileID: 11400000, guid: 02a1fc921f4037d4bb7357b2fa36c700, type: 2}
+    text: "Ừ thì đúng là việc đánh đấm tay chân là sở trường của tôi, nhưng mà đâu ai cấm chiến binh không được học thêm phép thuật đâu."
+  - speaker: {fileID: 11400000, guid: 02a1fc921f4037d4bb7357b2fa36c700, type: 2}
+    text: "Được thầy Shisa dạy dỗ, cũng như là học trong môi trường hoàng gia nên tôi cũng tiếp cận được nhiều kiến thức lắm."
+  - speaker: {fileID: 11400000, guid: 02a1fc921f4037d4bb7357b2fa36c700, type: 2}
+    text: "Nhưng mà nè, tôi không phải cứ thích là dùng được đâu, tại đang ở trong cơ thể cậu mà. Nên hai đứa phải đồng điệu với nhau. Tụi mình thử tập luyện một chút đi, chắc cũng không khó đâu."
+  - speaker: {fileID: 11400000, guid: cdfbdabbf8285304690416cec3c5c792, type: 2}
+    text: "Để tôi thử xem."

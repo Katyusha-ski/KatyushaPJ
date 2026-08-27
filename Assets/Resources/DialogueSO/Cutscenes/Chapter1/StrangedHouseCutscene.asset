@@ -71,8 +71,11 @@ MonoBehaviour:
       type: {class: AddItemAction, ns: , asm: Assembly-CSharp}
       data:
         waitForClick: 0
-        item: {fileID: 11400000, guid: 34638127c88476541848086865ffb8f6, type: 2}
-        amount: 1
+        items:
+        - item: {fileID: 11400000, guid: 34638127c88476541848086865ffb8f6, type: 2}
+          amount: 1
+        - item: {fileID: 11400000, guid: f0ca5774ed619e340b3e8f4191912287, type: 2}
+          amount: 3
     - rid: 5747512877583171702
       type: {class: ShowImageAction, ns: , asm: Assembly-CSharp}
       data:

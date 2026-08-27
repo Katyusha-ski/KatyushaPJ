@@ -116,16 +116,54 @@
 ---
 
 ## Chapter 2 — Rohok
+Cutscene: Đầu chap
+- [Kati]: (nhìn quanh) Đây là Rohok à. 
+- [Kati]: Nè Hachi, chả phải Usagi nói là nơi này chưa bị quỷ chiếm đóng nặng sao? Sao mà hoàng tàn quá vậy?
+- [Hachi]: Thật kì lạ, dấu vết ma lực còn rất mới có vẻ như lũ quỷ vừa mới tấn công thêm 1 đợt nữa.
+- [Kati]: Để xem còn ai sống sót không, đi tìm dân làng thôi.
+- [Hachi]: À mà nè, do tôi đã quen với việc kí sinh vào cơ thể cậu nên giờ tôi có thể sử dụng được một vài chiêu thức lại rồi.
+- [Kati]: Hả? Vậy sao? Tôi tưởng cậu là chiến binh chứ không phải pháp sư.
+- [Hachi]: Ừ thì đúng là việc đánh đấm tay chân đúng là sở trường của tôi, nhưng mà đâu ai cấm chiến binh không được học thêm phép thuật đâu.
+- [Hachi]: Được thầy Shisa dạy dỗ, cũng như là học trong môi trường hoàng gia nên tôi cũng tiếp cận được nhiều kiến thức lắm.
+- [Hachi]: Nhưng mà nè, tôi không phải cứ thích là dùng được đâu, tại đang ở trong cơ thể cậu mà. Nên 2 đứa phải đồng điệu với nhau. Tụi mình thử tập luyện 1 chút đi, chắc cũng không khó đâu.
+- [Kati]: Để tôi thử xem.
 
-- [Kati]: (nhìn quanh) Đây là Rohok à? Ổn hơn tôi tưởng.
-- [Hachi]: Đừng chủ quan, cứ dọn sạch quái ở đây trước rồi tính tiếp.
+- Cutscene: Trong thân cây lớn.
+- [Hachi]: (ngó quanh) Nè tôi cảm nhận được ma lực của người sống. Có vẻ như họ đang ẩn nấp trong thân cây này.
+- [Kati]: May quá vẫn còn người sống. Ta vào kiểm tra xem.
+- [Kati]: Ơ, là trẻ con à.
+- ShowObjectAction: Show obj npc
+- [Npc]: (Kiệt sức) Ta sẽ chiến đấu với lũ các ngươi tới cùng lũ xấu xa.
+- [Hachi]: Bình tĩnh đi, anh không phải quỷ. Anh tới đây để giải cứu vùng đất này. Tên anh là Hachi, còn đây là Kati. 
+- [Hachi]: Tuy là nhìn tụi anh hơi kì cục nhưng mà chiến đấu thì tốt lắm đó.
+- [Npc]: C-cảm ơn.
+- [Kati]: Nè nè sao đấy nhóc?
 
-*(Sau khi hạ được con quái mạnh nhất khu vực, nó làm rơi ra một tấm bản đồ.)*
+- FadeUI: cậu nhóc ngất đi, có vẻ như cậu ấy đã cố quá rồi. Cả 2 cùng chăm sóc cho cậu ấy. Một lúc sau cậu ấy tỉnh lại.
+- [Npc]: (mệt mỏi) Cảm ơn các người đã cứu em. Em tên là Minda, em là người duy nhất còn sống ở đây. Lũ quỷ đã quét sạch nơi này rồi.
+- [Hachi]: Anh rất tiếc về chuyện đó. Anh biết em buồn nhưng em có biết bọn chúng đang tập trung ở đâu không?
+- [Minda]: Từ đây đi về phía tây nam, hôm qua chúng đã tấn công từ phía đó và có thể căn cứ của chúng cùng ở đó thôi.
+- [Kati]: Cảm ơn nhóc em dũng cảm lắm. Bọn anh sẽ quét sạch chúng cho em xem.
+- [Hachi]: Ở đây nữa thì cũng nguy hiểm lắm, em biết đường tới ngôi làng Helga không?
+- [Minda]: Dạ, em biết. 
+- [Hachi]: Vậy thì nghe anh nói đây, nơi đó đã được bọn anh giải cứu rồi, vẫn còn vài người sống sót ở đó. Nếu em cứ ở đây thì nguy hiểm lắm, em cứ đi tới đó đi. Ở đây anh vẫn còn thức ăn cho em, hãy cố mà chạy tới đó đi.
+- [Minda]: Dạ, em sẽ đi ngay. Cảm ơn các anh rất nhiều.
+
+Cutscene *(Sau khi hạ được con quái mạnh nhất khu vực, nó làm rơi ra một tấm bản đồ.)*
 
 - [Kati]: Ơ, cái này...
+- ShowImgAction: Show img map
 - [Hachi]: (cầm lên xem) Bản đồ mật độ tập trung tấn công của bọn quỷ! Có cái này thì tôi vạch được đường đi ngắn và ít rủi ro nhất tới thủ đô rồi.
 - [Kati]: Đỡ phải đi lạc. Đi thôi.
 
+*(Gặp lại Usagi.)*
+- [Usagi]: Chào hai người, tôi rất vui vì thấy 2 cậu vẫn sống sót đó. 
+- [Hachi]: Ở chào ông.
+- [Usagi]: Xin lỗi vì thông tin tình báo trước đó của tôi đã lỗi thời rồi. Không ngờ bọn chúng lại tấn công nhanh vậy.
+- [Hachi]: Chúng tôi vừa tìm được một bản đồ mật độ tập trung tấn công của bọn quỷ, nhờ đó mà tôi vạch được đường đi ngắn và ít rủi ro nhất tới thủ đô rồi.
+- [Usagi]: Thật tuyệt vời, tôi có thể báo tin để các quốc gia đồng minh chuẩn bị tiếp viện và phản công. Phải sao chép thứ này lại mới được.
+- [Kati]: Nè chúng tôi chật vật lắm mới sống được đó. Tại cậu hết, cậu phải chịu trách nhiệm cho chuyện này.
+- [Usagi]: Hahaha, được thôi được thôi. Vừa đúng lúc tôi vừa nhập được nhiều đồ mới. Mời hai cậu xem thử.
 ---
 
 ## Chapter 3 — Trang trại Kuri

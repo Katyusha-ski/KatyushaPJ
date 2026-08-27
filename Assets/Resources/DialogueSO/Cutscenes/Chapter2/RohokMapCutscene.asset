@@ -1,0 +1,39 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c45bb7f5d2c75bc42afde98aabf02457, type: 3}
+  m_Name: RohokMapCutscene
+  m_EditorClassIdentifier: Assembly-CSharp::CutsceneData
+  actions:
+  - rid: 100000000000000004
+  - rid: 100000000000000005
+  - rid: 100000000000000006
+  references:
+    version: 2
+    RefIds:
+    - rid: 100000000000000004
+      type: {class: DialogueAction, ns: , asm: Assembly-CSharp}
+      data:
+        waitForClick: 0
+        dialogue: {fileID: 11400000, guid: 90000000000000000000000000000003, type: 2}
+    - rid: 100000000000000005
+      type: {class: ShowImageAction, ns: , asm: Assembly-CSharp}
+      data:
+        waitForClick: 1
+        image: {fileID: 21300000, guid: 4a97e59df79080943b81087220155509, type: 3}
+        darkAlpha: 0.9
+        fadeDuration: 0.5
+        autoHoldSeconds: 2
+    - rid: 100000000000000006
+      type: {class: DialogueAction, ns: , asm: Assembly-CSharp}
+      data:
+        waitForClick: 0
+        dialogue: {fileID: 11400000, guid: 90000000000000000000000000000004, type: 2}
