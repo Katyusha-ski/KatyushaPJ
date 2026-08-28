@@ -15,4 +15,4 @@ MonoBehaviour:
   chapterID: 5
   chapterName: Hang động Kynarite
   mainSceneName: KynariteScene
-  bossSceneName: 
+  bossSceneName: Chapter5DuoGolemBossScene

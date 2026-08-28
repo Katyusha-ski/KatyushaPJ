@@ -15,4 +15,4 @@ MonoBehaviour:
   chapterID: 4
   chapterName: Thành phố Mira
   mainSceneName: MiraScene
-  bossSceneName: 
+  bossSceneName: Chapter4BatBossScene

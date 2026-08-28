@@ -19,6 +19,16 @@
 | `Test/SnowScene` | Scene gameplay/test nền tuyết |
 | `Test/StoneScene` | Scene gameplay/test nền đá |
 | `OutskirtsScene` | Scene chapter 1 hiện đang được khai báo trong `Chapter-1.asset` |
+| `RohokScene` | Scene main chapter 2 |
+| `KuriFarmScene` | Scene main chapter 3 |
+| `MiraScene` | Scene main chapter 4 |
+| `KynariteScene` | Scene main chapter 5 |
+| `MytharaScene` | Scene main chapter 6 |
+| `HyvoriaScene` | Scene main chapter 7 |
+| `Chapter4BatBossScene` | Boss scene chapter 4 |
+| `Chapter5DuoGolemBossScene` | Boss scene chapter 5 |
+| `Chapter6VoidBossScene` | Boss scene chapter 6 |
+| `Chapter7KanusBossScene` | Boss scene chapter 7 |
 | `Test/ShaderTest` | Scene kiểm thử shader |
 
 Các scene trên đều đang được bật trong `ProjectSettings/EditorBuildSettings.asset`. Lưu ý: `MainMenuUI` hiện load scene theo tên `GrassScene`, còn dữ liệu chapter 1 trỏ tới `OutskirtsScene`; đây là điểm cần thống nhất khi hoàn thiện flow chapter.
@@ -97,4 +107,3 @@ Các thư mục chính nằm trong `Assets/Script/`:
 - [Assets/Docs/Roadmap.md](Assets/Docs/Roadmap.md) — roadmap dự án.
 - [Assets/Docs/DialogueScript.md](Assets/Docs/DialogueScript.md) — dialogue và cast.
 - [Assets/Script/HuongDan/ItemInfo.md](Assets/Script/HuongDan/ItemInfo.md) — catalog item.
-

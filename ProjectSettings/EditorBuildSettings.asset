@@ -20,6 +20,36 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/OutskirtsScene.unity
     guid: 29149acda35a4b841855a2acda8cd3fb
+  - enabled: 1
+    path: Assets/Scenes/RohokScene.unity
+    guid: 3ac3141c631d22f418378b559b2c4437
+  - enabled: 1
+    path: Assets/Scenes/KuriFarmScene.unity
+    guid: 55928d472bb0f4f4399186194567633e
+  - enabled: 1
+    path: Assets/Scenes/MiraScene.unity
+    guid: 532dff7466c6cc34792d531ee41d6f6a
+  - enabled: 1
+    path: Assets/Scenes/KynariteScene.unity
+    guid: 6ddf2b0064e49f547b73b53782d6cb98
+  - enabled: 1
+    path: Assets/Scenes/Chapter5DuoGolemBossScene.unity
+    guid: 573b208a631aa9c47baf6aafa1542c1d
+  - enabled: 1
+    path: Assets/Scenes/MytharaScene.unity
+    guid: 90f5ed05de2a2854ba7f795ffa14525c
+  - enabled: 1
+    path: Assets/Scenes/HyvoriaScene.unity
+    guid: 9090f74d9ec31a24f870f6efc6117049
+  - enabled: 1
+    path: Assets/Scenes/Chapter4BatBossScene.unity
+    guid: cf5dbece9d7d2364d8e35ec4173a1a75
+  - enabled: 1
+    path: Assets/Scenes/Chapter6VoidBossScene.unity
+    guid: 0d1831e71108a184f9b75bc836126ea9
+  - enabled: 1
+    path: Assets/Scenes/Chapter7KanusBossScene.unity
+    guid: d0793d935f88b124f9ba6ffee7df1d41
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   m_UseUCBPForAssetBundles: 0

@@ -52,4 +52,4 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 0890a257ee2b5f441910ec2318b2f618, type: 2}
   - {fileID: 11400000, guid: 175c354c9c5821f4690497fdf32f158d, type: 2}
   - {fileID: 11400000, guid: 7de624a95416e764097afe1bd3600f1e, type: 2}
-  currentChapterIndex: 7
+  currentChapterIndex: 0

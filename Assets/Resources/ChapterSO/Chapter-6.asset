@@ -15,4 +15,4 @@ MonoBehaviour:
   chapterID: 6
   chapterName: Khu rừng Mytharite
   mainSceneName: MytharaScene
-  bossSceneName: 
+  bossSceneName: Chapter6VoidBossScene
