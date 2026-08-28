@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: DefendItemLv1
   m_EditorClassIdentifier: Assembly-CSharp::ItemData
   itemName: Defend Skill Lv1
-  itemIcon: {fileID: 0}
+  itemIcon: {fileID: 5072259885174543899, guid: 2508656b8e2dc124097ecc96ad3e1358, type: 3}
   itemType: 4
   equipmentType: 0
   description: Small shield, stand still.

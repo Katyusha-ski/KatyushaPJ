@@ -1,10 +1,67 @@
 fileFormatVersion: 2
-guid: 4c822a4909cd6a242a64c20968b41550
+guid: 2508656b8e2dc124097ecc96ad3e1358
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -5431791166631402075
-    second: Defend-Skill-LV1_0
+      213: 5072259885174543899
+    second: Defend-Skill-LV1-removebg-preview_0
+  - first:
+      213: 8609101202139406844
+    second: Defend-Skill-LV1-removebg-preview_1
+  - first:
+      213: 4876073612656359627
+    second: Defend-Skill-LV1-removebg-preview_2
+  - first:
+      213: 7132936409015191967
+    second: Defend-Skill-LV1-removebg-preview_3
+  - first:
+      213: 3679651964656031839
+    second: Defend-Skill-LV1-removebg-preview_4
+  - first:
+      213: 2416352146753153519
+    second: Defend-Skill-LV1-removebg-preview_5
+  - first:
+      213: 935335228158036209
+    second: Defend-Skill-LV1-removebg-preview_6
+  - first:
+      213: 4563709400591873430
+    second: Defend-Skill-LV1-removebg-preview_7
+  - first:
+      213: -2392964709292588985
+    second: Defend-Skill-LV1-removebg-preview_8
+  - first:
+      213: -3685985931984601980
+    second: Defend-Skill-LV1-removebg-preview_9
+  - first:
+      213: -2003256334318263929
+    second: Defend-Skill-LV1-removebg-preview_10
+  - first:
+      213: 208951169340907527
+    second: Defend-Skill-LV1-removebg-preview_11
+  - first:
+      213: 8385447558360112419
+    second: Defend-Skill-LV1-removebg-preview_12
+  - first:
+      213: -3509853759729395768
+    second: Defend-Skill-LV1-removebg-preview_13
+  - first:
+      213: 190416205432058170
+    second: Defend-Skill-LV1-removebg-preview_14
+  - first:
+      213: -1839240862138118617
+    second: Defend-Skill-LV1-removebg-preview_15
+  - first:
+      213: -7285085718121941176
+    second: Defend-Skill-LV1-removebg-preview_16
+  - first:
+      213: 5247960153071659941
+    second: Defend-Skill-LV1-removebg-preview_17
+  - first:
+      213: -998787863671154133
+    second: Defend-Skill-LV1-removebg-preview_18
+  - first:
+      213: -8425209754191580238
+    second: Defend-Skill-LV1-removebg-preview_19
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,23 +157,23 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Defend-Skill-LV1_0
+      name: Defend-Skill-LV1-removebg-preview_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 1254
-        height: 1254
+        width: 500
+        height: 500
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 5a5a4da76b66e94b0800000000000000
-      internalID: -5431791166631402075
+      spriteID: b16da48dd79446640800000000000000
+      internalID: 5072259885174543899
       vertices: []
       indices: 
       edges: []
@@ -125,7 +182,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 9f8699c83a6e6c34e9af3b2257df1d7e
     internalID: 0
     vertices: []
     indices: 
@@ -133,9 +190,11 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     spriteCustomMetadata:
-      entries: []
+      entries:
+      - key: SpriteEditor.SliceSettings
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":500.0,"y":500.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":2,"keepEmptyRects":false,"isAlternate":false}'
     nameFileIdTable:
-      Defend-Skill-LV1_0: -5431791166631402075
+      Defend-Skill-LV1-removebg-preview_0: 5072259885174543899
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

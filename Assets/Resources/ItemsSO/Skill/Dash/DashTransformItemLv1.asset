@@ -12,8 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 462ee4e4477b62746aa569ea5d231340, type: 3}
   m_Name: DashTransformItemLv1
   m_EditorClassIdentifier: Assembly-CSharp::ItemData
+  itemId: 
   itemName: DashTranformSkill
-  itemIcon: {fileID: 21300000, guid: 1bafe9d8b38ab4bf9ba9db099e4d7156, type: 3}
+  itemIcon: {fileID: 8155264963469039699, guid: 105dcd2a6ae2e5a498f25e8cde2e5814, type: 3}
   itemType: 4
   equipmentType: 0
   description: Test item for dash skill
