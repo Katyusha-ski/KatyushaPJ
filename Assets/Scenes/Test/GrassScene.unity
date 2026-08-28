@@ -270,7 +270,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 86673d7b0254ed94bba8ab596d92c2fe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 746156131}
+  target: {fileID: 0}
   offset: {x: 0, y: 3, z: -10}
   smoothSpeed: 5
   bossRevealZoomSize: 8

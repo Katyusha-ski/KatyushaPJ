@@ -28,9 +28,11 @@ MonoBehaviour:
       data:
         waitForClick: 0
         items:
-        - item: {fileID: 0}
-          amount: 0
-        - item: {fileID: 0}
-          amount: 0
-        - item: {fileID: 0}
-          amount: 0
+        - item: {fileID: 11400000, guid: 88357669f911f5f5ffab958361d0928a, type: 2}
+          amount: 1
+        - item: {fileID: 11400000, guid: a4da0cac9fd5cfa4ba78bdafabca7d79, type: 2}
+          amount: 1
+        - item: {fileID: 11400000, guid: 60dfde0994583df4181e45cc866f68d2, type: 2}
+          amount: 1
+        - item: {fileID: 11400000, guid: 299e05c5fc2592c38d1b8886ca549809, type: 2}
+          amount: 1

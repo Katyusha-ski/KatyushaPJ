@@ -69,6 +69,9 @@ public class EnemyController : MonoBehaviour, IEnemyStateProvider, IEnemyMovemen
 
     protected virtual void Update()
     {
+        if (player == null && PlayerManager.Instance != null)
+            player = PlayerManager.Instance.PlayerTransform;
+
         if (!homeCaptured && movement != null)
             TryCaptureHome();
 

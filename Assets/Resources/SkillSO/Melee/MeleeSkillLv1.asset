@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: MeleeSkillLv1
   m_EditorClassIdentifier: Assembly-CSharp::MeleeSkill
   skillName: 
-  icon: {fileID: 0}
+  icon: {fileID: -4335222134116007343, guid: d67bd02b617f7ad4c9656abe9ba0eef6, type: 3}
   skillType: 4
   cooldown: 10
   baseDamage: 2

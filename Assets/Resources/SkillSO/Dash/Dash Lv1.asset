@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 310bdeb50670f474c8ef6d5a3cdb79e6, type: 3}
   m_Name: Dash Lv1
   m_EditorClassIdentifier: 
-  icon: {fileID: 21300000, guid: 1bafe9d8b38ab4bf9ba9db099e4d7156, type: 3}
+  skillName: 
+  icon: {fileID: 8155264963469039699, guid: 105dcd2a6ae2e5a498f25e8cde2e5814, type: 3}
   skillType: 2
   cooldown: 3
   baseDamage: 0
@@ -25,3 +26,4 @@ MonoBehaviour:
   applyDashDamage: 0
   applyStun: 0
   stunDuration: 1
+  dashSFX: {fileID: 0}

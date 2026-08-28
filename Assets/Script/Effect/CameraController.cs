@@ -28,6 +28,9 @@ public class CameraFollow : MonoBehaviour
 
     void LateUpdate()
     {
+        if (target == null && PlayerManager.Instance != null)
+            target = PlayerManager.Instance.PlayerTransform;
+
         if (target == null || isCinematic) return;
         Vector3 desiredPosition = target.position + offset;
         Vector3 smoothedPosition = Vector3.Lerp(transform.position, desiredPosition, smoothSpeed * Time.deltaTime);
