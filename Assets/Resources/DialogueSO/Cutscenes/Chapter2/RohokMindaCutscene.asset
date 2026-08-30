@@ -16,6 +16,7 @@ MonoBehaviour:
   - rid: 100000000000000002
   - rid: 100000000000000003
   - rid: 100000000000000007
+  - rid: 5747512995647324161
   - rid: 100000000000000008
   references:
     version: 2
@@ -36,7 +37,10 @@ MonoBehaviour:
       type: {class: NarrationAction, ns: , asm: Assembly-CSharp}
       data:
         waitForClick: 1
-        text: "Cậu nhóc ngất đi, có vẻ như cậu ấy đã cố quá rồi. Cả hai cùng chăm sóc cho cậu ấy. Một lúc sau cậu ấy tỉnh lại."
+        text: "C\u1EADu nh\xF3c ng\u1EA5t \u0111i, c\xF3 v\u1EBB nh\u01B0 c\u1EADu
+          \u1EA5y \u0111\xE3 c\u1ED1 qu\xE1 r\u1ED3i. C\u1EA3 hai c\xF9ng ch\u0103m
+          s\xF3c cho c\u1EADu \u1EA5y. M\u1ED9t l\xFAc sau c\u1EADu \u1EA5y t\u1EC9nh
+          l\u1EA1i."
         darkAlpha: 1
         fadeDuration: 0.5
         autoHoldSeconds: 2
@@ -45,3 +49,10 @@ MonoBehaviour:
       data:
         waitForClick: 0
         dialogue: {fileID: 11400000, guid: 90000000000000000000000000000005, type: 2}
+    - rid: 5747512995647324161
+      type: {class: ActivateObjectsAction, ns: , asm: Assembly-CSharp}
+      data:
+        waitForClick: 0
+        targetPaths:
+        - Old_Tree_Trigger/Minda
+        setActive: 1

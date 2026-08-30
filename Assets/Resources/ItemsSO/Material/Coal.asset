@@ -12,9 +12,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 462ee4e4477b62746aa569ea5d231340, type: 3}
   m_Name: Coal
   m_EditorClassIdentifier: Assembly-CSharp::ItemData
+  itemId: 
   itemName: Coal
   itemIcon: {fileID: 21300000, guid: a388153bab04bab4d9e5ad8fb39e4be7, type: 3}
   itemType: 2
   equipmentType: 0
-  description: Fuel, can be traded with Usagi for money.
+  description: Fuel, can be traded with Usagi for something stuff.
   isStackable: 1
+  maxStackSize: 99
+  stats:
+    statConfigs: []
+  consumableEffects:
+  - effectType: 0
+    duration: 5
+    value: 0
+    tickInterval: 1
+    tickValue: 0
+    isDebuff: 0
+    statModifiers: []
+  skillData:
+    skill: {fileID: 0}
+    Level: 0

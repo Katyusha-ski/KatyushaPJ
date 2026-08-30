@@ -1,0 +1,86 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c45bb7f5d2c75bc42afde98aabf02457, type: 3}
+  m_Name: StrangeHouseCutscene
+  m_EditorClassIdentifier: Assembly-CSharp::CutsceneData
+  actions:
+  - rid: 690000000000000001
+  - rid: 690000000000000002
+  - rid: 690000000000000003
+  - rid: 5747512877583171702
+  - rid: 690000000000000004
+  - rid: 690000000000000005
+  - rid: 5747512877583171666
+  - rid: 690000000000000006
+  references:
+    version: 2
+    RefIds:
+    - rid: 690000000000000001
+      type: {class: DialogueAction, ns: , asm: Assembly-CSharp}
+      data:
+        waitForClick: 0
+        dialogue: {fileID: 11400000, guid: 5fe0648d82854609946f4678bb2cbb7b, type: 2}
+    - rid: 690000000000000002
+      type: {class: TeleportAction, ns: , asm: Assembly-CSharp}
+      data:
+        waitForClick: 0
+        destination: {x: 100, y: -100}
+        loadingMessage: "C\u1EA3 hai c\xF9ng ti\u1EBFn v\xE0o b\xEAn trong. Hachi
+          t\xECm th\u1EA5y \u0111\u01B0\u1EE3c m\u1ED9t h\u1EA7m tr\xFA \u1EA9n,
+          c\u1EA3 hai b\u01B0\u1EDBc v\xE0o v\xE0 th\u1EA5y m\u1ED9t nh\xF3m d\xE2n
+          l\xE0ng \u0111ang run r\u1EA9y trong b\xF3ng t\u1ED1i. H\u1ECD nh\xECn
+          th\u1EA5y Hachi v\xE0 Kati, \xE1nh m\u1EAFt v\u1EEBa s\u1EE3 h\xE3i v\u1EEBa
+          hy v\u1ECDng."
+        workInBlack: []
+    - rid: 690000000000000003
+      type: {class: DialogueAction, ns: , asm: Assembly-CSharp}
+      data:
+        waitForClick: 0
+        dialogue: {fileID: 11400000, guid: b3aa3223bf92445687d74eb80cf2acf9, type: 2}
+    - rid: 690000000000000004
+      type: {class: NarrationAction, ns: , asm: Assembly-CSharp}
+      data:
+        waitForClick: 1
+        text: "Hachi nu\u1ED1t con dao v\xE0o ng\u01B0\u1EDDi."
+        darkAlpha: 1
+        fadeDuration: 0.5
+        autoHoldSeconds: 2
+    - rid: 690000000000000005
+      type: {class: DialogueAction, ns: , asm: Assembly-CSharp}
+      data:
+        waitForClick: 0
+        dialogue: {fileID: 11400000, guid: c63abc6d312b4de8b8c0094724199497, type: 2}
+    - rid: 690000000000000006
+      type: {class: TeleportAction, ns: , asm: Assembly-CSharp}
+      data:
+        waitForClick: 0
+        destination: {x: 168.75, y: 0}
+        loadingMessage: "C\u1EA3 hai c\xF9ng \u0111i ra ngo\xE0i, chu\u1EA9n b\u1ECB
+          chi\u1EBFn \u0111\u1EA5u v\u1EDBi l\u0169 qu\u1EF7"
+        workInBlack: []
+    - rid: 5747512877583171666
+      type: {class: AddItemAction, ns: , asm: Assembly-CSharp}
+      data:
+        waitForClick: 0
+        items:
+        - item: {fileID: 11400000, guid: 34638127c88476541848086865ffb8f6, type: 2}
+          amount: 1
+        - item: {fileID: 11400000, guid: f0ca5774ed619e340b3e8f4191912287, type: 2}
+          amount: 3
+    - rid: 5747512877583171702
+      type: {class: ShowImageAction, ns: , asm: Assembly-CSharp}
+      data:
+        waitForClick: 0
+        image: {fileID: 9154156278621988706, guid: 16fddb00c236f5f4b9946fe7b0f0d7c3, type: 3}
+        darkAlpha: 0.9
+        fadeDuration: 0.5
+        autoHoldSeconds: 2
