@@ -24,3 +24,6 @@ MonoBehaviour:
   hitInterval: 0.2
   effects: []
   meleeSFX: {fileID: 0}
+  skillAnimation: {fileID: 7400000, guid: 66666666666666666666666666666666, type: 2}
+  effectPrefab: {fileID: 1000000000000000002, guid: f1a2b3c4d5e6478899aabbccddeeff12, type: 3}
+  hitDelay: 0.36

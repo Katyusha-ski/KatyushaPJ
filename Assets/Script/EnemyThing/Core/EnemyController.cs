@@ -96,6 +96,9 @@ public class EnemyController : MonoBehaviour, IEnemyStateProvider, IEnemyMovemen
 
     public void ChangeState(IEnemyState newState)
     {
+        if (newState == null)
+            return;
+
         currentState?.OnExit(this, this, this);
         currentState = newState;
         currentState?.OnEnter(this, this, this);
@@ -204,7 +207,12 @@ public class EnemyController : MonoBehaviour, IEnemyStateProvider, IEnemyMovemen
     public virtual IEnemyState GetAttackState() => stateFactory.CreateAttackState();
     public virtual IEnemyState GetAlertState() => stateFactory.CreateAlertState();
     public virtual IEnemyState GetHurtState(IEnemyState preState) => stateFactory.CreateHurtState(preState);
-    public virtual IEnemyState GetDieState() => stateFactory.CreateDieState();
+    public virtual IEnemyState GetDieState()
+    {
+        // Enemy thường dùng DieState mặc định, nên phải nối callback này
+        // để loot được spawn sau khi hoàn tất thời gian chết.
+        return new DieState(1.0f, HandleEnemyDeath);
+    }
     public virtual IEnemyState GetKittingState() => stateFactory.CreateKittingState();
     public virtual IEnemyState GetReturnToPostState() => stateFactory.CreateReturnToPostState();
 
@@ -230,9 +238,7 @@ public class EnemyController : MonoBehaviour, IEnemyStateProvider, IEnemyMovemen
     {
         Health health = GetComponent<Health>();
         if (health != null && health.lootManager != null)
-        {
             health.lootManager.SpawnLoot();
-        }
     }
 
     // --- Collision ---

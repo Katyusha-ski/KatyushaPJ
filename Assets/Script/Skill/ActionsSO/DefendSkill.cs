@@ -18,6 +18,9 @@ public class DefendSkill : SkillBase
     public float reflectDamageAmount = 5;
 
     public AudioClip defendSFX;
+    public GameObject effectPrefab;
+    [Header("Animation")]
+    public AnimationClip defendAnimation;
     private const string SPEED_MOD_SOURCE = "DefendSkill";
 
     public override void Activate(GameObject user, int direction)
@@ -30,7 +33,11 @@ public class DefendSkill : SkillBase
         if (AudioManager.Instance != null)
             AudioManager.Instance.PlaySFX(defendSFX);
 
-        user.GetComponent<MonoBehaviour>().StartCoroutine(DefendRoutine(user));
+        var routineRunner = user.GetComponent<PlayerSkillManager>();
+        if (routineRunner != null)
+            routineRunner.StartCoroutine(DefendRoutine(user));
+        else
+            user.GetComponent<MonoBehaviour>()?.StartCoroutine(DefendRoutine(user));
     }
 
     private IEnumerator DefendRoutine(GameObject user)
@@ -41,6 +48,14 @@ public class DefendSkill : SkillBase
         // Apply shield
         if (health != null)
             health.AddShield(shieldAmount);
+
+        if (effectPrefab != null)
+        {
+            GameObject shieldObject = Object.Instantiate(effectPrefab, user.transform);
+            shieldObject.transform.localPosition = new Vector3(0f, 0.3f, 0f);
+            var effect = shieldObject.GetComponent<SkillEffectAnimator>();
+            effect?.Play(defendAnimation, defendDuration);
+        }
 
         // Root or slow movement via modifier
         StatsModifier speedMod = null;

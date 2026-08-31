@@ -18,6 +18,7 @@ public class Stand : MonoBehaviour
     private HashSet<GameObject> damagedEnemies = new HashSet<GameObject>();
     private int lastDirection = 1;
     private bool useNA2Next;
+    private bool suppressNextPunchHit;
 
     private void Start()
     {
@@ -67,6 +68,12 @@ public class Stand : MonoBehaviour
 
     public void OnPunchHit()
     {
+        if (suppressNextPunchHit)
+        {
+            suppressNextPunchHit = false;
+            return;
+        }
+
         if (stats == null)
             return;
 
@@ -113,4 +120,10 @@ public class Stand : MonoBehaviour
             }
         }
     }
+
+    public void SuppressNextPunchHit()
+    {
+        suppressNextPunchHit = true;
+    }
+
 }

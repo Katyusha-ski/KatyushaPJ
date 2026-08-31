@@ -3,17 +3,13 @@ using UnityEngine;
 public class StandAnimationController : MonoBehaviour
 {
     private Animator animator;
-    // Cache animator parameter hash (computed once, used many times)
     private readonly int hashDef = Animator.StringToHash("Def");
 
     private void Awake()
     {
         animator = GetComponent<Animator>();
-
         if (animator == null)
-        {
-            Debug.LogError("Animator component not found on StandAnimationController GameObject.");
-        }
+            Debug.LogError("Animator component not found on StandAnimationController GameObject.", this);
     }
 
     public void TriggerCastStance()
@@ -21,4 +17,5 @@ public class StandAnimationController : MonoBehaviour
         if (animator == null) return;
         animator.SetTrigger(hashDef);
     }
+
 }

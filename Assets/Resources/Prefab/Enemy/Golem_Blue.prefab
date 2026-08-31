@@ -131,11 +131,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c3d3b00923ba5e46917963bb4624953, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LootManager
-  lootTable: {fileID: 0}
-  itemFloatPref: {fileID: 0}
+  lootTable: {fileID: 11400000, guid: 72ff9b4e18fd2464bba80f7fe23dc6d4, type: 2}
+  itemFloatPref: {fileID: 1039174889174051788, guid: 675a2b960ebb7c144b8e59f0240a58ef, type: 3}
   poolTag: ItemLoot
-  dropRad: 0
-  dropForce: 0
+  dropRad: 1
+  dropForce: 1
 --- !u!61 &1172684826817496753
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -226,7 +226,7 @@ MonoBehaviour:
   healthBar: {fileID: 0}
   damageSFX: {fileID: 0}
   dieSFX: {fileID: 0}
-  lootManager: {fileID: 0}
+  lootManager: {fileID: 6071521939580045766}
 --- !u!114 &3248425647022853517
 MonoBehaviour:
   m_ObjectHideFlags: 0

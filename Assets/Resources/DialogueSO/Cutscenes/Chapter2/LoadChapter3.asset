@@ -13,14 +13,12 @@ MonoBehaviour:
   m_Name: LoadChapter3
   m_EditorClassIdentifier: Assembly-CSharp::CutsceneData
   actions:
-  - rid: 5747512968250392679
+  - rid: 5747513016768528491
   references:
     version: 2
     RefIds:
-    - rid: 5747512968250392679
-      type: {class: SceneTransitionAction, ns: , asm: Assembly-CSharp}
+    - rid: 5747513016768528491
+      type: {class: NextChapterAction, ns: , asm: Assembly-CSharp}
       data:
         waitForClick: 0
-        sceneName: 
-        setChapterNumber: 0
         fadeDuration: 0.5

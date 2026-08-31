@@ -23,18 +23,26 @@ public class LootManager : MonoBehaviour
 
     private void SpawnLootItem(ItemData item, int amount)
     {
+        if (item == null)
+            return;
+
+        if (ObjectPool.Instance == null)
+            return;
+
         Vector2 dropPos = GetRandomDropPosition();
         GameObject LootGO = ObjectPool.Instance.SpawnFromPool(poolTag, dropPos, Quaternion.identity);
-        if (LootGO != null)
+        if (LootGO == null)
+            return;
+
+        ItemFloat itemFloat = LootGO.GetComponent<ItemFloat>();
+        if (itemFloat == null)
         {
-            ItemFloat itemFloat = LootGO.GetComponent<ItemFloat>();
-            if(itemFloat != null)
-            {
-                itemFloat.Initialize(item, amount);
-                ApplyRandomVelocity(LootGO.GetComponent<Rigidbody2D>());
-            }
+            ObjectPool.Instance.ReturnToPool(LootGO);
+            return;
         }
-        
+
+        itemFloat.Initialize(item, amount);
+        ApplyRandomVelocity(LootGO.GetComponent<Rigidbody2D>());
     }
 
     private Vector3 GetRandomDropPosition()

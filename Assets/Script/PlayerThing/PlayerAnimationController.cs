@@ -7,6 +7,8 @@ public class PlayerAnimationController : MonoBehaviour
     private readonly int hashIsWalk = Animator.StringToHash("isWalk");
     private readonly int hashIsRun = Animator.StringToHash("isRun");
     private readonly int hashDash = Animator.StringToHash("Dash");
+    private AnimatorOverrideController dashOverrideController;
+    private AnimationClip baseDashClip;
 
     private void Awake()
     {
@@ -39,8 +41,37 @@ public class PlayerAnimationController : MonoBehaviour
         }
     }
 
-    public void TriggerDash(){
+    public void TriggerDash(AnimationClip dashAnimation = null){
         if (animator == null) return;
+
+        // An empty clip intentionally means no animation change. This is the
+        // default behavior for Dash Lv1 and for any level without a clip.
+        if (dashAnimation == null)
+            return;
+
+        if (baseDashClip == null && animator.runtimeAnimatorController != null)
+        {
+            foreach (var clip in animator.runtimeAnimatorController.animationClips)
+            {
+                if (clip != null && clip.name == "PlayerDash")
+                {
+                    baseDashClip = clip;
+                    break;
+                }
+            }
+        }
+
+        if (baseDashClip != null)
+        {
+            if (dashOverrideController == null)
+            {
+                dashOverrideController = new AnimatorOverrideController(animator.runtimeAnimatorController);
+                animator.runtimeAnimatorController = dashOverrideController;
+            }
+
+            dashOverrideController[baseDashClip] = dashAnimation;
+        }
+
         animator.SetTrigger(hashDash);
     }
 

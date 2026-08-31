@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 4535036414685792734}
   - component: {fileID: 8185201921690905167}
   - component: {fileID: 5243425331136250251}
-  - component: {fileID: 7906503890923222853}
+  - component: {fileID: 4465621978894215547}
   m_Layer: 0
   m_Name: MagicAttack
   m_TagString: Untagged
@@ -37,6 +37,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &4535036414685792734
 SpriteRenderer:
+  serializedVersion: 2
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -55,6 +56,8 @@ SpriteRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -76,9 +79,11 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 2
+  m_MaskInteraction: 0
   m_Sprite: {fileID: 21300000, guid: 4d79ef79b5a264cfd9b4195c5a9760d9, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -88,7 +93,6 @@ SpriteRenderer:
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
-  m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!58 &8185201921690905167
 CircleCollider2D:
@@ -148,7 +152,7 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &7906503890923222853
+--- !u!114 &4465621978894215547
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -157,11 +161,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1443903596702937622}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 380224b1862abec4990dd53d6119a785, type: 3}
+  m_Script: {fileID: 11500000, guid: 28a45d77b4a9f1948885231020539402, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: 
-  castingTime: 1
-  speed: 10
+  m_EditorClassIdentifier: Assembly-CSharp::ProjectilePref
+  targetTag: Enemy
+  castingTime: 0.6
   lifeTime: 5
-  damage: 2
   explodeEffect: {fileID: 7502473351520944722, guid: c8e6f6dba8ebce6439c4d02e20a3aad1, type: 3}

@@ -4,6 +4,8 @@ using UnityEngine;
 public class ProjectileSkill : SpawnDamageSkillBase
 {
     public AudioClip projectileSFX;
+    [Header("Animation")]
+    public AnimationClip skillAnimation;
     public int isItNeedToFlip = 1;
     public Vector3 spawnOffset = Vector3.zero;
 

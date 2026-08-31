@@ -76,6 +76,23 @@ public class Health : MonoBehaviour
     private void Awake()
     {
         _healthBar = healthBar as IHealthBar;
+
+        // Một số enemy (đặc biệt Golem) chứa HP bar trong child prefab nhưng
+        // reference healthBar không được serialize vào prefab cha. Tự tìm
+        // component IHealthBar để HP luôn liên kết với đúng Health này.
+        if (_healthBar == null)
+        {
+            var childBehaviours = GetComponentsInChildren<MonoBehaviour>(true);
+            foreach (var behaviour in childBehaviours)
+            {
+                if (behaviour is IHealthBar childHealthBar)
+                {
+                    _healthBar = childHealthBar;
+                    break;
+                }
+            }
+        }
+
         characterStats = GetComponent<CharacterStats>();
         if (characterStats != null)
         {
@@ -172,6 +189,12 @@ public class Health : MonoBehaviour
             if (enemyController != null)
             {
                 IEnemyState dieState = enemyController.GetDieState();
+
+                if (dieState == null)
+                {
+                    return;
+                }
+
                 enemyController.ChangeState(dieState);
             }
         }

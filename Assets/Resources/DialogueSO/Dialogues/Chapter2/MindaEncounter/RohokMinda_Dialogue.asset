@@ -14,12 +14,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueData
   lines:
   - speaker: {fileID: 11400000, guid: 90000000000000000000000000000021, type: 2}
-    text: "(kiệt sức) Ta sẽ chiến đấu với lũ các ngươi tới cùng, lũ xấu xa."
+    text: "(ki\u1EC7t s\u1EE9c) Ta s\u1EBD chi\u1EBFn \u0111\u1EA5u v\u1EDBi l\u0169
+      c\xE1c ng\u01B0\u01A1i t\u1EDBi c\xF9ng, l\u0169 x\u1EA5u xa."
   - speaker: {fileID: 11400000, guid: 02a1fc921f4037d4bb7357b2fa36c700, type: 2}
-    text: "Bình tĩnh đi, anh không phải quỷ. Anh tới đây để giải cứu vùng đất này. Tên anh là Hachi, còn đây là Kati."
+    text: "B\xECnh t\u0129nh \u0111i, anh kh\xF4ng ph\u1EA3i qu\u1EF7. Anh t\u1EDBi
+      \u0111\xE2y \u0111\u1EC3 gi\u1EA3i c\u1EE9u v\xF9ng \u0111\u1EA5t n\xE0y. T\xEAn
+      anh l\xE0 Hachi, c\xF2n \u0111\xE2y l\xE0 Kati."
   - speaker: {fileID: 11400000, guid: 02a1fc921f4037d4bb7357b2fa36c700, type: 2}
-    text: "Tuy là nhìn tụi anh hơi kì cục nhưng mà chiến đấu thì tốt lắm đó."
+    text: "Tuy l\xE0 nh\xECn t\u1EE5i anh h\u01A1i k\xEC c\u1EE5c nh\u01B0ng m\xE0
+      chi\u1EBFn \u0111\u1EA5u th\xEC t\u1ED1t l\u1EAFm \u0111\xF3."
   - speaker: {fileID: 11400000, guid: 5a6b7c8d9e0f1a2b3c4d5e6f7a8b9c0d, type: 2}
-    text: "C-cảm ơn."
+    text: "C-c\u1EA3m \u01A1n."
   - speaker: {fileID: 11400000, guid: cdfbdabbf8285304690416cec3c5c792, type: 2}
-    text: "Nè nè, sao đấy nhóc?"
+    text: "N\xE8 n\xE8, sao \u0111\u1EA5y nh\xF3c?"

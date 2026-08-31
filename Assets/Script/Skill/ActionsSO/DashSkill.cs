@@ -10,6 +10,8 @@ public class DashSkill : DirectDmgSkillBase
     public float dashDuration = 0.3f;
     public string dashLayerName = "PlayerDash";
     public string dashTriggerName = "Dash";
+    [Tooltip("Optional. If empty, Dash keeps the current player animation like Lv1.")]
+    public AnimationClip skillAnimation;
     public float pushOutDistance = 0.5f;
 
     [Header("Level-Up Upgrades")]
@@ -37,7 +39,6 @@ public class DashSkill : DirectDmgSkillBase
 
     private IEnumerator DashRoutine(PlayerController player, int direction)
     {
-        var animator = player.GetComponent<Animator>();
         var rb = player.Rb;
         var playerCollider = player.GetComponent<Collider2D>();
         int oldLayer = player.gameObject.layer;
@@ -55,9 +56,9 @@ public class DashSkill : DirectDmgSkillBase
         // Switch layer to pass through enemies
         player.gameObject.layer = dashLayer;
 
-        // Trigger dash animation
-        if (animator != null && !string.IsNullOrEmpty(dashTriggerName))
-            animator.SetTrigger(dashTriggerName);
+        // Dash is movement-only for now. The Player Animator's Dash state
+        // currently points to Crossed Animation, so triggering it changes the
+        // player's pose instead of preserving the current player state.
 
         // Vô hiệu hóa movement controller ghi đè velocity trong lúc dash
         // (Fix: regression từ jitter fix — FixedUpdate áp đè vận tốc dash về 0).

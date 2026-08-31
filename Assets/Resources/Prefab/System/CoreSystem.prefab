@@ -304,7 +304,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3456789012, guid: 7b7af5759438db043ab97e4358090450, type: 3}
       propertyPath: pools.Array.data[1].tag
-      value: ItemFloat
+      value: ItemLoot
       objectReference: {fileID: 0}
     - target: {fileID: 3456789012, guid: 7b7af5759438db043ab97e4358090450, type: 3}
       propertyPath: pools.Array.data[1].size
