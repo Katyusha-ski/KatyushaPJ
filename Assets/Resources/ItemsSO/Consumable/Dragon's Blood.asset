@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Dragon's Blood
   m_EditorClassIdentifier: Assembly-CSharp::ItemData
   itemName: Dragon's Blood
-  itemIcon: {fileID: 0}
+  itemIcon: {fileID: 21300000, guid: f572fb73444f98b49a3f8cca4c5a1f73, type: 3}
   itemType: 0
   equipmentType: 0
   description: Increase 50% damage reduction for 60 seconds.

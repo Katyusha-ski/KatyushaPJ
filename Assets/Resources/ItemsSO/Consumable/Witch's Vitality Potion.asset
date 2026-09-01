@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Witch's Vitality Potion
   m_EditorClassIdentifier: Assembly-CSharp::ItemData
   itemName: Witch's Vitality Potion
-  itemIcon: {fileID: 0}
+  itemIcon: {fileID: 21300000, guid: 211ed625c06254046a76ff08dd11dc73, type: 3}
   itemType: 0
   equipmentType: 0
   description: Restore 20 HP instantly, restore 2 HP/s for 10 seconds.

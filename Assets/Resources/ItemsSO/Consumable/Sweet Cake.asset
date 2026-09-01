@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Sweet Cake
   m_EditorClassIdentifier: Assembly-CSharp::ItemData
   itemName: Sweet Cake
-  itemIcon: {fileID: 0}
+  itemIcon: {fileID: 21300000, guid: a2598ae709ff71242a8dcc4804bc5d16, type: 3}
   itemType: 0
   equipmentType: 0
   description: Restore 3 HP instantly, restore 1 HP/s for 5 seconds.

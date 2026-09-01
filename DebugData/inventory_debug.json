@@ -137,5 +137,7 @@
         false,
         false
     ],
-    "questItems": []
+    "questItems": [    
+        "Map"
+    ]
 }

@@ -258,3 +258,93 @@ Tài liệu này tổng hợp các loại item và chỉ số dựa trên các c
 - **Block**
   - itemType: Skill
   - mô tả: Hachi đỡ đòn cho bạn.
+
+---
+
+## Ghi chú về Icon bị thiếu (itemIcon == null)
+
+Tổng cộng **33/83 item** đang không có icon được gán (itemIcon = null, fileID: 0).
+
+### 1. Quest Items (9/9 — TẤT CẢ đều thiếu icon)
+| File | Ghi chú |
+|------|---------|
+| `Quest\Witch's Hat.asset` | Thiếu icon |
+| `Quest\Scroll.asset` | Thiếu icon |
+| `Quest\Map.asset` | Thiếu icon |
+| `Quest\Key 1.asset` | Thiếu icon |
+| `Quest\Key 2.asset` | Thiếu icon |
+| `Quest\Key 3.asset` | Thiếu icon |
+| `Quest\Key 4.asset` | Thiếu icon |
+| `Quest\Key 5.asset` | Thiếu icon |
+| `Quest\Angel's Mirror.asset` | Thiếu icon |
+
+### 2. Skill Items — Levels 2-5 (16/20 — chỉ Lv1 có icon)
+| Category | Items thiếu icon |
+|----------|-----------------|
+| **Range** | `ProjetileSkillItemLv2`, `Lv3`, `Lv4`, `Lv5` |
+| **Melee** | `MeleeSkillItemLv2`, `Lv3`, `Lv4`, `Lv5` |
+| **Defend** | `DefendItemLv2`, `Lv3`, `Lv4`, `Lv5` |
+| **Dash** | `DashTransformItemLv2`, `Lv3`, `Lv4`, `Lv5` |
+
+> **Pattern:** Chỉ có Lv1 của mỗi skill category có icon. Các level cao hơn (Lv2-5) đều thiếu icon và cần được gán riêng.
+
+### 3. Consumable Items (8/12)
+| File | Ghi chú |
+|------|---------|
+| `Consumable\Dragon's Blood.asset` | Thiếu icon |
+| `Consumable\Vitality Potion.asset` | Thiếu icon |
+| `Consumable\Immunity Potion.asset` | Thiếu icon |
+| `Consumable\Holy Water.asset` | Thiếu icon |
+| `Consumable\Resistance Potion.asset` | Thiếu icon |
+| `Consumable\Sweet Cake.asset` | Thiếu icon |
+| `Consumable\Witch's Strength Potion.asset` | Thiếu icon |
+| `Consumable\Witch's Vitality Potion.asset` | Thiếu icon |
+
+### 4. Các item đã có icon (tài liệu tham khảo)
+- **Material**: Tất cả đều dùng shared icon (fileID: 21300000, guid: a388153bab04bab4d9e5ad8fb39e4be7) ✅
+- **Equipment**: Tất cả đều có icon riêng hoặc dùng shared icon (fileID: 21300000 với guid khác nhau) ✅
+- **Skill Lv1**: `ProjetileSkillItemLv1`, `MeleeSkillItemLv1`, `DefendItemLv1`, `DashTransformItemLv1` — đều có icon ✅
+- **Consumable có icon**: `Green Grape`, `Cooked Meat` ✅
+
+---
+
+## Gợi ý gán icon cho các item đang thiếu
+
+### Consumable (ánh xạ sprite từ `Assets/Resources/Sprites/ItemIcon/`)
+
+| Item | Sprite gợi ý | Lý do |
+|------|-------------|-------|
+| `Dragon's Blood` | `P_Red01.png` ~ `P_Red08.png` | Potion đỏ (tăng dmgR) |
+| `Vitality Potion` | `P_Blue01.png` ~ `P_Blue08.png` | Potion xanh (hồi HP) |
+| `Immunity Potion` | `P_White01.png` ~ `P_White05.png` | Potion trắng (miễn nhiễm) |
+| `Holy Water` | `P_Blue01.png` ~ `P_Blue08.png` | Potion xanh (giải + miễn nhiễm) — dùng P_Blue thay vì S_Holy vì là consumable |
+| `Resistance Potion` | `P_Red01.png` ~ `P_Red08.png` | Potion đỏ (tăng dmgR) |
+| `Sweet Cake` | `I_C_Pie.png` | Bánh ngọt |
+| `Witch's Strength Potion` | `P_Red01.png` ~ `P_Red08.png` | Potion đỏ (tăng ATK) |
+| `Witch's Vitality Potion` | `P_Blue01.png` ~ `P_Blue08.png` | Potion xanh (hồi HP nhiều) |
+| `Antidote` | `I_Antidote.png` | Icon thuốc đặc biệt |
+
+### Quest (ánh xạ trực tiếp từ tên sprite)
+
+| Item | Sprite |
+|------|--------|
+| `Witch's Hat` | `C_Hat01.png` hoặc `C_Hat02.png` |
+| `Scroll` | `I_Scroll.png` hoặc `I_Scroll02.png` |
+| `Map` | `I_Map.png` |
+| `Key 1` | `I_Key01.png` |
+| `Key 2` | `I_Key02.png` |
+| `Key 3` | `I_Key03.png` |
+| `Key 4` | `I_Key04.png` |
+| `Key 5` | `I_Key05.png` |
+| `Angel's Mirror` | `I_Mirror.png` |
+
+### Skill (Lv2-5) — gán từng bước theo category
+
+| Category | Sprite gợi ý |
+|----------|-------------|
+| **Range** | `S_Bow01.png` ~ `S_Bow14.png`, hoặc `S_Shadow*`, `S_Thunder*` |
+| **Melee** | `S_Sword*`, `S_Axe01` ~ `S_Axe07`, `S_Dagger02` ~ `S_Dagger06` |
+| **Defend** | `S_Holy*`, `S_Buff*`, `S_Earth*` |
+| **Dash** | `S_Wind01` ~ `S_Wind07`, `S_Light*` |
+
+### Material: Tất cả đã có icon ✅ (không cần xử lý)

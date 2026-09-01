@@ -1,0 +1,51 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 12efb4e91f50acd42999f69a91d76dab, type: 3}
+  m_Name: Chapter3KuriRescue_Dialogue
+  m_EditorClassIdentifier: Assembly-CSharp::DialogueData
+  lines:
+  - speaker: {fileID: 11400000, guid: 02a1fc921f4037d4bb7357b2fa36c700, type: 2}
+    text: "Ơ căn phòng này."
+  - speaker: {fileID: 11400000, guid: 7a5e6d3c4b2f1908a7e6d5c4b3a29108, type: 2}
+    text: "Cậu là chiến binh của hoàng gia phải không?"
+  - speaker: {fileID: 11400000, guid: 7a5e6d3c4b2f1908a7e6d5c4b3a29108, type: 2}
+    text: "Ta đã từng thấy mặt cậu trong cung điện trước đây."
+  - speaker: {fileID: 11400000, guid: 02a1fc921f4037d4bb7357b2fa36c700, type: 2}
+    text: "Ông bình tĩnh dưỡng thương đi, không cần gắng sức quá đâu."
+  - speaker: {fileID: 11400000, guid: 02a1fc921f4037d4bb7357b2fa36c700, type: 2}
+    text: "Tôi là Hachi, con nuôi của Shisa, còn người bạn nhỏ này là Kati. Do một số chuyện mà tôi thành ra như thế này."
+  - speaker: {fileID: 11400000, guid: 02a1fc921f4037d4bb7357b2fa36c700, type: 2}
+    text: "Nhưng mà không sao đâu, tôi đã xử lí hết bọn quỷ ở ngoài trang trại và cả dưới hầm rồi. Từ giờ ông có thể yên tâm."
+  - speaker: {fileID: 11400000, guid: 7a5e6d3c4b2f1908a7e6d5c4b3a29108, type: 2}
+    text: "Cậu định tới thủ đô à? Có vài tình báo tôi phải nói cho cậu biết."
+  - speaker: {fileID: 11400000, guid: cdfbdabbf8285304690416cec3c5c792, type: 2}
+    text: "Bất ngờ thật đấy! Tình trạng đất nước thế này mà ông vẫn nắm được tình trạng của thủ đô ư?"
+  - speaker: {fileID: 11400000, guid: 7a5e6d3c4b2f1908a7e6d5c4b3a29108, type: 2}
+    text: "Cậu xem thường mạng lưới của gia đình tôi quá, nghĩ tôi chỉ là một địa chủ giàu có bình thường thôi à. Không phải tự nhiên nhà vua xem trọng tôi đến thế đâu nhé."
+  - speaker: {fileID: 11400000, guid: 02a1fc921f4037d4bb7357b2fa36c700, type: 2}
+    text: "Hehe, thật là ngại quá."
+  - speaker: {fileID: 11400000, guid: 7a5e6d3c4b2f1908a7e6d5c4b3a29108, type: 2}
+    text: "Theo như những gì thuộc hạ của tôi đã báo cáo thì, tình trạng hiện tại của thủ đô rất tệ và quan trọng hơn là có một cổng dịch chuyển khổng lồ đang mở ra ở đó, nối thẳng đến vùng đất quỷ."
+  - speaker: {fileID: 11400000, guid: 02a1fc921f4037d4bb7357b2fa36c700, type: 2}
+    text: "H-Hả, khoan đã... cổng dịch chuyển cỡ đó cần trình độ phép thuật cực cao với một mớ ma pháp khổng lồ — mà quan trọng nhất là phải có người thi triển ở cả hai đầu cổng đó."
+  - speaker: {fileID: 11400000, guid: cdfbdabbf8285304690416cec3c5c792, type: 2}
+    text: "Ý cậu là lũ quỷ không tự mở cổng một mình được hả?"
+  - speaker: {fileID: 11400000, guid: 02a1fc921f4037d4bb7357b2fa36c700, type: 2}
+    text: "Ừ đúng rồi bạn tôi. Tôi nghĩ là trình độ phép thuật của chúng chưa phát triển tới vậy để mở từ một đầu đâu. Vậy chỉ còn một khả năng thôi... có kẻ phản bội."
+  - speaker: {fileID: 11400000, guid: cdfbdabbf8285304690416cec3c5c792, type: 2}
+    text: "Phản bội sao, nghe thật khó tin."
+  - speaker: {fileID: 11400000, guid: 02a1fc921f4037d4bb7357b2fa36c700, type: 2}
+    text: "Ha, tôi cũng thấy vậy — quỷ với sinh vật thế giới này là hai nhánh khác hẳn nhau mà. Người thường học phép quỷ đã khó khăn vô cùng rồi, nói gì tới thi triển phép cỡ đó mà còn phải đồng điệu hai đầu cổng."
+  - speaker: {fileID: 11400000, guid: 7a5e6d3c4b2f1908a7e6d5c4b3a29108, type: 2}
+    text: "Dù sao thì hai người cũng nên cẩn thận. Đường lui về đây vẫn còn, nếu lũ quỷ quay lại tấn công thì cứ về trú ẩn. Về lương thực thì cứ lấy thỏa thích đi nhé. Tôi không bận tâm đâu"
+  - speaker: {fileID: 11400000, guid: cdfbdabbf8285304690416cec3c5c792, type: 2}
+    text: "Cảm ơn ông. Chúng tôi đi tiếp đây."

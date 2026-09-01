@@ -12,24 +12,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 462ee4e4477b62746aa569ea5d231340, type: 3}
   m_Name: Map
   m_EditorClassIdentifier: Assembly-CSharp::ItemData
+  itemId: 
   itemName: Map
   itemIcon: {fileID: 0}
   itemType: 3
   equipmentType: 0
-  description: A map showing the way.
+  description: "B\u1EA3n \u0111\u1ED3 m\u1EADt \u0111\u1ED9 t\u1EA5n c\xF4ng c\u1EE7a
+    b\u1ECDn qu\u1EF7. Theo nh\u01B0 tr\xEAn \u0111\xE2y th\xEC c\xF3 v\u1EBB ch\xFAng
+    \u0111\xE3 chi\u1EBFm \u0111\u01B0\u1EE3c \u0111a s\u1ED1 c\xE1c th\xE0nh ph\u1ED1
+    r\u1ED3i, nh\u01B0ng \u0111\u1EC3 t\xECm \u0111\u01B0\u1EDDng an to\xE0n \u0111\u1EBFn
+    th\u1EE7 \u0111\xF4 th\xEC kh\xF4ng ph\u1EA3i kh\xF3."
   isStackable: 1
   maxStackSize: 99
   stats:
-    atk: 0
-    critChance: 0
-    critDamage: 0
-    armorPierce: 0
-    armor: 0
-    health: 0
-    movementSpeed: 0
-    controlResistance: 0
-    lifesteal: 0
-    cooldownReduction: 0
-    hpRegen: 0
-    dmgR: 0
-    skillAmp: 0
+    statConfigs: []
+  consumableEffects:
+  - effectType: 0
+    duration: 5
+    value: 0
+    tickInterval: 1
+    tickValue: 0
+    isDebuff: 0
+    statModifiers: []
+  skillData:
+    skill: {fileID: 0}
+    Level: 0

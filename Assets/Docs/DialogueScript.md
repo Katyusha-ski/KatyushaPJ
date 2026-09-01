@@ -167,24 +167,54 @@ Cutscene *(Sau khi hạ được con quái mạnh nhất khu vực, nó làm rơ
 ---
 
 ## Chapter 3 — Trang trại Kuri
-
+// Đây là Cutscene giới thiệu 
 - [Hachi]: Kati này, phía trước là trang trại của ông Kuri. Ông ấy có truyền thống cung cấp lương thực cho cả quốc gia qua nhiều đời rồi.
-- [Kati]: Vậy giờ có usagi lo vũ khí, còn thiếu quân lương thì tới đây là hợp lý.
+- [Kati]: Tuyệt! Nếu giải quyết xong được quỷ ở chỗ này thì ta có thể loot được nhiều đồ ăn lắm đây hehehe.
 - [Hachi]: Đúng vậy. Trang trại này chưa bị lũ quỷ phá quá nhiều, chắc tái chiếm lại được trước khi tiến sâu vào trung tâm.
 
-*(Sau khi dọn sạch quái, họ tìm thấy Kuri vẫn còn sống sót trong hầm trú ẩn.)*
 
-- [Kuri]: (thở phào) Cảm ơn hai người đã cứu tôi... Là chiến binh của hoàng gia phải không? Tôi có thể chỉ đường ngắn nhất để giải phóng thủ đô.
-- [Kati]: Ông biết đường à?
-- [Kuri]: Tôi có quan hệ thân thiết với nhà vua, cũng nắm được ít nhiều về bộ máy vận hành đất nước này. Thuộc hạ tôi báo lại rằng có một cánh cổng dịch chuyển ngay giữa thủ đô, nối thẳng từ vùng đất của lũ quỷ.
-- [Hachi]: (gãi đầu) Khoan đã... cổng dịch chuyển cỡ đó cần trình độ phép thuật cực cao với một mớ ma pháp khổng lồ — mà quan trọng nhất là phải có người thi triển ở CẢ HAI đầu cổng đó.
+// Đây là khi tới căn biệt thự của nhà Kuri.
+- [Hachi]: (ngó quanh) Nè Kati, trong căn biệt thự này nồng nặc mùi quỷ. Có thể số lượng còn đông hơn tụi chúng ta đã xử nãy giờ
+- [Kati]: Hả? Nơi nhỏ như này mà còn đông quỷ hơn sao?
+- [Hachi]: Tôi không rõ nhưng trước đây tôi đã từng nghe qua về căn biệt thự và căn hầm của nơi đây. Có thể nó sâu và rộng hơn vẻ bề ngoài rất nhiều đó.
+- [Kati]: Ngạc nhiên thật. Thôi ta cũng vào thôi.
+Tele vào trong biệt thự không có text cho đoạn tele này.
+
+*(Sau khi dọn sạch quái, họ tìm thấy Kuri và gia đình vẫn còn sống sót trong hầm trú ẩn.)* // Đây là 1 cutscene
+Đi vào trigger:
+- [Hachi]: Ơ căn phòng này.
+Tele: Cả hai đi vào căn phòng, phát hiện gia đình Kuri và nhiều tùy tùng vẫn còn sống dù họ nhiều người đang bị thương.
+- [Kuri]: Cậu là chiến binh của hoàng gia phải không?
+- [Kuri]: Ta đã từng thấy mặt cậu trong cung điện trước đây.
+- [Hachi]: Ông bình tĩnh dưỡng thương đi, không cần gắn sức quá đâu.
+- [Hachi]: Tôi là Hachi, con nuôi của Shisa, còn người bạn nhỏ này là Kati. Do một số chuyện mà tôi thành ra như thế này.
+- [Hachi]: Nhưng mà không sao đâu, tôi đã xử lí hết bọn quỷ ở ngoài trang trại và cả dưới hầm rồi. Từ giờ ông có thể yên tâm.
+- [Kuri]: Cậu định tới thủ đô à? Có vài tình báo tôi phải nói cho cậu biết.
+- [Kati]: Bất ngờ thật đấy! Tình trạng đất nước thế này mà ông vẫn nắm được tình trạng của thủ đô ư?
+- [Kuri]: Cậu xem thường mạng lưới của gia đình tôi quá, nghĩ tôi chỉ là 1 địa chủ giàu có bình thường thôi à. Không phải tự nhiên nhà vua xem trọng tôi đến thế đâu nhé. 
+- [Hachi]: Hehe, Thật là ngại quá.
+- [Kuri]: Theo như những gì thuộc hạ của tôi đã báo cáo thì, tình trạng hiện tại của thủ đô rất tệ và quan trọng hơn là có một cổng dịch chuyển khổng lồ đang mở ra ở đó, nối thẳng đến vùng đất quỷ.
+- [Hachi]: H-Hả, khoan đã... cổng dịch chuyển cỡ đó cần trình độ phép thuật cực cao với một mớ ma pháp khổng lồ — mà quan trọng nhất là phải có người thi triển ở CẢ HAI đầu cổng đó.
 - [Kati]: Ý cậu là lũ quỷ không tự mở cổng một mình được hả?
-- [Hachi]: Chuẩn luôn. Tôi cá là lũ quỷ chưa "học bài" tới mức đó đâu. Vậy chỉ còn một khả năng thôi... có kẻ phản bội.
-- [Kati]: Nghe còn vô lý hơn cả cái đầu tiên á.
-- [Hachi]: Ha, tôi cũng thấy vậy — quỷ với sinh vật thế giới này là hai nhánh khác hẳn nhau mà. Người thường học phép quỷ đã khó muốn xỉu rồi, nói gì tới thi triển phép cỡ đó.
-- [Kuri]: Dù sao thì hai người cũng nên cẩn thận. Đường lui về đây vẫn còn, nếu lũ quỷ quay lại tấn công thì cứ về trú ẩn.
+- [Hachi]: Ừ đúng rồi bạn tôi. Tôi nghĩ là trình độ phép thuật của chúng chưa phát triển tới vậy để mở từ 1 đầu đâu. Vậy chỉ còn một khả năng thôi... có kẻ phản bội.
+- [Kati]: Phản bội sao, nghe thật khó tin.
+- [Hachi]: Ha, tôi cũng thấy vậy — quỷ với sinh vật thế giới này là hai nhánh khác hẳn nhau mà. Người thường học phép quỷ đã khó khăn vô cùng rồi, nói gì tới thi triển phép cỡ đó mà còn phải đồng điệu 2 đầu cổng.
+- [Kuri]: Dù sao thì hai người cũng nên cẩn thận. Đường lui về đây vẫn còn, nếu lũ quỷ quay lại tấn công thì cứ về trú ẩn. Về lương thực thì cứ lấy thỏa thích đi nhé. Tôi không bận tâm đâu
 - [Kati]: Cảm ơn ông. Chúng tôi đi tiếp đây.
+AddItemAction(do chưa nghĩ ra nên add item gì nên để trống)
+Tele ra lại bên ngoài: Cả hai rời khỏi trang trại, theo như tấm bản đồ thì đường tốt nhất tới thủ đô là đi qua thành phố Mira.
 
+Cutscene: vừa ra ngoài đi 1 chút thì gặp lại Usagi
+- [Usagi]: Chào hai người, trông 2 người có vẻ còn khỏe hơn cả lúc trước đó.
+- [Hachi]: Haha, đúng vậy. Đồ ăn ở đây ngon quá và được mang theo rất nhiều nữa.
+- [Usagi]: Đúng như tôi nghĩ, nơi này vẫn còn khá ổn so với những khu vực khác.
+- [Kati] : Vào vấn đề chính đi, cậu có tin gì mới không?
+- [Usagi]: Theo nhưng gì tôi thấy thì hiện tại thì bọn chúng tấn công cỏ vẻ chậm hơn trước nhưng tôi không nghĩ đây là một tin tốt.
+- [Hachi]: Ý cậu là bình yên trước giông bão à?
+- [Usagi]: Ừ, khả năng là tấm bản đồ đó của các cậu sẽ nhanh chóng lỗi thời thôi. Với tình hình hiện tại thì tôi cũng chả biết làm gì thêm.
+- [Usagi]: Thôi thì giờ cứ theo như tấm bản đồ đó đi tiếp tới Mira đi. Nếu 2 cậu còn sống sau đó thì tôi sẽ cập nhật lại đường đi giúp cho.
+- [Kati]: Cảm ơn cậu, giờ thì cậu còn gì mới để chúng tôi mua sắm không? Tôi có khá nhiều thứ giá trị đây.
+- [Usagi]: Haha, tôi có vài món mới đây 2 cậu xem thử đi.
 ---
 
 ## Chapter 4 — Thành phố Mira

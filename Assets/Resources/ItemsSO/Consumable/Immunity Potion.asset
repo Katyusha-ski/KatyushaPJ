@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Immunity Potion
   m_EditorClassIdentifier: Assembly-CSharp::ItemData
   itemName: Immunity Potion
-  itemIcon: {fileID: 0}
+  itemIcon: {fileID: 21300000, guid: c2949ed9c97446445a167a0c6bee9086, type: 3}
   itemType: 0
   equipmentType: 0
   description: Immune to debuffs for 60 seconds.
