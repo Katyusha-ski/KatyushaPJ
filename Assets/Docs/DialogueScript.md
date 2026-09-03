@@ -219,21 +219,42 @@ Cutscene: vừa ra ngoài đi 1 chút thì gặp lại Usagi
 
 ## Chapter 4 — Thành phố Mira
 
+* Cutscene 1
+
 - [Hachi]: (bất an) Nè Kati, chỗ này thật sự khác xa trí nhớ của tôi. Nơi đây từng nhộn nhịp lắm, sao giờ hoang tàn thế này... còn nồng nặc mana của lũ quỷ nữa.
 - [Kati]: Cậu dắt tôi từ bất ngờ này tới bất ngờ nọ hoài nên giờ tôi cũng chai rồi, chẳng còn thấy bất ngờ được nữa. Thôi, việc của tụi mình hiện tại là gì?
-- [Hachi]: Theo báo cáo của ông Kuri thì chúng ta đang tiến sâu vào khu vực ô nhiễm. Muốn giải thoát thành phố này, phải phá một thứ gọi là "lõi quỷ" — nguồn sống của lũ quỷ khi ở vùng đất không phải của chúng.
+- [Hachi]: Theo như những gì tôi đã được học thì những nơi có lượng mana quỷ dày đặc như thế này thì thường có lõi quỷ ở đâu đó. Đó là nguồn sống của quỷ nếu ở vùng đất không phải của chúng.
+- [Hachi]: Nếu chúng ta phá được lõi quỷ thì lượng mana quỷ sẽ suy yếu, và bọn quỷ sẽ không còn sức mạnh để tấn công nữa.
 - [Hachi]: Phải nhanh lên, nếu không lõi quỷ sẽ hòa làm một với nơi này, lúc đó phiền phức lắm.
-- [Kati]: Ok đi thôi. Mà nó trông như thế nào vậy?
+- [Kati]: Ok đi thôi. Nhưng mà nó trông như thế nào vậy?
 - [Hachi]: Lõi quỷ có nhiều hình dạng lắm. Thời sơ khai của chiến tranh hai thế giới, chúng chỉ là một khối thịt thôi, nhưng càng ngày càng tiến hóa để có hình dạng và trí óc riêng — nhiều con đại quỷ còn hòa làm một với chúng luôn.
 - [Kati]: (nhún vai) Vậy là phiền thật rồi. Thôi kệ, đi thôi.
+- [Hachi]: Đúng vậy lần này sẽ khó khăn hơn so với lúc trước nhiều đó.
 
-*(Sau khi hạ được lõi quỷ hình con dơi, họ gặp lại Usagi.)*
+* Cutscene 2
+- [Kati]: Ôi cái đệch, b-buồn nôn quá. Cái quái gì vậy?
+- [Hachi]: Đây là máu thịt của người và gia cầm trộn lẫn với nhau. Kinh khủng thật. Bọn chúng làm việc này để làm gì cơ chứ?
+- [Kati]: Huệ... Tôi không muốn biết nữa.
+- [Hachi]: Hình như là lũ quỷ đang muốn lăn khối thịt này đi đâu đó. Tôi nghe nói rằng bọn chúng thường có những tập tính cung cấp máu thịt cho lõi quỷ. 
+- [Hachi]: Khả năng là cứ theo hướng này thì ta sẽ tìm được thôi.
+- [Kati]: Nhanh đi thôi mùi ở đây tởm quá T_T
 
-- [Usagi]: Hai người vẫn còn sống, tốt quá.
+*Cutscene 3:
+Tele: 2 bạn dần đi tới trung tâm thành phố, lượng mana quỷ ngày càng dày đặc hơn đến nổi cả Hachi cũng cảm thấy khó chịu.
+- [Hachi]: (giọng run run) Nè Kati, hình như chúng ta tới rồi.
+- [Kati]: Nè cậu có chắc là chúng ta thắng được không vậy.
+- [Hachi]: Tôi không chắc nữa, đây là lần đầu tôi đối mặt với quỷ cấp cao thế này.
+- [Kati]: Không sao đâu dù gì chúng ta cũng đã tới đây rồi, tiến lên thôi.
+
+
+*(Sau khi hạ được lõi quỷ hình con dơi, họ gặp lại Usagi.)* (Nghĩa đánh xong rồi chạm phải trigger rồi tele ra ngoài xong mới gặp lại usagi trigger)
+
+- [Usagi]: Hai người vẫn còn sống, tốt quá. Nhưng mà chắc nhìn tình trạng hiện tại chắc là cần nghĩ ngơi một chút rồi.
 - [Hachi]: Có tin gì mới không?
 - [Usagi]: Các quốc gia khác đang cố gắng giúp, nhưng khó tiến sâu vào đất nước này lắm. Nếu vậy thì hai người buộc phải tự tay đóng cổng dịch chuyển và phá lõi quỷ ở thủ đô để làm suy yếu phòng thủ của chúng.
 - [Kati]: Vậy đi thẳng qua mấy thành phố lớn quanh thủ đô là được chứ gì?
-- [Usagi]: Đừng, nguy hiểm lắm. Đi qua hang động Kynarite và khu rừng Mytharite đi — xa và hiểm trở hơn thật, nhưng an toàn hơn nhiều so với băng qua mấy thành phố kia.
+- [Usagi]: Đừng, nguy hiểm lắm. Chúng đã chiếm được phần lớn các thành phố rồi.
+- [Usagi]: Đi qua hang động Kynarite và khu rừng Mytharite đi — xa và hiểm trở hơn thật, nhưng an toàn hơn nhiều so với băng qua mấy thành phố kia.
 - [Hachi]: Cảm ơn cậu, Usagi. Lần này chắc phải nhờ cậu tiếp tế thêm rồi.
 - [Usagi]: Cứ để đó cho tôi, đi cẩn thận nhé.
 

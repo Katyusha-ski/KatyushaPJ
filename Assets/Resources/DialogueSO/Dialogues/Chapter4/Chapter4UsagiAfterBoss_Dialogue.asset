@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 12efb4e91f50acd42999f69a91d76dab, type: 3}
+  m_Name: Chapter4UsagiAfterBoss_Dialogue
+  m_EditorClassIdentifier: Assembly-CSharp::DialogueData
+  lines:
+  - speaker: {fileID: 11400000, guid: ba9e4e92a1ad5fd48a4938317a4ac0ba, type: 2}
+    text: "Hai người vẫn còn sống, tốt quá. Nhưng mà chắc nhìn tình trạng hiện tại chắc là cần nghĩ ngơi một chút rồi."
+  - speaker: {fileID: 11400000, guid: 02a1fc921f4037d4bb7357b2fa36c700, type: 2}
+    text: "Có tin gì mới không?"
+  - speaker: {fileID: 11400000, guid: ba9e4e92a1ad5fd48a4938317a4ac0ba, type: 2}
+    text: "Các quốc gia khác đang cố gắng giúp, nhưng khó tiến sâu vào đất nước này lắm. Nếu vậy thì hai người buộc phải tự tay đóng cổng dịch chuyển và phá lõi quỷ ở thủ đô để làm suy yếu phòng thủ của chúng."
+  - speaker: {fileID: 11400000, guid: cdfbdabbf8285304690416cec3c5c792, type: 2}
+    text: "Vậy đi thẳng qua mấy thành phố lớn quanh thủ đô là được chứ gì?"
+  - speaker: {fileID: 11400000, guid: ba9e4e92a1ad5fd48a4938317a4ac0ba, type: 2}
+    text: "Đừng, nguy hiểm lắm. Chúng đã chiếm được phần lớn các thành phố rồi."
+  - speaker: {fileID: 11400000, guid: ba9e4e92a1ad5fd48a4938317a4ac0ba, type: 2}
+    text: "Đi qua hang động Kynarite và khu rừng Mytharite đi — xa và hiểm trở hơn thật, nhưng an toàn hơn nhiều so với băng qua mấy thành phố kia."
+  - speaker: {fileID: 11400000, guid: 02a1fc921f4037d4bb7357b2fa36c700, type: 2}
+    text: "Cảm ơn cậu, Usagi. Lần này chắc phải nhờ cậu tiếp tế thêm rồi."
+  - speaker: {fileID: 11400000, guid: ba9e4e92a1ad5fd48a4938317a4ac0ba, type: 2}
+    text: "Cứ để đó cho tôi, đi cẩn thận nhé."

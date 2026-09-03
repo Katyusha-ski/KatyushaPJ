@@ -92,7 +92,7 @@ public class QuestDetailUI : MonoBehaviour
             return;
         }
 
-        if (detailRoot != null)
+        if (detailRoot != null && detailRoot != gameObject)
             detailRoot.SetActive(true);
 
         if (descriptionText != null)
@@ -101,7 +101,12 @@ public class QuestDetailUI : MonoBehaviour
 
     public void Clear()
     {
-        if (detailRoot != null)
+        // Avoid disabling the object that owns this component. The current
+        // hierarchy assigns the parent detail card as detailRoot.
+        if (detailRoot != null && detailRoot != gameObject)
             detailRoot.SetActive(false);
+
+        if (descriptionText != null)
+            descriptionText.text = "";
     }
 }

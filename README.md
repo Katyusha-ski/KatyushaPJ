@@ -6,7 +6,8 @@
 
 - Unity `6000.3.11f1` với URP.
 - Gameplay chính gồm di chuyển, tấn công thường, skill, enemy state machine, health/stat modifier, inventory, equipment, shop, dialogue, cutscene sequencer và save/load.
-- `GameUIRoot` hiện có Inventory UI, Skill UI, Shop UI và các panel gameplay cơ bản.
+- `GameUIRoot` hiện có Inventory UI, Skill UI, Quest UI, Shop UI và các panel gameplay cơ bản.
+- Quest UI gồm danh sách quest item trong ScrollView, slot spawn runtime từ `QuestSlotUI.prefab` và panel detail dùng `QuestListUI`, `QuestSlotUI` và `QuestDetailUI`.
 - Shop của Usagi dùng `UsagiShopTrigger`: player vào vùng `BoxCollider2D` thì hiện nút shop, ra khỏi vùng thì ẩn nút.
 - Health của enemy được đồng bộ với `CharacterStats.baseMaxHP` trong các prefab đã cấu hình.
 
@@ -69,10 +70,22 @@ Các thư mục chính nằm trong `Assets/Script/`:
 ### Item, inventory và shop
 
 - Item data được lưu bằng ScriptableObject.
-- Inventory gồm item slots, equipment, skill matrix và quest items.
+- Inventory gồm item slots, equipment, skill matrix và quest items. Quest item được lưu riêng trong `Inventory.questItems` và không chiếm inventory slot thường.
 - Equipment áp dụng `ItemStats` vào `CharacterStats`.
 - Consumable tạo và áp dụng status effect thông qua `ConsumableManager`.
 - Shop dùng `ShopManager`, `ShopEntrySO`, category filter, item list và item detail UI.
+
+### Quest UI
+
+- `QuestListUI` đọc `Inventory.questItems`, tạo một `QuestSlotUI` cho mỗi item và spawn vào `ScrollView/Content`.
+- `QuestSlotUI` hiển thị icon, tên item và xử lý chọn item.
+- `QuestDetailUI` hiển thị description của item đang chọn.
+- Prefab slot độc lập nằm tại `Assets/Resources/Prefab/UI/QuestSlotUI.prefab`.
+- Quest item trong debug snapshot chỉ lưu bằng tên item, không lưu amount:
+
+```json
+"questItems": ["Map"]
+```
 
 ### Dialogue, sequencer và progression
 
@@ -96,7 +109,9 @@ Các thư mục chính nằm trong `Assets/Script/`:
 - Flow scene giữa `GrassScene` và `OutskirtsScene` cần được thống nhất.
 - `DuoGolem` còn các hazard skill chờ prefab và thông số gameplay chính thức.
 - Save system vẫn tra item bằng `itemName`; chưa migrate hoàn toàn sang `itemId`.
-- Một số icon item/skill vẫn là placeholder hoặc còn thiếu.
+- Một số icon item/skill vẫn là placeholder hoặc còn thiếu; các quest item hiện có vẫn cần kiểm tra/gán icon riêng, trong đó `Map.asset` hiện chưa có `itemIcon` được lưu trong project.
+- Quest UI đã có logic spawn slot và panel detail, nhưng wiring/visibility cần tiếp tục kiểm tra trong Unity Play Mode; object template trong `GameUIRoot` không phải slot runtime được spawn.
+- `InventoryDebugTool` chỉ chạy trong Editor và tự load `DebugData/inventory_debug.json` khi Play Mode bắt đầu. Nếu sửa format snapshot thủ công, `questItems` phải là `List<string>` như ví dụ ở trên.
 - Các thay đổi gameplay và layout UI nên được kiểm tra lại trong Unity Play Mode sau khi merge prefab/scene.
 
 ## Tài liệu liên quan

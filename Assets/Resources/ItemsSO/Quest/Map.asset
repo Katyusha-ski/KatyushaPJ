@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ItemData
   itemId: 
   itemName: Map
-  itemIcon: {fileID: 0}
+  itemIcon: {fileID: 21300000, guid: 4a97e59df79080943b81087220155509, type: 3}
   itemType: 3
   equipmentType: 0
   description: "B\u1EA3n \u0111\u1ED3 m\u1EADt \u0111\u1ED9 t\u1EA5n c\xF4ng c\u1EE7a
