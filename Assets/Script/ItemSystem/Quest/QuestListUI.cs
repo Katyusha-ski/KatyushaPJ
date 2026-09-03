@@ -48,28 +48,50 @@ public class QuestListUI : MonoBehaviour
 
     public void Refresh()
     {
-        if (Inventory.Instance == null || contentParent == null || slotPrefab == null) return;
+        Debug.Log($"[QuestListUI] Refresh: Inventory.Instance null = {Inventory.Instance == null}");
+        Debug.Log($"[QuestListUI] Refresh: contentParent null = {contentParent == null}" +
+                  (contentParent != null
+                      ? $", name = '{contentParent.name}', path = '{GetTransformPath(contentParent)}'"
+                      : string.Empty));
+        Debug.Log($"[QuestListUI] Refresh: slotPrefab null = {slotPrefab == null}" +
+                  (slotPrefab != null ? $", name = '{slotPrefab.name}'" : string.Empty));
+
+        if (Inventory.Instance != null)
+            Debug.Log($"[QuestListUI] Refresh: Inventory.questItems.Count = {Inventory.Instance.questItems.Count}");
+
+        if (Inventory.Instance == null || contentParent == null || slotPrefab == null)
+        {
+            Debug.LogWarning("[QuestListUI] Refresh stopped because one or more required references are null.");
+            return;
+        }
 
         foreach (var slot in spawnedSlots)
             Destroy(slot);
         spawnedSlots.Clear();
 
         bool selectedItemStillExists = false;
+        int instantiatedSlotCount = 0;
         foreach (ItemData item in Inventory.Instance.questItems)
         {
             if (item == selectedItem)
                 selectedItemStillExists = true;
 
             GameObject slotGO = Instantiate(slotPrefab, contentParent);
+            instantiatedSlotCount++;
             slotGO.SetActive(true);
             QuestSlotUI slotUI = slotGO.GetComponent<QuestSlotUI>();
-            if (slotUI != null)
+            if (slotUI == null)
+            {
+                Debug.LogError($"[QuestListUI] Spawned object '{slotGO.name}' has no QuestSlotUI component.", slotGO);
+            }
+            else
             {
                 slotUI.Setup(item, OnSlotClicked);
-                slotUI.SetSelected(item == selectedItem);
             }
             spawnedSlots.Add(slotGO);
         }
+
+        Debug.Log($"[QuestListUI] Refresh: instantiated slot count = {instantiatedSlotCount}");
 
         if (!selectedItemStillExists)
             selectedItem = null;
@@ -87,11 +109,28 @@ public class QuestListUI : MonoBehaviour
         foreach (GameObject slot in spawnedSlots)
         {
             QuestSlotUI slotUI = slot.GetComponent<QuestSlotUI>();
-            if (slotUI != null)
-                slotUI.SetSelected(slotUI.Item == selectedItem);
+            if (slotUI != null && slotUI.Item == selectedItem)
+            {
+                slotUI.SelectButton();
+                break;
+            }
         }
 
         if (detailUI != null)
             detailUI.ShowDetail(item);
+    }
+
+    private static string GetTransformPath(Transform target)
+    {
+        string path = target.name;
+        Transform current = target.parent;
+
+        while (current != null)
+        {
+            path = current.name + "/" + path;
+            current = current.parent;
+        }
+
+        return path;
     }
 }
