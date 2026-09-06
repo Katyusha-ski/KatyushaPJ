@@ -226,9 +226,10 @@ GameObject:
   - component: {fileID: 8633250328422050223}
   - component: {fileID: 3054154455068761657}
   - component: {fileID: 3761119139427894916}
+  - component: {fileID: 4982716345100000001}
   m_Layer: 0
   m_Name: Bat
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -384,14 +385,14 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1906718568258336151}
-  m_BodyType: 0
+  m_BodyType: 1
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
   m_LinearDamping: 0
   m_AngularDamping: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 0
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -461,8 +462,8 @@ MonoBehaviour:
   hoverAmplitude: 1.5
   batSpherePrefab: {fileID: 6693899148082878927, guid: 02547462f428718438816f9dc365f4cb, type: 3}
   dropHeight: 4
-  pillarPrefab: {fileID: 0}
-  holePrefab: {fileID: 0}
+  pillarPrefab: {fileID: 5374916813532806568, guid: ebc5c7996ef93ed4383f4abbffa5cab3, type: 3}
+  holePrefab: {fileID: 8869147307659683152, guid: 09a661b507476b942be38cb48d2d2a40, type: 3}
   pillarSpawnPoints: []
   maxActivePillars: 3
   pillarSpawnCooldown: 7
@@ -472,6 +473,27 @@ MonoBehaviour:
   hurtTint: {r: 1, g: 0, b: 0, a: 1}
   hurtFlashDuration: 0.15
   deathVFX: {fileID: 0}
+--- !u!114 &4982716345100000001
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1906718568258336151}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f3a4a93c07689c54996a5453afce90c4, type: 3}
+  m_Name:
+  m_EditorClassIdentifier: Assembly-CSharp::BatHealth
+  maxHealth: 0
+  currentHealth: 0
+  healthBar: {fileID: 0}
+  virtualShield: 0
+  damageSFX: {fileID: 0}
+  dieSFX: {fileID: 0}
+  lootManager: {fileID: 0}
+  deflectSFX: {fileID: 0}
+  rangedDamageMultiplier: 1.5
 --- !u!1 &2128464191438763126
 GameObject:
   m_ObjectHideFlags: 0

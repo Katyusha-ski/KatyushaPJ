@@ -72,7 +72,7 @@ public class BatBossController : EnemyController
         CacheBossStates();
 
         isAwake = false;
-        animator.Play("Bat_Sleep", 0, 0f);
+        animator.Play("Bat_WakeUp", 0, 0f);
     }
 
     protected override void Update()
@@ -107,7 +107,6 @@ public class BatBossController : EnemyController
         float xOff = Mathf.Sin(hoverPhase) * hoverAmplitude;
         float yOff = Mathf.Sin(hoverPhase * 0.7f) * 0.5f;
         Vector3 target = hoverOrigin + new Vector3(xOff, yOff + hoverHeight, 0f);
-        target.x += hoverOrigin.x;
         transform.position = Vector3.Lerp(transform.position, target, dt * 2f);
     }
 
