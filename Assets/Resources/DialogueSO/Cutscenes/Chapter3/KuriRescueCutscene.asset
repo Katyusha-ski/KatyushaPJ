@@ -14,6 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CutsceneData
   actions:
   - rid: 100000000000000001
+  - rid: 100000000000000002
+  - rid: 100000000000000005
+  - rid: 100000000000000003
+  - rid: 100000000000000004
   references:
     version: 2
     RefIds:
@@ -22,3 +26,37 @@ MonoBehaviour:
       data:
         waitForClick: 0
         dialogue: {fileID: 11400000, guid: ad8f9e6b5c4d3a21b0c9d8e7f6a5b403, type: 2}
+    - rid: 100000000000000002
+      type: {class: TeleportAction, ns: , asm: Assembly-CSharp}
+      data:
+        waitForClick: 0
+        destination: {x: 37, y: -166}
+        loadingMessage: "C\u1EA3 hai \u0111i v\xE0o c\u0103n ph\xF2ng, ph\xE1t hi\u1EC7n
+          gia \u0111\xECnh Kuri v\xE0 nhi\u1EC1u t\xF9y t\xF9ng v\u1EABn c\xF2n s\u1ED1ng
+          d\xF9 h\u1ECD nhi\u1EC1u ng\u01B0\u1EDDi \u0111ang b\u1ECB th\u01B0\u01A1ng."
+        workInBlack: []
+    - rid: 100000000000000003
+      type: {class: AddItemAction, ns: , asm: Assembly-CSharp}
+      data:
+        waitForClick: 0
+        items:
+        - item: {fileID: 11400000, guid: 53dec2a995bf38a4db3d9e9f36b73b7f, type: 2}
+          amount: 8
+        - item: {fileID: 11400000, guid: f0ca5774ed619e340b3e8f4191912287, type: 2}
+          amount: 5
+        - item: {fileID: 11400000, guid: 9fc2301216770f240b60070a5e928331, type: 2}
+          amount: 3
+    - rid: 100000000000000004
+      type: {class: TeleportAction, ns: , asm: Assembly-CSharp}
+      data:
+        waitForClick: 0
+        destination: {x: 390, y: 0}
+        loadingMessage: "C\u1EA3 hai r\u1EDDi kh\u1ECFi trang tr\u1EA1i, theo nh\u01B0
+          t\u1EA5m b\u1EA3n \u0111\u1ED3 th\xEC \u0111\u01B0\u1EDDng t\u1ED1t nh\u1EA5t
+          t\u1EDBi th\u1EE7 \u0111\xF4 l\xE0 \u0111i qua th\xE0nh ph\u1ED1 Mira."
+        workInBlack: []
+    - rid: 100000000000000005
+      type: {class: DialogueAction, ns: , asm: Assembly-CSharp}
+      data:
+        waitForClick: 0
+        dialogue: {fileID: 11400000, guid: 1b6e9a3c7d2f40518a9c6e4b7d3f2a10, type: 2}

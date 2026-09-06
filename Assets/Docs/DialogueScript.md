@@ -262,14 +262,79 @@ Tele: 2 bạn dần đi tới trung tâm thành phố, lượng mana quỷ ngày
 
 ## Chapter 5 — Hang động Kynarite
 
-- [Kati]: (nhìn vào bóng tối hang động) ...Chỗ này âm u ghê.
-- [Hachi]: (huýt sáo) Ôi dào, tối thui vậy chứ chắc cũng không có gì đâu — mà thôi lỡ có gì thì đánh thôi ha!
-- [Kati]: (thở dài) Cậu nói câu nào cũng làm tôi thấy an tâm ghê á.
+- [Kati]: Uầy, tôi chưa thấy hang động nào rộng như này ấy, tuyệt thật.
+- [Hachi]: Đây là hang động được phát hiện vào những ngày đầu lập quốc đấy.
+- [Hachi]: Nơi đây to lớn đến mức sở hữu một hệ sinh thái riêng của mình.
+- [Hachi]: Cùng với đó thì nơi đây cũng là nguồn cung cấp ma thạch dồi dào cho vương quốc này.
+- [Kati]: Woa, nghe tuyệt thật đấy. Nhưng mà quan trọng là không biết nơi đây có an toàn không nhỉ, cậu có cảm nhận được gì không?
+- [Hachi]: Hmmm... tôi có, nhưng không quá nặng nề đâu. Tốt nhất vẫn nên cẩn trọng.
+- [Kati]: Ừ, ta đi thôi.
+
+**Cutscene 2 — Trigger chuyển sang boss scene**
+
+*(Cả hai tiếp tục đi sâu vào hang, nhưng có gì đó rất lạ.)*
+
+- [Kati]: Nè, tiếng động đó là sao vậy?
+- [Hachi]: Hình như hang động thay đổi rồi.
+- [Kati]: Ây! Đường lùi bị bịt kín rồi. Chuyện gì đang xảy ra vậy?
+- [Hachi]: Nhìn như đây là khu vực có lõi quỷ.
+- [Kati]: C-cái gì, tại sao nãy giờ ta không biết chứ?
+- [Hachi]: Hình như nó đã che giấu đi sự hiện diện của mình. Nói cách khác, nó đang muốn kéo chúng ta vào bẫy từ nãy giờ.
+- [Kati]: Chiến thôi chứ.
+- [Hachi]: Được rồi cộng sự, tiến lên thôi.
 
 *(Sau khi phá hủy lõi quỷ trong hang, họ tiếp tục hành trình.)*
 
 - [Hachi]: (búng tay) Xong một! Còn khu rừng Mytharite phía trước nữa thôi, cố lên!
 - [Kati]: Nhanh lên đi, tôi không muốn ở lại chỗ này thêm giây nào.
+
+**Cutscene 3 — Cá kỳ lạ (Tezzy)**
+
+*(Trên đường ra khỏi hang, cả hai bắt gặp một con cá kỳ lạ.)*
+
+*(Đi tới trigger → action: show obj)*
+
+- [Con cá kỳ lạ]: Hù :))
+- [Kati]: ??????
+- [Hachi]: Cái này là trò đùa kiểu mới hả? Chắc tôi nên ra ngoài giao tiếp nhiều hơn.
+- [Con cá kỳ lạ]: Nè, hai đứa bây đừng có coi thường ta vậy chứ. Ta là một Shakiza vô cùng quyền năng đó, có thể cho hai đứa bây về "các bụi".
+- [Kati]: Nè Hachi, con cá này đang nói gì vậy?
+- [Hachi]: Hmmm... Shakiza là một giống loài khác với hai phe sinh vật sống và quỷ. Chúng vốn tới từ không gian gọi chung là "The Outside".
+- [Hachi]: Vào thời kỳ đại chiến giữa chúng tôi và quỷ thì mọi thứ hỗn loạn tới mức mở ra các cổng không gian từ The Outside.
+- [Hachi]: Và có những sinh vật từ The Outside cũng đã tiến vào đây, ta có thể coi họ là phe trung lập. Một số người đã chọn ở lại nơi này sau khi cuộc đại chiến kết thúc nên chúng tôi gọi họ là Shakiza.
+- [Con cá kỳ lạ]: Hahaha, kẻ này cũng hiểu biết đấy chứ. Nếu thế thì mau sợ hãi ta đi. Ta mạnh lắm đó.
+- [Kati]: Giờ tôi phải làm sao đây Hachi.
+- [Hachi]: Ờ thì đúng là Shakiza cũng mang rất nhiều sức mạnh lớn, nhưng mà kẻ này thì tôi thấy hắn rất yếu.
+- [Con cá kỳ lạ]: Nè tên đáng ghét kia, ta là Tezzy, Tezzy the Emperor. Kẻ như ngươi dám xem thường ta hả? ヽ(`Д´)ノ
+- [Kati]: Nè hắn ồn ào quá -_- Chúng ta chặn hắn được không.
+- [Tezzy]: Ôi đại ca, tôi xin lỗi. Đừng đánh tôi huhu, tôi có vũ khí xịn sẽ trao đổi với hai cậu. Xin đừng đánh tôi mà.
+- [Hachi]: Thiệt hả? Vậy thì tuyệt quá.
+- [Tezzy]: Đúng vậy. Hai người đã đánh bại hai con golem đó đúng không. Tôi rất là biết ơn hai vị đó. Bọn chúng không biết nói lý lẽ chút nào T_T
+- [Tezzy]: Mà bọn chúng có rơi rớt món gì quý giá không vậy. Tôi rất là muốn xem đó.
+- [Kati]: Ờ thì có đây.
+- [Tezzy]: Hô hố, thứ này đúng là đỉnh cao. Nếu hai vị có thể trao đổi với tôi thứ này thì tôi sẽ cho hai vị bảo kiếm vô cùng xịn xò.
+- [Hachi]: Thế thì tuyệt quá. Đồ của cậu đây, dù sao thì tôi cũng không biết làm gì với thứ này.
+- [Tezzy]: Hehehehe, cảm ơn hai vị rất nhiều.
+
+*(Action: hide obj — Tezzy biến mất.)*
+
+- [Hachi]: Hả?
+- [Kati]: Chúng ta bị lừa rồi! Tên khốn này. Nè Hachi, lần sau gặp lại ta phải đấm tên đó thật đã tay đó.
+- [Hachi]: Lần đầu tôi nghe thấy có Shakiza hèn như này ấy.
+
+**Cutscene 4 — Gặp lại Usagi**
+
+*(Cuối hang động, cả hai gặp lại Usagi.)*
+
+- [Usagi]: Chào hai bằng hữu, hai cậu vẫn ổn chứ nhỉ. Mà sao trông hai bạn khó chịu quá vậy.
+- [Kati]: Chúng tôi vừa gặp chuyện không vui, nhưng thôi không cần quan tâm đâu.
+- [Kati]: Có tin tức gì mới không?
+- [Usagi]: Hai cậu kỳ lạ thật :0 Mà thôi kệ đi, chuyện là quân viện trợ từ những quốc gia khác đang giằng co ở biên giới.
+- [Usagi]: Họ đang lên kế hoạch để có thể đi theo con đường mà hai người đã vẽ ra.
+- [Hachi]: Vậy thì tốt quá, chúng ta có thể đỡ được phần nào rồi.
+- [Usagi]: Đừng vội mừng, tin xấu đây. Bọn quỷ vẫn đang tấn công và xâm thực ở nhiều vùng đất. Trong đó có Mytharite, khu rừng hai bạn chuẩn bị đặt chân tới.
+- [Usagi]: Tuy vẫn đúng như tôi nghĩ thì đây là đường dễ nhất, nhưng hai cậu vẫn phải cẩn trọng đó.
+- [Hachi]: Cảm ơn cậu nhiều. Chúng tôi chắc sẽ nghỉ ngơi một chút. Giờ thì cậu còn hàng nào mới không ấy, tụi tui xem với OwO
 
 ---
 

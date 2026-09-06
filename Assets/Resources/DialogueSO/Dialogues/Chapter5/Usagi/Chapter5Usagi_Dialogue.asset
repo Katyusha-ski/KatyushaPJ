@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 12efb4e91f50acd42999f69a91d76dab, type: 3}
+  m_Name: Chapter5Usagi_Dialogue
+  m_EditorClassIdentifier: Assembly-CSharp::DialogueData
+  lines:
+  - speaker: {fileID: 11400000, guid: ba9e4e92a1ad5fd48a4938317a4ac0ba, type: 2}
+    text: "Chào hai bằng hữu, hai cậu vẫn ổn chứ nhỉ. Mà sao trông hai bạn khó chịu quá vậy."
+  - speaker: {fileID: 11400000, guid: cdfbdabbf8285304690416cec3c5c792, type: 2}
+    text: "Chúng tôi vừa gặp chuyện không vui, nhưng thôi không cần quan tâm đâu."
+  - speaker: {fileID: 11400000, guid: cdfbdabbf8285304690416cec3c5c792, type: 2}
+    text: "Có tin tức gì mới không?"
+  - speaker: {fileID: 11400000, guid: ba9e4e92a1ad5fd48a4938317a4ac0ba, type: 2}
+    text: "Hai cậu kỳ lạ thật :0 Mà thôi kệ đi, chuyện là quân viện trợ từ những quốc gia khác đang giằng co ở biên giới."
+  - speaker: {fileID: 11400000, guid: ba9e4e92a1ad5fd48a4938317a4ac0ba, type: 2}
+    text: "Họ đang lên kế hoạch để có thể đi theo con đường mà hai người đã vẽ ra."
+  - speaker: {fileID: 11400000, guid: 02a1fc921f4037d4bb7357b2fa36c700, type: 2}
+    text: "Vậy thì tốt quá, chúng ta có thể đỡ được phần nào rồi."
+  - speaker: {fileID: 11400000, guid: ba9e4e92a1ad5fd48a4938317a4ac0ba, type: 2}
+    text: "Đừng vội mừng, tin xấu đây. Bọn quỷ vẫn đang tấn công và xâm thực ở nhiều vùng đất. Trong đó có Mytharite, khu rừng hai bạn chuẩn bị đặt chân tới."
+  - speaker: {fileID: 11400000, guid: ba9e4e92a1ad5fd48a4938317a4ac0ba, type: 2}
+    text: "Tuy vẫn đúng như tôi nghĩ thì đây là đường dễ nhất, nhưng hai cậu vẫn phải cẩn trọng đó."
+  - speaker: {fileID: 11400000, guid: 02a1fc921f4037d4bb7357b2fa36c700, type: 2}
+    text: "Cảm ơn cậu nhiều. Chúng tôi chắc sẽ nghỉ ngơi một chút. Giờ thì cậu còn hàng nào mới không ấy, tụi tui xem với OwO"

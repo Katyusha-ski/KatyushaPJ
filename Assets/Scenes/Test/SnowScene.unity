@@ -1100,7 +1100,7 @@ PrefabInstance:
       objectReference: {fileID: 1781000769}
     - target: {fileID: 4800807602620498320, guid: 171860af147bbce4ea20497239900319, type: 3}
       propertyPath: m_Name
-      value: Slime_Enemy
+      value: Green Slime
       objectReference: {fileID: 0}
     - target: {fileID: 5771645318287409762, guid: 171860af147bbce4ea20497239900319, type: 3}
       propertyPath: m_Material

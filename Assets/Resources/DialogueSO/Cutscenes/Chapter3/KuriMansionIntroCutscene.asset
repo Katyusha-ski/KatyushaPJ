@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CutsceneData
   actions:
   - rid: 100000000000000001
+  - rid: 100000000000000002
   references:
     version: 2
     RefIds:
@@ -22,3 +23,11 @@ MonoBehaviour:
       data:
         waitForClick: 0
         dialogue: {fileID: 11400000, guid: 9c7f8e5d4b3a2910c9d8e7f6a5b4032a, type: 2}
+    - rid: 100000000000000002
+      type: {class: TeleportAction, ns: , asm: Assembly-CSharp}
+      data:
+        waitForClick: 0
+        destination: {x: -10, y: -100}
+        loadingMessage: "Hai ng\u01B0\u1EDDi t\xECm th\u1EA5y t\u1EA7ng h\u1EA7m
+          nh\xE0 \xF4ng Kuri"
+        workInBlack: []

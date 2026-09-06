@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: 4856722380783939895}
   - component: {fileID: 5755337441069332450}
   - component: {fileID: 3331242239842285203}
+  - component: {fileID: -700000000000000003}
   m_Layer: 7
   m_Name: Abomination
   m_TagString: Enemy
@@ -177,7 +178,7 @@ MonoBehaviour:
   virtualShield: 0
   damageSFX: {fileID: 0}
   dieSFX: {fileID: 0}
-  lootManager: {fileID: 0}
+  lootManager: {fileID: -700000000000000003}
 --- !u!114 &4120829934292528807
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -458,3 +459,20 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 788942669992416328, guid: 9f176e676efb02b48a3dc14de2bbe441, type: 3}
   m_PrefabInstance: {fileID: 8696429003758766087}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &-700000000000000003
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5845025101992479414}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c3d3b00923ba5e46917963bb4624953, type: 3}
+  m_Name: ''
+  m_EditorClassIdentifier: Assembly-CSharp::LootManager
+  lootTable: {fileID: 0}
+  itemFloatPref: {fileID: 0}
+  poolTag: ItemLoot
+  dropRad: 0
+  dropForce: 0

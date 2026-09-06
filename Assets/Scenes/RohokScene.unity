@@ -129,7 +129,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4800807602620498320, guid: 171860af147bbce4ea20497239900319, type: 3}
       propertyPath: m_Name
-      value: Slime_Enemy (4)
+      value: Green Slime (4)
       objectReference: {fileID: 0}
     - target: {fileID: 6161858659872126640, guid: 171860af147bbce4ea20497239900319, type: 3}
       propertyPath: m_LocalPosition.x
@@ -371,7 +371,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4800807602620498320, guid: 171860af147bbce4ea20497239900319, type: 3}
       propertyPath: m_Name
-      value: Slime_Enemy (3)
+      value: Green Slime (3)
       objectReference: {fileID: 0}
     - target: {fileID: 6161858659872126640, guid: 171860af147bbce4ea20497239900319, type: 3}
       propertyPath: m_LocalPosition.x
@@ -607,7 +607,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1086530258094326540, guid: 4ae16086b72a08046adb8f64ff53fc9d, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2618493403817169592, guid: 4ae16086b72a08046adb8f64ff53fc9d, type: 3}
       propertyPath: m_SizeDelta.x
@@ -824,6 +824,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5217175854762555719, guid: ba1769f335fe5df438fb8ca6b7d68e85, type: 3}
   m_PrefabInstance: {fileID: 364566184}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &401510798 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 402784526300439705, guid: 4ae16086b72a08046adb8f64ff53fc9d, type: 3}
+  m_PrefabInstance: {fileID: 326295546}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &434270077 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5807587586049763328, guid: 171860af147bbce4ea20497239900319, type: 3}
@@ -845,7 +850,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4800807602620498320, guid: 171860af147bbce4ea20497239900319, type: 3}
       propertyPath: m_Name
-      value: Slime_Enemy
+      value: Green Slime
       objectReference: {fileID: 0}
     - target: {fileID: 6161858659872126640, guid: 171860af147bbce4ea20497239900319, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1158,7 +1163,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4800807602620498320, guid: 171860af147bbce4ea20497239900319, type: 3}
       propertyPath: m_Name
-      value: Slime_Enemy (5)
+      value: Green Slime (5)
       objectReference: {fileID: 0}
     - target: {fileID: 6161858659872126640, guid: 171860af147bbce4ea20497239900319, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1772,7 +1777,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4800807602620498320, guid: 171860af147bbce4ea20497239900319, type: 3}
       propertyPath: m_Name
-      value: Slime_Enemy (1)
+      value: Green Slime (1)
       objectReference: {fileID: 0}
     - target: {fileID: 6161858659872126640, guid: 171860af147bbce4ea20497239900319, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1923,7 +1928,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4800807602620498320, guid: 171860af147bbce4ea20497239900319, type: 3}
       propertyPath: m_Name
-      value: Slime_Enemy (6)
+      value: Green Slime (6)
       objectReference: {fileID: 0}
     - target: {fileID: 6161858659872126640, guid: 171860af147bbce4ea20497239900319, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2050,6 +2055,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5603564345963355698, guid: 191882d38e45074419ccdd6a9d5b2f91, type: 3}
+      propertyPath: shopUIActiveButton
+      value: 
+      objectReference: {fileID: 401510798}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2172,7 +2181,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4800807602620498320, guid: 171860af147bbce4ea20497239900319, type: 3}
       propertyPath: m_Name
-      value: Slime_Enemy (2)
+      value: Green Slime (2)
       objectReference: {fileID: 0}
     - target: {fileID: 6161858659872126640, guid: 171860af147bbce4ea20497239900319, type: 3}
       propertyPath: m_LocalPosition.x

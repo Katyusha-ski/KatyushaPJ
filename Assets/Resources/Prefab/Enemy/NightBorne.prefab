@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 1674115063252404584}
   - component: {fileID: 3111227711242633460}
   - component: {fileID: 4989850203765244564}
+  - component: {fileID: -700000000000000004}
   m_Layer: 0
   m_Name: NightBorne
   m_TagString: Untagged
@@ -136,7 +137,7 @@ MonoBehaviour:
   healthBar: {fileID: 0}
   damageSFX: {fileID: 0}
   dieSFX: {fileID: 0}
-  lootManager: {fileID: 0}
+  lootManager: {fileID: -700000000000000004}
 --- !u!114 &8420804805189474598
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -266,3 +267,20 @@ MonoBehaviour:
   explosionRadius: 2.5
   explosionDamage: 15
   hazardZonePrefab: {fileID: 0}
+--- !u!114 &-700000000000000004
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 272402843423800930}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c3d3b00923ba5e46917963bb4624953, type: 3}
+  m_Name: ''
+  m_EditorClassIdentifier: Assembly-CSharp::LootManager
+  lootTable: {fileID: 0}
+  itemFloatPref: {fileID: 0}
+  poolTag: ItemLoot
+  dropRad: 0
+  dropForce: 0
