@@ -91,7 +91,7 @@ SpriteRenderer:
   m_MaskInteraction: 0
   m_Sprite: {fileID: 3225832317793331946, guid: 3c284f8b74d570f4ba366b8904316464, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_FlipX: 0
+  m_FlipX: 1
   m_FlipY: 0
   m_DrawMode: 0
   m_Size: {x: 4, y: 4}
@@ -160,7 +160,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0.13465583, y: -0.17493844}
+  m_Offset: {x: 0.012028933, y: -0.17493844}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -170,7 +170,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 1.5802977, y: 1.0723186}
+  m_Size: {x: 1.7335811, y: 1.0723186}
   m_EdgeRadius: 0.01
 --- !u!95 &1069538978520040518
 Animator:
@@ -206,7 +206,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a663b0be8130c4d4994e7b144eb991cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 60
+  maxHealth: 30
   currentHealth: 0
   healthBar: {fileID: 9055896183433342558}
   virtualShield: 0
@@ -228,6 +228,7 @@ MonoBehaviour:
   attackRange: 2.5
   visionRange: 12
   attackCooldown: 1.5
+  spriteBaseFlipX: 1
   maxChaseDistance: 25
   loseTargetDelay: 0.5
   recoveryTimeout: 8
@@ -250,11 +251,11 @@ MonoBehaviour:
   baseLifeSteal: 5
   baseCCRes: 20
   baseAtk: 15
-  baseCritRate: 10
+  baseCritRate: 0
   baseCritDamage: 100
   baseArmorPierce: 10
   baseCDR: 5
-  baseMaxHP: 60
+  baseMaxHP: 30
   baseMovementSpeed: 3.5
   baseHPRegen: 2
   baseDmgR: 10

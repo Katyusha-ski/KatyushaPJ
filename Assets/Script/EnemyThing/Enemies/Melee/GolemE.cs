@@ -9,11 +9,19 @@ public class GolemE : EnemyController
     public SkillManager skillManager;
 
     private bool checkAttack1 = false;
+    private float golemMagicCooldownTimer;
 
     protected override void Start()
     {
         base.Start();
         ValidateSkillSetup();
+    }
+
+    protected override void Update()
+    {
+        base.Update();
+        if (golemMagicCooldownTimer > 0f)
+            golemMagicCooldownTimer -= Time.deltaTime;
     }
 
     public override void Pursue()
@@ -50,7 +58,10 @@ public class GolemE : EnemyController
     public void CastGolemMagic()
     {
         if (CanUseSkill(GolemMagicSkillIndex))
+        {
             skillManager.ActivateSkill(GolemMagicSkillIndex, GetDirection());
+            golemMagicCooldownTimer = skillManager.skills[GolemMagicSkillIndex].CooldownTimer;
+        }
         animationCtrl.ResetTrigger("Attack 2");
     }
 
@@ -67,6 +78,7 @@ public class GolemE : EnemyController
             && index >= 0
             && index < skillManager.skills.Count
             && skillManager.skills[index] != null
+            && (index != GolemMagicSkillIndex || golemMagicCooldownTimer <= 0f)
             && skillManager.skills[index].CanActivate;
     }
 

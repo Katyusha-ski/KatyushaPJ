@@ -12,8 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 462ee4e4477b62746aa569ea5d231340, type: 3}
   m_Name: DashTransformItemLv2
   m_EditorClassIdentifier: Assembly-CSharp::ItemData
+  itemId: 
   itemName: Dash Transform Skill Lv2
-  itemIcon: {fileID: 0}
+  itemIcon: {fileID: -2750130309333464772, guid: 9d82d480abb588b4bb9c9c37cea29517, type: 3}
   itemType: 4
   equipmentType: 0
   description: Dash grants invulnerability.

@@ -12,8 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 462ee4e4477b62746aa569ea5d231340, type: 3}
   m_Name: MeleeSkillItemLv5
   m_EditorClassIdentifier: Assembly-CSharp::ItemData
+  itemId: 
   itemName: Melee Skill Lv5
-  itemIcon: {fileID: 0}
+  itemIcon: {fileID: 9121345918059424060, guid: 059d1d78ad320a4489c41a6117dc8de8, type: 3}
   itemType: 4
   equipmentType: 0
   description: Sasumata pierce, DoT and armor debuff.

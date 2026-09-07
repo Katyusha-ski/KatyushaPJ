@@ -5,6 +5,7 @@ public class MovementManager
     private Rigidbody2D rb;
     private SpriteRenderer sr;
     private CharacterStats stats;
+    private readonly bool spriteBaseFlipX;
     private int direction = 1;
     private int lastPatrolDirection = 1;
     private float patrolMinX = float.NegativeInfinity;
@@ -12,11 +13,13 @@ public class MovementManager
     private Collider2D col;
     private readonly RaycastHit2D[] groundHits = new RaycastHit2D[4];
 
-    public MovementManager(Rigidbody2D rb, SpriteRenderer sr, CharacterStats stats)
+    public MovementManager(Rigidbody2D rb, SpriteRenderer sr, CharacterStats stats, bool spriteBaseFlipX = false)
     {
         this.rb = rb;
         this.sr = sr;
         this.stats = stats;
+        this.spriteBaseFlipX = spriteBaseFlipX;
+        ApplySpriteFlip(1);
     }
 
     public void Patrol()
@@ -28,7 +31,7 @@ public class MovementManager
 
         direction = lastPatrolDirection;
         rb.linearVelocityX = stats.MovementSpeed * direction;
-        sr.flipX = direction < 0;
+        ApplySpriteFlip(direction);
     }
 
     public void LookAtPlayer(Transform player)
@@ -39,7 +42,7 @@ public class MovementManager
         if (Mathf.Abs(diffX) > 0.2f)
         {
             direction = diffX > 0 ? 1 : -1;
-            sr.flipX = direction < 0;
+            ApplySpriteFlip(direction);
         }
         rb.linearVelocityX = 0f;
     }
@@ -52,7 +55,7 @@ public class MovementManager
         if (Mathf.Abs(diffX) > 0.2f)
         {
             direction = diffX > 0 ? 1 : -1;
-            sr.flipX = direction < 0;
+            ApplySpriteFlip(direction);
             rb.linearVelocityX = stats.MovementSpeed * speedMultiplier * direction;
         }
         else
@@ -67,7 +70,7 @@ public class MovementManager
         if (Mathf.Abs(diffX) > 0.05f)
         {
             direction = diffX > 0 ? 1 : -1;
-            sr.flipX = direction < 0;
+        ApplySpriteFlip(direction);
             rb.linearVelocityX = stats.MovementSpeed * speedMultiplier * direction;
         }
         else
@@ -82,7 +85,7 @@ public class MovementManager
 
         float diffX = player.position.x - rb.position.x;
         direction = diffX > 0 ? -1 : 1;
-        sr.flipX = direction < 0;
+        ApplySpriteFlip(direction);
         rb.linearVelocityX = stats.MovementSpeed * speedMultiplier * direction;
     }
 
@@ -99,6 +102,12 @@ public class MovementManager
     }
 
     public int GetDirection() => direction;
+
+    private void ApplySpriteFlip(int facingDirection)
+    {
+        if (sr != null)
+            sr.flipX = (facingDirection < 0) ^ spriteBaseFlipX;
+    }
 
     public void OnHitObstacle()
     {

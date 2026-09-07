@@ -5,7 +5,47 @@
             "amount": 1
         },
         {
+            "itemName": "Antidote",
+            "amount": 1
+        },
+        {
             "itemName": "Cooked Meat",
+            "amount": 1
+        },
+        {
+            "itemName": "Green Grape",
+            "amount": 1
+        },
+        {
+            "itemName": "Resistance Potion",
+            "amount": 1
+        },
+        {
+            "itemName": "Strength Potion",
+            "amount": 1
+        },
+        {
+            "itemName": "Sweet Cake",
+            "amount": 1
+        },
+        {
+            "itemName": "Silver Ring",
+            "amount": 1
+        },
+        {
+            "itemName": "Cloth Armor",
+            "amount": 1
+        },
+        {
+            "itemName": "Leather Shoes",
+            "amount": 1
+        },
+        {
+            "itemName": "Basic Dagger",
+            "amount": 1
+        },
+        {
+            "itemName": "Farmer Axe",
             "amount": 1
         },
         {
@@ -116,22 +156,22 @@
         }
     ],
     "skillUnlocked": [
+        true,
         false,
         false,
         false,
         false,
+        true,
         false,
         false,
         false,
         false,
+        true,
         false,
         false,
         false,
         false,
-        false,
-        false,
-        false,
-        false,
+        true,
         false,
         false,
         false,

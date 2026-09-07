@@ -14,4 +14,20 @@ public class PlayerManager : Singleton<PlayerManager>
         PlayerTransform = transform;
         PlayerRigidbody = GetComponent<Rigidbody2D>();
     }
+
+    public void ResetPositionToOrigin()
+    {
+        Vector3 origin = Vector3.zero;
+
+        if (PlayerRigidbody != null)
+        {
+            PlayerRigidbody.position = origin;
+            PlayerRigidbody.linearVelocity = Vector2.zero;
+            PlayerRigidbody.angularVelocity = 0f;
+        }
+        else if (PlayerTransform != null)
+        {
+            PlayerTransform.position = origin;
+        }
+    }
 }

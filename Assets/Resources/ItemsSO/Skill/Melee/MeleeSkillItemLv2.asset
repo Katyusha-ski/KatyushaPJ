@@ -12,8 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 462ee4e4477b62746aa569ea5d231340, type: 3}
   m_Name: MeleeSkillItemLv2
   m_EditorClassIdentifier: Assembly-CSharp::ItemData
+  itemId: 
   itemName: Melee Skill Lv2
-  itemIcon: {fileID: 0}
+  itemIcon: {fileID: 124209963821925513, guid: 63726f3e229995b4984a1ed71180f9ab, type: 3}
   itemType: 4
   equipmentType: 0
   description: Shockwave AoE, more damage.

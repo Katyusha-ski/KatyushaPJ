@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: MeleeSkillLv5
   m_EditorClassIdentifier: Assembly-CSharp::MeleeSkill
   skillName: Sasumata
-  icon: {fileID: 0}
+  icon: {fileID: 9121345918059424060, guid: 059d1d78ad320a4489c41a6117dc8de8, type: 3}
   skillType: 4
   cooldown: 10
   baseDamage: 8

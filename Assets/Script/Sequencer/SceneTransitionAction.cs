@@ -61,6 +61,9 @@ public class SceneTransitionAction : SequenceAction
 
         yield return null; // nhường thêm 1 frame cho Awake/Start của scene mới chạy xong
 
+        if (PlayerManager.Instance != null)
+            PlayerManager.Instance.ResetPositionToOrigin();
+
         if (TeleportManager.Instance != null)
             yield return TeleportManager.Instance.FadeFromBlack(duration);
     }

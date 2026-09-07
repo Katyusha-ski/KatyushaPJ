@@ -33,6 +33,12 @@ public class HurtState : IEnemyState
         elapsedTime += Time.deltaTime;
         if (elapsedTime < hurtDuration) return;
 
+        if (!string.IsNullOrEmpty(returnState))
+        {
+            ctx.SwitchTo(returnState);
+            return;
+        }
+
         EnemyController enemy = (EnemyController)ctx;
         ctx.SwitchTo(enemy.ShouldReengage() ? "Pursuit" : "ReturnToPost");
     }

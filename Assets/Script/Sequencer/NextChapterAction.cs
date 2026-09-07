@@ -43,6 +43,9 @@ public class NextChapterAction : SequenceAction
 
         yield return null;
 
+        if (PlayerManager.Instance != null)
+            PlayerManager.Instance.ResetPositionToOrigin();
+
         if (TeleportManager.Instance != null)
             yield return TeleportManager.Instance.FadeFromBlack(duration);
     }

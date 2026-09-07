@@ -19,3 +19,5 @@ MonoBehaviour:
     text: "Tuyệt! Nếu giải quyết xong được quỷ ở chỗ này thì ta có thể loot được nhiều đồ ăn lắm đây hehehe."
   - speaker: {fileID: 11400000, guid: 02a1fc921f4037d4bb7357b2fa36c700, type: 2}
     text: "Đúng vậy. Trang trại này chưa bị lũ quỷ phá quá nhiều, chắc tái chiếm lại được trước khi tiến sâu vào trung tâm."
+  - speaker: {fileID: 11400000, guid: 02a1fc921f4037d4bb7357b2fa36c700, type: 2}
+    text: "Mà này, các kĩ năng của tôi lại phát triển thêm rồi đó. Càng ngày chúng ta càng ăn ý với nhau hơn rồi."

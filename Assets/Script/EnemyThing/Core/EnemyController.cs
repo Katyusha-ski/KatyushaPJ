@@ -7,6 +7,8 @@ public class EnemyController : MonoBehaviour, IEnemyStateProvider, IEnemyMovemen
     [SerializeField] protected float attackRange = 1.5f;
     [SerializeField] protected float visionRange = 5f;
     [SerializeField] protected float attackCooldown = 2f;
+    [Tooltip("Bật nếu sprite gốc của enemy quay ngược hướng mặc định.")]
+    [SerializeField] protected bool spriteBaseFlipX;
 
     [Header("Leash / Home")]
     [SerializeField] protected float maxChaseDistance = 15f;
@@ -59,7 +61,7 @@ public class EnemyController : MonoBehaviour, IEnemyStateProvider, IEnemyMovemen
 
         rb2d = rb;
 
-        movement = new MovementManager(rb, sr, characterStats);
+        movement = new MovementManager(rb, sr, characterStats, spriteBaseFlipX);
         animationCtrl = new AnimationController(animator);
         stateFactory = CreateStateFactory();
 

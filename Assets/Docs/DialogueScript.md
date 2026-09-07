@@ -171,6 +171,8 @@ Cutscene *(Sau khi hạ được con quái mạnh nhất khu vực, nó làm rơ
 - [Hachi]: Kati này, phía trước là trang trại của ông Kuri. Ông ấy có truyền thống cung cấp lương thực cho cả quốc gia qua nhiều đời rồi.
 - [Kati]: Tuyệt! Nếu giải quyết xong được quỷ ở chỗ này thì ta có thể loot được nhiều đồ ăn lắm đây hehehe.
 - [Hachi]: Đúng vậy. Trang trại này chưa bị lũ quỷ phá quá nhiều, chắc tái chiếm lại được trước khi tiến sâu vào trung tâm.
+- [Hachi]: Mà này, các kĩ năng của tôi lại phát triển thêm rồi đó. Càng ngày chúng ta càng ăn ý với nhau hơn rồi.
+AddItemAction: add thêm 4 skill ở mức lv2
 
 
 // Đây là khi tới căn biệt thự của nhà Kuri.
