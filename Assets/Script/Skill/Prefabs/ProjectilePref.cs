@@ -65,7 +65,8 @@ public class ProjectilePref : MonoBehaviour, IProjectilePref
         if (hitTargets.Contains(collision.gameObject))
             return;
 
-        Health targetHealth = collision.GetComponent<Health>();
+        // Pillars now use the same Health pipeline as regular enemies.
+        Health targetHealth = collision.GetComponentInParent<Health>();
         if (targetHealth == null)
             return;
 

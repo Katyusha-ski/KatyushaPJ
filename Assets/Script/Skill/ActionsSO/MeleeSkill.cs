@@ -66,7 +66,7 @@ public class MeleeSkill : DirectDmgSkillBase
         {
             if (count >= maxTargets) break;
 
-            var health = hit.GetComponent<Health>();
+            var health = hit.GetComponentInParent<Health>();
             if (health == null) continue;
 
             for (int i = 0; i < hitCount; i++)

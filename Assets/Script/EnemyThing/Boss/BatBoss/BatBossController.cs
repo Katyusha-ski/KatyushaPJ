@@ -4,12 +4,16 @@ using UnityEngine;
 
 public class BatBossController : EnemyController
 {
-    [Header("Boss Settings")]
-    [SerializeField] private float hoverHeight = 4f;
-    [SerializeField] private float hoverSpeed = 0.8f;
-    [SerializeField] private float hoverAmplitude = 1.5f;
+    [Header("Fixed Hover")]
+    [Tooltip("Giữ boss tại vị trí lúc bắt đầu scene. Tắt để dùng Fixed Hover Position.")]
+    [SerializeField] private bool useInitialPosition = true;
+    [Tooltip("Tọa độ cố định của boss khi Use Initial Position tắt.")]
+    [SerializeField] private Vector3 fixedHoverPosition;
+    [Tooltip("Tọa độ Y cố định để spawn BatHole.")]
+    [SerializeField] private float holeSpawnY = -7f;
     [Header("Spawn Prefabs")]
     [SerializeField] private GameObject batSpherePrefab;
+    [Tooltip("Độ cao spawn fireball tính từ vị trí cố định của boss.")]
     [SerializeField] private float dropHeight = 4f;
     [SerializeField] private GameObject pillarPrefab;
     [SerializeField] private GameObject holePrefab;
@@ -31,11 +35,13 @@ public class BatBossController : EnemyController
 
     private BossHealthBarUI bossHealthBar;
     private Vector3 hoverOrigin;
-    private float hoverPhase;
     private Color originalColor;
     private bool isDead;
     private bool isAwake;
+    private bool isInitialized;
     private int cachedMaxHP;
+    private Rigidbody2D bossRigidbody;
+    private Animator bossAnimator;
 
     private List<Pillar> activePillars = new List<Pillar>();
     private float pillarSpawnTimer;
@@ -46,6 +52,14 @@ public class BatBossController : EnemyController
 
     protected override void Start()
     {
+        InitializeBoss();
+    }
+
+    private void InitializeBoss()
+    {
+        if (isInitialized)
+            return;
+
         player = PlayerManager.Instance != null ? PlayerManager.Instance.PlayerTransform : null;
         characterStats = GetComponent<CharacterStats>();
         if (characterStats == null)
@@ -54,40 +68,59 @@ public class BatBossController : EnemyController
             return;
         }
 
-        var rb = GetComponent<Rigidbody2D>();
+        bossRigidbody = GetComponent<Rigidbody2D>();
         var sr = GetComponent<SpriteRenderer>();
-        var animator = GetComponent<Animator>();
+        bossAnimator = GetComponent<Animator>();
 
-        movement = new MovementManager(rb, sr, characterStats);
-        animationCtrl = new AnimationController(animator);
+        movement = new MovementManager(bossRigidbody, sr, characterStats, spriteBaseFlipX);
+        animationCtrl = new AnimationController(bossAnimator);
         stateFactory = null;
 
         cachedMaxHP = (int)characterStats.MaxHP;
 
-        hoverOrigin = transform.position;
-        hoverPhase = 0f;
+        hoverOrigin = useInitialPosition ? transform.position : fixedHoverPosition;
+        transform.position = hoverOrigin;
+
+        if (bossRigidbody != null)
+        {
+            bossRigidbody.bodyType = RigidbodyType2D.Kinematic;
+            bossRigidbody.gravityScale = 0f;
+            bossRigidbody.constraints = RigidbodyConstraints2D.FreezeAll;
+            bossRigidbody.linearVelocity = Vector2.zero;
+            bossRigidbody.angularVelocity = 0f;
+        }
+
         if (bossSprite != null)
             originalColor = bossSprite.color;
 
         CacheBossStates();
 
+        bossHealthBar = GetComponentInChildren<BossHealthBarUI>(true);
+        bossHealthBar?.Hide();
+
         isAwake = false;
-        animator.Play("Bat_WakeUp", 0, 0f);
+        isInitialized = true;
+
+        if (bossAnimator != null)
+            bossAnimator.Play("Bat_Sleep", 0, 0f);
     }
 
     protected override void Update()
     {
-        if (isDead || !isAwake) return;
+        if (isDead) return;
         base.Update();
+
+        // Death must keep ticking even if the boss has not been awakened yet.
+        if (!isAwake) return;
         UpdatePillarSpawning(Time.deltaTime);
     }
 
     private void CacheBossStates()
     {
-        stateCache["Hover"] = new BatHoverState();
-        stateCache["DropSphere"] = new GenericAttackState("Atk1", 1.2f, "Hover");
-        stateCache["SpawnDoT"] = new GenericAttackState("Atk2", 1.2f, "Hover");
-        stateCache["Hurt"] = new HurtState("Hover", false);
+        stateCache["Combat"] = new BatCombatState();
+        stateCache["DropSphere"] = new GenericAttackState("Atk1", 1.2f, "Combat");
+        stateCache["SpawnDoT"] = new GenericAttackState("Atk2", 1.2f, "Combat");
+        stateCache["Hurt"] = new HurtState("Combat", false);
         stateCache["Die"] = new DieState(2f, () => HandleEnemyDeath());
     }
 
@@ -96,18 +129,50 @@ public class BatBossController : EnemyController
     public override void Pursue() { }
     public override void RetreatFromPlayer() { }
     public override void ExecuteAttack() { }
-    public override void DealNormalAttackDamage() { }
+    public override void DealNormalAttackDamage() => base.DealNormalAttackDamage();
     public override IEnemyState GetHurtState(IEnemyState currentState) => currentState;
     public override IEnemyState GetDieState() => stateCache["Die"];
 
-    // --- Hover ---
+    // --- Combat movement ---
+    // Kept as a compatibility wrapper for the legacy BatHoverState.
     public void UpdateHover(float dt)
     {
-        hoverPhase += dt * hoverSpeed;
-        float xOff = Mathf.Sin(hoverPhase) * hoverAmplitude;
-        float yOff = Mathf.Sin(hoverPhase * 0.7f) * 0.5f;
-        Vector3 target = hoverOrigin + new Vector3(xOff, yOff + hoverHeight, 0f);
-        transform.position = Vector3.Lerp(transform.position, target, dt * 2f);
+        transform.position = hoverOrigin;
+
+        if (bossRigidbody != null)
+        {
+            bossRigidbody.position = hoverOrigin;
+            bossRigidbody.linearVelocity = Vector2.zero;
+            bossRigidbody.angularVelocity = 0f;
+        }
+    }
+
+    public void FacePlayer()
+    {
+        if (player != null)
+            movement?.LookAtPlayer(player);
+    }
+
+    public void ChasePlayer(float dt)
+    {
+        if (player == null || characterStats == null)
+            return;
+
+        FacePlayer();
+
+        Vector3 target = transform.position;
+        target.x = player.position.x;
+        transform.position = Vector3.MoveTowards(
+            transform.position,
+            target,
+            characterStats.MovementSpeed * 1.5f * dt);
+
+        if (bossRigidbody != null)
+        {
+            bossRigidbody.position = transform.position;
+            bossRigidbody.linearVelocity = Vector2.zero;
+            bossRigidbody.angularVelocity = 0f;
+        }
     }
 
     public void PickNextAttack()
@@ -214,20 +279,36 @@ public class BatBossController : EnemyController
             return;
 
         Vector3 spawnPos = player.position;
-        spawnPos.y = transform.position.y - hoverHeight;
+        spawnPos.y = holeSpawnY;
         Instantiate(holePrefab, spawnPos, Quaternion.identity);
     }
 
     public void OnAttackAnimEnd()
     {
         if (currentState is GenericAttackState)
-            SwitchTo("Hover");
+            SwitchTo("Combat");
     }
 
     public void OnWakeUpComplete()
     {
+        if (!isInitialized || isDead)
+            return;
+
         isAwake = true;
-        ChangeState(stateCache["Hover"]);
+        if (bossRigidbody != null)
+            bossRigidbody.constraints = RigidbodyConstraints2D.FreezePositionY | RigidbodyConstraints2D.FreezeRotation;
+        ChangeState(stateCache["Combat"]);
+    }
+
+    public void BeginEncounter()
+    {
+        InitializeBoss();
+
+        if (!isInitialized || isDead || isAwake || bossAnimator == null)
+            return;
+
+        bossHealthBar?.SetBoss(GetComponent<Health>());
+        bossAnimator.Play("Bat_WakeUp", 0, 0f);
     }
 
     // --- Hurt ---
@@ -257,17 +338,17 @@ public class BatBossController : EnemyController
         Health h = GetComponent<Health>();
         if (h != null && h.lootManager != null)
             h.lootManager.SpawnLoot();
+
+        // Keep boss cleanup explicit. DieState also destroys after this callback,
+        // but this makes the boss lifecycle safe if the state is interrupted.
+        Destroy(gameObject);
     }
 
     public void SetHealthBar(BossHealthBarUI bar) => bossHealthBar = bar;
 
-    private void OnDrawGizmosSelected()
+    protected override void OnDrawGizmosSelected()
     {
-        Gizmos.color = Color.cyan;
-        if (player != null) Gizmos.DrawWireSphere(new Vector3(player.position.x, transform.position.y, 0f), 0.3f);
-        Gizmos.color = Color.magenta;
-        if (pillarSpawnPoints != null)
-            foreach (var pt in pillarSpawnPoints)
-                if (pt != null) Gizmos.DrawWireCube(pt.position, Vector3.one * 0.5f);
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, attackRange);
     }
 }

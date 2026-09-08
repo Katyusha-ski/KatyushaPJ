@@ -1,439 +1,134 @@
-# Katyusha_BatBoss_Context.md — Bối cảnh hệ thống BatBoss
+# Katyusha BatBoss Context — Chapter 4
 
-> File chốt sổ kiến trúc cho BatBoss (Chapter 4).
-> Mọi thay đổi FSM, Health, Spawner phải cập nhập vào file này.
+Đây là context implementation hiện tại của BatBoss. Các quyết định thiết kế chi tiết
+và checklist test nằm ở:
 
----
+- `Assets/Script/EnemyThing/Boss/BatBoss/README.md`
+- `Assets/Docs/Contexts/BatBoss_Test_TODO.md`
+- `Assets/Docs/Contexts/Boss_Implementation_Guidelines.md`
 
-## 1. KIẾN TRÚC TỔNG THỂ
+## 1. Kiến trúc
 
-### 1.1 Class Hierarchy
+```text
+EnemyController
+    └── BatBossController
+          ├── BatCombatState
+          ├── GenericAttackState (Atk1 / Atk2)
+          ├── HurtState
+          └── DieState
 
+Health
+    └── BatHealth (damage source filter)
 ```
-EnemyController (base)
-  └── BatBossController (override: Start, Update, Patrol, Pursue, ...)
-        ├── stateCache["Hover"]      = BatHoverState        (unique)
-        ├── stateCache["DropSphere"] = GenericAttackState    (generic)
-        ├── stateCache["SpawnDoT"]   = GenericAttackState    (generic)
-        ├── stateCache["Hurt"]       = HurtState             (generic)
-        └── stateCache["Die"]        = DieState              (generic + callback)
-```
 
-### 1.2 Core Mechanics
+BatBoss không còn dùng `BatHoverState` sine. `Combat` là state chính: boss đánh trong
+`attackRange`, nếu Player ở ngoài thì truy đuổi theo trục X. Y của boss được giữ cố
+định bởi `useInitialPosition` hoặc `fixedHoverPosition`.
 
-| Mechanic | File | Mô tả |
+## 2. Encounter và arena
+
+`BossArenaController` có một `Collider2D` trigger và làm đúng bốn việc:
+
+1. nhận Player đi vào vùng reveal;
+2. bật boss nếu `activateBossOnEnter`;
+3. gọi `BatBossController.BeginEncounter()`;
+4. gọi `CameraFollow.ZoomToBossReveal()` và `onRevealComplete`.
+
+Arena không quản lý gate vật lý, player spawn, health bar, music hay chapter completion.
+Player spawn do `SceneTransitionAction`/`NextChapterAction` phụ trách. Boss defeat
+được nối sang cutscene bằng `BossDefeatCutsceneTrigger`.
+
+## 3. State và event
+
+| State | Implementation | Điều kiện chuyển |
 |---|---|---|
-| **FSM State Machine** | `BatBossController.cs` | `IEnemyState`-based, state cache trong `Dictionary<string, IEnemyState>` |
-| **Hover Movement** | `BatBossController.cs` + `BatHoverState.cs` | Sine/cosine floating, 2s timer → attack |
-| **Health & Damage** | `BatHealth.cs` | Override `TakeDamage()`: deflect Melee, 1.5x Ranged, Pillar → ForceHurtState |
-| **Pillar System** | `BatBossController.cs` + `Pillar.cs` | Passive spawner (Update), max 3, 7s cooldown, burst damage 25% MaxHP |
-| **Atk1 (DropSphere)** | `BatBossController.cs` + `BatSphere.cs` | Animation Event → `DropSphere()` → instantiate sphere → HazardZone |
-| **Atk2 (SpawnAoE)** | `BatBossController.cs` + `holePrefab` | Animation Event → `SpawnAoECircle()` → instantiate `holePrefab` tại Player |
-| **Hurt State** | `BatBossController.cs` + `HurtState` | Chỉ khi Pillar nổ → FlashHurt (red tint 0.15s) → 0.3s → Hover |
-| **Death** | `BatBossController.cs` + `DieState` | 2s delay, callback `HandleEnemyDeath()` |
+| Chưa encounter | Animator `Bat_Sleep` | Arena gọi `BeginEncounter()` |
+| WakeUp | Animator `Bat_WakeUp` | Event `OnWakeUpComplete()` |
+| Combat | `BatCombatState` | Attack ready hoặc truy đuổi |
+| Atk1 | `GenericAttackState("Atk1", 1.2s, "Combat")` | Event `DropSphere()` |
+| Atk2 | `GenericAttackState("Atk2", 1.2s, "Combat")` | Event `SpawnAoECircle()` |
+| Hurt | `HurtState("Combat", false)` | Chỉ từ Pillar explosion |
+| Die | `DieState(2s, callback)` | HP về 0 |
 
----
+`BatBossController.Update()` luôn gọi base update khi boss chưa chết để `DieState`
+không bị chặn bởi cờ `isAwake`. `HandleEnemyDeath()` phát `OnBossDefeated`, spawn
+loot, ẩn boss health bar và destroy boss.
 
-## 2. FSM STATE MACHINE
+## 4. Damage
 
-### 2.1 State Map
+`BatHealth.TakeDamage(int, GameObject)` lấy `DamageSource` từ object gây damage:
 
-```
-Sleep (khởi tạo, animator.Play)
-  └── OnWakeUpComplete() → isAwake = true → ChangeState("Hover")
-
-Hover (BatHoverState) — unique
-  ├── UpdateHover() — sine/cosine floating
-  ├── Timer 2s → PickNextAttack()
-  │     ├── roll < 0.5 → SwitchTo("DropSphere")  [Atk1]
-  │     └── else        → SwitchTo("SpawnDoT")    [Atk2]
-  │     [Architect Decision: 50/50 pure random — không distance check, không conditional]
-  └── Pillar spawn timer chạy song song trong Update()
-
-DropSphere / SpawnDoT (GenericAttackState)
-  ├── OnEnter → combat.PlayAnimTrigger("Atk1"/"Atk2")
-  ├── Animation Event trong clip gọi:
-  │     ├── DropSphere()      → BatSphere tại sphereSpawnPoints[random]
-  │     └── SpawnAoECircle()  → holePrefab tại player position (ground level)
-  └── Timer 1.2s → SwitchTo("Hover")
-
-Hurt (HurtState) — generic, playHurtTrigger = false
-  ├── Chỉ vào khi ForceHurtState() gọi từ BatHealth (Pillar explosion)
-  ├── FlashHurt() gọi trước ChangeState trong ForceHurtState()
-  └── 0.3s → SwitchTo("Hover")
-
-Die (DieState) — generic, duration = 2f
-  ├── OnEnter → play "Die" trigger
-  ├── Callback → HandleEnemyDeath() gọi trong OnUpdate trước Destroy
-  └── 2s → Destroy(gameObject)
-```
-
-### 2.2 State Cache Registration
-
-```csharp
-private void CacheBossStates()
-{
-    stateCache["Hover"]      = new BatHoverState();
-    stateCache["DropSphere"] = new GenericAttackState("Atk1", 1.2f, "Hover");
-    stateCache["SpawnDoT"]   = new GenericAttackState("Atk2", 1.2f, "Hover");
-    stateCache["Hurt"]       = new HurtState("Hover", false);
-    stateCache["Die"]        = new DieState(2f, () => HandleEnemyDeath());
-}
-```
-
-### 2.3 Generic States Used
-
-| State Class | File | Parameters |
-|---|---|---|
-| `GenericAttackState` | `States/Common/GenericAttackState.cs` | `(string animTrigger, float animDuration, string returnState)` |
-| `HurtState` | `States/Common/HurtState.cs` | `(string returnState, bool playHurtTrigger)` |
-| `DieState` | `States/Common/DieState.cs` | `(float dieDuration, Action onDeath)` |
-
-### 2.4 State Transition Rules
-
-- **Animation → State:** KHÔNG. State chuyển bằng timer trong `GenericAttackState.OnUpdate()`.
-- **Animation Event → Public Method:** Animation clip gọi `DropSphere()` / `SpawnAoECircle()` / `OnAttackAnimEnd()`.
-- **`OnAttackAnimEnd()` fallback:** Safety net, gọi `SwitchTo("Hover")` nếu current state là `GenericAttackState`.
-
----
-
-## 3. HEALTH SYSTEM
-
-### 3.1 BatHealth Damage Filter
-
-```
-                    incoming damage + damageSource
-                               │
-                    ┌──────────┴──────────┐
-                    │  damageSource == null│
-                    └──────────┬──────────┘
-                               │ (YES)
-                         ┌─────┴─────┐
-                         │  Deflect  │ → PlayDeflect SFX, return (0 damage)
-                         └───────────┘
-                               │ (NO)
-                    ┌──────────┴──────────┐
-                    │ GetComponent<        │
-                    │   DamageSource>()    │
-                    └──────────┬──────────┘
-                               │ null
-                         ┌─────┴─────┐
-                         │  Deflect  │
-                         └───────────┘
-                               │ not null
-                    ┌──────────┴──────────┐
-                    │  sourceType switch  │
-                    └──────────┬──────────┘
-                               │
-          ┌────────────────────┼────────────────────┐
-          │ Ranged             │ Pillar             │ System
-          ▼                    ▼                    ▼
-   damage × 1.5          base.TakeDamage()    base.TakeDamage()
-   base.TakeDamage()     ForceHurtState()     (no state change)
-          │                    │                    │
-   ┌──────┴──────┐      ┌─────┴─────┐             │
-   │ Boss không  │      │ Vào Hurt  │             │
-   │ vào Hurt    │      │ State     │             │
-   │ (shield)    │      │ (flash)   │             │
-   └─────────────┘      └───────────┘             │
-          │                    │                    │
-          └────────────────────┼────────────────────┘
-                               │
-                    ┌──────────┴──────────┐
-                    │  Melee/Stand/        │
-                    │  EnemySkill/default  │
-                    └──────────┬──────────┘
-                               │
-                         ┌─────┴─────┐
-                         │  Deflect  │
-                         └───────────┘
-```
-
-### 3.2 Damage Source Types
-
-| `DamageSourceType` | Đến từ | Effect on Boss |
-|---|---|---|
-| `Melee` | PlayerNA (normal attack) | Deflect (0 damage) |
-| `Stand` | Hachiware companion | Deflect (0 damage) |
-| `Ranged` | ProjectilePref (player skills) | 1.5x bonus damage |
-| `Pillar` | Pillar explosion | Normal damage + ForceHurtState |
-| `System` | Internal (future) | Normal damage, no state change |
-| `EnemySkill` | Other enemies | Deflect (0 damage) |
-| `null` | Fallback | Deflect (0 damage) |
-
-### 3.3 GetHurtState() — "Khiên chống khựng"
-
-```csharp
-public override IEnemyState GetHurtState(IEnemyState currentState) => currentState;
-```
-
-**Tại sao override này tồn tại:**
-
-1. `Health.TakeDamage()` (base class) tự động gọi `GetHurtState()` cho tất cả enemy:
-   ```csharp
-   // Health.cs:123-131
-   else if(gameObject.CompareTag("Enemy"))
-   {
-       EnemyController ec = GetComponent<EnemyController>();
-       IEnemyState hurtState = ec.GetHurtState(ec.GetCurrentState());
-       ec.ChangeState(hurtState);
-   }
-   ```
-2. Boss set `stateFactory = null`, nếu không override sẽ **NullReferenceException**.
-3. Override trả về `currentState` → `ChangeState()` là no-op → Boss không flinch.
-4. **Chỉ** `ForceHurtState()` (từ Pillar explosion) mới đưa Boss vào HurtState.
-
-### 3.4 GetDieState() — Death Entry Point
-
-```csharp
-public override IEnemyState GetDieState() => stateCache["Die"];
-```
-
-- `Health.Die()` gọi `GetDieState()` khi HP ≤ 0.
-- `stateCache["Die"]` là `DieState(2f, () => HandleEnemyDeath())`.
-- `HandleEnemyDeath()` → VFX, healthbar hide, loot, `OnBossDefeated` event.
-
----
-
-## 4. PILLAR SPAWNING SYSTEM
-
-### 4.1 Parameters
-
-| Field | Value | Ý nghĩa |
-|---|---|---|
-| `maxActivePillars` | 3 | Số pillar tối đa cùng lúc |
-| `pillarSpawnCooldown` | 7s | Thời gian chờ giữa các lần spawn |
-| `maxPlayerDistance` | 12f | Pillar cách Player tối đa (filter) |
-| `minPillarDistance` | 5f | Pillar cách pillar khác tối thiểu (filter) |
-
-### 4.2 Flow
-
-```
-Update()
-  └── UpdatePillarSpawning(dt)
-        ├── RemoveAll(null) — dọn pillar đã phá huỷ
-        ├── if count >= maxActivePillars → reset timer, return
-        ├── pillarSpawnTimer -= dt
-        └── if timer ≤ 0 → TrySpawnPillar()
-              ├── RemoveAll(null)
-              ├── Filter pillarSpawnPoints[]:
-              │     ├── pt == null → skip
-              │     ├── distance to Player > 12f → skip
-              │     ├── distance to any active pillar < 5f → skip
-              │     └── validPoints.Add(pt)
-              ├── if validPoints == 0 → return false
-              ├── Random valid point → Instantiate(pillarPrefab)
-              └── pillar.Init(this)
-
-Pillar.cs:
-  ├── HP = 20
-  ├── OnTriggerEnter2D:
-  │     ├── Player (PlayerNA / Stand) → TakeHit(1)
-  │     └── ProjectilePref → TakeHit(1)
-  ├── TakeHit(amount): currentHP -= amount, HitFlash
-  ├── if currentHP ≤ 0 → DestroyPillar()
-  │     ├── destroySFX + destroyVFX
-      │   └── add DamageSource(Pillar) → bossHealth.TakeDamage(PillarBurstDamage, gameObject)
-  │           └── ForceHurtState() → FlashHurt + HurtState(0.3s) → Hover
-  └── PillarBurstDamage = round(cachedMaxHP * 0.25f)
-```
-
----
-
-## 5. ATTACK MECHANICS
-
-### 5.1 Atk1 — DropSphere (BatSphere)
-
-| Element | Detail |
+| Source | Hành vi |
 |---|---|
-| Trigger | `"Atk1"` (set bởi `GenericAttackState`) |
-| Animation Event | `DropSphere()` |
-| Prefab | `batSpherePrefab` |
-| Spawn Position | `(player.position.x, transform.position.y, 0f)` — thẳng trên đầu Player |
-| Post-spawn | Rơi thẳng đứng xuống đất (không homing, không bay chéo) |
-| On Impact | Nổ burst AoE + tạo `HazardZone` (damage vùng) |
+| `Ranged` | Nhận damage × 1.5 |
+| `Pillar` | Nhận damage, gọi `ForceHurtState()` |
+| `System` | Nhận damage bình thường |
+| `Melee`, `Stand`, `EnemySkill`, null/thiếu component | Deflect |
 
-### 5.2 Atk2 — SpawnAoE (HolePrefab)
+Damage pipeline gốc của `Health` vẫn xử lý armor/shield và gọi death. Projectile,
+melee và Stand không có nhánh xử lý Pillar riêng; chúng tìm `Health` bằng
+`GetComponentInParent<Health>()`.
 
-| Element | Detail |
-|---|---|
-| Trigger | `"Atk2"` (set bởi `GenericAttackState`) |
-| Animation Event | `SpawnAoECircle()` |
-| Prefab | `holePrefab` (delayed AoE circle) |
-| Spawn Position | `player.position` với `Y = transform.position.y - hoverHeight` (ground level) |
-| Post-spawn | Prefab tự xử lý animation circle → delayed burst → damage vùng |
+## 5. Pillar
 
-### 5.3 Animation Event Table
+Pillar là enemy thu nhỏ:
 
-| Clip | Method | Timing |
-|---|---|---|
-| `Attack1` (`Atk1`) | `DropSphere()` | Giữa clip (khi tay quái vật vung ra) |
-| `Attack2` (`Atk2`) | `SpawnAoECircle()` | Giữa clip |
-| Any attack | `OnAttackAnimEnd()` | Cuối clip (fallback an toàn) |
+- Root có tag/layer Enemy.
+- Root có `CharacterStats`, `Health`, `Pillar`, Collider2D.
+- HP lấy từ `CharacterStats.baseMaxHP`; prefab hiện tại dùng 20.
+- UI dùng lại `EnemyHPBar`.
+- `Pillar` subscribe `Health.OnDied`, phát VFX/SFX, gây `25%` MaxHP boss bằng
+  `DamageSourceType.Pillar`, rồi destroy.
 
-```csharp
-// Fallback safety — nếu GenericAttackState timer failed
-public void OnAttackAnimEnd()
-{
-    if (currentState is GenericAttackState)
-        SwitchTo("Hover");
-}
-```
+Không dùng các API cũ `hp`, `currentHP`, `TakeHit()` hoặc health bar riêng.
 
----
+## 6. Attack objects
 
-## 6. UNIQUE STATE: BatHoverState
+### BatSphere
 
-### 6.1 Code
+- Spawn tại `Player.x`, `Boss.y + dropHeight`.
+- Rơi xuống bằng tốc độ cấu hình.
+- Chạm ground: burst AoE một lần, tạo `HazardZone` nếu có prefab.
+- Destroy sau `explosionAnimDuration`.
+- Có gizmo `explosionRadius`.
 
-```csharp
-public class BatHoverState : IEnemyState
-{
-    private float timer; // 2s
+### Bat-Hole
 
-    public void OnEnter(...) { timer = 2f; }
+- Spawn tại `Player.x`, `holeSpawnY` (mặc định `-7`).
+- Trigger cache Player đang ở trong vùng.
+- Event `DealDamageNow()` gây damage một lần nếu Player còn trong vùng.
+- Event `DestroyAfterAnimation()` destroy object sau animation one-shot.
 
-    public void OnUpdate(...)
-    {
-        if (ctx is BatBossController boss)
-        {
-            boss.UpdateHover(Time.deltaTime);  // sine/cosine float
-            timer -= Time.deltaTime;
-            if (timer <= 0f) boss.PickNextAttack();
-        }
-    }
+## 7. UI
 
-    public void OnExit(...) { }
-}
-```
+`BossHealthBarUI` implement `IHealthBar` để tương thích với `Health`. Script chỉ cập
+nhật Slider value và visibility. Script không tự đổi màu. Màu mặc định lấy từ `Fill`
+Image trong prefab; boss bar dùng Screen Space Canvas.
 
-### 6.2 Hover Formula
+## 8. Serialized setup bắt buộc
 
-```
-hoverPhase += dt * hoverSpeed
-xOff = sin(hoverPhase) * hoverAmplitude
-yOff = sin(hoverPhase * 0.7f) * 0.5f
+### BatBoss
 
-targetPosition:
-  x = hoverOrigin.x + xOff
-  y = hoverOrigin.y + hoverHeight + yOff
+- `CharacterStats`, `BatHealth`, `BatBossController`, `Animator`, `Rigidbody2D`.
+- Tag `Enemy`.
+- Rigidbody Kinematic, Gravity Scale 0.
+- Gán `batSpherePrefab`, `pillarPrefab`, `holePrefab`, `pillarSpawnPoints`.
+- Gán `bossSprite` nếu muốn hurt flash.
 
-transform.position = lerp(transform.position, target, dt * 2f)
-```
+### BossArenaController
 
----
+- `Collider2D` trên cùng GameObject, `Is Trigger` sẽ được ép true trong Awake.
+- Gán `boss` và `bossCamera`.
+- Chỉ gán `onRevealComplete` nếu cần phát reveal cutscene/event.
 
-## 7. SERIALIZED FIELDS
+### Defeat cutscene
 
-```csharp
-[Header("Boss Settings")]
-[SerializeField] private float hoverHeight = 4f;
-[SerializeField] private float hoverSpeed = 0.8f;
-[SerializeField] private float hoverAmplitude = 1.5f;
+- Gán cùng BatBoss vào `BossDefeatCutsceneTrigger`.
+- Gán `SequencePlayer` hoặc để script tự tìm trên cùng GameObject.
 
-[Header("Spawn Prefabs")]
-[SerializeField] private GameObject batSpherePrefab;    // Atk1 projectile
-[SerializeField] private float dropHeight = 4f;         // Atk1 spawn Y offset
-[SerializeField] private GameObject pillarPrefab;       // Passive spawn
-[SerializeField] private GameObject holePrefab;         // Atk2 AoE
-[SerializeField] private Transform[] pillarSpawnPoints;
+## 9. Known limitations
 
-[Header("Pillar Spawn Config")]
-[SerializeField] private int maxActivePillars = 3;
-[SerializeField] private float pillarSpawnCooldown = 7f;
-[SerializeField] private float maxPlayerDistance = 12f;
-[SerializeField] private float minPillarDistance = 5f;
-
-[Header("Hurt Effect")]
-[SerializeField] private SpriteRenderer bossSprite;
-[SerializeField] private Color hurtTint = Color.red;
-[SerializeField] private float hurtFlashDuration = 0.15f;
-
-[Header("Death")]
-[SerializeField] private GameObject deathVFX;
-```
-
----
-
-## 8. KEY FORMULAS
-
-```
-Hover Position:
-  x = hoverOrigin.x + sin(hoverPhase) * hoverAmplitude
-  y = hoverOrigin.y + hoverHeight + sin(hoverPhase * 0.7) * 0.5
-
-PillarBurstDamage  = Round(cachedMaxHP * 0.25f)
-DropSphereSpawnPos = (player.position.x, transform.position.y, 0f)
-AoECircleSpawnY   = transform.position.y - hoverHeight
-
-Ranged Damage    = incoming * 1.5  (bonus multiplier)
-```
-
----
-
-## 9. KNOWN ISSUES / TODOs
-
-| # | Issue | Priority | Ghi chú |
-|---|---|---|---|
-| 1 | `EnemyController.OnCollisionEnter2D` non-virtual → boss runs base handler (harmless, only flips sprite) | Low | Có thể virtual hoá nếu cần override |
-| 2 | `Pillar` detect projectile bằng `GetComponent<ProjectilePref>()` — fragile | Medium | Migrate sang tag/layer |
-| 3 | `GenericAttackState.animDuration` hardcode 1.2s | Medium | Đồng bộ với clip length thực tế |
-| 4 | `batSpherePrefab` vẫn giữ logic HazardZone cũ trong BatSphere.cs | Low | Có thể deprecated nếu AoE circle mới thay thế |
-| 5 | Save/Load dùng `itemName` string — fragile khi rename | High | Migrate sang `itemId` |
-
----
-
-## 10. DELETED FILES (Refactor Log)
-
-| File | Replaced By | Lý do |
-|---|---|---|
-| `BatAttackAnimState.cs` | `GenericAttackState.cs` (States/Common/) | DRY — tham số hoá hoàn toàn |
-| `BatHurtState.cs` | `HurtState` với `(returnState: "Hover", playHurtTrigger: false)` | DRY — generic state đã hỗ trợ |
-| `BatDieState.cs` | `DieState` với `(duration: 2f, onDeath: HandleEnemyDeath)` | DRY — generic state + callback |
-
----
-
-## 11. FILE MAP
-
-```
-Assets/Script/EnemyThing/
-├── Boss/BatBoss/
-│   ├── BatBossController.cs          ← FSM orchestrator
-│   ├── BatHealth.cs                   ← Health override (deflect, 1.5x, pillar)
-│   ├── Pillar.cs                      ← Passive pillar logic
-│   ├── BatSphere.cs                   ← Atk1 projectile
-│   ├── BatHole.cs                     ← Atk2 delayed AoE
-│   ├── HazardZone.cs                  ← Damage zone
-│   ├── BossArenaController.cs         ← Arena control
-│   ├── BossHealthBarUI.cs             ← UI health bar
-│   ├── States/
-│   │   ├── BatHoverState.cs           ← UNIQUE - sine cosine hover
-│   │   └── (BatDieState.cs / BatHurtState.cs / BatAttackAnimState.cs → DELETED)
-│   └── DamageSource.cs
-│
-├── States/Common/
-│   ├── GenericAttackState.cs          ← (trigger, duration, returnState)
-│   ├── HurtState.cs                   ← (returnState, playHurtTrigger)
-│   └── DieState.cs                    ← (duration, onDeath)
-│
-    └── Core/
-    ├── EnemyController.cs             ← Base
-    ├── IEnemyStateContext.cs
-    ├── IEnemyMovement.cs
-    └── IEnemyCombat.cs
-```
-
----
-
-## 12. ARCHITECT DECISIONS (2026-07-18)
-
-### Decision — Atk Selection (50/50 Pure Random)
-
-| Mục | Chi tiết |
-|-----|----------|
-| Vấn đề | Tiêu chí chọn Atk1 (DropSphere) vs Atk2 (SpawnDoT) |
-| Quyết định | **50/50 pure random** — `Random.value < 0.5f` → DropSphere, else → SpawnDoT |
-| Cấm | **KHÔNG** thêm distance check, health check, hay bất kỳ conditional logic nào vào `PickNextAttack()` |
-| File áp dụng | `BatBossController.PickNextAttack()` (dòng 114-121) |
-| Lý do | Giữ tính bất định của boss pattern, tránh exploit |
-| Trạng thái | ✅ Giữ nguyên code hiện tại |
+- Chưa có navigation/pathfinding; truy đuổi chỉ theo X.
+- Attack timer (`1.2s`) phải được kiểm tra lại nếu đổi độ dài animation.
+- Hazard đã spawn có lifecycle riêng; cần quyết định rõ chúng hủy ngay hay chạy tiếp khi boss chết.
+- Die animation chính thức và tuning damage/cooldown vẫn là phần cần kiểm thử trong Unity.

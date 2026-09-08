@@ -12,6 +12,9 @@ public class NextChapterAction : SequenceAction
     [Tooltip("Thời gian fade đen và fade sáng (giây).")]
     public float fadeDuration = 0.5f;
 
+    [Tooltip("World position của Player sau khi chapter mới load. Mặc định: (0, 0, 0).")]
+    public Vector3 playerSpawnPosition = Vector3.zero;
+
     public override IEnumerator Execute()
     {
         if (ChapterManager.Instance == null)
@@ -31,11 +34,11 @@ public class NextChapterAction : SequenceAction
 
         yield return TeleportManager.Instance.FadeToBlack(fadeDuration);
 
-        FadeUI.Instance.StartCoroutine(FadeInAfterSceneLoad(fadeDuration));
+        FadeUI.Instance.StartCoroutine(FadeInAfterSceneLoad(fadeDuration, playerSpawnPosition));
         SceneManager.LoadScene(nextSceneName);
     }
 
-    private static IEnumerator FadeInAfterSceneLoad(float duration)
+    private static IEnumerator FadeInAfterSceneLoad(float duration, Vector3 spawnPosition)
     {
         string oldScene = SceneManager.GetActiveScene().name;
         while (SceneManager.GetActiveScene().name == oldScene)
@@ -44,7 +47,7 @@ public class NextChapterAction : SequenceAction
         yield return null;
 
         if (PlayerManager.Instance != null)
-            PlayerManager.Instance.ResetPositionToOrigin();
+            PlayerManager.Instance.ResetPosition(spawnPosition);
 
         if (TeleportManager.Instance != null)
             yield return TeleportManager.Instance.FadeFromBlack(duration);

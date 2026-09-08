@@ -24,6 +24,9 @@ public class SceneTransitionAction : SequenceAction
     [Tooltip("Thời gian fade đen và fade sáng (giây).")]
     public float fadeDuration = 0.5f;
 
+    [Tooltip("World position của Player sau khi scene mới load. Mặc định: (0, 0, 0).")]
+    public Vector3 playerSpawnPosition = Vector3.zero;
+
     public override IEnumerator Execute()
     {
         if (string.IsNullOrWhiteSpace(sceneName))
@@ -48,12 +51,12 @@ public class SceneTransitionAction : SequenceAction
         yield return TeleportManager.Instance.FadeToBlack(fadeDuration);
 
         // Ủy quyền fade-in cho FadeUI — nó sống xuyên scene nên coroutine không bị hủy
-        FadeUI.Instance.StartCoroutine(FadeInAfterSceneLoad(fadeDuration));
+        FadeUI.Instance.StartCoroutine(FadeInAfterSceneLoad(fadeDuration, playerSpawnPosition));
 
         SceneManager.LoadScene(sceneName);
     }
 
-    private static IEnumerator FadeInAfterSceneLoad(float duration)
+    private static IEnumerator FadeInAfterSceneLoad(float duration, Vector3 spawnPosition)
     {
         string oldScene = SceneManager.GetActiveScene().name;
         while (SceneManager.GetActiveScene().name == oldScene)
@@ -62,7 +65,7 @@ public class SceneTransitionAction : SequenceAction
         yield return null; // nhường thêm 1 frame cho Awake/Start của scene mới chạy xong
 
         if (PlayerManager.Instance != null)
-            PlayerManager.Instance.ResetPositionToOrigin();
+            PlayerManager.Instance.ResetPosition(spawnPosition);
 
         if (TeleportManager.Instance != null)
             yield return TeleportManager.Instance.FadeFromBlack(duration);

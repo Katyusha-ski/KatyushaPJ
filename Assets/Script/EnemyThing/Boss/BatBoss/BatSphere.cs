@@ -48,11 +48,6 @@ public class BatSphere : MonoBehaviour
             return;
         }
 
-        if (collision.CompareTag("Player"))
-        {
-            ApplyDoT(collision.gameObject);
-            Land();
-        }
     }
 
     private void Land()
@@ -80,25 +75,22 @@ public class BatSphere : MonoBehaviour
     private void ExplosionBurst()
     {
         Collider2D[] hits = Physics2D.OverlapCircleAll(transform.position, explosionRadius, playerLayer);
+        var damagedHealth = new System.Collections.Generic.HashSet<Health>();
         foreach (var hit in hits)
         {
-            Health h = hit.GetComponent<Health>();
-            if (h != null)
+            Health h = hit.GetComponentInParent<Health>();
+            if (h != null && damagedHealth.Add(h))
                 h.TakeDamage(explosionDamage, DamageSource.SystemSource);
         }
-    }
-
-    private void ApplyDoT(GameObject target)
-    {
-        StatusEffectController sec = target.GetComponent<StatusEffectController>();
-        if (sec == null) sec = target.AddComponent<StatusEffectController>();
-        sec.ApplyEffect(new DoTEffect(dotDuration, target, dotDamage, dotInterval));
     }
 
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, explosionRadius);
+
+        Gizmos.color = new Color(1f, 0.2f, 0.05f, 0.15f);
+        Gizmos.DrawSphere(transform.position, explosionRadius);
     }
 }
 

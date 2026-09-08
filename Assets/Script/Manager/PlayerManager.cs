@@ -17,17 +17,20 @@ public class PlayerManager : Singleton<PlayerManager>
 
     public void ResetPositionToOrigin()
     {
-        Vector3 origin = Vector3.zero;
+        ResetPosition(Vector3.zero);
+    }
 
+    public void ResetPosition(Vector3 position)
+    {
         if (PlayerRigidbody != null)
         {
-            PlayerRigidbody.position = origin;
+            PlayerRigidbody.position = position;
             PlayerRigidbody.linearVelocity = Vector2.zero;
             PlayerRigidbody.angularVelocity = 0f;
         }
         else if (PlayerTransform != null)
         {
-            PlayerTransform.position = origin;
+            PlayerTransform.position = position;
         }
     }
 }

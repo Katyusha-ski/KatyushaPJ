@@ -132,7 +132,7 @@ MonoBehaviour:
   punchRadius: 0.5
   enemyLayer:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 128
   punchTrigger: Punch
 --- !u!114 &2345678901234567890
 MonoBehaviour:

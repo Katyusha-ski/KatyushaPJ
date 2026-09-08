@@ -2,20 +2,20 @@ using UnityEngine;
 
 public class Pillar : MonoBehaviour
 {
-    [SerializeField] private int hp = 20;
     [SerializeField] private AudioClip destroySFX;
     [SerializeField] private GameObject destroyVFX;
 
     private BatBossController boss;
     private Health bossHealth;
-    private SpriteRenderer sprite;
-    private Color originalColor;
-    private int currentHP;
+    private Health health;
 
     private void Awake()
     {
-        sprite = GetComponent<SpriteRenderer>();
-        currentHP = hp;
+        health = GetComponent<Health>();
+        if (health != null)
+            health.OnDied += HandleDeath;
+        else
+            Debug.LogError("Pillar requires a Health component.", this);
     }
 
     public void Init(BatBossController bossRef)
@@ -23,52 +23,11 @@ public class Pillar : MonoBehaviour
         boss = bossRef;
         bossHealth = bossRef.GetComponent<Health>();
 
-        if (sprite != null)
-            originalColor = sprite.color;
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void HandleDeath(Health deadHealth)
     {
-        if (collision.CompareTag("Player"))
-        {
-            var playerDamage = collision.GetComponent<PlayerNA>();
-            if (playerDamage != null)
-            {
-                TakeHit(1);
-            }
-
-            var stand = collision.GetComponentInChildren<Stand>();
-            if (stand != null)
-            {
-                TakeHit(1);
-            }
-        }
-
-        var projectile = collision.GetComponent<ProjectilePref>();
-        if (projectile != null)
-        {
-            TakeHit(1);
-        }
-    }
-
-    public void TakeHit(int amount)
-    {
-        currentHP -= amount;
-
-        if (sprite != null)
-            StartCoroutine(HitFlash());
-
-        if (currentHP <= 0)
-        {
-            DestroyPillar();
-        }
-    }
-
-    private System.Collections.IEnumerator HitFlash()
-    {
-        sprite.color = Color.white;
-        yield return new WaitForSeconds(0.1f);
-        sprite.color = originalColor;
+        DestroyPillar();
     }
 
     private void DestroyPillar()
@@ -87,5 +46,11 @@ public class Pillar : MonoBehaviour
         }
 
         Destroy(gameObject);
+    }
+
+    private void OnDestroy()
+    {
+        if (health != null)
+            health.OnDied -= HandleDeath;
     }
 }

@@ -33,4 +33,10 @@ public class BatHole : MonoBehaviour
             hp.TakeDamage(dmg, gameObject);
         }
     }
+
+    // Called by the final frame of the one-shot Bat-Hole animation.
+    public void DestroyAfterAnimation()
+    {
+        Destroy(gameObject);
+    }
 }

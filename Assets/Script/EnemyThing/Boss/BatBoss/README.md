@@ -1,164 +1,128 @@
 # BatBoss — Chapter 4 Boss
 
-## Tổng quan
+## Trạng thái implementation
 
-BatBoss là một con dơi khổng lồ bay trên cao. Đây là boss đầu tiên được implement theo kiến trúc boss chung (kế thừa `EnemyController` + `BatHealth`).
+BatBoss là boss bay đầu tiên của Chapter 4. Boss dùng lại pipeline enemy hiện có:
 
----
+- `BatBossController : EnemyController` điều phối state machine và animation events.
+- `BatHealth : Health` lọc damage theo `DamageSourceType`.
+- Pillar dùng `CharacterStats + Health` giống một enemy thu nhỏ, không có hệ HP riêng.
+- Boss arena chỉ reveal camera; không quản lý gate vật lý, player spawn hoặc chapter completion.
+- Boss defeated được nối sang cutscene bằng `BossDefeatCutsceneTrigger`.
 
-## Cơ chế đặc biệt
+## Luồng encounter
 
-### 1. Ranged-only Immunity
+1. Boss được đặt sẵn trong scene, thường ở trạng thái inactive hoặc ngủ.
+2. Player đi vào trigger của `BossArenaController`.
+3. Arena bật boss nếu `activateBossOnEnter`, gọi `BeginEncounter()` và chạy animation `Bat_WakeUp`.
+4. Animation event `OnWakeUpComplete()` chuyển boss sang `Combat`.
+5. Khi đã thức, boss kiểm tra khoảng cách với Player:
+   - trong `attackRange`: chọn `Atk1` hoặc `Atk2` khi attack cooldown sẵn sàng;
+   - ngoài `attackRange`: truy đuổi theo trục X nhưng giữ nguyên độ cao.
+6. Khi HP về 0, `DieState` chạy animation chết trong 2 giây, gọi `HandleEnemyDeath()`, phát `OnBossDefeated`, spawn loot và destroy boss.
 
-BatBoss **chỉ nhận damage** từ các nguồn sau:
-- **Ranged** — đòn đánh tầm xa (projectile từ player skills)
-- **Pillar** — khi pillar bị phá huỷ (25% MaxHP)
-- **System** — damage từ hệ thống (DoT, AoE từ sphere)
+## State machine hiện tại
 
-Tất cả damage khác (`null` source, `Melee`, `Stand`, `EnemySkill`) → **bị chặn + phát âm thanh deflect**.
+```text
+Sleep / chưa encounter
+        |
+        | BossArenaController -> BeginEncounter()
+        v
+WakeUp -- OnWakeUpComplete() --> Combat
+                                  |
+             +--------------------+--------------------+
+             |                                         |
+      trong AttackRange                         ngoài AttackRange
+             |                                         |
+       Atk1 hoặc Atk2                              Chase X
+             |                                         |
+             +--------------------> Combat <----------+
 
-**Cách implement:**
-- `DamageSource` component gắn trên projectile (`sourceType = Ranged`)
-- `BatHealth` extends `Health`, override `TakeDamage(int, GameObject)` để filter source
-- `Health.cs` gốc được sửa: `TakeDamage(int)` → route đến `virtual TakeDamage(int, GameObject = null)`
-
-### 2. Pillar — Điểm yếu
-
-Pillar là vật thể xuất hiện trên mặt đất:
-- `Collider2D` với `IsTrigger = true` — không chặn player di chuyển
-- `HP = 3`, có thể bị phá bởi: đánh thường (Stand), skill (Projectile), normal attack (PlayerNA)
-- Khi bị phá → gây **25% MaxHP của boss** dạng burst damage
-- Damage được tag `DamageSourceType.Pillar` để BatHealth chấp nhận
-
-### 3. AoE Explosion (BatSphere)
-
-BatSphere khi rơi xuống:
-1. **Burst AoE** (`Physics2D.OverlapCircle`) — sát thương tức thì trong `explosionRadius`
-2. **Spawn HazardZone** — vùng độc apply `DoTEffect` lên player khi đứng trong vùng
-
----
-
-## State Machine
-
-```
-                    ┌─────────────────────────────────────────┐
-                    │                                         │
-                    ▼                                         │
-              ┌──────────┐      timer 2s      ┌───────────────┴──┐
-              │  Hover   │ ──────────────────► │  PickNextAttack │
-              │  (bay)   │                     │  (random chọn)  │
-              └──────────┘                     └───────┬─────────┘
-                    ▲                                  │
-                    │                ┌─────────────────┼─────────────────┐
-                    │                ▼                  ▼                 ▼
-                    │        ┌────────────┐   ┌────────────┐   ┌──────────────┐
-                    │        │ DropSphere │   │  SpawnDoT  │   │ SpawnPillar  │
-                    │        │ Attack1    │   │  Attack2   │   │  Attack3     │
-                    │        │ (1.2s)     │   │  (1.2s)    │   │  (1.5s)      │
-                    │        └────────────┘   └────────────┘   └──────────────┘
-                    │                │                  │               │
-                    └────────────────┴──────────────────┴───────────────┘
-                          (timer hết → tự động SwitchTo Hover)
-
-    ┌──────────┐   hit     ┌──────────┐      die      ┌──────────┐    2s    ┌──────────┐
-    │  Hover   │ ────────► │  Hurt    │ ────────────► │   Die    │ ──────► │ Destroy  │
-    │  (bay)   │   (0.3s)  │  (flash) │                │  (death) │         │ (object) │
-    └──────────┘           └──────────┘                └──────────┘         └──────────┘
+Damage về 0 --> Die (2s) --> HandleEnemyDeath() --> Destroy
 ```
 
-Tất cả attack states dùng chung 1 class `BatAttackAnimState`:
-- `OnEnter` → trigger animation (`Attack1/Attack2/Attack3`)
-- Animation Event trong clip gọi `DropSphere()` / `SpawnDoTZone()` / `SpawnPillar()`
-- Timer hết → tự động về `Hover`
+State cache trong `BatBossController`:
 
----
+| Key | State | Vai trò |
+|---|---|---|
+| `Combat` | `BatCombatState` | Đánh thường hoặc truy đuổi Player |
+| `DropSphere` | `GenericAttackState("Atk1", 1.2s, "Combat")` | Thả BatSphere |
+| `SpawnDoT` | `GenericAttackState("Atk2", 1.2s, "Combat")` | Tạo Bat-Hole |
+| `Hurt` | `HurtState("Combat", false)` | Chỉ được gọi khi Pillar nổ |
+| `Die` | `DieState(2s, callback)` | Death animation và cleanup |
 
-## File Structure
+## Vị trí và physics
 
-```
-Boss/
-├── DamageSource.cs                  Enum + component + SystemSource static
-├── BossHealthBarUI.cs               Thanh máu boss (Slider + Gradient)
-│
-└── BatBoss/
-    ├── README.md                    Tài liệu này
-    ├── BatBossController.cs         FSM chính, public methods cho Animation Events
-    ├── BatHealth.cs                 Override TakeDamage, filter damage source
-    ├── BatSphere.cs                 Toxic sphere: fall + AoE burst + hazard zone
-    ├── Pillar.cs                    Pillar điểm yếu: destroy → 25% MaxHP
-    ├── BossArenaController.cs       Trigger arena, quản lý gate + health bar
-    │
-    └── States/
-        ├── BatAttackAnimState.cs    Generic: trigger anim → timer → về Hover
-        ├── BatHoverState.cs         Bay pattern sin, timer → chọn attack
-        ├── BatHurtState.cs          Flash red 0.3s → về Hover
-        └── BatDieState.cs           2s delay → HandleEnemyDeath → Destroy
-```
+Boss không dùng gravity và không bay theo sine nữa. `useInitialPosition = true` giữ boss ở vị trí đặt trong scene; nếu tắt, dùng `fixedHoverPosition`. Rigidbody2D được cấu hình Kinematic, gravity bằng 0 và khóa vị trí/rotation phù hợp.
 
----
+`DropSphere()` spawn BatSphere tại `x = Player.x`, `y = Boss.y + dropHeight`.
 
-## File đã sửa (ảnh hưởng toàn project)
+`SpawnAoECircle()` spawn Bat-Hole tại `Player.x` và `holeSpawnY` (mặc định `-7`).
 
-| File | Thay đổi |
+## Damage rules
+
+`BatHealth` chỉ nhận:
+
+| Source | Kết quả |
 |---|---|
-| `Health/Health.cs` | Thêm `virtual TakeDamage(int, GameObject)`; cũ route sang mới |
-| `Skill/Prefabs/ProjectilePref.cs` | `TakeDamage(damage, gameObject)` — truyền source |
-| `PlayerThing/Status/DoTEffect.cs` | `TakeDamage(damage, DamageSource.SystemSource)` |
+| `Ranged` | Nhận damage nhân `rangedDamageMultiplier` (mặc định 1.5) |
+| `Pillar` | Nhận damage và gọi `ForceHurtState()` |
+| `System` | Nhận damage bình thường |
+| `Melee`, `Stand`, `EnemySkill`, null hoặc thiếu `DamageSource` | Deflect, không trừ HP |
 
----
+Projectile muốn gây damage cho BatBoss phải có `DamageSource` với `sourceType = Ranged`. Damage nội bộ dùng `DamageSource.SystemSource`.
 
-## Integration Steps
+## Pillar
 
-### Prefabs cần setup trong Editor:
+Pillar là enemy thu nhỏ, không còn `hp`, `currentHP`, `TakeHit()` hay health bar riêng:
 
-| Prefab | Component cần thêm | Ghi chú |
+- Root có `CharacterStats` và `Health`.
+- HP hiện tại được lấy từ `CharacterStats.baseMaxHP` (prefab hiện tại: 20).
+- Root nằm trên layer/tag Enemy để normal attack, Stand và projectile đi qua pipeline damage chung.
+- `EnemyHPBar` dùng lại prefab health bar enemy.
+- Khi `Health.OnDied` được gọi, Pillar phát VFX/SFX, gây `PillarBurstDamage = 25% MaxHP` lên boss rồi destroy.
+
+## Attack và animation events
+
+| Clip | Event | Kết quả |
 |---|---|---|
-| **ProjectilePref** | `DamageSource(sourceType = Ranged)` | Cho player ranged skill |
-| **BatBoss** | `BatHealth`, `BatBossController`, `CharacterStats`, `Rigidbody2D` (kinematic), `Animator` | Tag = "Enemy" |
-| **BatSphere** | `Rigidbody2D` (gravity), `Collider2D` (IsTrigger), `BatSphere` | Prefab rơi từ trên cao |
-| **HazardZone** | `Collider2D` (IsTrigger), `HazardZone` | Prefab vùng độc |
-| **Pillar** | `Collider2D` (IsTrigger), `Pillar` | Prefab điểm yếu |
+| `Bat_WakeUp` | `OnWakeUpComplete()` | Bắt đầu Combat |
+| `Bat_Atk1` | `DropSphere()` | Spawn BatSphere |
+| `Bat_Atk2` | `SpawnAoECircle()` | Spawn Bat-Hole |
+| `Bat-Hole` | `DealDamageNow()` | Damage Player nếu đang trong vùng |
+| `Bat-Hole` | `DestroyAfterAnimation()` | Destroy Bat-Hole sau một lần animation |
 
-### Animation Events:
+BatSphere khi chạm ground sẽ gây burst AoE một lần, tạo `HazardZone` nếu có prefab và tự destroy sau animation explosion.
 
-| Animation Clip | Event Method | Frame |
-|---|---|---|
-| `Attack1` | `DropSphere()` | Giữa clip |
-| `Attack2` | `SpawnDoTZone()` | Giữa clip |
-| `Attack3` | `SpawnPillar()` | Giữa clip |
-| (cuối clip) | `OnAttackAnimEnd()` (optional) | Cuối clip |
+## Arena setup
 
-### BossArena Scene Setup:
-
-```
-[BossArenaController] (trigger collider)
- ├── gán boss → BatBoss prefab (inactive)
- ├── gán bossHPBar → BossHealthBarUI (trong Canvas, hidden)
- ├── gán arenaGate → GameObject cổng (active false)
- └── gán playerSpawn → Transform (vị trí spawn player)
-
-[BatBoss] (inactive → active khi player vào arena)
- ├── BatHealth component
- ├── BatBossController component
- └── Các spawn points (sphereSpawnPoints[], pillarSpawnPoints[])
+```text
+[BossArenaController]
+ ├── Collider2D (Is Trigger)
+ ├── boss              -> BatBoss trong scene
+ ├── bossCamera        -> CameraFollow
+ ├── activateBossOnEnter
+ └── onRevealComplete  -> optional UnityEvent, ví dụ SequencePlayer.Play()
 ```
 
----
+Arena chỉ chịu trách nhiệm nhận Player vào vùng reveal, bật boss, gọi wake-up và zoom camera. Player spawn do `SceneTransitionAction`/`NextChapterAction` xử lý; boss defeated do `BossDefeatCutsceneTrigger` xử lý.
 
-## Key Formulas
+## Boss health bar
 
-```
-PillarBurstDamage = MaxHP * 25%
-HoverPosition.y   = hoverOrigin.y + hoverHeight + sin(hoverPhase * 0.7) * 0.5
-HoverPosition.x   = hoverOrigin.x + sin(hoverPhase) * hoverAmplitude
+`BossHealthBarUI` vẫn implement `IHealthBar` để nhận cập nhật từ `Health`, nhưng không tự đổi màu. `Slider.value` chỉ phản ánh HP; màu nằm ở `Fill` trong prefab và do Inspector kiểm soát. Boss bar dùng Screen Space Canvas theo prefab hiện tại.
 
-BatHealth filter: (source == null) OR (DamageSource ∉ {Ranged, Pillar, System}) → deflect
-```
+## Setup checklist
 
----
+- Bat root có `CharacterStats`, `BatHealth`, `BatBossController`, `Animator`, `Rigidbody2D` và tag `Enemy`.
+- Rigidbody2D của Bat là Kinematic, gravity 0.
+- Gán `batSpherePrefab`, `pillarPrefab`, `holePrefab` và các `pillarSpawnPoints`.
+- Bat có animation events đúng tên như bảng trên.
+- BossArena có Collider2D và gán `boss`, `bossCamera`.
+- Boss defeat trigger gán cùng BatBoss và một `SequencePlayer` nếu cần cutscene.
+- Pillar prefab có `CharacterStats`, `Health`, `Pillar`, Collider2D và `EnemyHPBar`.
 
-## Known Issues / TODOs
+## Known limitations
 
-- `EnemyController.OnCollisionEnter2D` non-virtual → boss vẫn chạy base collision handler khi va chạm. Hiện tại `movement.OnHitObstacle()` chỉ flip sprite, vô hại.
-- `Pillar` dùng `GetComponent<ProjectilePref>()` để detect projectile — fragile. Có thể migrate sang layer/tag check.
-- Timer animation trong `BatAttackAnimState` cứng (1.2s / 1.5s). Nếu đổi animation clip, cần update timer tương ứng.
+- `BatCombatState` truy đuổi theo trục X, chưa có navigation/pathfinding.
+- Attack timer vẫn là giá trị cấu hình trong state; nếu đổi độ dài clip cần kiểm tra lại timing event.
+- Cleanup hiện tại destroy boss nhưng các hazard đã spawn trước đó có lifecycle riêng; cần test riêng case boss chết giữa attack.

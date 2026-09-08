@@ -1,63 +1,55 @@
 using UnityEngine;
+using UnityEngine.Events;
 
+[RequireComponent(typeof(Collider2D))]
 public class BossArenaController : MonoBehaviour
 {
     [SerializeField] private BatBossController boss;
-    [SerializeField] private BossHealthBarUI bossHealthBar;
-    [SerializeField] private GameObject arenaGate;
-    [SerializeField] private Transform playerSpawnPoint;
-    [SerializeField] private AudioClip battleMusic;
+    [SerializeField] private CameraFollow bossCamera;
+    [SerializeField] private bool activateBossOnEnter = true;
+    [SerializeField] private UnityEvent onRevealComplete;
 
-    private bool isActive;
+    private bool hasRevealed;
+    private Collider2D revealTrigger;
 
-    private void Start()
+    private void Awake()
     {
-        if (boss != null)
+        if (!TryGetComponent(out revealTrigger))
         {
-            boss.gameObject.SetActive(false);
-            boss.SetHealthBar(bossHealthBar);
-            boss.OnBossDefeated += OnBossDefeated;
+            Debug.LogError($"{nameof(BossArenaController)} on {name} requires a Collider2D.", this);
+            enabled = false;
+            return;
         }
-        if (bossHealthBar != null)
-            bossHealthBar.gameObject.SetActive(false);
+
+        revealTrigger.isTrigger = true;
+
+        if (bossCamera == null)
+            bossCamera = FindFirstObjectByType<CameraFollow>();
     }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (isActive) return;
+        if (hasRevealed) return;
         if (!other.CompareTag("Player")) return;
 
-        isActive = true;
-        arenaGate?.SetActive(true);
+        hasRevealed = true;
 
-        if (boss != null)
+        if (activateBossOnEnter && boss != null && !boss.gameObject.activeSelf)
             boss.gameObject.SetActive(true);
 
-        if (bossHealthBar != null && boss != null)
-            bossHealthBar.SetBoss(boss.GetComponent<Health>());
-    }
+        boss?.BeginEncounter();
 
-    private void OnBossDefeated()
-    {
-        arenaGate?.SetActive(false);
-
-        if (bossHealthBar != null)
-            bossHealthBar.Hide();
-
-        Invoke(nameof(EndBossChapter), 1.5f);
-    }
-
-    private void EndBossChapter()
-    {
-        if (ChapterManager.Instance != null)
-            ChapterManager.Instance.CompleteBossChapter();
+        if (bossCamera != null && boss != null)
+            bossCamera.ZoomToBossReveal(boss.transform, () => onRevealComplete?.Invoke());
+        else
+            onRevealComplete?.Invoke();
     }
 
     private void OnDrawGizmos()
     {
         Gizmos.color = new Color(1f, 0f, 0f, 0.15f);
-        Collider2D col = GetComponent<Collider2D>();
+        Collider2D col = revealTrigger != null ? revealTrigger : GetComponent<Collider2D>();
         if (col != null)
-            Gizmos.DrawCube(transform.position, col.bounds.size);
+            Gizmos.DrawCube(col.bounds.center, col.bounds.size);
     }
 }

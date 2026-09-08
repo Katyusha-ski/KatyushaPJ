@@ -1073,6 +1073,11 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 402784526300439705, guid: 4ae16086b72a08046adb8f64ff53fc9d, type: 3}
   m_PrefabInstance: {fileID: 598475017}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &598475019 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3246895050458146261, guid: 4ae16086b72a08046adb8f64ff53fc9d, type: 3}
+  m_PrefabInstance: {fileID: 598475017}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &604389255
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -163115,11 +163120,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 141568084231773869, guid: a42a72bc78ad58f4cbfd65e58f9b5d5e, type: 3}
   m_PrefabInstance: {fileID: 1902574479}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1956057692 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2787585102308112612, guid: 4ae16086b72a08046adb8f64ff53fc9d, type: 3}
-  m_PrefabInstance: {fileID: 598475017}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2034547564
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -163135,7 +163135,7 @@ PrefabInstance:
     - target: {fileID: 5001543976435372399, guid: 52e2548da8dd85c4c8018cd6b77b61f7, type: 3}
       propertyPath: inventoryButton
       value: 
-      objectReference: {fileID: 1956057692}
+      objectReference: {fileID: 598475019}
     - target: {fileID: 8204092655413958187, guid: 52e2548da8dd85c4c8018cd6b77b61f7, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

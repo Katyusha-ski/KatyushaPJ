@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 3214220650588542564}
   - component: {fileID: 818772077497674962}
   - component: {fileID: 97814908829935961}
+  - component: {fileID: 712345678901234568}
   m_Layer: 0
   m_Name: Necro_fireball
   m_TagString: Untagged
@@ -130,6 +131,33 @@ CircleCollider2D:
   m_CompositeOrder: 0
   m_Offset: {x: -1.2863722, y: 0}
   m_Radius: 0.7136278
+--- !u!50 &712345678901234568
+Rigidbody2D:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 511868913612934338}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!95 &818772077497674962
 Animator:
   serializedVersion: 7

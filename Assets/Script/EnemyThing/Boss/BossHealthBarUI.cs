@@ -1,11 +1,9 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class BossHealthBarUI : MonoBehaviour
+public class BossHealthBarUI : MonoBehaviour, IHealthBar
 {
     [SerializeField] private Slider healthSlider;
-    [SerializeField] private Image fillImage;
-    [SerializeField] private Gradient healthGradient;
     [SerializeField] private GameObject bossNameText;
 
     private Health trackedHealth;
@@ -13,12 +11,25 @@ public class BossHealthBarUI : MonoBehaviour
     public void SetBoss(Health bossHealth)
     {
         trackedHealth = bossHealth;
-        if (healthSlider != null)
+        if (bossHealth != null && healthSlider != null)
         {
             healthSlider.maxValue = bossHealth.MaxHealth;
             healthSlider.value = bossHealth.CurrentHealth;
         }
-        gameObject.SetActive(true);
+        if (bossHealth != null)
+            gameObject.SetActive(true);
+    }
+
+    public void SetHealth(int health, int maxHealth)
+    {
+        if (healthSlider == null) return;
+        healthSlider.maxValue = Mathf.Max(1, maxHealth);
+        healthSlider.value = Mathf.Clamp(health, 0, healthSlider.maxValue);
+    }
+
+    public void SetMaxHealth(int maxHealth)
+    {
+        SetHealth(maxHealth, maxHealth);
     }
 
     private void LateUpdate()
@@ -28,10 +39,6 @@ public class BossHealthBarUI : MonoBehaviour
         if (healthSlider != null)
         {
             healthSlider.value = Mathf.Lerp(healthSlider.value, trackedHealth.CurrentHealth, Time.deltaTime * 10f);
-        }
-        if (fillImage != null && healthGradient != null)
-        {
-            fillImage.color = healthGradient.Evaluate(healthSlider.normalizedValue);
         }
     }
 

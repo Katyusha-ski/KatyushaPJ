@@ -102,9 +102,12 @@ public class Stand : MonoBehaviour
 
         foreach (var collider in colliders)
         {
-            if (collider != null && !damagedEnemies.Contains(collider.gameObject))
+            if (collider == null)
+                continue;
+
+            if (!damagedEnemies.Contains(collider.gameObject))
             {
-                Health enemyHealth = collider.GetComponent<Health>();
+                Health enemyHealth = collider.GetComponentInParent<Health>();
                 if (enemyHealth != null)
                 {
                     enemyHealth.TakeDamage((int)finalDamage);

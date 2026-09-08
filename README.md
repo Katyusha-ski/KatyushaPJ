@@ -64,7 +64,7 @@ Các thư mục chính nằm trong `Assets/Script/`:
 
 - Enemy dùng state machine với các state idle, alert, pursuit, attack, hurt, heal, kiting và die.
 - Enemy hiện có các prefab như Slime, Skull, NightBorne, Golem, Necromancer, Abomination và VoidBoss.
-- Boss code hiện có `BatBoss`, `VoidBoss` và `DuoGolem`.
+- Boss code hiện có `BatBoss`, `VoidBoss` và `DuoGolem`. BatBoss là implementation tham chiếu cho arena reveal, damage source, weak point dùng chung `Health`, boss health bar và boss defeat cutscene.
 - `DuoGolem` vẫn còn nhiều thông số thiết kế và hazard prefab cần hoàn thiện.
 
 ### Item, inventory và shop
@@ -120,5 +120,8 @@ Các thư mục chính nằm trong `Assets/Script/`:
 - [Assets/Docs/SequencerContext.md](Assets/Docs/SequencerContext.md) — hướng dẫn sequencer.
 - [Assets/Docs/SKILL_SYSTEM_PLAN.md](Assets/Docs/SKILL_SYSTEM_PLAN.md) — thiết kế skill system.
 - [Assets/Docs/Roadmap.md](Assets/Docs/Roadmap.md) — roadmap dự án.
+- [Assets/Docs/Contexts/Boss_Implementation_Guidelines.md](Assets/Docs/Contexts/Boss_Implementation_Guidelines.md) — nguyên tắc và checklist rút ra từ BatBoss cho boss tiếp theo.
+- [Assets/Docs/Contexts/Katyusha_BatBoss_Context.md](Assets/Docs/Contexts/Katyusha_BatBoss_Context.md) — context kiến trúc BatBoss.
+- [Assets/Docs/Contexts/BatBoss_Test_TODO.md](Assets/Docs/Contexts/BatBoss_Test_TODO.md) — checklist test core BatBoss.
 - [Assets/Docs/DialogueScript.md](Assets/Docs/DialogueScript.md) — dialogue và cast.
 - [Assets/Script/HuongDan/ItemInfo.md](Assets/Script/HuongDan/ItemInfo.md) — catalog item.

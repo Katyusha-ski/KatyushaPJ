@@ -4997,7 +4997,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b6c99a1fd442a8c4ca2e3dafe612c248, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BatSphere
-  fallSpeed: 5
+  fallSpeed: 4
   groundLayer:
     serializedVersion: 2
     m_Bits: 256
@@ -5009,6 +5009,6 @@ MonoBehaviour:
   dotDamage: 3
   dotInterval: 1
   dotDuration: 3
-  explosionRadius: 2
+  explosionRadius: 1.6
   explosionDamage: 5
   explosionAnimDuration: 0.5
