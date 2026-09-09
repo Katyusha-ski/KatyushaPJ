@@ -227,8 +227,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f78118c8d1cba7439b730449193d37b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SequenceEnemiesClearedTrigger
-  sequencePlayer: {fileID: 0}
-  markedEnemies: []
+  sequencePlayer: {fileID: 757645619}
+  markedEnemies:
+  - {fileID: 931414711571853083}
+  delayBeforeCutscene: 1
 --- !u!4 &48589946
 Transform:
   m_ObjectHideFlags: 0
@@ -12425,7 +12427,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4999483368528805643, guid: 4ae16086b72a08046adb8f64ff53fc9d, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -12578,8 +12580,115 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a3bb5776674ab241ab346fef1edea8d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SequencePlayer
-  cutsceneData: {fileID: 0}
+  cutsceneData: {fileID: 11400000, guid: 8c6e0a3b5d7f9b2d4c6e8a1f3b5d7e9a, type: 2}
   playOncePerSession: 0
+--- !u!1 &863186445
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 863186449}
+  - component: {fileID: 863186448}
+  - component: {fileID: 863186447}
+  - component: {fileID: 863186446}
+  m_Layer: 0
+  m_Name: BatBossCutSceneTrigger
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!61 &863186446
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 863186445}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: 2.316418, y: -0.4671768}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Size: {x: 5.632836, y: 1.9343536}
+  m_EdgeRadius: 0
+--- !u!114 &863186447
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 863186445}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c65a3708ded185b4193bf3a109cb6d58, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SequenceCutsceneTrigger
+  isRepeatable: 0
+--- !u!114 &863186448
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 863186445}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6a3bb5776674ab241ab346fef1edea8d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SequencePlayer
+  cutsceneData: {fileID: 11400000, guid: a3e5c7b9d1f2a4c68e0b2d4f6a8c1e3b, type: 2}
+  playOncePerSession: 0
+--- !u!4 &863186449
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 863186445}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 5.00347, y: 0.42309, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &880966060
 GameObject:
   m_ObjectHideFlags: 0
@@ -12750,6 +12859,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::BossArenaController
   boss: {fileID: 931414711571853081}
   bossCamera: {fileID: 642194158}
+  arenaBackground: {fileID: 0}
+  backgroundRevealScale: 1.5
   activateBossOnEnter: 1
   onRevealComplete:
     m_PersistentCalls:
@@ -12924,13 +13035,37 @@ PrefabInstance:
       propertyPath: cam
       value: 
       objectReference: {fileID: 642194156}
+    - target: {fileID: 1799222250882601854, guid: b5c026deb5eea674492eea1e03189b0a, type: 3}
+      propertyPath: sceneEndX
+      value: 80
+      objectReference: {fileID: 0}
+    - target: {fileID: 1799222250882601854, guid: b5c026deb5eea674492eea1e03189b0a, type: 3}
+      propertyPath: endOffsetX
+      value: -3.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1799222250882601854, guid: b5c026deb5eea674492eea1e03189b0a, type: 3}
+      propertyPath: sceneStartX
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1799222250882601854, guid: b5c026deb5eea674492eea1e03189b0a, type: 3}
+      propertyPath: startOffsetX
+      value: 3.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2782240552394561134, guid: b5c026deb5eea674492eea1e03189b0a, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -5932521419048833858, guid: d5fcb854c3095c943a16eb30652c7efc, type: 3}
+    - target: {fileID: 6357866185916051197, guid: b5c026deb5eea674492eea1e03189b0a, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.7552607
+      objectReference: {fileID: 0}
     - target: {fileID: 6357866185916051197, guid: b5c026deb5eea674492eea1e03189b0a, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 445.88263
+      value: 3.2
       objectReference: {fileID: 0}
     - target: {fileID: 6357866185916051197, guid: b5c026deb5eea674492eea1e03189b0a, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -3.70155
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6357866185916051197, guid: b5c026deb5eea674492eea1e03189b0a, type: 3}
       propertyPath: m_LocalPosition.z
@@ -13104,6 +13239,14 @@ PrefabInstance:
       propertyPath: 'pillarSpawnPoints.Array.data[7]'
       value: 
       objectReference: {fileID: 1348593721}
+    - target: {fileID: 4750051730973204207, guid: 5647762aba73d154887af66529da87b8, type: 3}
+      propertyPath: m_Size.y
+      value: 1.794178
+      objectReference: {fileID: 0}
+    - target: {fileID: 4750051730973204207, guid: 5647762aba73d154887af66529da87b8, type: 3}
+      propertyPath: m_Offset.y
+      value: -0.005624771
+      objectReference: {fileID: 0}
     - target: {fileID: 6929780532755366128, guid: 5647762aba73d154887af66529da87b8, type: 3}
       propertyPath: m_SizeDelta.x
       value: -892.6359
@@ -13176,6 +13319,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c4061e9ca32b624badc9e372f7ec9c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BatBossController
+--- !u!114 &931414711571853083 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4982716345100000001, guid: 5647762aba73d154887af66529da87b8, type: 3}
+  m_PrefabInstance: {fileID: 931414711571853080}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f3a4a93c07689c54996a5453afce90c4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BatHealth
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -13191,3 +13345,4 @@ SceneRoots:
   - {fileID: 1226926342}
   - {fileID: 730282755}
   - {fileID: 48589946}
+  - {fileID: 863186449}

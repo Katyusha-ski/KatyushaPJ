@@ -640,6 +640,7 @@ Trước khi hoàn tất, nhờ review toàn diện: (a) subscribe/unsubscribe c
 - `markedEnemies` rỗng: tự quét các object có tag `Enemy` và `CurrentHealth > 0` trong scene khi bắt đầu.
 - Enemy chết sau khi đăng ký sẽ bị xóa khỏi tập theo dõi qua `OnDied`.
 - `hasFired` bảo đảm sequence chỉ được kích hoạt một lần.
+- `delayBeforeCutscene` cho phép chờ một khoảng thời gian sau khi enemy cuối cùng chết rồi mới chạy sequence; giá trị `0` giữ hành vi chạy ngay.
 - Enemy spawn sau khi trigger bắt đầu không tự động được đăng ký. Nếu encounter cần hỗ trợ spawn động, phải bổ sung cơ chế đăng ký enemy.
 - Enemy thuộc encounter phải rời scene qua lifecycle chết chuẩn; không dùng `Destroy` trực tiếp để thay thế cho chết gameplay.
 

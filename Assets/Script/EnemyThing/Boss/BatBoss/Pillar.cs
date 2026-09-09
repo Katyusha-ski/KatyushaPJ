@@ -48,6 +48,11 @@ public class Pillar : MonoBehaviour
         Destroy(gameObject);
     }
 
+    public void DestroyOnBossDefeated()
+    {
+        Destroy(gameObject);
+    }
+
     private void OnDestroy()
     {
         if (health != null)

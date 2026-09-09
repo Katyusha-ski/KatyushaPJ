@@ -85,7 +85,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ShopManager
   entries:
-  - {fileID: 11400000, guid: 3e3dd00fd86f07241894b571150dd455, type: 2}
   - {fileID: 11400000, guid: 4ebb7e36cef3166439d998c3a59b0075, type: 2}
   - {fileID: 11400000, guid: ce9611251e377a44caba0b452937df20, type: 2}
   - {fileID: 11400000, guid: ba195bde5fb1e724c9a72227b6f27fac, type: 2}

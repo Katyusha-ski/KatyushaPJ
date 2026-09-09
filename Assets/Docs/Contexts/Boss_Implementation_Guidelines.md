@@ -79,7 +79,40 @@ Khi boss chết cần xác nhận:
 - loot/cutscene/progression không bị gọi lặp;
 - projectile, hazard, summon còn tồn tại được xử lý theo quyết định thiết kế.
 
-## 8. Checklist trước khi commit boss mới
+## 8. Bài học rút ra từ BatBoss
+
+BatBoss cho thấy các lỗi boss thường không nằm ở một attack riêng lẻ mà nằm ở ranh
+giới giữa arena, state machine, physics, damage và progression. Khi xây boss mới:
+
+- **Không thức tỉnh ngoài ý muốn:** boss phải bắt đầu ở trạng thái ngủ/inactive và chỉ
+  được `BeginEncounter()` từ arena hoặc trigger có chủ đích. Không gọi wake trong
+  `Start()` nếu thiết kế yêu cầu Player phải bước vào vùng đánh thức.
+- **Arena không ôm quá nhiều trách nhiệm:** arena chỉ reveal camera, bật encounter và
+  phát event tùy chọn. Gate, spawn Player, load scene, đóng map và boss defeat phải do
+  hệ thống chuyên trách xử lý.
+- **Physics phải được chốt trước:** với boss bay hoặc boss cố định, cấu hình
+  `Rigidbody2D`, gravity, collision và owner của position ngay từ đầu. Tránh để nhiều
+  script cùng ghi `transform.position`.
+- **Spawn point và offset phải là dữ liệu rõ ràng:** attack rơi từ trên cao, projectile
+  trên mặt đất và pillar không nên dùng tọa độ ngầm hoặc nhầm với vị trí boss. Các
+  offset quan trọng cần có field Inspector và gizmo kiểm tra trực quan.
+- **AoE cần tách telegraph, hit timing và cleanup:** quyết định rõ damage xảy ra khi
+  chạm Player hay khi chạm đất; damage chỉ một lần; object phải tự hủy sau animation.
+- **Weak point nên dùng pipeline chung:** pillar/weak point dùng `CharacterStats +
+  Health + Collider2D` để melee, Stand, projectile, armor và health bar dùng cùng một
+  đường xử lý. Chỉ thêm damage filter riêng khi thiết kế thật sự cần.
+- **Death phải có guard và fallback:** animation death, event defeated, loot, summon,
+  health bar và destroy không được chạy hai lần. Animation event cần fallback nếu clip
+  bị đổi hoặc event bị thiếu.
+- **Serialized reference là một phần của implementation:** script đúng nhưng thiếu
+  Collider2D, camera, prefab, spawn point hoặc SequencePlayer vẫn khiến encounter hỏng.
+  Mỗi boss cần kiểm tra cả code, prefab và scene.
+- **Gizmo phải phục vụ đúng câu hỏi gameplay:** chỉ vẽ attack range, safe/reveal range,
+  AoE hoặc spawn point cần tuning; không dùng gizmo để che giấu logic chưa rõ.
+- **Test theo lifecycle, không chỉ test đánh boss:** cần test ngủ, reveal, wake, attack,
+  projectile/hazard, pillar, death giữa attack, cleanup và cutscene sau defeat.
+
+## 9. Checklist trước khi commit boss mới
 
 - [ ] Có README/context mô tả đúng code hiện tại.
 - [ ] Có test TODO cho setup, wake, combat, damage, death và regression.

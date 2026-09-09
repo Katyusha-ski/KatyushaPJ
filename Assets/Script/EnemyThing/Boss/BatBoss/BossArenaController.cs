@@ -6,11 +6,14 @@ public class BossArenaController : MonoBehaviour
 {
     [SerializeField] private BatBossController boss;
     [SerializeField] private CameraFollow bossCamera;
+    [SerializeField] private Transform arenaBackground;
+    [SerializeField] private float backgroundRevealScale = 1.5f;
     [SerializeField] private bool activateBossOnEnter = true;
     [SerializeField] private UnityEvent onRevealComplete;
 
     private bool hasRevealed;
     private Collider2D revealTrigger;
+    private Vector3 backgroundBaseScale;
 
     private void Awake()
     {
@@ -25,6 +28,16 @@ public class BossArenaController : MonoBehaviour
 
         if (bossCamera == null)
             bossCamera = FindFirstObjectByType<CameraFollow>();
+
+        if (arenaBackground == null)
+        {
+            GameObject background = GameObject.Find("BG");
+            if (background != null)
+                arenaBackground = background.transform;
+        }
+
+        if (arenaBackground != null)
+            backgroundBaseScale = arenaBackground.localScale;
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -40,9 +53,21 @@ public class BossArenaController : MonoBehaviour
         boss?.BeginEncounter();
 
         if (bossCamera != null && boss != null)
-            bossCamera.ZoomToBossReveal(boss.transform, () => onRevealComplete?.Invoke());
+            bossCamera.ZoomToBossReveal(
+                boss.transform,
+                () => onRevealComplete?.Invoke(),
+                UpdateBackgroundRevealScale);
         else
             onRevealComplete?.Invoke();
+    }
+
+    private void UpdateBackgroundRevealScale(float progress)
+    {
+        if (arenaBackground == null)
+            return;
+
+        float scale = Mathf.Lerp(1f, backgroundRevealScale, progress);
+        arenaBackground.localScale = backgroundBaseScale * scale;
     }
 
     private void OnDrawGizmos()

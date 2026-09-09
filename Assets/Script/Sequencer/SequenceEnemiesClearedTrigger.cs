@@ -8,6 +8,9 @@ public class SequenceEnemiesClearedTrigger : MonoBehaviour
     [SerializeField, Tooltip("Để trống = theo dõi TẤT CẢ enemy tag 'Enemy' trong scene. Kéo Health vào = chỉ chơi khi các enemy được đánh dấu này chết hết.")]
     private List<Health> markedEnemies = new List<Health>();
 
+    [SerializeField, Min(0f), Tooltip("Thời gian chờ sau khi enemy cuối cùng chết trước khi chạy cutscene.")]
+    private float delayBeforeCutscene;
+
     private readonly HashSet<Health> aliveEnemies = new HashSet<Health>();
     private bool hasFired;
 
@@ -79,6 +82,16 @@ public class SequenceEnemiesClearedTrigger : MonoBehaviour
         if (hasFired || aliveEnemies.Count > 0) return;
 
         hasFired = true;
-        sequencePlayer.Play();
+        if (delayBeforeCutscene > 0f)
+            StartCoroutine(PlayCutsceneAfterDelay());
+        else
+            sequencePlayer.Play();
+    }
+
+    private System.Collections.IEnumerator PlayCutsceneAfterDelay()
+    {
+        yield return new WaitForSeconds(delayBeforeCutscene);
+        if (sequencePlayer != null)
+            sequencePlayer.Play();
     }
 }

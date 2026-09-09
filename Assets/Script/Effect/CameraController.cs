@@ -42,13 +42,13 @@ public class CameraFollow : MonoBehaviour
         target = newTarget;
     }
 
-    public void ZoomToBossReveal(Transform bossTarget, Action onComplete)
+    public void ZoomToBossReveal(Transform bossTarget, Action onComplete, Action<float> onProgress = null)
     {
         if (cam == null || bossTarget == null) return;
-        StartCoroutine(ZoomRevealRoutine(bossTarget, onComplete));
+        StartCoroutine(ZoomRevealRoutine(bossTarget, onComplete, onProgress));
     }
 
-    private IEnumerator ZoomRevealRoutine(Transform bossTarget, Action onComplete)
+    private IEnumerator ZoomRevealRoutine(Transform bossTarget, Action onComplete, Action<float> onProgress)
     {
         isCinematic = true;
         float elapsed = 0f;
@@ -59,6 +59,7 @@ public class CameraFollow : MonoBehaviour
             elapsed += Time.deltaTime;
             float t = Mathf.Clamp01(elapsed / zoomOutDuration);
             cam.orthographicSize = Mathf.Lerp(startSize, bossRevealZoomSize, t);
+            onProgress?.Invoke(t);
 
             Vector3 midpoint = (target.position + bossTarget.position) * 0.5f;
             transform.position = Vector3.Lerp(transform.position, midpoint + offset, smoothSpeed * Time.deltaTime);
@@ -67,6 +68,7 @@ public class CameraFollow : MonoBehaviour
         }
 
         cam.orthographicSize = bossRevealZoomSize;
+        onProgress?.Invoke(1f);
 
         yield return new WaitForSeconds(holdDuration);
 
@@ -76,6 +78,7 @@ public class CameraFollow : MonoBehaviour
             elapsed += Time.deltaTime;
             float t = Mathf.Clamp01(elapsed / zoomInDuration);
             cam.orthographicSize = Mathf.Lerp(bossRevealZoomSize, originalSize, t);
+            onProgress?.Invoke(1f - t);
 
             Vector3 midpoint = (target.position + bossTarget.position) * 0.5f;
             transform.position = Vector3.Lerp(transform.position, midpoint + offset, smoothSpeed * Time.deltaTime);
@@ -84,6 +87,7 @@ public class CameraFollow : MonoBehaviour
         }
 
         cam.orthographicSize = originalSize;
+        onProgress?.Invoke(0f);
         isCinematic = false;
         onComplete?.Invoke();
     }

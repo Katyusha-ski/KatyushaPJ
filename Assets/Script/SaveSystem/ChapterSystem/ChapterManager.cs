@@ -9,6 +9,59 @@ public class ChapterManager : Singleton<ChapterManager>
     private ChapterDataSO CurrentChapter => chapters[currentChapterIndex];
     public int CurrentChapterNumber => currentChapterIndex + 1;
 
+    private void Start()
+    {
+        DetectChapterFromCurrentScene();
+    }
+
+    private void OnEnable()
+    {
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+    private void OnDisable()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
+
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        DetectChapterFromScene(scene.name);
+    }
+
+    /// <summary>
+    /// Finds the chapter whose main or boss scene matches the active scene.
+    /// Scenes outside the chapter data are ignored so menus and utility scenes
+    /// do not overwrite the current chapter.
+    /// </summary>
+    public bool DetectChapterFromCurrentScene()
+    {
+        return DetectChapterFromScene(SceneManager.GetActiveScene().name);
+    }
+
+    private bool DetectChapterFromScene(string sceneName)
+    {
+        if (chapters == null || chapters.Count == 0 || string.IsNullOrEmpty(sceneName))
+            return false;
+
+        for (int i = 0; i < chapters.Count; i++)
+        {
+            ChapterDataSO chapter = chapters[i];
+            if (chapter == null)
+                continue;
+
+            bool isMainScene = chapter.mainSceneName == sceneName;
+            bool isBossScene = chapter.bossSceneName == sceneName;
+            if (!isMainScene && !isBossScene)
+                continue;
+
+            currentChapterIndex = i;
+            return true;
+        }
+
+        return false;
+    }
+
     /// <summary>
     /// Advances to the next chapter without loading a scene.
     /// The caller can then perform its own transition (for example, with a fade).

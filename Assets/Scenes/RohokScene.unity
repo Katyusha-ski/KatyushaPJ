@@ -2095,7 +2095,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a3bb5776674ab241ab346fef1edea8d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SequencePlayer
-  cutsceneData: {fileID: 11400000, guid: 004f9a28a70d7054a993ba7d8e448805, type: 2}
+      cutsceneData: {fileID: 11400000, guid: 6cec6e05bbc5a0947b1392f6f131077a, type: 2}
   playOncePerSession: 0
 --- !u!114 &1230691660
 MonoBehaviour:

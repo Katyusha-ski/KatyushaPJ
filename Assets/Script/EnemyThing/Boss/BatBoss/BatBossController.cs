@@ -32,6 +32,7 @@ public class BatBossController : EnemyController
 
     [Header("Death")]
     [SerializeField] private GameObject deathVFX;
+    [SerializeField] private float deathCleanupDelay = 2f;
 
     private BossHealthBarUI bossHealthBar;
     private Vector3 hoverOrigin;
@@ -334,14 +335,17 @@ public class BatBossController : EnemyController
     // --- Death ---
     private void OnBossHealthDied(Health deadHealth)
     {
+        DestroyActivePillars();
+
         // DieState normally performs this callback. This fallback keeps death
         // reliable if an animation/state update is interrupted.
         StartCoroutine(EnsureDeathCleanup());
+        Destroy(gameObject, deathCleanupDelay);
     }
 
     private IEnumerator EnsureDeathCleanup()
     {
-        yield return new WaitForSecondsRealtime(2f);
+        yield return new WaitForSecondsRealtime(deathCleanupDelay);
 
         if (!deathCleanupStarted)
             HandleEnemyDeath();
@@ -354,6 +358,7 @@ public class BatBossController : EnemyController
 
         deathCleanupStarted = true;
         isDead = true;
+        DestroyActivePillars();
         if (deathVFX != null)
             Instantiate(deathVFX, transform.position, Quaternion.identity);
         bossHealthBar?.Hide();
@@ -366,6 +371,17 @@ public class BatBossController : EnemyController
         // Keep boss cleanup explicit. DieState also destroys after this callback,
         // but this makes the boss lifecycle safe if the state is interrupted.
         Destroy(gameObject);
+    }
+
+    private void DestroyActivePillars()
+    {
+        foreach (Pillar pillar in activePillars)
+        {
+            if (pillar != null)
+                pillar.DestroyOnBossDefeated();
+        }
+
+        activePillars.Clear();
     }
 
     private void OnDestroy()

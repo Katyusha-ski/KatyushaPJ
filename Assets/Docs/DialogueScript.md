@@ -242,15 +242,26 @@ Cutscene: vừa ra ngoài đi 1 chút thì gặp lại Usagi
 - [Kati]: Nhanh đi thôi mùi ở đây tởm quá T_T
 
 *Cutscene 3:
-Tele: 2 bạn dần đi tới trung tâm thành phố, lượng mana quỷ ngày càng dày đặc hơn đến nổi cả Hachi cũng cảm thấy khó chịu.
-- [Hachi]: (giọng run run) Nè Kati, hình như chúng ta tới rồi.
+-[Kati]: Là chỗ này đúng chứ?
+-[Hachi]: Ừ.
+Chạm vào trigger kích hoạt scene transition sang boss scene
+Fade: 2 bạn tới được hang động mà lõi quỷ đang trú ngụ
+
+*Cutscene 4:
+- [Hachi]: N-Nè Kati, hình như chúng ta tới rồi.
 - [Kati]: Nè cậu có chắc là chúng ta thắng được không vậy.
 - [Hachi]: Tôi không chắc nữa, đây là lần đầu tôi đối mặt với quỷ cấp cao thế này.
 - [Kati]: Không sao đâu dù gì chúng ta cũng đã tới đây rồi, tiến lên thôi.
 
+Cutscene 5: Sau khi phá hủy lõi quỷ
+-[Hachi]: Hộc...hộc... Xong rồi, nè, cậu còn sống không?
+-[Kati]: Buồn nôn quá, cảm giác chạy nhiều quá khiến cả người tôi rã rời rồi.
+-[Hachi]: Rời khỏi đây thôi. Ta còn phải đi tiếp nữa. Nơi này chuẩn bị sụp đổ rồi.
+-[Kati]: Chân của tôi không còn sức lực nữa T_T
+SceneTransition: Quay lại scene Mira
+Fade: 2 bạn ra khỏi hang động đang bất ổn bởi trận chiến vừa rồi.
 
-*(Sau khi hạ được lõi quỷ hình con dơi, họ gặp lại Usagi.)* (Nghĩa đánh xong rồi chạm phải trigger rồi tele ra ngoài xong mới gặp lại usagi trigger)
-
+Cutscene 6: Gặp lại Usagi
 - [Usagi]: Hai người vẫn còn sống, tốt quá. Nhưng mà chắc nhìn tình trạng hiện tại chắc là cần nghĩ ngơi một chút rồi.
 - [Hachi]: Có tin gì mới không?
 - [Usagi]: Các quốc gia khác đang cố gắng giúp, nhưng khó tiến sâu vào đất nước này lắm. Nếu vậy thì hai người buộc phải tự tay đóng cổng dịch chuyển và phá lõi quỷ ở thủ đô để làm suy yếu phòng thủ của chúng.
