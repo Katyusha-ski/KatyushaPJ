@@ -19,7 +19,7 @@ BatBoss là boss bay đầu tiên của Chapter 4. Boss dùng lại pipeline ene
 5. Khi đã thức, boss kiểm tra khoảng cách với Player:
    - trong `attackRange`: chọn `Atk1` hoặc `Atk2` khi attack cooldown sẵn sàng;
    - ngoài `attackRange`: truy đuổi theo trục X nhưng giữ nguyên độ cao.
-6. Khi HP về 0, `DieState` chạy animation chết trong 2 giây, gọi `HandleEnemyDeath()`, phát `OnBossDefeated`, spawn loot và destroy boss.
+6. Khi HP về 0, `DieState` chạy animation chết trong 2 giây, gọi `HandleEnemyDeath()`, phát `OnBossDefeated`, spawn loot và destroy boss. `Health.OnDied` có fallback cleanup sau 2 giây nếu state/animation bị gián đoạn.
 
 ## State machine hiện tại
 

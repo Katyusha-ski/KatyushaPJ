@@ -51,8 +51,9 @@ Player spawn do `SceneTransitionAction`/`NextChapterAction` phụ trách. Boss d
 | Die | `DieState(2s, callback)` | HP về 0 |
 
 `BatBossController.Update()` luôn gọi base update khi boss chưa chết để `DieState`
-không bị chặn bởi cờ `isAwake`. `HandleEnemyDeath()` phát `OnBossDefeated`, spawn
-loot, ẩn boss health bar và destroy boss.
+không bị chặn bởi cờ `isAwake`. Ngoài callback của `DieState`, `Health.OnDied` có
+fallback cleanup sau 2 giây bằng realtime timer. `HandleEnemyDeath()` có guard nên
+event, loot, health bar và destroy chỉ chạy một lần.
 
 ## 4. Damage
 

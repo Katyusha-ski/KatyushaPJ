@@ -39,9 +39,11 @@ public class BatBossController : EnemyController
     private bool isDead;
     private bool isAwake;
     private bool isInitialized;
+    private bool deathCleanupStarted;
     private int cachedMaxHP;
     private Rigidbody2D bossRigidbody;
     private Animator bossAnimator;
+    private Health bossHealth;
 
     private List<Pillar> activePillars = new List<Pillar>();
     private float pillarSpawnTimer;
@@ -77,6 +79,9 @@ public class BatBossController : EnemyController
         stateFactory = null;
 
         cachedMaxHP = (int)characterStats.MaxHP;
+        bossHealth = GetComponent<Health>();
+        if (bossHealth != null)
+            bossHealth.OnDied += OnBossHealthDied;
 
         hoverOrigin = useInitialPosition ? transform.position : fixedHoverPosition;
         transform.position = hoverOrigin;
@@ -327,8 +332,27 @@ public class BatBossController : EnemyController
     }
 
     // --- Death ---
+    private void OnBossHealthDied(Health deadHealth)
+    {
+        // DieState normally performs this callback. This fallback keeps death
+        // reliable if an animation/state update is interrupted.
+        StartCoroutine(EnsureDeathCleanup());
+    }
+
+    private IEnumerator EnsureDeathCleanup()
+    {
+        yield return new WaitForSecondsRealtime(2f);
+
+        if (!deathCleanupStarted)
+            HandleEnemyDeath();
+    }
+
     public override void HandleEnemyDeath()
     {
+        if (deathCleanupStarted)
+            return;
+
+        deathCleanupStarted = true;
         isDead = true;
         if (deathVFX != null)
             Instantiate(deathVFX, transform.position, Quaternion.identity);
@@ -342,6 +366,12 @@ public class BatBossController : EnemyController
         // Keep boss cleanup explicit. DieState also destroys after this callback,
         // but this makes the boss lifecycle safe if the state is interrupted.
         Destroy(gameObject);
+    }
+
+    private void OnDestroy()
+    {
+        if (bossHealth != null)
+            bossHealth.OnDied -= OnBossHealthDied;
     }
 
     public void SetHealthBar(BossHealthBarUI bar) => bossHealthBar = bar;
