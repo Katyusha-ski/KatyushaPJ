@@ -46,5 +46,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ObjectPool
   pools:
   - tag: BloodMoonTelegraph
-    prefab: {fileID: 0}
+    prefab: {fileID: 1674866566526946666, guid: 2dbf3957c13f06441aa5e2feba1cdd20, type: 3}
+    size: 25
+  - tag: DuoGolem_Hailstone
+    prefab: {fileID: 4212989424531414512, guid: 9b3d5f7a1c2e4f6b8d0a2c4e6f8b1d37, type: 3}
+    size: 30
+  - tag: ItemLoot
+    prefab: {fileID: 1039174889174051788, guid: 675a2b960ebb7c144b8e59f0240a58ef, type: 3}
     size: 25

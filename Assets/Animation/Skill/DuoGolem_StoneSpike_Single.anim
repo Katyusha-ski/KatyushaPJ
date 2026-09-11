@@ -1,0 +1,83 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!74 &7400000
+AnimationClip:
+  m_ObjectHideFlags: 0
+  m_Name: DuoGolem_StoneSpike_Single
+  serializedVersion: 7
+  m_Legacy: 0
+  m_Compressed: 0
+  m_UseHighQualityCurve: 1
+  m_RotationCurves: []
+  m_CompressedRotationCurves: []
+  m_EulerCurves: []
+  m_PositionCurves: []
+  m_ScaleCurves: []
+  m_FloatCurves: []
+  m_PPtrCurves:
+  - serializedVersion: 2
+    curve:
+    - time: 0
+      value: {fileID: -3282939469487759099, guid: b2afd919c98730942a864b4d8fc4b94f, type: 3}
+    - time: 0.08333334
+      value: {fileID: -1670225788307598758, guid: b2afd919c98730942a864b4d8fc4b94f, type: 3}
+    - time: 0.16666667
+      value: {fileID: 2123468332201293987, guid: b2afd919c98730942a864b4d8fc4b94f, type: 3}
+    - time: 0.25
+      value: {fileID: 9083703566855578730, guid: b2afd919c98730942a864b4d8fc4b94f, type: 3}
+    - time: 0.33333334
+      value: {fileID: 1395031379654726699, guid: b2afd919c98730942a864b4d8fc4b94f, type: 3}
+    - time: 0.41666667
+      value: {fileID: -2755669105509744457, guid: b2afd919c98730942a864b4d8fc4b94f, type: 3}
+    - time: 0.5
+      value: {fileID: -3535071859873452722, guid: b2afd919c98730942a864b4d8fc4b94f, type: 3}
+    - time: 0.5833333
+      value: {fileID: -6260143757305685628, guid: b2afd919c98730942a864b4d8fc4b94f, type: 3}
+    - time: 0.6666667
+      value: {fileID: 4558354901986985561, guid: b2afd919c98730942a864b4d8fc4b94f, type: 3}
+    attribute: m_Sprite
+    path: 
+    classID: 212
+    script: {fileID: 0}
+    flags: 2
+  m_SampleRate: 12
+  m_WrapMode: 0
+  m_ClipBindingConstant:
+    genericBindings:
+    - serializedVersion: 2
+      path: 0
+      attribute: 0
+      script: {fileID: 0}
+      typeID: 212
+      customType: 23
+      isPPtrCurve: 1
+      isIntCurve: 0
+      isSerializeReferenceCurve: 0
+    pptrCurveMapping:
+    - {fileID: -3282939469487759099, guid: b2afd919c98730942a864b4d8fc4b94f, type: 3}
+    - {fileID: -1670225788307598758, guid: b2afd919c98730942a864b4d8fc4b94f, type: 3}
+    - {fileID: 2123468332201293987, guid: b2afd919c98730942a864b4d8fc4b94f, type: 3}
+    - {fileID: 9083703566855578730, guid: b2afd919c98730942a864b4d8fc4b94f, type: 3}
+    - {fileID: 1395031379654726699, guid: b2afd919c98730942a864b4d8fc4b94f, type: 3}
+    - {fileID: -2755669105509744457, guid: b2afd919c98730942a864b4d8fc4b94f, type: 3}
+    - {fileID: -3535071859873452722, guid: b2afd919c98730942a864b4d8fc4b94f, type: 3}
+    - {fileID: -6260143757305685628, guid: b2afd919c98730942a864b4d8fc4b94f, type: 3}
+    - {fileID: 4558354901986985561, guid: b2afd919c98730942a864b4d8fc4b94f, type: 3}
+  m_AnimationClipSettings:
+    serializedVersion: 2
+    m_StartTime: 0
+    m_StopTime: 0.75
+    m_LoopTime: 0
+    m_LoopBlend: 0
+  m_EditorCurves: []
+  m_EulerEditorCurves: []
+  m_HasGenericRootTransform: 0
+  m_HasMotionFloatCurves: 0
+  m_Events:
+  - time: 0.25
+    functionName: OnSpikeImpact
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0

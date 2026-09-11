@@ -43,20 +43,20 @@ public class GolemController : EnemyController
     public GolemController PartnerGolem => partnerGolem;
     public ArenaHazardController MyHazards => myHazards;
 
+    public event System.Action OnDuoBossDefeated;
+    private bool duoBossDefeatHandled;
+    protected virtual bool IsVictoryOwner => false;
+
     protected override void Start()
     {
-        base.Start();
-
+        // Prepare subclass dependencies before caching states. Calling base.Start()
+        // first would invoke GetDieState() while the Golem-specific states are
+        // still missing from the cache.
+        characterStats = GetComponent<CharacterStats>();
         health = GetComponent<Health>();
         if (health != null)
         {
             health.OnDamaged += OnHealthDamaged;
-        }
-
-        if (characterStats != null)
-        {
-            characterStats.SetBaseMovementSpeed(moveSpeedMultipliers[0]);
-            characterStats.SetBaseAttack(punchDamage);
         }
 
         IEnvironmentSkill ccSkill = CreateCCSkill();
@@ -65,6 +65,14 @@ public class GolemController : EnemyController
 
         pendingPhaseRecalc = false;
         isChanneling = false;
+
+        InitializeEnemyController();
+
+        if (characterStats != null)
+        {
+            characterStats.SetBaseMovementSpeed(moveSpeedMultipliers[0]);
+            characterStats.SetBaseAttack(punchDamage);
+        }
     }
 
     protected virtual IEnvironmentSkill CreateCCSkill() { return null; }
@@ -134,18 +142,21 @@ public class GolemController : EnemyController
 
     public virtual void HandleSelfDown()
     {
-        if (health != null && health.CurrentHealth > 0)
+        if (GetCurrentState() is ParalyzedState || GetCurrentState() is RevivalChannelingState)
+            return;
+
+        if (partnerGolem == null)
         {
-            health.SetHealth(0);
+            Debug.LogWarning($"{name} has no partner Golem.", this);
+            return;
         }
 
-        if (partnerGolem != null)
-        {
-            IEnemyState partnerState = partnerGolem.GetCurrentState();
-            if (partnerState is ParalyzedState || partnerState is RevivalChannelingState)
-                return;
-            partnerGolem.ForceEnterChanneling();
-        }
+        IEnemyState partnerState = partnerGolem.GetCurrentState();
+
+        if (partnerState is ParalyzedState || partnerState is RevivalChannelingState)
+            return;
+
+        partnerGolem.ForceEnterChanneling();
     }
 
     public virtual void ForceEnterChanneling()
@@ -161,7 +172,7 @@ public class GolemController : EnemyController
     {
         if (health != null)
         {
-            health.SetHealth((int)hp);
+            health.Revive((int)hp);
         }
 
         // Re-enable ALL colliders (body + hurtbox) after revival
@@ -187,14 +198,24 @@ public class GolemController : EnemyController
 
     public virtual void HandleDuoBossDefeated()
     {
-        // Called when one golem dies permanently during channeling
-        // and partner is already Paralyzed (0 HP).
-        // Self state transition is handled by GetDieState() caller (Health.Die flow).
-        // Force partner to permanent death too.
-        if (partnerGolem != null && partnerGolem.GetCurrentState() is ParalyzedState)
+        GolemController victoryOwner = IsVictoryOwner ? this : partnerGolem;
+
+        if (victoryOwner == null) return;
+
+        if (victoryOwner.duoBossDefeatHandled) return;
+
+        if (partnerGolem == null || !(partnerGolem.GetCurrentState() is ParalyzedState))
         {
-            partnerGolem.SwitchTo("RealDie");
+            return;
         }
+
+        victoryOwner.duoBossDefeatHandled = true;
+
+        myHazards?.Cleanup();
+        partnerGolem.myHazards?.Cleanup();
+
+        partnerGolem.SwitchTo("RealDie");
+        victoryOwner.OnDuoBossDefeated?.Invoke();
     }
 
     // --- IEnemyState override ---
@@ -207,10 +228,12 @@ public class GolemController : EnemyController
     {
         if (isChanneling)
         {
-            if (partnerGolem != null && partnerGolem.GetCurrentState() is ParalyzedState)
+            if (partnerGolem != null &&
+                partnerGolem.GetCurrentState() is ParalyzedState)
             {
                 HandleDuoBossDefeated();
             }
+
             return stateCache["RealDie"];
         }
 
@@ -220,7 +243,12 @@ public class GolemController : EnemyController
 
     protected override void CacheStates()
     {
-        base.CacheStates();
+        // Do not call base.CacheStates(): it calls virtual GetDieState(), which
+        // is unsafe before the Golem-specific states have been created.
+        stateCache["Idle"] = GetIdleState();
+        stateCache["Patrol"] = GetPatrolState();
+        stateCache["Pursuit"] = GetPursuitState();
+        stateCache["ReturnToPost"] = GetReturnToPostState();
         stateCache["Attack"] = GetAttackState();
         stateCache["Paralyzed"] = new ParalyzedState(this);
         stateCache["RevivalChanneling"] = new RevivalChannelingState(this);
@@ -231,6 +259,12 @@ public class GolemController : EnemyController
     public override IEnemyState GetAttackState()
     {
         return new GolemAttackState(punchDamage, 1f / attackSpeedMultipliers[(int)currentPhase]);
+    }
+
+    public override void HandleEnemyDeath()
+    {
+        myHazards?.Cleanup();
+        base.HandleEnemyDeath();
     }
 
     // --- Animation Event Stubs (Called from Animator clips) ---
@@ -264,5 +298,11 @@ public class GolemController : EnemyController
                 playerHealth.TakeDamage((int)characterStats.Atk, gameObject);
             }
         }
+    }
+
+    private void OnDestroy()
+    {
+        if (health != null)
+            health.OnDamaged -= OnHealthDamaged;
     }
 }

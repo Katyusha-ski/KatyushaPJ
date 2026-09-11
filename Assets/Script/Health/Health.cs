@@ -17,6 +17,7 @@ public class Health : MonoBehaviour
     public LootManager lootManager;
     public int CurrentHealth => currentHealth;
     public int MaxHealth => maxHealth;
+    public bool IsDead => isDead;
     private bool isUnDying = false;
     private bool isInvulnerable = false;
     private bool isDead = false;
@@ -48,6 +49,20 @@ public class Health : MonoBehaviour
             _healthBar.SetHealth(currentHealth, maxHealth);
         }
 
+    }
+
+    /// <summary>
+    /// Restores a defeated entity without invoking OnDied again.
+    /// SetHealth intentionally remains a raw HP setter for temporary-down flows.
+    /// </summary>
+    public void Revive(int health)
+    {
+        isDead = false;
+        isInvulnerable = false;
+        isUnDying = false;
+        regenTimer = 0f;
+        currentHealth = Mathf.Clamp(health, 1, maxHealth);
+        _healthBar?.SetHealth(currentHealth, maxHealth);
     }
 
     private void Update()

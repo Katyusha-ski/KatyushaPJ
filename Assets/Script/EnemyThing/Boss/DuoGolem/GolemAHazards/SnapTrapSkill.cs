@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class SnapTrapSkill : IEnvironmentSkill
 {
+    private readonly GameObject trapPrefab;
+
     // --- Constants ---
     /// <summary>WaitTime before walls slam — FIXED at 1.5s across all phases per GDD to build muscle memory.</summary>
     private const float WAIT_TIME = 1.5f;
@@ -14,11 +16,17 @@ public class SnapTrapSkill : IEnvironmentSkill
 
     /// <summary>Cooldown between trap activations per phase. Architect: chua chot so lieu.</summary>
     private float[] cooldownByPhase = new float[] { 10f, 8f, 6f, 4f };
+    private float[] animationSpeedByPhase = new float[] { 1f, 1f, 1f, 1.5f };
 
     // --- Runtime ---
     private GolemController.GolemPhase currentPhase = GolemController.GolemPhase.Phase1;
     private bool enabled = true;
     private float cooldownTimer;
+
+    public SnapTrapSkill(GameObject trapPrefab)
+    {
+        this.trapPrefab = trapPrefab;
+    }
 
     public void Tick(float dt)
     {
@@ -42,31 +50,26 @@ public class SnapTrapSkill : IEnvironmentSkill
     // pass through the wall. Only jump clears it.
     private void SpawnSnapTrap()
     {
-        // TODO: chờ prefab — instantiate wall pair at random/player position
-        // Phase1-2: 0 dmg, thin walls block path randomly
-        // Phase3: dmg Mức 2, two walls create dead end, SlamSpeed applies
-        //   — walls must collide with Player layer, not bypassed by DashSkill layer mask
-        //   — Player MUST jump (see IMPORTANT block above)
-        // Phase4: dmg Mức 3, SlamSpeed max, hit applies RootEffect
-        //   — if player airborne → set Rigidbody2D.linearVelocity.y = -strongPull
-        //     (see Architect note: direct velocity, NOT AddForce)
-        float slamSpeed = slamSpeedByPhase[(int)currentPhase];
-        int damage = damageByPhase[(int)currentPhase];
+        Transform player = PlayerManager.Instance != null
+            ? PlayerManager.Instance.PlayerTransform
+            : null;
+        if (trapPrefab == null || player == null)
+            return;
 
-        if (currentPhase >= GolemController.GolemPhase.Phase3)
+        int damage = damageByPhase[(int)currentPhase];
+        GameObject trapObject = Object.Instantiate(
+            trapPrefab,
+            player.position,
+            Quaternion.identity);
+
+        SnapTrapInstance trap = trapObject.GetComponent<SnapTrapInstance>();
+        if (trap != null)
         {
-            // Timer-based: walls ALWAYS slam after WAIT_TIME even if player already escaped
-            // TODO: instantiate wall prefab pair (collider blocks Player layer),
-            //   set slamSpeed, set damage
-            // TODO: on trigger enter → apply RootEffect (Phase4)
-            // TODO: if player airborne → set Rigidbody2D.linearVelocity.y = -strongPull
-            //   (GDD: kéo giật xuống đất). Dùng direct velocity set, KHÔNG dùng AddForce
-            //   — AddForce bị trượt timing do quán tính nhảy lơ lửng của player.
-            //   Architect confirmed: ưu tiên linearVelocity set cứng trục Y.
-        }
-        else
-        {
-            // TODO: instantiate thin blocking walls at random positions (no damage)
+            trap.Initialize(
+                currentPhase,
+                damage,
+                animationSpeedByPhase[(int)currentPhase],
+                WAIT_TIME);
         }
     }
 
@@ -78,5 +81,10 @@ public class SnapTrapSkill : IEnvironmentSkill
     public void SetEnabled(bool e)
     {
         enabled = e;
+    }
+
+    public void Cleanup()
+    {
+        enabled = false;
     }
 }

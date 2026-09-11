@@ -17,7 +17,7 @@ public class RevivalChannelingState : IEnemyState
     {
         timer = CHANNEL_DURATION;
         hasAppliedPhaseDown = false;
-
+        movement.Stop();
         combat.PlayAnimBool("Run", false);
 
         if (owner != null && owner.MyHazards != null)
@@ -48,18 +48,17 @@ public class RevivalChannelingState : IEnemyState
             if (owner != null && owner.PartnerGolem != null && owner.PartnerGolem.GetCurrentState() is ParalyzedState)
             {
                 owner.HandleDuoBossDefeated();
+                ctx.SwitchTo("RealDie");
             }
             return;
         }
 
-        if (timer <= 0f && health != null && health.CurrentHealth > 0)
+        if (timer <= 0f && health != null && health.CurrentHealth > 0 && owner != null
+            && owner.PartnerGolem != null && owner.PartnerGolem.GetCurrentState() is ParalyzedState)
         {
-            if (owner != null && owner.PartnerGolem != null)
-            {
-                owner.PartnerGolem.ReviveWithHP(health.CurrentHealth);
-            }
+            owner.PartnerGolem.ReviveWithHP(health.CurrentHealth);
 
-            if (hasAppliedPhaseDown && owner != null && owner.MyHazards != null)
+            if (hasAppliedPhaseDown && owner.MyHazards != null)
             {
                 owner.MyHazards.SetPhase(owner.CurrentPhase);
             }

@@ -26,7 +26,7 @@ public class ParalyzedState : IEnemyState
 
         if (owner != null)
         {
-            owner.MyHazards?.SetEnabled(false);
+            owner.MyHazards?.Cleanup();
         }
     }
 

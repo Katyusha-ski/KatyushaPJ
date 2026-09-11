@@ -1,7 +1,10 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class TremorHailstormSkill : IEnvironmentSkill
 {
+    private const string HAILSTONE_POOL_TAG = "DuoGolem_Hailstone";
+    private readonly GameObject hailstonePrefab;
     /// <summary>Slow percentage per phase. Phase1: 10% light, Phase4: 60% heavy. Architect: chua chot so lieu.</summary>
     private float[] slowPercentByPhase = new float[] { 10f, 25f, 40f, 60f };
 
@@ -22,6 +25,11 @@ public class TremorHailstormSkill : IEnvironmentSkill
     private bool enabled = true;
     private float tremorTimer;
     private float hailTimer;
+
+    public TremorHailstormSkill(GameObject hailstonePrefab)
+    {
+        this.hailstonePrefab = hailstonePrefab;
+    }
 
     public void Tick(float dt)
     {
@@ -49,18 +57,60 @@ public class TremorHailstormSkill : IEnvironmentSkill
     {
         float slowPct = slowPercentByPhase[(int)currentPhase];
         float slowDur = slowDurationByPhase[(int)currentPhase];
-        // TODO: chờ prefab — spawn tremor AoE indicator, apply StatModifierEffect(Slow) on enter
-        // Phase1: 0 dmg, light slow
-        // Phase2: 0 dmg, stronger + longer slow
-        // Phase3-4: same slow, but also spawns hailstones
+        Transform player = PlayerManager.Instance != null
+            ? PlayerManager.Instance.PlayerTransform
+            : null;
+        if (player == null) return;
+
+        Collider2D[] hits = Physics2D.OverlapCircleAll(
+            player.position,
+            2.5f,
+            LayerMask.GetMask("Player"));
+
+        foreach (Collider2D hit in hits)
+        {
+            GameObject target = hit.GetComponentInParent<PlayerController>()?.gameObject ?? hit.gameObject;
+            StatusEffectController effects = target.GetComponent<StatusEffectController>();
+            if (effects == null)
+                effects = target.AddComponent<StatusEffectController>();
+
+            effects.ApplyEffect(new StatModifierEffect(
+                slowDur,
+                target,
+                new List<StatModifierConfig>
+                {
+                    new StatModifierConfig
+                    {
+                        statType = StatType.MovementSpeed,
+                        value = -(slowPct / 100f),
+                        modifierType = ModifierType.Multiplicative
+                    }
+                },
+                true));
+        }
     }
 
     private void SpawnHailstone()
     {
         int damage = chipDamageByPhase[(int)currentPhase];
-        // TODO: chờ prefab — spawn falling debris at random positions above player
-        // Phase3: small debris, chip damage
-        // Phase4: larger debris, bullet-hell density, combined with heavy slow
+        if (hailstonePrefab == null || ObjectPool.Instance == null)
+            return;
+
+        Transform player = PlayerManager.Instance != null
+            ? PlayerManager.Instance.PlayerTransform
+            : null;
+        if (player == null) return;
+
+        Vector3 spawnPosition = player.position + new Vector3(Random.Range(-3f, 3f), 5f, 0f);
+        GameObject hailstoneObject = ObjectPool.Instance.SpawnFromPool(
+            HAILSTONE_POOL_TAG,
+            spawnPosition,
+            Quaternion.identity);
+        if (hailstoneObject == null) return;
+
+        HailstoneInstance hailstone = hailstoneObject.GetComponent<HailstoneInstance>();
+        if (hailstone != null)
+            hailstone.Initialize(damage, (int)currentPhase >= 3 ? 10f : 8f, 4f);
     }
 
     public void SetPhase(GolemController.GolemPhase phase)
@@ -71,5 +121,10 @@ public class TremorHailstormSkill : IEnvironmentSkill
     public void SetEnabled(bool e)
     {
         enabled = e;
+    }
+
+    public void Cleanup()
+    {
+        enabled = false;
     }
 }

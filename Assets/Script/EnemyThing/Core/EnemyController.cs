@@ -42,9 +42,23 @@ public class EnemyController : MonoBehaviour, IEnemyStateProvider, IEnemyMovemen
     private int settleFrames;
     private const int SettleFramesRequired = 3;
     private const float SettleVelocityThreshold = 0.05f;
+    private bool controllerInitialized;
 
     protected virtual void Start()
     {
+        InitializeEnemyController();
+    }
+
+    /// <summary>
+    /// Initializes the shared enemy dependencies and state cache.
+    /// Boss subclasses can call this after their own dependencies are ready,
+    /// avoiding virtual state creation during an incomplete subclass setup.
+    /// </summary>
+    protected void InitializeEnemyController()
+    {
+        if (controllerInitialized)
+            return;
+
         var rb = GetComponent<Rigidbody2D>();
         var sr = GetComponent<SpriteRenderer>();
         var animator = GetComponent<Animator>();
@@ -67,6 +81,7 @@ public class EnemyController : MonoBehaviour, IEnemyStateProvider, IEnemyMovemen
 
         CacheStates();
         ChangeState(GetIdleState());
+        controllerInitialized = true;
     }
 
     protected virtual void Update()

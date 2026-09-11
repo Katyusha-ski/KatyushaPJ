@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class RollingStoneSkill : IEnvironmentSkill
 {
+    private readonly GameObject stonePrefab;
     /// <summary>Cooldown between boulder spawns per phase. Phase1: slow, Phase4: bullet-hell rapid. Architect: chua chot so lieu.</summary>
     private float[] cooldownByPhase = new float[] { 8f, 6f, 3f, 1.5f };
 
@@ -15,6 +16,11 @@ public class RollingStoneSkill : IEnvironmentSkill
     private GolemController.GolemPhase currentPhase = GolemController.GolemPhase.Phase1;
     private bool enabled = true;
     private float cooldownTimer;
+
+    public RollingStoneSkill(GameObject stonePrefab)
+    {
+        this.stonePrefab = stonePrefab;
+    }
 
     public void Tick(float dt)
     {
@@ -31,10 +37,27 @@ public class RollingStoneSkill : IEnvironmentSkill
     {
         int damage = damageByPhase[(int)currentPhase];
         float scale = hitboxScaleByPhase[(int)currentPhase];
-        // TODO: chờ prefab — instantiate rolling boulder prefab
-        // Phase1-2: medium hitbox, long cooldown
-        // Phase3-4: larger hitbox, very fast cooldown (bullet hell density)
-        // TODO: boulder moves horizontally, OnTriggerEnter2D → health.TakeDamage(damage)
+        Transform player = PlayerManager.Instance != null
+            ? PlayerManager.Instance.PlayerTransform
+            : null;
+        if (stonePrefab == null || player == null)
+            return;
+
+        const float spawnOffset = 8f;
+        Vector3 spawnPosition = player.position + Vector3.left * spawnOffset;
+        GameObject stoneObject = Object.Instantiate(stonePrefab, spawnPosition, Quaternion.identity);
+        stoneObject.transform.localScale *= scale;
+        IProjectilePref projectile = stoneObject.GetComponent<IProjectilePref>();
+        if (projectile != null)
+        {
+            projectile.SetDamage(damage);
+            projectile.SetDirection(1);
+            projectile.SetProjectileConfig(new ProjectileConfig
+            {
+                speed = 7f,
+                pierceCount = 0
+            });
+        }
     }
 
     public void SetPhase(GolemController.GolemPhase phase)
@@ -45,5 +68,10 @@ public class RollingStoneSkill : IEnvironmentSkill
     public void SetEnabled(bool e)
     {
         enabled = e;
+    }
+
+    public void Cleanup()
+    {
+        enabled = false;
     }
 }

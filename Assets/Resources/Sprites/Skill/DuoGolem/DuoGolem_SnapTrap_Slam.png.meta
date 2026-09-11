@@ -1,0 +1,408 @@
+fileFormatVersion: 2
+guid: 370b8beecdee96944becbbf70b71de0c
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -3062819670141776288
+    second: DuoGolem_SnapTrap_Slam_0
+  - first:
+      213: -5199959239678375766
+    second: DuoGolem_SnapTrap_Slam_1
+  - first:
+      213: 1639528036344671605
+    second: DuoGolem_SnapTrap_Slam_2
+  - first:
+      213: -642623833117748229
+    second: DuoGolem_SnapTrap_Slam_3
+  - first:
+      213: -7526697549699923435
+    second: DuoGolem_SnapTrap_Slam_4
+  - first:
+      213: 3189796345471389316
+    second: DuoGolem_SnapTrap_Slam_5
+  - first:
+      213: 41346358425634568
+    second: DuoGolem_SnapTrap_Slam_6
+  - first:
+      213: 1150875987367739263
+    second: DuoGolem_SnapTrap_Slam_7
+  - first:
+      213: 8214129506724223034
+    second: DuoGolem_SnapTrap_Slam_8
+  - first:
+      213: -2507611101073920720
+    second: DuoGolem_SnapTrap_Slam_9
+  - first:
+      213: 8678041508952619645
+    second: DuoGolem_SnapTrap_Slam_10
+  - first:
+      213: 7430464201348624041
+    second: DuoGolem_SnapTrap_Slam_11
+  - first:
+      213: 7526029972736890861
+    second: DuoGolem_SnapTrap_Slam_12
+  - first:
+      213: 8125216569647774858
+    second: DuoGolem_SnapTrap_Slam_13
+  - first:
+      213: -3825259578957777540
+    second: DuoGolem_SnapTrap_Slam_14
+  - first:
+      213: -7237177222748418464
+    second: DuoGolem_SnapTrap_Slam_15
+  - first:
+      213: -3333711944002839681
+    second: DuoGolem_SnapTrap_Slam_16
+  - first:
+      213: -915440988554688648
+    second: DuoGolem_SnapTrap_Slam_17
+  - first:
+      213: -3936522468815618422
+    second: DuoGolem_SnapTrap_Slam_18
+  - first:
+      213: -5084949129137792881
+    second: DuoGolem_SnapTrap_Slam_19
+  - first:
+      213: 8258745132609442064
+    second: DuoGolem_SnapTrap_Slam_20
+  - first:
+      213: 6244626118975982389
+    second: DuoGolem_SnapTrap_Slam_21
+  - first:
+      213: -3345402411687752027
+    second: DuoGolem_SnapTrap_Slam_22
+  - first:
+      213: 9128152482279757586
+    second: DuoGolem_SnapTrap_Slam_23
+  - first:
+      213: 1023178446755331143
+    second: DuoGolem_SnapTrap_Slam_24
+  - first:
+      213: 1601481257532712351
+    second: DuoGolem_SnapTrap_Slam_25
+  - first:
+      213: 5136046207570971852
+    second: DuoGolem_SnapTrap_Slam_26
+  - first:
+      213: -9071067169074814649
+    second: DuoGolem_SnapTrap_Slam_27
+  - first:
+      213: 4973972567089473679
+    second: DuoGolem_SnapTrap_Slam_28
+  - first:
+      213: -5872204822078658663
+    second: DuoGolem_SnapTrap_Slam_29
+  - first:
+      213: -8012832764682350982
+    second: DuoGolem_SnapTrap_Slam_30
+  - first:
+      213: -91385076544620866
+    second: DuoGolem_SnapTrap_Slam_31
+  - first:
+      213: -1213532583177549186
+    second: DuoGolem_SnapTrap_Slam_32
+  - first:
+      213: 5535292310728980438
+    second: DuoGolem_SnapTrap_Slam_33
+  - first:
+      213: 2730003505229137135
+    second: DuoGolem_SnapTrap_Slam_34
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 14
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: DuoGolem_SnapTrap_Slam_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 128
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 06ece1eccbdae75d0800000000000000
+      internalID: -3062819670141776288
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DuoGolem_SnapTrap_Slam_1
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 0
+        width: 128
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: aa8c5704f9806d7b0800000000000000
+      internalID: -5199959239678375766
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DuoGolem_SnapTrap_Slam_2
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 0
+        width: 128
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 57d2e9dff06c0c610800000000000000
+      internalID: 1639528036344671605
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DuoGolem_SnapTrap_Slam_3
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 0
+        width: 128
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bf311de4701f417f0800000000000000
+      internalID: -642623833117748229
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DuoGolem_SnapTrap_Slam_4
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 0
+        width: 128
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 512455ae47ccb8790800000000000000
+      internalID: -7526697549699923435
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DuoGolem_SnapTrap_Slam_5
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 0
+        width: 128
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 48e49ad30ee644c20800000000000000
+      internalID: 3189796345471389316
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DuoGolem_SnapTrap_Slam_6
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 0
+        width: 128
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 80747be3b44e29000800000000000000
+      internalID: 41346358425634568
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DuoGolem_SnapTrap_Slam_7
+      rect:
+        serializedVersion: 2
+        x: 896
+        y: 0
+        width: 128
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f7fb497ec9bb8ff00800000000000000
+      internalID: 1150875987367739263
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: d283f967dfa266241b57d0d2dc665e18
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries:
+      - key: SpriteEditor.SliceSettings
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":8.0,"y":1.0},"gridSpriteSize":{"x":128.0,"y":64.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":2,"keepEmptyRects":false,"isAlternate":false}'
+    nameFileIdTable:
+      DuoGolem_SnapTrap_Slam_0: -3062819670141776288
+      DuoGolem_SnapTrap_Slam_1: -5199959239678375766
+      DuoGolem_SnapTrap_Slam_2: 1639528036344671605
+      DuoGolem_SnapTrap_Slam_3: -642623833117748229
+      DuoGolem_SnapTrap_Slam_4: -7526697549699923435
+      DuoGolem_SnapTrap_Slam_5: 3189796345471389316
+      DuoGolem_SnapTrap_Slam_6: 41346358425634568
+      DuoGolem_SnapTrap_Slam_7: 1150875987367739263
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

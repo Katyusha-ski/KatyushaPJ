@@ -33,4 +33,11 @@ public class ArenaHazardController
         ccSkill?.SetEnabled(e);
         dmgSkill?.SetEnabled(e);
     }
+
+    public void Cleanup()
+    {
+        enabled = false;
+        ccSkill?.Cleanup();
+        dmgSkill?.Cleanup();
+    }
 }

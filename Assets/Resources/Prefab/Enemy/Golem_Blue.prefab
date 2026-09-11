@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 4683714402937598543}
   - component: {fileID: 84209177815151191}
   - component: {fileID: 3248425647022853517}
+  - component: {fileID: 1443691709316691801}
   m_Layer: 0
   m_Name: Golem_Blue
   m_TagString: Untagged
@@ -265,3 +266,43 @@ MonoBehaviour:
   totalHPRegen: 0
   totalDmgR: 0
   totalSkillAmp: 0
+--- !u!114 &1443691709316691801
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7129319390205680892}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cec1922324c11d24882b7fef60846cde, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GolemB
+  attackRange: 1.5
+  visionRange: 5
+  attackCooldown: 2
+  spriteBaseFlipX: 0
+  maxChaseDistance: 15
+  loseTargetDelay: 0.5
+  recoveryTimeout: 8
+  homeTolerance: 0.3
+  patrolHalfWidth: 2
+  minReEngageDistance: 2
+  partnerGolem: {fileID: 0}
+  phaseThresholds:
+  - 75
+  - 50
+  - 25
+  moveSpeedMultipliers:
+  - 1
+  - 1.2
+  - 1.5
+  - 2
+  attackSpeedMultipliers:
+  - 1
+  - 1.15
+  - 1.35
+  - 1.6
+  punchDamage: 25
+  stoneSpikePrefab: {fileID: 3212989424531414512, guid: 7a1c3e5f9b2d4f6a8c0e1b3d5f7a9c24, type: 3}
+  hailstonePrefab: {fileID: 4212989424531414512, guid: 9b3d5f7a1c2e4f6b8d0a2c4e6f8b1d37, type: 3}

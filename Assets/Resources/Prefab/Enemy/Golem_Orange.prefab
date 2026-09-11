@@ -17,13 +17,14 @@ GameObject:
   - component: {fileID: 3673164727493605181}
   - component: {fileID: 5091503628514224622}
   - component: {fileID: 84436549850909791}
+  - component: {fileID: 1443691709316691801}
   m_Layer: 0
   m_Name: Golem_Orange
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &2656290856700620410
 Transform:
   m_ObjectHideFlags: 0
@@ -263,6 +264,7 @@ MonoBehaviour:
   maxHealth: 0
   currentHealth: 0
   healthBar: {fileID: 0}
+  virtualShield: 0
   damageSFX: {fileID: 0}
   dieSFX: {fileID: 0}
   lootManager: {fileID: 3673164727493605181}
@@ -281,5 +283,50 @@ MonoBehaviour:
   attackRange: 1.5
   visionRange: 5
   attackCooldown: 2
-  lastTimeAttack: -Infinity
-  player: {fileID: 0}
+  spriteBaseFlipX: 0
+  maxChaseDistance: 15
+  loseTargetDelay: 0.5
+  recoveryTimeout: 8
+  homeTolerance: 0.3
+  patrolHalfWidth: 2
+  minReEngageDistance: 2
+--- !u!114 &1443691709316691801
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7387663526962282877}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f8b8bc78b2d9a54386e302340900cc3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GolemA
+  attackRange: 1.5
+  visionRange: 5
+  attackCooldown: 2
+  spriteBaseFlipX: 0
+  maxChaseDistance: 15
+  loseTargetDelay: 0.5
+  recoveryTimeout: 8
+  homeTolerance: 0.3
+  patrolHalfWidth: 2
+  minReEngageDistance: 2
+  partnerGolem: {fileID: 0}
+  phaseThresholds:
+  - 75
+  - 50
+  - 25
+  moveSpeedMultipliers:
+  - 1
+  - 1.2
+  - 1.5
+  - 2
+  attackSpeedMultipliers:
+  - 1
+  - 1.15
+  - 1.35
+  - 1.6
+  punchDamage: 25
+  snapTrapPrefab: {fileID: 7552874944558867769, guid: 0b3b013390e23b34ebeabbb34fa2b06a, type: 3}
+  rollingStonePrefab: {fileID: 3859750020444389241, guid: 0c755e980c11ed04d94c53ee05db716b, type: 3}
