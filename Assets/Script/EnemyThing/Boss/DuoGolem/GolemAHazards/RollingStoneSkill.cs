@@ -3,6 +3,7 @@ using UnityEngine;
 public class RollingStoneSkill : IEnvironmentSkill
 {
     private readonly GameObject stonePrefab;
+    private readonly float groundY;
     /// <summary>Cooldown between boulder spawns per phase. Phase1: slow, Phase4: bullet-hell rapid. Architect: chua chot so lieu.</summary>
     private float[] cooldownByPhase = new float[] { 8f, 6f, 3f, 1.5f };
 
@@ -17,9 +18,10 @@ public class RollingStoneSkill : IEnvironmentSkill
     private bool enabled = true;
     private float cooldownTimer;
 
-    public RollingStoneSkill(GameObject stonePrefab)
+    public RollingStoneSkill(GameObject stonePrefab, float groundY)
     {
         this.stonePrefab = stonePrefab;
+        this.groundY = groundY;
     }
 
     public void Tick(float dt)
@@ -44,9 +46,12 @@ public class RollingStoneSkill : IEnvironmentSkill
             return;
 
         const float spawnOffset = 8f;
-        Vector3 spawnPosition = player.position + Vector3.left * spawnOffset;
+        Vector3 spawnPosition = new Vector3(player.position.x - spawnOffset, groundY, player.position.z);
         GameObject stoneObject = Object.Instantiate(stonePrefab, spawnPosition, Quaternion.identity);
         stoneObject.transform.localScale *= scale;
+        Collider2D collider = stoneObject.GetComponent<Collider2D>();
+        if (collider != null)
+            stoneObject.transform.position += Vector3.up * (groundY - collider.bounds.min.y);
         IProjectilePref projectile = stoneObject.GetComponent<IProjectilePref>();
         if (projectile != null)
         {

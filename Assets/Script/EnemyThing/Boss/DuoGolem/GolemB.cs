@@ -9,11 +9,11 @@ public class GolemB : GolemController
 
     protected override IEnvironmentSkill CreateCCSkill()
     {
-        return new TremorHailstormSkill(hailstonePrefab);
+        return new TremorHailstormSkill(hailstonePrefab, GroundY);
     }
 
     protected override IEnvironmentSkill CreateDmgSkill()
     {
-        return new StoneSpikeStabSkill(stoneSpikePrefab);
+        return new StoneSpikeStabSkill(stoneSpikePrefab, GroundY);
     }
 }

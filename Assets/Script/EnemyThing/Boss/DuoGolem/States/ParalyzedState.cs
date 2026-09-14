@@ -22,11 +22,11 @@ public class ParalyzedState : IEnemyState
                 col.enabled = false;
         }
 
-        combat.PlayAnimBool("Run", false);
-
         if (owner != null)
         {
+            combat.PlayAnimTrigger("Knockdown");
             owner.MyHazards?.Cleanup();
+            owner.ShowStateEffect(new Color(1f, 0.15f, 0.15f, 0.35f));
         }
     }
 
@@ -35,5 +35,8 @@ public class ParalyzedState : IEnemyState
         // no-op: fully disabled, waiting for revival
     }
 
-    public void OnExit(IEnemyMovement movement, IEnemyCombat combat, IEnemyStateContext ctx) { }
+    public void OnExit(IEnemyMovement movement, IEnemyCombat combat, IEnemyStateContext ctx)
+    {
+        owner?.HideStateEffect();
+    }
 }

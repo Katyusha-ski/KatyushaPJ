@@ -306,7 +306,7 @@ public class BatBossController : EnemyController
         ChangeState(stateCache["Combat"]);
     }
 
-    public void BeginEncounter()
+    public override void BeginEncounter()
     {
         InitializeBoss();
 

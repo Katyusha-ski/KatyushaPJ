@@ -6,7 +6,7 @@ public class CameraFollow : MonoBehaviour
 {
     [Header("Follow")]
     [SerializeField] private Transform target;
-    [SerializeField] private Vector3 offset = new Vector3(0, 0, -10);
+    [SerializeField] private Vector3 offset = new Vector3(0, 1.5f, -10);
     [SerializeField] private float smoothSpeed = 5f;
 
     [Header("Boss Reveal Zoom")]

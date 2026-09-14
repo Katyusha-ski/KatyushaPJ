@@ -3,6 +3,7 @@ using UnityEngine;
 public class SnapTrapSkill : IEnvironmentSkill
 {
     private readonly GameObject trapPrefab;
+    private readonly float groundY;
 
     // --- Constants ---
     /// <summary>WaitTime before walls slam — FIXED at 1.5s across all phases per GDD to build muscle memory.</summary>
@@ -23,9 +24,10 @@ public class SnapTrapSkill : IEnvironmentSkill
     private bool enabled = true;
     private float cooldownTimer;
 
-    public SnapTrapSkill(GameObject trapPrefab)
+    public SnapTrapSkill(GameObject trapPrefab, float groundY)
     {
         this.trapPrefab = trapPrefab;
+        this.groundY = groundY;
     }
 
     public void Tick(float dt)
@@ -59,12 +61,13 @@ public class SnapTrapSkill : IEnvironmentSkill
         int damage = damageByPhase[(int)currentPhase];
         GameObject trapObject = Object.Instantiate(
             trapPrefab,
-            player.position,
+            new Vector3(player.position.x, groundY, player.position.z),
             Quaternion.identity);
 
         SnapTrapInstance trap = trapObject.GetComponent<SnapTrapInstance>();
         if (trap != null)
         {
+            trap.AlignBottomToGround(groundY);
             trap.Initialize(
                 currentPhase,
                 damage,

@@ -17,6 +17,8 @@ public class GolemAttackState : IEnemyState
         elapsed = 0f;
         combat.PlayAnimBool("Run", false);
         movement.LookAtPlayer();
+        if (ctx is GolemController golem)
+            golem.SetAnimationSpeed(golem.AttackAnimationSpeed);
         combat.PlayAnimTrigger("Punch");
     }
 
@@ -29,5 +31,9 @@ public class GolemAttackState : IEnemyState
         }
     }
 
-    public void OnExit(IEnemyMovement movement, IEnemyCombat combat, IEnemyStateContext ctx) { }
+    public void OnExit(IEnemyMovement movement, IEnemyCombat combat, IEnemyStateContext ctx)
+    {
+        if (ctx is GolemController golem)
+            golem.SetAnimationSpeed(1f);
+    }
 }

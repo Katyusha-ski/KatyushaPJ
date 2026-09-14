@@ -26,6 +26,13 @@ public class AnimationController
     public void SetBool(string name, bool value) => animator.SetBool(name, value);
     public void ResetTrigger(string trigger) => animator.ResetTrigger(trigger);
 
+    public void SetSpeed(float speed)
+    {
+        if (animator != null)
+            animator.speed = Mathf.Max(0.01f, speed);
+    }
+
+
     public void PlayRun(bool isRunning) => animator.SetBool("Run", isRunning);
     public void PlayAttack() => animator.SetTrigger("Attack");
     public void PlayHurt() => animator.SetTrigger("Hurt");

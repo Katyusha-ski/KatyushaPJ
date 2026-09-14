@@ -28,6 +28,19 @@ public class SnapTrapInstance : MonoBehaviour
             animator.enabled = false;
     }
 
+    public void AlignBottomToGround(float groundY)
+    {
+        Collider2D[] colliders = GetComponentsInChildren<Collider2D>();
+        if (colliders.Length == 0)
+            return;
+
+        Bounds bounds = colliders[0].bounds;
+        for (int i = 1; i < colliders.Length; i++)
+            bounds.Encapsulate(colliders[i].bounds);
+
+        transform.position += Vector3.up * (groundY - bounds.min.y);
+    }
+
     public void Initialize(
         GolemController.GolemPhase trapPhase,
         int trapDamage,

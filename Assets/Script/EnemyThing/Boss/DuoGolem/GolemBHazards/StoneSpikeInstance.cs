@@ -22,6 +22,15 @@ public class StoneSpikeInstance : MonoBehaviour
             animator.enabled = false;
     }
 
+    public void AlignBottomToGround(float groundY)
+    {
+        Renderer renderer = GetComponentInChildren<Renderer>();
+        if (renderer == null)
+            return;
+
+        transform.position += Vector3.up * (groundY - renderer.bounds.min.y);
+    }
+
     public void Initialize(GolemController.GolemPhase spikePhase, int spikeDamage,
         float radius, float warningTime)
     {

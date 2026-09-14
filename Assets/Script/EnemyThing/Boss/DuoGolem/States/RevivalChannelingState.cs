@@ -19,6 +19,7 @@ public class RevivalChannelingState : IEnemyState
         hasAppliedPhaseDown = false;
         movement.Stop();
         combat.PlayAnimBool("Run", false);
+        owner?.ShowStateEffect(new Color(0.35f, 1f, 0.45f, 0.3f));
 
         if (owner != null && owner.MyHazards != null)
         {
@@ -71,5 +72,6 @@ public class RevivalChannelingState : IEnemyState
     {
         timer = CHANNEL_DURATION;
         hasAppliedPhaseDown = false;
+        owner?.HideStateEffect();
     }
 }

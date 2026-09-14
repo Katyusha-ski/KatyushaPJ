@@ -15,6 +15,7 @@ public class GolemController : EnemyController
 
     [Header("Duo Golem Settings")]
     [SerializeField] protected GolemController partnerGolem;
+    [SerializeField] protected float groundY = 0f;
 
     protected ArenaHazardController myHazards;
 
@@ -27,7 +28,9 @@ public class GolemController : EnemyController
     [SerializeField] protected float[] moveSpeedMultipliers = new float[] { 1f, 1.2f, 1.5f, 2f };
 
     /// <summary>Attack animation speed multiplier per phase (higher = faster punch). Inversely affects GolemAttackState.animDuration. Architect: chua chot so lieu.</summary>
-    [SerializeField] protected float[] attackSpeedMultipliers = new float[] { 1f, 1.15f, 1.35f, 1.6f };
+    // Base punch animation is reduced by 25% because the source clip is already fast.
+    // Phase scaling is preserved on top of that reduced baseline.
+    [SerializeField] protected float[] attackSpeedMultipliers = new float[] { 0.75f, 0.8625f, 1.0125f, 1.2f };
 
     /// <summary>Punch damage — locked at Mức 3 across ALL phases per GDD. Only speed scales with phase.</summary>
     [Header("Punch Damage (Muc 3, constant across all phases)")]
@@ -42,6 +45,33 @@ public class GolemController : EnemyController
     public bool IsChanneling => isChanneling;
     public GolemController PartnerGolem => partnerGolem;
     public ArenaHazardController MyHazards => myHazards;
+    public float GroundY => groundY;
+    public float AttackAnimationSpeed => attackSpeedMultipliers[(int)currentPhase];
+    private bool encounterStarted;
+
+
+    public void ShowStateEffect(Color color)
+    {
+        Transform effect = transform.Find("GolemStateEffect");
+        if (effect == null) return;
+
+        MeshRenderer renderer = effect.GetComponent<MeshRenderer>();
+        if (renderer != null)
+        {
+            Material material = renderer.material;
+            material.SetColor("_ColorA", color);
+            material.SetColor("_ColorB", color);
+        }
+
+        effect.gameObject.SetActive(true);
+    }
+
+    public void HideStateEffect()
+    {
+        Transform effect = transform.Find("GolemStateEffect");
+        if (effect != null)
+            effect.gameObject.SetActive(false);
+    }
 
     public event System.Action OnDuoBossDefeated;
     private bool duoBossDefeatHandled;
@@ -62,6 +92,7 @@ public class GolemController : EnemyController
         IEnvironmentSkill ccSkill = CreateCCSkill();
         IEnvironmentSkill dmgSkill = CreateDmgSkill();
         myHazards = new ArenaHazardController(ccSkill, dmgSkill);
+        myHazards.SetEnabled(false);
 
         pendingPhaseRecalc = false;
         isChanneling = false;
@@ -78,6 +109,14 @@ public class GolemController : EnemyController
     protected virtual IEnvironmentSkill CreateCCSkill() { return null; }
     protected virtual IEnvironmentSkill CreateDmgSkill() { return null; }
 
+    public override void BeginEncounter()
+    {
+        base.BeginEncounter();
+        encounterStarted = true;
+        myHazards?.SetEnabled(true);
+        SwitchTo("Pursuit");
+    }
+
     private void OnHealthDamaged(int damageAmount)
     {
         pendingPhaseRecalc = true;
@@ -89,6 +128,12 @@ public class GolemController : EnemyController
         {
             pendingPhaseRecalc = false;
             RecalculatePhase();
+        }
+
+        if (!encounterStarted)
+        {
+            movement?.Stop();
+            return;
         }
 
         if (myHazards != null)
@@ -187,6 +232,8 @@ public class GolemController : EnemyController
         RecalculatePhase();
         OnPhaseChanged(currentPhase);
 
+        PlayAnimTrigger("Revive");
+
         if (myHazards != null)
         {
             myHazards.SetEnabled(true);
@@ -252,8 +299,13 @@ public class GolemController : EnemyController
         stateCache["Attack"] = GetAttackState();
         stateCache["Paralyzed"] = new ParalyzedState(this);
         stateCache["RevivalChanneling"] = new RevivalChannelingState(this);
-        stateCache["RealDie"] = new DieState(2f, () => HandleEnemyDeath());
+        stateCache["RealDie"] = new GolemFinalDeathState();
         stateCache["Die"] = stateCache["RealDie"];
+    }
+
+    public override IEnemyState GetPursuitState()
+    {
+        return new GolemPursuitState();
     }
 
     public override IEnemyState GetAttackState()

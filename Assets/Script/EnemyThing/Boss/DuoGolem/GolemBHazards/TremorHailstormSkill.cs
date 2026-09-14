@@ -5,6 +5,7 @@ public class TremorHailstormSkill : IEnvironmentSkill
 {
     private const string HAILSTONE_POOL_TAG = "DuoGolem_Hailstone";
     private readonly GameObject hailstonePrefab;
+    private readonly float groundY;
     /// <summary>Slow percentage per phase. Phase1: 10% light, Phase4: 60% heavy. Architect: chua chot so lieu.</summary>
     private float[] slowPercentByPhase = new float[] { 10f, 25f, 40f, 60f };
 
@@ -26,9 +27,10 @@ public class TremorHailstormSkill : IEnvironmentSkill
     private float tremorTimer;
     private float hailTimer;
 
-    public TremorHailstormSkill(GameObject hailstonePrefab)
+    public TremorHailstormSkill(GameObject hailstonePrefab, float groundY)
     {
         this.hailstonePrefab = hailstonePrefab;
+        this.groundY = groundY;
     }
 
     public void Tick(float dt)
@@ -101,7 +103,10 @@ public class TremorHailstormSkill : IEnvironmentSkill
             : null;
         if (player == null) return;
 
-        Vector3 spawnPosition = player.position + new Vector3(Random.Range(-3f, 3f), 5f, 0f);
+        Vector3 spawnPosition = new Vector3(
+            player.position.x + Random.Range(-3f, 3f),
+            groundY + 5f,
+            player.position.z);
         GameObject hailstoneObject = ObjectPool.Instance.SpawnFromPool(
             HAILSTONE_POOL_TAG,
             spawnPosition,

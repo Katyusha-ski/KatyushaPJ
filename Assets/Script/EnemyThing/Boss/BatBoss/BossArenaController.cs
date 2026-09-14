@@ -4,7 +4,8 @@ using UnityEngine.Events;
 [RequireComponent(typeof(Collider2D))]
 public class BossArenaController : MonoBehaviour
 {
-    [SerializeField] private BatBossController boss;
+    [SerializeField] private EnemyController boss;
+    [SerializeField] private EnemyController secondaryBoss;
     [SerializeField] private CameraFollow bossCamera;
     [SerializeField] private Transform arenaBackground;
     [SerializeField] private float backgroundRevealScale = 1.5f;
@@ -14,6 +15,37 @@ public class BossArenaController : MonoBehaviour
     private bool hasRevealed;
     private Collider2D revealTrigger;
     private Vector3 backgroundBaseScale;
+
+    [SerializeField] private UnityEvent onBossDefeated;
+
+    private void OnEnable()
+    {
+        SubscribeVictory(boss);
+        SubscribeVictory(secondaryBoss);
+    }
+
+    private void OnDestroy()
+    {
+        UnsubscribeVictory(boss);
+        UnsubscribeVictory(secondaryBoss);
+    }
+
+    private void SubscribeVictory(EnemyController target)
+    {
+        if (target is GolemController golem)
+            golem.OnDuoBossDefeated += HandleBossDefeated;
+    }
+
+    private void UnsubscribeVictory(EnemyController target)
+    {
+        if (target is GolemController golem)
+            golem.OnDuoBossDefeated -= HandleBossDefeated;
+    }
+
+    private void HandleBossDefeated()
+    {
+        onBossDefeated?.Invoke();
+    }
 
     private void Awake()
     {
@@ -47,10 +79,14 @@ public class BossArenaController : MonoBehaviour
 
         hasRevealed = true;
 
-        if (activateBossOnEnter && boss != null && !boss.gameObject.activeSelf)
-            boss.gameObject.SetActive(true);
+        if (activateBossOnEnter)
+        {
+            boss?.gameObject.SetActive(true);
+            secondaryBoss?.gameObject.SetActive(true);
+        }
 
         boss?.BeginEncounter();
+        secondaryBoss?.BeginEncounter();
 
         if (bossCamera != null && boss != null)
             bossCamera.ZoomToBossReveal(

@@ -49,6 +49,11 @@ public class EnemyController : MonoBehaviour, IEnemyStateProvider, IEnemyMovemen
         InitializeEnemyController();
     }
 
+    public virtual void BeginEncounter()
+    {
+        gameObject.SetActive(true);
+    }
+
     /// <summary>
     /// Initializes the shared enemy dependencies and state cache.
     /// Boss subclasses can call this after their own dependencies are ready,
@@ -214,8 +219,9 @@ public class EnemyController : MonoBehaviour, IEnemyStateProvider, IEnemyMovemen
     public void RecordAttack() => lastTimeAttack = Time.time;
     public float GetAttackRange() => attackRange;
     public virtual void ExecuteAttack() => animationCtrl.PlayAttack();
-    public void PlayAnimTrigger(string trigger) => animationCtrl.SetTrigger(trigger);
-    public void PlayAnimBool(string name, bool value) => animationCtrl.SetBool(name, value);
+    public virtual void PlayAnimTrigger(string trigger) => animationCtrl.SetTrigger(trigger);
+    public virtual void PlayAnimBool(string name, bool value) => animationCtrl.SetBool(name, value);
+    public void SetAnimationSpeed(float speed) => animationCtrl?.SetSpeed(speed);
 
     // --- IEnemyStateProvider ---
     public virtual IEnemyState GetIdleState() => stateFactory.CreateIdleState();

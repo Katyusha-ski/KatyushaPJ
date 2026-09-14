@@ -7,11 +7,11 @@ public class GolemA : GolemController
 
     protected override IEnvironmentSkill CreateCCSkill()
     {
-        return new SnapTrapSkill(snapTrapPrefab);
+        return new SnapTrapSkill(snapTrapPrefab, GroundY);
     }
 
     protected override IEnvironmentSkill CreateDmgSkill()
     {
-        return new RollingStoneSkill(rollingStonePrefab);
+        return new RollingStoneSkill(rollingStonePrefab, GroundY);
     }
 }
