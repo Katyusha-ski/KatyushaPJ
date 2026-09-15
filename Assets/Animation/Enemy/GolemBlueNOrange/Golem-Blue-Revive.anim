@@ -1,0 +1,58 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!74 &7400000
+AnimationClip:
+  m_Name: Golem-Blue-Revive
+  serializedVersion: 7
+  m_Legacy: 0
+  m_Compressed: 0
+  m_UseHighQualityCurve: 1
+  m_RotationCurves: []
+  m_CompressedRotationCurves: []
+  m_EulerCurves: []
+  m_PositionCurves: []
+  m_ScaleCurves: []
+  m_FloatCurves: []
+  m_PPtrCurves:
+  - serializedVersion: 2
+    curve:
+    - time: 0
+      value: {fileID: -512881476052804623, guid: 68ccb624a8af89b45b34bd44b2bafc90, type: 3}
+    - time: 0.1
+      value: {fileID: 5718811788997118563, guid: 68ccb624a8af89b45b34bd44b2bafc90, type: 3}
+    - time: 0.2
+      value: {fileID: -3010939423613779099, guid: 68ccb624a8af89b45b34bd44b2bafc90, type: 3}
+    - time: 0.3
+      value: {fileID: 3827865639147245197, guid: 68ccb624a8af89b45b34bd44b2bafc90, type: 3}
+    - time: 0.4
+      value: {fileID: -5047208640998202599, guid: 68ccb624a8af89b45b34bd44b2bafc90, type: 3}
+    - time: 0.5
+      value: {fileID: 2927789630248076730, guid: 68ccb624a8af89b45b34bd44b2bafc90, type: 3}
+    - time: 0.6
+      value: {fileID: -8820285035135224643, guid: 68ccb624a8af89b45b34bd44b2bafc90, type: 3}
+    - time: 0.7
+      value: {fileID: -7188080423797821026, guid: 68ccb624a8af89b45b34bd44b2bafc90, type: 3}
+    - time: 0.8
+      value: {fileID: -715644886742660967, guid: 68ccb624a8af89b45b34bd44b2bafc90, type: 3}
+    attribute: m_Sprite
+    path: 
+    classID: 212
+    script: {fileID: 0}
+    flags: 2
+  m_SampleRate: 10
+  m_WrapMode: 0
+  m_ClipBindingConstant:
+    genericBindings:
+    - serializedVersion: 2
+      path: 0
+      attribute: 0
+      script: {fileID: 0}
+      typeID: 212
+      customType: 23
+      isPPtrCurve: 1
+  m_AnimationClipSettings:
+    serializedVersion: 2
+    m_StartTime: 0
+    m_StopTime: 0.9
+    m_LoopTime: 0
+  m_Events: []

@@ -16,13 +16,14 @@ public class SnapTrapSkill : IEnvironmentSkill
     private int[] damageByPhase = new int[] { 0, 0, 15, 25 };
 
     /// <summary>Cooldown between trap activations per phase. Architect: chua chot so lieu.</summary>
-    private float[] cooldownByPhase = new float[] { 10f, 8f, 6f, 4f };
+    private float[] cooldownByPhase = new float[] { 8f, 8f, 6f, 4f };
     private float[] animationSpeedByPhase = new float[] { 1f, 1f, 1f, 1.5f };
 
     // --- Runtime ---
     private GolemController.GolemPhase currentPhase = GolemController.GolemPhase.Phase1;
     private bool enabled = true;
     private float cooldownTimer;
+    private const float INITIAL_DELAY = 5f;
 
     public SnapTrapSkill(GameObject trapPrefab, float groundY)
     {
@@ -83,6 +84,8 @@ public class SnapTrapSkill : IEnvironmentSkill
 
     public void SetEnabled(bool e)
     {
+        if (e && !enabled)
+            cooldownTimer = INITIAL_DELAY;
         enabled = e;
     }
 

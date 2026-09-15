@@ -14,7 +14,7 @@ public class StoneSpikeStabSkill : IEnvironmentSkill
     private int[] damageByPhase = new int[] { 5, 10, 20, 30 };
 
     /// <summary>Cooldown between activations per phase. Phase4: relentless, forces constant dashing. Architect: chua chot so lieu.</summary>
-    private float[] cooldownByPhase = new float[] { 6f, 5f, 3f, 1.5f };
+    private float[] cooldownByPhase = new float[] { 8f, 6f, 4f, 3f };
 
     // --- Runtime ---
     private GolemController.GolemPhase currentPhase = GolemController.GolemPhase.Phase1;
@@ -69,6 +69,8 @@ public class StoneSpikeStabSkill : IEnvironmentSkill
 
     public void SetEnabled(bool e)
     {
+        if (e && !enabled)
+            cooldownTimer = cooldownByPhase[(int)currentPhase];
         enabled = e;
     }
 

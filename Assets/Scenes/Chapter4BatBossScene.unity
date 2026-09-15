@@ -12858,11 +12858,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BossArenaController
   boss: {fileID: 931414711571853081}
+  secondaryBoss: {fileID: 0}
   bossCamera: {fileID: 642194158}
   arenaBackground: {fileID: 0}
   backgroundRevealScale: 1.5
   activateBossOnEnter: 1
   onRevealComplete:
+    m_PersistentCalls:
+      m_Calls: []
+  onBossDefeated:
     m_PersistentCalls:
       m_Calls: []
 --- !u!4 &1226926342
@@ -13143,37 +13147,9 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 164899079040466263, guid: 5647762aba73d154887af66529da87b8, type: 3}
-      propertyPath: m_Layer
-      value: 9
-      objectReference: {fileID: 0}
-    - target: {fileID: 1082411894372899383, guid: 5647762aba73d154887af66529da87b8, type: 3}
-      propertyPath: m_Layer
-      value: 9
-      objectReference: {fileID: 0}
-    - target: {fileID: 1082411894372899383, guid: 5647762aba73d154887af66529da87b8, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1636838872916055402, guid: 5647762aba73d154887af66529da87b8, type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 1133.9291
-      objectReference: {fileID: 0}
-    - target: {fileID: 1636838872916055402, guid: 5647762aba73d154887af66529da87b8, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 5.3984
-      objectReference: {fileID: 0}
     - target: {fileID: 1906718568258336151, guid: 5647762aba73d154887af66529da87b8, type: 3}
       propertyPath: m_Name
       value: Bat
-      objectReference: {fileID: 0}
-    - target: {fileID: 1906718568258336151, guid: 5647762aba73d154887af66529da87b8, type: 3}
-      propertyPath: m_Layer
-      value: 9
-      objectReference: {fileID: 0}
-    - target: {fileID: 2128464191438763126, guid: 5647762aba73d154887af66529da87b8, type: 3}
-      propertyPath: m_Layer
-      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 2966873649857128322, guid: 5647762aba73d154887af66529da87b8, type: 3}
       propertyPath: m_AnchorMax.x
@@ -13182,30 +13158,6 @@ PrefabInstance:
     - target: {fileID: 2966873649857128322, guid: 5647762aba73d154887af66529da87b8, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3054154455068761657, guid: 5647762aba73d154887af66529da87b8, type: 3}
-      propertyPath: baseMaxHP
-      value: 100
-      objectReference: {fileID: 0}
-    - target: {fileID: 3054154455068761657, guid: 5647762aba73d154887af66529da87b8, type: 3}
-      propertyPath: baseCritDamage
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3161701266894949665, guid: 5647762aba73d154887af66529da87b8, type: 3}
-      propertyPath: m_Layer
-      value: 9
-      objectReference: {fileID: 0}
-    - target: {fileID: 3761119139427894916, guid: 5647762aba73d154887af66529da87b8, type: 3}
-      propertyPath: attackRange
-      value: 3.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 3761119139427894916, guid: 5647762aba73d154887af66529da87b8, type: 3}
-      propertyPath: spriteBaseFlipX
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3761119139427894916, guid: 5647762aba73d154887af66529da87b8, type: 3}
-      propertyPath: pillarSpawnPoints.Array.size
-      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 3761119139427894916, guid: 5647762aba73d154887af66529da87b8, type: 3}
       propertyPath: 'pillarSpawnPoints.Array.data[0]'
@@ -13239,30 +13191,6 @@ PrefabInstance:
       propertyPath: 'pillarSpawnPoints.Array.data[7]'
       value: 
       objectReference: {fileID: 1348593721}
-    - target: {fileID: 4750051730973204207, guid: 5647762aba73d154887af66529da87b8, type: 3}
-      propertyPath: m_Size.y
-      value: 1.794178
-      objectReference: {fileID: 0}
-    - target: {fileID: 4750051730973204207, guid: 5647762aba73d154887af66529da87b8, type: 3}
-      propertyPath: m_Offset.y
-      value: -0.005624771
-      objectReference: {fileID: 0}
-    - target: {fileID: 6929780532755366128, guid: 5647762aba73d154887af66529da87b8, type: 3}
-      propertyPath: m_SizeDelta.x
-      value: -892.6359
-      objectReference: {fileID: 0}
-    - target: {fileID: 6929780532755366128, guid: 5647762aba73d154887af66529da87b8, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 296.31787
-      objectReference: {fileID: 0}
-    - target: {fileID: 8950717150310901533, guid: 5647762aba73d154887af66529da87b8, type: 3}
-      propertyPath: m_Layer
-      value: 9
-      objectReference: {fileID: 0}
-    - target: {fileID: 8950717150310901533, guid: 5647762aba73d154887af66529da87b8, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 8970269306177089041, guid: 5647762aba73d154887af66529da87b8, type: 3}
       propertyPath: m_LocalPosition.x
       value: 47

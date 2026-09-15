@@ -26,6 +26,7 @@ public class TremorHailstormSkill : IEnvironmentSkill
     private bool enabled = true;
     private float tremorTimer;
     private float hailTimer;
+    private const float INITIAL_TREMOR_DELAY = 10f;
 
     public TremorHailstormSkill(GameObject hailstonePrefab, float groundY)
     {
@@ -125,6 +126,13 @@ public class TremorHailstormSkill : IEnvironmentSkill
 
     public void SetEnabled(bool e)
     {
+        if (e && !enabled)
+        {
+            tremorTimer = INITIAL_TREMOR_DELAY;
+            hailTimer = (int)currentPhase >= 2
+                ? hailIntervalByPhase[(int)currentPhase]
+                : 0f;
+        }
         enabled = e;
     }
 

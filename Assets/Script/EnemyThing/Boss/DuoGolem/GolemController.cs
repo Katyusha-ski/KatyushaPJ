@@ -18,6 +18,7 @@ public class GolemController : EnemyController
     [SerializeField] protected float groundY = 0f;
 
     protected ArenaHazardController myHazards;
+    private BossHealthBarUI bossHealthBar;
 
     /// <summary>HP% thresholds that trigger phase transitions. Index order: Phase1 (>[0]), Phase2 (>[1]), Phase3 (>[2]), Phase4 (<=[2]). Architect: adjust for difficulty tuning.</summary>
     [Header("Phase Thresholds (%)")]
@@ -36,6 +37,12 @@ public class GolemController : EnemyController
     [Header("Punch Damage (Muc 3, constant across all phases)")]
     [SerializeField] protected int punchDamage = 25;
 
+    [Header("Normal Attack Hitbox")]
+    [Tooltip("Local-space offset from the Golem pivot to the center of the punch hitbox. X is mirrored with the facing direction.")]
+    [SerializeField] private Vector2 attackHitboxOffset = new Vector2(1.5f, 0f);
+    [SerializeField] private Vector2 attackHitboxSize = new Vector2(3f, 2f);
+    [SerializeField] private LayerMask playerLayer;
+
     protected GolemPhase currentPhase = GolemPhase.Phase1;
     protected Health health;
     protected bool pendingPhaseRecalc;
@@ -47,7 +54,19 @@ public class GolemController : EnemyController
     public ArenaHazardController MyHazards => myHazards;
     public float GroundY => groundY;
     public float AttackAnimationSpeed => attackSpeedMultipliers[(int)currentPhase];
+    public Vector2 AttackHitboxOffset => attackHitboxOffset;
     private bool encounterStarted;
+
+    public Vector2 GetAttackHitboxCenter()
+    {
+        SpriteRenderer spriteRenderer = GetComponent<SpriteRenderer>();
+        bool isFlippedX = spriteRenderer != null && spriteRenderer.flipX;
+        Vector2 offset = isFlippedX
+            ? attackHitboxOffset * -1f
+            : attackHitboxOffset;
+
+        return (Vector2)transform.position + offset;
+    }
 
 
     public void ShowStateEffect(Color color)
@@ -84,6 +103,8 @@ public class GolemController : EnemyController
         // still missing from the cache.
         characterStats = GetComponent<CharacterStats>();
         health = GetComponent<Health>();
+        bossHealthBar = GetComponentInChildren<BossHealthBarUI>(true);
+        bossHealthBar?.Hide();
         if (health != null)
         {
             health.OnDamaged += OnHealthDamaged;
@@ -113,6 +134,7 @@ public class GolemController : EnemyController
     {
         base.BeginEncounter();
         encounterStarted = true;
+        bossHealthBar?.SetBoss(health);
         myHazards?.SetEnabled(true);
         SwitchTo("Pursuit");
     }
@@ -213,6 +235,11 @@ public class GolemController : EnemyController
         SwitchTo("RevivalChanneling");
     }
 
+    public void EndChanneling()
+    {
+        isChanneling = false;
+    }
+
     public virtual void ReviveWithHP(float hp)
     {
         if (health != null)
@@ -273,10 +300,21 @@ public class GolemController : EnemyController
 
     public override IEnemyState GetDieState()
     {
-        if (isChanneling)
+        IEnemyState partnerState = partnerGolem != null
+            ? partnerGolem.GetCurrentState()
+            : null;
+
+        // A golem can only enter the temporary downed state if its partner is
+        // still able to complete the revival. If the partner is already down,
+        // channeling, permanently dead, or missing, there is no revival path.
+        bool partnerCannotRevive = partnerGolem == null
+            || partnerState is ParalyzedState
+            || partnerState is RevivalChannelingState
+            || partnerState is GolemFinalDeathState;
+
+        if (isChanneling || partnerCannotRevive)
         {
-            if (partnerGolem != null &&
-                partnerGolem.GetCurrentState() is ParalyzedState)
+            if (partnerState is ParalyzedState)
             {
                 HandleDuoBossDefeated();
             }
@@ -342,13 +380,24 @@ public class GolemController : EnemyController
     // --- Animation Event ---
     public override void DealNormalAttackDamage()
     {
-        if (player != null && Vector2.Distance(transform.position, player.position) < attackRange)
+        if (playerLayer.value == 0)
+            playerLayer = LayerMask.GetMask("Player");
+
+        Collider2D[] hits = Physics2D.OverlapBoxAll(
+            GetAttackHitboxCenter(),
+            attackHitboxSize,
+            0f,
+            playerLayer);
+
+        HashSet<Health> damagedTargets = new HashSet<Health>();
+        foreach (Collider2D hit in hits)
         {
-            var playerHealth = player.GetComponent<Health>();
-            if (playerHealth != null && characterStats != null)
-            {
+            Health playerHealth = hit.GetComponentInParent<Health>();
+            if (playerHealth == null || !damagedTargets.Add(playerHealth))
+                continue;
+
+            if (characterStats != null)
                 playerHealth.TakeDamage((int)characterStats.Atk, gameObject);
-            }
         }
     }
 
@@ -356,5 +405,16 @@ public class GolemController : EnemyController
     {
         if (health != null)
             health.OnDamaged -= OnHealthDamaged;
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        // Draw the rectangular punch hitbox around the configurable center.
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireCube(GetAttackHitboxCenter(), attackHitboxSize);
+
+        // Keep the pursuit/attack decision boundary visible separately.
+        Gizmos.color = new Color(1f, 0.5f, 0f);
+        Gizmos.DrawWireSphere(transform.position, attackRange);
     }
 }

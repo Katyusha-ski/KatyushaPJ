@@ -92,7 +92,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &6929780532755366128
 RectTransform:
   m_ObjectHideFlags: 0
@@ -112,8 +112,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -455}
-  m_SizeDelta: {x: -300, y: -990}
+  m_AnchoredPosition: {x: 296.31787, y: -455}
+  m_SizeDelta: {x: -892.6359, y: -990}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &8544330375556178803
 MonoBehaviour:
@@ -334,7 +334,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: -0.019804955, y: -0.25440085}
+  m_Offset: {x: -0.019804955, y: -0.005624771}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -344,7 +344,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 0.8508587, y: 1.2966259}
+  m_Size: {x: 0.8508587, y: 1.794178}
   m_EdgeRadius: 0.01
 --- !u!50 &8633250328422050223
 Rigidbody2D:
@@ -426,7 +426,7 @@ MonoBehaviour:
   attackRange: 3.5
   visionRange: 5
   attackCooldown: 2
-  spriteBaseFlipX: 0
+  spriteBaseFlipX: 1
   maxChaseDistance: 15
   loseTargetDelay: 0.5
   recoveryTimeout: 8
@@ -457,6 +457,7 @@ MonoBehaviour:
   hurtTint: {r: 1, g: 0, b: 0, a: 1}
   hurtFlashDuration: 0.15
   deathVFX: {fileID: 0}
+  deathCleanupDelay: 2
 --- !u!114 &4982716345100000001
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -512,8 +513,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 7.5421, y: 0}
-  m_SizeDelta: {x: 1789.93, y: 157.9692}
+  m_AnchoredPosition: {x: 5.3984, y: 0}
+  m_SizeDelta: {x: 1133.9291, y: 157.9692}
   m_Pivot: {x: 0.49999997, y: 0.49999994}
 --- !u!222 &431126967919236220
 CanvasRenderer:
@@ -672,7 +673,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &257943608572878182
 RectTransform:
   m_ObjectHideFlags: 0

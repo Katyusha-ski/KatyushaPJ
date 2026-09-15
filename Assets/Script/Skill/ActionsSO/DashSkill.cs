@@ -78,7 +78,7 @@ public class DashSkill : DirectDmgSkillBase
 
                 if (applyDashDamage)
                 {
-                    var hits = Physics2D.OverlapBoxAll(player.transform.position, playerCollider.bounds.size, 0, LayerMask.GetMask("Enemy"));
+                    var hits = Physics2D.OverlapBoxAll(player.transform.position, playerCollider.bounds.size, 0, LayerMask.GetMask("Enemy", "Boss"));
                     foreach (var hit in hits)
                     {
                         if (!damagedEnemies.Contains(hit.gameObject))
@@ -110,7 +110,7 @@ public class DashSkill : DirectDmgSkillBase
         }
 
         // Push out if stuck in enemy
-        Collider2D overlap = Physics2D.OverlapBox(player.transform.position, playerCollider.bounds.size, 0, LayerMask.GetMask("Enemy"));
+        Collider2D overlap = Physics2D.OverlapBox(player.transform.position, playerCollider.bounds.size, 0, LayerMask.GetMask("Enemy", "Boss"));
         if (overlap != null)
             player.transform.position += (Vector3)(-direction * Vector2.right * pushOutDistance);
     }

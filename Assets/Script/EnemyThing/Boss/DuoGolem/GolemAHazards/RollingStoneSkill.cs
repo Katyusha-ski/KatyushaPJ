@@ -5,7 +5,7 @@ public class RollingStoneSkill : IEnvironmentSkill
     private readonly GameObject stonePrefab;
     private readonly float groundY;
     /// <summary>Cooldown between boulder spawns per phase. Phase1: slow, Phase4: bullet-hell rapid. Architect: chua chot so lieu.</summary>
-    private float[] cooldownByPhase = new float[] { 8f, 6f, 3f, 1.5f };
+    private float[] cooldownByPhase = new float[] { 8f, 6f, 4f, 3f };
 
     /// <summary>Damage per phase. Phase1-2: Mức 1-2 (chip). Phase3-4: Mức 3→Max 4. Architect: chua chot so lieu.</summary>
     private int[] damageByPhase = new int[] { 5, 10, 20, 30 };
@@ -49,6 +49,12 @@ public class RollingStoneSkill : IEnvironmentSkill
         Vector3 spawnPosition = new Vector3(player.position.x - spawnOffset, groundY, player.position.z);
         GameObject stoneObject = Object.Instantiate(stonePrefab, spawnPosition, Quaternion.identity);
         stoneObject.transform.localScale *= scale;
+
+        // The collider bounds can still contain the prefab's original scale
+        // during this frame. Sync transforms before calculating the scaled
+        // bottom offset, otherwise larger stones spawn too low.
+        Physics2D.SyncTransforms();
+
         Collider2D collider = stoneObject.GetComponent<Collider2D>();
         if (collider != null)
             stoneObject.transform.position += Vector3.up * (groundY - collider.bounds.min.y);
@@ -72,6 +78,8 @@ public class RollingStoneSkill : IEnvironmentSkill
 
     public void SetEnabled(bool e)
     {
+        if (e && !enabled)
+            cooldownTimer = cooldownByPhase[(int)currentPhase];
         enabled = e;
     }
 

@@ -7,6 +7,7 @@ public class ProjectilePref : MonoBehaviour, IProjectilePref
     public string targetTag = "Enemy";
     public float castingTime = 0f;
     public float lifeTime = 2f;
+    public bool destroyOnHit = true;
     public GameObject explodeEffect;
 
     private ProjectileConfig config;
@@ -79,7 +80,7 @@ public class ProjectilePref : MonoBehaviour, IProjectilePref
         if (explodeEffect != null)
             Instantiate(explodeEffect, collision.ClosestPoint(transform.position), Quaternion.identity);
 
-        if (hitCount > config.pierceCount)
+        if (destroyOnHit && hitCount > config.pierceCount)
             Destroy(gameObject);
     }
 

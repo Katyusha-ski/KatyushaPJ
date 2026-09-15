@@ -11,6 +11,16 @@ public class ParalyzedState : IEnemyState
 
     public void OnEnter(IEnemyMovement movement, IEnemyCombat combat, IEnemyStateContext ctx)
     {
+        // Keep the downed body at its current ground position. The collider is
+        // intentionally disabled, so gravity must be suspended as well.
+        Rigidbody2D rb = ((MonoBehaviour)ctx).GetComponent<Rigidbody2D>();
+        if (rb != null)
+        {
+            rb.linearVelocity = Vector2.zero;
+            rb.angularVelocity = 0f;
+            rb.gravityScale = 0f;
+        }
+
         // Disable ALL colliders (body + hurtbox) to prevent:
         //   - Player walking through (intended)
         //   - Hachiware/companion farming lifesteal on paralyzed body (crucial)
@@ -37,6 +47,10 @@ public class ParalyzedState : IEnemyState
 
     public void OnExit(IEnemyMovement movement, IEnemyCombat combat, IEnemyStateContext ctx)
     {
+        Rigidbody2D rb = ((MonoBehaviour)ctx).GetComponent<Rigidbody2D>();
+        if (rb != null)
+            rb.gravityScale = 1f;
+
         owner?.HideStateEffect();
     }
 }

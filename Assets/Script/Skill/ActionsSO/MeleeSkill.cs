@@ -59,7 +59,8 @@ public class MeleeSkill : DirectDmgSkillBase
         Vector2 origin = (Vector2)user.transform.position + new Vector2(offset.x * direction, offset.y);
         float finalDamage = CalculateFinalDamage();
 
-        Collider2D[] hits = Physics2D.OverlapCircleAll(origin, range, LayerMask.GetMask("Enemy"));
+        // Bosses intentionally use their own layer, but remain valid melee targets.
+        Collider2D[] hits = Physics2D.OverlapCircleAll(origin, range, LayerMask.GetMask("Enemy", "Boss"));
 
         int count = 0;
         foreach (var hit in hits)

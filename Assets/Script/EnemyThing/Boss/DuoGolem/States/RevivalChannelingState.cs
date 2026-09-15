@@ -64,6 +64,10 @@ public class RevivalChannelingState : IEnemyState
                 owner.MyHazards.SetPhase(owner.CurrentPhase);
             }
 
+            // The channeling golem also needs to clear its flag. Otherwise a
+            // later death is incorrectly treated as a permanent death while
+            // it is actually back in the normal active state.
+            owner.EndChanneling();
             ctx.SwitchTo("Idle");
         }
     }

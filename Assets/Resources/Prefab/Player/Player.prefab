@@ -1021,7 +1021,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6345269854787849234, guid: 9c3c282795abbe844a460590b02c45c2, type: 3}
       propertyPath: enemyLayer.m_Bits
-      value: 128
+      value: 640
       objectReference: {fileID: 0}
     - target: {fileID: 8519166136676381979, guid: 9c3c282795abbe844a460590b02c45c2, type: 3}
       propertyPath: m_Name

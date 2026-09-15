@@ -24,11 +24,16 @@ public class StoneSpikeInstance : MonoBehaviour
 
     public void AlignBottomToGround(float groundY)
     {
-        Renderer renderer = GetComponentInChildren<Renderer>();
-        if (renderer == null)
+        Collider2D collider = GetComponentInChildren<Collider2D>();
+        if (collider != null)
+        {
+            transform.position += Vector3.up * (groundY - collider.bounds.min.y);
             return;
+        }
 
-        transform.position += Vector3.up * (groundY - renderer.bounds.min.y);
+        Renderer renderer = GetComponentInChildren<Renderer>();
+        if (renderer != null)
+            transform.position += Vector3.up * (groundY - renderer.bounds.min.y);
     }
 
     public void Initialize(GolemController.GolemPhase spikePhase, int spikeDamage,

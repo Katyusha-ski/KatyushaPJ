@@ -5880,6 +5880,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3047474257105613010, guid: 4ae16086b72a08046adb8f64ff53fc9d, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4999483368528805643, guid: 4ae16086b72a08046adb8f64ff53fc9d, type: 3}
       propertyPath: m_Name
       value: GameUIRoot
@@ -6122,11 +6126,11 @@ PrefabInstance:
       objectReference: {fileID: 1843733910}
     - target: {fileID: 2656290856700620410, guid: 8af7a4a4e6d43b04ab4f456e87114eca, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 36.41
+      value: 36.4
       objectReference: {fileID: 0}
     - target: {fileID: 2656290856700620410, guid: 8af7a4a4e6d43b04ab4f456e87114eca, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 3.21
+      value: 3.14
       objectReference: {fileID: 0}
     - target: {fileID: 2656290856700620410, guid: 8af7a4a4e6d43b04ab4f456e87114eca, type: 3}
       propertyPath: m_LocalPosition.z
@@ -6160,6 +6164,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2966873649857128322, guid: 8af7a4a4e6d43b04ab4f456e87114eca, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2966873649857128322, guid: 8af7a4a4e6d43b04ab4f456e87114eca, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7387663526962282877, guid: 8af7a4a4e6d43b04ab4f456e87114eca, type: 3}
       propertyPath: m_Name
       value: Golem_Orange
@@ -6188,6 +6200,26 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1172684826817496753, guid: 896d6fc7eb1777241ad30cd6799c4ff8, type: 3}
+      propertyPath: m_Size.x
+      value: 2.2818756
+      objectReference: {fileID: 0}
+    - target: {fileID: 1172684826817496753, guid: 896d6fc7eb1777241ad30cd6799c4ff8, type: 3}
+      propertyPath: m_Size.y
+      value: 2.007447
+      objectReference: {fileID: 0}
+    - target: {fileID: 1172684826817496753, guid: 896d6fc7eb1777241ad30cd6799c4ff8, type: 3}
+      propertyPath: m_Offset.x
+      value: -0.026657104
+      objectReference: {fileID: 0}
+    - target: {fileID: 1172684826817496753, guid: 896d6fc7eb1777241ad30cd6799c4ff8, type: 3}
+      propertyPath: m_Offset.y
+      value: -0.9862765
+      objectReference: {fileID: 0}
+    - target: {fileID: 1443691709316691801, guid: 896d6fc7eb1777241ad30cd6799c4ff8, type: 3}
+      propertyPath: attackRange
+      value: 1.2
+      objectReference: {fileID: 0}
     - target: {fileID: 1443691709316691801, guid: 896d6fc7eb1777241ad30cd6799c4ff8, type: 3}
       propertyPath: partnerGolem
       value: 
@@ -6230,6 +6262,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1743003091755370809, guid: 896d6fc7eb1777241ad30cd6799c4ff8, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2966873649857128322, guid: 896d6fc7eb1777241ad30cd6799c4ff8, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2966873649857128322, guid: 896d6fc7eb1777241ad30cd6799c4ff8, type: 3}
+      propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7129319390205680892, guid: 896d6fc7eb1777241ad30cd6799c4ff8, type: 3}

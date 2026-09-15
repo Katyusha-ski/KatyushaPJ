@@ -181,5 +181,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ProjectilePref
   targetTag: Player
   castingTime: 0
-  lifeTime: 8
+  lifeTime: 5
+  destroyOnHit: 0
   explodeEffect: {fileID: 0}

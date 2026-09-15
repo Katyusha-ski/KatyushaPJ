@@ -12,6 +12,7 @@ public class Stand : MonoBehaviour
 
     [SerializeField] float punchRange = 1.1f;
     [SerializeField] float punchRadius = 0.5f;
+    // Includes Boss because boss bodies intentionally use a separate layer.
     [SerializeField] LayerMask enemyLayer;
     [SerializeField] string punchTrigger = "Punch";
 
