@@ -232,6 +232,9 @@ Cutscene: vừa ra ngoài đi 1 chút thì gặp lại Usagi
 - [Hachi]: Lõi quỷ có nhiều hình dạng lắm. Thời sơ khai của chiến tranh hai thế giới, chúng chỉ là một khối thịt thôi, nhưng càng ngày càng tiến hóa để có hình dạng và trí óc riêng — nhiều con đại quỷ còn hòa làm một với chúng luôn.
 - [Kati]: (nhún vai) Vậy là phiền thật rồi. Thôi kệ, đi thôi.
 - [Hachi]: Đúng vậy lần này sẽ khó khăn hơn so với lúc trước nhiều đó.
+- [Hachi]: Mà tôi lại có thể nâng cấp kĩ năng tiếp rồi đó.
+- [Kati]: Tuyệt! Phải xem có gì hay mới được.
+AddItemAction: add thêm 4 skill ở mức lv3
 
 * Cutscene 2
 - [Kati]: Ôi cái đệch, b-buồn nôn quá. Cái quái gì vậy?
@@ -282,6 +285,9 @@ Cutscene 6: Gặp lại Usagi
 - [Kati]: Woa, nghe tuyệt thật đấy. Nhưng mà quan trọng là không biết nơi đây có an toàn không nhỉ, cậu có cảm nhận được gì không?
 - [Hachi]: Hmmm... tôi có, nhưng không quá nặng nề đâu. Tốt nhất vẫn nên cẩn trọng.
 - [Kati]: Ừ, ta đi thôi.
+- [Kati]: Mà cậu có nâng cấp kĩ năng gì mới không? Tôi muốn xem thử.
+- [Hachi]: Có chứ.
+AddItemAction: add thêm 4 skill ở mức lv4
 
 **Cutscene 2 — Trigger chuyển sang boss scene**
 
@@ -295,13 +301,15 @@ Cutscene 6: Gặp lại Usagi
 - [Hachi]: Hình như nó đã che giấu đi sự hiện diện của mình. Nói cách khác, nó đang muốn kéo chúng ta vào bẫy từ nãy giờ.
 - [Kati]: Chiến thôi chứ.
 - [Hachi]: Được rồi cộng sự, tiến lên thôi.
+SceneTransition(Chuyển sang boss scene): Hang động đã biến đổi dường như nơi này đã trở thành đấu trường.
 
-*(Sau khi phá hủy lõi quỷ trong hang, họ tiếp tục hành trình.)*
-
+**Cutscene 3 — Sau khi đánh bại lõi quỷ**
+AddItemAction: add item pha lê (chưa tạo item này)
+ShowImgAction: show icon của item đó.
 - [Hachi]: (búng tay) Xong một! Còn khu rừng Mytharite phía trước nữa thôi, cố lên!
-- [Kati]: Nhanh lên đi, tôi không muốn ở lại chỗ này thêm giây nào.
-
-**Cutscene 3 — Cá kỳ lạ (Tezzy)**
+- [Kati]: Nhanh lên đi, chỗ này cũng sắp sụp đổ rồi, tôi không muốn ở lại chỗ này thêm giây nào đâu.
+SceneTransition( chuyển về scene cũ): Cả hai đi ra khu vực đó, tiếp tục hành trình.
+**Cutscene 4 — Cá kỳ lạ (Tezzy)**
 
 *(Trên đường ra khỏi hang, cả hai bắt gặp một con cá kỳ lạ.)*
 
@@ -319,7 +327,7 @@ Cutscene 6: Gặp lại Usagi
 - [Kati]: Giờ tôi phải làm sao đây Hachi.
 - [Hachi]: Ờ thì đúng là Shakiza cũng mang rất nhiều sức mạnh lớn, nhưng mà kẻ này thì tôi thấy hắn rất yếu.
 - [Con cá kỳ lạ]: Nè tên đáng ghét kia, ta là Tezzy, Tezzy the Emperor. Kẻ như ngươi dám xem thường ta hả? ヽ(`Д´)ノ
-- [Kati]: Nè hắn ồn ào quá -_- Chúng ta chặn hắn được không.
+- [Kati]: Nè hắn ồn ào quá -_- Chúng ta đấm hắn được không.
 - [Tezzy]: Ôi đại ca, tôi xin lỗi. Đừng đánh tôi huhu, tôi có vũ khí xịn sẽ trao đổi với hai cậu. Xin đừng đánh tôi mà.
 - [Hachi]: Thiệt hả? Vậy thì tuyệt quá.
 - [Tezzy]: Đúng vậy. Hai người đã đánh bại hai con golem đó đúng không. Tôi rất là biết ơn hai vị đó. Bọn chúng không biết nói lý lẽ chút nào T_T
@@ -329,13 +337,14 @@ Cutscene 6: Gặp lại Usagi
 - [Hachi]: Thế thì tuyệt quá. Đồ của cậu đây, dù sao thì tôi cũng không biết làm gì với thứ này.
 - [Tezzy]: Hehehehe, cảm ơn hai vị rất nhiều.
 
+RemoveItemAction: remove item pha lê (chưa tạo item này)
 *(Action: hide obj — Tezzy biến mất.)*
 
 - [Hachi]: Hả?
 - [Kati]: Chúng ta bị lừa rồi! Tên khốn này. Nè Hachi, lần sau gặp lại ta phải đấm tên đó thật đã tay đó.
 - [Hachi]: Lần đầu tôi nghe thấy có Shakiza hèn như này ấy.
 
-**Cutscene 4 — Gặp lại Usagi**
+**Cutscene 5 — Gặp lại Usagi**
 
 *(Cuối hang động, cả hai gặp lại Usagi.)*
 
@@ -352,18 +361,39 @@ Cutscene 6: Gặp lại Usagi
 ---
 
 ## Chapter 6 — Khu rừng Mytharite
+Cutscene 1: Đầu chap
+- [Kati]: Nơi này, yên tĩnh thật.
+- [Hachi]: Ờ, khu rừng này, phải nói sao nhỉ, tôi từng luyện tập ở đây. Nhưng mà hiện tại thì tôi cảm giác nó không còn là nơi tôi từng biết nữa rồi. Khả năng là ở đây có lõi quỷ, ta phải tìm ra nó mới được.
 
-- [Kati]: Yên tĩnh quá vậy, không có gì trong này à?
-- [Hachi]: Đừng chủ quan — chính vì yên tĩnh mới đáng sợ.
+Cutscene 2: Bắt đầu vào boss scene
+- [Kati]: Ơ mà tại sao nơi này lại càng ngày càng tối thế này? Tôi không thấy ánh sáng mặt trời đâu nữa.
+- [Hachi]: Tôi cũng thấy vậy. Có vẻ như chúng ta tìm được lõi quỷ rồi.
+- [Kati]: Chiến thôi nhỉ.
+- [Hachi]: Ờ lên thôi.
+_ SceneTransition: chuyển sang boss scene.
 
-*(Sau khi phá hủy lõi quỷ trong rừng, trước mắt họ hiện ra thủ đô Hyvoria.)*
+Cutscene 3: Sau khi đánh bại lõi quỷ
+- [Hachi]: Xong rồi, giờ thì chúng ta đi thôi.
+- [Kati]: Thứ này đúng là dị hợm thật, chưa bao giờ tôi gặp một thực thể nào thế này đó. Đúng là khó chịu thật.
+_ SceneTransition: chuyển về scene cũ.
 
-- [Kati]: (nhìn xa xăm) ...Đó là thủ đô à?
-- [Hachi]: (giọng trầm xuống) Đúng vậy. Nhà của tôi.
-- [Usagi]: (xuất hiện) Hai người tới rồi à. Quân đội từ các quốc gia đồng minh cũng có tiến triển tốt ngoài biên giới, đang theo con đường hai người mở ra rồi đó.
-- [Kati]: Vậy là ổn chứ gì?
-- [Usagi]: Chưa đâu, tốc độ vẫn không đủ. Nếu lõi quỷ thật sự hòa làm một với vùng đất này thì mọi chuyện sẽ khác hẳn. Hai người phải tăng tốc giải quyết cánh cổng và lõi quỷ trung tâm thôi.
-- [Hachi]: (gật đầu) Hiểu rồi. Đi thôi Kati, lần này là trận cuối.
+Cutscene 4: Gặp lại Usagi
+- [Usagi]: Chào hai người, có tin tốt đây.
+- [Usagi]: Quân tiếp viện từ các quốc gia đồng minh đã tới biên giới, họ đang chuẩn bị tiến vào vương quốc này theo đường mà hai người đã vẽ ra.
+- [Hachi]: Vậy thì tốt quá, chúng ta có thể đỡ được phần nào rồi.
+- [Usagi]: Chưa đâu, theo tôi thấy vấn đề vẫn nằm ở thủ đô. Nếu không giải quyết được nó sớm thì chúng ta phải tiêu hao rất nhiều lực lượng để giải phóng đất nước này đó.
+- [Hachi]: Được rồi. Cậu còn gì mới không? Chúng tôi muốn thêm tiếp tế.
+- [Usagi]: Có đây, nhưng mà lần này có hơi khác một chút. Tôi có vài thứ đặc biệt, trước hết thì các cậu có thích sự bất ngờ không?
+- [Kati]: Hả? Bất ngờ gì cơ?
+- [Hachi]: Tất nhiên, tôi thích mấy thứ bất ngờ lắm.
+- [Usagi]: Vậy thì chọn 1 đến 3 đi. Tôi sẽ cho các cậu vũ khí tùy theo con số đó.
+OptionAction: Chọn 1 đến 3.
+AddItemAction: add item vũ khí tùy theo con số.
+- [Usagi]: Đây cái này đây.
+ShowImgAction: show icon của item đó.
+- [Hachi]: Ôi hình xịn thật. Thứ này tốt thật đó.
+- [Kati]: Tuyệt luôn.
+- [Usagi]: Chúc các cậu may mắn, tôi sẽ gặp lại các cậu ở thủ đô. Cẩn thận nhé.
 
 ---
 

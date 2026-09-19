@@ -140,9 +140,10 @@ private void CacheBossStates()
 - **Animation Event → Public Method:** `SpawnVoidSphere()`, `SpawnAmbushTrap()`, `SpawnBloodMoonWave()`, `OnAttackAnimEnd()`.
 - **`OnAttackAnimEnd()` fallback:** `SwitchTo("VoidIdle")` nếu current là `GenericAttackState`.
 - **Facing Lock:** Lock trước khi `SwitchTo` attack state, Unlock trong `VoidIdleState.OnEnter`.
-- **Wake-up (Aggro):** `WakeUpFromAggro()` set `isAwake = true`, UnlockFacing, SwitchTo("VoidIdle").
+- **Wake-up (Arena, thống nhất 3 boss):** `BeginEncounter()` override set `isAwake = true`,
+  UnlockFacing, SwitchTo("VoidIdle"). `BossArenaController` trong scene gọi hàm này
+  (kèm camera reveal) — AggroZone/`VoidAggroTrigger` riêng đã xóa 2026-09-17.
   - **Không còn Sleep clip** — Boss dùng Idle animation xuyên suốt (SỬA 1).
-  - Cơ chế trigger "vùng phát hiện Player" gọi `WakeUpFromAggro()` — đã implement qua `VoidAggroTrigger.cs` (SỬA 8).
 
 ---
 
@@ -179,7 +180,7 @@ public override void LookAtPlayer()
 
 **Cơ chế:**
 - `LockFacing()` gọi trong `PickMeleeAttack()`, `UseSkill1()`, `UseSkill2()`, `UseBloodMoon()` — trước khi SwitchTo attack state.
-- `UnlockFacing()` gọi trong `VoidIdleState.OnEnter()` và `WakeUpFromAggro()`.
+- `UnlockFacing()` gọi trong `VoidIdleState.OnEnter()` và `BeginEncounter()`.
 - `LookAtPlayer()` override kiểm tra flag → nếu locked, không Flip.
 - `MoveTowardPlayer()` không override (non-virtual) nhưng không bao giờ chạy trong attack state vì GenericAttackState không gọi movement.
 
@@ -624,17 +625,16 @@ Die Duration              = 2f
 
 ## 12. BOSS REVEAL CAMERA
 
-### 12.1 Cơ chế
+### 12.1 Cơ chế (thống nhất arena 3 boss — trigger riêng đã xóa 2026-09-17)
 
-Khi Player vào vùng Aggro của VoidBoss (`VoidAggroTrigger`):
+`BossArenaController` trong scene phát hiện Player:
 
-1. `VoidAggroTrigger.OnTriggerEnter2D()` disable collider của trigger để không kích hoạt lại.
-2. Gọi `CameraFollow.ZoomToBossReveal()` — coroutine:
+1. Bật boss + gọi `BeginEncounter()` (kèm `ZoomToBossReveal()` — coroutine:
    - Lerp `orthographicSize` từ size hiện tại → `bossRevealZoomSize` trong `zoomOutDuration` giây.
    - Trong lúc Lerp, camera theo trung điểm Player + Boss (không chỉ Player).
    - Giữ `holdDuration` giây.
    - Lerp ngược lại size gốc trong `zoomInDuration` giây.
-3. Hết cinematic → callback → `parentController.WakeUpFromAggro()` → Boss bắt đầu AI.
+2. Hết cinematic → `BeginEncounter()` → Boss bắt đầu AI (`isAwake = true`, `VoidIdle`).
 
 ### 12.2 CameraFollow fields
 
@@ -649,13 +649,12 @@ Khi Player vào vùng Aggro của VoidBoss (`VoidAggroTrigger`):
 ### 12.3 Flow
 
 ```
-Player vào trigger
-  → trigger collider disabled (chạy 1 lần)
-  → CameraZoomReveal (coroutine)
+Player vào trigger arena
+  → BossArenaController: bật boss + CameraZoomReveal (coroutine)
   │   ├── zoomOut (1.5s): focus midpoint Player+Boss
   │   ├── hold (1s)
   │   └── zoomIn (1s): về follow Player bình thường
-  └── onComplete → boss.WakeUpFromAggro() → AI bắt đầu
+  └── onComplete → boss.BeginEncounter() → AI bắt đầu
 ```
 
 ### 12.4 Field cần Architect chỉnh số
@@ -714,7 +713,7 @@ Các hạng mục dưới đây **không phải bug code** — là phần việc
 | **Layer Collision Matrix** | ✅ Complete | `Enemy`(7) × `Player`(3) = IGNORE. `EnemyAttack`(10) × `Player`(3) = enabled |
 | **ObjectPool.prefab** | ✅ Tạo rồi | `Assets/Resources/Prefab/ObjectPool.prefab` với entry `BloodMoonTelegraph` (size 25) |
 | **BossHealthBarUI** trong scene | ⚠️ Prefab tạo rồi | `Assets/Resources/Prefab/UI/BossHealthBarUI.prefab` — WorldSpace Canvas với Slider + Fill + Border + BossnameText. **Cần:** kéo vào scene, gọi `SetHealthBar()` |
-| **VoidAggroTrigger.cs** | ✅ Complete | `Assets/Script/EnemyThing/Boss/VoidBoss/VoidAggroTrigger.cs`. Gắn trên CHILD GameObject (CircleCollider2D, Trigger). OnTriggerEnter2D(Player) → disable collider → gọi `CameraFollow.ZoomToBossReveal()` → cinematic xong → `WakeUpFromAggro()` |
+| ~~VoidAggroTrigger.cs~~ | ❌ **Đã xóa 2026-09-17** | Thừa so với pattern arena chung — wake gom vào `BeginEncounter()` override, `BossArenaController` lo reveal |
 | **VoidBoss_Die.anim .meta** | ❌ Chưa có | Die state tạm dùng Idle anim GUID. Cần Unity Editor để sinh GUID thật cho placeholder clip |
 
 ---

@@ -63,6 +63,9 @@ Các thư mục chính nằm trong `Assets/Script/`:
 ### Enemy và boss
 
 - Enemy dùng state machine với các state idle, alert, pursuit, attack, hurt, heal, kiting và die.
+- Damage thường của enemy tính từ tâm `GetAttackCenter()` (pivot + `attackOffset.x * hướng`) với bán kính `GetAttackDamageRadius()`; `attackRange` chỉ còn dùng để quyết định vào state Attack. Enemy thường phải đặt `attackDamageRadius = attackRange` (mặc định `-1` = dùng `attackRange`).
+- `GolemController` đã gom về dùng chung `GetAttackCenter()` của base, không còn logic `flipX` riêng.
+- Abomination đã sửa pivot toàn bộ 29 slice sheet về `(0.225, 0.5)`, prefab đang đặt `attackOffset (-2.12, 0)` và `attackDamageRadius 3.1`.
 - Enemy hiện có các prefab như Slime, Skull, NightBorne, Golem, Necromancer, Abomination và VoidBoss.
 - Boss code hiện có `BatBoss`, `VoidBoss` và `DuoGolem`. BatBoss là implementation tham chiếu cho arena reveal, damage source, weak point dùng chung `Health`, boss health bar và boss defeat cutscene.
 - `DuoGolem` vẫn còn nhiều thông số thiết kế và hazard prefab cần hoàn thiện.
@@ -109,7 +112,8 @@ Các thư mục chính nằm trong `Assets/Script/`:
 - Flow scene giữa `GrassScene` và `OutskirtsScene` cần được thống nhất.
 - `DuoGolem` còn các hazard skill chờ prefab và thông số gameplay chính thức.
 - Save system vẫn tra item bằng `itemName`; chưa migrate hoàn toàn sang `itemId`.
-- Một số icon item/skill vẫn là placeholder hoặc còn thiếu; các quest item hiện có vẫn cần kiểm tra/gán icon riêng, trong đó `Map.asset` hiện chưa có `itemIcon` được lưu trong project.
+- Một số icon item/skill vẫn là placeholder hoặc còn thiếu; các quest item hiện có vẫn cần kiểm tra/gán icon riêng.
+- Abomination còn dở: clip `Abomination_attack.anim` chưa có Animation Event `DealNormalAttackDamage`, prefab còn 2 component `CharacterStats` trùng nhau; cần kiểm tra flip 2 hướng, collider và cảm giác hitbox trong Play Mode.
 - Quest UI đã có logic spawn slot và panel detail, nhưng wiring/visibility cần tiếp tục kiểm tra trong Unity Play Mode; object template trong `GameUIRoot` không phải slot runtime được spawn.
 - `InventoryDebugTool` chỉ chạy trong Editor và tự load `DebugData/inventory_debug.json` khi Play Mode bắt đầu. Nếu sửa format snapshot thủ công, `questItems` phải là `List<string>` như ví dụ ở trên.
 - Các thay đổi gameplay và layout UI nên được kiểm tra lại trong Unity Play Mode sau khi merge prefab/scene.
