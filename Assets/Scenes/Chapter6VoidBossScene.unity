@@ -425,6 +425,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: VoidBoss
       objectReference: {fileID: 0}
+    - target: {fileID: 444722692198636933, guid: d8ddbf1bffec37c4b962f8feb7a22c50, type: 3}
+      propertyPath: m_GravityScale
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 444722692198636934, guid: d8ddbf1bffec37c4b962f8feb7a22c50, type: 3}
+      propertyPath: m_Size.y
+      value: 5.0528
+      objectReference: {fileID: 0}
+    - target: {fileID: 444722692198636934, guid: d8ddbf1bffec37c4b962f8feb7a22c50, type: 3}
+      propertyPath: m_Offset.y
+      value: -0.17441332
+      objectReference: {fileID: 0}
     - target: {fileID: 444722692198636935, guid: d8ddbf1bffec37c4b962f8feb7a22c50, type: 3}
       propertyPath: skill1Cooldown
       value: 8

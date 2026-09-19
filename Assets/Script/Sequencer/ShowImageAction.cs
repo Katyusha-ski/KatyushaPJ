@@ -60,7 +60,7 @@ public class ShowImageAction : SequenceAction
         yield return panel.DOFade(darkAlpha, fadeDuration).SetEase(Ease.InQuad).WaitForCompletion();
 
         // 2. Fade-in ảnh
-        cutsceneImage.sprite = image;
+        cutsceneImage.sprite = sprite;
         cutsceneImage.gameObject.SetActive(true);
         cutsceneImage.transform.SetAsLastSibling();
         Color c = cutsceneImage.color; c.a = 0f; cutsceneImage.color = c;
