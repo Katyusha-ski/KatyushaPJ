@@ -5,12 +5,14 @@ public class GenericAttackState : IEnemyState
     private float animDuration;
     private string returnState;
     private float elapsed;
+    private readonly System.Action onAttackEnd;
 
-    public GenericAttackState(string animTrigger, float animDuration, string returnState)
+    public GenericAttackState(string animTrigger, float animDuration, string returnState, System.Action onEnd = null)
     {
         this.animTrigger = animTrigger;
         this.animDuration = animDuration;
         this.returnState = returnState;
+        this.onAttackEnd = onEnd;
     }
 
     public void OnEnter(IEnemyMovement movement, IEnemyCombat combat, IEnemyStateContext ctx)
@@ -24,6 +26,7 @@ public class GenericAttackState : IEnemyState
         elapsed += Time.deltaTime;
         if (elapsed >= animDuration)
         {
+            onAttackEnd?.Invoke();
             ctx.SwitchTo(returnState);
         }
     }

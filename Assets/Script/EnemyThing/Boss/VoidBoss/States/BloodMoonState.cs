@@ -26,7 +26,7 @@ public class BloodMoonState : IEnemyState
 
                 if (currentWave >= boss.BloodMoonWaves)
                 {
-                    ctx.SwitchTo("VoidIdle");
+                    ctx.SwitchTo("Pursuit");
                 }
             }
         }

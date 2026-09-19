@@ -6,7 +6,7 @@ public class BossArenaController : MonoBehaviour
 {
     [SerializeField] private EnemyController boss;
     [SerializeField] private EnemyController secondaryBoss;
-    [SerializeField] private CameraFollow bossCamera;
+    [SerializeField] private CameraController bossCamera;
     [SerializeField] private Transform arenaBackground;
     [SerializeField] private float backgroundRevealScale = 1.5f;
     [SerializeField] private bool activateBossOnEnter = true;
@@ -59,7 +59,7 @@ public class BossArenaController : MonoBehaviour
         revealTrigger.isTrigger = true;
 
         if (bossCamera == null)
-            bossCamera = FindFirstObjectByType<CameraFollow>();
+            bossCamera = FindFirstObjectByType<CameraController>();
 
         if (arenaBackground == null)
         {

@@ -7,6 +7,10 @@ public class EnemyController : MonoBehaviour, IEnemyStateProvider, IEnemyMovemen
     [SerializeField] protected float attackRange = 1.5f;
     [SerializeField] protected float visionRange = 5f;
     [SerializeField] protected float attackCooldown = 2f;
+    [Header("Directional Attack")]
+    [SerializeField] protected Vector2 attackOffset = Vector2.zero;
+    [Tooltip("Damage radius. Normal enemies must set it equal to attackRange.")]
+    [SerializeField] protected float attackDamageRadius = -1f;
     [Tooltip("Bật nếu sprite gốc của enemy quay ngược hướng mặc định.")]
     [SerializeField] protected bool spriteBaseFlipX;
 
@@ -218,6 +222,14 @@ public class EnemyController : MonoBehaviour, IEnemyStateProvider, IEnemyMovemen
     public bool IsAttackReady() => Time.time - lastTimeAttack >= attackCooldown;
     public void RecordAttack() => lastTimeAttack = Time.time;
     public float GetAttackRange() => attackRange;
+    public float GetAttackDamageRadius() => attackDamageRadius > 0f ? attackDamageRadius : attackRange;
+    public virtual Vector2 GetAttackCenter()
+    {
+        int dir = 1;
+        if (movement != null)
+            dir = movement.GetDirection();
+        return (Vector2)transform.position + new Vector2(attackOffset.x * dir, attackOffset.y);
+    }
     public virtual void ExecuteAttack() => animationCtrl.PlayAttack();
     public virtual void PlayAnimTrigger(string trigger) => animationCtrl.SetTrigger(trigger);
     public virtual void PlayAnimBool(string name, bool value) => animationCtrl.SetBool(name, value);
@@ -252,7 +264,7 @@ public class EnemyController : MonoBehaviour, IEnemyStateProvider, IEnemyMovemen
         var playerHealth = player.GetComponent<Health>();
         if (playerHealth == null || playerHealth.CurrentHealth <= 0) return;
 
-        if (Vector2.Distance(transform.position, player.position) >= attackRange) return;
+        if (Vector2.Distance(GetAttackCenter(), player.position) >= GetAttackDamageRadius()) return;
         
         playerHealth.TakeDamage((int)characterStats.Atk);
     }
@@ -281,6 +293,19 @@ public class EnemyController : MonoBehaviour, IEnemyStateProvider, IEnemyMovemen
     protected virtual void OnDrawGizmosSelected()
     {
         if (Application.isPlaying && !homeCaptured) return;
+
+        Vector2 attackCenter = Application.isPlaying && movement != null
+            ? GetAttackCenter()
+            : (Vector2)transform.position + attackOffset;
+        float damageRadius = attackDamageRadius > 0f ? attackDamageRadius : attackRange;
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(attackCenter, damageRadius);
+
+        Gizmos.color = new Color(1f, 0.5f, 0f);
+        Gizmos.DrawWireSphere(transform.position, attackRange);
+
+        Gizmos.color = Color.cyan;
+        Gizmos.DrawWireSphere(transform.position, visionRange);
 
         Vector2 home = Application.isPlaying ? homePosition : (Vector2)transform.position;
         float minX = Application.isPlaying ? patrolMinX : home.x - patrolHalfWidth;

@@ -5,6 +5,8 @@ public class VoidPursuitState : IEnemyState
     public void OnEnter(IEnemyMovement movement, IEnemyCombat combat, IEnemyStateContext ctx)
     {
         combat.PlayAnimBool("Run", true);
+        if (ctx is VoidBossController boss)
+            boss.UnlockFacing();
     }
 
     public void OnUpdate(IEnemyMovement movement, IEnemyCombat combat, IEnemyStateContext ctx)
@@ -46,14 +48,7 @@ public class VoidPursuitState : IEnemyState
                 return;
             }
 
-            // --- Mất tầm nhìn → về VoidIdle chờ ---
-            if (distance > movement.GetVisionRange())
-            {
-                ctx.SwitchTo("VoidIdle");
-                return;
-            }
-
-            // --- Tiếp tục truy đuổi (Facing Lock guard) ---
+            // --- Truy đuổi tới cùng: boss không leash, sau kích hoạt không về Idle ---
             if (!boss.IsFacingLocked)
             {
                 movement.LookAtPlayer();

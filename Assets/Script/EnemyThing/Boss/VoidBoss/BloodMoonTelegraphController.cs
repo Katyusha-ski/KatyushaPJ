@@ -4,6 +4,7 @@ public class BloodMoonTelegraphController : MonoBehaviour
 {
     [SerializeField] private float damageRadius = 2.5f;
     [SerializeField] private int damageAmount = 30;
+    [SerializeField] private LayerMask playerLayer;
 
     private Animator animator;
     private bool hasDealtDamage;
@@ -23,7 +24,7 @@ public class BloodMoonTelegraphController : MonoBehaviour
         if (hasDealtDamage) return;
         hasDealtDamage = true;
 
-        Collider2D[] hits = Physics2D.OverlapCircleAll(transform.position, damageRadius);
+        Collider2D[] hits = Physics2D.OverlapCircleAll(transform.position, damageRadius, playerLayer);
         foreach (var hit in hits)
         {
             Health health = hit.GetComponent<Health>();

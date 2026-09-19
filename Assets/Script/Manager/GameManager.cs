@@ -43,7 +43,7 @@ public class GameManager : Singleton<GameManager>
         if (PlayerManager.Instance == null || PlayerManager.Instance.PlayerTransform == null)
             return;
 
-        CameraFollow cameraFollow = FindFirstObjectByType<CameraFollow>();
+        CameraController cameraFollow = FindFirstObjectByType<CameraController>();
         if (cameraFollow == null) return;
 
         cameraFollow.SetTarget(PlayerManager.Instance.PlayerTransform);

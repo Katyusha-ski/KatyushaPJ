@@ -1,8 +1,8 @@
+using NaughtyAttributes;
 using System;
 using System.Collections;
 using UnityEngine;
-
-public class CameraFollow : MonoBehaviour
+public class CameraController : MonoBehaviour
 {
     [Header("Follow")]
     [SerializeField] private Transform target;
@@ -19,6 +19,13 @@ public class CameraFollow : MonoBehaviour
     private float originalSize;
     private bool isCinematic;
 
+
+    [SerializeField] private float shakeDuration = 0.08f;
+    [SerializeField] private float shakeMagnitude = 0.03f;
+    private Coroutine shakeRoutine;
+    public Vector2 ShakeOffset { get; private set; }
+    
+
     private void Awake()
     {
         cam = GetComponent<Camera>();
@@ -34,7 +41,7 @@ public class CameraFollow : MonoBehaviour
         if (target == null || isCinematic) return;
         Vector3 desiredPosition = target.position + offset;
         Vector3 smoothedPosition = Vector3.Lerp(transform.position, desiredPosition, smoothSpeed * Time.deltaTime);
-        transform.position = smoothedPosition;
+        transform.position = smoothedPosition + (Vector3)ShakeOffset;
     }
 
     public void SetTarget(Transform newTarget)
@@ -90,5 +97,29 @@ public class CameraFollow : MonoBehaviour
         onProgress?.Invoke(0f);
         isCinematic = false;
         onComplete?.Invoke();
+    }
+
+    // Shake thing
+    public void Shake() 
+    {
+        if (shakeRoutine != null)
+        {
+            StopCoroutine(shakeRoutine);
+        }
+        shakeRoutine = StartCoroutine(ShakeRoutine());
+    }
+
+    private IEnumerator ShakeRoutine()
+    {
+        float timer = 0f;
+        while (timer < shakeDuration)
+        {
+            ShakeOffset = UnityEngine.Random.insideUnitCircle * shakeMagnitude;
+            timer += Time.deltaTime;
+            yield return null;  
+        }
+
+        ShakeOffset = Vector2.zero;
+        shakeRoutine = null;
     }
 }

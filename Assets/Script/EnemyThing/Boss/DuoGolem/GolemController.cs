@@ -38,8 +38,6 @@ public class GolemController : EnemyController
     [SerializeField] protected int punchDamage = 25;
 
     [Header("Normal Attack Hitbox")]
-    [Tooltip("Local-space offset from the Golem pivot to the center of the punch hitbox. X is mirrored with the facing direction.")]
-    [SerializeField] private Vector2 attackHitboxOffset = new Vector2(1.5f, 0f);
     [SerializeField] private Vector2 attackHitboxSize = new Vector2(3f, 2f);
     [SerializeField] private LayerMask playerLayer;
 
@@ -54,19 +52,11 @@ public class GolemController : EnemyController
     public ArenaHazardController MyHazards => myHazards;
     public float GroundY => groundY;
     public float AttackAnimationSpeed => attackSpeedMultipliers[(int)currentPhase];
-    public Vector2 AttackHitboxOffset => attackHitboxOffset;
+    public Vector2 AttackHitboxOffset => attackOffset;
     private bool encounterStarted;
 
-    public Vector2 GetAttackHitboxCenter()
-    {
-        SpriteRenderer spriteRenderer = GetComponent<SpriteRenderer>();
-        bool isFlippedX = spriteRenderer != null && spriteRenderer.flipX;
-        Vector2 offset = isFlippedX
-            ? attackHitboxOffset * -1f
-            : attackHitboxOffset;
-
-        return (Vector2)transform.position + offset;
-    }
+    // Tâm hitbox dùng chung base.GetAttackCenter(): attackOffset.x mirror theo GetDirection().
+    // Xóa logic cũ đọc SpriteRenderer.flipX + offset * -1 (lật luôn Y, sai khi spriteBaseFlipX).
 
 
     public void ShowStateEffect(Color color)
@@ -267,7 +257,7 @@ public class GolemController : EnemyController
             myHazards.SetPhase(currentPhase);
         }
 
-        SwitchTo("Idle");
+        SwitchTo("Pursuit");
     }
 
     public virtual void HandleDuoBossDefeated()
@@ -341,6 +331,8 @@ public class GolemController : EnemyController
         stateCache["Die"] = stateCache["RealDie"];
     }
 
+    public override IEnemyState GetIdleState() => new BossDormantState();
+
     public override IEnemyState GetPursuitState()
     {
         return new GolemPursuitState();
@@ -384,7 +376,7 @@ public class GolemController : EnemyController
             playerLayer = LayerMask.GetMask("Player");
 
         Collider2D[] hits = Physics2D.OverlapBoxAll(
-            GetAttackHitboxCenter(),
+            GetAttackCenter(),
             attackHitboxSize,
             0f,
             playerLayer);
@@ -407,11 +399,11 @@ public class GolemController : EnemyController
             health.OnDamaged -= OnHealthDamaged;
     }
 
-    private void OnDrawGizmosSelected()
+    protected override void OnDrawGizmosSelected()
     {
         // Draw the rectangular punch hitbox around the configurable center.
         Gizmos.color = Color.red;
-        Gizmos.DrawWireCube(GetAttackHitboxCenter(), attackHitboxSize);
+        Gizmos.DrawWireCube(GetAttackCenter(), attackHitboxSize);
 
         // Keep the pursuit/attack decision boundary visible separately.
         Gizmos.color = new Color(1f, 0.5f, 0f);

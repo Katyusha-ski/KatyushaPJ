@@ -6,7 +6,7 @@ public class AmbushTrapController : MonoBehaviour
     [SerializeField] private int damage = 35;
     [SerializeField] private float silentDuration = 2f;
     [SerializeField] private float dashSpeed = 10f;
-    [SerializeField] private float maxDashDistance = 4f;
+    [SerializeField] private float maxDashDistance = 10f;
 
     private SpriteRenderer spriteRenderer;
     private bool hasDealtDamage;
@@ -59,16 +59,14 @@ public class AmbushTrapController : MonoBehaviour
         if (!isDashing || hasDealtDamage) return;
         if (!other.CompareTag("Player")) return;
 
-        hasDealtDamage = true;
-
         Health health = other.GetComponent<Health>();
-        if (health != null)
-            health.TakeDamage(damage, gameObject);
+        if (health == null || health.CurrentHealth <= 0) return;
+
+        hasDealtDamage = true;
+        health.TakeDamage(damage, gameObject);
 
         StatusEffectController sec = other.GetComponent<StatusEffectController>();
         if (sec == null) sec = other.gameObject.AddComponent<StatusEffectController>();
         sec.ApplyEffect(new SilentEffect(silentDuration, other.gameObject));
-
-        Destroy(gameObject);
     }
 }

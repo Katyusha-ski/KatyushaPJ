@@ -7,7 +7,7 @@ public class TremorHailstormSkill : IEnvironmentSkill
     private readonly GameObject hailstonePrefab;
     private readonly float groundY;
     /// <summary>Slow percentage per phase. Phase1: 10% light, Phase4: 60% heavy. Architect: chua chot so lieu.</summary>
-    private float[] slowPercentByPhase = new float[] { 10f, 25f, 40f, 60f };
+    private float[] slowPercentByPhase = new float[] { 10f, 25f, 25f, 25f };
 
     /// <summary>Slow duration in seconds per phase. Architect: chua chot so lieu.</summary>
     private float[] slowDurationByPhase = new float[] { 1f, 1.5f, 2f, 3f };
@@ -15,8 +15,10 @@ public class TremorHailstormSkill : IEnvironmentSkill
     /// <summary>Chip damage per hailstone hit. Phase1-2: 0 (no hail). Phase3: Mức 2. Phase4: Mức 3. Architect: chua chot so lieu.</summary>
     private int[] chipDamageByPhase = new int[] { 0, 0, 3, 8 };
 
-    /// <summary>Hailstone spawn interval per phase. 0 = disabled. Phase4: bullet-hell rapid. Architect: chua chot so lieu.</summary>
-    private float[] hailIntervalByPhase = new float[] { 0f, 0f, 2f, 0.8f };
+    /// <summary>Hailstone spawn interval per phase. 0 = disabled. Phase4: bullet-hell rapid.</summary>
+    private readonly float[] hailIntervalByPhase;
+    private readonly float hailSpawnHalfWidth;
+    private readonly float hailSpawnHeight;
 
     /// <summary>Tremor (slow AoE) interval per phase. Architect: chua chot so lieu.</summary>
     private float[] tremorIntervalByPhase = new float[] { 5f, 4f, 3f, 2f };
@@ -28,10 +30,20 @@ public class TremorHailstormSkill : IEnvironmentSkill
     private float hailTimer;
     private const float INITIAL_TREMOR_DELAY = 10f;
 
-    public TremorHailstormSkill(GameObject hailstonePrefab, float groundY)
+    public TremorHailstormSkill(
+        GameObject hailstonePrefab,
+        float groundY,
+        float[] hailSpawnIntervals,
+        float hailSpawnHalfWidth,
+        float hailSpawnHeight)
     {
         this.hailstonePrefab = hailstonePrefab;
         this.groundY = groundY;
+        this.hailIntervalByPhase = hailSpawnIntervals != null && hailSpawnIntervals.Length >= 4
+            ? (float[])hailSpawnIntervals.Clone()
+            : new float[] { 0f, 0f, 1.5f, 0.8f };
+        this.hailSpawnHalfWidth = Mathf.Max(0f, hailSpawnHalfWidth);
+        this.hailSpawnHeight = Mathf.Max(0f, hailSpawnHeight);
     }
 
     public void Tick(float dt)
@@ -105,14 +117,17 @@ public class TremorHailstormSkill : IEnvironmentSkill
         if (player == null) return;
 
         Vector3 spawnPosition = new Vector3(
-            player.position.x + Random.Range(-3f, 3f),
-            groundY + 5f,
+            player.position.x + Random.Range(-hailSpawnHalfWidth, hailSpawnHalfWidth),
+            groundY + hailSpawnHeight,
             player.position.z);
         GameObject hailstoneObject = ObjectPool.Instance.SpawnFromPool(
             HAILSTONE_POOL_TAG,
             spawnPosition,
             Quaternion.identity);
         if (hailstoneObject == null) return;
+
+        CameraController camera = Object.FindFirstObjectByType<CameraController>();
+        camera?.Shake();
 
         HailstoneInstance hailstone = hailstoneObject.GetComponent<HailstoneInstance>();
         if (hailstone != null)

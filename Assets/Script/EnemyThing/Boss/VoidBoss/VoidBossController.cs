@@ -32,7 +32,8 @@ public class VoidBossController : EnemyController
     [Header("Blood Moon Config")]
     [SerializeField] private int bloodMoonWaves = 5;
     [SerializeField] private float bloodMoonWaveInterval = 0.8f;
-    [SerializeField] private float bloodMoonSpread = 2.5f;
+    [SerializeField] private float bloodMoonWidth = 7f;
+    [SerializeField] private float bloodMoonHeight = 7f;
     [SerializeField] private int bloodMoonPerWave = 5;
     [SerializeField] private float bloodMoonMinSpacing = 1.5f;
 
@@ -56,7 +57,7 @@ public class VoidBossController : EnemyController
     private void OnValidate()
     {
         if (visionRange <= meleeRange)
-            Debug.LogWarning($"VoidBoss: visionRange ({visionRange}) <= meleeRange ({meleeRange}). Boss may loop between Pursuit and VoidIdle. Set visionRange > meleeRange in Inspector.");
+            Debug.LogWarning($"VoidBoss: visionRange ({visionRange}) <= meleeRange ({meleeRange}). Boss may stay dormant in Idle after wake. Set visionRange > meleeRange in Inspector.");
     }
 
     private const string BLOOD_MOON_POOL_TAG = "BloodMoonTelegraph";
@@ -74,7 +75,8 @@ public class VoidBossController : EnemyController
     public float MeleeRange => meleeRange;
     public int BloodMoonWaves => bloodMoonWaves;
     public float BloodMoonWaveInterval => bloodMoonWaveInterval;
-    public float BloodMoonSpread => bloodMoonSpread;
+    public float BloodMoonWidth => bloodMoonWidth;
+    public float BloodMoonHeight => bloodMoonHeight;
 
     public bool IsSkill1Ready() => Time.time >= skill1ReadyTime;
     public bool IsSkill2Ready() => Time.time >= skill2ReadyTime;
@@ -119,7 +121,7 @@ public class VoidBossController : EnemyController
         var sr = GetComponent<SpriteRenderer>();
         var animator = GetComponent<Animator>();
 
-        movement = new MovementManager(rb, sr, characterStats);
+        movement = new MovementManager(rb, sr, characterStats, spriteBaseFlipX);
         animationCtrl = new AnimationController(animator);
         stateFactory = null;
 
@@ -132,6 +134,7 @@ public class VoidBossController : EnemyController
 
         CacheBossStates();
 
+        ChangeState(stateCache["VoidIdle"]);
         isAwake = false;
     }
 
@@ -143,14 +146,16 @@ public class VoidBossController : EnemyController
 
     private void CacheBossStates()
     {
-        stateCache["VoidIdle"] = new VoidIdleState();
-        stateCache["Stomp"] = new GenericAttackState("Stomp", 1.2f, "VoidIdle");
-        stateCache["SpikePierce"] = new GenericAttackState("SpikePierce", 1.2f, "VoidIdle");
-        stateCache["VoidSphere"] = new GenericAttackState("VoidSphere", 1.0f, "VoidIdle");
-        stateCache["AmbushSummon"] = new GenericAttackState("AmbushSummon", 1.0f, "VoidIdle");
+        stateCache["VoidIdle"] = new BossDormantState();
+        // Spawn khi animation chạy hết (onEnd), không dùng Animation Event giữa clip.
+        // Duration khớp độ dài clip mới: Atk1 0.75s, Atk2 0.92s, Skill1 1.25s, Skill2 0.6s.
+        stateCache["Stomp"] = new GenericAttackState("Stomp", 0.75f, "Pursuit", SpawnStompAoE);
+        stateCache["SpikePierce"] = new GenericAttackState("SpikePierce", 0.92f, "Pursuit", SpawnSpikePierce);
+        stateCache["VoidSphere"] = new GenericAttackState("VoidSphere", 1.25f, "Pursuit", SpawnVoidSphere);
+        stateCache["AmbushSummon"] = new GenericAttackState("AmbushSummon", 0.6f, "Pursuit", SpawnAmbushTrap);
         stateCache["Pursuit"] = new VoidPursuitState();
         stateCache["BloodMoon"] = new BloodMoonState();
-        stateCache["Hurt"] = new HurtState("VoidIdle", false);
+        stateCache["Hurt"] = new HurtState("Pursuit", false);
         stateCache["Die"] = new DieState(dieDuration, () => HandleEnemyDeath());
     }
 
@@ -205,11 +210,8 @@ public class VoidBossController : EnemyController
     public void SpawnAmbushTrap()
     {
         if (ambushTrapPrefab == null || player == null) return;
-        Vector3 spawnPos = player.position;
-        if (player.position.x < 0f)
-            spawnPos += Vector3.right * spawnOffsetDistance;
-        else
-            spawnPos += Vector3.left * spawnOffsetDistance;
+        float side = player.position.x >= transform.position.x ? 1f : -1f;
+        Vector3 spawnPos = player.position + Vector3.right * side * spawnOffsetDistance;
         GameObject trap = Instantiate(ambushTrapPrefab, spawnPos, Quaternion.identity);
         activeProjectiles.Add(trap);
     }
@@ -251,8 +253,8 @@ public class VoidBossController : EnemyController
     {
         if (bloodMoonTelegraphPrefab == null || player == null) return;
 
-        float a = bloodMoonSpread;
-        float b = bloodMoonSpread;
+        float a = bloodMoonWidth;
+        float b = bloodMoonHeight;
         float minSpacing = bloodMoonMinSpacing;
         List<Vector3> chosen = new();
 
@@ -304,16 +306,23 @@ public class VoidBossController : EnemyController
     public void OnAttackAnimEnd()
     {
         if (currentState is GenericAttackState)
-            SwitchTo("VoidIdle");
+            SwitchTo("Pursuit");
     }
 
-    public void WakeUpFromAggro()
+    // Arena pattern (thống nhất Bat/DuoGolem): BossArenaController gọi BeginEncounter,
+    // boss tự wake bên trong. AggroZone riêng đã xóa.
+    public override void BeginEncounter()
     {
+        base.BeginEncounter();
         if (!isAwake)
         {
             isAwake = true;
             UnlockFacing();
-            ChangeState(stateCache["VoidIdle"]);
+            // Cooldown tính từ lúc wake: vào không xả skill ngay.
+            skill1ReadyTime = Time.time + skill1Cooldown;
+            skill2ReadyTime = Time.time + skill2Cooldown;
+            bloodMoonReadyTime = Time.time + bloodMoonCooldown;
+            ChangeState(stateCache["Pursuit"]);
         }
     }
 

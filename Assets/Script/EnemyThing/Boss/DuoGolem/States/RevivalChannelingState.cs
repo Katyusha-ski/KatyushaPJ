@@ -68,7 +68,7 @@ public class RevivalChannelingState : IEnemyState
             // later death is incorrectly treated as a permanent death while
             // it is actually back in the normal active state.
             owner.EndChanneling();
-            ctx.SwitchTo("Idle");
+            ctx.SwitchTo("Pursuit");
         }
     }
 
