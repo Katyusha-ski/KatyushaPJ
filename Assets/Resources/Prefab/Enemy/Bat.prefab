@@ -372,7 +372,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!114 &3054154455068761657
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -426,6 +426,7 @@ MonoBehaviour:
   attackRange: 3.5
   visionRange: 5
   attackCooldown: 2
+  attackDamageRadius: 3.5
   spriteBaseFlipX: 1
   maxChaseDistance: 15
   loseTargetDelay: 0.5

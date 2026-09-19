@@ -35,8 +35,7 @@ Transform:
   m_LocalPosition: {x: 3.89, y: -0.59, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 2089548085821693473}
+  m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &2243271407773380392
@@ -93,7 +92,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 3.8409379, y: 2.56}
+  m_Size: {x: 16, y: 10.666667}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -181,17 +180,17 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0.26459694, y: -0.19599867}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
     oldSize: {x: 16, y: 10.666667}
-    newSize: {x: 3.8409379, y: 2.56}
+    newSize: {x: 16, y: 10.666667}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 0.98, y: 0.98}
+  m_Size: {x: 10.133137, y: 5.095971}
   m_EdgeRadius: 0.01
 --- !u!114 &444722692198636935
 MonoBehaviour:
@@ -205,13 +204,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 41d879b87984625499405ab2ce5550e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackRange: 2.5
+  attackRange: 7
   visionRange: 8
   attackCooldown: 2
+  attackOffset: {x: 0, y: 0}
+  attackDamageRadius: 8
+  spriteBaseFlipX: 1
+  maxChaseDistance: 15
+  loseTargetDelay: 0.5
+  recoveryTimeout: 8
+  homeTolerance: 0.3
+  patrolHalfWidth: 2
+  minReEngageDistance: 2
   meleeRange: 6
-  voidSpherePrefab: {fileID: 0}
-  ambushTrapPrefab: {fileID: 0}
-  bloodMoonTelegraphPrefab: {fileID: 0}
+  voidSpherePrefab: {fileID: 100100000, guid: d940331b51fda144d8ff9a8c4f92dda8, type: 3}
+  ambushTrapPrefab: {fileID: 100100000, guid: 7b0cfab0b6f7ce44a9e920dc8f2a305d, type: 3}
+  bloodMoonTelegraphPrefab: {fileID: 100100000, guid: 2dbf3957c13f06441aa5e2feba1cdd20, type: 3}
   stompRadius: 3
   stompDamage: 20
   stompStunDuration: 1
@@ -220,16 +228,18 @@ MonoBehaviour:
   spikeDamage: 15
   playerLayer:
     serializedVersion: 2
-    m_Bits: 512
+    m_Bits: 8
   skill1Cooldown: 4
   skill2Cooldown: 10
   bloodMoonCooldown: 45
-  bloodMoonWaves: 5
-  bloodMoonWaveInterval: 0.8
-  bloodMoonSpread: 2.5
-  bloodMoonPerWave: 5
+  bloodMoonWaves: 18
+  bloodMoonWaveInterval: 0.2
+  bloodMoonWidth: 7
+  bloodMoonHeight: 4
+  bloodMoonPerWave: 2
   bloodMoonMinSpacing: 1.5
-  bossSprite: {fileID: 0}
+  spawnOffsetDistance: 2
+  bossSprite: {fileID: 2243271407773380392}
   hurtTint: {r: 1, g: 0, b: 0, a: 1}
   hurtFlashDuration: 0.15
   deathVFX: {fileID: 0}
@@ -291,84 +301,3 @@ MonoBehaviour:
   totalHPRegen: 0
   totalDmgR: 0
   totalSkillAmp: 0
---- !u!1 &2129100230972194905
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2089548085821693473}
-  - component: {fileID: 4154004212099038647}
-  - component: {fileID: 1241607780374108514}
-  m_Layer: 7
-  m_Name: AggroZone
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &2089548085821693473
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2129100230972194905}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 3691317574380081105}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!58 &4154004212099038647
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2129100230972194905}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_CompositeOperation: 0
-  m_CompositeOrder: 0
-  m_Offset: {x: 0.20641422, y: 0}
-  m_Radius: 13.251096
---- !u!114 &1241607780374108514
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2129100230972194905}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4b7ac735a75131c42925a862614711fb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::VoidAggroTrigger

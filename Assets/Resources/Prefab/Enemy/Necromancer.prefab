@@ -243,6 +243,7 @@ MonoBehaviour:
   attackRange: 4
   visionRange: 7
   attackCooldown: 2
+  attackDamageRadius: 4
   lastTimeAttack: -Infinity
   player: {fileID: 0}
   skillManager: {fileID: 892392807685220260}
@@ -379,18 +380,6 @@ PrefabInstance:
     - target: {fileID: 6094577394176007240, guid: 9f176e676efb02b48a3dc14de2bbe441, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 5.73
-      objectReference: {fileID: 0}
-    - target: {fileID: 7453120115407544575, guid: 9f176e676efb02b48a3dc14de2bbe441, type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7453120115407544575, guid: 9f176e676efb02b48a3dc14de2bbe441, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7453120115407544575, guid: 9f176e676efb02b48a3dc14de2bbe441, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 4.8046875
       objectReference: {fileID: 0}
     - target: {fileID: 8100149129055850704, guid: 9f176e676efb02b48a3dc14de2bbe441, type: 3}
       propertyPath: m_Name

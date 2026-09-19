@@ -156,6 +156,7 @@ MonoBehaviour:
   attackRange: 2
   visionRange: 10
   attackCooldown: 3
+  attackDamageRadius: 2
   maxChaseDistance: 15
   loseTargetDelay: 0.5
   recoveryTimeout: 8
@@ -430,14 +431,6 @@ PrefabInstance:
     - target: {fileID: 7187951909236280713, guid: 9f176e676efb02b48a3dc14de2bbe441, type: 3}
       propertyPath: m_PresetInfoIsWorld
       value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7453120115407544575, guid: 9f176e676efb02b48a3dc14de2bbe441, type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7453120115407544575, guid: 9f176e676efb02b48a3dc14de2bbe441, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7796950959067707844, guid: 9f176e676efb02b48a3dc14de2bbe441, type: 3}
       propertyPath: m_Layer

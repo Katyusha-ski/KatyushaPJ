@@ -535,7 +535,7 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_MaskInteraction: 0
   m_Sprite: {fileID: 8573685481711620295, guid: 48b7fbf4cc1422e43920932727756c1c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -620,7 +620,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: -0.026657104, y: -0.9862765}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -630,7 +630,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 5.605, y: 3.98}
+  m_Size: {x: 2.2818756, y: 2.007447}
   m_EdgeRadius: 0.01
 --- !u!50 &4683714402937598543
 Rigidbody2D:
@@ -658,7 +658,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!114 &84209177815151191
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -728,9 +728,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cec1922324c11d24882b7fef60846cde, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GolemB
-  attackRange: 3.5
+  attackRange: 1.2
   visionRange: 5
   attackCooldown: 2
+  attackOffset: {x: 0.75, y: -1}
+  attackDamageRadius: 1.2
   spriteBaseFlipX: 0
   maxChaseDistance: 15
   loseTargetDelay: 0.5
@@ -755,13 +757,19 @@ MonoBehaviour:
   - 1.0125
   - 1.2
   punchDamage: 25
-  attackHitboxOffset: {x: 0.75, y: -1}
   attackHitboxSize: {x: 2.6, y: 2}
   playerLayer:
     serializedVersion: 2
     m_Bits: 0
   stoneSpikePrefab: {fileID: 3212989424531414512, guid: 7a1c3e5f9b2d4f6a8c0e1b3d5f7a9c24, type: 3}
   hailstonePrefab: {fileID: 4212989424531414512, guid: 9b3d5f7a1c2e4f6b8d0a2c4e6f8b1d37, type: 3}
+  hailSpawnIntervalByPhase:
+  - 0
+  - 0
+  - 2
+  - 0.8
+  hailSpawnHalfWidth: 3
+  hailSpawnHeight: 5
 --- !u!1 &8950717150310901533
 GameObject:
   m_ObjectHideFlags: 0

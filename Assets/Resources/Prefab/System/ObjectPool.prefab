@@ -47,7 +47,7 @@ MonoBehaviour:
   pools:
   - tag: BloodMoonTelegraph
     prefab: {fileID: 1674866566526946666, guid: 2dbf3957c13f06441aa5e2feba1cdd20, type: 3}
-    size: 25
+    size: 40
   - tag: DuoGolem_Hailstone
     prefab: {fileID: 4212989424531414512, guid: 9b3d5f7a1c2e4f6b8d0a2c4e6f8b1d37, type: 3}
     size: 30

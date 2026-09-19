@@ -221,7 +221,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!61 &8840009695620769095
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -280,9 +280,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8565c2a2430b943438c346c954239a67, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SkullE
-  attackRange: 2.5
+  attackRange: 2.3
   visionRange: 5
   attackCooldown: 2
+  attackOffset: {x: 0, y: 0}
+  attackDamageRadius: 2.3
+  spriteBaseFlipX: 0
+  maxChaseDistance: 15
+  loseTargetDelay: 0.5
+  recoveryTimeout: 8
+  homeTolerance: 0.3
+  patrolHalfWidth: 2
+  minReEngageDistance: 2
 --- !u!1001 &5750987154701828433
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -390,22 +399,6 @@ PrefabInstance:
     - target: {fileID: 7187951909236280713, guid: 9f176e676efb02b48a3dc14de2bbe441, type: 3}
       propertyPath: m_PresetInfoIsWorld
       value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7453120115407544575, guid: 9f176e676efb02b48a3dc14de2bbe441, type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7453120115407544575, guid: 9f176e676efb02b48a3dc14de2bbe441, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7453120115407544575, guid: 9f176e676efb02b48a3dc14de2bbe441, type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 7.09
-      objectReference: {fileID: 0}
-    - target: {fileID: 7453120115407544575, guid: 9f176e676efb02b48a3dc14de2bbe441, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 6.4
       objectReference: {fileID: 0}
     - target: {fileID: 8100149129055850704, guid: 9f176e676efb02b48a3dc14de2bbe441, type: 3}
       propertyPath: m_Name

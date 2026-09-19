@@ -228,6 +228,7 @@ MonoBehaviour:
   attackRange: 2.5
   visionRange: 12
   attackCooldown: 1.5
+  attackDamageRadius: 2.5
   spriteBaseFlipX: 1
   maxChaseDistance: 25
   loseTargetDelay: 0.5
@@ -385,14 +386,6 @@ PrefabInstance:
     - target: {fileID: 6094577394176007240, guid: 9f176e676efb02b48a3dc14de2bbe441, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 7
-      objectReference: {fileID: 0}
-    - target: {fileID: 7453120115407544575, guid: 9f176e676efb02b48a3dc14de2bbe441, type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7453120115407544575, guid: 9f176e676efb02b48a3dc14de2bbe441, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8100149129055850704, guid: 9f176e676efb02b48a3dc14de2bbe441, type: 3}
       propertyPath: m_Name

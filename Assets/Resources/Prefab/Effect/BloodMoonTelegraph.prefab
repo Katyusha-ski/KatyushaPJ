@@ -166,3 +166,6 @@ MonoBehaviour:
   m_EditorClassIdentifier:
   damageRadius: 2.5
   damageAmount: 30
+  playerLayer:
+    serializedVersion: 2
+    m_Bits: 8

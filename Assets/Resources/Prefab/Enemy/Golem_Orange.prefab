@@ -641,7 +641,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!114 &5037169261882709340
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -731,6 +731,8 @@ MonoBehaviour:
   attackRange: 2
   visionRange: 5
   attackCooldown: 2
+  attackOffset: {x: 0.75, y: -1}
+  attackDamageRadius: 2
   spriteBaseFlipX: 0
   maxChaseDistance: 15
   loseTargetDelay: 0.5
@@ -755,7 +757,6 @@ MonoBehaviour:
   - 1.0125
   - 1.2
   punchDamage: 5
-  attackHitboxOffset: {x: 0.75, y: -1}
   attackHitboxSize: {x: 2.6, y: 2}
   playerLayer:
     serializedVersion: 2

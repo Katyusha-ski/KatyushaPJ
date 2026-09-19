@@ -118,6 +118,9 @@ MonoBehaviour:
   slowAmount: 0.5
   armorDebuffDuration: 3
   armorDebuffAmount: 15
+  playerLayer:
+    serializedVersion: 2
+    m_Bits: 8
 --- !u!212 &5514875226904836233
 SpriteRenderer:
   serializedVersion: 2
