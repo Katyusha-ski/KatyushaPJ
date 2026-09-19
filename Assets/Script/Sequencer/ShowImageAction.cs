@@ -38,6 +38,12 @@ public class ShowImageAction : SequenceAction
             yield break;
         }
 
+        yield return ShowSprite(image, darkAlpha, fadeDuration, autoHoldSeconds, waitForClick);
+    }
+
+    /// <summary>Routine xài chung: các action khác (VD OptionAction) gọi sau khi đã có sprite.</summary>
+    public static IEnumerator ShowSprite(Sprite sprite, float darkAlpha, float fadeDuration, float holdSeconds, bool holdForClick)
+    {
         if (FadeUI.Instance == null)
         {
             Debug.LogWarning("[ShowImageAction] FadeUI missing (cần đặt trong GameUIRoot).");
@@ -62,10 +68,13 @@ public class ShowImageAction : SequenceAction
         yield return cutsceneImage.DOFade(1f, fadeDuration).WaitForCompletion();
 
         // 3. Giữ ảnh
-        if (waitForClick)
-            yield return WaitForClick();
+        if (holdForClick)
+        {
+            while (!Input.GetMouseButtonDown(0))
+                yield return null;
+        }
         else
-            yield return new WaitForSeconds(autoHoldSeconds);
+            yield return new WaitForSeconds(holdSeconds);
 
         // 4. Fade-out ảnh rồi sáng lại nền
         DOTween.Kill(cutsceneImage);
