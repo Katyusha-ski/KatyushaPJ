@@ -228,6 +228,7 @@ MonoBehaviour:
   attackRange: 2.5
   visionRange: 12
   attackCooldown: 1.5
+  attackOffset: {x: 0, y: 0}
   attackDamageRadius: 2.5
   spriteBaseFlipX: 1
   maxChaseDistance: 25
@@ -248,19 +249,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 52a534d42c8be6f47aa774cef03470ce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CharacterStats
-  baseArmor: 10
-  baseLifeSteal: 5
-  baseCCRes: 20
-  baseAtk: 15
+  baseArmor: 0
+  baseLifeSteal: 0
+  baseCCRes: 0
+  baseAtk: 10
   baseCritRate: 0
   baseCritDamage: 100
-  baseArmorPierce: 10
-  baseCDR: 5
-  baseMaxHP: 30
+  baseArmorPierce: 0
+  baseCDR: 0
+  baseMaxHP: 25
   baseMovementSpeed: 3.5
   baseHPRegen: 2
-  baseDmgR: 10
-  baseSkillAmp: 10
+  baseDmgR: 0
+  baseSkillAmp: 0
   totalAtk: 0
   totalArmor: 0
   totalMaxHP: 0

@@ -388,12 +388,12 @@ MonoBehaviour:
   baseArmor: 0
   baseLifeSteal: 0
   baseCCRes: 0
-  baseAtk: 1
+  baseAtk: 10
   baseCritRate: 0
   baseCritDamage: 0
   baseArmorPierce: 0
   baseCDR: 0
-  baseMaxHP: 100
+  baseMaxHP: 75
   baseMovementSpeed: 2.5
   baseHPRegen: 0
   baseDmgR: 0
@@ -426,6 +426,7 @@ MonoBehaviour:
   attackRange: 3.5
   visionRange: 5
   attackCooldown: 2
+  attackOffset: {x: 0, y: 0}
   attackDamageRadius: 3.5
   spriteBaseFlipX: 1
   maxChaseDistance: 15

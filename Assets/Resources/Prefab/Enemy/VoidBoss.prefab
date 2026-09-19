@@ -238,7 +238,7 @@ MonoBehaviour:
   bloodMoonHeight: 4
   bloodMoonPerWave: 2
   bloodMoonMinSpacing: 1.5
-  spawnOffsetDistance: 2
+  spawnOffsetDistance: 5
   bossSprite: {fileID: 2243271407773380392}
   hurtTint: {r: 1, g: 0, b: 0, a: 1}
   hurtFlashDuration: 0.15
@@ -278,7 +278,7 @@ MonoBehaviour:
   baseArmor: 0
   baseLifeSteal: 0
   baseCCRes: 0
-  baseAtk: 1
+  baseAtk: 15
   baseCritRate: 0
   baseCritDamage: 75
   baseArmorPierce: 0

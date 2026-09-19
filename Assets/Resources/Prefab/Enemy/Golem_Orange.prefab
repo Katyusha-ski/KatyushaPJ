@@ -657,12 +657,12 @@ MonoBehaviour:
   baseArmor: 0
   baseLifeSteal: 0
   baseCCRes: 0
-  baseAtk: 1
+  baseAtk: 15
   baseCritRate: 0
   baseCritDamage: 75
   baseArmorPierce: 0
   baseCDR: 0
-  baseMaxHP: 20
+  baseMaxHP: 100
   baseMovementSpeed: 2.5
   baseHPRegen: 0
   baseDmgR: 0

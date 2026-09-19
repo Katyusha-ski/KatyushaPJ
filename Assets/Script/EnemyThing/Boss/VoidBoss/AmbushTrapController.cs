@@ -6,7 +6,7 @@ public class AmbushTrapController : MonoBehaviour
     [SerializeField] private int damage = 35;
     [SerializeField] private float silentDuration = 2f;
     [SerializeField] private float dashSpeed = 10f;
-    [SerializeField] private float maxDashDistance = 10f;
+    [SerializeField] private float maxDashDistance = 13f;
 
     private SpriteRenderer spriteRenderer;
     private bool hasDealtDamage;

@@ -137,12 +137,12 @@ MonoBehaviour:
   baseArmor: 0
   baseLifeSteal: 0
   baseCCRes: 0
-  baseAtk: 1
+  baseAtk: 15
   baseCritRate: 0
   baseCritDamage: 75
   baseArmorPierce: 0
   baseCDR: 0
-  baseMaxHP: 20
+  baseMaxHP: 40
   baseMovementSpeed: 2.5
   baseHPRegen: 0
   baseDmgR: 0
@@ -278,7 +278,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: -0.053618908, y: 0}
+  m_Offset: {x: -0.053618908, y: -0.29515493}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.225, y: 0.5}
@@ -288,7 +288,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 1.977107, y: 2.98}
+  m_Size: {x: 1.977107, y: 2.3896902}
   m_EdgeRadius: 0.01
 --- !u!114 &3331242239842285203
 MonoBehaviour:
@@ -305,7 +305,7 @@ MonoBehaviour:
   attackRange: 5.4
   visionRange: 5
   attackCooldown: 2
-  attackOffset: {x: -2.12, y: 0}
+  attackOffset: {x: 2.12, y: 0}
   attackDamageRadius: 3.1
   spriteBaseFlipX: 0
   maxChaseDistance: 15

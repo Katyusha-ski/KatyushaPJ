@@ -4,7 +4,6 @@ using UnityEngine;
 public class UsagiShopTrigger : MonoBehaviour
 {
     [SerializeField] private SequencePlayer sequencePlayer;
-    [SerializeField] private GameObject shopUIActiveButton;
 
     private readonly HashSet<Collider2D> playerColliders = new();
 
@@ -42,7 +41,7 @@ public class UsagiShopTrigger : MonoBehaviour
 
     private void SetShopButtonActive(bool isActive)
     {
-        if (shopUIActiveButton != null)
-            shopUIActiveButton.SetActive(isActive);
+        if (UIManager.Instance != null)
+            UIManager.Instance.SetShopButtonActive(isActive);
     }
 }

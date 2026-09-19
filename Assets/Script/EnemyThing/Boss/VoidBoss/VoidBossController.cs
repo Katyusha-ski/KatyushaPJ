@@ -38,7 +38,7 @@ public class VoidBossController : EnemyController
     [SerializeField] private float bloodMoonMinSpacing = 1.5f;
 
     [Header("Ambush Trap")]
-    [SerializeField] private float spawnOffsetDistance = 2f;
+    [SerializeField] private float spawnOffsetDistance = 5f;
 
     [Header("Hurt Effect")]
     [SerializeField] private SpriteRenderer bossSprite;

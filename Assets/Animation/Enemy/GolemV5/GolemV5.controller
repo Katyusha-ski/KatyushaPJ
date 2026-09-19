@@ -209,7 +209,7 @@ AnimatorStateTransition:
     m_ConditionEvent: Run
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
-  m_DstState: {fileID: 1000000010}
+  m_DstState: {fileID: 1000000021}
   m_Solo: 0
   m_Mute: 0
   m_IsExit: 0
@@ -259,25 +259,25 @@ AnimatorStateMachine:
     m_State: {fileID: 1000000009}
     m_Position: {x: 250, y: 80, z: 0}
   - serializedVersion: 1
-    m_State: {fileID: 1000000010}
+    m_State: {fileID: 1000000021}
     m_Position: {x: 500, y: 80, z: 0}
   - serializedVersion: 1
-    m_State: {fileID: 1000000001}
+    m_State: {fileID: 1000000014}
     m_Position: {x: 760, y: 0, z: 0}
   - serializedVersion: 1
-    m_State: {fileID: 1000000002}
+    m_State: {fileID: 1000000015}
     m_Position: {x: 760, y: 80, z: 0}
   - serializedVersion: 1
-    m_State: {fileID: 1000000003}
+    m_State: {fileID: 1000000016}
     m_Position: {x: 760, y: 160, z: 0}
   - serializedVersion: 1
-    m_State: {fileID: 1000000004}
+    m_State: {fileID: 1000000017}
     m_Position: {x: 760, y: 240, z: 0}
   - serializedVersion: 1
-    m_State: {fileID: 1000000005}
+    m_State: {fileID: 1000000018}
     m_Position: {x: 250, y: -50, z: 0}
   - serializedVersion: 1
-    m_State: {fileID: 1000000006}
+    m_State: {fileID: 1000000019}
     m_Position: {x: 500, y: -50, z: 0}
   m_ChildStateMachines: []
   m_AnyStateTransitions:
@@ -322,7 +322,7 @@ AnimatorState:
   m_MirrorParameter: 
   m_CycleOffsetParameter: 
   m_TimeParameter: 
---- !u!1102 &1000000010
+--- !u!1102 &1000000021
 AnimatorState:
   serializedVersion: 6
   m_ObjectHideFlags: 1
@@ -349,7 +349,7 @@ AnimatorState:
   m_MirrorParameter: 
   m_CycleOffsetParameter: 
   m_TimeParameter: 
---- !u!1102 &1000000001
+--- !u!1102 &1000000014
 AnimatorState:
   serializedVersion: 6
   m_ObjectHideFlags: 1
@@ -376,7 +376,7 @@ AnimatorState:
   m_MirrorParameter: 
   m_CycleOffsetParameter: 
   m_TimeParameter: 
---- !u!1102 &1000000002
+--- !u!1102 &1000000015
 AnimatorState:
   serializedVersion: 6
   m_ObjectHideFlags: 1
@@ -403,7 +403,7 @@ AnimatorState:
   m_MirrorParameter: 
   m_CycleOffsetParameter: 
   m_TimeParameter: 
---- !u!1102 &1000000003
+--- !u!1102 &1000000016
 AnimatorState:
   serializedVersion: 6
   m_ObjectHideFlags: 1
@@ -430,7 +430,7 @@ AnimatorState:
   m_MirrorParameter: 
   m_CycleOffsetParameter: 
   m_TimeParameter: 
---- !u!1102 &1000000004
+--- !u!1102 &1000000017
 AnimatorState:
   serializedVersion: 6
   m_ObjectHideFlags: 1
@@ -457,7 +457,7 @@ AnimatorState:
   m_MirrorParameter: 
   m_CycleOffsetParameter: 
   m_TimeParameter: 
---- !u!1102 &1000000005
+--- !u!1102 &1000000018
 AnimatorState:
   serializedVersion: 6
   m_ObjectHideFlags: 1
@@ -484,11 +484,13 @@ AnimatorState:
   m_MirrorParameter: 
   m_CycleOffsetParameter: 
   m_TimeParameter: 
---- !u!1102 &1000000006
+--- !u!1102 &1000000019
 AnimatorState:
   serializedVersion: 6
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
   m_Name: Die
   m_Speed: 1
   m_CycleOffset: 0
@@ -518,7 +520,7 @@ AnimatorStateTransition:
     m_ConditionEvent: A1
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
-  m_DstState: {fileID: 1000000001}
+  m_DstState: {fileID: 1000000014}
   m_Solo: 0
   m_Mute: 0
   m_IsExit: 0
@@ -541,7 +543,7 @@ AnimatorStateTransition:
     m_ConditionEvent: A2
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
-  m_DstState: {fileID: 1000000002}
+  m_DstState: {fileID: 1000000015}
   m_Solo: 0
   m_Mute: 0
   m_IsExit: 0
@@ -564,7 +566,7 @@ AnimatorStateTransition:
     m_ConditionEvent: A3
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
-  m_DstState: {fileID: 1000000003}
+  m_DstState: {fileID: 1000000016}
   m_Solo: 0
   m_Mute: 0
   m_IsExit: 0
@@ -586,7 +588,7 @@ AnimatorStateTransition:
     m_ConditionEvent: GroundSlam
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
-  m_DstState: {fileID: 1000000004}
+  m_DstState: {fileID: 1000000017}
   m_Solo: 0
   m_Mute: 0
   m_IsExit: 0
@@ -608,7 +610,7 @@ AnimatorStateTransition:
     m_ConditionEvent: Hurt
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
-  m_DstState: {fileID: 1000000005}
+  m_DstState: {fileID: 1000000018}
   m_Solo: 0
   m_Mute: 0
   m_IsExit: 0
@@ -630,7 +632,7 @@ AnimatorStateTransition:
     m_ConditionEvent: Die
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
-  m_DstState: {fileID: 1000000006}
+  m_DstState: {fileID: 1000000019}
   m_Solo: 0
   m_Mute: 0
   m_IsExit: 0
