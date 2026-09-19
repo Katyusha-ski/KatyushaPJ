@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: ProjetileSkillItemLv5
   m_EditorClassIdentifier: Assembly-CSharp::ItemData
   itemName: Magic Sphere Skill Lv5
-  itemIcon: {fileID: 0}
+  itemIcon: {fileID: -1678704002598953237, guid: d16eaab6b3eb3d049b10ef67e66957d6, type: 3}
   itemType: 4
   equipmentType: 0
   description: Pierces through enemies.

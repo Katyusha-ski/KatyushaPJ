@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 423f633d1b003c449b4516b13428e440, type: 3}
   m_Name: Range Lv3
   m_EditorClassIdentifier: Assembly-CSharp::ProjectileSkill
-  icon: {fileID: 0}
+  icon: {fileID: -2231905934725426387, guid: d16eaab6b3eb3d049b10ef67e66957d6, type: 3}
   skillType: 1
   cooldown: 4
   baseDamage: 5
-  spawnPrefab: {fileID: 1443903596702937622, guid: 64984fae67bd4904b8b102f8897731d5, type: 3}
+  spawnPrefab: {fileID: 7730000000000000001, guid: c2c30000000000000000000000000003, type: 3}
   skillsName: 
   projectileSFX: {fileID: 0}
   isItNeedToFlip: 1

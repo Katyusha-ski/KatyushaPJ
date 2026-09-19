@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: ProjetileSkillItemLv2
   m_EditorClassIdentifier: Assembly-CSharp::ItemData
   itemName: Magic Sphere Skill Lv2
-  itemIcon: {fileID: 0}
+  itemIcon: {fileID: 4923623802410259753, guid: d16eaab6b3eb3d049b10ef67e66957d6, type: 3}
   itemType: 4
   equipmentType: 0
   description: Faster magic sphere.

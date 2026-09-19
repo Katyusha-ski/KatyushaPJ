@@ -124,7 +124,7 @@ MonoBehaviour:
   damage: 40
   silentDuration: 2
   dashSpeed: 10
-  maxDashDistance: 10
+  maxDashDistance: 13
 --- !u!212 &8801206179354503065
 SpriteRenderer:
   serializedVersion: 2

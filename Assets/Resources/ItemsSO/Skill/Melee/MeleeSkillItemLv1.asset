@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: MeleeSkillItemLv1
   m_EditorClassIdentifier: Assembly-CSharp::ItemData
   itemName: Melee Skill Lv1
-  itemIcon: {fileID: -4335222134116007343, guid: d67bd02b617f7ad4c9656abe9ba0eef6, type: 3}
+  itemIcon: {fileID: 3124348645627389722, guid: 5e37582a380217c4fbd675a3e35c73a9, type: 3}
   itemType: 4
   equipmentType: 0
   description: Strong single-target punch.

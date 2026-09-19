@@ -28,7 +28,7 @@ MonoBehaviour:
       value: 10
       modifierType: 0
     - statType: 10
-      value: 5
+      value: 1
       modifierType: 0
     - statType: 11
       value: 10
