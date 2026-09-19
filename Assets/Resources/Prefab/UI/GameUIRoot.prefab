@@ -8235,6 +8235,7 @@ MonoBehaviour:
   portraitImage: {fileID: 6935266482619404961}
   nextButton: {fileID: 8576433112676976912}
   panel: {fileID: 9078847015423955825}
+  optionButtonPrefab: {fileID: 7710000000000000001, guid: d1a906c7e54321ab9f8d7e6a5b4c3d21, type: 3}
 --- !u!1 &3051531938110367587
 GameObject:
   m_ObjectHideFlags: 0
