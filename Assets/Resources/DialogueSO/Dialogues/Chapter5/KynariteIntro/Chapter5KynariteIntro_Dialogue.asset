@@ -27,3 +27,7 @@ MonoBehaviour:
     text: "Hmmm... tôi có, nhưng không quá nặng nề đâu. Tốt nhất vẫn nên cẩn trọng."
   - speaker: {fileID: 11400000, guid: cdfbdabbf8285304690416cec3c5c792, type: 2}
     text: "Ừ, ta đi thôi."
+  - speaker: {fileID: 11400000, guid: cdfbdabbf8285304690416cec3c5c792, type: 2}
+    text: "Mà cậu có nâng cấp kĩ năng gì mới không? Tôi muốn xem thử."
+  - speaker: {fileID: 11400000, guid: 02a1fc921f4037d4bb7357b2fa36c700, type: 2}
+    text: "Có chứ."

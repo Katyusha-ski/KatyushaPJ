@@ -119,6 +119,52 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &233968461
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 233968463}
+  - component: {fileID: 233968462}
+  m_Layer: 0
+  m_Name: SqPlayer
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &233968462
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 233968461}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6a3bb5776674ab241ab346fef1edea8d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SequencePlayer
+  cutsceneData: {fileID: 11400000, guid: 20000000000000000000000000000005, type: 2}
+  playOncePerSession: 0
+--- !u!4 &233968463
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 233968461}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1607331752}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &358728140
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -135,6 +181,10 @@ PrefabInstance:
       propertyPath: cam
       value: 
       objectReference: {fileID: 642194156}
+    - target: {fileID: 2782240552394561134, guid: b5c026deb5eea674492eea1e03189b0a, type: 3}
+      propertyPath: m_SortingOrder
+      value: -2
+      objectReference: {fileID: 0}
     - target: {fileID: 6357866185916051197, guid: b5c026deb5eea674492eea1e03189b0a, type: 3}
       propertyPath: m_LocalPosition.x
       value: 1
@@ -377,6 +427,8 @@ MonoBehaviour:
   zoomOutDuration: 1.5
   holdDuration: 1
   zoomInDuration: 1
+  shakeDuration: 0.08
+  shakeMagnitude: 0.03
 --- !u!114 &642194158
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5996,37 +6048,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1350397906
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1350397907}
-  m_Layer: 0
-  m_Name: DuoGolemEncounterController
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1350397907
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1350397906}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 178.2469, y: 3.25337, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1561304970
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6112,6 +6133,56 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a152aeab2fd62134caaf0f00f90db8e3, type: 3}
+--- !u!1 &1607331750
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1607331752}
+  - component: {fileID: 1607331751}
+  m_Layer: 0
+  m_Name: AfterBoss
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1607331751
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1607331750}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f78118c8d1cba7439b730449193d37b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SequenceEnemiesClearedTrigger
+  sequencePlayer: {fileID: 233968462}
+  markedEnemies:
+  - {fileID: 1843733912}
+  - {fileID: 1608983302}
+  delayBeforeCutscene: 2
+--- !u!4 &1607331752
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1607331750}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 5.82642, y: -1.98014, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 233968463}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1608983300
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6192,6 +6263,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f8b8bc78b2d9a54386e302340900cc3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GolemA
+--- !u!114 &1608983302 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5091503628514224622, guid: 8af7a4a4e6d43b04ab4f456e87114eca, type: 3}
+  m_PrefabInstance: {fileID: 1608983300}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a663b0be8130c4d4994e7b144eb991cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Health
 --- !u!1001 &1843733909
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6200,26 +6282,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1172684826817496753, guid: 896d6fc7eb1777241ad30cd6799c4ff8, type: 3}
-      propertyPath: m_Size.x
-      value: 2.2818756
-      objectReference: {fileID: 0}
-    - target: {fileID: 1172684826817496753, guid: 896d6fc7eb1777241ad30cd6799c4ff8, type: 3}
-      propertyPath: m_Size.y
-      value: 2.007447
-      objectReference: {fileID: 0}
-    - target: {fileID: 1172684826817496753, guid: 896d6fc7eb1777241ad30cd6799c4ff8, type: 3}
-      propertyPath: m_Offset.x
-      value: -0.026657104
-      objectReference: {fileID: 0}
-    - target: {fileID: 1172684826817496753, guid: 896d6fc7eb1777241ad30cd6799c4ff8, type: 3}
-      propertyPath: m_Offset.y
-      value: -0.9862765
-      objectReference: {fileID: 0}
-    - target: {fileID: 1443691709316691801, guid: 896d6fc7eb1777241ad30cd6799c4ff8, type: 3}
-      propertyPath: attackRange
-      value: 1.2
-      objectReference: {fileID: 0}
     - target: {fileID: 1443691709316691801, guid: 896d6fc7eb1777241ad30cd6799c4ff8, type: 3}
       propertyPath: partnerGolem
       value: 
@@ -6292,6 +6354,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cec1922324c11d24882b7fef60846cde, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GolemB
+--- !u!114 &1843733912 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 84209177815151191, guid: 896d6fc7eb1777241ad30cd6799c4ff8, type: 3}
+  m_PrefabInstance: {fileID: 1843733909}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a663b0be8130c4d4994e7b144eb991cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Health
 --- !u!1001 &1945646004
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6306,11 +6379,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8204092655413958187, guid: 52e2548da8dd85c4c8018cd6b77b61f7, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8204092655413958187, guid: 52e2548da8dd85c4c8018cd6b77b61f7, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.15451
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8204092655413958187, guid: 52e2548da8dd85c4c8018cd6b77b61f7, type: 3}
       propertyPath: m_LocalPosition.z
@@ -6362,5 +6435,5 @@ SceneRoots:
   - {fileID: 875822887}
   - {fileID: 1843733909}
   - {fileID: 1608983300}
-  - {fileID: 1350397907}
   - {fileID: 1297993039}
+  - {fileID: 1607331752}

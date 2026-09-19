@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CutsceneData
   actions:
   - rid: 100000000000000001
+  - rid: 100000000000000002
   references:
     version: 2
     RefIds:
@@ -22,3 +23,16 @@ MonoBehaviour:
       data:
         waitForClick: 0
         dialogue: {fileID: 11400000, guid: 7b3d1f8a2c4e6d90a1b5c7e9f0d2a4c6, type: 2}
+    - rid: 100000000000000002
+      type: {class: AddItemAction, ns: , asm: Assembly-CSharp}
+      data:
+        waitForClick: 0
+        items:
+        - item: {fileID: 11400000, guid: 371eaef8ff50b4472100692d45687c20, type: 2}
+          amount: 1
+        - item: {fileID: 11400000, guid: 4df17736d015762adfb18f598ad371c7, type: 2}
+          amount: 1
+        - item: {fileID: 11400000, guid: 10d659ab7bfca361f07c8c11306f617e, type: 2}
+          amount: 1
+        - item: {fileID: 11400000, guid: 6156c5d5f386a0c5c4868db910607d79, type: 2}
+          amount: 1

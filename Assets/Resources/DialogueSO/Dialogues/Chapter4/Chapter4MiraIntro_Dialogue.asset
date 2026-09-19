@@ -31,3 +31,7 @@ MonoBehaviour:
     text: "(nhún vai) Vậy là phiền thật rồi. Thôi kệ, đi thôi."
   - speaker: {fileID: 11400000, guid: 02a1fc921f4037d4bb7357b2fa36c700, type: 2}
     text: "Đúng vậy lần này sẽ khó khăn hơn so với lúc trước nhiều đó."
+  - speaker: {fileID: 11400000, guid: 02a1fc921f4037d4bb7357b2fa36c700, type: 2}
+    text: "Mà tôi lại có thể nâng cấp kĩ năng tiếp rồi đó."
+  - speaker: {fileID: 11400000, guid: cdfbdabbf8285304690416cec3c5c792, type: 2}
+    text: "Tuyệt! Phải xem có gì hay mới được."
