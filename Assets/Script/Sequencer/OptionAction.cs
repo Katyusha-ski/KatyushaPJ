@@ -82,6 +82,7 @@ public class OptionAction : SequenceAction
             ui.ClearOptions();
         }
 
+        bool showedImage = false;
         if (picked >= 0 && picked < options.Count)
         {
             OptionEntry entry = options[picked];
@@ -93,7 +94,11 @@ public class OptionAction : SequenceAction
                     Debug.LogWarning("[OptionAction] Inventory instance is null. Item not added.");
 
                 if (entry.item.itemIcon != null)
+                {
+                    ui.Hide();
                     yield return ShowImageAction.ShowSprite(entry.item.itemIcon, 0.9f, 0.5f, 2f, false);
+                    showedImage = true;
+                }
             }
             else
             {
@@ -101,6 +106,7 @@ public class OptionAction : SequenceAction
             }
         }
 
-        ui.Hide();
+        if (showedImage && lines.Count > 0)
+            ui.Show(lines[lines.Count - 1]);
     }
 }

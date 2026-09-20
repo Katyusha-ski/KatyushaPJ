@@ -6,7 +6,7 @@ public class AmbushTrapController : MonoBehaviour
     [SerializeField] private int damage = 35;
     [SerializeField] private float silentDuration = 2f;
     [SerializeField] private float dashSpeed = 10f;
-    [SerializeField] private float maxDashDistance = 13f;
+    [SerializeField] private float maxDashDistance = 15f;
 
     private SpriteRenderer spriteRenderer;
     private bool hasDealtDamage;
@@ -35,6 +35,8 @@ public class AmbushTrapController : MonoBehaviour
 
         Vector3 targetPos = player.position;
         dashDirection = (targetPos - transform.position).normalized;
+        dashDirection.y = 0f;
+        dashDirection = dashDirection.normalized;
         dashDirection.z = 0f;
         if (spriteRenderer != null)
             spriteRenderer.flipX = dashDirection.x > 0f;

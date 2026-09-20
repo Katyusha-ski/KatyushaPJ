@@ -12,12 +12,10 @@ public class VoidBossController : EnemyController
     [SerializeField] private GameObject bloodMoonTelegraphPrefab;
 
     [Header("Stomp")]
-    [SerializeField] private float stompRadius = 3f;
     [SerializeField] private int stompDamage = 15;
     [SerializeField] private float stompStunDuration = 1f;
 
     [Header("Spike Pierce")]
-    [SerializeField] private float spikeRange = 5f;
     [SerializeField] private float spikeWidth = 1.5f;
     [SerializeField] private int spikeDamage = 25;
 
@@ -38,7 +36,8 @@ public class VoidBossController : EnemyController
     [SerializeField] private float bloodMoonMinSpacing = 1.5f;
 
     [Header("Ambush Trap")]
-    [SerializeField] private float spawnOffsetDistance = 5f;
+    [SerializeField] private float spawnOffsetDistance = 7f;
+    [SerializeField] private float spawnHeightY = 2.6f;
 
     [Header("Hurt Effect")]
     [SerializeField] private SpriteRenderer bossSprite;
@@ -132,6 +131,9 @@ public class VoidBossController : EnemyController
         if (bossSprite != null)
             originalColor = bossSprite.color;
 
+        bossHealthBar = GetComponentInChildren<BossHealthBarUI>(true);
+        bossHealthBar?.Hide();
+
         CacheBossStates();
 
         ChangeState(stateCache["VoidIdle"]);
@@ -147,10 +149,9 @@ public class VoidBossController : EnemyController
     private void CacheBossStates()
     {
         stateCache["VoidIdle"] = new BossDormantState();
-        // Spawn khi animation chạy hết (onEnd), không dùng Animation Event giữa clip.
-        // Duration khớp độ dài clip mới: Atk1 0.75s, Atk2 0.92s, Skill1 1.25s, Skill2 0.6s.
-        stateCache["Stomp"] = new GenericAttackState("Stomp", 0.75f, "Pursuit", SpawnStompAoE);
-        stateCache["SpikePierce"] = new GenericAttackState("SpikePierce", 0.92f, "Pursuit", SpawnSpikePierce);
+        // Damage bắn từ Animation Event giữa clip (impact frame), tầm = attackRange chung.
+        stateCache["Stomp"] = new GenericAttackState("Stomp", 0.92f, "Pursuit");
+        stateCache["SpikePierce"] = new GenericAttackState("SpikePierce", 0.75f, "Pursuit");
         stateCache["VoidSphere"] = new GenericAttackState("VoidSphere", 1.25f, "Pursuit", SpawnVoidSphere);
         stateCache["AmbushSummon"] = new GenericAttackState("AmbushSummon", 0.6f, "Pursuit", SpawnAmbushTrap);
         stateCache["Pursuit"] = new VoidPursuitState();
@@ -212,13 +213,14 @@ public class VoidBossController : EnemyController
         if (ambushTrapPrefab == null || player == null) return;
         float side = player.position.x >= transform.position.x ? 1f : -1f;
         Vector3 spawnPos = player.position + Vector3.right * side * spawnOffsetDistance;
+        spawnPos.y = spawnHeightY;
         GameObject trap = Instantiate(ambushTrapPrefab, spawnPos, Quaternion.identity);
         activeProjectiles.Add(trap);
     }
 
     public void SpawnStompAoE()
     {
-        Collider2D[] hits = Physics2D.OverlapCircleAll(transform.position, stompRadius, playerLayer);
+        Collider2D[] hits = Physics2D.OverlapCircleAll(transform.position, GetAttackDamageRadius(), playerLayer);
         foreach (var hit in hits)
         {
             Health health = hit.GetComponent<Health>();
@@ -235,11 +237,12 @@ public class VoidBossController : EnemyController
     public void SpawnSpikePierce()
     {
         int dir = GetDirection();
+        float range = GetAttackDamageRadius();
         Vector2 center = new Vector2(
-            transform.position.x + dir * spikeRange * 0.5f,
+            transform.position.x + dir * range * 0.5f,
             transform.position.y
         );
-        Vector2 size = new Vector2(spikeRange, spikeWidth);
+        Vector2 size = new Vector2(range, spikeWidth);
         Collider2D[] hits = Physics2D.OverlapBoxAll(center, size, 0f, playerLayer);
         foreach (var hit in hits)
         {
@@ -318,6 +321,7 @@ public class VoidBossController : EnemyController
         {
             isAwake = true;
             UnlockFacing();
+            bossHealthBar?.SetBoss(GetComponent<Health>());
             // Cooldown tính từ lúc wake: vào không xả skill ngay.
             skill1ReadyTime = Time.time + skill1Cooldown;
             skill2ReadyTime = Time.time + skill2Cooldown;

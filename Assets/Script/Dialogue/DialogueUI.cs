@@ -14,10 +14,9 @@ public class DialogueUI : Singleton<DialogueUI>
     [SerializeField] private Button nextButton;
     [SerializeField] private GameObject panel;
     [SerializeField] private GameObject optionButtonPrefab;
+    [SerializeField] private GameObject optionContainer;
 
     public event Action OnNextClicked;
-
-    private GameObject optionContainer;
 
     private void Start()
     {
@@ -59,8 +58,8 @@ public class DialogueUI : Singleton<DialogueUI>
     }
 
     /// <summary>
-    /// Hiện các nút lựa chọn (instantiate từ optionButtonPrefab) xếp dọc tại vị trí
-    /// nút Next, thay chỗ Next. Panel tự bật nếu đang ẩn.
+    /// Hiện các nút lựa chọn (instantiate từ optionButtonPrefab) vào container có sẵn
+    /// trong prefab (đặt tại vị trí nút Next), thay chỗ Next. Panel tự bật nếu đang ẩn.
     /// </summary>
     public void ShowOptions(List<string> labels, Action<int> onPick)
     {
@@ -76,27 +75,13 @@ public class DialogueUI : Singleton<DialogueUI>
             return;
         }
 
-        optionContainer = new GameObject("OptionContainer", typeof(RectTransform));
-        optionContainer.transform.SetParent(panel.transform, false);
-        var containerRT = (RectTransform)optionContainer.transform;
-
-        if (nextButton != null)
+        if (optionContainer == null)
         {
-            var nextRT = (RectTransform)nextButton.transform;
-            containerRT.anchorMin = nextRT.anchorMin;
-            containerRT.anchorMax = nextRT.anchorMax;
-            containerRT.pivot = nextRT.pivot;
-            containerRT.anchoredPosition = nextRT.anchoredPosition;
-            containerRT.sizeDelta = new Vector2(nextRT.sizeDelta.x, 0f);
+            Debug.LogWarning("[DialogueUI] optionContainer chưa gán.");
+            return;
         }
 
-        var layout = optionContainer.AddComponent<VerticalLayoutGroup>();
-        layout.spacing = 8f;
-        layout.childAlignment = TextAnchor.MiddleCenter;
-
-        var fitter = optionContainer.AddComponent<ContentSizeFitter>();
-        fitter.horizontalFit = ContentSizeFitter.FitMode.Unconstrained;
-        fitter.verticalFit = ContentSizeFitter.FitMode.PreferredSize;
+        optionContainer.SetActive(true);
 
         for (int i = 0; i < labels.Count; i++)
         {
@@ -115,8 +100,9 @@ public class DialogueUI : Singleton<DialogueUI>
     {
         if (optionContainer != null)
         {
-            Destroy(optionContainer);
-            optionContainer = null;
+            for (int i = optionContainer.transform.childCount - 1; i >= 0; i--)
+                Destroy(optionContainer.transform.GetChild(i).gameObject);
+            optionContainer.SetActive(false);
         }
         SetNextVisible(true);
     }

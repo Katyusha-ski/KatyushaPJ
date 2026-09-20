@@ -41,14 +41,24 @@ public class VoidPursuitState : IEnemyState
                 }
             }
 
-            // --- Vào tầm cận chiến → NA ---
+            // --- Vào tầm cận chiến → NA (gate bằng attackCooldown, chưa hồi thì đứng giữ hướng) ---
             if (distance <= boss.MeleeRange)
             {
-                boss.PickMeleeAttack();
+                if (combat.IsAttackReady())
+                {
+                    boss.PickMeleeAttack();
+                    combat.RecordAttack();
+                }
+                else
+                {
+                    movement.LookAtPlayer();
+                    combat.PlayAnimBool("Run", false);
+                }
                 return;
             }
 
-            // --- Truy đuổi tới cùng: boss không leash, sau kích hoạt không về Idle ---
+            // --- Truy đuổi tới cùng (boss không leash, sau kích hoạt không về Idle) ---
+            combat.PlayAnimBool("Run", true);
             if (!boss.IsFacingLocked)
             {
                 movement.LookAtPlayer();

@@ -24,11 +24,11 @@ MonoBehaviour:
         waitForClick: 0
         dialogue: {fileID: 11400000, guid: c6000000000000000000000000000004, type: 2}
         options:
-        - label: Royal Sword
+        - label: "Ch\u1ECDn s\u1ED1 1"
           item: {fileID: 11400000, guid: 113e1028c33e6bf44a8db5e145dc1b41, type: 2}
-        - label: Royal Spear
+        - label: "Ch\u1ECDn s\u1ED1 2"
           item: {fileID: 11400000, guid: dfa723207bcd0854fb926c10a6fc2de4, type: 2}
-        - label: Royal Mace
+        - label: "Ch\u1ECDn s\u1ED1 3"
           item: {fileID: 11400000, guid: 2d4a84304a3cb1246b0a68fb4ccb3456, type: 2}
     - rid: 100000000000000002
       type: {class: DialogueAction, ns: , asm: Assembly-CSharp}
