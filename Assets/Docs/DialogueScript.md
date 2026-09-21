@@ -476,7 +476,7 @@ Cutscene 8: Gặp lại Usagi sau khi đóng cổng
 - [Hachi]: (thở phào) ...Cuối cùng cũng xong.
 Fade: Kể lại mọi chuyện cho Usagi nghe, cậu ấy tỏ ra vô cùng ngạc nhiên và không tin nổi mọi thứ lại đi theo hướng này.
 
-TeleAction: Một thời gian sau, các pháp sư khôi phục lại cơ thể cũ của Hachi từ cái xác họ tìm được. Hachi trở thành vị vua mới của vương quốc.
+  TeleAction: Một thời gian sau, các pháp sư khôi phục lại cơ thể cũ của Hachi từ cái xác họ tìm được. Hachi trở thành vị vua mới của vương quốc.
 
 - [Hachi]: (đứng trên cơ thể mới của mình, quay sang Kati) Kati này... cảm ơn cậu, vì tất cả.
 - [Kati]: (nhún vai, cười nhẹ) Thôi khỏi cảm ơn, lo giữ lời hứa nghiên cứu phép dịch chuyển đưa tôi về thế giới thật đi là được.
