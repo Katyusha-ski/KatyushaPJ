@@ -25,3 +25,4 @@ MonoBehaviour:
   applyDashDamage: 1
   applyStun: 1
   stunDuration: 1
+  skillAnimation: {fileID: 7400000, guid: e85e7db176dae4198ba30402cb337540, type: 2}

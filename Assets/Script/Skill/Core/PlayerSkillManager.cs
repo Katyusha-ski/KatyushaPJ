@@ -123,4 +123,20 @@ public class PlayerSkillManager : MonoBehaviour
         ReloadSkills(); // bắn NotifySkillMatrixChanged 1 lần sau khi mọi thứ xong
         return true;
     }
+
+    // Vẽ tầm đánh của melee skill đang equip (chọn Player trong Scene view để thấy).
+    private void OnDrawGizmosSelected()
+    {
+        if (skills == null) return;
+
+        foreach (SkillBase skill in skills)
+        {
+            if (skill is MeleeSkill melee && melee != null)
+            {
+                Vector2 origin = (Vector2)transform.position + melee.offset;
+                Gizmos.color = new Color(1f, 0.5f, 0f, 0.8f);
+                Gizmos.DrawWireSphere(origin, melee.range);
+            }
+        }
+    }
 }

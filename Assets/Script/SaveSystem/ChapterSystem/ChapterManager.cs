@@ -132,7 +132,7 @@ public class ChapterManager : Singleton<ChapterManager>
         currentChapterIndex++;
         if (currentChapterIndex >= chapters.Count)
         {
-            SceneManager.LoadScene("MainMenu"); 
+            SceneManager.LoadScene("MainMenuScene"); 
             return;
         }
         GoToMainScene();
@@ -150,7 +150,7 @@ public class ChapterManager : Singleton<ChapterManager>
         currentChapterIndex++;
         if (currentChapterIndex >= chapters.Count)
         {
-            SceneManager.LoadScene("MainMenu");
+            SceneManager.LoadScene("MainMenuScene");
             return;
         }
         GoToMainScene();

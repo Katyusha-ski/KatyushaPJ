@@ -399,13 +399,22 @@ ShowImgAction: show icon của item đó.
 
 ## Chapter 7 — Thủ đô Hyvoria
 
-*(Đột nhập vào thủ đô, họ phát hiện phần lớn pháp sư ở đây đã bị quỷ điều khiển — thân xác họ thực chất đã chết, bị quỷ chiếm giữ, tôn thờ một con mắt khổng lồ.)*
+Cutscene 1: Đầu chap
 
-- [Kati]: (rùng mình) ...Bọn này không còn là người nữa rồi.
-- [Hachi]: (giọng nặng nề) Đúng vậy. Giải thoát cho họ thôi.
+- [Hachi]: Ta tới rồi, đi thêm xíu nữa là tới tòa thành rồi.
+- [Hachi]: Nhất định tôi phải tìm ra nguyên do và chấm dứt thảm họa này.
+- [Kati]: Ờ tôi cũng muốn về nhà lắm rồi. Lần này ta sẽ lại thắng chứ, cộng sự?
+- [Hachi]: Tất nhiên, lên thôi. Mà nè, tôi thấy là mình đã khôi phục hoàn toàn sức mạnh gốc rồi. Chúng ta kiểm tra xem các kĩ năng thế nào đi.
+AddItemAction: add thêm 4 skill ở mức lv5
 
-*(Sau khi tiêu diệt đám pháp sư bị hắc hóa, họ tìm thấy Mika đang bị thương nặng.)*
+Cutscene 2: Trước cổng thành.
+- [Hachi]: đường vào đây rồi. Để tôi thử phá cổng xem.
+Tele: Hachi dễ dàng mở cổng thành, hai bạn đi vào bên trong và nhận thấy cảnh tượng hoang tàn của lâu đài bên trong.
+- [Kati]: Tử khí nồng nặc thật. May là không phải lần đầu tôi cảm thấy thế này.
+- [Hachi]: Theo tôi thấy chắc cái lõi đang nằm dưới lâu đài. Nhưng trước tiên cứ xử hết bọn trên đây đã.
 
+
+Cutscene 3: Gặp lại Mika
 - [Hachi]: (hoảng hốt) Mika?! Là ông thật sao?!
 - [Mika]: (yếu ớt) Hachi... cậu... còn sống sao...
 - [Kati]: (vội chữa trị cho Mika) Ông cứ nằm yên đi đã.
@@ -420,12 +429,32 @@ ShowImgAction: show icon của item đó.
 - [Hachi]: Đúng, mà bị quỷ thao túng thì còn vô lý hơn — suốt thời gian trị vì, chưa ai từng phát hiện dấu hiệu gì bất thường ở ngài cả.
 
 *(Họ lục soát phòng nhà vua, tìm ra manh mối: mẹ ngài mất ngay sau khi sinh ra ngài, gần như không ai biết gì về bà.)*
+Cutscene 4: Trong phòng nhà vua
 
 - [Kati]: (cầm bức chân dung cũ) Người phụ nữ này... là mẹ của vua à?
+ShowImgAction: show img chân dung
 - [Hachi]: Chắc vậy. Đẹp thật, nhưng nghe nói bà rất ít khi xuất hiện trước công chúng.
 
-*(Tiến vào phòng thí nghiệm, họ chạm trán lõi quỷ. Sau một trận chiến, mana của quỷ dần suy yếu — và họ phát hiện quốc vương đang bị giam bên trong.)*
+Cutscene 5: Tình cờ gặp lại Tezzy trên đường tới lõi quỷ.
+- [Kati]: Ơ, ta lại gặp lại ngươi rồi tên cá hèn này. Lần này ta phải biến ngươi này cá nướng.
+- [Kati]: Hachi mau giữ hắn lại.
+- [Hachi]: Nè tên hèn, lần này thì ngươi có gì để chúng ta giữ mạng ngươi không?
+- [Tezzy]: Huhu, tôi xin lỗi hai vị. Tôi chỉ đi dạo để kiếm chút đồ ăn thôi, tôi không muốn chết. Tôi có thể tặng các vị món bảo kiếm.
+- [Kati]: Bọn ta không dễ mắc lừa lần 2 đâu. Tốt nhất là trước khi ta đếm tới 3 còn không thì ngươi sẽ thành cá nướng.
+- [Tezzy]: Huhu, tôi xin lỗi. Đây là món bảo kiếm tôi hứa, xin hãy nhận lấy.
+ShowImgAction: show icon của item bảo kiếm
+- [Hachi]: (nhận lấy) Cảm ơn, nhưng lần sau đừng có lừa người khác đấy nhé. Để bọn ta gặp lại thì ngươi không yên đâu.
+HideObjAction: hide Tezzy
 
+Cutscene 6: Trước khi tiến vào phòng thí nghiệm
+- [Hachi]: nè Kati à, đây là trận cuối cùng của chúng ta rồi.
+- [Kati]: Ừ, sau những chuyện đó, tôi vẫn không tin là chúng ta sẽ đến được đây.
+- [Hachi]: Ta tiến lên thôi.
+SceneTrasitionAction: 2 bạn tiến vào phòng thí nghiệm, nơi lõi quỷ đang trú ngụ.
+
+*(Tiến vào phòng thí nghiệm, họ chạm trán lõi quỷ. Sau một trận chiến, mana của quỷ dần suy yếu — và họ phát hiện quốc vương đang bị giam bên trong.)*
+Cutscene 7: Sau khi đánh bại lõi quỷ
+ShowObjAction: show img Kanus
 - [Kanus]: (giọng khàn, tỉnh táo lại) ...Cuối cùng... tôi cũng lấy lại được ý chí của mình.
 - [Hachi]: (chấn động) Là... nhà vua thật sao?!
 - [Kanus]: Đúng vậy, Hachi. Con trai của Shisa... Xin lỗi vì đã để mọi chuyện đi đến nước này.
@@ -433,23 +462,25 @@ ShowImgAction: show icon của item đó.
 - [Kanus]: Mẹ ta... là người bị quỷ ám. Nhưng vì tình yêu, cha ta — quốc vương tiền nhiệm — vẫn chăm sóc cho bà tới cùng. Sau khi sinh ra ta, cha đã dùng mọi cách kiểm tra dấu hiệu của quỷ trên cơ thể ta, nhưng không lần nào phát hiện điều gì bất thường.
 - [Kanus]: (cười khổ) Ai cũng tưởng vậy là xong rồi... Không ngờ chuyện này lại xảy ra. Chúng ta đã đánh giá quá thấp lũ quỷ này.
 - [Hachi]: (nghẹn giọng) Vậy giờ phải làm sao để đóng cổng lại?
-- [Kanus]: Ta sẽ chỉ cho hai người cách đóng cổng. Nhưng có một điều kiện duy nhất... ta phải chết.
+- [Kanus]: Ta sẽ chỉ cho hai người cách đóng cổng. Chỉ cần dùng phép thuật để hủy diệt tàn dư lõi quỷ là được. 
+- [Kanus]: Nhưng có một điều kiện duy nhất... ta phải chết.
 
 *(Kanus hướng dẫn xong, tự kết liễu đời mình trước mặt cả hai.)*
-
+Fade: 2 bạn chưa kịp hiểu vấn đề, Kanus dùng phép thuật tự kết liễu chính mình.
 - [Kati]: (lặng người) ...
-- [Hachi]: (cúi đầu) ...Yên nghỉ đi, thưa bệ hạ.
+- [Hachi]: (cúi đầu) ...B-Bệ hạ.
+SceneTransitionAction: 2 bạn tiến hành đóng cổng dịch chuyển theo hướng dẫn của Kanus. Mọi thứ dần sụp đổ, cánh cổng đóng lại và mana quỷ suy yếu. Cả hai mệt mỏi ra khỏi cổng.
 
-*(Hai người đóng cổng theo chỉ dẫn của Kanus. Lũ quỷ trên khắp vùng đất suy yếu, quân tiếp viện tràn vào giải phóng thành phố.)*
-
+Cutscene 8: Gặp lại Usagi sau khi đóng cổng
 - [Usagi]: (chạy tới) Xong rồi! Hai người làm được rồi!
 - [Hachi]: (thở phào) ...Cuối cùng cũng xong.
+Fade: Kể lại mọi chuyện cho Usagi nghe, cậu ấy tỏ ra vô cùng ngạc nhiên và không tin nổi mọi thứ lại đi theo hướng này.
 
-*(Một thời gian sau, các pháp sư khôi phục lại cơ thể cũ của Hachi từ cái xác họ tìm được. Hachi trở thành vị vua mới của vương quốc.)*
+TeleAction: Một thời gian sau, các pháp sư khôi phục lại cơ thể cũ của Hachi từ cái xác họ tìm được. Hachi trở thành vị vua mới của vương quốc.
 
 - [Hachi]: (đứng trên cơ thể mới của mình, quay sang Kati) Kati này... cảm ơn cậu, vì tất cả.
 - [Kati]: (nhún vai, cười nhẹ) Thôi khỏi cảm ơn, lo giữ lời hứa nghiên cứu phép dịch chuyển đưa tôi về thế giới thật đi là được.
-- [Hachi]: (cười) Yên tâm, ta là vua rồi mà — chuyện đó dễ ợt.
+- [Hachi]: (cười) Yên tâm, tôi là vua rồi mà — chuyện đó dễ ợt.
 
 ---
 

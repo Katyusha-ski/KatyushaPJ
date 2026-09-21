@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 12efb4e91f50acd42999f69a91d76dab, type: 3}
+  m_Name: Chapter7AfterCore_Dialogue
+  m_EditorClassIdentifier: Assembly-CSharp::DialogueData
+  lines:
+  - speaker: {fileID: 11400000, guid: c7000000000000000000000000000002, type: 2}
+    text: "(giọng khàn, tỉnh táo lại) ...Cuối cùng... tôi cũng lấy lại được ý chí của mình."
+  - speaker: {fileID: 11400000, guid: 02a1fc921f4037d4bb7357b2fa36c700, type: 2}
+    text: "(chấn động) Là... nhà vua thật sao?!"
+  - speaker: {fileID: 11400000, guid: c7000000000000000000000000000002, type: 2}
+    text: "Đúng vậy, Hachi. Con trai của Shisa... Xin lỗi vì đã để mọi chuyện đi đến nước này."
+  - speaker: {fileID: 11400000, guid: cdfbdabbf8285304690416cec3c5c792, type: 2}
+    text: "Chuyện gì đã xảy ra với ngài vậy?"
+  - speaker: {fileID: 11400000, guid: c7000000000000000000000000000002, type: 2}
+    text: "Mẹ ta... là người bị quỷ ám. Nhưng vì tình yêu, cha ta — quốc vương tiền nhiệm — vẫn chăm sóc cho bà tới cùng. Sau khi sinh ra ta, cha đã dùng mọi cách kiểm tra dấu hiệu của quỷ trên cơ thể ta, nhưng không lần nào phát hiện điều gì bất thường."
+  - speaker: {fileID: 11400000, guid: c7000000000000000000000000000002, type: 2}
+    text: "(cười khổ) Ai cũng tưởng vậy là xong rồi... Không ngờ chuyện này lại xảy ra. Chúng ta đã đánh giá quá thấp lũ quỷ này."
+  - speaker: {fileID: 11400000, guid: 02a1fc921f4037d4bb7357b2fa36c700, type: 2}
+    text: "(nghẹn giọng) Vậy giờ phải làm sao để đóng cổng lại?"
+  - speaker: {fileID: 11400000, guid: c7000000000000000000000000000002, type: 2}
+    text: "Ta sẽ chỉ cho hai người cách đóng cổng. Chỉ cần dùng phép thuật để hủy diệt tàn dư lõi quỷ là được."
+  - speaker: {fileID: 11400000, guid: c7000000000000000000000000000002, type: 2}
+    text: "Nhưng có một điều kiện duy nhất... ta phải chết."

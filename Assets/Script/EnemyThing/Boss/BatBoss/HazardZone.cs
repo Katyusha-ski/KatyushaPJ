@@ -6,12 +6,23 @@ public class HazardZone : MonoBehaviour
     [SerializeField] private float tickInterval = 1f;
     [SerializeField] private float effectDuration = 3f;
 
+    [Tooltip("Tự hủy sau từng này giây nếu không ai gọi Init (VD NightBorne chỉ Instantiate, không Init).")]
+    [SerializeField] private float defaultLifetime = 5f;
+    private bool lifetimeSet;
+
     public void Init(int damage, float interval, float dotDur, float lifetime)
     {
         tickDamage = damage;
         tickInterval = interval;
         effectDuration = dotDur;
+        lifetimeSet = true;
         Destroy(gameObject, lifetime);
+    }
+
+    private void Start()
+    {
+        if (!lifetimeSet)
+            Destroy(gameObject, defaultLifetime);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

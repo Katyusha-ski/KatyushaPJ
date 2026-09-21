@@ -139,43 +139,43 @@
     ],
     "equipmentItem": [
         {
-            "itemName": "",
-            "amount": 0
+            "itemName": "Royal armor",
+            "amount": 1
         },
         {
-            "itemName": "",
-            "amount": 0
+            "itemName": "Diamond sword",
+            "amount": 1
         },
         {
-            "itemName": "",
-            "amount": 0
+            "itemName": "Lord's Necklace",
+            "amount": 1
         },
         {
-            "itemName": "",
-            "amount": 0
+            "itemName": "Heaven Shoes",
+            "amount": 1
         }
     ],
     "skillUnlocked": [
         true,
-        false,
-        false,
-        false,
-        false,
         true,
-        false,
-        false,
-        false,
-        false,
         true,
-        false,
-        false,
-        false,
-        false,
         true,
-        false,
-        false,
-        false,
-        false
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true
     ],
     "questItems": [    
         "Map"
