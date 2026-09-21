@@ -53,7 +53,10 @@ public class SequenceEnemiesClearedTrigger : MonoBehaviour
         {
             foreach (Health health in markedEnemies)
             {
-                if (health != null && health.CurrentHealth > 0)
+                // Dùng IsDead thay vì CurrentHealth > 0: enemy inactive chưa chạy
+                // Health.Awake() nên CurrentHealth vẫn = 0 dù còn sống (VD pool
+                // của WaveBoss). IsDead chỉ true khi Die() đã chạy thật.
+                if (health != null && !health.IsDead)
                     aliveEnemies.Add(health);
             }
         }
@@ -82,6 +85,7 @@ public class SequenceEnemiesClearedTrigger : MonoBehaviour
         if (hasFired || aliveEnemies.Count > 0) return;
 
         hasFired = true;
+        SceneStateTracker.RecordTriggerFired(gameObject.scene.name, gameObject.name);
         if (delayBeforeCutscene > 0f)
             StartCoroutine(PlayCutsceneAfterDelay());
         else

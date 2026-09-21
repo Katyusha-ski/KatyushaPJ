@@ -51,6 +51,7 @@ public class ActivateObjectsAction : SequenceAction
             }
 
             go.SetActive(setActive);
+            SceneStateTracker.RecordObjectState(go.scene.name, go.name, setActive);
         }
 
         yield return null;

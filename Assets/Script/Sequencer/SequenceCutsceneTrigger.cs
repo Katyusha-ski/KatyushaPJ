@@ -20,9 +20,16 @@ public class SequenceCutsceneTrigger : MonoBehaviour
         if (!other.CompareTag("Player")) return;
         if (sequencePlayer == null) return;
         if (!isRepeatable && hasTriggered) return;
+        if (!isRepeatable && SceneStateTracker.WasTriggerFired(gameObject.scene.name, gameObject.name))
+        {
+            hasTriggered = true;
+            return;
+        }
         if (sequencePlayer.IsPlaying) return;
 
         hasTriggered = true;
+        if (!isRepeatable)
+            SceneStateTracker.RecordTriggerFired(gameObject.scene.name, gameObject.name);
         sequencePlayer.Play();
     }
 }
