@@ -137,6 +137,8 @@ public class GameManager : Singleton<GameManager>
             shopEntries = shopData,
             // Chest data
             chestInventories = chestData,
+            // Scene state (quái chết, đồ ẩn/hiện, trigger đã chạy)
+            sceneStates = SceneStateTracker.ExportStates(),
             // Metadata
             saveDataTime = System.DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"),
             playTime = this.playTime
@@ -205,6 +207,8 @@ public class GameManager : Singleton<GameManager>
 
         UsagiShopChest?.Clear();
 
+        SceneStateTracker.ClearAllStates();
+
         tempSaveData = SaveData.Default();
         SceneManager.sceneLoaded += OnNewGameSceneLoaded;
 
@@ -266,6 +270,11 @@ public class GameManager : Singleton<GameManager>
         }
 
         UsagiShopChest.LoadSerializableItems(savedChest?.items);
+
+        // Nạp scene state rồi apply ngay cho scene vừa load (handler của
+        // tracker chạy trước lúc import nên phải refresh lại ở đây).
+        SceneStateTracker.ImportStates(tempSaveData.sceneStates);
+        SceneStateTracker.RefreshForScene(scene);
 
         // Restore player state with delay (ensure player is spawned)
         Invoke(nameof(RestorePlayerState), 0.2f);

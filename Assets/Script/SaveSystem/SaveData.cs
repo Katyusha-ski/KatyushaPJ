@@ -14,6 +14,9 @@ public class SaveData
     public List<SerializableShopEntry> shopEntries;
     public List<ChestInventorySave> chestInventories;
 
+    // Trạng thái scene (SceneStateTracker): quái chết, đồ ẩn/hiện, trigger đã chạy.
+    public List<SceneStateRecord> sceneStates;
+
     // Scene information
     public int currentSceneIndex;
     public string currentSceneName;
@@ -39,6 +42,7 @@ public class SaveData
             questItems = new List<string>(),
             shopEntries = new List<SerializableShopEntry>(),
             chestInventories = new List<ChestInventorySave>(),
+            sceneStates = new List<SceneStateRecord>(),
             // TODO: set sceneIndex & sceneName theo cơ chế riêng sau
             currentSceneIndex = -1,
             currentSceneName = null,
