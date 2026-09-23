@@ -2,6 +2,11 @@
 
 public class PlayerManager : Singleton<PlayerManager>
 {
+    // TODO (khi gán nút về MainMenu / LoadMainMenu): Player DDOL nên tự
+    // SetActive(false) khi vào MainMenuScene và SetActive(true) trở lại ở
+    // scene gameplay (VD đăng ký SceneManager.sceneLoaded trong
+    // OnSingletonAwake). Nếu không, Player lết theo sang menu: đứng nền,
+    // vẫn nhận input, Health Text vẫn render.
     public PlayerController PlayerController { get; private set; }
     public Health PlayerHealth { get; private set; }
     public Transform PlayerTransform { get; private set; }

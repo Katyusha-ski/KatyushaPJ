@@ -10,6 +10,7 @@
 - Quest UI gồm danh sách quest item trong ScrollView, slot spawn runtime từ `QuestSlotUI.prefab` và panel detail dùng `QuestListUI`, `QuestSlotUI` và `QuestDetailUI`.
 - Shop của Usagi dùng `UsagiShopTrigger`: player vào vùng `BoxCollider2D` thì hiện nút shop qua `UIManager.SetShopButtonActive`, ra khỏi vùng thì ẩn nút. Trigger dùng `HashSet<Collider2D>` để chịu multi-collider, check `Player` qua tag/`attachedRigidbody`/`root`, có tham chiếu `SequencePlayer`.
 - Health của enemy được đồng bộ với `CharacterStats.baseMaxHP` trong các prefab đã cấu hình.
+- `CoreSystem` persist xuyên scene nhờ `PersistentRoot` (`Assets/Script/Pattern/PersistentRoot.cs`) gắn ở root prefab: dedup + `DontDestroyOnLoad` cả cụm. Bắt buộc vì `DontDestroyOnLoad` chỉ có tác dụng trên root GameObject — singleton con gọi trực tiếp sẽ warn + chết theo scene cũ (từng gây crash `GameManager.OnNewGameSceneLoaded` ở `Invoke` + mất inventory/shop/chapter state mỗi lần qua màn).
 
 ## Scene hiện có
 
@@ -83,6 +84,34 @@ Các thư mục chính nằm trong `Assets/Script/`:
 - Equipment áp dụng `ItemStats` vào `CharacterStats`.
 - Consumable tạo và áp dụng status effect thông qua `ConsumableManager`.
 - Shop dùng `ShopManager`, `ShopEntrySO`, category filter, item list và item detail UI.
+- Loot enemy (coin-only, trừ boss): xem `### Loot enemy` bên dưới. Boss bị loại trừ là `Bat` (`BatBossController`, layer `Boss`), `Golem_Orange` (`GolemA`), `Golem_Blue` (`GolemB`), `VoidBoss` (project không dùng Unity Tag `Boss`, boss được nhận diện bằng layer `Boss` (=9) + `BossHealthBarUI` + controller boss).
+
+### Loot enemy
+
+- Công thức: `coin = round(HP * 0.5)`, trần `max 15`, `dropChance: 100`, chỉ rớt `Coin` (`ItemsSO/Material/Coin.asset`). File nằm trong `Assets/Resources/Loot/`.
+- Bảng hiện tại (10 enemy thường):
+
+| Enemy (HP `baseMaxHP`) | LootTable | Coin |
+|---|---|---|
+| Skull_Enemy (5) | `SkullLT.asset` (giữ nguyên) | 3 |
+| GreenSlime_Enemy (10) | `GreenSlimeLT.asset` (mới, giữ đúng giá trị gốc 5) | 5 |
+| Golem_Enemy (20) | `Golem_EnemyLT.asset` (mới, coin-only, giữ đúng phần coin gốc 10) | 10 |
+| BlueSlime_Enemy (25) | `BlueSlimeLT.asset` (update 5 → 12) | 12 |
+| NightBorne (25) | `NightBorneLT.asset` (mới) | 12 |
+| Catto (30) | `CattoLT.asset` (mới) | 15 |
+| GolemV5 (30) | `GolemV5LT.asset` (mới) | 15 |
+| Mad Ghost (35) | `MadGhostLT.asset` (mới, hạ 18 → 15 theo trần) | 15 |
+| Abomination (40) | `AbominationLT.asset` (mới, hạ 20 → 15 theo trần) | 15 |
+| Necromancer (60) | `NecromancerLT.asset` (mới, hạ 30 → 15 theo trần) | 15 |
+
+- `GolemLT.asset` (10 coin + 1 Coal) giữ nguyên cho 2 Golem boss, không dùng cho enemy thường nữa.
+- Fix kèm theo: nối lại `Health.lootManager` cho `Catto`/`GolemV5`/`Mad Ghost` (đang `{fileID: 0}`), fill `itemFloatPref` (ItemFloating) + `dropRad/dropForce: 0 → 1` cho các prefab thiếu, tách `GreenSlime` khỏi `BlueSlimeLT` dùng chung, thêm mới `LootManager` cho `Necromancer` (vốn chưa có component).
+
+### Icon item/skill (kết quả rà soát)
+
+- Skill của player đủ hết: 20x `ItemsSO/Skill` + 20x `SkillSO` player (`Dash`/`Defend`/`Melee`/`Range OnlyPlayer`) đều đã có icon. 5 skill riêng của enemy (`Stone Spike`, `NercoHole`, `NecroHeal`, `GolemMagic`, `NercoFire`) thiếu icon là đúng dự kiến.
+- Item thiếu icon còn lại (8 quest item, hiện orphan — dò `guid` cho 0 reference trong shop/cutscene/scene/script): `Quest/Angel's Mirror`, `Key 1–5`, `Scroll`, `Witch's Hat`.
+- `Consumable/Strength Potion` đã được gán icon `Sprites/ItemIcon/P_Red01.png` (dùng chung với Dragon's Blood/Resistance/Witch's Strength — cân nhắc đổi sang `P_Orange*`/`P_Yellow*` còn trống để dễ phân biệt). Item này có bán thật trong shop (`StrengthPotionEntrySO`, `unlockChapter: 1`, `stock: 8` trong `CoreSystem.prefab`).
 
 ### Quest UI
 
@@ -99,6 +128,7 @@ Các thư mục chính nằm trong `Assets/Script/`:
 ### Dialogue, sequencer và progression
 
 - Dialogue dùng `DialogueData`, `CharacterProfile`, `DialogueManager` và `DialogueUI`.
+- `DialogueUI.Show()` tự bật lại chính GameObject của mình, vì `UIManager.ResetForMainMenu()` (chỉ chạy ở MainMenu) tắt nguyên object để chống overlap — `Show` cũ chỉ bật panel con nên dialogue vô hình suốt session sau khi qua menu.
 - Sequencer hỗ trợ dialogue, narration, animation, background, image, teleport, add/remove item, unlock Hachi, activate object, option/choice (`OptionAction` spawn nút từ prefab và share routine với `ShowImageAction`), next chapter, enemy-cleared/boss-defeat/cutscene trigger và scene transition.
 - Chapter data lưu scene chính, boss scene và tiến trình chapter.
 - Save system lưu dữ liệu game bằng JSON trong `Application.persistentDataPath`.
@@ -118,15 +148,40 @@ Các thư mục chính nằm trong `Assets/Script/`:
 - Flow scene giữa `GrassScene` và `OutskirtsScene` cần được thống nhất.
 - `DuoGolem` đã có hazard skill code (`SnapTrap`, `RollingStone`, `StoneSpike`, `Hailstorm`); còn lại là kiểm tra gán prefab trong scene và tuning thông số gameplay chính thức.
 - Save system vẫn tra item bằng `itemName`; chưa migrate hoàn toàn sang `itemId`.
-- Một số icon item/skill vẫn là placeholder hoặc còn thiếu; các quest item hiện có vẫn cần kiểm tra/gán icon riêng.
+- Một số icon item/skill vẫn là placeholder hoặc còn thiếu; 8 quest item (`Angel's Mirror`, `Key 1–5`, `Scroll`, `Witch's Hat`) vẫn thiếu icon nhưng hiện orphan (0 reference trong shop/cutscene/scene/script), xem chi tiết ở `### Icon item/skill`.
 - Abomination còn dở: prefab còn 2 component `CharacterStats` trùng nhau; cần kiểm tra flip 2 hướng, collider và cảm giác hitbox trong Play Mode.
 - Quest UI đã có logic spawn slot và panel detail, nhưng wiring/visibility cần tiếp tục kiểm tra trong Unity Play Mode; object template trong `GameUIRoot` không phải slot runtime được spawn.
 - `InventoryDebugTool` chỉ chạy trong Editor và tự load `DebugData/inventory_debug.json` khi Play Mode bắt đầu. Nếu sửa format snapshot thủ công, `questItems` phải là `List<string>` như ví dụ ở trên.
 - Các thay đổi gameplay và layout UI nên được kiểm tra lại trong Unity Play Mode sau khi merge prefab/scene.
 
+## Cân bằng kinh tế (coin/loot/shop)
+
+- Loot enemy coin-only, dropChance 100%, lượng cố định theo HP (`round(HP*0.5)`, trần 15). Boss không tính thu nhập (Bat/VoidBoss không rớt; DuoGolem giữ `GolemLT` cũ ngoài chuẩn).
+- Thu nhập coin/chapter (giết mỗi con 1 lần, không tính boss, không tính spawn runtime nếu có):
+
+| Chapter (scene) | Income |
+|---|---|
+| 1 Outskirts | 28 |
+| 2 Rohok | 102 |
+| 3 KuriFarm | 227 |
+| 4 Mira + BatBoss | 191 |
+| 5 Kynarite + DuoGolem | 108 |
+| 6 Mythara + VoidBoss | 267 |
+| 7 Hyvoria + KanusBoss | 441 |
+
+- Quy tắc giá shop theo đợt (`unlockChapter`): **mua 1 mỗi loại trong đợt ≤ 85% income chapter đó** (dư ~15%+). Lưu ý trung thực: mua FULL stock đợt 1 cần tối thiểu 57 coin trong khi income chỉ 28 nên bảo đảm full-stock là bất khả thi — chuẩn áp dụng là 1-mỗi-loại/đợt, stock thêm mua bằng tích lũy.
+- 6 entry từng đòi material (Frog/Fox/Snail/Octopus — không nguồn rớt) đã chuyển coin-only (+5 coin/1 material, rồi scale theo đợt). Hiện không còn cost phi-coin nào.
+- Kiểm chứng: Ch1 23 (dư 18%), Ch2 86 (16%), Ch3 120 giữ nguyên (dư 47%), Ch4 162 (15%), Ch5 90 (17%), Ch6 226 (15%), Ch7 50 giữ nguyên (dư 89%).
+
+## TODO playtest (ghi chú)
+
+- [ ] Item sprite/icon/balance: 8 quest item thiếu icon (`Angel's Mirror`, `Key 1–5`, `Scroll`, `Witch's Hat` — hiện orphan); `P_Red01` đang dùng chung 4 potion; `Coin.asset` vừa được Unity re-serialize (mở editor kiểm tra lại); cân lại effect consumable sau đợt chỉnh giá.
+- [ ] Component/tag/layer: Abomination còn 2 `CharacterStats` trùng; rà layer `Boss`(9) vs `Enemy`(7) (VoidBoss đang ở layer 7); TODO tắt Player ở MainMenu đã note trong `PlayerManager.cs`.
+- [ ] Địa hình: thống nhất flow `GrassScene` vs `OutskirtsScene` (chapter 1); cần pass tilemap/obstacle riêng (chưa liệt kê).
+- [ ] Boss balance: Kanus chưa có controller riêng; tuning số DuoGolem/Bat/VoidBoss; WaveBoss — chờ số cụ thể.
+
 ## Tài liệu liên quan
 
-- [REFACTORING_PLAN.md](REFACTORING_PLAN.md) — kế hoạch refactor enemy system (các interface `IEnemyMovement`/`IEnemyCombat`/`IEnemyRanged`/`IEnemyStateContext`, `MovementManager`, `AnimationController`, `EnemyStateFactory` hiện đã có trong code).
 - [Assets/Docs/SequencerContext.md](Assets/Docs/SequencerContext.md) — hướng dẫn sequencer.
 - [Assets/Docs/SKILL_SYSTEM_PLAN.md](Assets/Docs/SKILL_SYSTEM_PLAN.md) — thiết kế skill system.
 - [Assets/Docs/Roadmap.md](Assets/Docs/Roadmap.md) — roadmap dự án.

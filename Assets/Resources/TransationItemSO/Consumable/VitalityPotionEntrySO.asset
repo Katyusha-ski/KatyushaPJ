@@ -18,7 +18,5 @@ MonoBehaviour:
   amount: 1
   costs:
   - item: {fileID: 11400000, guid: 1fce87340f6298c459ad153a48f16046, type: 2}
-    amount: 20
-  - item: {fileID: 11400000, guid: e14082a6742fc84498ffce5f8d4f71c5, type: 2}
-    amount: 1
+    amount: 24
   stock: 5
