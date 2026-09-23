@@ -132,6 +132,15 @@ public class SceneStateTracker : Singleton<SceneStateTracker>
     public void Refresh(Scene scene)
     {
         if (!scene.IsValid()) return;
+        // File là chân lý duy nhất: nạp trước rồi mới apply.
+        // RAM live mà chưa kịp save thì coi như chưa từng xảy ra.
+        // Chưa từng save (không có file) thì giữ RAM hiện tại.
+        if (SaveManager.HasSaveFile())
+        {
+            SaveData data = SaveManager.LoadGame();
+            if (data != null && data.sceneStates != null)
+                ImportStates(data.sceneStates);
+        }
         if (IsBossScene(scene)) return;
         ApplyState(scene);
         TrackEnemies(scene);

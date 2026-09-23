@@ -5,6 +5,7 @@ MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
@@ -13,10 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueData
   lines:
   - speaker: {fileID: 11400000, guid: 02a1fc921f4037d4bb7357b2fa36c700, type: 2}
-    text: "Hộc...hộc... Xong rồi, nè, cậu còn sống không?"
+    text: "H\u1ED9c...h\u1ED9c... Xong r\u1ED3i, n\xE8, c\u1EADu c\xF2n s\u1ED1ng
+      kh\xF4ng?"
   - speaker: {fileID: 11400000, guid: cdfbdabbf8285304690416cec3c5c792, type: 2}
-    text: "Buồn nôn quá, cảm giác chạy nhiều quá khiến cả người tôi rã rời rồi."
+    text: "Bu\u1ED3n n\xF4n qu\xE1, c\u1EA3m gi\xE1c ch\u1EA1y nhi\u1EC1u qu\xE1
+      khi\u1EBFn c\u1EA3 ng\u01B0\u1EDDi t\xF4i r\xE3 r\u1EDDi r\u1ED3i."
   - speaker: {fileID: 11400000, guid: 02a1fc921f4037d4bb7357b2fa36c700, type: 2}
-    text: "Rời khỏi đây thôi. Ta còn phải đi tiếp nữa. Nơi này chuẩn bị sụp đổ rồi."
+    text: "R\u1EDDi kh\u1ECFi \u0111\xE2y th\xF4i. Ta c\xF2n ph\u1EA3i \u0111i ti\u1EBFp
+      n\u1EEFa. N\u01A1i n\xE0y chu\u1EA9n b\u1ECB s\u1EE5p \u0111\u1ED5 r\u1ED3i."
   - speaker: {fileID: 11400000, guid: cdfbdabbf8285304690416cec3c5c792, type: 2}
-    text: "Chân của tôi không còn sức lực nữa T_T"
+    text: "Ch\xE2n c\u1EE7a t\xF4i kh\xF4ng c\xF2n s\u1EE9c l\u1EF1c n\u1EEFa T_T"

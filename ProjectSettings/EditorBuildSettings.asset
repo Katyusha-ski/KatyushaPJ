@@ -50,6 +50,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Chapter7KanusBossScene.unity
     guid: d0793d935f88b124f9ba6ffee7df1d41
+  - enabled: 1
+    path: Assets/Scenes/CreditsScene.unity
+    guid: b6b7f2908cfe4afe811410409a71d890
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   m_UseUCBPForAssetBundles: 0

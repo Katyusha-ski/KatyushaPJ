@@ -19,14 +19,14 @@ MonoBehaviour:
   baseDamage: 8
   range: 2.5
   offset: {x: 0, y: 0}
-  maxTargets: 1
+  maxTargets: 10
   hitCount: 1
   hitInterval: 0.2
   effects:
   - effectType: 2
     duration: 2
-    value: 2
-    tickInterval: 0.25
+    value: 5
+    tickInterval: 0.2
     tickValue: 0
     isDebuff: 0
     statModifiers: []

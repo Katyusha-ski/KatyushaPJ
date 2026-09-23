@@ -13,16 +13,12 @@ MonoBehaviour:
   m_Name: Chapter7HyvoriaIntroCutscene
   m_EditorClassIdentifier: Assembly-CSharp::CutsceneData
   actions:
-  - rid: 700000000000000001
   - rid: 100000000000000001
   - rid: 100000000000000002
+  - rid: 100000000000000003
   references:
     version: 2
     RefIds:
-    - rid: 700000000000000001
-      type: {class: SaveGameAction, ns: , asm: Assembly-CSharp}
-      data:
-        waitForClick: 0
     - rid: 100000000000000001
       type: {class: DialogueAction, ns: , asm: Assembly-CSharp}
       data:
@@ -41,3 +37,7 @@ MonoBehaviour:
           amount: 1
         - item: {fileID: 11400000, guid: 53274bcffd23cd5c0fe02a530d9dce03, type: 2}
           amount: 1
+    - rid: 100000000000000003
+      type: {class: SaveGameAction, ns: , asm: Assembly-CSharp}
+      data:
+        waitForClick: 0

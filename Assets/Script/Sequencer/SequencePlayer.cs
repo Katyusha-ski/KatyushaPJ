@@ -53,6 +53,15 @@ public class SequencePlayer : MonoBehaviour
         movement.CanMove = canMove;
     }
 
+    private void OnDisable()
+    {
+        // Runner bị tắt giữa cutscene (VD action Hide trúng chính object
+        // chứa SequencePlayer) sẽ giết coroutine RunSequence — mở khóa di
+        // chuyển để player không kẹt vĩnh viễn.
+        if (IsPlaying)
+            SetPlayerCanMove(true);
+    }
+
     private void OnDestroy()
     {
         if (IsPlaying)

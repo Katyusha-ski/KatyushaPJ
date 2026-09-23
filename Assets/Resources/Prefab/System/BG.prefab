@@ -80,7 +80,7 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: -1
+  m_SortingOrder: -2
   m_MaskInteraction: 0
   m_Sprite: {fileID: -6499442730171553257, guid: 34286e1d47316904dba155994f310d86, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -111,3 +111,4 @@ MonoBehaviour:
   endOffsetX: -2.7
   followCameraY: 1
   offsetY: 0.08
+  shakeInfluence: 0.35

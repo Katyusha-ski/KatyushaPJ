@@ -963,8 +963,8 @@ MonoBehaviour:
   - {fileID: 1222263229}
   - {fileID: 364756628}
   maxActiveEnemies: 4
-  targetHP: 70
-  targetAtk: 15
+  targetHP: 100
+  targetAtk: 25
   targetSkillAmp: 30
   bossHealthBar: {fileID: 0}
 --- !u!1 &806300252
@@ -977,13 +977,14 @@ GameObject:
   m_Component:
   - component: {fileID: 806300254}
   - component: {fileID: 806300253}
+  - component: {fileID: 806300255}
   m_Layer: 0
   m_Name: Eye
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!212 &806300253
 SpriteRenderer:
   serializedVersion: 2
@@ -1052,12 +1053,34 @@ Transform:
   m_GameObject: {fileID: 806300252}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 36.54, y: 7.78, z: 0}
+  m_LocalPosition: {x: 36.48, y: 4.7, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!95 &806300255
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 806300252}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: e7000000000000000000000000000003, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1001 &867038683
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1289,6 +1312,10 @@ PrefabInstance:
     - target: {fileID: 715403728477531027, guid: a152aeab2fd62134caaf0f00f90db8e3, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2134049350634557632, guid: a152aeab2fd62134caaf0f00f90db8e3, type: 3}
+      propertyPath: maxStack
+      value: 128
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -6559,6 +6586,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WaveBossArenaController
   boss: {fileID: 790390661}
+  eyeObject: {fileID: 806300252}
   bossCamera: {fileID: 642194157}
   revealFocusPoint: {fileID: 806300254}
   onRevealComplete:
@@ -6884,13 +6912,41 @@ PrefabInstance:
       propertyPath: m_Name
       value: BG
       objectReference: {fileID: 0}
+    - target: {fileID: 1799222250882601854, guid: b5c026deb5eea674492eea1e03189b0a, type: 3}
+      propertyPath: cam
+      value: 
+      objectReference: {fileID: 642194156}
+    - target: {fileID: 1799222250882601854, guid: b5c026deb5eea674492eea1e03189b0a, type: 3}
+      propertyPath: sceneEndX
+      value: 72
+      objectReference: {fileID: 0}
+    - target: {fileID: 1799222250882601854, guid: b5c026deb5eea674492eea1e03189b0a, type: 3}
+      propertyPath: endOffsetX
+      value: -12
+      objectReference: {fileID: 0}
+    - target: {fileID: 1799222250882601854, guid: b5c026deb5eea674492eea1e03189b0a, type: 3}
+      propertyPath: sceneStartX
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1799222250882601854, guid: b5c026deb5eea674492eea1e03189b0a, type: 3}
+      propertyPath: startOffsetX
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 2782240552394561134, guid: b5c026deb5eea674492eea1e03189b0a, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 1456836672378227417, guid: d51ceb807d610684287a15a1a869d4fc, type: 3}
+    - target: {fileID: 2782240552394561134, guid: b5c026deb5eea674492eea1e03189b0a, type: 3}
+      propertyPath: m_SortingOrder
+      value: -2
+      objectReference: {fileID: 0}
     - target: {fileID: 6357866185916051197, guid: b5c026deb5eea674492eea1e03189b0a, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 12.4
       objectReference: {fileID: 0}
     - target: {fileID: 6357866185916051197, guid: b5c026deb5eea674492eea1e03189b0a, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -0.4
       objectReference: {fileID: 0}
     - target: {fileID: 6357866185916051197, guid: b5c026deb5eea674492eea1e03189b0a, type: 3}
       propertyPath: m_LocalPosition.z

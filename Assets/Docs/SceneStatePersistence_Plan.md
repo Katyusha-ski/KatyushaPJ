@@ -49,9 +49,10 @@
 
 ## 3. Thứ tự apply khi load scene (quan trọng)
 
-1. Scene load xong → apply `objectStates` (SetActive) + xóa enemy trong
+1. Scene load xong → **import file trước** (nếu có file; chưa từng save thì
+   giữ RAM) → apply `objectStates` (SetActive) + xóa enemy trong
    `deadEnemies` (Destroy ngay, trong handler `sceneLoaded` chạy trước `Start`
-   của trigger/arena).
+   của trigger/arena). RAM live chưa kịp save thì coi như chưa từng xảy ra.
 2. Rồi mới để arena/trigger/cutscene chạy logic bình thường (trigger check
    `firedTriggers` và tự skip).
 

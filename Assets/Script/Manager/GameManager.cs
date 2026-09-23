@@ -36,6 +36,7 @@ public class GameManager : Singleton<GameManager>
     private void OnAnySceneLoaded(Scene scene, LoadSceneMode mode)
     {
         WireCameraFollowToPlayer();
+        RestoreGameplayUI(scene);
     }
 
     private void WireCameraFollowToPlayer()
@@ -47,6 +48,14 @@ public class GameManager : Singleton<GameManager>
         if (cameraFollow == null) return;
 
         cameraFollow.SetTarget(PlayerManager.Instance.PlayerTransform);
+    }
+
+    private void RestoreGameplayUI(Scene scene)
+    {
+        // Menu đã tắt HUD (ResetForMainMenu): vào scene chơi thì bật lại.
+        if (scene.name == "MainMenuScene") return;
+        if (UIManager.Instance != null)
+            UIManager.Instance.SetGameplayUIActive(true);
     }
 
     private void Update()

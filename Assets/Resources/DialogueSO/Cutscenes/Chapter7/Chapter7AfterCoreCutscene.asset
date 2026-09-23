@@ -13,7 +13,6 @@ MonoBehaviour:
   m_Name: Chapter7AfterCoreCutscene
   m_EditorClassIdentifier: Assembly-CSharp::CutsceneData
   actions:
-  - rid: 700000000000000001
   - rid: 6906498117785354320
   - rid: 100000000000000001
   - rid: 100000000000000006
@@ -22,21 +21,11 @@ MonoBehaviour:
   - rid: 100000000000000007
   - rid: 100000000000000004
   - rid: 100000000000000008
+  - rid: 100000000000000009
   - rid: 100000000000000005
   references:
     version: 2
     RefIds:
-    - rid: 700000000000000001
-      type: {class: SaveGameAction, ns: , asm: Assembly-CSharp}
-      data:
-        waitForClick: 0
-    - rid: 6906498117785354320
-      type: {class: ActivateObjectsAction, ns: , asm: Assembly-CSharp}
-      data:
-        waitForClick: 0
-        targetPaths:
-        - Kanus
-        setActive: 1
     - rid: 100000000000000001
       type: {class: ShowImageAction, ns: , asm: Assembly-CSharp}
       data:
@@ -45,13 +34,6 @@ MonoBehaviour:
         darkAlpha: 0.9
         fadeDuration: 0.5
         autoHoldSeconds: 2
-    - rid: 100000000000000006
-      type: {class: TeleportAction, ns: , asm: Assembly-CSharp}
-      data:
-        waitForClick: 0
-        destination: {x: 27, y: 0.7}
-        loadingMessage: "Cả hai tiến lại gần Kanus."
-        workInBlack: []
     - rid: 100000000000000002
       type: {class: DialogueAction, ns: , asm: Assembly-CSharp}
       data:
@@ -66,26 +48,11 @@ MonoBehaviour:
         darkAlpha: 1
         fadeDuration: 0.5
         autoHoldSeconds: 2
-    - rid: 100000000000000007
-      type: {class: ActivateObjectsAction, ns: , asm: Assembly-CSharp}
-      data:
-        waitForClick: 0
-        targetPaths:
-        - Kanus
-        setActive: 0
     - rid: 100000000000000004
       type: {class: DialogueAction, ns: , asm: Assembly-CSharp}
       data:
         waitForClick: 0
         dialogue: {fileID: 11400000, guid: c7000000000000000000000000000021, type: 2}
-    - rid: 100000000000000008
-      type: {class: NarrationAction, ns: , asm: Assembly-CSharp}
-      data:
-        waitForClick: 1
-        text: "2 bạn tiến hành đóng cổng dịch chuyển theo hướng dẫn của Kanus. Mọi thứ dần sụp đổ, cánh cổng đóng lại và mana quỷ suy yếu. Cả hai mệt mỏi ra khỏi cổng."
-        darkAlpha: 1
-        fadeDuration: 0.5
-        autoHoldSeconds: 2
     - rid: 100000000000000005
       type: {class: SceneTransitionAction, ns: , asm: Assembly-CSharp}
       data:
@@ -93,4 +60,40 @@ MonoBehaviour:
         sceneName: HyvoriaScene
         setChapterNumber: 0
         fadeDuration: 0.5
-        playerSpawnPosition: {x: 80, y: 2, z: 0}
+        playerSpawnPosition: {x: 90, y: 2, z: 0}
+    - rid: 100000000000000006
+      type: {class: TeleportAction, ns: , asm: Assembly-CSharp}
+      data:
+        waitForClick: 0
+        destination: {x: 27, y: 0.7}
+        loadingMessage: "C\u1EA3 hai ti\u1EBFn l\u1EA1i g\u1EA7n Kanus."
+        workInBlack: []
+    - rid: 100000000000000007
+      type: {class: ActivateObjectsAction, ns: , asm: Assembly-CSharp}
+      data:
+        waitForClick: 0
+        targetPaths:
+        - Kanus
+        setActive: 0
+    - rid: 100000000000000008
+      type: {class: NarrationAction, ns: , asm: Assembly-CSharp}
+      data:
+        waitForClick: 1
+        text: "2 b\u1EA1n ti\u1EBFn h\xE0nh \u0111\xF3ng c\u1ED5ng d\u1ECBch chuy\u1EC3n
+          theo h\u01B0\u1EDBng d\u1EABn c\u1EE7a Kanus. M\u1ECDi th\u1EE9 d\u1EA7n
+          s\u1EE5p \u0111\u1ED5, c\xE1nh c\u1ED5ng \u0111\xF3ng l\u1EA1i v\xE0 mana
+          qu\u1EF7 suy y\u1EBFu. C\u1EA3 hai m\u1EC7t m\u1ECFi ra kh\u1ECFi c\u1ED5ng."
+        darkAlpha: 1
+        fadeDuration: 0.5
+        autoHoldSeconds: 2
+    - rid: 100000000000000009
+      type: {class: SaveGameAction, ns: , asm: Assembly-CSharp}
+      data:
+        waitForClick: 0
+    - rid: 6906498117785354320
+      type: {class: ActivateObjectsAction, ns: , asm: Assembly-CSharp}
+      data:
+        waitForClick: 0
+        targetPaths:
+        - Kanus
+        setActive: 1

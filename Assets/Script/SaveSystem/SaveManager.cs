@@ -3,13 +3,49 @@ using System.IO;
 
 public static class SaveManager
 {
-    private static string savePath = Application.persistentDataPath + "/savefile.json";
+    // Editor test scene tươi thì tắt trong menu Tools (nhớ qua EditorPrefs).
+    // Bật để test full-game (ghi file editor riêng, không đụng save thật).
+    // Bản build luôn save bình thường, không qua cờ này.
+    private static string SavePath => Application.isEditor
+        ? Application.persistentDataPath + "/savefile_editor.json"
+        : Application.persistentDataPath + "/savefile.json";
+
+#if UNITY_EDITOR
+    private const string EditorSavesMenuPath = "Tools/KatyushaPJ/Editor Saves Enabled";
+    private const string EditorSavesPrefKey = "KatyushaPJ_EditorSavesEnabled";
+
+    public static bool SavesEnabledInEditor
+    {
+        get => UnityEditor.EditorPrefs.GetBool(EditorSavesPrefKey, true);
+        set
+        {
+            UnityEditor.EditorPrefs.SetBool(EditorSavesPrefKey, value);
+            UnityEditor.Menu.SetChecked(EditorSavesMenuPath, value);
+        }
+    }
+
+    [UnityEditor.MenuItem(EditorSavesMenuPath, false, 100)]
+    private static void ToggleEditorSaves()
+    {
+        SavesEnabledInEditor = !SavesEnabledInEditor;
+    }
+
+    [UnityEditor.MenuItem(EditorSavesMenuPath, true)]
+    private static bool ToggleEditorSavesValidate()
+    {
+        UnityEditor.Menu.SetChecked(EditorSavesMenuPath, SavesEnabledInEditor);
+        return true;
+    }
+#endif
 
     /// <summary>
     /// Save game data to JSON file
     /// </summary>
     public static void SaveGame(SaveData gameData)
     {
+#if UNITY_EDITOR
+        if (!SavesEnabledInEditor) return;
+#endif
         if (gameData == null)
         {
             Debug.LogError("SaveData is null! Cannot save game.");
@@ -19,8 +55,8 @@ public static class SaveManager
         try
         {
             string json = JsonUtility.ToJson(gameData, true);
-            File.WriteAllText(savePath, json);
-            Debug.Log($"Game saved successfully to: {savePath}");
+            File.WriteAllText(SavePath, json);
+            Debug.Log($"Game saved successfully to: {SavePath}");
         }
         catch (System.Exception e)
         {
@@ -33,11 +69,14 @@ public static class SaveManager
     /// </summary>
     public static SaveData LoadGame()
     {
-        if (File.Exists(savePath))
+#if UNITY_EDITOR
+        if (!SavesEnabledInEditor) return null;
+#endif
+        if (File.Exists(SavePath))
         {
             try
             {
-                string json = File.ReadAllText(savePath);
+                string json = File.ReadAllText(SavePath);
                 
                 // Validate JSON not empty
                 if (string.IsNullOrWhiteSpace(json))
@@ -65,11 +104,14 @@ public static class SaveManager
     /// </summary>
     public static void DeleteSave()
     {
+#if UNITY_EDITOR
+        if (!SavesEnabledInEditor) return;
+#endif
         try
         {
-            if (File.Exists(savePath))
+            if (File.Exists(SavePath))
             {
-                File.Delete(savePath);
+                File.Delete(SavePath);
                 Debug.Log("Save file deleted!");
             }
             else
@@ -88,7 +130,10 @@ public static class SaveManager
     /// </summary>
     public static bool HasSaveFile()
     {
-        return File.Exists(savePath);
+#if UNITY_EDITOR
+        if (!SavesEnabledInEditor) return false;
+#endif
+        return File.Exists(SavePath);
     }
 
     /// <summary>
@@ -96,6 +141,6 @@ public static class SaveManager
     /// </summary>
     public static string GetSavePath()
     {
-        return savePath;
+        return SavePath;
     }
 }

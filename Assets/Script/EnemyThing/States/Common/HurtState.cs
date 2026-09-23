@@ -2,7 +2,7 @@
 
 public class HurtState : IEnemyState
 {
-    private float hurtDuration = 0.5f;
+    private float hurtDuration = 0.25f;
     private float elapsedTime = 0f;
     private IEnemyState previousState;
     private string returnState;

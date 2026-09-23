@@ -14,6 +14,10 @@ public class WaveBossArenaController : MonoBehaviour
     [Header("Wave Boss")]
     [SerializeField] private WaveBossController boss;
 
+    [Header("Boss Visual (optional)")]
+    [Tooltip("Object mắt boss (để inactive sẵn trong scene). Vào arena sẽ bật lên, Animator tự chạy EyeOpen rồi loop EyeIdle.")]
+    [SerializeField] private GameObject eyeObject;
+
     [Header("Camera reveal (optional)")]
     [Tooltip("Để trống nếu không cần hiệu ứng zoom camera lúc vào arena.")]
     [SerializeField] private CameraController bossCamera;
@@ -40,6 +44,9 @@ public class WaveBossArenaController : MonoBehaviour
         }
 
         boss.StartBossFight();
+
+        if (eyeObject != null && !eyeObject.activeSelf)
+            eyeObject.SetActive(true);
 
         if (bossCamera != null)
         {

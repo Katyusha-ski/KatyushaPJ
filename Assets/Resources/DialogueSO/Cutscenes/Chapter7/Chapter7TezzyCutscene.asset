@@ -13,19 +13,15 @@ MonoBehaviour:
   m_Name: Chapter7TezzyCutscene
   m_EditorClassIdentifier: Assembly-CSharp::CutsceneData
   actions:
-  - rid: 700000000000000001
   - rid: 100000000000000001
   - rid: 100000000000000002
   - rid: 100000000000000003
   - rid: 100000000000000004
   - rid: 100000000000000005
+  - rid: 100000000000000006
   references:
     version: 2
     RefIds:
-    - rid: 700000000000000001
-      type: {class: SaveGameAction, ns: , asm: Assembly-CSharp}
-      data:
-        waitForClick: 0
     - rid: 100000000000000001
       type: {class: DialogueAction, ns: , asm: Assembly-CSharp}
       data:
@@ -53,6 +49,10 @@ MonoBehaviour:
         targetPaths:
         - Tezzy
         setActive: 0
+    - rid: 100000000000000006
+      type: {class: SaveGameAction, ns: , asm: Assembly-CSharp}
+      data:
+        waitForClick: 0
     - rid: 100000000000000005
       type: {class: DialogueAction, ns: , asm: Assembly-CSharp}
       data:

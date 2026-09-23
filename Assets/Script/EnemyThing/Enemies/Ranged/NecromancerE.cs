@@ -75,6 +75,10 @@ public class NecromancerE : EnemyController, IEnemyRanged
     {
         var health = GetComponent<Health>();
         if (health == null) return false;
+        // Chết rồi thì không heal nữa — nếu không Update() sẽ giật DieState
+        // sang HealState mỗi frame, timer destroy của DieState không bao giờ
+        // xong và xác nằm lại vĩnh viễn.
+        if (health.IsDead) return false;
         return health.CurrentHealth < health.MaxHealth * 0.5f;
     }
 

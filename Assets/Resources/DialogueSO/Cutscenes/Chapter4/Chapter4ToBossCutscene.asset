@@ -30,4 +30,4 @@ MonoBehaviour:
         sceneName: Chapter4BatBossScene
         setChapterNumber: 0
         fadeDuration: 0.5
-        playerSpawnPosition: {x: 437, y: 5, z: 0}
+        playerSpawnPosition: {x: 0, y: 5, z: 0}

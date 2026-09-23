@@ -10,6 +10,10 @@ public class MainMenuUI : MonoBehaviour
 
     private void Start()
     {
+        // GameUIRoot tồn tại xuyên scene: dọn HUD/panel cũ trước khi hiện menu.
+        if (UIManager.Instance != null)
+            UIManager.Instance.ResetForMainMenu();
+
         if (aboutMePanel != null)
         {
             aboutMePanel.SetActive(false);

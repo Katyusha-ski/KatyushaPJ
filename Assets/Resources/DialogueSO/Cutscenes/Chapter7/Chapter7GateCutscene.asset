@@ -13,17 +13,13 @@ MonoBehaviour:
   m_Name: Chapter7GateCutscene
   m_EditorClassIdentifier: Assembly-CSharp::CutsceneData
   actions:
-  - rid: 700000000000000001
   - rid: 100000000000000001
   - rid: 100000000000000002
   - rid: 100000000000000003
+  - rid: 100000000000000004
   references:
     version: 2
     RefIds:
-    - rid: 700000000000000001
-      type: {class: SaveGameAction, ns: , asm: Assembly-CSharp}
-      data:
-        waitForClick: 0
     - rid: 100000000000000001
       type: {class: DialogueAction, ns: , asm: Assembly-CSharp}
       data:
@@ -43,3 +39,7 @@ MonoBehaviour:
       data:
         waitForClick: 0
         dialogue: {fileID: 11400000, guid: c7000000000000000000000000000013, type: 2}
+    - rid: 100000000000000004
+      type: {class: SaveGameAction, ns: , asm: Assembly-CSharp}
+      data:
+        waitForClick: 0

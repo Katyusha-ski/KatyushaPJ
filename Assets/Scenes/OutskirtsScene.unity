@@ -499,6 +499,8 @@ MonoBehaviour:
   zoomOutDuration: 1.5
   holdDuration: 1
   zoomInDuration: 1
+  shakeDuration: 0.08
+  shakeMagnitude: 0.03
 --- !u!1 &740681871
 GameObject:
   m_ObjectHideFlags: 0
@@ -683,7 +685,7 @@ TilemapRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: -1
+  m_SortingOrder: -2
   m_MaskInteraction: 0
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_ChunkCullingBounds: {x: 0, y: 0, z: 0}
@@ -19437,6 +19439,10 @@ PrefabInstance:
       value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 5001543976435372399, guid: 52e2548da8dd85c4c8018cd6b77b61f7, type: 3}
+      propertyPath: hasHachi
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5001543976435372399, guid: 52e2548da8dd85c4c8018cd6b77b61f7, type: 3}
       propertyPath: inventoryButton
       value: 
       objectReference: {fileID: 1425342717}
@@ -20530,6 +20536,10 @@ PrefabInstance:
     - target: {fileID: 558607774447349493, guid: 191882d38e45074419ccdd6a9d5b2f91, type: 3}
       propertyPath: m_Name
       value: UsagiShopTrigger
+      objectReference: {fileID: 0}
+    - target: {fileID: 558607774447349493, guid: 191882d38e45074419ccdd6a9d5b2f91, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1125131838801624543, guid: 191882d38e45074419ccdd6a9d5b2f91, type: 3}
       propertyPath: m_LocalPosition.x

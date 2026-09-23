@@ -44,7 +44,7 @@ MonoBehaviour:
       data:
         waitForClick: 0
         targetPaths:
-        - TezzyTrigger
+        - Tezzy
         setActive: 0
     - rid: 100000000000000005
       type: {class: DialogueAction, ns: , asm: Assembly-CSharp}

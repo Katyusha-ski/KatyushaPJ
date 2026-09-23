@@ -8,7 +8,9 @@ public class GolemFinalDeathState : IEnemyState
     public void OnEnter(IEnemyMovement movement, IEnemyCombat combat, IEnemyStateContext ctx)
     {
         elapsed = 0f;
-        combat.PlayAnimTrigger("FinalDeath");
+        // Controller của golem chỉ có trigger "Die" (không có "FinalDeath"
+        // riêng) nên dùng "Die" để animation chết thực sự phát.
+        combat.PlayAnimTrigger("Die");
     }
 
     public void OnUpdate(IEnemyMovement movement, IEnemyCombat combat, IEnemyStateContext ctx)
