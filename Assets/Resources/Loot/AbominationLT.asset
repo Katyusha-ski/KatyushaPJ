@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 11e21525c5ad1ad45aebcc0ddb5bc069, type: 3}
-  m_Name: BlueSlimeLT
+  m_Name: AbominationLT
   m_EditorClassIdentifier: Assembly-CSharp::LootTable
   lootEntries:
   - item: {fileID: 11400000, guid: 1fce87340f6298c459ad153a48f16046, type: 2}
     dropChance: 100
-    minAmount: 12
-    maxAmount: 12
+    minAmount: 15
+    maxAmount: 15

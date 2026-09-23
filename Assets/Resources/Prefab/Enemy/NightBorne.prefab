@@ -290,11 +290,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c3d3b00923ba5e46917963bb4624953, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LootManager
-  lootTable: {fileID: 0}
-  itemFloatPref: {fileID: 0}
+  lootTable: {fileID: 11400000, guid: d24dcb27a9ee4387bfbc02f074044487, type: 2}
+  itemFloatPref: {fileID: 1039174889174051788, guid: 675a2b960ebb7c144b8e59f0240a58ef, type: 3}
   poolTag: ItemLoot
-  dropRad: 0
-  dropForce: 0
+  dropRad: 1
+  dropForce: 1
 --- !u!1001 &8519304120699954525
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -285,7 +285,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c3d3b00923ba5e46917963bb4624953, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LootManager
-  lootTable: {fileID: 11400000, guid: 66f36f90752fbe1448a2e56e725a4034, type: 2}
+  lootTable: {fileID: 11400000, guid: 451dd9bea50e4d13878b8ac6bdad79eb, type: 2}
   itemFloatPref: {fileID: 1039174889174051788, guid: 675a2b960ebb7c144b8e59f0240a58ef, type: 3}
   poolTag: ItemLoot
   dropRad: 1

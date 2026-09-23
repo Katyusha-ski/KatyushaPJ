@@ -275,7 +275,7 @@ MonoBehaviour:
   virtualShield: 0
   damageSFX: {fileID: 0}
   dieSFX: {fileID: 0}
-  lootManager: {fileID: 0}
+  lootManager: {fileID: 4880749663216518338}
 --- !u!114 &4880749663216518338
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -288,11 +288,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c3d3b00923ba5e46917963bb4624953, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LootManager
-  lootTable: {fileID: 0}
-  itemFloatPref: {fileID: 0}
+  lootTable: {fileID: 11400000, guid: fe7139ea69ca4d478fefa1eacb34e3c4, type: 2}
+  itemFloatPref: {fileID: 1039174889174051788, guid: 675a2b960ebb7c144b8e59f0240a58ef, type: 3}
   poolTag: ItemLoot
-  dropRad: 0
-  dropForce: 0
+  dropRad: 1
+  dropForce: 1
 --- !u!1001 &6927125508816551463
 PrefabInstance:
   m_ObjectHideFlags: 0

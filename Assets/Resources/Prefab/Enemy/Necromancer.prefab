@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: 892392807685220260}
   - component: {fileID: 5647673478957452492}
   - component: {fileID: 6885476120885125535}
+  - component: {fileID: 7777777777777777777}
   m_Layer: 7
   m_Name: Necromancer
   m_TagString: Enemy
@@ -212,7 +213,7 @@ MonoBehaviour:
   virtualShield: 0
   damageSFX: {fileID: 0}
   dieSFX: {fileID: 0}
-  lootManager: {fileID: 0}
+  lootManager: {fileID: 7777777777777777777}
 --- !u!114 &892392807685220260
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -228,8 +229,8 @@ MonoBehaviour:
   skills:
   - {fileID: 11400000, guid: f7a50ea7f0b9e5048aa57e0cf2232810, type: 2}
   - {fileID: 11400000, guid: 661b8c9f9aab47d4fa3f2dbe2f1c57eb, type: 2}
-  - {fileID: 0}
-  characterStats: {fileID: 0}
+  - {fileID: 11400000, guid: 9cf0cad0b99cffc4ca0ed83e04e88e05, type: 2}
+  characterStats: {fileID: 6885476120885125535}
 --- !u!114 &5647673478957452492
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -280,7 +281,7 @@ MonoBehaviour:
   baseCritDamage: 0.75
   baseArmorPierce: 0
   baseCDR: 0
-  baseMaxHP: 20
+  baseMaxHP: 60
   baseMovementSpeed: 2
   baseHPRegen: 0
   baseDmgR: 0
@@ -298,6 +299,23 @@ MonoBehaviour:
   totalHPRegen: 0
   totalDmgR: 0
   totalSkillAmp: 0
+--- !u!114 &7777777777777777777
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1363049656581650596}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c3d3b00923ba5e46917963bb4624953, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::LootManager
+  lootTable: {fileID: 11400000, guid: a94ef3beca3e496cacd1d43fb2afa5d7, type: 2}
+  itemFloatPref: {fileID: 1039174889174051788, guid: 675a2b960ebb7c144b8e59f0240a58ef, type: 3}
+  poolTag: ItemLoot
+  dropRad: 1
+  dropForce: 1
 --- !u!1001 &4265062240444488773
 PrefabInstance:
   m_ObjectHideFlags: 0
