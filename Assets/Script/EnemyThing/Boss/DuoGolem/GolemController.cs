@@ -33,10 +33,6 @@ public class GolemController : EnemyController
     // Phase scaling is preserved on top of that reduced baseline.
     [SerializeField] protected float[] attackSpeedMultipliers = new float[] { 0.75f, 0.8625f, 1.0125f, 1.2f };
 
-    /// <summary>Punch damage — locked at Mức 3 across ALL phases per GDD. Only speed scales with phase.</summary>
-    [Header("Punch Damage (Muc 3, constant across all phases)")]
-    [SerializeField] protected int punchDamage = 25;
-
     [Header("Normal Attack Hitbox")]
     [SerializeField] private Vector2 attackHitboxSize = new Vector2(3f, 2f);
     [SerializeField] private LayerMask playerLayer;
@@ -113,7 +109,6 @@ public class GolemController : EnemyController
         if (characterStats != null)
         {
             characterStats.SetBaseMovementSpeed(moveSpeedMultipliers[0]);
-            characterStats.SetBaseAttack(punchDamage);
         }
     }
 
@@ -186,7 +181,6 @@ public class GolemController : EnemyController
         if (characterStats != null)
         {
             characterStats.SetBaseMovementSpeed(moveSpeedMultipliers[phaseIndex]);
-            characterStats.SetBaseAttack(punchDamage);
         }
 
         stateCache["Attack"] = GetAttackState();
@@ -340,7 +334,7 @@ public class GolemController : EnemyController
 
     public override IEnemyState GetAttackState()
     {
-        return new GolemAttackState(punchDamage, 1f / attackSpeedMultipliers[(int)currentPhase]);
+        return new GolemAttackState(1f / attackSpeedMultipliers[(int)currentPhase]);
     }
 
     public override void HandleEnemyDeath()

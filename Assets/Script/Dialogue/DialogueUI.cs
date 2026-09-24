@@ -32,8 +32,6 @@ public class DialogueUI : Singleton<DialogueUI>
 
     public void Show(DialogueLine line)
     {
-        // ResetForMainMenu (UIManager) tắt nguyên GameObject này để chống overlap
-        // ở MainMenu; bật lại chính mình vì panel con không thể hiện khi cha còn tắt.
         gameObject.SetActive(true);
 
         if (panel != null)

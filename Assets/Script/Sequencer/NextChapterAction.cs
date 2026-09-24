@@ -51,5 +51,9 @@ public class NextChapterAction : SequenceAction
 
         if (TeleportManager.Instance != null)
             yield return TeleportManager.Instance.FadeFromBlack(duration);
+
+        string arrivedScene = SceneManager.GetActiveScene().name;
+        if (arrivedScene != "MainMenuScene" && arrivedScene != "CreditsScene" && GameManager.Instance != null)
+            GameManager.Instance.SaveGame();
     }
 }

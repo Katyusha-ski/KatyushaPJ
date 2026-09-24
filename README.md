@@ -179,6 +179,7 @@ Các thư mục chính nằm trong `Assets/Script/`:
 - [ ] Component/tag/layer: Abomination còn 2 `CharacterStats` trùng; rà layer `Boss`(9) vs `Enemy`(7) (VoidBoss đang ở layer 7); TODO tắt Player ở MainMenu đã note trong `PlayerManager.cs`.
 - [ ] Địa hình: thống nhất flow `GrassScene` vs `OutskirtsScene` (chapter 1); cần pass tilemap/obstacle riêng (chưa liệt kê).
 - [ ] Boss balance: Kanus chưa có controller riêng; tuning số DuoGolem/Bat/VoidBoss; WaveBoss — chờ số cụ thể.
+- [ ] Spawn protection sau load (retry/Continue): bất tử/untargetable ~3s bằng StatusEffect (Undying/Untargetable), chống chết lặp khi spawn kề quái — chưa làm, chờ test lại vụ enemy bám theo lúc load.
 
 ## Tài liệu liên quan
 

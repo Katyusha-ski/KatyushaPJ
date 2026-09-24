@@ -88,6 +88,11 @@ public class EnemyController : MonoBehaviour, IEnemyStateProvider, IEnemyMovemen
         animationCtrl = new AnimationController(animator);
         stateFactory = CreateStateFactory();
 
+        homePosition = transform.position;
+        patrolMinX = homePosition.x - patrolHalfWidth;
+        patrolMaxX = homePosition.x + patrolHalfWidth;
+        movement.SetPatrolBounds(patrolMinX, patrolMaxX);
+
         CacheStates();
         ChangeState(GetIdleState());
         controllerInitialized = true;
@@ -158,9 +163,8 @@ public class EnemyController : MonoBehaviour, IEnemyStateProvider, IEnemyMovemen
         Mathf.Max(maxChaseDistance - visionRange, minReEngageDistance);
 
     // Mọi check leash phải dùng cái này, KHÔNG tự viết Vector2.Distance.
-    // Chưa capture home → trả 0: toàn bộ rule leash tự vô hiệu (pre-capture gate).
     public float DistanceFromHomeX =>
-        homeCaptured ? Mathf.Abs(transform.position.x - homePosition.x) : 0f;
+        Mathf.Abs(transform.position.x - homePosition.x);
 
     public bool HomeCaptured => homeCaptured;
 

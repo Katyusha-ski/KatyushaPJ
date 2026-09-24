@@ -49,6 +49,14 @@ public class GameSceneController : Singleton<GameSceneController>
         #endif
     }
 
+    public void OnQuitButtonClick()
+    {
+        if (GameSceneController.Instance != null)
+            GameSceneController.Instance.QuitGame();
+        else
+            Application.Quit();
+    }
+
     public void OpenFacebookPage()
     {
         // Thay đổi URL này thành trang cá nhân của bạn

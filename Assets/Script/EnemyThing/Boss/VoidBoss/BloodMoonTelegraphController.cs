@@ -3,7 +3,7 @@ using UnityEngine;
 public class BloodMoonTelegraphController : MonoBehaviour
 {
     [SerializeField] private float damageRadius = 2.5f;
-    [SerializeField] private int damageAmount = 30;
+    [SerializeField] private int damageAmount = 15;
     [SerializeField] private LayerMask playerLayer;
 
     private Animator animator;

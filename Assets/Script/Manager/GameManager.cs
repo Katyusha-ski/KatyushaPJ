@@ -37,6 +37,7 @@ public class GameManager : Singleton<GameManager>
     {
         WireCameraFollowToPlayer();
         RestoreGameplayUI(scene);
+        SetPlayerActiveForScene(scene);
     }
 
     private void WireCameraFollowToPlayer()
@@ -56,6 +57,14 @@ public class GameManager : Singleton<GameManager>
         if (scene.name == "MainMenuScene") return;
         if (UIManager.Instance != null)
             UIManager.Instance.SetGameplayUIActive(true);
+    }
+
+    private void SetPlayerActiveForScene(Scene scene)
+    {
+        if (PlayerManager.Instance == null || PlayerManager.Instance.PlayerTransform == null)
+            return;
+        bool gameplay = scene.name != "MainMenuScene" && scene.name != "CreditsScene";
+        PlayerManager.Instance.PlayerTransform.gameObject.SetActive(gameplay);
     }
 
     private void Update()
@@ -110,7 +119,7 @@ public class GameManager : Singleton<GameManager>
         }
 
         List<SerializableShopEntry> shopData = new List<SerializableShopEntry>();
-        ShopManager shop = FindFirstObjectByType<ShopManager>();
+        ShopManager shop = ShopManager.Instance;
         if (shop != null)
             shop.GetSerializableData(shopData);
 
@@ -214,6 +223,8 @@ public class GameManager : Singleton<GameManager>
             Inventory.Instance.ClearInventory();
         }
 
+        PlayerManager.Instance?.GetComponent<PlayerSkillManager>()?.ReloadSkills();
+
         UsagiShopChest?.Clear();
 
         SceneStateTracker.ClearAllStates();
@@ -257,6 +268,7 @@ public class GameManager : Singleton<GameManager>
             Inventory.Instance.LoadSerializableInventory(tempSaveData.inventoryItem);
             Inventory.Instance.LoadSerializableEquipment(tempSaveData.equipmentItem);
             Inventory.Instance.LoadSerializableSkillUnlocked(tempSaveData.skillUnlocked);
+            PlayerManager.Instance?.GetComponent<PlayerSkillManager>()?.ReloadSkills();
             Inventory.Instance.LoadSerializableQuestItems(tempSaveData.questItems);
             Debug.Log("Inventory, equipment, skills and quest items restored!");
         }
@@ -266,7 +278,7 @@ public class GameManager : Singleton<GameManager>
         }
 
         // Restore shop data
-        ShopManager shop = FindFirstObjectByType<ShopManager>();
+        ShopManager shop = ShopManager.Instance;
         if (shop != null)
             shop.LoadSerializableData(tempSaveData.shopEntries);
 
@@ -316,7 +328,7 @@ public class GameManager : Singleton<GameManager>
                 PlayerManager.Instance.PlayerTransform.position = savedPosition;
 
             if (PlayerManager.Instance.PlayerHealth != null)
-                PlayerManager.Instance.PlayerHealth.SetHealth(tempSaveData.playerHealth);
+                PlayerManager.Instance.PlayerHealth.Revive(tempSaveData.playerHealth);
         
 
         tempSaveData = null; 

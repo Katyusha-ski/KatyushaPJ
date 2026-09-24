@@ -3,7 +3,7 @@ using UnityEngine;
 public class AmbushTrapController : MonoBehaviour
 {
     [SerializeField] private float delayBeforeStrike = 0.5f;
-    [SerializeField] private int damage = 35;
+    [SerializeField] private int damage = 25;
     [SerializeField] private float silentDuration = 2f;
     [SerializeField] private float dashSpeed = 10f;
     [SerializeField] private float maxDashDistance = 15f;

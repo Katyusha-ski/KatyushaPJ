@@ -2,7 +2,7 @@
 
 public class BatHole : MonoBehaviour
 {
-    [SerializeField] private float damage = 8f;
+    [SerializeField] private float damage = 14f;
 
     // Cache the player GameObject when it enters the trigger
     private GameObject playerInRange;

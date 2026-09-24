@@ -32,10 +32,6 @@ public class UIManager : Singleton<UIManager>
         HidePanel<InventoryUI>();
         HidePanel<ShopUI>();
         HidePanel<SkillPanelUI>();
-        // KHÔNG HidePanel<QuestListUI>/<QuestDetailUI> riêng: chúng nằm trong cụm
-        // "Inventory UI" đã bị tắt ở trên. Tắt lẻ từng con làm chúng không tự hồi
-        // được (Show chỉ bật object con bên trong), trong khi bật/tắt ở cấp cụm
-        // cha thì TabController + OnEnable/Refresh tự hồi phục đầy đủ.
         HidePanel<CharacterStatsUI>();
         HidePanel<DialogueUI>();
         HidePanel<GameOverUI>();
@@ -66,6 +62,14 @@ public class UIManager : Singleton<UIManager>
     public void RestartCurrentScene()
     {
         GameSceneController.Instance.RestartCurrentScene();
+    }
+
+    public void RetryFromSave()
+    {
+        if (GameManager.Instance != null && GameManager.Instance.HasSaveFile())
+            GameManager.Instance.LoadGame();
+        else if (GameSceneController.Instance != null)
+            GameSceneController.Instance.RestartCurrentScene();
     }
 
     public void LoadMainMenu()

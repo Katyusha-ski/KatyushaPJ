@@ -3,6 +3,7 @@
 public class ReturnToPostState : IEnemyState
 {
     public float recoveryTimer;
+    private const float MinReturnDwell = 0.5f;
     public void OnEnter(IEnemyMovement movement, IEnemyCombat combat, IEnemyStateContext ctx)
     {
         recoveryTimer = 0f;
@@ -20,8 +21,9 @@ public class ReturnToPostState : IEnemyState
             ctx.SwitchTo("Patrol");
             return;
         }
-        // 1. Được phép re-engage (ngoài dead zone + thấy Player) → Pursuit
-        if (enemy.ShouldReengage())
+        // 1. Được phép re-engage (ngoài dead zone + thấy Player) → Pursuit.
+        // Giữ tối thiểu MinReturnDwell để không flip-flop với Pursuit ở biên leash.
+        if (recoveryTimer > MinReturnDwell && enemy.ShouldReengage())
         {
             ctx.SwitchTo("Pursuit");
             return;

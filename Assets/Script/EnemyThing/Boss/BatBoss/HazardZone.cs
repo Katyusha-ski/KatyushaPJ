@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class HazardZone : MonoBehaviour
 {
-    [SerializeField] private float tickDamage = 3f;
+    [SerializeField] private float tickDamage = 5f;
     [SerializeField] private float tickInterval = 1f;
     [SerializeField] private float effectDuration = 3f;
 

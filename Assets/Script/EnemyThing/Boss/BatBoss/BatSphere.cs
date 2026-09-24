@@ -7,13 +7,13 @@ public class BatSphere : MonoBehaviour
     [SerializeField] private LayerMask playerLayer;
     [SerializeField] private GameObject hazardZonePrefab;
     [SerializeField] private float hazardDuration = 5f;
-    [SerializeField] private int dotDamage = 3;
+    [SerializeField] private int dotDamage = 5;
     [SerializeField] private float dotInterval = 1f;
     [SerializeField] private float dotDuration = 3f;
 
     [Header("AoE Explosion")]
     [SerializeField] private float explosionRadius = 2f;
-    [SerializeField] private int explosionDamage = 5;
+    [SerializeField] private int explosionDamage = 9;
 
     [Header("Animation")]
     [SerializeField] private float explosionAnimDuration = 0.5f;

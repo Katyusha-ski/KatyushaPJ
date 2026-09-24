@@ -11,7 +11,7 @@ public class StoneSpikeStabSkill : IEnvironmentSkill
     private float[] aoeRadiusByPhase = new float[] { 1.5f, 1.875f, 1.875f, 2.25f };
 
     /// <summary>Damage per phase. Phase1-2: Mức 1-2. Phase3-4: Mức 3→Max 4. Architect: chua chot so lieu.</summary>
-    private int[] damageByPhase = new int[] { 5, 10, 20, 30 };
+    private int[] damageByPhase = new int[] { 5, 10, 15, 20 };
 
     /// <summary>Cooldown between activations per phase. Phase4: relentless, forces constant dashing. Architect: chua chot so lieu.</summary>
     private float[] cooldownByPhase = new float[] { 8f, 6f, 4f, 3f };

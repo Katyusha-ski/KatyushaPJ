@@ -50,7 +50,7 @@ public class BatBossController : EnemyController
     private float pillarSpawnTimer;
 
     public event System.Action OnBossDefeated;
-    public int PillarBurstDamage => Mathf.RoundToInt(cachedMaxHP * 0.25f);
+    public int PillarBurstDamage => Mathf.RoundToInt(cachedMaxHP * 0.10f);
     public int CachedMaxHP => cachedMaxHP;
 
     protected override void Start()

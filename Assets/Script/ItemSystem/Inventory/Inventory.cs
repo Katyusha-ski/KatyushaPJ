@@ -370,6 +370,7 @@ public class Inventory : Singleton<Inventory>
             skillUnlocked[i] = false;
         questItems.Clear();
         OnInventoryChanged?.Invoke();
+        OnEquipmentChanged?.Invoke();
         OnSkillMatrixChanged?.Invoke();
         OnQuestItemsChanged?.Invoke();
         return true;
@@ -489,6 +490,7 @@ public class Inventory : Singleton<Inventory>
         }
 
         OnInventoryChanged?.Invoke();
+        OnEquipmentChanged?.Invoke();
     }
 
     public List<bool> GetSerializableSkillUnlocked()

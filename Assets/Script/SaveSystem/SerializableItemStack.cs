@@ -44,10 +44,7 @@ public class SerializableItemStack
     public ItemStack ToItemStack()
     {
         if (string.IsNullOrEmpty(itemName))
-        {
-            Debug.LogWarning("Item name is null or empty.");
             return null;
-        }
 
         if (!ItemCache.TryGetValue(itemName, out ItemData itemData) || itemData == null)
         {

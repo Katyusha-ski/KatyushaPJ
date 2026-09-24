@@ -8,7 +8,7 @@ public class RollingStoneSkill : IEnvironmentSkill
     private float[] cooldownByPhase = new float[] { 8f, 6f, 4f, 3f };
 
     /// <summary>Damage per phase. Phase1-2: Mức 1-2 (chip). Phase3-4: Mức 3→Max 4. Architect: chua chot so lieu.</summary>
-    private int[] damageByPhase = new int[] { 5, 10, 20, 30 };
+    private int[] damageByPhase = new int[] { 5, 10, 15, 20 };
 
     /// <summary>Hitbox scale multiplier per phase. Higher = larger boulder. Architect: chua chot so lieu.</summary>
     private float[] hitboxScaleByPhase = new float[] { 1f, 1f, 1.5f, 2f };

@@ -17,7 +17,7 @@ public class VoidBossController : EnemyController
 
     [Header("Spike Pierce")]
     [SerializeField] private float spikeWidth = 1.5f;
-    [SerializeField] private int spikeDamage = 25;
+    [SerializeField] private int spikeDamage = 20;
 
     [Header("Layer Masks")]
     [SerializeField] private LayerMask playerLayer;

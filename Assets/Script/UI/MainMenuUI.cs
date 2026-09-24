@@ -74,7 +74,7 @@ public class MainMenuUI : MonoBehaviour
             aboutMePanel.SetActive(false);
         }
     }
-
+ 
     public void OnSaveButtonClick()
     {
         if (GameManager.Instance != null)

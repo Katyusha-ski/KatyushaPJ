@@ -2,7 +2,8 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 /// <summary>
-/// Màn hình tri ân sau khi phá đảo: chữ cuộn lên, bấm phím/chuột để bỏ qua.
+/// Màn hình tri ân sau khi phá đảo: vào hiện lời cảm ơn, mỗi click hiện
+/// thêm 1 khối (assets, rồi donation), click cuối về menu.
 /// Wipe save + reset tiến trình NGAY KHI VÀO (point of no return), rồi về menu.
 /// </summary>
 public class CreditsController : MonoBehaviour
@@ -10,73 +11,66 @@ public class CreditsController : MonoBehaviour
     [Header("UI")]
     [SerializeField] private TMPro.TMP_Text creditsText;
 
-    [Header("Chữ chạy")]
-    [SerializeField] private float scrollSpeed = 60f;
-    [SerializeField] private float startDelay = 1f;
-    [SerializeField] private float endHoldSeconds = 2f;
-
     [Header("Nội dung (sửa trong Inspector nếu đổi)")]
     [TextArea(3, 10)] [SerializeField] private string titleBlock =
         "CẢM ƠN ĐÃ CHƠI KATYUSHA";
-    [TextArea(3, 10)] [SerializeField] private string donorBlock =
-        "ỦNG HỘ / DONATE\nTezzy tìm nhà\nIfeelsoskibidi\nNe Ne\nTrần Hải Bằng\nKiotakhai";
     [TextArea(3, 10)] [SerializeField] private string devBlock =
         "PHÁT TRIỂN\nToàn bộ mọi thứ đều được Katyusha a.k.a Nguyễn Minh Châu làm ra hoặc ăn trộm từ đâu đó.";
+    [TextArea(3, 10)] [SerializeField] private string donorBlock =
+        "ỦNG HỘ / DONATE\nTezzy tìm nhà\nIfeelsoskibidi\nNe Ne\nTrần Hải Bằng\nKiotakhai";
 
-    private RectTransform textRect;
-    private float totalHeight;
-    private float startTimer;
-    private float endTimer;
+    [Header("Click")]
+    [Tooltip("Chặn click lan từ cutscene/usagi trước đó (giây).")]
+    [SerializeField] private float inputLockSeconds = 0.5f;
+
+    private int stage;
+    private float inputLock;
     private bool finished;
 
     private void Start()
     {
         WipeProgress();
 
-        if (creditsText != null)
+        if (UIManager.Instance != null)
         {
-            creditsText.text = titleBlock + "\n\n\n" + donorBlock + "\n\n\n" + devBlock;
-            creditsText.ForceMeshUpdate();
-            textRect = creditsText.rectTransform;
-            totalHeight = Mathf.Max(creditsText.preferredHeight, Screen.height);
-            Vector2 pos = textRect.anchoredPosition;
-            pos.y = -Screen.height * 0.5f - totalHeight * 0.5f;
-            textRect.anchoredPosition = pos;
+            UIManager.Instance.SetShopButtonActive(false);
+            UIManager.Instance.SetGameplayUIActive(false);
         }
 
-        startTimer = startDelay;
+        inputLock = inputLockSeconds;
+        ShowStage(0);
     }
 
     private void Update()
     {
         if (finished) return;
 
-        // Bỏ qua bất cứ lúc nào.
+        if (inputLock > 0f)
+        {
+            inputLock -= Time.unscaledDeltaTime;
+            return;
+        }
+
         if (Input.anyKeyDown || Input.GetMouseButtonDown(0))
-        {
+            Advance();
+    }
+
+    private void Advance()
+    {
+        stage++;
+        if (stage >= 3)
             Finish();
-            return;
-        }
+        else
+            ShowStage(stage);
+    }
 
-        if (startTimer > 0f)
-        {
-            startTimer -= Time.unscaledDeltaTime;
-            return;
-        }
+    private void ShowStage(int index)
+    {
+        if (creditsText == null) return;
 
-        if (textRect != null)
-        {
-            Vector2 pos = textRect.anchoredPosition;
-            pos.y += scrollSpeed * Time.unscaledDeltaTime;
-            textRect.anchoredPosition = pos;
-
-            if (pos.y >= Screen.height * 0.5f + totalHeight * 0.5f)
-            {
-                endTimer += Time.unscaledDeltaTime;
-                if (endTimer >= endHoldSeconds)
-                    Finish();
-            }
-        }
+        creditsText.text = index == 0 ? titleBlock : index == 1 ? devBlock : donorBlock;
+        creditsText.rectTransform.anchoredPosition = Vector2.zero;
+        creditsText.ForceMeshUpdate();
     }
 
     private void Finish()

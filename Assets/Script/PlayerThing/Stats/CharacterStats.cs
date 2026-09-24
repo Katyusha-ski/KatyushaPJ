@@ -36,7 +36,7 @@ public class CharacterStats : MonoBehaviour
     private void Start()
     {
         StatsChanged += OnStatsChanged;
-
+        OnStatsChanged();
     }
 
     // Calculated stats
@@ -300,6 +300,26 @@ public class CharacterStats : MonoBehaviour
         }
     }
 
+    private void OnStatsChanged()
+    {
+#if UNITY_EDITOR
+        totalAtk = Atk;
+        totalArmor = Armor;
+        totalMaxHP = MaxHP;
+        totalMovementSpeed = MovementSpeed;
+        totalCritRate = CritRate;
+        totalCritDamage = CritDamage;
+        totalArmorPierce = ArmorPierce;
+        totalLifesteal = LifeSteal;
+        totalCCRes = CCRes;
+        totalCDR = CDR;
+        totalHPRegen = HPRegen;
+        totalDmgR = DmgR;
+        totalSkillAmp = SkillAmp;
+#endif
+
+    }
+
 #if UNITY_EDITOR
     [Header("═══ DEBUG: TOTAL STATS (After Modifiers) ═══")]
     [SerializeField, InspectorName("Attack")] private float totalAtk;
@@ -316,22 +336,9 @@ public class CharacterStats : MonoBehaviour
     [SerializeField, InspectorName("Damage Reduction")] private float totalDmgR;
     [SerializeField, InspectorName("Skill Amp")] private float totalSkillAmp;
 
-    private void OnStatsChanged()
-    {
-        totalAtk = Atk;
-        totalArmor = Armor;
-        totalMaxHP = MaxHP;
-        totalMovementSpeed = MovementSpeed;
-        totalCritRate = CritRate;
-        totalCritDamage = CritDamage;
-        totalArmorPierce = ArmorPierce;
-        totalLifesteal = LifeSteal;
-        totalCCRes = CCRes;
-        totalCDR = CDR;
-        totalHPRegen = HPRegen;
-        totalDmgR = DmgR;
-        totalSkillAmp = SkillAmp;
-    }
+
+    
+
 
     [ContextMenu("Debug Add Max HP")]
     public void DebugAddMaxHP()

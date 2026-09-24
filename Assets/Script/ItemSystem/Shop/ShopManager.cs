@@ -61,8 +61,9 @@ public class ShopManager : Singleton<ShopManager>
 
     public bool Purchase(ShopEntrySO entry)
     {
-        if (!CanAfford(entry) || entry.item == null || !IsUnlocked(entry))
-            return false;
+        if (!CanAfford(entry) || entry.item == null || !IsUnlocked(entry)) return false;
+        int stock = GetCurrentStock(entry);
+        if (stock != -1 && stock <= 0) return false;
 
         if (entry.costs != null)
         {
@@ -100,11 +101,26 @@ public class ShopManager : Singleton<ShopManager>
 
     public int GetCurrentStock(ShopEntrySO entry)
     {
+        if (entry == null || entry.item == null) return 0;
+        if (entry.item.IsEquipment() && PlayerOwnsEquipment(entry.item)) return 0;
         if (runtimeData.TryGetValue(entry, out var state))
         {
             return state.currentStock;
         }
         return 0; // Default to 0 if entry not found, though ideally this should not happen if entries are properly initialized
+    }
+
+    private bool PlayerOwnsEquipment(ItemData item)
+    {
+        if (Inventory.Instance == null) return false;
+        if (Inventory.Instance.GetItemCount(item) > 0) return true;
+        var equipped = Inventory.Instance.equipment;
+        if (equipped == null) return false;
+        foreach (var stack in equipped)
+        {
+            if (stack != null && stack.item == item) return true;
+        }
+        return false;
     }
 
     public void GetSerializableData(List<SerializableShopEntry> serializableEntries)
@@ -114,8 +130,7 @@ public class ShopManager : Singleton<ShopManager>
         {
             if (entry != null)
             {
-                int remainingStock = runtimeData.TryGetValue(entry, out var state) ? state.currentStock : 0;
-                serializableEntries.Add(new SerializableShopEntry(entry.item != null ? entry.item.itemName : "Unknown Item", remainingStock));
+                serializableEntries.Add(new SerializableShopEntry(entry.item != null ? entry.item.itemName : "Unknown Item", GetCurrentStock(entry)));
             }
         }
     }

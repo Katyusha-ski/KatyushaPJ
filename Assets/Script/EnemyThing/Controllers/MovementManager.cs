@@ -84,9 +84,10 @@ public class MovementManager
         if (player == null) return;
 
         float diffX = player.position.x - rb.position.x;
-        direction = diffX > 0 ? -1 : 1;
-        ApplySpriteFlip(direction);
-        rb.linearVelocityX = stats.MovementSpeed * speedMultiplier * direction;
+        int facing = diffX > 0 ? 1 : -1;
+        direction = facing;
+        ApplySpriteFlip(facing);
+        rb.linearVelocityX = stats.MovementSpeed * speedMultiplier * -facing;
     }
 
     public float GetDistanceToPlayer(Transform player)

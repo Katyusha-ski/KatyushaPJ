@@ -2,13 +2,11 @@ using UnityEngine;
 
 public class GolemAttackState : IEnemyState
 {
-    private int damage;
     private float animDuration;
     private float elapsed;
 
-    public GolemAttackState(int damage, float animDuration)
+    public GolemAttackState(float animDuration)
     {
-        this.damage = damage;
         this.animDuration = animDuration;
     }
 
