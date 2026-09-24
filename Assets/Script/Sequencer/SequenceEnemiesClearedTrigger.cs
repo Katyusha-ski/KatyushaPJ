@@ -83,6 +83,11 @@ public class SequenceEnemiesClearedTrigger : MonoBehaviour
     private void CheckAllDefeated()
     {
         if (hasFired || aliveEnemies.Count > 0) return;
+        if (SceneStateTracker.WasTriggerFired(gameObject.scene.name, gameObject.name))
+        {
+            hasFired = true;
+            return;
+        }
 
         hasFired = true;
         SceneStateTracker.RecordTriggerFired(gameObject.scene.name, gameObject.name);

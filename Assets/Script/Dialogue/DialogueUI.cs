@@ -18,8 +18,9 @@ public class DialogueUI : Singleton<DialogueUI>
 
     public event Action OnNextClicked;
 
-    private void Start()
+    protected override void Awake()
     {
+        base.Awake();
         if (panel != null)
             panel.SetActive(false);
 

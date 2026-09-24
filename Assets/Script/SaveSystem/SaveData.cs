@@ -23,6 +23,7 @@ public class SaveData
 
     // Player stats
     public int playerHealth;
+    public bool hasHachi;
     public float playerPositionX;
     public float playerPositionY;
     public float playerPositionZ;
@@ -47,6 +48,7 @@ public class SaveData
             currentSceneIndex = -1,
             currentSceneName = null,
             playerHealth = 20,
+            hasHachi = false,
             playerPositionX = 0f,
             playerPositionY = 0f,
             playerPositionZ = 0f,

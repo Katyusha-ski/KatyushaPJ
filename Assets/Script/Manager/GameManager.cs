@@ -102,12 +102,16 @@ public class GameManager : Singleton<GameManager>
 
         // Get player state
         int playerHealth = 0;
+        bool hasHachi = false;
         Vector3 playerPosition = Vector3.zero;
 
         if (PlayerManager.Instance != null)
         {
             if (PlayerManager.Instance.PlayerHealth != null)
                 playerHealth = PlayerManager.Instance.PlayerHealth.CurrentHealth;
+
+            if (PlayerManager.Instance.PlayerController != null)
+                hasHachi = PlayerManager.Instance.PlayerController.HasHachi;
 
             if (PlayerManager.Instance.PlayerTransform != null)
                 playerPosition = PlayerManager.Instance.PlayerTransform.position;
@@ -148,6 +152,7 @@ public class GameManager : Singleton<GameManager>
             currentSceneName = currentScene.name,
             // Player state
             playerHealth = playerHealth,
+            hasHachi = hasHachi,
             playerPositionX = playerPosition.x,
             playerPositionY = playerPosition.y,
             playerPositionZ = playerPosition.z,
@@ -329,6 +334,9 @@ public class GameManager : Singleton<GameManager>
 
             if (PlayerManager.Instance.PlayerHealth != null)
                 PlayerManager.Instance.PlayerHealth.Revive(tempSaveData.playerHealth);
+
+            if (PlayerManager.Instance.PlayerController != null)
+                PlayerManager.Instance.PlayerController.SetHachiAppeared(tempSaveData.hasHachi);
         
 
         tempSaveData = null; 

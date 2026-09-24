@@ -33,7 +33,8 @@ public class UIManager : Singleton<UIManager>
         HidePanel<ShopUI>();
         HidePanel<SkillPanelUI>();
         HidePanel<CharacterStatsUI>();
-        HidePanel<DialogueUI>();
+        if (DialogueUI.Instance != null)
+            DialogueUI.Instance.Hide();
         HidePanel<GameOverUI>();
         HidePanel<VictoryUI>();
         HidePanel<MenuUI>();
