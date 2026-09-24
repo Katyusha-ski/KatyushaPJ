@@ -194,6 +194,11 @@ public class GameManager : Singleton<GameManager>
         // Store save data temporarily
         tempSaveData = saveData;
 
+        // Load-file: bỏ nháp RAM của tracker để tiến trình sau lần save
+        // (quái giết, trigger fire) không kẹt lại. Refresh khi scene mới
+        // load sẽ merge file vào RAM trống = đúng trạng thái file.
+        SceneStateTracker.ClearAllStates();
+
         // Load the saved scene
         // TODO: sau này build map xong thì check theo sceneName thay vì sceneIndex
         if (saveData.currentSceneIndex > 0)
@@ -297,8 +302,9 @@ public class GameManager : Singleton<GameManager>
 
         UsagiShopChest.LoadSerializableItems(savedChest?.items);
 
-        // Nạp scene state rồi apply ngay cho scene vừa load (handler của
-        // tracker chạy trước lúc import nên phải refresh lại ở đây).
+        // Nạp scene state rồi apply ngay cho scene vừa load: bỏ nháp RAM,
+        // chép lại đúng file (thay vì union cộng dồn) rồi mới refresh.
+        SceneStateTracker.ClearAllStates();
         SceneStateTracker.ImportStates(tempSaveData.sceneStates);
         SceneStateTracker.RefreshForScene(scene);
 
