@@ -18,6 +18,7 @@ MonoBehaviour:
   - rid: 100000000000000003
   - rid: 100000000000000004
   - rid: 100000000000000005
+  - rid: 100000000000000006
   references:
     version: 2
     RefIds:
@@ -51,3 +52,7 @@ MonoBehaviour:
       data:
         waitForClick: 0
         dialogue: {fileID: 11400000, guid: 10000000000000000000000000000006, type: 2}
+    - rid: 100000000000000006
+      type: {class: SaveGameAction, ns: , asm: Assembly-CSharp}
+      data:
+        waitForClick: 0

@@ -16,6 +16,7 @@ MonoBehaviour:
   - rid: 690000000000000257
   - rid: 690000000000000258
   - rid: 5747512877583171683
+  - rid: 5747512877583171684
   references:
     version: 2
     RefIds:
@@ -40,3 +41,7 @@ MonoBehaviour:
         targetPaths:
         - UsagiShopTrigger
         setActive: 1
+    - rid: 5747512877583171684
+      type: {class: SaveGameAction, ns: , asm: Assembly-CSharp}
+      data:
+        waitForClick: 0

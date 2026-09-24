@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueData
   lines:
   - speaker: {fileID: 11400000, guid: ba9e4e92a1ad5fd48a4938317a4ac0ba, type: 2}
-    text: "(chạy tới) Xong rồi! Hai người làm được rồi!"
+    text: "Xong rồi! Hai người làm được rồi!"
   - speaker: {fileID: 11400000, guid: 02a1fc921f4037d4bb7357b2fa36c700, type: 2}
-    text: "(thở phào) ...Cuối cùng cũng xong."
+    text: "Phù... Cuối cùng cũng xong."

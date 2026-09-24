@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CutsceneData
   actions:
   - rid: 100000000000000009
+  - rid: 100000000000000010
   references:
     version: 2
     RefIds:
@@ -22,3 +23,7 @@ MonoBehaviour:
       data:
         waitForClick: 0
         dialogue: {fileID: 11400000, guid: 7644c82c45c5cca40ac44e9e40455410, type: 2}
+    - rid: 100000000000000010
+      type: {class: SaveGameAction, ns: , asm: Assembly-CSharp}
+      data:
+        waitForClick: 0

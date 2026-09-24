@@ -19,6 +19,7 @@ MonoBehaviour:
   - rid: 100000000000000007
   - rid: 5747512995647324161
   - rid: 100000000000000008
+  - rid: 5747512995647324162
   references:
     version: 2
     RefIds:
@@ -62,3 +63,7 @@ MonoBehaviour:
         targetPaths:
         - Old_Tree_Trigger/Minda
         setActive: 1
+    - rid: 5747512995647324162
+      type: {class: SaveGameAction, ns: , asm: Assembly-CSharp}
+      data:
+        waitForClick: 0

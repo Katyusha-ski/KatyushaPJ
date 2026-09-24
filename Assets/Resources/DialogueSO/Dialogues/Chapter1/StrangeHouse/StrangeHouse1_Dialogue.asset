@@ -16,6 +16,6 @@ MonoBehaviour:
   - speaker: {fileID: 11400000, guid: 02a1fc921f4037d4bb7357b2fa36c700, type: 2}
     text: "N\xe8 Kati, d\u1eebng ch\xe2n 1 ch\xfat \u0111i, ng\xf4i nh\xe0 n\xe0y th\u1eadt k\xec l\u1ea1."
   - speaker: {fileID: 11400000, guid: cdfbdabbf8285304690416cec3c5c792, type: 2}
-    text: "(ng\xf3 quanh) ...K\xec l\u1ea1 l\xe0 sao? C\u1eadu th\u1ea5y \u0111i\u1ec3m g\xec b\u1ea5t th\u01b0\u1eddng \xe0?"
+    text: "K\xec l\u1ea1 l\xe0 sao? C\u1eadu th\u1ea5y \u0111i\u1ec3m g\xec b\u1ea5t th\u01b0\u1eddng \xe0?"
   - speaker: {fileID: 11400000, guid: 02a1fc921f4037d4bb7357b2fa36c700, type: 2}
     text: "t\xf4i kh\xf4ng r\xf5 tuy n\xf3 r\u1ea5t y\u1ebfu \u1edbt nh\u01b0ng m\xe0 h\xecnh nh\u01b0 v\u1eabn c\xf2n ng\u01b0\u1eddi s\u1ed1ng \u1edf \u0111\xe2y."

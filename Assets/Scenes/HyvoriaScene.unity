@@ -828,7 +828,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
@@ -856,7 +856,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a3bb5776674ab241ab346fef1edea8d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SequencePlayer
-  cutsceneData: {fileID: 0}
+  cutsceneData: {fileID: 11400000, guid: fbdb5fbe5b8d4b94fa3c6c26547d834b, type: 2}
   playOncePerSession: 0
 --- !u!114 &504260930
 MonoBehaviour:
@@ -1172,6 +1172,10 @@ PrefabInstance:
     - target: {fileID: 2068556711473788101, guid: 52e2548da8dd85c4c8018cd6b77b61f7, type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 5001543976435372399, guid: 52e2548da8dd85c4c8018cd6b77b61f7, type: 3}
+      propertyPath: hasHachi
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8204092655413958187, guid: 52e2548da8dd85c4c8018cd6b77b61f7, type: 3}
       propertyPath: m_LocalPosition.x

@@ -17,7 +17,6 @@ MonoBehaviour:
   - rid: 100000000000000004
   - rid: 100000000000000002
   - rid: 100000000000000003
-  - rid: 100000000000000005
   - rid: 100000000000000006
   references:
     version: 2
@@ -47,10 +46,6 @@ MonoBehaviour:
       data:
         waitForClick: 0
         dialogue: {fileID: 11400000, guid: c7000000000000000000000000000023, type: 2}
-    - rid: 100000000000000005
-      type: {class: SaveGameAction, ns: , asm: Assembly-CSharp}
-      data:
-        waitForClick: 0
     - rid: 100000000000000006
       type: {class: SceneTransitionAction, ns: , asm: Assembly-CSharp}
       data:

@@ -698,7 +698,7 @@ MonoBehaviour:
   baseCritDamage: 75
   baseArmorPierce: 0
   baseCDR: 0
-  baseMaxHP: 100
+  baseMaxHP: 225
   baseMovementSpeed: 2.5
   baseHPRegen: 0
   baseDmgR: 0

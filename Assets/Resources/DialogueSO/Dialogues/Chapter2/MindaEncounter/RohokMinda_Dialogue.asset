@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueData
   lines:
   - speaker: {fileID: 11400000, guid: 90000000000000000000000000000021, type: 2}
-    text: "(ki\u1EC7t s\u1EE9c) Ta s\u1EBD chi\u1EBFn \u0111\u1EA5u v\u1EDBi l\u0169
+    text: "Ta... ta s\u1EBD chi\u1EBFn \u0111\u1EA5u v\u1EDBi l\u0169
       c\xE1c ng\u01B0\u01A1i t\u1EDBi c\xF9ng, l\u0169 x\u1EA5u xa."
   - speaker: {fileID: 11400000, guid: 02a1fc921f4037d4bb7357b2fa36c700, type: 2}
     text: "B\xECnh t\u0129nh \u0111i, anh kh\xF4ng ph\u1EA3i qu\u1EF7. Anh t\u1EDBi

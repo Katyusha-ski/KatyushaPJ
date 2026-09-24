@@ -15,7 +15,6 @@ MonoBehaviour:
   actions:
   - rid: 100000000000000001
   - rid: 100000000000000003
-  - rid: 100000000000000004
   - rid: 100000000000000002
   references:
     version: 2
@@ -33,10 +32,6 @@ MonoBehaviour:
         darkAlpha: 1
         fadeDuration: 0.5
         autoHoldSeconds: 2
-    - rid: 100000000000000004
-      type: {class: SaveGameAction, ns: , asm: Assembly-CSharp}
-      data:
-        waitForClick: 0
     - rid: 100000000000000002
       type: {class: SceneTransitionAction, ns: , asm: Assembly-CSharp}
       data:

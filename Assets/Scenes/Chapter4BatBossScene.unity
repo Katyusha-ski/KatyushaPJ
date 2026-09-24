@@ -286,6 +286,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 5001543976435372399, guid: 52e2548da8dd85c4c8018cd6b77b61f7, type: 3}
+      propertyPath: hasHachi
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2068556711473788101, guid: 52e2548da8dd85c4c8018cd6b77b61f7, type: 3}
       propertyPath: m_Name
       value: Player

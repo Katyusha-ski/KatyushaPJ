@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueData
   lines:
   - speaker: {fileID: 11400000, guid: 5a6b7c8d9e0f1a2b3c4d5e6f7a8b9c0d, type: 2}
-    text: "(mệt mỏi) Cảm ơn các người đã cứu em. Em tên là Minda, em là người duy nhất còn sống ở đây. Lũ quỷ đã quét sạch nơi này rồi."
+    text: "Cảm ơn các người đã cứu em... Hộc, em mệt quá. Em tên là Minda, em là người duy nhất còn sống ở đây. Lũ quỷ đã quét sạch nơi này rồi."
   - speaker: {fileID: 11400000, guid: 02a1fc921f4037d4bb7357b2fa36c700, type: 2}
     text: "Anh rất tiếc về chuyện đó. Anh biết em buồn, nhưng em có biết bọn chúng đang tập trung ở đâu không?"
   - speaker: {fileID: 11400000, guid: 5a6b7c8d9e0f1a2b3c4d5e6f7a8b9c0d, type: 2}

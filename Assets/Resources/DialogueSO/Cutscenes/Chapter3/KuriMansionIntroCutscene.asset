@@ -15,6 +15,7 @@ MonoBehaviour:
   actions:
   - rid: 100000000000000001
   - rid: 100000000000000002
+  - rid: 100000000000000003
   references:
     version: 2
     RefIds:
@@ -31,3 +32,7 @@ MonoBehaviour:
         loadingMessage: "Hai ng\u01B0\u1EDDi t\xECm th\u1EA5y t\u1EA7ng h\u1EA7m
           nh\xE0 \xF4ng Kuri"
         workInBlack: []
+    - rid: 100000000000000003
+      type: {class: SaveGameAction, ns: , asm: Assembly-CSharp}
+      data:
+        waitForClick: 0

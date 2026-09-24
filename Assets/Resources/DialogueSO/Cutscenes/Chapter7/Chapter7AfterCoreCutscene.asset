@@ -21,7 +21,6 @@ MonoBehaviour:
   - rid: 100000000000000007
   - rid: 100000000000000004
   - rid: 100000000000000008
-  - rid: 100000000000000009
   - rid: 100000000000000005
   references:
     version: 2
@@ -86,10 +85,6 @@ MonoBehaviour:
         darkAlpha: 1
         fadeDuration: 0.5
         autoHoldSeconds: 2
-    - rid: 100000000000000009
-      type: {class: SaveGameAction, ns: , asm: Assembly-CSharp}
-      data:
-        waitForClick: 0
     - rid: 6906498117785354320
       type: {class: ActivateObjectsAction, ns: , asm: Assembly-CSharp}
       data:

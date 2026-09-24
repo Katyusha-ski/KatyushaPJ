@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueData
   lines:
   - speaker: {fileID: 11400000, guid: 02a1fc921f4037d4bb7357b2fa36c700, type: 2}
-    text: "(ngó quanh) Nè tôi cảm nhận được ma lực của người sống. Có vẻ như họ đang ẩn nấp trong thân cây này."
+    text: "Nè tôi cảm nhận được ma lực của người sống. Có vẻ như họ đang ẩn nấp trong thân cây này."
   - speaker: {fileID: 11400000, guid: cdfbdabbf8285304690416cec3c5c792, type: 2}
     text: "May quá vẫn còn người sống. Để tôi vào kiểm tra xem."
   - speaker: {fileID: 11400000, guid: cdfbdabbf8285304690416cec3c5c792, type: 2}

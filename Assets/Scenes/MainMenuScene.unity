@@ -409,10 +409,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 723525216713706067, guid: 4ae16086b72a08046adb8f64ff53fc9d, type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 2709499369377758189, guid: 4ae16086b72a08046adb8f64ff53fc9d, type: 3}
       propertyPath: m_LocalPosition.x
       value: -10.03959
@@ -453,57 +449,9 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3327443761669142453, guid: 4ae16086b72a08046adb8f64ff53fc9d, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3327443761669142453, guid: 4ae16086b72a08046adb8f64ff53fc9d, type: 3}
-      propertyPath: m_AnchorMin.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3327443761669142453, guid: 4ae16086b72a08046adb8f64ff53fc9d, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3327443761669142453, guid: 4ae16086b72a08046adb8f64ff53fc9d, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3957445847231823121, guid: 4ae16086b72a08046adb8f64ff53fc9d, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3957445847231823121, guid: 4ae16086b72a08046adb8f64ff53fc9d, type: 3}
-      propertyPath: m_AnchorMin.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3957445847231823121, guid: 4ae16086b72a08046adb8f64ff53fc9d, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3957445847231823121, guid: 4ae16086b72a08046adb8f64ff53fc9d, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 4999483368528805643, guid: 4ae16086b72a08046adb8f64ff53fc9d, type: 3}
       propertyPath: m_Name
       value: GameUIRoot
-      objectReference: {fileID: 0}
-    - target: {fileID: 5340202069789904155, guid: 4ae16086b72a08046adb8f64ff53fc9d, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5340202069789904155, guid: 4ae16086b72a08046adb8f64ff53fc9d, type: 3}
-      propertyPath: m_AnchorMin.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5340202069789904155, guid: 4ae16086b72a08046adb8f64ff53fc9d, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5340202069789904155, guid: 4ae16086b72a08046adb8f64ff53fc9d, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -567,7 +515,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 4685363075737523539, guid: 5c4f9a67db555034fa4d3afd7f626afd, type: 3}
+  m_Sprite: {fileID: -1955448553306655712, guid: ae57504b2248d4244b03fb7ee812c70f, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1167,7 +1115,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 217.16711, y: -118.4828}
+  m_AnchoredPosition: {x: 217.16711, y: -25.27}
   m_SizeDelta: {x: 234.3343, y: 73.5069}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &795404772
@@ -1226,9 +1174,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: ButtonSFX, Assembly-CSharp
-        m_MethodName: PlayBtnSFX
+      - m_Target: {fileID: 805319000937019928, guid: e778f983945553d4c912a99142909cb7, type: 3}
+        m_TargetAssemblyTypeName: GameSceneController, Assembly-CSharp
+        m_MethodName: OnQuitButtonClick
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1826,7 +1774,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 217.1671, y: -23}
+  m_AnchoredPosition: {x: 217.16711, y: -118.4828}
   m_SizeDelta: {x: 234.3343, y: 73.5069}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1737348458

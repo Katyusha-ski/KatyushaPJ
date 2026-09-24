@@ -643,6 +643,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Golem_Enemy
       objectReference: {fileID: 0}
+    - target: {fileID: 4807026782737020229, guid: a42a72bc78ad58f4cbfd65e58f9b5d5e, type: 3}
+      propertyPath: debugWatchMe
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7358227951842105495, guid: a42a72bc78ad58f4cbfd65e58f9b5d5e, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -1375,6 +1379,8 @@ MonoBehaviour:
   zoomOutDuration: 1.5
   holdDuration: 1
   zoomInDuration: 1
+  shakeDuration: 0.08
+  shakeMagnitude: 0.03
 --- !u!1 &670549994
 GameObject:
   m_ObjectHideFlags: 0
@@ -163131,6 +163137,10 @@ PrefabInstance:
     - target: {fileID: 2068556711473788101, guid: 52e2548da8dd85c4c8018cd6b77b61f7, type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 5001543976435372399, guid: 52e2548da8dd85c4c8018cd6b77b61f7, type: 3}
+      propertyPath: hasHachi
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5001543976435372399, guid: 52e2548da8dd85c4c8018cd6b77b61f7, type: 3}
       propertyPath: inventoryButton

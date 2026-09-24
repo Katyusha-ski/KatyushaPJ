@@ -12,9 +12,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 462ee4e4477b62746aa569ea5d231340, type: 3}
   m_Name: Golem Heart
   m_EditorClassIdentifier: Assembly-CSharp::ItemData
+  itemId: 
   itemName: Golem Heart
-  itemIcon: {fileID: 21300000, guid: 0b4384f102bb1704b8086b33b1d6296b, type: 3}
+  itemIcon: {fileID: 7217991490656663482, guid: 0b4384f102bb1704b8086b33b1d6296b, type: 3}
   itemType: 2
   equipmentType: 0
   description: A strange crystal.
   isStackable: 1
+  maxStackSize: 99
+  stats:
+    statConfigs: []
+  consumableEffects:
+  - effectType: 0
+    duration: 5
+    value: 0
+    tickInterval: 1
+    tickValue: 0
+    isDebuff: 0
+    statModifiers: []
+  skillData:
+    skill: {fileID: 0}
+    Level: 0

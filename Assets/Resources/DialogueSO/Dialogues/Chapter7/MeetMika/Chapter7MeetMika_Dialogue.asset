@@ -14,25 +14,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueData
   lines:
   - speaker: {fileID: 11400000, guid: 02a1fc921f4037d4bb7357b2fa36c700, type: 2}
-    text: "(hoảng hốt) Mika?! Là ông thật sao?!"
+    text: "Mika?! Là... là ông thật sao?!"
   - speaker: {fileID: 11400000, guid: c7000000000000000000000000000001, type: 2}
-    text: "(yếu ớt) Hachi... cậu... còn sống sao..."
+    text: "Hachi... cậu... còn sống sao..."
   - speaker: {fileID: 11400000, guid: cdfbdabbf8285304690416cec3c5c792, type: 2}
-    text: "(vội chữa trị cho Mika) Ông cứ nằm yên đi đã."
+    text: "Ông cứ nằm yên đi đã."
   - speaker: {fileID: 11400000, guid: 02a1fc921f4037d4bb7357b2fa36c700, type: 2}
     text: "Mika là cận thần của nhà vua, cũng là chiến binh lão luyện của vương quốc này. Ông ấy với cha tôi — thầy Shisa — được ví như hai cánh tay trái phải của quốc vương."
   - speaker: {fileID: 11400000, guid: c7000000000000000000000000000001, type: 2}
-    text: "(dần tỉnh) Hachi... tôi phải nói cho cậu biết... nguyên nhân của thảm họa này..."
+    text: "Hachi... tôi... tôi phải nói cho cậu biết... nguyên nhân của thảm họa này..."
   - speaker: {fileID: 11400000, guid: 02a1fc921f4037d4bb7357b2fa36c700, type: 2}
     text: "Nói đi, tôi nghe đây."
   - speaker: {fileID: 11400000, guid: c7000000000000000000000000000001, type: 2}
     text: "Nguyên nhân... đến từ chính nhà vua."
   - speaker: {fileID: 11400000, guid: 02a1fc921f4037d4bb7357b2fa36c700, type: 2}
-    text: "(sững sờ) Cái gì?! Ông đang nói..."
+    text: "Cái gì?! Ông đang nói..."
   - speaker: {fileID: 11400000, guid: c7000000000000000000000000000001, type: 2}
     text: "Tôi biết khó tin lắm, chính tôi cũng chưa chấp nhận nổi. Nhưng tôi cảm nhận được sự hiện diện của ngài ở thủ đô này — mana của ngài đã biến thành thứ gì đó vô cùng kinh tởm."
   - speaker: {fileID: 11400000, guid: 02a1fc921f4037d4bb7357b2fa36c700, type: 2}
-    text: "(run giọng) ...Đúng là mana của nhà vua thật, nhưng nó bị ô nhiễm nặng nề. Làm sao một nhà vua có thể bị lũ quỷ thao túng để tự tay mở cổng dịch chuyển? Và tại sao lại làm vậy?"
+    text: "...Đúng là mana của nhà vua thật, nhưng... nhưng nó bị ô nhiễm nặng nề. Làm sao một nhà vua có thể bị lũ quỷ thao túng để tự tay mở cổng dịch chuyển? Và tại sao lại làm vậy?"
   - speaker: {fileID: 11400000, guid: cdfbdabbf8285304690416cec3c5c792, type: 2}
     text: "Quỷ với người vốn đối đầu nhau như âm với dương mà, đúng không? Bắt tay với quỷ nghe vô lý quá."
   - speaker: {fileID: 11400000, guid: 02a1fc921f4037d4bb7357b2fa36c700, type: 2}

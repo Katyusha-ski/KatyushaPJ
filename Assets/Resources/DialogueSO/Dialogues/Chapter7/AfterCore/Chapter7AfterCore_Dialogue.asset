@@ -14,9 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueData
   lines:
   - speaker: {fileID: 11400000, guid: c7000000000000000000000000000002, type: 2}
-    text: "(giọng khàn, tỉnh táo lại) ...Cuối cùng... tôi cũng lấy lại được ý chí của mình."
+    text: "...Cuối cùng... khụ, tôi cũng lấy lại được ý chí của mình."
   - speaker: {fileID: 11400000, guid: 02a1fc921f4037d4bb7357b2fa36c700, type: 2}
-    text: "(chấn động) Là... nhà vua thật sao?!"
+    text: "Cái... cái gì?! Là... nhà vua thật sao?!"
   - speaker: {fileID: 11400000, guid: c7000000000000000000000000000002, type: 2}
     text: "Đúng vậy, Hachi. Con trai của Shisa... Xin lỗi vì đã để mọi chuyện đi đến nước này."
   - speaker: {fileID: 11400000, guid: cdfbdabbf8285304690416cec3c5c792, type: 2}
@@ -24,9 +24,9 @@ MonoBehaviour:
   - speaker: {fileID: 11400000, guid: c7000000000000000000000000000002, type: 2}
     text: "Mẹ ta... là người bị quỷ ám. Nhưng vì tình yêu, cha ta — quốc vương tiền nhiệm — vẫn chăm sóc cho bà tới cùng. Sau khi sinh ra ta, cha đã dùng mọi cách kiểm tra dấu hiệu của quỷ trên cơ thể ta, nhưng không lần nào phát hiện điều gì bất thường."
   - speaker: {fileID: 11400000, guid: c7000000000000000000000000000002, type: 2}
-    text: "(cười khổ) Ai cũng tưởng vậy là xong rồi... Không ngờ chuyện này lại xảy ra. Chúng ta đã đánh giá quá thấp lũ quỷ này."
+    text: "Ha... Ai cũng tưởng vậy là xong rồi... Không ngờ chuyện này lại xảy ra. Chúng ta đã đánh giá quá thấp lũ quỷ này."
   - speaker: {fileID: 11400000, guid: 02a1fc921f4037d4bb7357b2fa36c700, type: 2}
-    text: "(nghẹn giọng) Vậy giờ phải làm sao để đóng cổng lại?"
+    text: "Vậy... vậy giờ phải làm sao để đóng cổng lại?"
   - speaker: {fileID: 11400000, guid: c7000000000000000000000000000002, type: 2}
     text: "Ta sẽ chỉ cho hai người cách đóng cổng. Chỉ cần dùng phép thuật để hủy diệt tàn dư lõi quỷ là được."
   - speaker: {fileID: 11400000, guid: c7000000000000000000000000000002, type: 2}

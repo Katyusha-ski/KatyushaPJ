@@ -22,7 +22,7 @@ MonoBehaviour:
   stats:
     statConfigs:
     - statType: 0
-      value: 1
+      value: 3
       modifierType: 0
     - statType: 10
       value: 1

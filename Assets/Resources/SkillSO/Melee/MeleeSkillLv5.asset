@@ -16,7 +16,7 @@ MonoBehaviour:
   icon: {fileID: 2087338230, guid: 059d1d78ad320a4489c41a6117dc8de8, type: 3}
   skillType: 4
   cooldown: 10
-  baseDamage: 8
+  baseDamage: 20
   range: 2.5
   offset: {x: 0, y: 0}
   maxTargets: 10

@@ -175,7 +175,7 @@
         true,
         true,
         true,
-        true
+        false
     ],
     "questItems": [    
         "Map"

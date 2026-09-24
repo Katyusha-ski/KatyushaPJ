@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueData
   lines:
   - speaker: {fileID: 11400000, guid: 02a1fc921f4037d4bb7357b2fa36c700, type: 2}
-    text: "(nhận lấy) Cảm ơn, nhưng lần sau đừng có lừa người khác đấy nhé. Để bọn ta gặp lại thì ngươi không yên đâu."
+    text: "Cảm ơn, nhưng lần sau đừng có lừa người khác đấy nhé. Để bọn ta gặp lại thì ngươi không yên đâu."

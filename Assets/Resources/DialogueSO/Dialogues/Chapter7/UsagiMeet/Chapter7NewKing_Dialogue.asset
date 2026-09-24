@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueData
   lines:
   - speaker: {fileID: 11400000, guid: 02a1fc921f4037d4bb7357b2fa36c700, type: 2}
-    text: "(đứng trên cơ thể mới của mình, quay sang Kati) Kati này... cảm ơn cậu, vì tất cả."
+    text: "Kati này... cảm ơn cậu, vì tất cả."
   - speaker: {fileID: 11400000, guid: cdfbdabbf8285304690416cec3c5c792, type: 2}
-    text: "(nhún vai, cười nhẹ) Thôi khỏi cảm ơn, lo giữ lời hứa nghiên cứu phép dịch chuyển đưa tôi về thế giới thật đi là được."
+    text: "Thôi khỏi cảm ơn, lo giữ lời hứa nghiên cứu phép dịch chuyển đưa tôi về thế giới thật đi là được."
   - speaker: {fileID: 11400000, guid: 02a1fc921f4037d4bb7357b2fa36c700, type: 2}
-    text: "(cười) Yên tâm, tôi là vua rồi mà — chuyện đó dễ ợt."
+    text: "Ha ha, yên tâm, tôi là vua rồi mà — chuyện đó dễ ợt."

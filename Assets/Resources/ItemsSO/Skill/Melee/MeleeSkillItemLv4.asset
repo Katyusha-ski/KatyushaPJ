@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ItemData
   itemId: 
   itemName: Melee Skill Lv4
-  itemIcon: {fileID: 2136130118105564158, guid: 5f35f38440b7fc3449e53506fa829a8a, type: 3}
+  itemIcon: {fileID: -2099162095, guid: 5f35f38440b7fc3449e53506fa829a8a, type: 3}
   itemType: 4
   equipmentType: 0
   description: Summon a club, heavy smash.

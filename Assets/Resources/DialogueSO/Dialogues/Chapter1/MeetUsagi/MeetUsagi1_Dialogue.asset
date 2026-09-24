@@ -14,15 +14,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueData
   lines:
   - speaker: {fileID: 11400000, guid: 02a1fc921f4037d4bb7357b2fa36c700, type: 2}
-    text: "(ng\u1ea1c nhi\xean) \u01a0? C\u1eadu l\xe0..."
+    text: "\u01a0? C\u1eadu l\xe0..."
   - speaker: {fileID: 11400000, guid: ba9e4e92a1ad5fd48a4938317a4ac0ba, type: 2}
     text: "Hehe, l\xe2u qu\xe1 kh\xf4ng g\u1eb7p ha Hachi."
   - speaker: {fileID: 11400000, guid: cdfbdabbf8285304690416cec3c5c792, type: 2}
-    text: "(t\xf2 m\xf2) Hai ng\u01b0\u1eddi quen nhau \xe0? M\xe0 n\xe0y, c\u1eadu \u1edf trong khu v\u1ef1c b\u1ecb qu\u1ef7 chi\u1ebfm \u0111\xf3ng l\xe0m g\xec v\u1eady?"
+    text: "\u1ee6a, hai ng\u01b0\u1eddi quen nhau \xe0? M\xe0 n\xe0y, c\u1eadu \u1edf trong khu v\u1ef1c b\u1ecb qu\u1ef7 chi\u1ebfm \u0111\xf3ng l\xe0m g\xec v\u1eady?"
   - speaker: {fileID: 11400000, guid: ba9e4e92a1ad5fd48a4938317a4ac0ba, type: 2}
     text: "T\xf4i ch\u1ec9 \u0111\u01a1n gi\u1ea3n l\xe0 \u0111i b\xe1n h\xe0ng th\xf4i. N\u1ebfu ng\u01b0\u1eddi trong \u0111\xe2y \"h\u1eb9o\" h\u1ebft th\xec t\xf4i m\u1ea5t kh\xe1ch, m\xe0 v\u1eadt ph\u1ea9m r\u01a1i ra t\u1eeb l\u0169 qu\u1ef7 c\u0169ng c\xf3 gi\xe1 l\u1eafm \u0111\xf3."
   - speaker: {fileID: 11400000, guid: cdfbdabbf8285304690416cec3c5c792, type: 2}
-    text: "(nh\xecn Usagi v\u1edbi \xe1nh m\u1eaft k\u1ef3 l\u1ea1) ...T\xean n\xe0y l\u1ea1c quan ki\u1ec3u g\xec v\u1eady tr\u1eddi."
+    text: "T\xean n\xe0y l\u1ea1c quan ki\u1ec3u g\xec v\u1eady tr\u1eddi."
   - speaker: {fileID: 11400000, guid: ba9e4e92a1ad5fd48a4938317a4ac0ba, type: 2}
     text: "T\xf4i c\xf3 th\u1ec3 cung c\u1ea5p v\u0169 kh\xed, trang b\u1ecb cho hai ng\u01b0\u1eddi \u2014 nh\u01b0ng nh\u1edb ph\u1ea3i c\xf3 th\u1ee9 trao \u0111\u1ed5i nh\xe9, t\xf4i c\u0169ng c\u1ea7n ti\u1ec1n \u0111\u1ec3 s\u1ed1ng m\xe0."
   - speaker: {fileID: 11400000, guid: 02a1fc921f4037d4bb7357b2fa36c700, type: 2}

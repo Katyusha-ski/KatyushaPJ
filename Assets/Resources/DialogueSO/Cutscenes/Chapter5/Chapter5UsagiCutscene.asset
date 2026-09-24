@@ -14,7 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CutsceneData
   actions:
   - rid: 100000000000000001
-  - rid: 6906498004545175640
   references:
     version: 2
     RefIds:
@@ -23,9 +22,3 @@ MonoBehaviour:
       data:
         waitForClick: 0
         dialogue: {fileID: 11400000, guid: 10000000000000000000000000000004, type: 2}
-    - rid: 6906498004545175640
-      type: {class: NextChapterAction, ns: , asm: Assembly-CSharp}
-      data:
-        waitForClick: 0
-        fadeDuration: 0.5
-        playerSpawnPosition: {x: 0, y: 2, z: 0}
